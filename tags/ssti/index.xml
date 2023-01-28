@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>SSTI - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/ssti/</link>
+    <link>https://shuai06.github.io/tags/ssti/</link>
     <description>SSTI - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Jan 2022 16:32:49 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/ssti/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Jan 2022 16:32:49 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/ssti/" rel="self" type="application/rss+xml" /><item>
   <title>SSTI服务端模板注入</title>
-  <link>https://geoer.cn/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/</link>
+  <link>https://shuai06.github.io/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/</link>
   <pubDate>Thu, 20 Jan 2022 16:32:49 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/</guid>
+  <guid>https://shuai06.github.io/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/</guid>
   <description><![CDATA[简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换]]></description>
 </item>
 </channel>

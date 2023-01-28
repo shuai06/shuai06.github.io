@@ -750,5 +750,5 @@ image_compose()
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-pil%E5%BA%93/  
+> URL: https://shuai06.github.io/python-pil%E5%BA%93/  
 

@@ -75,5 +75,5 @@ Windows中可结合Proxifier、SSTap等工具，可设置socks5口令，以此�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/frp/  
+> URL: https://shuai06.github.io/frp/  
 

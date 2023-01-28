@@ -297,5 +297,5 @@ https://blog.csdn.net/weixin_46885185/article/details/115017109
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/  
+> URL: https://shuai06.github.io/markdown%E4%B8%AD%E5%86%99latex/  
 

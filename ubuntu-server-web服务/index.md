@@ -1067,5 +1067,5 @@ xxx:8080/host-manager/html
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-web%E6%9C%8D%E5%8A%A1/  
+> URL: https://shuai06.github.io/ubuntu-server-web%E6%9C%8D%E5%8A%A1/  
 

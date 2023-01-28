@@ -368,5 +368,5 @@ if type(soup.a.string)==bs4.element.Comment:
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-beautifulsoup/  
+> URL: https://shuai06.github.io/python-beautifulsoup/  
 

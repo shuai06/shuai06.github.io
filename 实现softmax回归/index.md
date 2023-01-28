@@ -308,5 +308,5 @@ d2l.train_ch3(net, train_iter, test_iter, loss, num_epochs, trainer)
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%AE%9E%E7%8E%B0softmax%E5%9B%9E%E5%BD%92/  
+> URL: https://shuai06.github.io/%E5%AE%9E%E7%8E%B0softmax%E5%9B%9E%E5%BD%92/  
 

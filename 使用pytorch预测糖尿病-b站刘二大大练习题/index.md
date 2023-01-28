@@ -75,5 +75,5 @@ print("infact_pred = ", pred_test.item())
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E7%B3%96%E5%B0%BF%E7%97%85-b%E7%AB%99%E5%88%98%E4%BA%8C%E5%A4%A7%E5%A4%A7%E7%BB%83%E4%B9%A0%E9%A2%98/  
+> URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E7%B3%96%E5%B0%BF%E7%97%85-b%E7%AB%99%E5%88%98%E4%BA%8C%E5%A4%A7%E5%A4%A7%E7%BB%83%E4%B9%A0%E9%A2%98/  
 

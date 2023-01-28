@@ -369,5 +369,5 @@ letsencrypt['auto_renew_day_of_month'] = "*/7"  # 每隔7天
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/  
+> URL: https://shuai06.github.io/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/  
 

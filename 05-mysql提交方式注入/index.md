@@ -88,5 +88,5 @@ User-Agent: admin' or updatexml(1,concat(0x7e,database(),0x7e),0) or '
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/05-mysql%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5/  
+> URL: https://shuai06.github.io/05-mysql%E6%8F%90%E4%BA%A4%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5/  
 

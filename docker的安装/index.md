@@ -152,5 +152,5 @@ $ docker-machine version
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/docker%E7%9A%84%E5%AE%89%E8%A3%85/  
+> URL: https://shuai06.github.io/docker%E7%9A%84%E5%AE%89%E8%A3%85/  
 

@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>黑暗引擎 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</link>
+    <link>https://shuai06.github.io/tags/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</link>
     <description>黑暗引擎 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 29 Mar 2020 13:22:23 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 29 Mar 2020 13:22:23 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/" rel="self" type="application/rss+xml" /><item>
   <title>黑暗引擎</title>
-  <link>https://geoer.cn/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</link>
+  <link>https://shuai06.github.io/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</link>
   <pubDate>Sun, 29 Mar 2020 13:22:23 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</guid>
+  <guid>https://shuai06.github.io/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/</guid>
   <description><![CDATA[一. shodan 1.简单介绍 Shodan，是一个暗黑系的谷歌，作为一个针对网络设备的搜索引擎，它可以在极短的时间内在全球设备中搜索到你想找的设备信息。]]></description>
 </item>
 </channel>

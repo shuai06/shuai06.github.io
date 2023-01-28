@@ -112,5 +112,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%BD%BF%E7%94%A8anydesk%E5%81%9A%E8%BF%9C%E6%8E%A7/  
+> URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8anydesk%E5%81%9A%E8%BF%9C%E6%8E%A7/  
 

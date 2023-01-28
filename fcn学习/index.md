@@ -198,5 +198,5 @@ d2l.show_images(imgs[::3] + imgs[1::3] + imgs[2::3], 3, n, scale=2);
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/fcn%E5%AD%A6%E4%B9%A0/  
+> URL: https://shuai06.github.io/fcn%E5%AD%A6%E4%B9%A0/  
 

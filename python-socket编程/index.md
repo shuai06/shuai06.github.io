@@ -459,5 +459,5 @@ client.py 相同
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-socket%E7%BC%96%E7%A8%8B/  
+> URL: https://shuai06.github.io/python-socket%E7%BC%96%E7%A8%8B/  
 

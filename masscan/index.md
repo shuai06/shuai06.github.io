@@ -146,5 +146,5 @@ if __name__ == '__main__':
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/masscan/  
+> URL: https://shuai06.github.io/masscan/  
 

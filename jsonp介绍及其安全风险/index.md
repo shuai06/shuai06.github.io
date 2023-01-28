@@ -217,5 +217,5 @@ htmlcallback返回一个对象obj，以该对象作为参数传入test函数，�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/jsonp%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9/  
+> URL: https://shuai06.github.io/jsonp%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9/  
 

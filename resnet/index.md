@@ -270,5 +270,5 @@ print(model)
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/resnet/  
+> URL: https://shuai06.github.io/resnet/  
 

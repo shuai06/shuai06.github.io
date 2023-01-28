@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Shiro反序列化 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+    <link>https://shuai06.github.io/tags/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
     <description>Shiro反序列化 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Nov 2020 14:02:25 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 Nov 2020 14:02:25 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="self" type="application/rss+xml" /><item>
   <title>Shiro rememberMe反序列化漏洞(Shiro-550)复现</title>
-  <link>https://geoer.cn/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/</link>
+  <link>https://shuai06.github.io/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/</link>
   <pubDate>Fri, 13 Nov 2020 14:02:25 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/</guid>
+  <guid>https://shuai06.github.io/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/</guid>
   <description><![CDATA[漏洞原理 Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对remem]]></description>
 </item>
 </channel>

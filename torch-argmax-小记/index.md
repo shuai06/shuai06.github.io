@@ -63,5 +63,5 @@ tensor([[1, 3, 4],
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/torch-argmax-%E5%B0%8F%E8%AE%B0/  
+> URL: https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/  
 

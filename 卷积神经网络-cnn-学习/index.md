@@ -561,5 +561,5 @@ https://blog.csdn.net/qq_30093417/article/details/121108090
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/  
+> URL: https://shuai06.github.io/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/  
 

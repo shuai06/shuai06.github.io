@@ -193,5 +193,5 @@ s = 5
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90-pydictor/  
+> URL: https://shuai06.github.io/%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90-pydictor/  
 

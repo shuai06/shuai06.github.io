@@ -187,5 +187,5 @@ delete from users where id=1 or extractvalue(1,concat(0x7e,database())) or '';
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/06-mysql%E7%B1%BB%E5%9E%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/  
+> URL: https://shuai06.github.io/06-mysql%E7%B1%BB%E5%9E%8B%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/  
 

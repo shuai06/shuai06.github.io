@@ -721,5 +721,5 @@ at 13:00 tomorrow
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/  
+> URL: https://shuai06.github.io/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/  
 

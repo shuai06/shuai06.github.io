@@ -8,5 +8,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu%E5%AE%89%E8%A3%85cuda/  
+> URL: https://shuai06.github.io/ubuntu%E5%AE%89%E8%A3%85cuda/  
 

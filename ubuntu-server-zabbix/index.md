@@ -199,5 +199,5 @@ Configuration -> Hosts -> Create host -> ... -> Template(指定监视目标的�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-zabbix/  
+> URL: https://shuai06.github.io/ubuntu-server-zabbix/  
 

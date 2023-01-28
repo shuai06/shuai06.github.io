@@ -195,5 +195,5 @@ https://www.cnblogs.com/miaodaren/p/9177379.html        # Shodan的http.favicon.
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E7%BB%95%E8%BF%87cdn%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9Eip/  
+> URL: https://shuai06.github.io/%E7%BB%95%E8%BF%87cdn%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9Eip/  
 

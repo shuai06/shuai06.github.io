@@ -754,5 +754,5 @@ Add-Content .\test.txt -Value "嘻嘻嘻嘻嘻嘻嘻嘻"
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
+> URL: https://shuai06.github.io/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
 

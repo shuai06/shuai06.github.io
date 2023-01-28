@@ -3174,5 +3174,5 @@ https://www.cnblogs.com/peterpan0707007/p/8242119.html
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/  
+> URL: https://shuai06.github.io/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/  
 

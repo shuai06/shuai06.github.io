@@ -53,5 +53,5 @@ for k, v in enumerate(cidrs):
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python%E8%A7%A3%E6%9E%90ip%E5%9C%B0%E5%9D%80cidr%E7%9A%84%E5%BD%A2%E5%BC%8F/  
+> URL: https://shuai06.github.io/python%E8%A7%A3%E6%9E%90ip%E5%9C%B0%E5%9D%80cidr%E7%9A%84%E5%BD%A2%E5%BC%8F/  
 

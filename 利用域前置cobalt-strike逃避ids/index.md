@@ -112,5 +112,5 @@ https://co0ontty.github.io/2021/04/29/domain_fronting.html
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%88%A9%E7%94%A8%E5%9F%9F%E5%89%8D%E7%BD%AEcobalt-strike%E9%80%83%E9%81%BFids/  
+> URL: https://shuai06.github.io/%E5%88%A9%E7%94%A8%E5%9F%9F%E5%89%8D%E7%BD%AEcobalt-strike%E9%80%83%E9%81%BFids/  
 

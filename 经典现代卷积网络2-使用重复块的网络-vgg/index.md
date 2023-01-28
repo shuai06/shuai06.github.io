@@ -126,5 +126,5 @@ d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E7%BB%8F%E5%85%B8%E7%8E%B0%E4%BB%A3%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C2-%E4%BD%BF%E7%94%A8%E9%87%8D%E5%A4%8D%E5%9D%97%E7%9A%84%E7%BD%91%E7%BB%9C-vgg/  
+> URL: https://shuai06.github.io/%E7%BB%8F%E5%85%B8%E7%8E%B0%E4%BB%A3%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C2-%E4%BD%BF%E7%94%A8%E9%87%8D%E5%A4%8D%E5%9D%97%E7%9A%84%E7%BD%91%E7%BB%9C-vgg/  
 

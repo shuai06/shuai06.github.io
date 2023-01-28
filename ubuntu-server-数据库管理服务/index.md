@@ -639,5 +639,5 @@ db.dropDatabase()
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/  
+> URL: https://shuai06.github.io/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/  
 

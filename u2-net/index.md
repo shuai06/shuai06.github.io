@@ -1000,5 +1000,5 @@ https://blog.csdn.net/ling620/article/details/110127019
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/u2-net/  
+> URL: https://shuai06.github.io/u2-net/  
 

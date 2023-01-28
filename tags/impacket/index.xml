@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Impacket - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/impacket/</link>
+    <link>https://shuai06.github.io/tags/impacket/</link>
     <description>Impacket - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 09 May 2022 14:05:26 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/impacket/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 09 May 2022 14:05:26 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/impacket/" rel="self" type="application/rss+xml" /><item>
   <title>Impacket库学习</title>
-  <link>https://geoer.cn/impacket%E5%BA%93%E5%AD%A6%E4%B9%A0/</link>
+  <link>https://shuai06.github.io/impacket%E5%BA%93%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Mon, 09 May 2022 14:05:26 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/impacket%E5%BA%93%E5%AD%A6%E4%B9%A0/</guid>
+  <guid>https://shuai06.github.io/impacket%E5%BA%93%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[简介 Impacket是用于处理网络协议的Python类的集合。Impacket专注于提供对数据包的简单编程访问，以及协议实现本身的某些协议（]]></description>
 </item>
 </channel>

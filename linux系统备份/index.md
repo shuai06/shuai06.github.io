@@ -194,5 +194,5 @@ start clonezilla
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/linux%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/  
+> URL: https://shuai06.github.io/linux%E7%B3%BB%E7%BB%9F%E5%A4%87%E4%BB%BD/  
 

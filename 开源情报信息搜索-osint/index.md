@@ -179,5 +179,5 @@ python3 gitminer-v2.0.py -C cookie.txt -q 'extension:properties jdbc' -r 'passwo
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%BC%80%E6%BA%90%E6%83%85%E6%8A%A5%E4%BF%A1%E6%81%AF%E6%90%9C%E7%B4%A2-osint/  
+> URL: https://shuai06.github.io/%E5%BC%80%E6%BA%90%E6%83%85%E6%8A%A5%E4%BF%A1%E6%81%AF%E6%90%9C%E7%B4%A2-osint/  
 

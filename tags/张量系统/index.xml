@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>张量系统 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E5%BC%A0%E9%87%8F%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://shuai06.github.io/tags/%E5%BC%A0%E9%87%8F%E7%B3%BB%E7%BB%9F/</link>
     <description>张量系统 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 05 Sep 2022 08:54:33 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%BC%A0%E9%87%8F%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 05 Sep 2022 08:54:33 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E5%BC%A0%E9%87%8F%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
   <title>Pytorch学习-Torch与autograd</title>
-  <link>https://geoer.cn/pytorch%E5%AD%A6%E4%B9%A0-torch/</link>
+  <link>https://shuai06.github.io/pytorch%E5%AD%A6%E4%B9%A0-torch/</link>
   <pubDate>Mon, 05 Sep 2022 08:54:33 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/pytorch%E5%AD%A6%E4%B9%A0-torch/</guid>
+  <guid>https://shuai06.github.io/pytorch%E5%AD%A6%E4%B9%A0-torch/</guid>
   <description><![CDATA[Tensor Tensor基础 Tensor，又名张量。 可以简单认为Tensor是一个支持高效科学计算的数组。它可以是一个数(标量)、一维数组(向量)、二]]></description>
 </item>
 </channel>

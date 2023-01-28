@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Numpy - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/numpy/</link>
+    <link>https://shuai06.github.io/tags/numpy/</link>
     <description>Numpy - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Jul 2022 16:14:12 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/numpy/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Jul 2022 16:14:12 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/numpy/" rel="self" type="application/rss+xml" /><item>
   <title>np.dot()、np.outer()、np.multiply()</title>
-  <link>https://geoer.cn/np-dot-np-outer-np-multiply/</link>
+  <link>https://shuai06.github.io/np-dot-np-outer-np-multiply/</link>
   <pubDate>Sat, 16 Jul 2022 16:14:12 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/np-dot-np-outer-np-multiply/</guid>
+  <guid>https://shuai06.github.io/np-dot-np-outer-np-multiply/</guid>
   <description><![CDATA[这几天看吴恩达深度学习作业时候，遇到了np.dot()、np.outer()、np.multiply()、*几个函数，记录一下 np.dot 1.如果处理]]></description>
 </item>
 <item>
   <title>Python之Numpy学习</title>
-  <link>https://geoer.cn/python%E4%B9%8Bnumpy%E5%AD%A6%E4%B9%A0/</link>
+  <link>https://shuai06.github.io/python%E4%B9%8Bnumpy%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Thu, 28 Apr 2022 17:16:10 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/python%E4%B9%8Bnumpy%E5%AD%A6%E4%B9%A0/</guid>
+  <guid>https://shuai06.github.io/python%E4%B9%8Bnumpy%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[介绍 NumPy是一个功能强大的Python库，主要用于对多维数组执行计算。 NumPy这个词来源于两个单词：Numerical和Python。]]></description>
 </item>
 </channel>

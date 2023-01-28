@@ -136,5 +136,5 @@ PS：[后来发现这个好用的工具](https://github.com/feihong-cs/ShiroExpl
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/  
+> URL: https://shuai06.github.io/shiro-rememberme%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-shiro-550-%E5%A4%8D%E7%8E%B0/  
 

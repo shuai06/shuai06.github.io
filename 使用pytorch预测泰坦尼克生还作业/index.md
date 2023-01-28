@@ -115,5 +115,5 @@ print(outputs)
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E7%94%9F%E8%BF%98%E4%BD%9C%E4%B8%9A/  
+> URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E7%94%9F%E8%BF%98%E4%BD%9C%E4%B8%9A/  
 

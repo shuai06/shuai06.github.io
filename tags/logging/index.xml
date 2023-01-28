@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>logging - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/logging/</link>
+    <link>https://shuai06.github.io/tags/logging/</link>
     <description>logging - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 19 Feb 2020 20:09:06 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/logging/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 19 Feb 2020 20:09:06 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/logging/" rel="self" type="application/rss+xml" /><item>
   <title>python-logging模块</title>
-  <link>https://geoer.cn/python-logging%E6%A8%A1%E5%9D%97/</link>
+  <link>https://shuai06.github.io/python-logging%E6%A8%A1%E5%9D%97/</link>
   <pubDate>Wed, 19 Feb 2020 20:09:06 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/python-logging%E6%A8%A1%E5%9D%97/</guid>
+  <guid>https://shuai06.github.io/python-logging%E6%A8%A1%E5%9D%97/</guid>
   <description><![CDATA[为什么会用logging模块 灵活性好，方便配置 输出或保存不同级别日志 logging模块结构 logging 在源码中有三个文件,结构如下: 1 2 3 ├── config.py ├─]]></description>
 </item>
 </channel>

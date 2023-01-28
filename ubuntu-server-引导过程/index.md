@@ -809,5 +809,5 @@ sysctl net.ipv4.ip_ forward1    # 或者使用命令，查看
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/  
+> URL: https://shuai06.github.io/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/  
 

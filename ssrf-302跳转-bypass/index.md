@@ -113,5 +113,5 @@ xip.io来绕过(DNS重定向302)：http://xxx.192.168.0.1.xip.io/ == 192.168.0.1
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ssrf-302%E8%B7%B3%E8%BD%AC-bypass/  
+> URL: https://shuai06.github.io/ssrf-302%E8%B7%B3%E8%BD%AC-bypass/  
 

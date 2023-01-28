@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>多线程 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <link>https://shuai06.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
     <description>多线程 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jan 2021 15:53:26 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jan 2021 15:53:26 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
   <title>Java学习之多线程</title>
-  <link>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+  <link>https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
   <pubDate>Sun, 17 Jan 2021 15:53:26 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+  <guid>https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
   <description><![CDATA[基本概念 JVM内存结构： 单核CPU和多核CPU的理解： 单核：其实是一种假的多线程。因为在一个时间单元内，也只能执行一个线程的任务。 多核：如果]]></description>
 </item>
 <item>
   <title>python-多线程</title>
-  <link>https://geoer.cn/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+  <link>https://shuai06.github.io/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
   <pubDate>Mon, 24 Feb 2020 11:29:58 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+  <guid>https://shuai06.github.io/python-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
   <description><![CDATA[讲解 进程 是程序的一次执行。 每个进程都有自己的地址空间、内存、数据栈以及其他记录运行轨迹的辅助数据 线程 所有的线程运行在同一个进程当中，共享相同]]></description>
 </item>
 </channel>

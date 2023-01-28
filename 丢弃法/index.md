@@ -124,5 +124,5 @@ d2l.train_ch3(net, train_iter, test_iter, loss, num_epochs, batch_size, None, No
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%B8%A2%E5%BC%83%E6%B3%95/  
+> URL: https://shuai06.github.io/%E4%B8%A2%E5%BC%83%E6%B3%95/  
 

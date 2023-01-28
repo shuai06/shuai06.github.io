@@ -34,5 +34,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5mysql/  
+> URL: https://shuai06.github.io/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5mysql/  
 

@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>XSS - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/xss/</link>
+    <link>https://shuai06.github.io/tags/xss/</link>
     <description>XSS - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/xss/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/xss/" rel="self" type="application/rss+xml" /><item>
   <title>XSS漏洞</title>
-  <link>https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/</link>
+  <link>https://shuai06.github.io/xss%E6%BC%8F%E6%B4%9E/</link>
   <pubDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/</guid>
+  <guid>https://shuai06.github.io/xss%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆]]></description>
 </item>
 <item>
   <title>xmind2020存在XSS漏洞可导致命令执行</title>
-  <link>https://geoer.cn/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+  <link>https://shuai06.github.io/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
   <pubDate>Tue, 11 May 2021 09:53:59 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+  <guid>https://shuai06.github.io/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
   <description><![CDATA[漏洞描述 Xmind2020 存在XSS漏洞，攻击者可利用该漏洞进行命令执行。由于软件允许用户以文件形式或自定义标题标题的形式存储JS代码，攻击者可以发送带有恶]]></description>
 </item>
 </channel>

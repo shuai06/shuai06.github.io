@@ -458,5 +458,5 @@ Asynchronous JavaScript and XML
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/https%E6%94%BB%E5%87%BB/  
+> URL: https://shuai06.github.io/https%E6%94%BB%E5%87%BB/  
 

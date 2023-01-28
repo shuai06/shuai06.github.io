@@ -117,5 +117,5 @@ LeNet5的缺点：
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D-lenet-5/  
+> URL: https://shuai06.github.io/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D-lenet-5/  
 

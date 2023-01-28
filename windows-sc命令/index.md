@@ -84,5 +84,5 @@ net start Name ``# 启动服务
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/windows-sc%E5%91%BD%E4%BB%A4/  
+> URL: https://shuai06.github.io/windows-sc%E5%91%BD%E4%BB%A4/  
 

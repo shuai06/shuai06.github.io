@@ -133,5 +133,5 @@ nbtscan -v -s ' ' 192.168.117.130 | awk '{print $1}' |uniq
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/nbtscan/  
+> URL: https://shuai06.github.io/nbtscan/  
 

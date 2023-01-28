@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>LXD - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/lxd/</link>
+    <link>https://shuai06.github.io/tags/lxd/</link>
     <description>LXD - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 May 2020 16:33:51 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/lxd/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 May 2020 16:33:51 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/lxd/" rel="self" type="application/rss+xml" /><item>
   <title>ubuntu server-容器</title>
-  <link>https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/</link>
+  <link>https://shuai06.github.io/ubuntu-server-%E5%AE%B9%E5%99%A8/</link>
   <pubDate>Mon, 11 May 2020 16:33:51 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/</guid>
+  <guid>https://shuai06.github.io/ubuntu-server-%E5%AE%B9%E5%99%A8/</guid>
   <description><![CDATA[容器 有了新武器，并不表示旧武器没有用 题外话 容器 SDN -&gt; 软件定义网络 容器 -&gt; 基于操作系统内核，共享宿主机的CPU -&gt; 操作系统的进程之间进行隔离 -&gt; 安全性]]></description>
 </item>
 </channel>

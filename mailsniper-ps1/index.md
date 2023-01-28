@@ -201,5 +201,5 @@ Invoke-GlobalMailSearch -ImpersonationAccount zhangsan -ExchHostname test2k12 -A
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/mailsniper-ps1/  
+> URL: https://shuai06.github.io/mailsniper-ps1/  
 

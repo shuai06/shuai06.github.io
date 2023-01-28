@@ -321,5 +321,5 @@ umask
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/  
+> URL: https://shuai06.github.io/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/  
 

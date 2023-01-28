@@ -1,39 +1,39 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>科研 - 分类 - 剑胆琴心</title>
-    <link>https://geoer.cn/categories/%E7%A7%91%E7%A0%94/</link>
+    <link>https://shuai06.github.io/categories/%E7%A7%91%E7%A0%94/</link>
     <description>科研 - 分类 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Sep 2022 17:20:03 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/categories/%E7%A7%91%E7%A0%94/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Sep 2022 17:20:03 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E7%A7%91%E7%A0%94/" rel="self" type="application/rss+xml" /><item>
   <title>沐神教你三步读论文</title>
-  <link>https://geoer.cn/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/</link>
+  <link>https://shuai06.github.io/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/</link>
   <pubDate>Sat, 17 Sep 2022 17:20:03 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/</guid>
+  <guid>https://shuai06.github.io/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/</guid>
   <description><![CDATA[一般论文的结构： 1.title 2.abstract 3.introduction 4.method 5.exp 6.conclusuin 三遍读论文： 部分 第一遍 第二遍 第三遍 1.title 1.标题：看一下是否与自己相关 对文章整个过一遍，知道每一块在干什么东西。沿着]]></description>
 </item>
 <item>
   <title>文献学习(简介、搜索、阅读与管理)</title>
-  <link>https://geoer.cn/%E6%96%87%E7%8C%AE%E5%AD%A6%E4%B9%A0-%E7%AE%80%E4%BB%8B%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB%E4%B8%8E%E7%AE%A1%E7%90%86/</link>
+  <link>https://shuai06.github.io/%E6%96%87%E7%8C%AE%E5%AD%A6%E4%B9%A0-%E7%AE%80%E4%BB%8B%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB%E4%B8%8E%E7%AE%A1%E7%90%86/</link>
   <pubDate>Fri, 02 Sep 2022 19:45:36 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E6%96%87%E7%8C%AE%E5%AD%A6%E4%B9%A0-%E7%AE%80%E4%BB%8B%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB%E4%B8%8E%E7%AE%A1%E7%90%86/</guid>
+  <guid>https://shuai06.github.io/%E6%96%87%E7%8C%AE%E5%AD%A6%E4%B9%A0-%E7%AE%80%E4%BB%8B%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB%E4%B8%8E%E7%AE%A1%E7%90%86/</guid>
   <description><![CDATA[本文来自我在B站和网上的一些博客寻找的方法并自己简单进行整理，仅做学习分享，有的忘记了出处所以没有标注出处，如果原作者看到可以联系 如果后面学]]></description>
 </item>
 <item>
   <title>markdown中写Latex</title>
-  <link>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</link>
+  <link>https://shuai06.github.io/markdown%E4%B8%AD%E5%86%99latex/</link>
   <pubDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</guid>
+  <guid>https://shuai06.github.io/markdown%E4%B8%AD%E5%86%99latex/</guid>
   <description><![CDATA[公式的两种形态 行内公式: $ \Large \frac{3}{12} = \frac{1}{4}$ 1 $\Large \frac{3}{12} = \frac{1}{4}$ 行间公式： $$\Large \frac{3}{12} = \frac{1}{4}$$ 1 $$\Large \frac{3}{12} = \frac{1}{4}$$ 希腊字母 上标、下标 上标与下标分别用^和_来表示。 例如$x^2_i$表]]></description>
 </item>
 <item>
   <title>CiteSpace学习</title>
-  <link>https://geoer.cn/citespace%E5%AD%A6%E4%B9%A0/</link>
+  <link>https://shuai06.github.io/citespace%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Fri, 15 Apr 2022 17:40:59 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/citespace%E5%AD%A6%E4%B9%A0/</guid>
+  <guid>https://shuai06.github.io/citespace%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[https://www.bilibili.com/video/BV1zu411C7ko/]]></description>
 </item>
 </channel>

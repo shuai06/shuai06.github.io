@@ -83,5 +83,5 @@ echo '骚年，继续努力吧啊~';
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/isset%E6%95%B0%E7%BB%84%E7%BB%95%E8%BF%87/  
+> URL: https://shuai06.github.io/isset%E6%95%B0%E7%BB%84%E7%BB%95%E8%BF%87/  
 

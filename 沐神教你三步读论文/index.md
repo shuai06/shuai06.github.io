@@ -51,5 +51,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/  
+> URL: https://shuai06.github.io/%E6%B2%90%E7%A5%9E%E6%95%99%E4%BD%A0%E4%B8%89%E6%AD%A5%E8%AF%BB%E8%AE%BA%E6%96%87/  
 

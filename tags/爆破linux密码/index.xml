@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>爆破Linux密码 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E7%88%86%E7%A0%B4linux%E5%AF%86%E7%A0%81/</link>
+    <link>https://shuai06.github.io/tags/%E7%88%86%E7%A0%B4linux%E5%AF%86%E7%A0%81/</link>
     <description>爆破Linux密码 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%88%86%E7%A0%B4linux%E5%AF%86%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E7%88%86%E7%A0%B4linux%E5%AF%86%E7%A0%81/" rel="self" type="application/rss+xml" /><item>
   <title>使用John the Ripper破解密码</title>
-  <link>https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</link>
+  <link>https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</link>
   <pubDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</guid>
+  <guid>https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</guid>
   <description><![CDATA[简介 John the Ripper是一个快速的密码破解工具，用于在已知密文的情况下尝试破解出明文，支持目前大多数的加密算法，如DES、MD4、MD5等。它]]></description>
 </item>
 </channel>

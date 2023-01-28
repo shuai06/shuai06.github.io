@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>异地备份 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
+    <link>https://shuai06.github.io/tags/%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
     <description>异地备份 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/" rel="self" type="application/rss+xml" /><item>
   <title>Linux日志异地备份</title>
-  <link>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
+  <link>https://shuai06.github.io/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
   <pubDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</guid>
+  <guid>https://shuai06.github.io/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</guid>
   <description><![CDATA[日志的异地备份 日志服务器的建立尤其重要 这里使用Centos的登录日志做实验 tail -f /var/log/secure 实时查看日志变化 echo &quot; &quot; &gt; var/log/secure 最简单的清理日志 常见日志文件 1 2 3]]></description>
 </item>
 </channel>

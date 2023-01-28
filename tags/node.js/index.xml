@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Node.js - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/node.js/</link>
+    <link>https://shuai06.github.io/tags/node.js/</link>
     <description>Node.js - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 27 Mar 2020 18:18:49 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/node.js/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 27 Mar 2020 18:18:49 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/node.js/" rel="self" type="application/rss+xml" /><item>
   <title>Node.js 入门</title>
-  <link>https://geoer.cn/node-js-%E5%85%A5%E9%97%A8/</link>
+  <link>https://shuai06.github.io/node-js-%E5%85%A5%E9%97%A8/</link>
   <pubDate>Fri, 27 Mar 2020 18:18:49 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/node-js-%E5%85%A5%E9%97%A8/</guid>
+  <guid>https://shuai06.github.io/node-js-%E5%85%A5%E9%97%A8/</guid>
   <description><![CDATA[Node.js是一个机遇Chrome V8引擎的JavaScript运行环境 Node.js的包管理器npm，是全球最大的开源生态库系统 Node]]></description>
 </item>
 </channel>

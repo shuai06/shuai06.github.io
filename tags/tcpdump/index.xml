@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>tcpdump - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/tcpdump/</link>
+    <link>https://shuai06.github.io/tags/tcpdump/</link>
     <description>tcpdump - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Mar 2020 18:50:35 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/tcpdump/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 15 Mar 2020 18:50:35 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/tcpdump/" rel="self" type="application/rss+xml" /><item>
   <title>工具 - tcpdump使用&amp;过程文档记录</title>
-  <link>https://geoer.cn/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/</link>
+  <link>https://shuai06.github.io/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/</link>
   <pubDate>Sun, 15 Mar 2020 18:50:35 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/</guid>
+  <guid>https://shuai06.github.io/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/</guid>
   <description><![CDATA[工具-tcpdump使用 No_GUI的抓包分析工具 Linux、Unix系统默认安装 抓包 默认只抓68个字节 1 2 3 4 5 #参数: -i网卡 -s 抓包大小]]></description>
 </item>
 </channel>

@@ -233,5 +233,5 @@ firewall-cmd reload
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/  
+> URL: https://shuai06.github.io/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/  
 

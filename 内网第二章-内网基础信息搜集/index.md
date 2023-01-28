@@ -848,5 +848,5 @@ DMZ 区而 DMZ 区访问不了内网区的情况下,相关知识在第 1 章中�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/  
+> URL: https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/  
 

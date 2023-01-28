@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>线性回归作业 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BD%9C%E4%B8%9A/</link>
+    <link>https://shuai06.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BD%9C%E4%B8%9A/</link>
     <description>线性回归作业 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Jul 2022 09:32:31 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BD%9C%E4%B8%9A/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Jul 2022 09:32:31 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BD%9C%E4%B8%9A/" rel="self" type="application/rss+xml" /><item>
   <title>吴恩达2022新版机器学习课后题-多变量回归预测房价</title>
-  <link>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7/</link>
+  <link>https://shuai06.github.io/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7/</link>
   <pubDate>Mon, 11 Jul 2022 09:32:31 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7/</guid>
+  <guid>https://shuai06.github.io/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E5%A4%9A%E5%8F%98%E9%87%8F%E5%9B%9E%E5%BD%92%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7/</guid>
   <description><![CDATA[个人笔记，还有很多不懂的地方，如有错误欢迎指出 问题描述 多变量回归预测房价 训练样本在house.txt中，包含特征：size(sqrt)&rs]]></description>
 </item>
 <item>
   <title>吴恩达2022新版机器学习课后题-课程1Week2-线性回归</title>
-  <link>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
+  <link>https://shuai06.github.io/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</link>
   <pubDate>Sun, 10 Jul 2022 21:25:07 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
+  <guid>https://shuai06.github.io/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</guid>
   <description><![CDATA[题目 **目标：**In this lab, you will implement linear regression with one variable to predict profits for a restaurant franchise. 问题陈述： 假设你是餐厅CEO，想要在不同城市开分店 想要把业务拓展到更高利润的城市 连锁]]></description>
 </item>
 </channel>

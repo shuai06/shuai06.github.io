@@ -43,5 +43,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/wpscan%E6%9B%B4%E6%96%B0%E8%B6%85%E6%97%B6%E6%8A%A5%E9%94%99/  
+> URL: https://shuai06.github.io/wpscan%E6%9B%B4%E6%96%B0%E8%B6%85%E6%97%B6%E6%8A%A5%E9%94%99/  
 

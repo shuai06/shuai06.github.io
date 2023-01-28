@@ -128,5 +128,5 @@ http://scott.fortmann-roe.com/docs/BiasVariance.html
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE/  
+> URL: https://shuai06.github.io/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE/  
 

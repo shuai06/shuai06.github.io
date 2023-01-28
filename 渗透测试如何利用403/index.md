@@ -185,5 +185,5 @@ site.com/%20admin%20/ => 200
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/  
+> URL: https://shuai06.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/  
 

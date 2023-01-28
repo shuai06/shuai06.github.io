@@ -2552,5 +2552,5 @@ void sort_3str()
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/  
+> URL: https://shuai06.github.io/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/  
 

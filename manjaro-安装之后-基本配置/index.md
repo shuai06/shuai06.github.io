@@ -465,5 +465,5 @@ sudo journalctl --vacuum-size=50M
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/  
+> URL: https://shuai06.github.io/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/  
 

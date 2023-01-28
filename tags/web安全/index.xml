@@ -1,31 +1,31 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Web安全 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/web%E5%AE%89%E5%85%A8/</link>
+    <link>https://shuai06.github.io/tags/web%E5%AE%89%E5%85%A8/</link>
     <description>Web安全 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/web%E5%AE%89%E5%85%A8/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/web%E5%AE%89%E5%85%A8/" rel="self" type="application/rss+xml" /><item>
   <title>XSS漏洞</title>
-  <link>https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/</link>
+  <link>https://shuai06.github.io/xss%E6%BC%8F%E6%B4%9E/</link>
   <pubDate>Tue, 18 Jan 2022 16:20:37 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/</guid>
+  <guid>https://shuai06.github.io/xss%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆]]></description>
 </item>
 <item>
   <title>URL跳转漏洞</title>
-  <link>https://geoer.cn/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</link>
+  <link>https://shuai06.github.io/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</link>
   <pubDate>Mon, 17 Jan 2022 18:08:16 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</guid>
+  <guid>https://shuai06.github.io/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[漏洞简介 **URL跳转：**目前很多Web应用因为业务需要，需要与内部的其他服务或者第三方的服务进行交互，这样就需要重定向的功能，由当前网页]]></description>
 </item>
 <item>
   <title>Web安全简要思维导图</title>
-  <link>https://geoer.cn/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
+  <link>https://shuai06.github.io/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</link>
   <pubDate>Sun, 03 Jan 2021 09:30:59 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
+  <guid>https://shuai06.github.io/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</guid>
   <description><![CDATA[前几天重新读了一下道哥的《白帽子讲Web安全》，于是做了个粗略的思维导图： xmind原始格式地址：https://www.jianguoyu]]></description>
 </item>
 </channel>

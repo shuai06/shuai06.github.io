@@ -34,5 +34,5 @@ k折交叉验证先将数据集随机划分为 k个大小相同的互斥子集�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-k-fold-cross-validation/  
+> URL: https://shuai06.github.io/k%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-k-fold-cross-validation/  
 

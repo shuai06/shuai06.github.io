@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>工具 - 分类 - 剑胆琴心</title>
-    <link>https://geoer.cn/categories/%E5%B7%A5%E5%85%B7/</link>
+    <link>https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 分类 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
   <title>使用John the Ripper破解密码</title>
-  <link>https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</link>
+  <link>https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</link>
   <pubDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</guid>
+  <guid>https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</guid>
   <description><![CDATA[简介 John the Ripper是一个快速的密码破解工具，用于在已知密文的情况下尝试破解出明文，支持目前大多数的加密算法，如DES、MD4、MD5等。它]]></description>
 </item>
 <item>
   <title>scrcpy-手机与电脑投屏神器</title>
-  <link>https://geoer.cn/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</link>
+  <link>https://shuai06.github.io/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</link>
   <pubDate>Mon, 24 Feb 2020 22:11:37 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</guid>
+  <guid>https://shuai06.github.io/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</guid>
   <description><![CDATA[scrcpy 安装 1 snap install scrcpy adb服务安装 1 sudo apt-get install android-tools-adb adb配置 手机通过USB连接电脑 1 lsusb 找到自己手机的识别号,(可以对比数据线插入之前和插入之后多了哪个就]]></description>
 </item>
 </channel>

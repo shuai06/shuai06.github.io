@@ -1859,5 +1859,5 @@ Java API中提供了两套NIO，一套是针对标准输入输出NIO，另一套
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8Bio%E6%B5%81/  
+> URL: https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8Bio%E6%B5%81/  
 

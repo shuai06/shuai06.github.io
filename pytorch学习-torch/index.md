@@ -842,5 +842,5 @@ print(f"w:{w.item():.3f}, b:{b.item():.3f}")
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/pytorch%E5%AD%A6%E4%B9%A0-torch/  
+> URL: https://shuai06.github.io/pytorch%E5%AD%A6%E4%B9%A0-torch/  
 

@@ -35,5 +35,5 @@ https://blog.csdn.net/daxuan1881/article/details/123072024
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/batch%E5%92%8Cepoch/  
+> URL: https://shuai06.github.io/batch%E5%92%8Cepoch/  
 

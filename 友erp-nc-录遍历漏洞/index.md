@@ -34,5 +34,5 @@ POC:
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%8F%8Berp-nc-%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/  
+> URL: https://shuai06.github.io/%E5%8F%8Berp-nc-%E5%BD%95%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/  
 

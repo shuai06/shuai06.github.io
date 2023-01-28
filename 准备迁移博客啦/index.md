@@ -8,5 +8,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%87%86%E5%A4%87%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%95%A6/  
+> URL: https://shuai06.github.io/%E5%87%86%E5%A4%87%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%95%A6/  
 

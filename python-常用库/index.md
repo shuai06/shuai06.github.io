@@ -1092,5 +1092,5 @@ flask-debugtoolbar,flask调试工具。
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-%E5%B8%B8%E7%94%A8%E5%BA%93/  
+> URL: https://shuai06.github.io/python-%E5%B8%B8%E7%94%A8%E5%BA%93/  
 

@@ -145,5 +145,5 @@ https://blog.csdn.net/weixin_29635919/article/details/116554850?spm=1001.2101.30
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/  
+> URL: https://shuai06.github.io/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/  
 

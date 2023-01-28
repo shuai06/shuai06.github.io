@@ -156,5 +156,5 @@ jenkins的日志功能不是很好（可以使用代理，并进行操作的记�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/jenkins%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/  
+> URL: https://shuai06.github.io/jenkins%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/  
 

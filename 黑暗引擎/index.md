@@ -204,5 +204,5 @@ print('Industrial Control Systems: {}'.format(ics_services['total']))
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/  
+> URL: https://shuai06.github.io/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/  
 

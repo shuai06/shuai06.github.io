@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>科研 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E7%A7%91%E7%A0%94/</link>
+    <link>https://shuai06.github.io/tags/%E7%A7%91%E7%A0%94/</link>
     <description>科研 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%A7%91%E7%A0%94/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E7%A7%91%E7%A0%94/" rel="self" type="application/rss+xml" /><item>
   <title>markdown中写Latex</title>
-  <link>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</link>
+  <link>https://shuai06.github.io/markdown%E4%B8%AD%E5%86%99latex/</link>
   <pubDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</guid>
+  <guid>https://shuai06.github.io/markdown%E4%B8%AD%E5%86%99latex/</guid>
   <description><![CDATA[公式的两种形态 行内公式: $ \Large \frac{3}{12} = \frac{1}{4}$ 1 $\Large \frac{3}{12} = \frac{1}{4}$ 行间公式： $$\Large \frac{3}{12} = \frac{1}{4}$$ 1 $$\Large \frac{3}{12} = \frac{1}{4}$$ 希腊字母 上标、下标 上标与下标分别用^和_来表示。 例如$x^2_i$表]]></description>
 </item>
 <item>
   <title>R语言入门学习篇一</title>
-  <link>https://geoer.cn/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+  <link>https://shuai06.github.io/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
   <pubDate>Fri, 15 Apr 2022 17:34:43 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+  <guid>https://shuai06.github.io/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
   <description><![CDATA[R语言起源 R语言由新西兰奥克兰大学Ross Ihaka和Ribert Gentlenman两人共同发明，其词法和语法分别源自Scheme和S语言]]></description>
 </item>
 </channel>

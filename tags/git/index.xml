@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>git - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/git/</link>
+    <link>https://shuai06.github.io/tags/git/</link>
     <description>git - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 May 2022 21:53:44 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/git/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 May 2022 21:53:44 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/git/" rel="self" type="application/rss+xml" /><item>
   <title>git commit 提交规范</title>
-  <link>https://geoer.cn/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</link>
+  <link>https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</link>
   <pubDate>Tue, 10 May 2022 21:53:44 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</guid>
+  <guid>https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</guid>
   <description><![CDATA[简介 commit message 应该清晰明了，说明本次提交的目的。而且多人协作的时候，有问题也方便查看提交日志 目前使用最广的写法是Angular 规范(https:/]]></description>
 </item>
 <item>
   <title>ubuntu server-版本控制</title>
-  <link>https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
+  <link>https://shuai06.github.io/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
   <pubDate>Sun, 10 May 2020 15:14:50 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</guid>
+  <guid>https://shuai06.github.io/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</guid>
   <description><![CDATA[107-版本控制 概述 简介 version control system（版本控制系统） revision control system (修订控制系统) 开发工具，但不仅限于源码文件 记录文件的每次变更 随时可以回到历史]]></description>
 </item>
 </channel>

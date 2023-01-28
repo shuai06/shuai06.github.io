@@ -40,5 +40,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E8%BF%94%E6%A0%A1%E8%80%83%E5%85%AD%E7%BA%A7/  
+> URL: https://shuai06.github.io/%E8%BF%94%E6%A0%A1%E8%80%83%E5%85%AD%E7%BA%A7/  
 

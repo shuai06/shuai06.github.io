@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>StringBuffer - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/stringbuffer/</link>
+    <link>https://shuai06.github.io/tags/stringbuffer/</link>
     <description>StringBuffer - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Jan 2021 18:24:20 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/stringbuffer/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Jan 2021 18:24:20 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/stringbuffer/" rel="self" type="application/rss+xml" /><item>
   <title>Java学习之常用类</title>
-  <link>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%B1%BB/</link>
+  <link>https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%B1%BB/</link>
   <pubDate>Sat, 30 Jan 2021 18:24:20 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%B1%BB/</guid>
+  <guid>https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%B8%B8%E7%94%A8%E7%B1%BB/</guid>
   <description><![CDATA[String类 基础知识 String类: 代表字符串。Java程序中的所有字符串字面值（如&quot;abc&quot;）都作为此类的实例实现。]]></description>
 </item>
 </channel>

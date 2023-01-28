@@ -58,5 +58,5 @@ print(async_result.get())
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-%E8%87%AA%E5%B8%A6%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%B1%A0/  
+> URL: https://shuai06.github.io/python-%E8%87%AA%E5%B8%A6%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%B1%A0/  
 

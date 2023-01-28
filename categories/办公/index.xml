@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>办公 - 分类 - 剑胆琴心</title>
-    <link>https://geoer.cn/categories/%E5%8A%9E%E5%85%AC/</link>
+    <link>https://shuai06.github.io/categories/%E5%8A%9E%E5%85%AC/</link>
     <description>办公 - 分类 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 May 2022 21:53:44 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/categories/%E5%8A%9E%E5%85%AC/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 10 May 2022 21:53:44 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E5%8A%9E%E5%85%AC/" rel="self" type="application/rss+xml" /><item>
   <title>git commit 提交规范</title>
-  <link>https://geoer.cn/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</link>
+  <link>https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</link>
   <pubDate>Tue, 10 May 2022 21:53:44 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</guid>
+  <guid>https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/</guid>
   <description><![CDATA[简介 commit message 应该清晰明了，说明本次提交的目的。而且多人协作的时候，有问题也方便查看提交日志 目前使用最广的写法是Angular 规范(https:/]]></description>
 </item>
 </channel>

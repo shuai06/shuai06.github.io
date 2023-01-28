@@ -2694,5 +2694,5 @@ https://mp.weixin.qq.com/s/dXLlFgQS_3KHm8YRyDC7ZQ
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
+> URL: https://shuai06.github.io/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/  
 

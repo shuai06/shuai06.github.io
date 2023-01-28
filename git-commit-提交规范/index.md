@@ -171,5 +171,5 @@ Footer 部分只用于两种情况。
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/  
+> URL: https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/  
 

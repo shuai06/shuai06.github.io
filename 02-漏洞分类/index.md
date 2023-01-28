@@ -66,5 +66,5 @@ web应用，系统层面，第三方软件（数据库,中间件）
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/02-%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB/  
+> URL: https://shuai06.github.io/02-%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB/  
 

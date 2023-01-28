@@ -145,5 +145,5 @@ sudo ufw allow from 10.0.0.0/24 to any port 3389	# 可以限制来源ip地址
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-webminuserminxrdp/  
+> URL: https://shuai06.github.io/ubuntu-server-webminuserminxrdp/  
 

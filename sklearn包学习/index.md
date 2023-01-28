@@ -219,5 +219,5 @@ https://blog.csdn.net/weixin_41395763/article/details/122949178
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/sklearn%E5%8C%85%E5%AD%A6%E4%B9%A0/  
+> URL: https://shuai06.github.io/sklearn%E5%8C%85%E5%AD%A6%E4%B9%A0/  
 

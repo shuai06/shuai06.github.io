@@ -361,5 +361,5 @@ reboot
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-ldap/  
+> URL: https://shuai06.github.io/ubuntu-server-ldap/  
 

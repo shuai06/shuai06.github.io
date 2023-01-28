@@ -446,5 +446,5 @@ print(f"Regularized dj_dw:\n {dj_dw_tmp.tolist()}", )
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-week3-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistic-regression/  
+> URL: https://shuai06.github.io/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-week3-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistic-regression/  
 

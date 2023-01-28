@@ -30,5 +30,5 @@ python -m ipykernel install --user --name dlenv --display-name "dlenv"
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/anaconda%E4%B8%ADjupyter-notebook%E6%9B%B4%E6%94%B9%E8%A7%A3%E9%87%8A%E5%99%A8/  
+> URL: https://shuai06.github.io/anaconda%E4%B8%ADjupyter-notebook%E6%9B%B4%E6%94%B9%E8%A7%A3%E9%87%8A%E5%99%A8/  
 

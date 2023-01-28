@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>应急响应 - 分类 - 剑胆琴心</title>
-    <link>https://geoer.cn/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
+    <link>https://shuai06.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/</link>
     <description>应急响应 - 分类 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Apr 2022 18:24:00 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Apr 2022 18:24:00 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" rel="self" type="application/rss+xml" /><item>
   <title>Linux进程隐藏与检测</title>
-  <link>https://geoer.cn/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/</link>
+  <link>https://shuai06.github.io/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/</link>
   <pubDate>Fri, 29 Apr 2022 18:24:00 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/</guid>
+  <guid>https://shuai06.github.io/linux%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E4%B8%8E%E6%A3%80%E6%B5%8B/</guid>
   <description><![CDATA[进程隐藏 让管理员无法通过相关命令工具查找到你运行的进程，从而达到隐藏目的，实现进程隐藏。 网上很多方法基本都是通过如下方式来达到进程隐藏： 1.]]></description>
 </item>
 </channel>

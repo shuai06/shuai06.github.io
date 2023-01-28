@@ -178,5 +178,5 @@ https://appimage.github.io
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu%E6%8E%A8%E8%8D%90%E7%94%9F%E4%BA%A7%E5%8A%9B%E8%BD%AF%E4%BB%B6/  
+> URL: https://shuai06.github.io/ubuntu%E6%8E%A8%E8%8D%90%E7%94%9F%E4%BA%A7%E5%8A%9B%E8%BD%AF%E4%BB%B6/  
 

@@ -178,5 +178,5 @@ hdparm -I /dex/sda	# 更加详细信息
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8Bids/  
+> URL: https://shuai06.github.io/ubuntu-server-%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8Bids/  
 

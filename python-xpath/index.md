@@ -240,5 +240,5 @@ result6=html.xpath('//li[1]/following-sibling::*')  #获取当前节点的所有
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-xpath/  
+> URL: https://shuai06.github.io/python-xpath/  
 

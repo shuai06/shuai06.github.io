@@ -11,5 +11,5 @@ How far you have gone is the thing youshould think every time you think ofquitti
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%BD%93%E4%BD%A0%E6%83%B3%E6%94%BE%E5%BC%83%E6%97%B6/  
+> URL: https://shuai06.github.io/%E5%BD%93%E4%BD%A0%E6%83%B3%E6%94%BE%E5%BC%83%E6%97%B6/  
 

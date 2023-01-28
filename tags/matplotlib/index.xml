@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Matplotlib - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/matplotlib/</link>
+    <link>https://shuai06.github.io/tags/matplotlib/</link>
     <description>Matplotlib - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Apr 2022 15:58:26 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/matplotlib/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Apr 2022 15:58:26 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/matplotlib/" rel="self" type="application/rss+xml" /><item>
   <title>Python之matplotlib学习</title>
-  <link>https://geoer.cn/python%E4%B9%8Bmatplotlib%E5%AD%A6%E4%B9%A0/</link>
+  <link>https://shuai06.github.io/python%E4%B9%8Bmatplotlib%E5%AD%A6%E4%B9%A0/</link>
   <pubDate>Fri, 29 Apr 2022 15:58:26 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/python%E4%B9%8Bmatplotlib%E5%AD%A6%E4%B9%A0/</guid>
+  <guid>https://shuai06.github.io/python%E4%B9%8Bmatplotlib%E5%AD%A6%E4%B9%A0/</guid>
   <description><![CDATA[简介 Matplotlib 通常与 NumPy 和 SciPy（Scientific Python）一起使用， 这种组合广泛用于替代 MatLab，是一个强大的科学计算环境，有助于我]]></description>
 </item>
 </channel>

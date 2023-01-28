@@ -107,5 +107,5 @@ print(s.__class__.mro())
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF%E5%B0%8F%E5%B0%8F%E4%BE%8B%E5%AD%90/  
+> URL: https://shuai06.github.io/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%BB%A7%E6%89%BF%E5%B0%8F%E5%B0%8F%E4%BE%8B%E5%AD%90/  
 

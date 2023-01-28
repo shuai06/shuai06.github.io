@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Manjaro - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/manjaro/</link>
+    <link>https://shuai06.github.io/tags/manjaro/</link>
     <description>Manjaro - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 May 2019 11:30:44 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/manjaro/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 May 2019 11:30:44 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/manjaro/" rel="self" type="application/rss+xml" /><item>
   <title>Manjaro 安装之后 基本配置</title>
-  <link>https://geoer.cn/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
+  <link>https://shuai06.github.io/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</link>
   <pubDate>Sun, 05 May 2019 11:30:44 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
+  <guid>https://shuai06.github.io/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</guid>
   <description><![CDATA[Manjaro 安装之后 基本配置 配置国内源 1 sudo pacman-mirrors -i -c China -m rank #弹出来框，我选择的清华的源 升级系统 1 sudo pacman -Syy &amp;&amp; sudo pacam -Syyu 安装vim 1 sudo pacman -S vim 添加arch源 1 2 sudo vim /etc/pacman.conf]]></description>
 </item>
 </channel>

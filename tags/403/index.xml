@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>403 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/403/</link>
+    <link>https://shuai06.github.io/tags/403/</link>
     <description>403 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Feb 2022 11:19:26 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/403/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Feb 2022 11:19:26 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/403/" rel="self" type="application/rss+xml" /><item>
   <title>渗透测试如何利用403</title>
-  <link>https://geoer.cn/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/</link>
+  <link>https://shuai06.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/</link>
   <pubDate>Tue, 08 Feb 2022 11:19:26 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/</guid>
+  <guid>https://shuai06.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8403/</guid>
   <description><![CDATA[今天面试问到这个问题了，我大概是知道怎么利用，就是说不太出来&hellip;哎还是用文字总结一下吧！ 1.端口利用 扫描主机端口，找其它开放we]]></description>
 </item>
 </channel>

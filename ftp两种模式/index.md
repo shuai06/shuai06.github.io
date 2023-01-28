@@ -54,5 +54,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ftp%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/  
+> URL: https://shuai06.github.io/ftp%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/  
 

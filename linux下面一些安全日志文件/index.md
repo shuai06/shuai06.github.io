@@ -21,5 +21,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/linux%E4%B8%8B%E9%9D%A2%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/  
+> URL: https://shuai06.github.io/linux%E4%B8%8B%E9%9D%A2%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/  
 

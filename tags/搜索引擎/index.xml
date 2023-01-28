@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>搜索引擎 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+    <link>https://shuai06.github.io/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
     <description>搜索引擎 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 Aug 2020 16:54:30 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 Aug 2020 16:54:30 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" rel="self" type="application/rss+xml" /><item>
   <title>Google Hacking</title>
-  <link>https://geoer.cn/google-hacking/</link>
+  <link>https://shuai06.github.io/google-hacking/</link>
   <pubDate>Wed, 12 Aug 2020 16:54:30 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/google-hacking/</guid>
+  <guid>https://shuai06.github.io/google-hacking/</guid>
   <description><![CDATA[基本 通配符 1 2 3 4 5 6 通配符 语义 说明 示例 + 包含关键词 +前面必须要有一个空格 admin +login - 排除关键词 -前面必须要有一个空格 mysql -csdn ~ 同义词 ~前面必须要有一]]></description>
 </item>
 </channel>

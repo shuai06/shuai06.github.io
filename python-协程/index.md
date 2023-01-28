@@ -205,5 +205,5 @@ monkey.patch_all()
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/python-%E5%8D%8F%E7%A8%8B/  
+> URL: https://shuai06.github.io/python-%E5%8D%8F%E7%A8%8B/  
 

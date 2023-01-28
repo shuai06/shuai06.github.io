@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>XSL Script Processing - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/xsl-script-processing/</link>
+    <link>https://shuai06.github.io/tags/xsl-script-processing/</link>
     <description>XSL Script Processing - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Sep 2020 12:23:14 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/xsl-script-processing/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 10 Sep 2020 12:23:14 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/xsl-script-processing/" rel="self" type="application/rss+xml" /><item>
   <title>XSL Script Processing</title>
-  <link>https://geoer.cn/xsl-script-processing/</link>
+  <link>https://shuai06.github.io/xsl-script-processing/</link>
   <pubDate>Thu, 10 Sep 2020 12:23:14 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/xsl-script-processing/</guid>
+  <guid>https://shuai06.github.io/xsl-script-processing/</guid>
   <description><![CDATA[XSL是指扩展样式表语言(Extension Stylesheet Language) msxsl.exe是微软用于命令行下处理XSL的一个程序，所以通过他，我们可以执行JavaS]]></description>
 </item>
 </channel>

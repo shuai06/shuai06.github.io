@@ -471,5 +471,5 @@ sudo systemctl restart openvpn@server
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/  
+> URL: https://shuai06.github.io/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/  
 

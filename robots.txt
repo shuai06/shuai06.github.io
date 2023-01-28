@@ -65,4 +65,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://geoer.cn/sitemap.xml
+Sitemap: https://shuai06.github.io/sitemap.xml

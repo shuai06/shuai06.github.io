@@ -252,5 +252,5 @@ def XOR(x1, x2):
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/  
+> URL: https://shuai06.github.io/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/  
 

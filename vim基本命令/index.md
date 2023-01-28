@@ -420,5 +420,5 @@ e a.txt   # 打开并编辑指定文件
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/vim%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/  
+> URL: https://shuai06.github.io/vim%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/  
 

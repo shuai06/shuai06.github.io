@@ -720,5 +720,5 @@ curl 1.1.1.1
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/  
+> URL: https://shuai06.github.io/ubuntu-server-%E5%AE%B9%E5%99%A8/  
 

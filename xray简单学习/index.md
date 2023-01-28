@@ -171,5 +171,5 @@ Note:	phantasm这里是在命令行启用
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/xray%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/  
+> URL: https://shuai06.github.io/xray%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/  
 

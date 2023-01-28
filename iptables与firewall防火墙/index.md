@@ -194,5 +194,5 @@ sshd:192.168.10.*        # 所有主机，通配符
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/iptables%E4%B8%8Efirewall%E9%98%B2%E7%81%AB%E5%A2%99/  
+> URL: https://shuai06.github.io/iptables%E4%B8%8Efirewall%E9%98%B2%E7%81%AB%E5%A2%99/  
 

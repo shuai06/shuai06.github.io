@@ -74,5 +74,5 @@ ntdsutil snapshot "unmount {GUID}" "delete {GUID}" quit quit
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E7%A6%BB%E7%BA%BF%E6%8F%90%E5%8F%96%E5%9F%9F%E6%8E%A7hash%E7%9A%84%E6%96%B9%E6%B3%95/  
+> URL: https://shuai06.github.io/%E7%A6%BB%E7%BA%BF%E6%8F%90%E5%8F%96%E5%9F%9F%E6%8E%A7hash%E7%9A%84%E6%96%B9%E6%B3%95/  
 

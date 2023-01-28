@@ -1205,5 +1205,5 @@ void test_file()
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/c%E8%AF%AD%E8%A8%80%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9%E7%AE%80%E5%8D%95-%E4%BB%85%E8%87%AA%E5%B7%B1%E7%9C%8B/  
+> URL: https://shuai06.github.io/c%E8%AF%AD%E8%A8%80%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9%E7%AE%80%E5%8D%95-%E4%BB%85%E8%87%AA%E5%B7%B1%E7%9C%8B/  
 

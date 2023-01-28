@@ -391,5 +391,5 @@ https://blog.csdn.net/cjf1699/article/details/122963613
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/pytorch%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98-b%E7%AB%99%E5%88%98%E4%BA%8C%E5%A4%A7%E5%A4%A7%E7%BB%83%E4%B9%A0%E9%A2%98/  
+> URL: https://shuai06.github.io/pytorch%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98-b%E7%AB%99%E5%88%98%E4%BA%8C%E5%A4%A7%E5%A4%A7%E7%BB%83%E4%B9%A0%E9%A2%98/  
 

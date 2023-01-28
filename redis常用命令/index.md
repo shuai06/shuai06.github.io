@@ -238,5 +238,5 @@ ZSCAN zkeys
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/  
+> URL: https://shuai06.github.io/redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/  
 

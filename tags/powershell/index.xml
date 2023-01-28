@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>PowerShell - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/powershell/</link>
+    <link>https://shuai06.github.io/tags/powershell/</link>
     <description>PowerShell - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 19 Mar 2020 18:35:06 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/powershell/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 19 Mar 2020 18:35:06 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/powershell/" rel="self" type="application/rss+xml" /><item>
   <title>PowerShell基础知识</title>
-  <link>https://geoer.cn/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+  <link>https://shuai06.github.io/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
   <pubDate>Thu, 19 Mar 2020 18:35:06 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+  <guid>https://shuai06.github.io/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
   <description><![CDATA[PowerShell技术概学 本文内容较琐碎，思路较混乱，仅当入门小小小基础吧 Powershell基础 特点 可以面向对象 绑定.net 兼容性好 灵活]]></description>
 </item>
 </channel>

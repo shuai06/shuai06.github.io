@@ -62,5 +62,5 @@ john  --show  test_passwd
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/  
+> URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/  
 

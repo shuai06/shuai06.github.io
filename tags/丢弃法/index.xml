@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>丢弃法 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E4%B8%A2%E5%BC%83%E6%B3%95/</link>
+    <link>https://shuai06.github.io/tags/%E4%B8%A2%E5%BC%83%E6%B3%95/</link>
     <description>丢弃法 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 13 Sep 2022 10:28:55 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E4%B8%A2%E5%BC%83%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 13 Sep 2022 10:28:55 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E4%B8%A2%E5%BC%83%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
   <title>丢弃法(dropout)</title>
-  <link>https://geoer.cn/%E4%B8%A2%E5%BC%83%E6%B3%95/</link>
+  <link>https://shuai06.github.io/%E4%B8%A2%E5%BC%83%E6%B3%95/</link>
   <pubDate>Tue, 13 Sep 2022 10:28:55 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E4%B8%A2%E5%BC%83%E6%B3%95/</guid>
+  <guid>https://shuai06.github.io/%E4%B8%A2%E5%BC%83%E6%B3%95/</guid>
   <description><![CDATA[除了前一节介绍的权重衰减以外，深度学习模型常常使用丢弃法（dropout）来应对过拟合问题 标准处理流程： $ℎ=σ(𝑊1𝑥+𝑏1)$ 第一个隐藏]]></description>
 </item>
 </channel>

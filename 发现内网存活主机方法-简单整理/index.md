@@ -425,5 +425,5 @@ windows/gather/enum_snmp
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/  
+> URL: https://shuai06.github.io/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/  
 

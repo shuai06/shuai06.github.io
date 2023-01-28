@@ -234,5 +234,5 @@ HTTP2还在一定程度上改变了传统的“请求-应答”工作模式，�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/http1-0%E5%92%8Chttp1-1%E7%9A%84%E5%8C%BA%E5%88%AB/  
+> URL: https://shuai06.github.io/http1-0%E5%92%8Chttp1-1%E7%9A%84%E5%8C%BA%E5%88%AB/  
 

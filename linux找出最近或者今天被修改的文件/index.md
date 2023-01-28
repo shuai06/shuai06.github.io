@@ -84,5 +84,5 @@
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/linux%E6%89%BE%E5%87%BA%E6%9C%80%E8%BF%91%E6%88%96%E8%80%85%E4%BB%8A%E5%A4%A9%E8%A2%AB%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6/  
+> URL: https://shuai06.github.io/linux%E6%89%BE%E5%87%BA%E6%9C%80%E8%BF%91%E6%88%96%E8%80%85%E4%BB%8A%E5%A4%A9%E8%A2%AB%E4%BF%AE%E6%94%B9%E7%9A%84%E6%96%87%E4%BB%B6/  
 

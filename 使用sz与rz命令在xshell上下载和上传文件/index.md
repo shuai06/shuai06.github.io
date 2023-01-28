@@ -58,5 +58,5 @@ sz test_dir/*
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/  
+> URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/  
 

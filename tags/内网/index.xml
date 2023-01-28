@@ -1,55 +1,55 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>内网 - 标签 - 剑胆琴心</title>
-    <link>https://geoer.cn/tags/%E5%86%85%E7%BD%91/</link>
+    <link>https://shuai06.github.io/tags/%E5%86%85%E7%BD%91/</link>
     <description>内网 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 May 2022 11:47:53 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%86%85%E7%BD%91/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 May 2022 11:47:53 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E5%86%85%E7%BD%91/" rel="self" type="application/rss+xml" /><item>
   <title>Kerberos入门</title>
-  <link>https://geoer.cn/kerberos%E5%85%A5%E9%97%A8/</link>
+  <link>https://shuai06.github.io/kerberos%E5%85%A5%E9%97%A8/</link>
   <pubDate>Sun, 01 May 2022 11:47:53 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/kerberos%E5%85%A5%E9%97%A8/</guid>
+  <guid>https://shuai06.github.io/kerberos%E5%85%A5%E9%97%A8/</guid>
   <description><![CDATA[Kerberos协议简介 Kerberos协议是一个专注于验证通信双方身份的网络协议，不同于其他网络安全协议的保证整个通信过程的传输安全，ke]]></description>
 </item>
 <item>
   <title>发现内网存活主机方法-简单整理</title>
-  <link>https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/</link>
+  <link>https://shuai06.github.io/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/</link>
   <pubDate>Sun, 07 Jun 2020 10:57:47 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/</guid>
+  <guid>https://shuai06.github.io/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/</guid>
   <description><![CDATA[基于UDP发现内网存活主机 UDP显著特性: 1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也]]></description>
 </item>
 <item>
   <title>内网第三章-隐藏隧道通信技术</title>
-  <link>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</link>
+  <link>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</link>
   <pubDate>Sat, 16 May 2020 21:47:03 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</guid>
+  <guid>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</guid>
   <description><![CDATA[内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2]]></description>
 </item>
 <item>
   <title>内网第二章-内网基础信息搜集</title>
-  <link>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/</link>
+  <link>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/</link>
   <pubDate>Fri, 08 May 2020 11:21:55 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/</guid>
+  <guid>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/</guid>
   <description><![CDATA[二 . 内网信息收集 本机信息收集 1)查询网络配置 1 2 3 net view # 查看工作组 ipconfig /all # 也可以看到是否有域 2) 查询用户列表 1 2 3 4 5 net user # 查看本机用户列表 net localgroup]]></description>
 </item>
 <item>
   <title>内网渗透</title>
-  <link>https://geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</link>
+  <link>https://shuai06.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</link>
   <pubDate>Thu, 05 Mar 2020 12:23:24 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</guid>
+  <guid>https://shuai06.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/</guid>
   <description><![CDATA[内网分类： 带域环境的内网 不带域环境的内网 一些端口 文件共享服务端口渗透 比如学校机房有专门用来下载文件的服务器 ftp服务 FTP服务： ftp服务我]]></description>
 </item>
 <item>
   <title>内网第一章 - 内网基础知识</title>
-  <link>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+  <link>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
   <pubDate>Tue, 07 Jan 2020 17:45:45 &#43;0800</pubDate>
   <author>剑胆琴心</author>
-  <guid>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+  <guid>https://shuai06.github.io/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
   <description><![CDATA[基础知识 工作组 类似一个社团，不存在集中管理，无服务机与客户机之分，是对等的 将不同的计算机按功能（或部门）分别列入不同的工作组中 实例：加入/更]]></description>
 </item>
 </channel>

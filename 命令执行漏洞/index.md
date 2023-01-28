@@ -368,5 +368,5 @@ ProcessBuilder.start()执行系统命令时，并没有获得Unix或Linux Shell�
 ---
 
 > 作者: [剑胆琴心](http://geoer.cn)  
-> URL: https://geoer.cn/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/  
+> URL: https://shuai06.github.io/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/  
 
