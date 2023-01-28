@@ -183,6 +183,6 @@ hping3 -c 5000 -d 150 -S -w 64 -p 80 --flood <10.0.40.246>
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/hping3/  
 

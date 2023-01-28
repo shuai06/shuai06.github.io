@@ -49,6 +49,6 @@ php中常见的执行系统 命令的函数：
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AE%A1%E9%81%93%E7%AC%A6/  
 

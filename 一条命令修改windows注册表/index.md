@@ -17,6 +17,6 @@ REG ADD “HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\W
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E4%BF%AE%E6%94%B9windows%E6%B3%A8%E5%86%8C%E8%A1%A8/  
 

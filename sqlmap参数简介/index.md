@@ -410,6 +410,6 @@ sqlmap.py --file-write --file-dest "服务器路径"
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/sqlmap%E5%8F%82%E6%95%B0%E7%AE%80%E4%BB%8B/  
 

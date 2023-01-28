@@ -572,6 +572,6 @@ pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify  --command
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/  
 

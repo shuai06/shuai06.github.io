@@ -109,6 +109,6 @@ less-24 及实际举例
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/07-mysql%E7%9B%B2%E6%B3%A8/  
 

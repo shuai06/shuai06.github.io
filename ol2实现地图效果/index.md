@@ -2844,6 +2844,6 @@ https://github.com/shuai06/openlayer2_Cluster_demo
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ol2%E5%AE%9E%E7%8E%B0%E5%9C%B0%E5%9B%BE%E6%95%88%E6%9E%9C/  
 

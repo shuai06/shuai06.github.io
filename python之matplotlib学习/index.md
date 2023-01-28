@@ -1412,6 +1412,6 @@ plt.show()
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python%E4%B9%8Bmatplotlib%E5%AD%A6%E4%B9%A0/  
 

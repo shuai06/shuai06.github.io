@@ -248,6 +248,6 @@ echo -e "GET /robots.txt HTTP/1.1\r\nHost: www.baidu.com\r\n\r\n" | nc www.baidu
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90/  
 

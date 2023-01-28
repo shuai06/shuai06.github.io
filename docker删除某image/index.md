@@ -40,6 +40,6 @@ rmi Remove one or more images
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/docker%E5%88%A0%E9%99%A4%E6%9F%90image/  
 

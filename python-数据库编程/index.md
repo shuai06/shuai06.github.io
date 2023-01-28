@@ -206,6 +206,6 @@ mc.delete_multi(["key1", "key2"])
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BC%96%E7%A8%8B/  
 

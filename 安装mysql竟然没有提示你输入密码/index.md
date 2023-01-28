@@ -61,6 +61,6 @@ quit;
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%AE%89%E8%A3%85mysql%E7%AB%9F%E7%84%B6%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA%E4%BD%A0%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/  
 

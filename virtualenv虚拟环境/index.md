@@ -81,6 +81,6 @@ linux激活虚拟环境 ：`source ./venv/bin/active`
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/virtualenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/  
 

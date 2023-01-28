@@ -644,6 +644,6 @@ Download Execute http://192.168.110.128/msf.txt
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/  
 

@@ -39,6 +39,6 @@ title="终端检测响应平台"
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E6%B7%B1x%E6%9C%8D-edr%E7%BB%88%E7%AB%AF%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9Frce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/  
 

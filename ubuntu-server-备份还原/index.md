@@ -652,6 +652,6 @@ Bacula 通知fd向sd存储数据，若sd侦听于localhost，网络不通
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/  
 

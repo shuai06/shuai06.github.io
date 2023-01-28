@@ -60,6 +60,6 @@ for k in net.keys():
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/  
 

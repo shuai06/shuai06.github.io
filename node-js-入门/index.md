@@ -2273,6 +2273,6 @@ mocha --recursive   # 递归
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/node-js-%E5%85%A5%E9%97%A8/  
 

@@ -769,6 +769,6 @@ sessions -K # 关闭所有msf连接
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0/  
 

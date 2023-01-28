@@ -474,6 +474,6 @@ https://zhuanlan.zhihu.com/p/73736127
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ssrf%E6%BC%8F%E6%B4%9E/  
 

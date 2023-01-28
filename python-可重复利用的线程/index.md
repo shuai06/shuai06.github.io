@@ -56,6 +56,6 @@ if __name__ == '__main__':
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python-%E5%8F%AF%E9%87%8D%E5%A4%8D%E5%88%A9%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B/  
 

@@ -124,6 +124,6 @@ prw-rw-r-- 1 ubuntu ubuntu 0 Jun  7 09:47 /tmp/fifo
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/linux-mkfifo%E5%91%BD%E4%BB%A4%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/  
 

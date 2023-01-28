@@ -62,6 +62,6 @@ c.close()
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/  
 

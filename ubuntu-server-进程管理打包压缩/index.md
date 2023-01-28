@@ -127,6 +127,6 @@ root ALL=(ALL) ALL
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9/  
 

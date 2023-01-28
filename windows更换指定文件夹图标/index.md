@@ -195,6 +195,6 @@ https://github.com/shuai06/ChangeDirLogo
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/windows%E6%9B%B4%E6%8D%A2%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E6%A0%87/  
 

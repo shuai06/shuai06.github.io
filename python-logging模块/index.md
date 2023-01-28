@@ -127,6 +127,6 @@ critical
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python-logging%E6%A8%A1%E5%9D%97/  
 

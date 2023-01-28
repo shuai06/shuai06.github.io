@@ -50,6 +50,6 @@ print("预测值(训练之后)：", 4, forward(4).item())
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/pytorch%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD-b%E7%AB%99%E5%88%98%E4%BA%8C%E5%A4%A7%E5%A4%A7%E7%BB%83%E4%B9%A0%E9%A2%98/  
 

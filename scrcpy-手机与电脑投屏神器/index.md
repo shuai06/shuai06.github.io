@@ -170,6 +170,6 @@ nohun scrcpy -m 1080 &
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/  
 

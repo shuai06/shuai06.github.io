@@ -152,6 +152,6 @@ print(dog.getLeg())   #用get 方法来查看一下
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/python%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%B0%8F%E4%BE%8B%E5%AD%90/  
 

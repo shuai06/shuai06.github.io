@@ -37,6 +37,6 @@ java -jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 Beh
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E4%BD%BF%E7%94%A8idea%E5%AF%B9jar%E5%8C%85%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/  
 

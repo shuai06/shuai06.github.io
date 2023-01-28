@@ -666,6 +666,6 @@ sudo smbstatus	# 查看状态和连接状况
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1/  
 

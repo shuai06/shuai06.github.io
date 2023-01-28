@@ -51,6 +51,6 @@ https://blog.netspi.com/15-ways-to-bypass-the-powershell-execution-policy
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/powershell%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%95%E8%BF%87/  
 

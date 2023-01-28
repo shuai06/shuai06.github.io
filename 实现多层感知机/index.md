@@ -57,6 +57,6 @@ d2l.predict_ch3(net, test_iter)
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/  
 

@@ -368,6 +368,6 @@ https://mp.weixin.qq.com/s?__biz=MzI3MTQyNzQxMA==&mid=2247484073&idx=1&sn=483c6a
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/  
 

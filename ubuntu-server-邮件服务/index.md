@@ -792,6 +792,6 @@ http://mail.qq.com/webmail
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/  
 

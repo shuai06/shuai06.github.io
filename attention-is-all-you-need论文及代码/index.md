@@ -621,6 +621,6 @@ self-attention有很多变形，以后的重点就是如何减少运算量
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/attention-is-all-you-need%E8%AE%BA%E6%96%87%E5%8F%8A%E4%BB%A3%E7%A0%81/  
 

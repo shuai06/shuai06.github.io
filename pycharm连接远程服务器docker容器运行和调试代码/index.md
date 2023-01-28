@@ -93,6 +93,6 @@ https://blog.csdn.net/Thanours/article/details/109271836
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/pycharm%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8docker%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E5%92%8C%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81/  
 

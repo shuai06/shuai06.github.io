@@ -132,6 +132,6 @@ db.dropDatabase()  # 注意大小写
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/mongodb%E5%88%9D%E8%AF%86%E5%8F%8A%E5%BA%93%E7%BA%A7%E6%93%8D%E4%BD%9C/  
 

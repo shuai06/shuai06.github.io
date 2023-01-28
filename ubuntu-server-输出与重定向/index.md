@@ -92,6 +92,6 @@ ls a/ > f1 2>&1   # 标准输出、标准错误都输出到文件f1  （&1代表
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E8%BE%93%E5%87%BA%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/  
 

@@ -167,6 +167,6 @@ https://blog.csdn.net/jewes/article/details/20792021?spm=1001.2101.3001.6650.2&u
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/kerberos%E5%85%A5%E9%97%A8/  
 

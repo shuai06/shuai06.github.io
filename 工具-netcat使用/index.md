@@ -158,6 +158,6 @@ B:  ncat -nv 192.168.1.19 3333 --ssl      #攻击端
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/  
 

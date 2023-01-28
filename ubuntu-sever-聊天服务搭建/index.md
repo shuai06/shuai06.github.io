@@ -407,6 +407,6 @@ vim /etc/environment
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/  
 

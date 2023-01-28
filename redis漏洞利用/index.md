@@ -293,6 +293,6 @@ https://www.freebuf.com/column/158065.html
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/  
 

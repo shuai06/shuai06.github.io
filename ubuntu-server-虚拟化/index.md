@@ -344,6 +344,6 @@ sudo apt-get remove cloud-init
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/  
 

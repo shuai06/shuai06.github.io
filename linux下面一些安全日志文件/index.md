@@ -20,6 +20,6 @@
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/linux%E4%B8%8B%E9%9D%A2%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/  
 

@@ -45,6 +45,6 @@ sudo netstat -tap | grep mysql
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDmysql%E5%B9%B6%E4%B8%94%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85/  
 

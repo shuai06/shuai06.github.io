@@ -232,6 +232,6 @@ F4.对于网站漏洞的挖掘可以使用burp，先勾选上proxy --> options -
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/cors%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F/  
 

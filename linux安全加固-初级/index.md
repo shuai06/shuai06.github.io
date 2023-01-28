@@ -125,6 +125,6 @@ INPUT -j DROP
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/  
 

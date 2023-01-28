@@ -175,6 +175,6 @@ np.linalg.norm就是**元素平方求和之后开根号**
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/np-dot-np-outer-np-multiply/  
 

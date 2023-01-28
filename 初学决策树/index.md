@@ -760,6 +760,6 @@ if __name__ == '__main__':
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E5%88%9D%E5%AD%A6%E5%86%B3%E7%AD%96%E6%A0%91/  
 

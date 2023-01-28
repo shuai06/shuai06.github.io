@@ -60,6 +60,6 @@ select Host, User, Password from user;
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/mysql%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%94%A8%E6%88%B7%E4%B8%BA%E6%96%B0%E7%94%A8%E6%88%B7%E5%88%86%E9%85%8D%E6%9D%83%E9%99%90/  
 

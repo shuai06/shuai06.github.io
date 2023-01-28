@@ -337,6 +337,6 @@ https://yq.aliyun.com/articles/480125/      kali下的DDos测试工具
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/  
 

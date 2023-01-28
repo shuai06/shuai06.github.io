@@ -122,6 +122,6 @@ train_concise(3)
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/%E6%9D%83%E9%87%8D%E8%A1%B0%E5%87%8F/  
 

@@ -210,6 +210,6 @@ sudo apt install nethogs
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/ubuntu-server-%E7%BD%91%E7%BB%9C%E5%B7%A5%E5%85%B7/  
 

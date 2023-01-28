@@ -218,6 +218,6 @@ php中的`getenv()`函数用于获取一个环境变量的值 ，如果不存在
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/04-mysql%E6%B3%A8%E5%85%A5/  
 

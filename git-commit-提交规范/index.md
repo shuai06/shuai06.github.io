@@ -170,6 +170,6 @@ Footer 部分只用于两种情况。
 
 ---
 
-> 作者: [剑胆琴心](http://geoer.cn)  
+> 作者: [剑胆琴心](http://shuai06.github.io)  
 > URL: https://shuai06.github.io/git-commit-%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/  
 
