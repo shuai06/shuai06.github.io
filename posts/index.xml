@@ -5,6 +5,14 @@
     <description>所有文章 | 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>torch.argmax 小记</title>
+  <link>https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/</link>
+  <pubDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/</guid>
+  <description><![CDATA[最近碰到torch.argmax的场景，就在这里简单记录一下。这里分二维和三维及以上记录 二维 1 2 3 4 5 6 7 8 9 &gt;&gt;&gt; a = torch.rand(15).reshape(3,5) &gt;&gt;&gt; a tensor([[0.7237, 0.6488, 0.2557, 0.0333, 0.4103], [0.8674, 0.7288, 0.3758, 0.6329,]]></description>
+</item>
+<item>
   <title>C语言做题记录(入门版)</title>
   <link>https://shuai06.github.io/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/</link>
   <pubDate>Fri, 07 May 2021 17:56:57 &#43;0800</pubDate>
@@ -2259,14 +2267,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/</guid>
   <description><![CDATA[保存模型 在pytorch进行模型保存的时候，一般有两种保存方式: 一种是保存整个模型 另一种是只保存模型的参数 1 2 torch.save(model.state_dict(), &#34;my_model.pth&#34;) # 只保存模型的参数 torch.save(model, &#34;my_model.pth&#34;) # 保]]></description>
-</item>
-<item>
-  <title>torch.argmax 小记</title>
-  <link>https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/</link>
-  <pubDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/</guid>
-  <description><![CDATA[最近碰到torch.argmax的场景，就在这里简单记录一下。这里分二维和三维及以上记录 二维 1 2 3 4 5 6 7 8 9 &gt;&gt;&gt; a = torch.rand(15).reshape(3,5) &gt;&gt;&gt; a tensor([[0.7237, 0.6488, 0.2557, 0.0333, 0.4103], [0.8674, 0.7288, 0.3758, 0.6329,]]></description>
 </item>
 <item>
   <title>torch.argmax 小记</title>
