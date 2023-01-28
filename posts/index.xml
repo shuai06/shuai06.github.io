@@ -5,6 +5,14 @@
     <description>所有文章 | 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>C语言做题记录(入门版)</title>
+  <link>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/</link>
+  <pubDate>Fri, 07 May 2021 17:56:57 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/</guid>
+  <description><![CDATA[1.编写一个程序求三个整数数的最大值 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 /* 1.编写一个程序求三个整数数的最大值 */ #include &lt;stdio.h&gt; int main() { int i,j,k, max=0; print]]></description>
+</item>
+<item>
   <title>python-XPath</title>
   <link>https://geoer.cn/python-xpath/</link>
   <pubDate>Wed, 19 Feb 2020 19:58:52 &#43;0800</pubDate>
@@ -1411,14 +1419,6 @@
   <author>剑胆琴心</author>
   <guid>https://geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%98%E5%9C%A8%E5%BC%B1%E4%BB%A4%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[fofa语句： 1 title=&#34;流媒体管理服务器&#34; 登录：]]></description>
-</item>
-<item>
-  <title>C语言做题记录(入门版)</title>
-  <link>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/</link>
-  <pubDate>Fri, 07 May 2021 17:56:57 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95-%E5%85%A5%E9%97%A8%E7%89%88/</guid>
-  <description><![CDATA[1.编写一个程序求三个整数数的最大值 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 /* 1.编写一个程序求三个整数数的最大值 */ #include &lt;stdio.h&gt; int main() { int i,j,k, max=0; print]]></description>
 </item>
 <item>
   <title>xmind2020存在XSS漏洞可导致命令执行</title>
