@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>工具 - Wireshark使用 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap" /><meta name="keywords" content='渗透测试, Wireshark' /><meta itemprop="name" content="工具 - Wireshark使用">
+<meta itemprop="description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap"><meta itemprop="datePublished" content="2020-03-15T15:50:21+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="1270"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,Wireshark," /><meta property="og:title" content="工具 - Wireshark使用" />
+<meta property="og:description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-15T15:50:21+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="工具 - Wireshark使用"/>
+<meta name="twitter:description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8/" /><link rel="prev" href="https://geoer.cn/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://geoer.cn/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "工具 - Wireshark使用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, Wireshark","wordcount":  1270 ,
+    "url": "https:\/\/geoer.cn\/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8\/","datePublished": "2020-03-15T15:50:21+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>工具 - Wireshark使用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-15&#32;15:50:21><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-15">2020-03-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1270 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="工具 - Wireshark使用">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#基本使用方法">基本使用方法</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#启动">启动</a></li>
+                    <li><a href="#捕获-选项---">捕获-&gt;选项-&gt; &hellip; &hellip;</a></li>
+                    <li><a href="#实时抓包">实时抓包</a></li>
+                    <li><a href="#保存和分析捕获文件">保存和分析捕获文件</a></li>
+                    <li><a href="#首选项">首选项</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#筛选器">筛选器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#常见协议数据包">常见协议数据包</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#font-colorredarpfont"><font color=red>ARP</font></a></li>
+                    <li><a href="#font-colorred-ipfont"><font color=red> IP</font></a></li>
+                    <li><a href="#font-colorred-tcpfont"><font color=red> TCP</font></a></li>
+                    <li><a href="#font-colorred-udp-font"><font color=red> UDP </font></a></li>
+                    <li><a href="#font-colorred-dns-font"><font color=red> DNS </font></a></li>
+                    <li><a href="#font-colorred-http-font"><font color=red> HTTP </font></a></li>
+                    <li><a href="#font-colorred-ftp-font"><font color=red> ftp </font></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#数据流">数据流</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#信息统计">信息统计</a></li>
+    <li><a href="#实践">实践</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><!-- more -->
+<h1 id="wireshark">Wireshark</h1>
+<h2 id="简介">简介</h2>
+<ul>
+<li>抓包嗅探协议分析</li>
+<li>安全专家必备技能</li>
+<li>抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎)
+<ul>
+<li>Linux上： Libpcap</li>
+<li>Windows上： Winpcap</li>
+</ul>
+</li>
+<li>解码能力（衡量抓包软件好坏的重要标准）</li>
+</ul>
+<h2 id="基本使用方法">基本使用方法</h2>
+<h6 id="启动">启动</h6>
+<h6 id="捕获-选项---">捕获-&gt;选项-&gt; &hellip; &hellip;</h6>
+<p><strong>选择抓包网卡</strong>
+<img src="http://image.xpshuai.cn/20200314214656188_15241.png" /></p>
+<p><strong>混杂模式</strong>
+勾选上之后，如果数据包不是发送给我指定这个网卡的，也会被抓取</p>
+<p><strong>抓包筛选器</strong>
+指定抓什么包，不抓什么包</p>
+<h6 id="实时抓包">实时抓包</h6>
+<p>就是主界面</p>
+<h6 id="保存和分析捕获文件">保存和分析捕获文件</h6>
+<p>先停止，再保存(可以选择格式, 尽量使用<code>.pcap</code>格式)，压缩等, 下次可以导入已经抓取的数据包文件</p>
+<h6 id="首选项">首选项</h6>
+<p>编辑-&gt;首选项   -&gt; 可以自己根据需要修改和定制界面布局
+<img src="http://image.xpshuai.cn/20200314215811593_19130.png" />
+<img src="http://image.xpshuai.cn/20200314215743991_3733.png" /></p>
+<h4 id="筛选器">筛选器</h4>
+<ul>
+<li>过滤干扰的数据包</li>
+<li>抓包筛选器(捕获, 选项里面那个)</li>
+<li>显示筛选器(主界面那个, 更多使用)    &ndash; 常用语法</li>
+</ul>
+<p>可以单独选择，也可以叠加(and, or)上面的条件进行筛选：
+<img src="http://image.xpshuai.cn/20200314220435486_29854.png" />
+<img src="http://image.xpshuai.cn/20200314220819061_8554.png" /></p>
+<h2 id="常见协议数据包">常见协议数据包</h2>
+<p>数据包的分层结构显示</p>
+<h6 id="font-colorredarpfont"><font color=red>ARP</font></h6>
+<img src="http://image.xpshuai.cn/20200315135242728_2582.png" />
+<img src="http://image.xpshuai.cn/20200315135851907_10980.png" />
+<h6 id="font-colorred-ipfont"><font color=red> IP</font></h6>
+<p><strong>Protocol字段：</strong> 表示上层是： udp&ndash;&gt; 17， tcp&ndash;&gt; 6, icmp &ndash;&gt;2, igmp &ndash;&gt;2
+四层有好多中协议对应不同的数字
+Header checksum字段：校验和, 每两位进行异或
+<img src="http://image.xpshuai.cn/20200315141145151_10461.png" />
+tcp和udp一般不会有<code>option</code>字段（视情况而定）</p>
+<h6 id="font-colorred-tcpfont"><font color=red> TCP</font></h6>
+<img src="http://image.xpshuai.cn/20200315141900321_8252.png" />
+<img src="http://image.xpshuai.cn/20200315142047940_28399.png" />
+<p><strong>附：</strong>
+三次握手
+<img src="http://image.xpshuai.cn/20200315142429852_2643.pn" /></p>
+<p>四次挥手
+<img src="http://image.xpshuai.cn/20200315142522647_28638.png" /></p>
+<h6 id="font-colorred-udp-font"><font color=red> UDP </font></h6>
+<p>udp和tcp的类似，自己实践能看懂
+udp开销更小
+<img src="http://image.xpshuai.cn/20200315142800334_28041.png" /></p>
+<h6 id="font-colorred-dns-font"><font color=red> DNS </font></h6>
+<p>应用层协议，基于udp
+<img src="http://image.xpshuai.cn/20200315143306840_10579.png" /></p>
+<h6 id="font-colorred-http-font"><font color=red> HTTP </font></h6>
+<img src="http://image.xpshuai.cn/20200315143952274_22660.png" />
+<img src="http://image.xpshuai.cn/20200315144406111_24695.png" />
+<h6 id="font-colorred-ftp-font"><font color=red> ftp </font></h6>
+<p>这里没ftp服务器就先不放图了
+ftp也是一个应用层协议</p>
+<blockquote>
+<p>wishark默认是用端口区分协议(假设我们手动把http不开在80端口，wireshark分不清非标准端口的, 需要我们手动修改.如下图.)</p>
+</blockquote>
+<img src="http://image.xpshuai.cn/20200315144657089_4217.png" />
+<h4 id="数据流">数据流</h4>
+<p>比如访问一个网页, 往往产生很多数据包
+wireshark提供了<code>数据流</code></p>
+<ul>
+<li>http</li>
+<li>smtp</li>
+<li>pop3</li>
+<li>ssl 等</li>
+</ul>
+<p><strong>操作(以http为例)：</strong>
+<img src="http://image.xpshuai.cn/20200315145059801_20372.png" />
+按照上图操作完后，会来到数据流的界面，如下：
+<img src="http://image.xpshuai.cn/20200315145205546_28877.png" /></p>
+<h2 id="信息统计">信息统计</h2>
+<p><strong>1.查看导入数据包文件摘要信息</strong>
+导入数据包文件，打开“统计”-&gt;“文件属性”：可以看到一些摘要性的信息</p>
+<p><strong>2.节点数</strong>
+打开“统计”-&gt;“endpoint”： 可以以ip地址区分/udp有多少/二层的包头/其他标准区分 节点的个数等
+Tx表示发送, Rx表示接收的数据包</p>
+<p><strong>3.协议分布</strong>
+打开“统计”-&gt;“协议分级”：可以看到每个协议里面什么协议的占用百分比(DNS流量占用一般都很小,否则很有可能出现异常)</p>
+<p><strong>4.包大小分布</strong>
+打开“统计”-&gt;“分组长度”：可以看到大包多还是小包多</p>
+<p><strong>5.会话连接</strong>
+打开“统计”-&gt;“conversations”：可以看到哪两台机器之间数据包会话传送最多啥的</p>
+<p><strong>6.解码方式</strong>
+对于非默认端口的数据包，wiresharl只会按端口区分的
+右键, 手动decode为指定的协议， 这样wireshark就会按正确的协议来解析</p>
+<blockquote>
+<p>需要熟悉不同协议数据包的内容, 防止手动解析错误</p>
+</blockquote>
+<p><strong>7.专家系统</strong>
+“分析” -&gt; &ldquo;专家系统&rdquo;:  可能自动给我们一些提示</p>
+<blockquote>
+<p>思路：如果很多个数据包，先从统计信息入手，分析出重点，找出方向。然后筛选出来，逐步分析包的内容</p>
+</blockquote>
+<h2 id="实践">实践</h2>
+<ul>
+<li>抓包对比nc、ncta加密与不加密的流量</li>
+<li>企业抓包部署方案  (Wiershark也有不足，大型网络还是需要商业化的软件)
+<ul>
+<li>Sniffer</li>
+<li>Cace / riverbed （大部分还是基于wireshark进行了二次开发，改名了应该, 如果需要去网上找吧）</li>
+<li>Cascad pilot</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%b7%a5%e5%85%b7-Wireshark%e4%bd%bf%e7%94%a8.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/wireshark/' class="post-tag">Wireshark</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/" class="post-nav-item" rel="prev" title="工具 - netcat使用"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>工具 - netcat使用</a>
+      <a href="/%E5%B7%A5%E5%85%B7-tcpdump%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E6%96%87%E6%A1%A3%E8%AE%B0%E5%BD%95/" class="post-nav-item" rel="next" title="工具 - tcpdump使用&amp;过程文档记录">工具 - tcpdump使用&amp;过程文档记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

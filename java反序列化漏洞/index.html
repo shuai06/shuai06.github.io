@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>反序列化漏洞 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数" /><meta name="keywords" content='反序列化, 代码审计' /><meta itemprop="name" content="反序列化漏洞">
+<meta itemprop="description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数"><meta itemprop="datePublished" content="2022-01-19T10:03:37+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="5602"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="反序列化,代码审计," /><meta property="og:title" content="反序列化漏洞" />
+<meta property="og:description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-19T10:03:37+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="反序列化漏洞"/>
+<meta name="twitter:description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" /><link rel="prev" href="https://geoer.cn/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/" /><link rel="next" href="https://geoer.cn/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "反序列化漏洞",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "反序列化, 代码审计","wordcount":  5602 ,
+    "url": "https:\/\/geoer.cn\/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-19T10:03:37+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>反序列化漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2022-01-19&#32;10:03:37><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-01-19">2022-01-19</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 5602 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 12 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="反序列化漏洞">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#反序列化">反序列化</a></li>
+    <li><a href="#漏洞原理">漏洞原理</a></li>
+    <li><a href="#php反序列化">PHP反序列化</a>
+      <ul>
+        <li><a href="#漏洞触发条件">漏洞触发条件：</a></li>
+        <li><a href="#魔术方法">魔术方法</a></li>
+        <li><a href="#ctf类似题目">CTF类似题目</a></li>
+      </ul>
+    </li>
+    <li><a href="#python反序列化">Python反序列化</a>
+      <ul>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#pickle反序列化">pickle反序列化</a>
+          <ul>
+            <li><a href="#pickle">pickle</a>
+              <ul>
+                <li><a href="#__reduce__方法"><code>__reduce__</code>方法</a></li>
+                <li><a href="#指定protocol">指定protocol</a></li>
+                <li><a href="#pickletools模块">pickletools模块</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#其他第三方序列化库">其他第三方序列化库</a></li>
+        <li><a href="#测试方法">测试方法</a></li>
+        <li><a href="#工具">工具</a></li>
+        <li><a href="#修复方案"><strong>修复方案</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#java反序列化">Java反序列化</a>
+      <ul>
+        <li><a href="#条件">条件</a></li>
+        <li><a href="#反序列化示例">反序列化示例</a></li>
+        <li><a href="#使用场景"><strong>使用场景:</strong></a></li>
+        <li><a href="#漏洞成因示例">漏洞成因示例</a></li>
+        <li><a href="#代码审计">代码审计</a>
+          <ul>
+            <li><a href="#常见关键字">常见关键字：</a></li>
+            <li><a href="#简要思路">简要思路</a></li>
+            <li><a href="#拓展">拓展</a>
+              <ul>
+                <li><a href="#反射机制">反射机制</a></li>
+                <li><a href="#rmi">RMI</a></li>
+                <li><a href="#jndi">JNDI</a></li>
+              </ul>
+            </li>
+            <li><a href="#历史漏洞">历史漏洞</a>
+              <ul>
+                <li><a href="#apache-commons-collections反序列化漏洞">Apache Commons Collections反序列化漏洞</a></li>
+                <li><a href="#shiro反序列化漏洞">Shiro反序列化漏洞</a></li>
+                <li><a href="#fastjson反序列化漏洞">FastJson反序列化漏洞</a></li>
+                <li><a href="#weblogic反序列化漏洞">weblogic反序列化漏洞</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#漏洞修复">漏洞修复</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="反序列化">反序列化</h2>
+<p>**序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数据库中(redis等键值对类型的数据库)</p>
+<p>**反序列化：**用到的时候，再把字符串反序列化为对象使用</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119091034314.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119091034314.png, http://image.xpshuai.cn/img/image-20220119091034314.png 1.5x, http://image.xpshuai.cn/img/image-20220119091034314.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119091034314.png"
+    title="http://image.xpshuai.cn/img/image-20220119091034314.png"/></p>
+<h2 id="漏洞原理">漏洞原理</h2>
+<p>序列化和反序列化本身并不存在问题。但当输入的反序列化的数据可被用户控制，那么攻击者即可通过构造恶意输入，让反序列化产生非预期的对象，在此过程中执行构造的任意代码。</p>
+<h2 id="php反序列化">PHP反序列化</h2>
+<h3 id="漏洞触发条件">漏洞触发条件：</h3>
+<blockquote>
+<p>以下三者缺一不可</p>
+</blockquote>
+<ul>
+<li>unserialize函数的变量可控</li>
+<li>php文件中存在可利用的类</li>
+<li>类中有魔术方法</li>
+</ul>
+<h3 id="魔术方法">魔术方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">__construct<span class="o">()</span>    <span class="c1">#当一个对象创建时被调用</span>
+</span></span><span class="line"><span class="cl">__destruct<span class="o">()</span>    <span class="c1">#当一个对象销毁时被调用</span>
+</span></span><span class="line"><span class="cl">__toString<span class="o">()</span>    <span class="c1">#当一个对象被当作一个字符串使用</span>
+</span></span><span class="line"><span class="cl">__sleep<span class="o">()</span>  <span class="c1">#在对象在被序列化之前运行</span>
+</span></span><span class="line"><span class="cl">__wakeup    <span class="c1">#将在序列化之后立即被调用</span>
+</span></span><span class="line"><span class="cl">__call<span class="o">()</span>     <span class="c1">#在对象上下文中调用不可访问的方法时触发</span>
+</span></span><span class="line"><span class="cl">__callStatic<span class="o">()</span> <span class="c1"># 在静态上下文中调用不可访问的方法时触发</span>
+</span></span><span class="line"><span class="cl">__get<span class="o">()</span> <span class="c1"># 用于从不可访问的属性读取数据</span>
+</span></span><span class="line"><span class="cl">__set<span class="o">()</span> <span class="c1"># 用于将数据写入不可访问的属性</span>
+</span></span><span class="line"><span class="cl">__isset<span class="o">()</span> <span class="c1"># 在不可访问的属性上调用isset()或empty()触发</span>
+</span></span><span class="line"><span class="cl">__unset<span class="o">()</span> <span class="c1"># 在不可访问的属性上使用unset()时触发</span>
+</span></span><span class="line"><span class="cl">__invoke<span class="o">()</span> <span class="c1"># 当脚本尝试将对象调用为函数时触发</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 等其他魔术方法</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>先搞清楚序列化之后各个字段的意义:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119091308709.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119091308709.png, http://image.xpshuai.cn/img/image-20220119091308709.png 1.5x, http://image.xpshuai.cn/img/image-20220119091308709.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119091308709.png"
+    title="http://image.xpshuai.cn/img/image-20220119091308709.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119091604297.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119091604297.png, http://image.xpshuai.cn/img/image-20220119091604297.png 1.5x, http://image.xpshuai.cn/img/image-20220119091604297.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119091604297.png"
+    title="http://image.xpshuai.cn/img/image-20220119091604297.png"/></p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Example</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$var</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">function</span> <span class="fm">__destruct</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">eval</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">var</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">unserialize</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">?&gt;</span><span class="err">　
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>接下来构造序列化数据：<code>a=O:4:&quot;test&quot;:1:{s:1:&quot;b&quot;;s:10:&quot;phpinfo();&quot;;}</code></p>
+<p>成功显示了phpinfo页面：在反序列化该数据时，自动触发了_destruct()函数,执行 eval(phpinfo()):</p>
+<h3 id="ctf类似题目">CTF类似题目</h3>
+<p><a href="https://cgctf.nuptsast.com/challenges#Web"target="_blank" rel="external nofollow noopener noreferrer">https://cgctf.nuptsast.com/challenges#Web<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=11116&amp;highlight=writeup"target="_blank" rel="external nofollow noopener noreferrer">https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=11116&highlight=writeup<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//test
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">$a=&#39;xiaodi&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="cm">echo $a.&#34;&lt;hr&gt;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="cm">echo serialize($a).&#34;&lt;hr&gt;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="cm">echo unserialize(&#39;s:6:&#34;xiaodi&#34;;&#39;);
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">//代码执行
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">class xiaodi{
+</span></span></span><span class="line"><span class="cl"><span class="cm">	var $xd=&#39;&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="cm">	function __destruct(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">		eval($this-&gt;xd);
+</span></span></span><span class="line"><span class="cl"><span class="cm">	}
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">unserialize($_GET[&#39;a&#39;]);
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//O:1:&#34;F&#34;:1:{s:3:&#34;var&#34;;s:10:&#34;phpinfo();&#34;;}
+</span></span></span><span class="line"><span class="cl"><span class="c1">//O:6:&#34;xiaodi&#34;:1:{s:2:&#34;xd&#34;;s:10:&#34;phpinfo();&#34;;}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//sql注入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">class sql{
+</span></span></span><span class="line"><span class="cl"><span class="cm">	var $var=&#39;&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="cm">	function __destruct(){
+</span></span></span><span class="line"><span class="cl"><span class="cm">		echo &#39;select * from admin where username=&#39;.($this-&gt;var);
+</span></span></span><span class="line"><span class="cl"><span class="cm">	}
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">unserialize($_GET[&#39;a&#39;]);
+</span></span></span><span class="line"><span class="cl"><span class="cm">//O:3:&#34;sql&#34;:1:{s:3:&#34;var&#34;;s:6:&#34;xiaodi&#34;;}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">just4fun</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$enter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">var</span> <span class="nv">$secret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pass&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$pass</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;pass&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">get_magic_quotes_gpc</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$pass</span><span class="o">=</span><span class="nx">stripslashes</span><span class="p">(</span><span class="nv">$pass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nv">$o</span> <span class="o">=</span> <span class="nx">unserialize</span><span class="p">(</span><span class="nv">$pass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$o</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$o</span><span class="o">-&gt;</span><span class="na">secret</span> <span class="o">=</span> <span class="s2">&#34;*&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$o</span><span class="o">-&gt;</span><span class="na">secret</span> <span class="o">===</span> <span class="nv">$o</span><span class="o">-&gt;</span><span class="na">enter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span> <span class="s2">&#34;Congratulation! Here is my secret: &#34;</span><span class="o">.</span><span class="nv">$o</span><span class="o">-&gt;</span><span class="na">secret</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">echo</span> <span class="s2">&#34;Oh no... You can&#39;t fool me&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">echo</span> <span class="s2">&#34;are you trolling?&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//O:8:&#34;just4fun&#34;:2:{s:5:&#34;enter&#34;;N;s:6:&#34;secret&#34;;R:2;}
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 值给N, 后面的值给R    N+2=R
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">?&gt;</span><span class="err">　
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="python反序列化">Python反序列化</h2>
+<h3 id="概述">概述</h3>
+<p>Python中有两个模块可以实现对象的序列化，<code>pickle</code>和<code>cPickle</code>，区别在于cPickle是用C语言实现的，pickle是用纯python语言实现的，用法类似，cPickle的读写效率高一些。python3标准库中不再叫<code>cPickle</code>，而是只有<code>pickle</code>。python2中两者都有。</p>
+<p>pickle的<strong>应用场景</strong>一般有以下几种：</p>
+<ol>
+<li>在解析认证token，session的时候（尤其web中使用的redis、mongodb、memcached等来存储session等状态信息）；</li>
+<li>将对象Pickle后存储成磁盘文件；</li>
+<li>将对象Pickle后在网络中传输。</li>
+</ol>
+<h3 id="pickle反序列化">pickle反序列化</h3>
+<h4 id="pickle">pickle</h4>
+<p>pickle 具有两个重要的函数：</p>
+<ul>
+<li>一个是<code>dump()</code>, 作用是接受一个文件句柄和一个数据对象作为参数，把数据对象以特定的格式保存到给定的文件中；</li>
+<li>另一个函数是<code>load()</code>，作用是从文件中取出已保存的对象，pickle 知道如何恢复这些对象到他们本来的格式。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1">#输出为文件对象</span>
+</span></span><span class="line"><span class="cl"><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">fix_imports</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1">#输出为 bytes 对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>  <span class="c1">#load参数是文件句柄</span>
+</span></span><span class="line"><span class="cl"><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="c1">#loads参数是字符串</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>note:</strong> python2中的序列化文件如果想在python3中读取，需要修改编码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#python2</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mnist.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">#python3</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mnist.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">_Unpickler</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;latin1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我这里就只用Python3了</p>
+<h5 id="__reduce__方法"><code>__reduce__</code>方法</h5>
+<p>类似于PHP中的<code>__wakeup__</code>魔法函数，<code>pickle</code>允许任意对象通过定义<code>__reduce__</code>方法来声明它是如何被压缩的，一般来说这个方法是返回一个字符串或是一个元祖。第一个参数是可调用(callable)的对象，第二个是该对象所需的参数元组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__reduce__
+</span></span><span class="line"><span class="cl">被定义之后，当对象被Pickle时就会被调用
+</span></span><span class="line"><span class="cl">要么返回一个代表全局名称的字符串，Pyhton会查找它并pickle，要么返回一个元组。这个元组包含2到5个元素，其中包括：一个可调用的对象，用于重建对象时调用；一个参数元素，供那个可调用对象使用
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__reduce_ex__
+</span></span><span class="line"><span class="cl">首先查看是否存在__reduce_ex__,如果存在则不再查找__reduce__，不存在的话则继续查找__reduce__
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>构造一个存在漏洞的简单代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Test1</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">testObj</span> <span class="o">=</span> <span class="n">Test1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">testObj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119104525612.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119104525612.png, http://image.xpshuai.cn/img/image-20220119104525612.png 1.5x, http://image.xpshuai.cn/img/image-20220119104525612.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119104525612.png"
+    title="http://image.xpshuai.cn/img/image-20220119104525612.png"/></p>
+<p>如果需要在web中请求传输，url编码后就可以发送了。</p>
+<h5 id="指定protocol">指定protocol</h5>
+<p><code>pickle.dumps(object)</code>在生成序列化数据时可以指定protocol参数，其取值包括：</p>
+<ul>
+<li>当protocol=0时，序列化之后的数据流是可读的（ASCII码）</li>
+<li>当protocol=3时，为python3的默认protocol值，序列化之后的数据流是hex码</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Test1</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">testObj</span> <span class="o">=</span> <span class="n">Test1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">testObj</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pickle.loads(payload)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>  <span class="c1"># 将byte类型转化为string类型</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="pickletools模块">pickletools模块</h5>
+<p>帮助我们了解每一步执行原理。需要我们了解每一个操作符的含义。</p>
+<ul>
+<li>
+<p><code>pickletools.dis(picklestring)</code>：</p>
+<p>可以更方便的看到每一步的操作原理。</p>
+</li>
+<li>
+<p><code>pickletools.optimize(picklestring)</code>：
+<strong>消除未使用的 PUT 操作码之后返回一个新的等效 pickle 字符串</strong>。 优化后的 pickle 将更为简短，耗费更为的传输时间，要求更少的存储空间并能更高效地解封。也即上面分析能够经过简化的过程：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickle</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pickletools</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Test1</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;whoami&#39;</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">testObj</span> <span class="o">=</span> <span class="n">Test1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">testObj</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pickle.loads(payload)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># print(payload.decode())  # 将byte类型转化为string类型</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pickletools</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一些指令集：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">MARK</span>           <span class="o">=</span> b<span class="s1">&#39;(&#39;</span>   <span class="c1"># push special markobject on stack</span>
+</span></span><span class="line"><span class="cl"><span class="nv">STOP</span>           <span class="o">=</span> b<span class="s1">&#39;.&#39;</span>   <span class="c1"># every pickle ends with STOP</span>
+</span></span><span class="line"><span class="cl"><span class="nv">POP</span>            <span class="o">=</span> b<span class="s1">&#39;0&#39;</span>   <span class="c1"># discard topmost stack item</span>
+</span></span><span class="line"><span class="cl"><span class="nv">POP_MARK</span>       <span class="o">=</span> b<span class="s1">&#39;1&#39;</span>   <span class="c1"># discard stack top through topmost markobject</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DUP</span>            <span class="o">=</span> b<span class="s1">&#39;2&#39;</span>   <span class="c1"># duplicate top stack item</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FLOAT</span>          <span class="o">=</span> b<span class="s1">&#39;F&#39;</span>   <span class="c1"># push float object; decimal string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">INT</span>            <span class="o">=</span> b<span class="s1">&#39;I&#39;</span>   <span class="c1"># push integer or bool; decimal string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BININT</span>         <span class="o">=</span> b<span class="s1">&#39;J&#39;</span>   <span class="c1"># push four-byte signed int</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BININT1</span>        <span class="o">=</span> b<span class="s1">&#39;K&#39;</span>   <span class="c1"># push 1-byte unsigned int</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LONG</span>           <span class="o">=</span> b<span class="s1">&#39;L&#39;</span>   <span class="c1"># push long; decimal string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BININT2</span>        <span class="o">=</span> b<span class="s1">&#39;M&#39;</span>   <span class="c1"># push 2-byte unsigned int</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NONE</span>           <span class="o">=</span> b<span class="s1">&#39;N&#39;</span>   <span class="c1"># push None</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PERSID</span>         <span class="o">=</span> b<span class="s1">&#39;P&#39;</span>   <span class="c1"># push persistent object; id is taken from string arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINPERSID</span>      <span class="o">=</span> b<span class="s1">&#39;Q&#39;</span>   <span class="c1">#  &#34;       &#34;         &#34;  ;  &#34;  &#34;   &#34;     &#34;  stack</span>
+</span></span><span class="line"><span class="cl"><span class="nv">REDUCE</span>         <span class="o">=</span> b<span class="s1">&#39;R&#39;</span>   <span class="c1"># apply callable to argtuple, both on stack</span>
+</span></span><span class="line"><span class="cl"><span class="nv">STRING</span>         <span class="o">=</span> b<span class="s1">&#39;S&#39;</span>   <span class="c1"># push string; NL-terminated string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINSTRING</span>      <span class="o">=</span> b<span class="s1">&#39;T&#39;</span>   <span class="c1"># push string; counted binary string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SHORT_BINSTRING</span><span class="o">=</span> b<span class="s1">&#39;U&#39;</span>   <span class="c1">#  &#34;     &#34;   ;    &#34;      &#34;       &#34;      &#34; &lt; 256 bytes</span>
+</span></span><span class="line"><span class="cl"><span class="nv">UNICODE</span>        <span class="o">=</span> b<span class="s1">&#39;V&#39;</span>   <span class="c1"># push Unicode string; raw-unicode-escaped&#39;d argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINUNICODE</span>     <span class="o">=</span> b<span class="s1">&#39;X&#39;</span>   <span class="c1">#   &#34;     &#34;       &#34;  ; counted UTF-8 string argument</span>
+</span></span><span class="line"><span class="cl"><span class="nv">APPEND</span>         <span class="o">=</span> b<span class="s1">&#39;a&#39;</span>   <span class="c1"># append stack top to list below it</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BUILD</span>          <span class="o">=</span> b<span class="s1">&#39;b&#39;</span>   <span class="c1"># call __setstate__ or __dict__.update()</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GLOBAL</span>         <span class="o">=</span> b<span class="s1">&#39;c&#39;</span>   <span class="c1"># push self.find_class(modname, name); 2 string args</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DICT</span>           <span class="o">=</span> b<span class="s1">&#39;d&#39;</span>   <span class="c1"># build a dict from stack items</span>
+</span></span><span class="line"><span class="cl"><span class="nv">EMPTY_DICT</span>     <span class="o">=</span> b<span class="s1">&#39;}&#39;</span>   <span class="c1"># push empty dict</span>
+</span></span><span class="line"><span class="cl"><span class="nv">APPENDS</span>        <span class="o">=</span> b<span class="s1">&#39;e&#39;</span>   <span class="c1"># extend list on stack by topmost stack slice</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GET</span>            <span class="o">=</span> b<span class="s1">&#39;g&#39;</span>   <span class="c1"># push item from memo on stack; index is string arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINGET</span>         <span class="o">=</span> b<span class="s1">&#39;h&#39;</span>   <span class="c1">#   &#34;    &#34;    &#34;    &#34;   &#34;   &#34;  ;   &#34;    &#34; 1-byte arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">INST</span>           <span class="o">=</span> b<span class="s1">&#39;i&#39;</span>   <span class="c1"># build &amp; push class instance</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LONG_BINGET</span>    <span class="o">=</span> b<span class="s1">&#39;j&#39;</span>   <span class="c1"># push item from memo on stack; index is 4-byte arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LIST</span>           <span class="o">=</span> b<span class="s1">&#39;l&#39;</span>   <span class="c1"># build list from topmost stack items</span>
+</span></span><span class="line"><span class="cl"><span class="nv">EMPTY_LIST</span>     <span class="o">=</span> b<span class="s1">&#39;]&#39;</span>   <span class="c1"># push empty list</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ</span>            <span class="o">=</span> b<span class="s1">&#39;o&#39;</span>   <span class="c1"># build &amp; push class instance</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PUT</span>            <span class="o">=</span> b<span class="s1">&#39;p&#39;</span>   <span class="c1"># store stack top in memo; index is string arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINPUT</span>         <span class="o">=</span> b<span class="s1">&#39;q&#39;</span>   <span class="c1">#   &#34;     &#34;    &#34;   &#34;   &#34; ;   &#34;    &#34; 1-byte arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LONG_BINPUT</span>    <span class="o">=</span> b<span class="s1">&#39;r&#39;</span>   <span class="c1">#   &#34;     &#34;    &#34;   &#34;   &#34; ;   &#34;    &#34; 4-byte arg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SETITEM</span>        <span class="o">=</span> b<span class="s1">&#39;s&#39;</span>   <span class="c1"># add key+value pair to dict</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TUPLE</span>          <span class="o">=</span> b<span class="s1">&#39;t&#39;</span>   <span class="c1"># build tuple from topmost stack items</span>
+</span></span><span class="line"><span class="cl"><span class="nv">EMPTY_TUPLE</span>    <span class="o">=</span> b<span class="s1">&#39;)&#39;</span>   <span class="c1"># push empty tuple</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SETITEMS</span>       <span class="o">=</span> b<span class="s1">&#39;u&#39;</span>   <span class="c1"># modify dict by adding topmost key+value pairs</span>
+</span></span><span class="line"><span class="cl"><span class="nv">BINFLOAT</span>       <span class="o">=</span> b<span class="s1">&#39;G&#39;</span>   <span class="c1"># push float; arg is 8-byte float encoding</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TRUE</span>           <span class="o">=</span> b<span class="s1">&#39;I01\n&#39;</span>  <span class="c1"># not an opcode; see INT docs in pickletools.py</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FALSE</span>          <span class="o">=</span> b<span class="s1">&#39;I00\n&#39;</span>  <span class="c1"># not an opcode; see INT docs in pickletools.py</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他第三方序列化库">其他第三方序列化库</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># marshmallow</span>
+</span></span><span class="line"><span class="cl">pip3 install marshmallow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MessagePack</span>
+</span></span><span class="line"><span class="cl">pip3 install msgpack-python
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># PyYAML</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Jsonpickle</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Shelve</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="测试方法">测试方法</h3>
+<ol>
+<li>查找是否引入pickle/cPickle等序列化库；</li>
+<li>若引入则查看并是否进行了pickle.load(param)或pickle.loads(param)操作；</li>
+<li>若参数输入可控，则可能存在反序列化漏洞，构造payload进行利用。</li>
+</ol>
+<h3 id="工具">工具</h3>
+<p><strong>pker</strong>：https://github.com/eddieivan01/pker</p>
+<p>借助该工具，可以省去人工构造payload，根据自己的相关需求可以自动生成相应的序列化数据。</p>
+<h3 id="修复方案"><strong>修复方案</strong></h3>
+<p>1） 确保反序列化对象<strong>不可控</strong>，且在<strong>传递</strong>前请进行签名或者加密，防止篡改和重播</p>
+<p>2） 如果序列化数据存储在磁盘上，请确保不受信任的第三方不能修改、覆盖或者重新创建自己的序列化数据</p>
+<p>3）将 pickle 加载的数据列入白名单，可使用官方推荐的find_class方法,使用白名单限制反序列化引入的对象</p>
+<h2 id="java反序列化">Java反序列化</h2>
+<p>序列化是让Java对象脱离Java运行环境的一种手段，可以有效的实现多平台之间的通信、对象持久化存储。</p>
+<p><strong>Java 序列化</strong>是指把 Java 对象转换为字节序列的过程，便于保存在内存、文件、数据库中，<code>ObjectOutputStream</code>类的 <code>writeObject() </code>方法可以实现序列化。</p>
+<p>反序列化是指把字节序列恢复为 Java 对象的过程，<code>ObjectInputStream </code>类的 <code>readObject()</code> 方法用于反序列化(能够被反序列化的类必须要实现<code>Seializable</code>或者<code>Externlizable</code>接口)。</p>
+<p>当开发者重写<code>readObject</code>方法或者<code>readExternal</code>方法时，若其中隐藏一些危险的操作且未对正在进行序列化的字节流进行充分的检测时，则可能存在反序列化漏洞。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119092018167.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119092018167.png, http://image.xpshuai.cn/img/image-20220119092018167.png 1.5x, http://image.xpshuai.cn/img/image-20220119092018167.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119092018167.png"
+    title="http://image.xpshuai.cn/img/image-20220119092018167.png"/></p>
+<h3 id="条件">条件</h3>
+<ul>
+<li>类必须实现反序列化接口，同时设置serialVersionUID以便适用不同jvm环境（可通过SerializationDumper这个工具来查看其存储格式,主要包括Magic头：0xaced,TC_OBJECT:0x73,TC_CLASS:0x72,serialVersionUID,newHandle）</li>
+<li>程序中存在一条可以产生安全问题的利用链(Gadget chain)，如远程代码执行</li>
+<li>触发点（当程序中某处触发点在还原对象的过程中，能够成功地执行构造出来的利用链，则会成为反序列化漏洞的触发点）</li>
+</ul>
+<h3 id="反序列化示例">反序列化示例</h3>
+<p>将String对象obj1序列化后写入object文件，后反序列化得到对象obj2:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">src.main.java</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.ObjectInputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.ObjectOutputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestSeri</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span><span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//定义obj对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">obj</span> <span class="o">=</span> <span class="s">&#34;hello java!&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//创建一个包含对象进行反序列化信息的 object数据文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;object&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ObjectOutputStream</span> <span class="n">os</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectOutputStream</span><span class="o">(</span><span class="n">fos</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//writeObject()方法将obj对象写入object文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">os</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//从文件中反序列化obj对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;object&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ObjectInputStream</span> <span class="n">ois</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectInputStream</span><span class="o">(</span><span class="n">fis</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//恢复对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">obj2</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">ois</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ois</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119100756465.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119100756465.png, http://image.xpshuai.cn/img/image-20220119100756465.png 1.5x, http://image.xpshuai.cn/img/image-20220119100756465.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119100756465.png"
+    title="http://image.xpshuai.cn/img/image-20220119100756465.png"/></p>
+<p>object文件中的内容：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119101145971.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119101145971.png, http://image.xpshuai.cn/img/image-20220119101145971.png 1.5x, http://image.xpshuai.cn/img/image-20220119101145971.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119101145971.png"
+    title="http://image.xpshuai.cn/img/image-20220119101145971.png"/></p>
+<p>其中<code>Ac ed 00 05</code>是java序列化内容的<strong>特征</strong>，base64编码后是<code>rO0ABQ==</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119101214156.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119101214156.png, http://image.xpshuai.cn/img/image-20220119101214156.png 1.5x, http://image.xpshuai.cn/img/image-20220119101214156.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119101214156.png"
+    title="http://image.xpshuai.cn/img/image-20220119101214156.png"/></p>
+<h3 id="使用场景"><strong>使用场景:</strong></h3>
+<p>• http参数，cookie，sesion，存储方式可能是base64（rO0），压缩后的base64（H4sl），MII等</p>
+<p>• Servlets HTTP，Sockets，Session管理器 包含的协议就包括JMX，RMI，JMS，JNDI等（\xac\xed）</p>
+<p>• xml Xstream,XMLDecoder等（HTTP Body：Content-Type:application/xml）</p>
+<p>• json(Jackson，fastjson) http请求中包含</p>
+<h3 id="漏洞成因示例">漏洞成因示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">src.main.java</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestSeri</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="o">[]</span><span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//定义obj对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MyObject</span> <span class="n">myObj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">myObj</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//创建一个包含对象进行反序列化信息的 object2数据文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;object2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ObjectOutputStream</span> <span class="n">os</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectOutputStream</span><span class="o">(</span><span class="n">fos</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//writeObject()方法将obj对象写入object文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">os</span><span class="o">.</span><span class="na">writeObject</span><span class="o">(</span><span class="n">myObj</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//从文件中反序列化obj对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;object2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ObjectInputStream</span> <span class="n">ois</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectInputStream</span><span class="o">(</span><span class="n">fis</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//恢复对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">MyObject</span> <span class="n">objDisk</span> <span class="o">=</span> <span class="o">(</span><span class="n">MyObject</span><span class="o">)</span><span class="n">ois</span><span class="o">.</span><span class="na">readObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">objDisk</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ois</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyObject</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//重写readObject()方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">readObject</span><span class="o">(</span><span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">ObjectInputStream</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//执行默认的readObject()方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">in</span><span class="o">.</span><span class="na">defaultReadObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//执行打开计算器程序的命令
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;calc.exe&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看文件内容：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119102101701.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119102101701.png, http://image.xpshuai.cn/img/image-20220119102101701.png 1.5x, http://image.xpshuai.cn/img/image-20220119102101701.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119102101701.png"
+    title="http://image.xpshuai.cn/img/image-20220119102101701.png"/></p>
+<p>漏洞发生在反序列化过程，MyObject类实现了Serializable接口，并重写了readObject()函数（从源输入流中读取字节序列，反序列化成对象），这里定制的行为是打开计算器：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119102001598.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119102001598.png, http://image.xpshuai.cn/img/image-20220119102001598.png 1.5x, http://image.xpshuai.cn/img/image-20220119102001598.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119102001598.png"
+    title="http://image.xpshuai.cn/img/image-20220119102001598.png"/></p>
+<p>攻击时序图：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220119101931782.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220119101931782.png, http://image.xpshuai.cn/img/image-20220119101931782.png 1.5x, http://image.xpshuai.cn/img/image-20220119101931782.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220119101931782.png"
+    title="http://image.xpshuai.cn/img/image-20220119101931782.png"/></p>
+<h3 id="代码审计">代码审计</h3>
+<h4 id="常见关键字">常见关键字：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ObjectInputStream.readObject
+</span></span><span class="line"><span class="cl">ObjectInputStream.readUnshared
+</span></span><span class="line"><span class="cl">XMLDecoder.readObject
+</span></span><span class="line"><span class="cl">Yaml.load
+</span></span><span class="line"><span class="cl">XStream.fromXML
+</span></span><span class="line"><span class="cl">ObjectMapper.readvalue
+</span></span><span class="line"><span class="cl">JON.parseObject
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="简要思路">简要思路</h4>
+<p>当我们搜索到关键函数或库，找到存在反序列化操作的文件时，便可以开始考虑参数是否可控，以及他们应用的CLass Path中是否包含了<code>Apache Commons COllections</code>等危险库(<code>ysoseial</code>所支持的其他库亦可)。同时满足这些条件后，我们便可以通过<code>ysoseial</code>生成所需的命令执行的反序列化语句。</p>
+<p>当然，不支持<code>Apache Commons COllections</code>d等危险库，并不代表我们不能进一步利用。这种情况，我们可以通过查找其他代码中涉及的执行命令或代码的区域。通过构造利用链来达到任意代码执行的目的。</p>
+<h4 id="拓展">拓展</h4>
+<h5 id="反射机制">反射机制</h5>
+<p>JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。</p>
+<h5 id="rmi">RMI</h5>
+<p>Java RMI(Java Remote Method Invocation, Java远程方法调用)是允许允许在一个Java虚拟机的对象调用运行在另一个Java虚拟机上的对象的方法、这两个虚拟机可以运行在相同计算机的不同进程中，也可以运行在网络上的不同计算机中。</p>
+<p>在网络传输中，RMI中的对象是通过序列化方式进行编码传输的。这意味着，RMI在接收经过序列化编码的对象后会进行反序列化操作。因此可以通过RMI服务作为反序列利用链的触发点。</p>
+<h5 id="jndi">JNDI</h5>
+<p>JNDI（Java Naming and Directory Interface， Java命令和目录接口）是一组程序接口，目的是方便查找远程或是本地对象。JNDI典型的应用场景是配置数据源，除此之外，JNDI还能访问现有的目录和服务，如LDAP,RMI,COBA,DNS,NDS,NIS等。</p>
+<p>JNDI注入利用流程：</p>
+<h4 id="历史漏洞">历史漏洞</h4>
+<blockquote>
+<p>需要个人动态调试来复现，暂未进行</p>
+</blockquote>
+<h5 id="apache-commons-collections反序列化漏洞">Apache Commons Collections反序列化漏洞</h5>
+<h5 id="shiro反序列化漏洞">Shiro反序列化漏洞</h5>
+<h5 id="fastjson反序列化漏洞">FastJson反序列化漏洞</h5>
+<h5 id="weblogic反序列化漏洞">weblogic反序列化漏洞</h5>
+<h2 id="漏洞修复">漏洞修复</h2>
+<ul>
+<li>如果是java中使用<code>readObject()</code>反序列化时，首先会调用<code>resolveClass</code>方法读取反序列化的类名，所以我们可以通过重写<code>ObjectInputStream</code>对象的<code>resolveClass</code>方法来实现对反序列化类的校验</li>
+<li></li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.cnblogs.com/xiaoqiyue/p/10951836.html"target="_blank" rel="external nofollow noopener noreferrer">PHP反序列化漏洞 - 爪爪** - 博客园 (cnblogs.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://www.cnblogs.com/20175211lyz/p/11403397.html"target="_blank" rel="external nofollow noopener noreferrer">CTF PHP反序列化 - MustaphaMond - 博客园 (cnblogs.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://mp.weixin.qq.com/s/wSuTztqzK-D9lxSPhhptgw"target="_blank" rel="external nofollow noopener noreferrer">反序列化漏洞汇总 (qq.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://ucasers.cn/python%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e6%bc%8f%e6%b4%9e%e4%b8%8e%e6%b2%99%e7%ae%b1%e9%80%83%e9%80%b8/"target="_blank" rel="external nofollow noopener noreferrer">Python反序列化漏洞与沙箱逃逸 - UCASZ的小站 (ucasers.cn)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>payload：https://github.com/sensepost/anapickle</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/Java%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e6%bc%8f%e6%b4%9e.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/' class="post-tag">反序列化</a><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="CVE-2021-43798（Grafana 未授权任意文件读取漏洞）"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CVE-2021-43798（Grafana 未授权任意文件读取漏洞）</a>
+      <a href="/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="SQL注入漏洞">SQL注入漏洞<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

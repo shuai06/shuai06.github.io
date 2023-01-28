@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Linux用户身份与文件权限 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="用户身份与文件权限 用户 1.管理员 root UID: 0 2. 系统用户 5/6 UID: 1-499 红帽7 UID 1-999 /sbin/nologin 3.普通用户 5/6 500-65535 7 1000- 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 id xps # 查看用户" /><meta name="keywords" content='用户身份, Linux，文件权限' /><meta itemprop="name" content="Linux用户身份与文件权限">
+<meta itemprop="description" content="用户身份与文件权限 用户 1.管理员 root UID: 0 2. 系统用户 5/6 UID: 1-499 红帽7 UID 1-999 /sbin/nologin 3.普通用户 5/6 500-65535 7 1000- 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 id xps # 查看用户"><meta itemprop="datePublished" content="2019-05-05T15:30:44+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2193"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="用户身份,Linux，文件权限," /><meta property="og:title" content="Linux用户身份与文件权限" />
+<meta property="og:description" content="用户身份与文件权限 用户 1.管理员 root UID: 0 2. 系统用户 5/6 UID: 1-499 红帽7 UID 1-999 /sbin/nologin 3.普通用户 5/6 500-65535 7 1000- 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 id xps # 查看用户" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-05-05T15:30:44+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="Linux用户身份与文件权限"/>
+<meta name="twitter:description" content="用户身份与文件权限 用户 1.管理员 root UID: 0 2. 系统用户 5/6 UID: 1-499 红帽7 UID 1-999 /sbin/nologin 3.普通用户 5/6 500-65535 7 1000- 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 id xps # 查看用户"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" /><link rel="prev" href="https://geoer.cn/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86/" /><link rel="next" href="https://geoer.cn/ol2%E5%AE%9E%E7%8E%B0%E5%9C%B0%E5%9B%BE%E6%95%88%E6%9E%9C/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux用户身份与文件权限",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "用户身份, Linux，文件权限","wordcount":  2193 ,
+    "url": "https:\/\/geoer.cn\/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90\/","datePublished": "2019-05-05T15:30:44+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Linux用户身份与文件权限</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2019-05-05&#32;15:30:44><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-05-05">2019-05-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2193 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux用户身份与文件权限">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="content" id="content"><h1 id="用户身份与文件权限">用户身份与文件权限</h1>
+<ul>
+<li><strong>用户</strong></li>
+</ul>
+<p>1.管理员    root     UID:  0<br>
+2. 系统用户     5/6    UID: 1-499<br>
+红帽7        UID 1-999
+/sbin/nologin<br>
+3.普通用户    5/6     500-65535
+7         1000-</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id xps   # 查看用户信息
+</span></span><span class="line"><span class="cl">useradd
+</span></span><span class="line"><span class="cl">useradd -u 555 xps   # 新建用户并指定uid
+</span></span><span class="line"><span class="cl">useradd -u ssbin/nologin xps   # 指定终端
+</span></span><span class="line"><span class="cl">adduser
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">groupadd hhh   # 新建用户组
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">usermod -G hhh xps   # 基本组/扩展组
+</span></span><span class="line"><span class="cl">usermod -u 666 xps   # 修改uid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">groupdel hhh    # 删除用户组
+</span></span><span class="line"><span class="cl">passwd xps   # 重置密码
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">userdel xps   # 删除用户(不删除home等)
+</span></span><span class="line"><span class="cl">userdel -r xps   # 删除用户(信息全删除）
+</span></span><span class="line"><span class="cl">deluser
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#修改name的话可以直接去 /etc/passwd修改
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>文件权限</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">文件类型
+</span></span><span class="line"><span class="cl">➢ -：普通文件。
+</span></span><span class="line"><span class="cl">➢ d：目录文件。
+</span></span><span class="line"><span class="cl">➢ l：链接文件。
+</span></span><span class="line"><span class="cl">➢ b：块设备文件。
+</span></span><span class="line"><span class="cl">➢ c：字符设备文件。
+</span></span><span class="line"><span class="cl">➢ p：管道文件。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">r读4
+</span></span><span class="line"><span class="cl">w写2
+</span></span><span class="line"><span class="cl">x执行1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">===============
+</span></span><span class="line"><span class="cl">chmod  # 权限   格式为“chown [参数] 所有者:所属组 文件或目录名称”     chown root:bin test
+</span></span><span class="line"><span class="cl">chown   # 所有者，属性
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-Rf    # 强制的意思
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod -Rf 777 test/
+</span></span><span class="line"><span class="cl">chmod -Rf g+s test/           # 并为该目录设置了 SGID 特殊权限位
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod -R o+t linux/          # 设置sbit权限 保护位
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>文件的特殊权限</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.**SUID**    # 让程序执行者，临时获取程序所有者的身份（仅对拥有执行权限的二进制程序有效）
+</span></span><span class="line"><span class="cl">u+s   4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.**SGID**    # 让程序执行者，临时获取程序所有组的身份
+</span></span><span class="line"><span class="cl">            让目录内的新建文件，集成目录所有组的名称
+</span></span><span class="line"><span class="cl"> g+s  2         
+</span></span><span class="line"><span class="cl">          
+</span></span><span class="line"><span class="cl">3.**SBIT**    #让目录内的文件，**只能自己删除自己**的
+</span></span><span class="line"><span class="cl">RHEL 7 系统中的/tmp 作为一个共享文件的目录，默认已经设置了 SBIT 特殊权限位，因此除非是该目录的所有者，否则无法删除这里面的文件；
+</span></span><span class="line"><span class="cl">当目录被设置 SBIT 特殊权限位后，文件的其他人权限部分的 x 执行权限就会被替换成 t 或者 T，原本有 x 执行权限则会写成 t，原本没有 x 执行权限则会被写成 T
+</span></span><span class="line"><span class="cl">o+t   1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">suid:  
+</span></span><span class="line"><span class="cl">x 改变成 s 就意味着该文件被赋予了 SUID 权限。如果原本的权限是 rw-呢？如果原先权
+</span></span><span class="line"><span class="cl">限位上没有 x 执行权限，那么被赋予特殊权限后将变成大写的 S
+</span></span><span class="line"><span class="cl">s 证明原先有x
+</span></span><span class="line"><span class="cl">S  证明原先没有x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sgid:  
+</span></span><span class="line"><span class="cl">s 证明原先有x
+</span></span><span class="line"><span class="cl">S  证明原先没有x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sbit:  
+</span></span><span class="line"><span class="cl">对其他目录来设置 SBIT 特殊权限位，用 chmod 命令就可以了。对应的参数 o+t 代表设置 SBIT 粘滞位权限：
+</span></span><span class="line"><span class="cl">t 证明原先有
+</span></span><span class="line"><span class="cl">T  证明原先没有x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">例如： 
+</span></span><span class="line"><span class="cl">转换7654    # 7是特殊权限位， 654是一一般权限位
+</span></span><span class="line"><span class="cl">    420 401 400
+</span></span><span class="line"><span class="cl">    rw- r-x r--
+</span></span><span class="line"><span class="cl">    7: = 4+2+1 三个都涉及了,所以要都加上    # S-&gt;之前没有x权限，s-&gt;之前有x权限,T-&gt;之前没有...
+</span></span><span class="line"><span class="cl">      rwSrwsr-T
+</span></span><span class="line"><span class="cl">======
+</span></span><span class="line"><span class="cl">rwsr--rwT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rwxr--rw-   746
+</span></span><span class="line"><span class="cl">s=4,T=4
+</span></span><span class="line"><span class="cl">5746
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">======
+</span></span><span class="line"><span class="cl">r-Srws--T
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5470
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>文件的隐藏属性</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.chattr          设置文件的隐藏权限，格式为“chattr [参数] 文件”
+</span></span><span class="line"><span class="cl">            chattr +a /var/log/message
+</span></span><span class="line"><span class="cl">2. lsattr          显示文件的隐藏权限，格式为“lsattr [参数] 文件”
+</span></span><span class="line"><span class="cl">            lsattr -d Desktop/   $ 查看目录的...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表 5-6 chattr 命令中用于隐藏权限的参数及其作用</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>无法对文件进行修改；若对目录设置了该参数，则仅能修改其中的子文件内容而不能新建或删除文件</td>
+</tr>
+<tr>
+<td>a</td>
+<td>仅允许补充（追加）内容，无法覆盖/删除内容（Append Only）</td>
+</tr>
+<tr>
+<td>S</td>
+<td>文件内容在变更后立即同步到硬盘（sync）</td>
+</tr>
+<tr>
+<td>s</td>
+<td>彻底从硬盘中删除，不可恢复（用 0 填充原文件所在硬盘区域）</td>
+</tr>
+<tr>
+<td>A</td>
+<td>不再修改这个文件或目录的最后访问时间（atime）</td>
+</tr>
+<tr>
+<td>b</td>
+<td>不再修改文件或目录的存取时间</td>
+</tr>
+<tr>
+<td>D</td>
+<td>检查压缩文件中的错误</td>
+</tr>
+<tr>
+<td>d</td>
+<td>使用 dump 命令备份时忽略本文件/目录</td>
+</tr>
+<tr>
+<td>c</td>
+<td>默认将文件或目录进行压缩</td>
+</tr>
+<tr>
+<td>u</td>
+<td>当删除该文件后依然保留其在硬盘中的数据，方便日后恢复</td>
+</tr>
+<tr>
+<td>t</td>
+<td>让文件系统支持尾部合并（tail-merging）</td>
+</tr>
+<tr>
+<td>X</td>
+<td>可以直接访问压缩文件中的内容</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>文件访问控制列表 ACL</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">对某个指定的用户进行单独的权限控制  
+</span></span><span class="line"><span class="cl">如果针对某个目录设置了 ACL，则目录中的文件会继承其 ACL；若针对文件设置了 ACL，则文件不再继承其所在目录的 ACL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1.setfacl 命令
+</span></span><span class="line"><span class="cl">(针对目录文件需要使用-R 递归参数；
+</span></span><span class="line"><span class="cl">针对普通文件则使用-m 参数；
+</span></span><span class="line"><span class="cl">如果想要删除某个文件的 ACL，则可以使用-b 参数)  
+</span></span><span class="line"><span class="cl"> setfacl -Rm u:xps:rwx /root      # -m 修改
+</span></span><span class="line"><span class="cl"> setfacl -Rm g:xpsg:r-x /tmp
+</span></span><span class="line"><span class="cl">看到文件的权限最后一个点（.）变成了加号（+） ,这就意味着该文件已经设置了 ACL 了。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.getfacl
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>su 与sudo</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">su - xps
+</span></span><span class="line"><span class="cl">su 命令与用户名之间有一个减号（-），这意味着完全切换到新的用户，即把环境变量信息也变更为新用户的相应信息，而不是保留原始的信息。强烈建议在切换用户身份时添加这个减号（-）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">使用 sudo 命令把特定命令的执行权限赋予给指定用户(避免泄露 root 管理员密码)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">**sudo 服务中的可用参数以及作用**   
+</span></span><span class="line"><span class="cl">-h 列出帮助信息
+</span></span><span class="line"><span class="cl">-l 列出当前用户可执行的命
+</span></span><span class="line"><span class="cl">-u 用户名或 UID 值 以指定的用户身份执行命
+</span></span><span class="line"><span class="cl">-k 清空密码的有效时间，下
+</span></span><span class="line"><span class="cl">-b 在后台执行指定的命令
+</span></span><span class="line"><span class="cl">-p 更改询问密码的提示语
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">**sudo 命令具有如下功能：**
+</span></span><span class="line"><span class="cl">➢ 限制用户执行指定的命令：
+</span></span><span class="line"><span class="cl">➢ 记录用户执行的每一条命令；
+</span></span><span class="line"><span class="cl">➢ 配置文件（/etc/sudoers）提供集中的用户管理、权限与主机等参数；
+</span></span><span class="line"><span class="cl">➢ 验证密码的后 5 分钟内（默认值）无须再让用户再次验证密码。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">使用 sudo 命令提供的 visudo 命令
+</span></span><span class="line"><span class="cl">来配置用户权限。这条命令在配置用户权限时将禁止多个用户同时修改 sudoers 配置文件，还
+</span></span><span class="line"><span class="cl">可以对配置文件内的参数进行语法检查，并在发现参数错误时进行报错。
+</span></span><span class="line"><span class="cl">(只有root才能使用visudo编辑所服务的配置文件)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">在 sudo 命令的配置文件中，按照下
+</span></span><span class="line"><span class="cl">面的格式将第 99 行（大约）填写上指定的信息：
+</span></span><span class="line"><span class="cl">谁可以使用 允许使用的主机=(以谁的身份) 可执行命令的列表
+</span></span><span class="line"><span class="cl">xps ALL=(ALL) ALL
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如果需要让某个用户只能使用 root 管理员的身份执行指定的命令，切记一定要给
+</span></span><span class="line"><span class="cl">出该命令的绝对路径，否则系统会识别不出来。
+</span></span><span class="line"><span class="cl">先使用 whereis 命令找出命令所对应
+</span></span><span class="line"><span class="cl">的保存路径，然后把配置文件第 99 行的用户权限参数修改成对应的路径即可
+</span></span><span class="line"><span class="cl">xps ALL=(ALL) /usr/bin/cat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">加 NOPASSWD 参数，使得用户执行 sudo 命令时不再需要密码验证：
+</span></span><span class="line"><span class="cl"> xps ALL=NOPASSWD: /usr/sbin/poweroff
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e7%94%a8%e6%88%b7%e8%ba%ab%e4%bb%bd%e4%b8%8e%e6%96%87%e4%bb%b6%e6%9d%83%e9%99%90.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD/' class="post-tag">用户身份</a><a href='/tags/linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/' class="post-tag">Linux，文件权限</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86/" class="post-nav-item" rel="prev" title="Linux存储结构与磁盘划分"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Linux存储结构与磁盘划分</a>
+      <a href="/ol2%E5%AE%9E%E7%8E%B0%E5%9C%B0%E5%9B%BE%E6%95%88%E6%9E%9C/" class="post-nav-item" rel="next" title="ol2实现地图聚合功能">ol2实现地图聚合功能<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

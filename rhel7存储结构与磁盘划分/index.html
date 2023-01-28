@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Linux存储结构与磁盘划分 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="存储结构与磁盘划分 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 /boot 开机所需文件—内核、开机菜单以及所需配置文件等 /dev 以文件形式存放任何设备与接口 # /etc 配置" /><meta name="keywords" content='rhel, Linux' /><meta itemprop="name" content="Linux存储结构与磁盘划分">
+<meta itemprop="description" content="存储结构与磁盘划分 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 /boot 开机所需文件—内核、开机菜单以及所需配置文件等 /dev 以文件形式存放任何设备与接口 # /etc 配置"><meta itemprop="datePublished" content="2019-05-05T14:30:44+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2450"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="rhel,Linux," /><meta property="og:title" content="Linux存储结构与磁盘划分" />
+<meta property="og:description" content="存储结构与磁盘划分 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 /boot 开机所需文件—内核、开机菜单以及所需配置文件等 /dev 以文件形式存放任何设备与接口 # /etc 配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-05-05T14:30:44+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="Linux存储结构与磁盘划分"/>
+<meta name="twitter:description" content="存储结构与磁盘划分 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 /boot 开机所需文件—内核、开机菜单以及所需配置文件等 /dev 以文件形式存放任何设备与接口 # /etc 配置"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86/" /><link rel="prev" href="https://geoer.cn/iptables%E4%B8%8Efirewall%E9%98%B2%E7%81%AB%E5%A2%99/" /><link rel="next" href="https://geoer.cn/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Linux存储结构与磁盘划分",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "rhel, Linux","wordcount":  2450 ,
+    "url": "https:\/\/geoer.cn\/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86\/","datePublished": "2019-05-05T14:30:44+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Linux存储结构与磁盘划分</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2019-05-05&#32;14:30:44><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2019-05-05">2019-05-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2450 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Linux存储结构与磁盘划分">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="content" id="content"><h1 id="存储结构与磁盘划分">存储结构与磁盘划分</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/boot 开机所需文件—内核、开机菜单以及所需配置文件等
+</span></span><span class="line"><span class="cl">/dev 以文件形式存放任何设备与接口  # 
+</span></span><span class="line"><span class="cl">/etc 配置文件   #
+</span></span><span class="line"><span class="cl">/home 用户家目录   # 
+</span></span><span class="line"><span class="cl">/bin 存放单用户模式下还可以操作的命令
+</span></span><span class="line"><span class="cl">/lib 开机时用到的函数库，以及/bin 与/sbin 下面的命令要调用的函数
+</span></span><span class="line"><span class="cl">/sbin 开机过程中需要的命令
+</span></span><span class="line"><span class="cl">/media 用于挂载设备文件的目录        # 
+</span></span><span class="line"><span class="cl">/opt 放置第三方的软件
+</span></span><span class="line"><span class="cl">/root 系统管理员的家目录     # 
+</span></span><span class="line"><span class="cl">/srv 一些网络服务的数据文件目录
+</span></span><span class="line"><span class="cl">/tmp 任何人均可使用的“共享”临时目录
+</span></span><span class="line"><span class="cl">/proc 虚拟文件系统，例如系统内核、进程、外部设备及网络状态等     # 
+</span></span><span class="line"><span class="cl">/usr/local 用户自行安装的软件         # 
+</span></span><span class="line"><span class="cl">/usr/sbin Linux 系统开机时不会使用到的软件/命令/脚本
+</span></span><span class="line"><span class="cl">/usr/share 帮助与说明文件，也可放置共享文件   # 
+</span></span><span class="line"><span class="cl">/var 主要存放经常变化的文件，如日志           # 
+</span></span><span class="line"><span class="cl">/lost+found 当文件系统发生错误时，将一些丢失的文件片段存放在这里
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">常见的硬件设备及其文件名称
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">IDE 设备 /dev/hd[a-d]
+</span></span><span class="line"><span class="cl">SCSI/SATA/U 盘 /dev/sd[a-p]
+</span></span><span class="line"><span class="cl">软驱 /dev/fd[0-1]
+</span></span><span class="line"><span class="cl">打印机 /dev/lp[0-15]
+</span></span><span class="line"><span class="cl">光驱 /dev/cdrom
+</span></span><span class="line"><span class="cl">鼠标 /dev/mouse
+</span></span><span class="line"><span class="cl">磁带机 /dev/st0 或/dev/ht0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">系统采用 a～p 来代表 16 块不同的硬盘（默认从 a 开始分配），而且硬盘的分区编号也很有讲究：
+</span></span><span class="line"><span class="cl">➢ 主分区或扩展分区的编号从 1 开始，到 4 结束；
+</span></span><span class="line"><span class="cl">➢ 逻辑分区从编号 5 开始。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">主分区不能超过 4 个
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>挂载硬件设备<br>
+<strong>mount 命令</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">用于挂载文件系统，格式为“mount 文件系统 挂载目录”
+</span></span><span class="line"><span class="cl">mount 命令中的参数以及作用
+</span></span><span class="line"><span class="cl">-a 挂载所有在/etc/fstab 中定义的文件系统   ,执行后自动检查
+</span></span><span class="line"><span class="cl">/etc/fstab 文件中有无疏漏被挂载的设备文件，如果有，则进行自动挂载操作
+</span></span><span class="line"><span class="cl">-t 指定文件系统的类型
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">例如，要把设备/dev/sdb2 挂载到/backup 目录:
+</span></span><span class="line"><span class="cl">mount /dev/sdb2 /backup     # 重启后挂载就会失效
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#永久配置
+</span></span><span class="line"><span class="cl">把挂载信息按照指定的填写格式
+</span></span><span class="line"><span class="cl">“设备文件 挂载目录 格式类型 权限选项 是否备份 是否自检”
+</span></span><span class="line"><span class="cl">写入到 /etc/fstab 文件中
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#用于挂载信息的指定填写格式中，各字段所表示的意义
+</span></span><span class="line"><span class="cl">设备文件    一 般 为 设 备 的 路 径 + 设 备 名 称 ， 也 可 以 写 唯 一 识 别 码 （ UUID ，Universally Unique Identifier）
+</span></span><span class="line"><span class="cl">挂载目录    指定要挂载到的目录，需在挂载前创建好
+</span></span><span class="line"><span class="cl">格式类型    指定文件系统的格式，比如 Ext3、 Ext4、 XFS、 SWAP、 iso9660（此为光盘设备）等
+</span></span><span class="line"><span class="cl">权限选项    若设置为 defaults，则默认权限为： rw, suid, dev, exec, auto, nouser, async
+</span></span><span class="line"><span class="cl">是否备份    若为 1 则开机后使用 dump 进行磁盘备份，为 0 则不备份
+</span></span><span class="line"><span class="cl">是否自检    若为 1 则开机后自动进行磁盘自检，为 0 则不自检
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#例如：
+</span></span><span class="line"><span class="cl">将文件系统为 ext4 的硬件设备/dev/sdb2 在开机后自动挂载到/backup 目录上，并保持默认权限且无需开机自检
+</span></span><span class="line"><span class="cl">vim /etc/fstab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/dev/sdb2        /backup     ext4     defaults     0      0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>umount 命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">umount [挂载点/设备文件]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">umount /dev/sdb2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>添加硬盘设备</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#操作思路：首先需要在虚拟机中模拟添加入一块新的硬盘存储设备，然后再进行分区、格式化、挂载等操作，最后通过检查系统的挂载状态并真实地使用硬盘来验证硬盘设备是否成功添加
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">现在虚拟机中添加一个新的虚拟硬盘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>fdisk 命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;fdisk [磁盘名称]&#34;，它提供了集添加、删除、转换分区等功能于一身的“一站式分区服务”
+</span></span><span class="line"><span class="cl">交互式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#fdisk 命令中的参数以及作用
+</span></span><span class="line"><span class="cl">m     查看全部可用的参数
+</span></span><span class="line"><span class="cl">n     添加新的分区
+</span></span><span class="line"><span class="cl">d     删除某个分区信息
+</span></span><span class="line"><span class="cl">l     列出所有可用的分区类型
+</span></span><span class="line"><span class="cl">t     改变某个分区的类型
+</span></span><span class="line"><span class="cl">p     查看分区信息  
+</span></span><span class="line"><span class="cl">w     保存并退出
+</span></span><span class="line"><span class="cl">q     不保存直接退出
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">===
+</span></span><span class="line"><span class="cl">在确认创建一个主分区后，系统要求您先输入主分区的编号。我们在前文得知，主分区的编
+</span></span><span class="line"><span class="cl">号范围是 1～4，因此这里输入默认的 1 就可以了.
+</span></span><span class="line"><span class="cl">接下来系统会提示定义起始的扇区位置，这不
+</span></span><span class="line"><span class="cl">需要改动，我们敲击回车键保留默认设置即可，系统会自动计算出最靠前的空闲扇区的位置。最
+</span></span><span class="line"><span class="cl">后，系统会要求定义分区的结束扇区位置，这其实就是要去定义整个分区的大小是多少。我们不
+</span></span><span class="line"><span class="cl">用去计算扇区的个数，只需要输入+2G 即可创建出一个容量为 2GB 的硬盘分区
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">敲击参数 w 后回车，这样分区信息才是真正的写入成功啦
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">===
+</span></span><span class="line"><span class="cl">使用 file 命令查看该文件的属性,
+</span></span><span class="line"><span class="cl">file /dev/sdb1
+</span></span><span class="line"><span class="cl">可以输入 partprobe 命令手动将分区信息同步到内核，而且一般推荐连续
+</span></span><span class="line"><span class="cl">两次执行该命令，效果会更好。如果使用这个命令都无法解决问题，那么就重启计算机吧
+</span></span><span class="line"><span class="cl">partprobe
+</span></span><span class="line"><span class="cl">partprobe
+</span></span><span class="line"><span class="cl">file /dev/sdb1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">===
+</span></span><span class="line"><span class="cl">mkfs
+</span></span><span class="line"><span class="cl">如果硬件存储设备没有进行格式化，则 Linux 系统无法得知怎么在其上写入数据。因此，
+</span></span><span class="line"><span class="cl">在对存储设备进行分区后还需要进行格式化操作。在 Linux 系统中用于格式化操作的命令是
+</span></span><span class="line"><span class="cl">mkfs。这条命令很有意思，因为在 Shell 终端中输入 mkfs 名后再敲击两下用于补齐命令的 Tab键
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkfs.文件类型名称
+</span></span><span class="line"><span class="cl">#例如:
+</span></span><span class="line"><span class="cl">要格式分区为 XFS 的文件系统
+</span></span><span class="line"><span class="cl"> mkfs.xfs /dev/sdb1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">===
+</span></span><span class="line"><span class="cl">挂载并使用存储设备
+</span></span><span class="line"><span class="cl">步骤：
+</span></span><span class="line"><span class="cl">首先是创建一个用于挂载设备的挂载点目录；
+</span></span><span class="line"><span class="cl">然后使用 mount 命
+</span></span><span class="line"><span class="cl">令将存储设备与挂载点进行关联；
+</span></span><span class="line"><span class="cl">最后使用 df -h 命令来查看挂载状态和硬盘使用量信息。
+</span></span><span class="line"><span class="cl"> mkdir /newFS
+</span></span><span class="line"><span class="cl"> mount /dev/sdb1 /newFS/
+</span></span><span class="line"><span class="cl"> df -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>du 命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">查看文件数据占用量
+</span></span><span class="line"><span class="cl">格式为“du [选项] [文件]”
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> du -sh /* 命令 来查看在 Linux 系统根目录下所有一级目录分别占用的空间大小
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>添加交换分区</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">为了解决真实物理内存不足的问题     ,
+</span></span><span class="line"><span class="cl">通过在硬盘中预先划分一定的空间，然后将把内存中暂时不常用的数据临时存放到硬盘中，以便腾出物理内存空间让更活跃的程序服务来使用的技术
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#交换分区的划分建议：在生产环境中，交换分区的
+</span></span><span class="line"><span class="cl">大小一般为真实物理内存的   1.5～2   倍，为了让大家更明显地感受交换分区空间的变化，这里
+</span></span><span class="line"><span class="cl">取出一个大小为 5GB 的主分区作为交换分区资源。在分区创建完毕后保存并退出即可：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">==
+</span></span><span class="line"><span class="cl">SWAP 分区专用的格式化命令  mkswap
+</span></span><span class="line"><span class="cl">mkswap /dev/sdb2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">使用  swapon  命令把准备好的 SWAP 分区设备正式挂载到系统中。
+</span></span><span class="line"><span class="cl">swapon /dev/sdb5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">free -m   查看交换分区的大小变化
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim /etc/fstab
+</span></span><span class="line"><span class="cl">/dev/sdb2     swap     swap     defaults     0     0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>磁盘容量配额   	quota</strong></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#介绍
+</span></span><span class="line"><span class="cl">quota     -- 限制每个人能够使用的磁盘容量
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inode  个数
+</span></span><span class="line"><span class="cl">    isoft    # 只是警告提醒，日志
+</span></span><span class="line"><span class="cl">    ihard  # 强制限制
+</span></span><span class="line"><span class="cl">block 容量
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">defaults  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>xfs_uquota</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#
+</span></span><span class="line"><span class="cl">xfs_uquota -x -c &#39;limit bsoft=3m bhard=6m isoft=3 ihard=6 xps&#39;  /boot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>edquota    修改配额</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">edquota xps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>软硬方式链接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ln 命令
+</span></span><span class="line"><span class="cl">格式为“ln [选项] 目标
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#参数
+</span></span><span class="line"><span class="cl">-s 创建“符号链接”（如果不带-s 参数，则默认创建硬链接）
+</span></span><span class="line"><span class="cl">-f 强制创建文件或目录的链接
+</span></span><span class="line"><span class="cl">-i 覆盖前先询问
+</span></span><span class="line"><span class="cl">-v 显示创建链接的过程
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#硬连接 -&gt; 源文件删除也没事
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>剖析ll文件参数信息</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-rw-r--r--. 1 root root 813 Apr 15  2014 yum.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.   -&gt; facl +
+</span></span><span class="line"><span class="cl">1  多少块
+</span></span><span class="line"><span class="cl">813  占用实际大小
+</span></span><span class="line"><span class="cl"> Apr 15  2014  最后修改文件的时间
+</span></span><span class="line"><span class="cl"> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/rhel7%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%92%E5%88%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/rhel7%e5%ad%98%e5%82%a8%e7%bb%93%e6%9e%84%e4%b8%8e%e7%a3%81%e7%9b%98%e5%88%92%e5%88%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/rhel/' class="post-tag">rhel</a><a href='/tags/linux/' class="post-tag">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/iptables%E4%B8%8Efirewall%E9%98%B2%E7%81%AB%E5%A2%99/" class="post-nav-item" rel="prev" title="iptables与firewall"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>iptables与firewall</a>
+      <a href="/%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E4%B8%8E%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" class="post-nav-item" rel="next" title="Linux用户身份与文件权限">Linux用户身份与文件权限<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

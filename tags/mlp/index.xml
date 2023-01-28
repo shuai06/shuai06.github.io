@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>MLP - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/mlp/</link>
+    <description>MLP - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 06 Sep 2022 23:06:14 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/mlp/" rel="self" type="application/rss+xml" /><item>
+  <title>实现多层感知机</title>
+  <link>https://geoer.cn/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/</link>
+  <pubDate>Tue, 06 Sep 2022 23:06:14 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA/</guid>
+  <description><![CDATA[多层感知机在输出层与输入层之间加入了一个或多个全连接隐藏层，并通过激活函数对隐藏层输出进行变换。 从零实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18]]></description>
+</item>
+</channel>
+</rss>

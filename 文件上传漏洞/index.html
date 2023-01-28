@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>文件上传漏洞 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="简介 上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞" /><meta name="keywords" content='文件上传, 代码审计' /><meta itemprop="name" content="文件上传漏洞">
+<meta itemprop="description" content="简介 上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞"><meta itemprop="datePublished" content="2022-01-17T21:13:46+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2932"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="文件上传,代码审计," /><meta property="og:title" content="文件上传漏洞" />
+<meta property="og:description" content="简介 上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-17T21:13:46+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="文件上传漏洞"/>
+<meta name="twitter:description" content="简介 上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" /><link rel="prev" href="https://geoer.cn/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/" /><link rel="next" href="https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "文件上传漏洞",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "文件上传, 代码审计","wordcount":  2932 ,
+    "url": "https:\/\/geoer.cn\/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-17T21:13:46+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>文件上传漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2022-01-17&#32;21:13:46><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2932 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="文件上传漏洞">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#上传技巧绕过">上传技巧&amp;绕过</a>
+      <ul>
+        <li><a href="#upload-lab">upload-lab</a></li>
+        <li><a href="#编辑器类上传漏洞">编辑器类上传漏洞</a></li>
+        <li><a href="#中间件解析漏洞">中间件解析漏洞</a></li>
+      </ul>
+    </li>
+    <li><a href="#bypass">Bypass</a>
+      <ul>
+        <li><a href="#命名下的变异">命名下的变异</a></li>
+        <li><a href="#文件名绕过">文件名绕过</a></li>
+        <li><a href="#协议解析不一致绕过waf注入跨站也可尝试">协议解析不一致,绕过waf(注入跨站也可尝试)</a></li>
+        <li><a href="#未解析所有文件">未解析所有文件</a></li>
+        <li><a href="#参数下的变异">参数下的变异</a></li>
+        <li><a href="#fuzz结合-bypass">Fuzz结合 Bypass</a></li>
+      </ul>
+    </li>
+    <li><a href="#java代码审计">Java代码审计</a>
+      <ul>
+        <li><a href="#文件上传方式">文件上传方式</a>
+          <ul>
+            <li><a href="#1通过文件流的方式上传">1.通过文件流的方式上传</a></li>
+            <li><a href="#2通过servletfileupload方式上传">2.通过ServletFileUpload方式上传</a></li>
+            <li><a href="#3通过multipartfile方式上传">3.通过MultipartFile方式上传</a></li>
+          </ul>
+        </li>
+        <li><a href="#关键字">关键字</a></li>
+      </ul>
+    </li>
+    <li><a href="#漏洞防御">漏洞防御</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞。</p>
+<p>危害：能够直接获取到Web权限，后续操作还不好说么</p>
+<h2 id="上传技巧绕过">上传技巧&amp;绕过</h2>
+<h3 id="upload-lab">upload-lab</h3>
+<p>结合upload-labs关卡的文章</p>
+<p>我前面也写了个通关的文章；</p>
+<p>另一篇wp：https://github.com/LandGrey/upload-labs-writeup</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118153454307.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118153454307.png, http://image.xpshuai.cn/img/image-20220118153454307.png 1.5x, http://image.xpshuai.cn/img/image-20220118153454307.png 2x"
+    data-sizes="auto"
+    alt="upload-labs"
+    title="upload-labs"/></p>
+<h3 id="编辑器类上传漏洞">编辑器类上传漏洞</h3>
+<p><strong>百度Ueditor</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">controller.ashx?action=catchimage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>fckeditor</strong>
+查看版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/fckeditor/editor/dialog/fck_about.html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/FCKeditor/_whatsnew.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154051352.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154051352.png, http://image.xpshuai.cn/img/image-20220118154051352.png 1.5x, http://image.xpshuai.cn/img/image-20220118154051352.png 2x"
+    data-sizes="auto"
+    alt="image-20220118154051352"
+    title="image-20220118154051352"/></p>
+<p><strong>Kindeditor</strong>
+上传页面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kindeditorlasp/upload_json.asp
+</span></span><span class="line"><span class="cl">kindeditorlasp.net/upload_json.ashx
+</span></span><span class="line"><span class="cl">kindeditorljsp/upload_json.jsp
+</span></span><span class="line"><span class="cl">kindeditor/php/upload_json.php
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154120671.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154120671.png, http://image.xpshuai.cn/img/image-20220118154120671.png 1.5x, http://image.xpshuai.cn/img/image-20220118154120671.png 2x"
+    data-sizes="auto"
+    alt="image-20220118154120671"
+    title="image-20220118154120671"/></p>
+<p><strong>ewebeditor</strong></p>
+<p>&hellip; &hellip;</p>
+<h3 id="中间件解析漏洞">中间件解析漏洞</h3>
+<p><strong>IIS6.0</strong> -&gt; windows server03
+文件名：logo.jpg ===&gt;有漏洞： logo.asp;.jpg
+文件夹：image/logo.jpg =&gt;有漏洞： image.asp/qq.jpg
+几乎100%存在漏洞（官方未有补丁）</p>
+<p><strong>IIS7.X</strong> -&gt; win7、win server2008
+<a href="https://www.a.com/logo.png"target="_blank" rel="external nofollow noopener noreferrer">www.a.com/logo.png<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.a.com/logo.png/.php"target="_blank" rel="external nofollow noopener noreferrer">www.a.com/logo.png/.php<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+将前面的logo.php进行php格式解析
+验证： 访问网站上一个图片，后面加上.php/ , 如果出现乱码，则存在</p>
+<p><strong>apache 低版本</strong>
+<strong>逐级解析</strong>
+<a href="https://www.a.com/index.php"target="_blank" rel="external nofollow noopener noreferrer">www.a.com/index.php<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.a.com/index.php.xxx.qqq"target="_blank" rel="external nofollow noopener noreferrer">www.a.com/index.php.xxx.qqq<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<ol>
+<li>向上(前面)解析，如果不识别就向上，直到识别为止(未知拓展名解析漏洞)</li>
+<li>AddHandler导致的的解解析析漏洞
+如果运维人员给.php后缀增加了处理器： AddHandler application/x-httpd-php .php`那么，在有多个后缀的情况下，只要一个文件名中含有.php后缀，即被识别成PHP文件，没必要是最后一个后缀。 利用这个特性，将会造成一个可以绕过上传白名单的解析漏洞。</li>
+<li>Apache HTTPD 换行解析漏洞(CVE-2017-1571)
+2.4.0~2.4.29版本
+此漏洞形成的根本原因，在于正则表达式中不仅匹配字符串结尾位置，也可以匹配\n 或 \r
+在解析PHP时，1.php\x0A将被按照PHP后缀进行解析，导致绕过一些服务器的安全策略。
+&lt;FilesMatch .php$&gt;
+SetHandler application/x-httpd-php</li>
+</ol>
+<p><strong>Nginx 低版本</strong>
+和IIS7.X 版本一样</p>
+<ul>
+<li>配置文件错误导致的解析漏洞
+对于任意文件名，在后面添加/xxx.php（xxx为任意字符）后,即可将文件作为php解析。
+例：info.jpg后面加上/xxx.php，会将info.jpg 以php解析。
+**ps: ** 该漏洞是Nginx配置所导致，与Nginx版本无关</li>
+</ul>
+<h2 id="bypass">Bypass</h2>
+<h3 id="命名下的变异">命名下的变异</h3>
+<p>1.可解析的脚本后缀，也就是该语言有多个可解析的后缀</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154504496.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154504496.png, http://image.xpshuai.cn/img/image-20220118154504496.png 1.5x, http://image.xpshuai.cn/img/image-20220118154504496.png 2x"
+    data-sizes="auto"
+    alt="脚本后缀"
+    title="脚本后缀"/></p>
+<p>2.大小写混合，如果系统过滤不严，可能大小写可以绕过</p>
+<p>3.中间件安全，部分中间件存在文件解析漏洞</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154543977.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154543977.png, http://image.xpshuai.cn/img/image-20220118154543977.png 1.5x, http://image.xpshuai.cn/img/image-20220118154543977.png 2x"
+    data-sizes="auto"
+    alt="文件解析漏洞"
+    title="文件解析漏洞"/></p>
+<p>服务器特性:
+1.会将Request中的不能编码部分的%去掉
+2.Request中如果有unicode部分会将其进行解码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># IIS</span>
+</span></span><span class="line"><span class="cl">lIS6.0两个解析缺陷:目录名包含.asp、.asa、.cer的话，则该目录下的所有文件都将按照asp解析，例如:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/abc.asp/1.jpg会当做/abc.asp进行解析。
+</span></span><span class="line"><span class="cl">/abc.php<span class="p">;</span>1.jpg会当做/abc.php进行解析。
+</span></span><span class="line"><span class="cl">IIS/7.5（两次%00截断： xxx.asp%00.asp%00.jpg + 二次上传 ？）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Apache1.x 2.X解析漏洞</span>
+</span></span><span class="line"><span class="cl">Apache在以上版本中，解析文件名的方式是从后向前识别扩展名，直到遇见Anache可识别的扩展名为止。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Nginx</span>
+</span></span><span class="line"><span class="cl">以下Nginx容器的版本下，上传一个在waf白名单之内扩展名的文件shell.jiog，然后以shell.jpg.php进行请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Nginx 0.5.*
+</span></span><span class="line"><span class="cl">Nginx 0.6.*
+</span></span><span class="line"><span class="cl">Nginx 0.7&lt;<span class="o">=</span> 0.7.65
+</span></span><span class="line"><span class="cl">Nginx 0.8&lt;<span class="o">=</span> 0.8.37
+</span></span><span class="line"><span class="cl">以下Nginx容器的版本下，上传一个在waf白名单之内扩展名的文件shell.jpg，然后以
+</span></span><span class="line"><span class="cl">·shell.jpg%20.php·进行请求。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Nginx 0.8.41 - 1.5.6:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PHP CGI解析漏洞</span>
+</span></span><span class="line"><span class="cl">IS7.0/7.5和Nginx&lt;0.8.3 以上的容器版本中默认php配置文件cgi.fix_pathinfo<span class="o">=</span>1时，上传一个存在于白名单的扩展名文件shell.jpg，在请求时以shell.jpg/shell.php请求，会将shell.jpg以php来解析。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.系统特性</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154748278.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154748278.png, http://image.xpshuai.cn/img/image-20220118154748278.png 1.5x, http://image.xpshuai.cn/img/image-20220118154748278.png 2x"
+    data-sizes="auto"
+    alt="系统特性"
+    title="系统特性"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">test.asp.
+</span></span><span class="line"><span class="cl">test.asp <span class="o">(</span>空格<span class="o">)</span>
+</span></span><span class="line"><span class="cl">test.php:1.jpg
+</span></span><span class="line"><span class="cl">test.php::<span class="nv">$DATA</span>
+</span></span><span class="line"><span class="cl">test.php_
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154818983.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154818983.png, http://image.xpshuai.cn/img/image-20220118154818983.png 1.5x, http://image.xpshuai.cn/img/image-20220118154818983.png 2x"
+    data-sizes="auto"
+    alt="系统特性"
+    title="系统特性"/></p>
+<p>5.语言漏洞，流行的三种脚本语言基本都存在00截断漏洞。</p>
+<p>JSP文件名绕过:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118154934765.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118154934765.png, http://image.xpshuai.cn/img/image-20220118154934765.png 1.5x, http://image.xpshuai.cn/img/image-20220118154934765.png 2x"
+    data-sizes="auto"
+    alt="image-20220118154934765"
+    title="image-20220118154934765"/></p>
+<p>6.双后缀，与系统和中间件无关，偶尔存在于代码逻辑之中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">可解析的后缀+大小写混合
+</span></span><span class="line"><span class="cl">可解析的后缀+大小写混合+中间件漏洞
+</span></span><span class="line"><span class="cl">.htaccess + 大小写混合
+</span></span><span class="line"><span class="cl">可解析的后缀+大小写混合+系统特性
+</span></span><span class="line"><span class="cl">可解析的后缀+大小写混合+语言漏洞
+</span></span><span class="line"><span class="cl">可解析的后缀+大小写混合+双后缀
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>上面的可以绕过脚本本身的限制的，但是不能过waf</p>
+</blockquote>
+<h3 id="文件名绕过">文件名绕过</h3>
+<p>1.文件名加回车
+2.shell.php(%30-%99).jpg绕过
+3.如果有改名功能，可先上传正常文件，再改名.
+4.%00
+5.00(hex)
+6.长文件名(windows 258byte / linux 4096bydte)，可使用非字母数字，比如中文等最大程度的拉长。
+7.重命名</p>
+<h3 id="协议解析不一致绕过waf注入跨站也可尝试">协议解析不一致,绕过waf(注入跨站也可尝试)</h3>
+<p>1.垃圾数据</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155153315.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155153315.png, http://image.xpshuai.cn/img/image-20220118155153315.png 1.5x, http://image.xpshuai.cn/img/image-20220118155153315.png 2x"
+    data-sizes="auto"
+    alt="垃圾数据"
+    title="垃圾数据"/></p>
+<h3 id="未解析所有文件">未解析所有文件</h3>
+<p>multipart协议中，一个POST请求可以同时上传多个文件。<strong>许多WAF只检查第一个上传文件，没有检查上传的所有文件</strong>，<strong>而实际后端容器会解析所有上传的文件名</strong>，攻击者只需把paylaod放在后面的文件PART，即可绕过。</p>
+<h3 id="参数下的变异">参数下的变异</h3>
+<ul>
+<li>Content-Disposition 一般可以进行任意修改甚至删除</li>
+<li>Content-Type 视情况而定, 需要考虑网站上传验证是否进行处理</li>
+<li>filename 可以修改</li>
+</ul>
+<p>一些payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 文件名覆盖</span>
+</span></span><span class="line"><span class="cl"><span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;1.txt&#34;</span><span class="p">;</span><span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;php.php&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 遗漏文件名（当WAF遇到name=&#34;myfile&#34;;;时，认为没有解析到filename。而后端容器继续解析到的文件名是t3.jsp，导致WAF被绕过）</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span><span class="s2">&#34;myfile&#34;</span><span class="p">;;</span><span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;php.php&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;x.php%00.jpg&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">filename</span><span class="o">=</span>php.php<span class="p">;</span>        <span class="c1">#去掉双引号和添加一个分号，匹配的是`php.php;`和分号</span>
+</span></span><span class="line"><span class="cl"><span class="nv">filename</span><span class="o">=</span><span class="s2">&#34;x.php
+</span></span></span><span class="line"><span class="cl"><span class="s2">filename=&#34;</span><span class="s1">&#39;x.php           #后面的单引号没闭合
+</span></span></span><span class="line"><span class="cl"><span class="s1">filename=&#34;&#39;</span>x.php<span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">filename= ;filename=&#34;</span>php.php<span class="s2">&#34;        #多写几个变量，buwng不往后匹配第一个留空，没有值就
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 文件名回车
+</span></span></span><span class="line"><span class="cl"><span class="s2">filename=&#34;</span>x.
+</span></span><span class="line"><span class="cl">p
+</span></span><span class="line"><span class="cl">h
+</span></span><span class="line"><span class="cl">p
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;                    #用多个换行(%0a 的url decode)来避开
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>不规则Content-Disposition文件名覆盖:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155331607.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155331607.png, http://image.xpshuai.cn/img/image-20220118155331607.png 1.5x, http://image.xpshuai.cn/img/image-20220118155331607.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155331607.png"
+    title="http://image.xpshuai.cn/img/image-20220118155331607.png"/></p>
+<p>多个content-Disnosition文件名覆盖(Win2k8 +IIS7.0+ PHP):</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155402339.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155402339.png, http://image.xpshuai.cn/img/image-20220118155402339.png 1.5x, http://image.xpshuai.cn/img/image-20220118155402339.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155402339.png"
+    title="http://image.xpshuai.cn/img/image-20220118155402339.png"/></p>
+<p>更换filename位置(iis 6):</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155419185.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155419185.png, http://image.xpshuai.cn/img/image-20220118155419185.png 1.5x, http://image.xpshuai.cn/img/image-20220118155419185.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155419185.png"
+    title="http://image.xpshuai.cn/img/image-20220118155419185.png"/></p>
+<p>删除content-type字段</p>
+<p>删除content-disposition空格:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155441338.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155441338.png, http://image.xpshuai.cn/img/image-20220118155441338.png 1.5x, http://image.xpshuai.cn/img/image-20220118155441338.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155441338.png"
+    title="http://image.xpshuai.cn/img/image-20220118155441338.png"/></p>
+<p>修改 Content-Disposition字段值的大小写:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155500736.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155500736.png, http://image.xpshuai.cn/img/image-20220118155500736.png 1.5x, http://image.xpshuai.cn/img/image-20220118155500736.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155500736.png"
+    title="http://image.xpshuai.cn/img/image-20220118155500736.png"/></p>
+<p>boundarv空格(Win2k3 +lIS6.0+ ASP):</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155519326.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155519326.png, http://image.xpshuai.cn/img/image-20220118155519326.png 1.5x, http://image.xpshuai.cn/img/image-20220118155519326.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155519326.png"
+    title="http://image.xpshuai.cn/img/image-20220118155519326.png"/></p>
+<p>boundary边界不一致(Win2k3 + IS6.0+ ASP):</p>
+<p>php+apache畸形的boundary:
+php在解析multipart data的时候有自己的特性，对于boundary的识别，只取了逗号前面的内容，例如我们设置的 boundarv为&ndash;aaaa,123456 , php解析的时候只识别了&ndash;aaaa ,后面的内容均没有识别。然而其他的如WAF在做解析的时候，有可能获取的是整个字符串，此时可能就会出现BYPASS</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155600100.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155600100.png, http://image.xpshuai.cn/img/image-20220118155600100.png 1.5x, http://image.xpshuai.cn/img/image-20220118155600100.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155600100.png"
+    title="http://image.xpshuai.cn/img/image-20220118155600100.png"/></p>
+<p><code>===</code>绕过：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155804211.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155804211.png, http://image.xpshuai.cn/img/image-20220118155804211.png 1.5x, http://image.xpshuai.cn/img/image-20220118155804211.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155804211.png"
+    title="http://image.xpshuai.cn/img/image-20220118155804211.png"/></p>
+<p>去除&quot;&ldquo;&ldquo;绕过：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155811407.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155811407.png, http://image.xpshuai.cn/img/image-20220118155811407.png 1.5x, http://image.xpshuai.cn/img/image-20220118155811407.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155811407.png"
+    title="http://image.xpshuai.cn/img/image-20220118155811407.png"/></p>
+<p>少“绕过：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155825148.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155825148.png, http://image.xpshuai.cn/img/image-20220118155825148.png 1.5x, http://image.xpshuai.cn/img/image-20220118155825148.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155825148.png"
+    title="http://image.xpshuai.cn/img/image-20220118155825148.png"/></p>
+<p>文件名.php+回车：这样引号就在另一行。同时上传内容的一句话前面加个中文字符</p>
+<p>Content-Disposition:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155621710.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155621710.png, http://image.xpshuai.cn/img/image-20220118155621710.png 1.5x, http://image.xpshuai.cn/img/image-20220118155621710.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155621710.png"
+    title="http://image.xpshuai.cn/img/image-20220118155621710.png"/></p>
+<p>Content-type:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118155651220.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118155651220.png, http://image.xpshuai.cn/img/image-20220118155651220.png 1.5x, http://image.xpshuai.cn/img/image-20220118155651220.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220118155651220.png"
+    title="http://image.xpshuai.cn/img/image-20220118155651220.png"/></p>
+<h3 id="fuzz结合-bypass">Fuzz结合 Bypass</h3>
+<h2 id="java代码审计">Java代码审计</h2>
+<h3 id="文件上传方式">文件上传方式</h3>
+<p>Java中文件上传方式很多，常用的有三种：</p>
+<h4 id="1通过文件流的方式上传">1.通过文件流的方式上传</h4>
+<h4 id="2通过servletfileupload方式上传">2.通过ServletFileUpload方式上传</h4>
+<h4 id="3通过multipartfile方式上传">3.通过MultipartFile方式上传</h4>
+<h3 id="关键字">关键字</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">org.apache.commons.fileupload
+</span></span><span class="line"><span class="cl">java.io.File
+</span></span><span class="line"><span class="cl">MultipartFile
+</span></span><span class="line"><span class="cl">RequestMethod
+</span></span><span class="line"><span class="cl">MultipartHttpServletRequest
+</span></span><span class="line"><span class="cl">CommonsMutipartresover
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">File
+</span></span><span class="line"><span class="cl">lastIndexOf
+</span></span><span class="line"><span class="cl">indexOf
+</span></span><span class="line"><span class="cl">FileUpload
+</span></span><span class="line"><span class="cl">getRealPath
+</span></span><span class="line"><span class="cl">getServletPath
+</span></span><span class="line"><span class="cl">getPathInfo
+</span></span><span class="line"><span class="cl">getContentType
+</span></span><span class="line"><span class="cl">equalsIgnoreCase
+</span></span><span class="line"><span class="cl">FiltUtils
+</span></span><span class="line"><span class="cl">MultipartRequestEntity
+</span></span><span class="line"><span class="cl">UploadHandleServlet
+</span></span><span class="line"><span class="cl">FileLoadServlet
+</span></span><span class="line"><span class="cl">FileOutpuStream
+</span></span><span class="line"><span class="cl">getInputStream
+</span></span><span class="line"><span class="cl">DiskFileIntemFactory
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="漏洞防御">漏洞防御</h2>
+<ul>
+<li>文件后缀名截取校验时候，忽略大小写</li>
+<li>严格检测文件类型，推荐白名单</li>
+<li>Java小于jdk7u40时可能存在截断漏洞，注意版本影响</li>
+<li>限制文件上传的大小和频率</li>
+<li>对上传的文件重命名、自定义后缀等</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e6%bc%8f%e6%b4%9e.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/' class="post-tag">文件上传</a><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="URL跳转漏洞"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>URL跳转漏洞</a>
+      <a href="/xss%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="XSS漏洞">XSS漏洞<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

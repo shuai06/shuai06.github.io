@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>hping3 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="hping3主要是测试防火墙的拦截规则，对网络设备进行测试 主要功能 防火墙测试（参考：http://0daysecurity.com/arti" /><meta name="keywords" content='hping3, 端口扫描, DDOS' /><meta itemprop="name" content="hping3">
+<meta itemprop="description" content="hping3主要是测试防火墙的拦截规则，对网络设备进行测试 主要功能 防火墙测试（参考：http://0daysecurity.com/arti"><meta itemprop="datePublished" content="2020-08-17T16:43:48+08:00" />
+<meta itemprop="dateModified" content="2023-01-28T13:36:56+08:00" />
+<meta itemprop="wordCount" content="2455"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="hping3,端口扫描,DDOS," /><meta property="og:title" content="hping3" />
+<meta property="og:description" content="hping3主要是测试防火墙的拦截规则，对网络设备进行测试 主要功能 防火墙测试（参考：http://0daysecurity.com/arti" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/hping3/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-08-17T16:43:48+08:00" />
+<meta property="article:modified_time" content="2023-01-28T13:36:56+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="hping3"/>
+<meta name="twitter:description" content="hping3主要是测试防火墙的拦截规则，对网络设备进行测试 主要功能 防火墙测试（参考：http://0daysecurity.com/arti"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/hping3/" /><link rel="prev" href="https://geoer.cn/nbtscan/" /><link rel="next" href="https://geoer.cn/%E6%B7%B1x%E6%9C%8D-edr%E7%BB%88%E7%AB%AF%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9Frce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "hping3",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/hping3\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "hping3, 端口扫描, DDOS","wordcount":  2455 ,
+    "url": "https:\/\/geoer.cn\/hping3\/","datePublished": "2020-08-17T16:43:48+08:00","dateModified": "2023-01-28T13:36:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>hping3</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-08-17&#32;16:43:48><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-08-17">2020-08-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2455 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="hping3">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#主要功能">主要功能</a></li>
+            <li><a href="#主要参数"><strong>主要参数</strong></a></li>
+            <li><a href="#常用方式">常用方式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>hping3主要是测试防火墙的拦截规则，对网络设备进行测试</p>
+</blockquote>
+<h4 id="主要功能">主要功能</h4>
+<ul>
+<li>防火墙测试（参考：http://0daysecurity.com/articles/hping3_examples.html）</li>
+<li>端口扫描</li>
+<li>Idle扫描</li>
+<li>拒绝服务攻击</li>
+<li>文件传输</li>
+<li>木马功能</li>
+<li>&hellip;&hellip;</li>
+</ul>
+<h4 id="主要参数"><strong>主要参数</strong></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  -h  --help      显示帮助
+</span></span><span class="line"><span class="cl">  -v  --version   显示版本
+</span></span><span class="line"><span class="cl">  -c  --count     发送数据包的数目
+</span></span><span class="line"><span class="cl">  -i  --interval  发送数据包间隔的时间 <span class="o">(</span>uX即X微秒, 例如： -i u1000<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      --fast      等同 -i u10000 <span class="o">(</span>每秒10个包<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      --faster    等同 -i u1000 <span class="o">(</span>每秒100个包<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      --flood      尽最快发送数据包，不显示回复。
+</span></span><span class="line"><span class="cl">  -n  --numeric   数字化输出，象征性输出主机地址。
+</span></span><span class="line"><span class="cl">  -q  --quiet     安静模式
+</span></span><span class="line"><span class="cl">  -I  --interface 网卡接口 <span class="o">(</span>默认路由接口<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -V  --verbose   详细模式
+</span></span><span class="line"><span class="cl">  -D  --debug     调试信息
+</span></span><span class="line"><span class="cl">  -z  --bind      绑定ctrl+z到ttl<span class="o">(</span>默认为目的端口<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -Z  --unbind    取消绑定ctrl+z键
+</span></span><span class="line"><span class="cl">      --beep      对于接收到的每个匹配数据包蜂鸣声提示
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">模式选择
+</span></span><span class="line"><span class="cl">  default mode     TCP   // 默认模式是 TCP
+</span></span><span class="line"><span class="cl">  -0  --rawip      RAWIP模式，原始IP模式。在此模式下HPING会发送带数据的IP头。即裸IP方式。使用RAWSOCKET方式。
+</span></span><span class="line"><span class="cl">  -1  --icmp       ICMP模式，此模式下HPING会发送IGMP应答报，你可以用--ICMPTYPE --ICMPCODE选项发送其他类型/模式的ICMP报文。
+</span></span><span class="line"><span class="cl">  -2  --udp        UDP 模式，缺省下，HPING会发送UDP报文到主机的0端口，你可以用--baseport --destport --keep选项指定其模式。
+</span></span><span class="line"><span class="cl">  -8  --scan       SCAN mode. //扫描模式 指定扫描对应的端口。
+</span></span><span class="line"><span class="cl">                   Example: hping --scan 1-30,70-90 -S www.target.host    // 扫描
+</span></span><span class="line"><span class="cl">  -9  --listen     listen mode  // 监听模式
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">IP 模式
+</span></span><span class="line"><span class="cl">  -a  --spoof      spoof <span class="nb">source</span> address  //源地址欺骗。伪造IP攻击，防火墙就不会记录你的真实IP了，当然回应的包你也接收不到了。
+</span></span><span class="line"><span class="cl">  --rand-dest      random destionation address mode. see the man. // 随机目的地址模式。详细使用 man 命令
+</span></span><span class="line"><span class="cl">  --rand-source    random <span class="nb">source</span> address mode. see the man.       // 随机源地址模式。详细使用 man 命令
+</span></span><span class="line"><span class="cl">  -t  --ttl        ttl <span class="o">(</span>默认 64<span class="o">)</span>  //修改 ttl 值
+</span></span><span class="line"><span class="cl">  -N  --id         id <span class="o">(</span>默认 随机<span class="o">)</span>  // hping 中的 ID 值，缺省为随机值
+</span></span><span class="line"><span class="cl">  -W  --winid      使用win* id字节顺序  //使用winid模式，针对不同的操作系统。UNIX ,WINDIWS的id回应不同的，这选项可以让你的ID回应和WINDOWS一样。
+</span></span><span class="line"><span class="cl">  -r  --rel        相对id字段<span class="o">(</span>估计主机流量<span class="o">)</span>  //更改ID的，可以让ID曾递减输出，详见HPING-HOWTO。
+</span></span><span class="line"><span class="cl">  -f  --frag       拆分数据包更多的frag.  <span class="o">(</span>may pass weak acl<span class="o">)</span>   //分段，可以测试对方或者交换机碎片处理能力，缺省16字节。
+</span></span><span class="line"><span class="cl">  -x  --morefrag   设置更多的分段标志    // 大量碎片，泪滴攻击。
+</span></span><span class="line"><span class="cl">  -y  --dontfrag   设置不分段标志    // 发送不可恢复的IP碎片，这可以让你了解更多的MTU PATH DISCOVERY。
+</span></span><span class="line"><span class="cl">  -g  --fragoff    <span class="nb">set</span> the fragment offset    // 设置断偏移。
+</span></span><span class="line"><span class="cl">  -m  --mtu        设置虚拟最大传输单元, implies --frag <span class="k">if</span> packet size &gt; mtu    // 设置虚拟MTU值，当大于mtu的时候分段。
+</span></span><span class="line"><span class="cl">  -o  --tos        <span class="nb">type</span> of service <span class="o">(</span>default 0x00<span class="o">)</span>, try --tos <span class="nb">help</span>          // tos字段，缺省0x00，尽力而为？
+</span></span><span class="line"><span class="cl">  -G  --rroute     includes RECORD_ROUTE option and display the route buffer    // 记录IP路由，并显示路由缓冲。
+</span></span><span class="line"><span class="cl">  --lsrr           松散源路由并记录路由        // 松散源路由
+</span></span><span class="line"><span class="cl">  --ssrr           严格源路由并记录路由      // 严格源路由
+</span></span><span class="line"><span class="cl">  -H  --ipproto    设置IP协议字段，仅在RAW IP模式下使用   //在RAW IP模式里选择IP协议。设置ip协议域，仅在RAW ip模式使用。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ICMP 模式
+</span></span><span class="line"><span class="cl">  -C  --icmptype   icmp类型<span class="o">(</span>默认echo请求<span class="o">)</span>    // ICMP类型，缺省回显请求。
+</span></span><span class="line"><span class="cl">  -K  --icmpcode   icmp代号<span class="o">(</span>默认0<span class="o">)</span>     // ICMP代码。
+</span></span><span class="line"><span class="cl">      --force-icmp 发送所有icmp类型<span class="o">(</span>默认仅发送支持的类型<span class="o">)</span>    // 强制ICMP类型。
+</span></span><span class="line"><span class="cl">      --icmp-gw    设置ICMP重定向网关地址<span class="o">(</span>默认0.0.0.0<span class="o">)</span>    // ICMP重定向
+</span></span><span class="line"><span class="cl">      --icmp-ts    等同 --icmp --icmptype <span class="m">13</span> <span class="o">(</span>ICMP 时间戳<span class="o">)</span>            // icmp时间戳
+</span></span><span class="line"><span class="cl">      --icmp-addr  等同 --icmp --icmptype <span class="m">17</span> <span class="o">(</span>ICMP 地址子网掩码<span class="o">)</span>  // icmp子网地址
+</span></span><span class="line"><span class="cl">      --icmp-help  显示其他icmp选项帮助      // ICMP帮助
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">UDP/TCP 模式
+</span></span><span class="line"><span class="cl">  -s  --baseport   base <span class="nb">source</span> port             <span class="o">(</span>default random<span class="o">)</span>              // 缺省随机源端口
+</span></span><span class="line"><span class="cl">  -p  --destport   <span class="o">[</span>+<span class="o">][</span>+<span class="o">]</span>&lt;port&gt; destination port<span class="o">(</span>default 0<span class="o">)</span> ctrl+z inc/dec    // 缺省随机源端口
+</span></span><span class="line"><span class="cl">  -k  --keep       keep still <span class="nb">source</span> port      // 保持源端口
+</span></span><span class="line"><span class="cl">  -w  --win        winsize <span class="o">(</span>default 64<span class="o">)</span>        // win的滑动窗口。windows发送字节<span class="o">(</span>默认64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -O  --tcpoff     <span class="nb">set</span> fake tcp data offset     <span class="o">(</span>instead of tcphdrlen / 4<span class="o">)</span>    // 设置伪造tcp数据偏移量<span class="o">(</span>取代tcp地址长度除4<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -Q  --seqnum     shows only tcp sequence number        // 仅显示tcp序列号
+</span></span><span class="line"><span class="cl">  -b  --badcksum   <span class="o">(</span>尝试<span class="o">)</span>发送具有错误IP校验和数据包。许多系统将修复发送数据包的IP校验和。所以你会得到错误UDP/TCP校验和。
+</span></span><span class="line"><span class="cl">  -M  --setseq     设置TCP序列号 
+</span></span><span class="line"><span class="cl">  -L  --setack     设置TCP的ack   ------------------------------------- <span class="o">(</span>不是 TCP 的 ACK 标志位<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -F  --fin        <span class="nb">set</span> FIN flag
+</span></span><span class="line"><span class="cl">  -S  --syn        <span class="nb">set</span> SYN flag
+</span></span><span class="line"><span class="cl">  -R  --rst        <span class="nb">set</span> RST flag
+</span></span><span class="line"><span class="cl">  -P  --push       <span class="nb">set</span> PUSH flag
+</span></span><span class="line"><span class="cl">  -A  --ack        <span class="nb">set</span> ACK flag   ------------------------------------- （设置 TCP 的 ACK 标志 位）
+</span></span><span class="line"><span class="cl">  -U  --urg        <span class="nb">set</span> URG flag      // 一大堆IP抱头的设置。
+</span></span><span class="line"><span class="cl">  -X  --xmas       <span class="nb">set</span> X unused flag <span class="o">(</span>0x40<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  -Y  --ymas       <span class="nb">set</span> Y unused flag <span class="o">(</span>0x80<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --tcpexitcode    使用last tcp-&gt; th_flags作为退出码
+</span></span><span class="line"><span class="cl">  --tcp-mss        启用具有给定值的TCP MSS选项
+</span></span><span class="line"><span class="cl">  --tcp-timestamp  启用TCP时间戳选项来猜测HZ/uptime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Common //通用设置
+</span></span><span class="line"><span class="cl">  -d  --data       data size    <span class="o">(</span>default is 0<span class="o">)</span>    // 发送数据包大小，缺省是0。
+</span></span><span class="line"><span class="cl">  -E  --file       文件数据
+</span></span><span class="line"><span class="cl">  -e  --sign       添加“签名”
+</span></span><span class="line"><span class="cl">  -j  --dump       转储为十六进制数据包
+</span></span><span class="line"><span class="cl">  -J  --print      转储为可打印字符
+</span></span><span class="line"><span class="cl">  -B  --safe       启用“安全”协议
+</span></span><span class="line"><span class="cl">  -u  --end        告诉你什么时候--file达到EOF并防止倒回
+</span></span><span class="line"><span class="cl">  -T  --traceroute traceroute模式<span class="o">(</span>等同使用 --bind 且--ttl 1<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --tr-stop        在traceroute模式下收到第一个不是ICMP时退出
+</span></span><span class="line"><span class="cl">  --tr-keep-ttl    保持源TTL固定，仅用于监视一跳
+</span></span><span class="line"><span class="cl">  --tr-no-rtt       不要在跟踪路由模式下计算/显示RTT信息 ARS包描述（新增功能，不稳定）
+</span></span><span class="line"><span class="cl">ARS packet description <span class="o">(</span>new, unstable<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  --apd-send       发送APD描述数据包<span class="o">(</span>参见docs / APD.txt<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用模式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-0 --rawip 	<span class="c1"># IP原始报文</span>
+</span></span><span class="line"><span class="cl">-1 --icmp	<span class="c1"># ICMP模式</span>
+</span></span><span class="line"><span class="cl">-2 --udp 	<span class="c1"># UDP模式</span>
+</span></span><span class="line"><span class="cl">-8 --scan	<span class="c1"># 扫描模式</span>
+</span></span><span class="line"><span class="cl">-9 --listen	<span class="c1"># 监听模式</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="常用方式">常用方式</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## SYN方式扫描主机端口</span>
+</span></span><span class="line"><span class="cl">hping --scan 1-30,70-90 -S www.target.host
+</span></span><span class="line"><span class="cl">hping --scan 445,135 -S 192.168.0.110
+</span></span><span class="line"><span class="cl"><span class="c1">#目标主机回复的 &#39;S..A&#39;，代表SYN/ACK</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 测试防火墙对ICMP包的反应、是否支持traceroute、是否开放某个端口、对防火墙进行拒绝服务攻击(DoS attack)。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#例如，以LandAttack方 式测试目标防火墙(Land Attack是将发送源地址设置为与目标地址相同，诱使目标机与自己不停地建立连接)。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -a 伪造源地址</span>
+</span></span><span class="line"><span class="cl">hping3 -S -a 114.114.114.114 -p <span class="m">53</span> 114.114.114.114 -c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## DRDDOS(UDP反射DDoS攻击)  -c发包的数量</span>
+</span></span><span class="line"><span class="cl">hping3 --udp -a 114.114.114.114 -p <span class="m">53</span> 114.114.114.114 -c <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用hping3进行flood DoS攻击：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hping3 -c <span class="m">5000</span> -d <span class="m">150</span> -S -w <span class="m">64</span> -p <span class="m">80</span> --flood &lt;10.0.40.246&gt;
+</span></span><span class="line"><span class="cl">-c：发送数据包的个数
+</span></span><span class="line"><span class="cl">-d：每个数据包的大小
+</span></span><span class="line"><span class="cl">-S：发送SYN数据包
+</span></span><span class="line"><span class="cl">-w：TCP window大小
+</span></span><span class="line"><span class="cl">-p：目标端口，你可以指定任意端口
+</span></span><span class="line"><span class="cl">--flood：尽可能快的发送数据包
+</span></span><span class="line"><span class="cl">--rand-source :使用随机的Source IP Addresses.
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-28&#32;13:36:56>更新于 2023-01-28&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/f1f692c9ef3d82c1b6cf002b2c4d5ffdbe71d673" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) f1f692c9ef3d82c1b6cf002b2c4d5ffdbe71d673: first commit"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>f1f692c</a></span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/hping3/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/hping3.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/hping3/' class="post-tag">hping3</a><a href='/tags/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F/' class="post-tag">端口扫描</a><a href='/tags/ddos/' class="post-tag">DDos</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/nbtscan/" class="post-nav-item" rel="prev" title="nbtscan"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>nbtscan</a>
+      <a href="/%E6%B7%B1x%E6%9C%8D-edr%E7%BB%88%E7%AB%AF%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9Frce%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-nav-item" rel="next" title="深X服 EDR终端检测系统RCE漏洞复现">深X服 EDR终端检测系统RCE漏洞复现<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

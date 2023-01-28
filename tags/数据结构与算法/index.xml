@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>数据结构与算法 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+    <description>数据结构与算法 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 10 Feb 2020 12:43:27 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+  <title>中缀表达式转换为后缀表达式</title>
+  <link>https://geoer.cn/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
+  <pubDate>Mon, 10 Feb 2020 12:43:27 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
+  <description><![CDATA[中缀表达式转换后缀表达式 3.1 规则 1、初始化栈和集合：运算符号栈s1和存储空间集合s2 2、从左到右扫描中缀表达式 3、遇到操作数时，将其加入s2 4]]></description>
+</item>
+</channel>
+</rss>

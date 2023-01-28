@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Latex - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/latex/</link>
+    <description>Latex - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/latex/" rel="self" type="application/rss+xml" /><item>
+  <title>markdown中写Latex</title>
+  <link>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</link>
+  <pubDate>Tue, 28 Jun 2022 20:08:56 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/</guid>
+  <description><![CDATA[公式的两种形态 行内公式: $ \Large \frac{3}{12} = \frac{1}{4}$ 1 $\Large \frac{3}{12} = \frac{1}{4}$ 行间公式： $$\Large \frac{3}{12} = \frac{1}{4}$$ 1 $$\Large \frac{3}{12} = \frac{1}{4}$$ 希腊字母 上标、下标 上标与下标分别用^和_来表示。 例如$x^2_i$表]]></description>
+</item>
+</channel>
+</rss>

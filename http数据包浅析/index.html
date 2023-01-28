@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>http数据包浅析 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="抓取数据包 随机抓取了bilibili的一段POST数据包： 发送HTTP请求 一个请求由四个部份组成：请求行、请求头标、空行和请求数据。 每个部分" /><meta name="keywords" content='http, 数据包' /><meta itemprop="name" content="http数据包浅析">
+<meta itemprop="description" content="抓取数据包 随机抓取了bilibili的一段POST数据包： 发送HTTP请求 一个请求由四个部份组成：请求行、请求头标、空行和请求数据。 每个部分"><meta itemprop="datePublished" content="2022-04-30T23:19:55+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="1656"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="http,数据包," /><meta property="og:title" content="http数据包浅析" />
+<meta property="og:description" content="抓取数据包 随机抓取了bilibili的一段POST数据包： 发送HTTP请求 一个请求由四个部份组成：请求行、请求头标、空行和请求数据。 每个部分" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-30T23:19:55+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="http数据包浅析"/>
+<meta name="twitter:description" content="抓取数据包 随机抓取了bilibili的一段POST数据包： 发送HTTP请求 一个请求由四个部份组成：请求行、请求头标、空行和请求数据。 每个部分"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90/" /><link rel="prev" href="https://geoer.cn/http1-0%E5%92%8Chttp1-1%E7%9A%84%E5%8C%BA%E5%88%AB/" /><link rel="next" href="https://geoer.cn/kerberos%E5%85%A5%E9%97%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "http数据包浅析",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "http, 数据包","wordcount":  1656 ,
+    "url": "https:\/\/geoer.cn\/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90\/","datePublished": "2022-04-30T23:19:55+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>http数据包浅析</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 计算机网络</a></span></div>
+      <div class="post-meta-line"><span title=2022-04-30&#32;23:19:55><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-30">2022-04-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1656 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="http数据包浅析">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#抓取数据包">抓取数据包</a></li>
+    <li><a href="#发送http请求">发送HTTP请求</a>
+      <ul>
+        <li><a href="#1请求行">1.请求行</a></li>
+        <li><a href="#2请求头标">2.请求头标</a></li>
+        <li><a href="#3空行">3.空行</a></li>
+        <li><a href="#4请求数据">4.请求数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#服务器接受请求并返回http响应">服务器接受请求并返回HTTP响应</a>
+      <ul>
+        <li><a href="#1状态行">1.状态行</a></li>
+        <li><a href="#响应头标">.响应头标</a></li>
+        <li><a href="#3空行-1"><strong>3.空行</strong></a></li>
+        <li><a href="#4响应数据"><strong>4.响应数据</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#服务器关闭连接浏览器解析响应">服务器关闭连接，浏览器解析响应</a></li>
+    <li><a href="#使用nc模拟http请求">使用nc模拟http请求</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="抓取数据包">抓取数据包</h2>
+<p>随机抓取了bilibili的一段POST数据包：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://tva1.sinaimg.cn/large/e6c9d24ely1h1soswnntaj21nq0u0n43.jpg"
+    data-srcset="https://tva1.sinaimg.cn/large/e6c9d24ely1h1soswnntaj21nq0u0n43.jpg, https://tva1.sinaimg.cn/large/e6c9d24ely1h1soswnntaj21nq0u0n43.jpg 1.5x, https://tva1.sinaimg.cn/large/e6c9d24ely1h1soswnntaj21nq0u0n43.jpg 2x"
+    data-sizes="auto"
+    alt="post数据包"
+    title="post数据包"/></p>
+<h2 id="发送http请求">发送HTTP请求</h2>
+<p>一个请求由四个部份组成：请求行、请求头标、空行和请求数据。</p>
+<p>每个部分之间用<code>\r\n</code>来隔开</p>
+<h3 id="1请求行">1.请求行</h3>
+<p>请求行由三个标记组成：请求方法、请求URL和HTTP版本，它们用空格分隔。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /index.html HTTP/1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTTP 定义了8种可能的请求方法：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET：检索URL中标识资源的一个简单请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HEAD：与GET方法相同，服务器只返回状态行和头标，并不返回请求文档
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">POST：服务器接受被写入客户端输出流中的数据的请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PUT：服务器保存请求数据作为指定URL新内容的请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DELETE：服务器删除URL中命令的资源的请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">OPTIONS：关于服务器支持的请求方法信息的请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TRACE：web服务器反馈Http请求和其头标的请求
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">CONNECT ：已文档化，但当前未实现的一个方法，预留做隧道处理
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2请求头标">2.请求头标</h3>
+<p>由关键字/值对组成，每行一对，关键字和值用冒号分享。请求头标通知服务器腾于客户端的功能和标识。典型的请求头标有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">User-Agent：客户端厂家和版本
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Accept：客户端可识别的内容类型列表
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Content-Length：附加到请求的数据字节数
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3空行">3.空行</h3>
+<p>最后一个请求头标之后是一个空行，发送<strong>回车符和退行</strong>，通知服务器以下不再有头标。</p>
+<h3 id="4请求数据">4.请求数据</h3>
+<p>使用POST传送数据，最常使用的是<code>Content-Type</code>和 <code>Content-Length</code> 头标。</p>
+<h2 id="服务器接受请求并返回http响应">服务器接受请求并返回HTTP响应</h2>
+<p>一个响应由四个部分组成；状态行、响应头标、空行、响应数据。</p>
+<h3 id="1状态行">1.状态行</h3>
+<p>状态行由三个标记组成：HTTP版本、响应代码和响应描述。</p>
+<p>HTTP版本：向客户端指明其可理解的最高版本。</p>
+<p>响应代码：3位的数字代码，指出请求的成功或失败，如果失败则指出原因。</p>
+<p>响应描述：为响应代码的可读性解释。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HTTP/1.1 200 OK
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTTP响应码：</strong></p>
+<p>1xx：信息，请求收到，继续处理</p>
+<p>2xx：成功，行为被成功地接受、理解和采纳</p>
+<p>3xx：重定向，为了完成请求，必须进一步执行的动作</p>
+<p>4xx：客户端错误</p>
+<p>5xx：服务器错误</p>
+<h3 id="响应头标">.响应头标</h3>
+<p>像请求头标一样，它们指出服务器的功能，标识出响应数据的细节。</p>
+<h3 id="3空行-1"><strong>3.空行</strong></h3>
+<p>最后一个响应头标之后是一个空行，发送<strong>回车符和退行</strong>，表明服务器以下不再有头标。</p>
+<h3 id="4响应数据"><strong>4.响应数据</strong></h3>
+<p>HTML文档和图像等，也就是HTML本身。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">200 存在文件
+</span></span><span class="line"><span class="cl">403 存在文件夹
+</span></span><span class="line"><span class="cl">404 不存在文件及文件夹
+</span></span><span class="line"><span class="cl">500 服务器内部错误
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="服务器关闭连接浏览器解析响应">服务器关闭连接，浏览器解析响应</h2>
+<p>1.浏览器首先解析状态行，查看表明请求是否成功的状态代码。</p>
+<p>2.然后解析每一个响应头标，头标告知以下为若干字节的HTML。</p>
+<p>3.读取响应数据HTML，根据HTML的语法和语义对其进行格式化，并在浏览器窗口中显示它。</p>
+<p>4.一个HTML文档可能包含其它需要被载入的资源引用，浏览器识别这些引用，对其它的资源再进行额外的请求，此过程循环多次。</p>
+<blockquote>
+<p>HTTP模型是无状态的，表明在处理一个请求时，Web服务器并不记住来自同一客户端的请求。</p>
+</blockquote>
+<h2 id="使用nc模拟http请求">使用nc模拟http请求</h2>
+<p>netcact工具用途很多，可以翻看这篇文章：http://www.xpshuai.cn/2020/03/15/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/</p>
+<p>这里只说用nc模拟http请求，以请求百度为例</p>
+<p>1.输入要请求的主机和端口号<code>nc www.baidu.com 80</code></p>
+<p>2.手工填写请求方式和请求头等（比如下面我请求百度的robots.txt文件）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">GET /robots.txt HTTP/1.1
+</span></span><span class="line"><span class="cl">Host: www.baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://tva1.sinaimg.cn/large/e6c9d24ely1h1sows5l2uj211z0u0tcf.jpg"
+    data-srcset="https://tva1.sinaimg.cn/large/e6c9d24ely1h1sows5l2uj211z0u0tcf.jpg, https://tva1.sinaimg.cn/large/e6c9d24ely1h1sows5l2uj211z0u0tcf.jpg 1.5x, https://tva1.sinaimg.cn/large/e6c9d24ely1h1sows5l2uj211z0u0tcf.jpg 2x"
+    data-sizes="auto"
+    alt="image-20220501102239605"
+    title="image-20220501102239605"/></p>
+<p>当然也可以用如下形式的一行命令搞定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -e参数是激活转义字符，请求中不同行使用\r\n隔开，然后通过管道重定向给nc</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;GET /robots.txt HTTP/1.1\r\nHost: www.baidu.com\r\n\r\n&#34;</span> <span class="p">|</span> nc www.baidu.com <span class="m">80</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以此类推，当然我们也可以提前把请求写好放到文件中，然后读取文件再通过管道重定向给nc</p>
+<p>但是要注意不同系统的换行符是有区别的，如果需要用记得转换一下：</p>
+<ul>
+<li>
+<p>Windows系统里，文件每行结尾是&quot;&quot;&quot;\r\n&quot;</p>
+</li>
+<li>
+<p>Mac系统里，    文件每行结尾是&quot;&quot;，即&rsquo;\r'</p>
+</li>
+<li>
+<p>Unix系统里，    文件每行结尾是&quot;&quot;，即&rsquo;\n'</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/http%E6%95%B0%E6%8D%AE%E5%8C%85%E6%B5%85%E6%9E%90/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/http%e6%95%b0%e6%8d%ae%e5%8c%85%e6%b5%85%e6%9e%90.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/http/' class="post-tag">http</a><a href='/tags/%E6%95%B0%E6%8D%AE%E5%8C%85/' class="post-tag">数据包</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/http1-0%E5%92%8Chttp1-1%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-nav-item" rel="prev" title="http1.0和http1.1和http2的区别"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>http1.0和http1.1和http2的区别</a>
+      <a href="/kerberos%E5%85%A5%E9%97%A8/" class="post-nav-item" rel="next" title="Kerberos入门">Kerberos入门<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

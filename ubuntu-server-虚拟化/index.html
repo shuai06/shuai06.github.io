@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-虚拟化 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="云计算 资源就像水龙头里的水，按需索取 信息时代计算资源是最主要的生产力 主机时代、网络时代 集中和分散、三十年河东三十年河西 量子计算可能颠覆一切 计" /><meta name="keywords" content='Linux, ubuntu, KVM, 虚拟化' /><meta itemprop="name" content="ubuntu server-虚拟化">
+<meta itemprop="description" content="云计算 资源就像水龙头里的水，按需索取 信息时代计算资源是最主要的生产力 主机时代、网络时代 集中和分散、三十年河东三十年河西 量子计算可能颠覆一切 计"><meta itemprop="datePublished" content="2020-05-10T22:18:38+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2384"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,ubuntu,KVM,虚拟化," /><meta property="og:title" content="ubuntu server-虚拟化" />
+<meta property="og:description" content="云计算 资源就像水龙头里的水，按需索取 信息时代计算资源是最主要的生产力 主机时代、网络时代 集中和分散、三十年河东三十年河西 量子计算可能颠覆一切 计" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-10T22:18:38+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-虚拟化"/>
+<meta name="twitter:description" content="云计算 资源就像水龙头里的水，按需索取 信息时代计算资源是最主要的生产力 主机时代、网络时代 集中和分散、三十年河东三十年河西 量子计算可能颠覆一切 计"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" /><link rel="next" href="https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-虚拟化",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, ubuntu, KVM, 虚拟化","wordcount":  2384 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96\/","datePublished": "2020-05-10T22:18:38+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-虚拟化</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-10&#32;22:18:38><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-10">2020-05-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2384 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-虚拟化">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred-云计算-font"><font color=red> 云计算 </font></a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#分类">分类</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-虚拟化-font"><font color=red> 虚拟化 </font></a>
+      <ul>
+        <li><a href="#kvm">KVM</a>
+          <ul>
+            <li><a href="#kvm安装和使用">KVM安装和使用</a>
+              <ul>
+                <li><a href="#安装服务端组件">安装服务端组件</a></li>
+                <li><a href="#安装客户端组件">安装客户端组件</a>
+                  <ul>
+                    <li><a href="#1图形化的客户端管理工具">1.图形化的客户端管理工具</a></li>
+                    <li><a href="#2命令行客户端">2.命令行客户端</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#使用云平台">使用云平台</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="font-colorred-云计算-font"><font color=red> 云计算 </font></h2>
+<blockquote>
+<p>资源就像水龙头里的水，按需索取</p>
+</blockquote>
+<p><strong>信息时代计算资源是最主要的生产力</strong></p>
+<ul>
+<li>主机时代、网络时代</li>
+<li>集中和分散、三十年河东三十年河西</li>
+<li>量子计算可能颠覆一切</li>
+</ul>
+<p><strong>计算资源的云化</strong></p>
+<ul>
+<li>按需调度、按需索取</li>
+<li>计算资源需要更大程度的颗粒度细化</li>
+<li><code>虚拟化</code>是计算资源细分的<code>基础</code></li>
+</ul>
+<p><strong>处理器运算能力的大幅提升</strong></p>
+<ul>
+<li>处理速度月来越快（摩尔定律）</li>
+<li>多核处理器架构</li>
+<li>大量计算资源限制浪费，企业整体运行成本高</li>
+<li>多应用同机部署，应用隔离差，稳定性影响大</li>
+<li>处理器支持虚拟化技术</li>
+</ul>
+<h6 id="分类">分类</h6>
+<p><strong>1.Saas：</strong> Software as a Service</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 软件即服务， 服务以软件形式交付</span>
+</span></span><span class="line"><span class="cl">Gmail / Google Docs / 在线Office / Office <span class="m">365</span> ...
+</span></span><span class="line"><span class="cl">无需本地安装部署
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.PaaS：</strong> Platform as a Service</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 平台即服务</span>
+</span></span><span class="line"><span class="cl">提供软件开发运行的基础平台
+</span></span><span class="line"><span class="cl">API、Google App Engine
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.IaaS：</strong> Infrastructure as a Service</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基础架构即服务</span>
+</span></span><span class="line"><span class="cl">最底层的晕计算，物理的计算、存储、网络资源饭各位你
+</span></span><span class="line"><span class="cl">AWS、Google Computer Engine、 阿里云
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>云计算是将资源打碎、分配、发布、交付的一组工具的合集</p>
+<p>Hypervisors -&gt; 使得虚拟服务器的性能不依赖物理机，和物理机是平行的，可以直接访问物理的CPU</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 常见的虚拟化软件</span>
+</span></span><span class="line"><span class="cl">KVM、XEN<span class="o">(</span>目前部署方式是完整的光盘<span class="o">)</span>、QEMU、Virtualbox、VMWare
+</span></span><span class="line"><span class="cl"><span class="c1"># 本章主要学这两个：KVM、EMU</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>云计算平台</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ubuntu上最典型的</span>
+</span></span><span class="line"><span class="cl">Openstack
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务编排工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 典型的
+</span></span><span class="line"><span class="cl">Juju
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>机器配置工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">MAAS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred-虚拟化-font"><font color=red> 虚拟化 </font></h2>
+<p>物理服务器，部署虚拟化平台，创建多个虚拟机，每个虚拟机使用物理机的计算量。虚拟化是云计算的基础</p>
+<ul>
+<li>降低成本，提高利用率，方便管理部署，快速恢复还原</li>
+<li>普遍用于开发测试实验、生产环境部署都可</li>
+<li>需要硬件支持(BIOS设置开启)</li>
+<li>CPU特性 Hypervision</li>
+</ul>
+<h3 id="kvm">KVM</h3>
+<p><strong>Kernel-based Virtual Machine（KVM）</strong></p>
+<ul>
+<li>基于内核的虚拟机(KVM)和快速仿真器(QEMU)组成的虚拟化套件( QEMU/KVM )</li>
+<li>QEMU/KVM在没有硬件虚拟化支持下，虚拟机需要运行在QEMU模拟器中</li>
+<li>有硬件虚拟化支持下，<strong>接近硬件物理机速度运行</strong></li>
+<li>虚拟化扩展决定性能( virtualization extensions )</li>
+<li>Ubuntu默认内建支持的虚拟化方案</li>
+<li>内建于Linux内核( Intel 的kvm-intel.ko或AMD的kvm-amd.ko )</li>
+<li>libvirt库是Linux与虚拟化通信的统一 接口</li>
+<li>处理在主机和客户机之间分离任务所需的低级指令</li>
+<li><strong>无法并行运行VirtualBox和KVM虛拟机</strong>，它们会抢占CPU的虚拟化功能</li>
+</ul>
+<p>把<code>KVM</code>和<code>QEMU</code>结合在一起
+通过<code>libvirt</code>库实现Linux与虚拟化通信的接口</p>
+<p><strong>验证硬件平台支持虚拟化拓展(较新的硬件全部支持)</strong>
+四种方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># F1</span>
+</span></span><span class="line"><span class="cl">egrep -c <span class="s1">&#39;(vmx|svm)&#39;</span> /proc/cpuinfo  <span class="c1"># 结果不为0即支持</span>
+</span></span><span class="line"><span class="cl">erep -E <span class="s1">&#39;vmx|svm&#39;</span> /proc/cpuinfo  <span class="c1"># 结果不为0即支持</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># F2 </span>
+</span></span><span class="line"><span class="cl">kvm-ok
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo apt install cpu-checker</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># F3</span>
+</span></span><span class="line"><span class="cl">lscpu
+</span></span><span class="line"><span class="cl"><span class="c1"># 找下列字段：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Virtualization: VT-x</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Flags: vmx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># F4  </span>
+</span></span><span class="line"><span class="cl">sudo virt-host-validate
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo apt install libvirt-client</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Checking for hardware virtualizatin: PASS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">可以在virtualbox或vmware虚拟机里面安装kvm的虚拟机
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="kvm安装和使用">KVM安装和使用</h4>
+<h5 id="安装服务端组件">安装服务端组件</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># bridge-utils桥接的防止，用来做地址转换的</span>
+</span></span><span class="line"><span class="cl">sudo apt install bridge-utils libvirt-bin qemu-kvm qemu-system
+</span></span><span class="line"><span class="cl"><span class="c1"># 当前用户会被加入livirt组</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 需要重启系统使得权限生效</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 映像文件目录(以后的虚拟机文件都会放在这里)</span>
+</span></span><span class="line"><span class="cl">/var/lib/libcirt/images
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置文件</span>
+</span></span><span class="line"><span class="cl">/etc/libvirt/libvirtd.conf
+</span></span><span class="line"><span class="cl">权限<span class="o">(</span>读写,管理<span class="o">)</span>的修改，加密证书等。一般不需要配置。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="安装客户端组件">安装客户端组件</h5>
+<h6 id="1图形化的客户端管理工具">1.图形化的客户端管理工具</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.图形化的管理工具(virt-manager)，ssh-askpass是用来ssh连接远程主机使用的</span>
+</span></span><span class="line"><span class="cl">sudo apt install virt-manager ssh-askpass 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端的使用</span>
+</span></span><span class="line"><span class="cl">可以新建连接：选择连接哪个机器<span class="o">(</span>本机、远程机器<span class="o">)</span>的kvm后台
+</span></span><span class="line"><span class="cl">创建虚拟机:跟virtualbox的就类似了，Add Pool指定iso文件的路径来挂载寻找
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.也有字符界面的客户端管理工具</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>网卡桥接配置</strong>
+默认虚拟机网络模式为NAT（可以访问外部网络，但外部计算机无法访问虚拟机），可以使用<code>网桥</code>实现VM被外部网络访问</p>
+<img src="http://image.xpshuai.cn/20200510211152045_955020812.png" />
+<p>网桥的配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/netplan/50-cloud-init.yaml</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 新增配置</span>
+</span></span><span class="line"><span class="cl">ethernets:
+</span></span><span class="line"><span class="cl">    ens33:
+</span></span><span class="line"><span class="cl">        dhcp4: no    <span class="c1"># 这个分给网桥，所以这个物理网卡不能有ip地址</span>
+</span></span><span class="line"><span class="cl">        dhcp6: no
+</span></span><span class="line"><span class="cl">    bridegs:    <span class="c1"># 配置网桥</span>
+</span></span><span class="line"><span class="cl">        br0:
+</span></span><span class="line"><span class="cl">          interfaces: <span class="o">[</span>ens33<span class="o">]</span>
+</span></span><span class="line"><span class="cl">          dhcp4: no
+</span></span><span class="line"><span class="cl">          addresses: <span class="o">[</span>172.16.24.13/24<span class="o">]</span>
+</span></span><span class="line"><span class="cl">          gatewat4: 172.16.24.1
+</span></span><span class="line"><span class="cl">          nameservers:
+</span></span><span class="line"><span class="cl">            addresses: <span class="o">[</span>8.8.8.8,8.8.4.4<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 让配置生效</span>
+</span></span><span class="line"><span class="cl">sudo netplan apply
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虚拟机配置：选择虚拟机，选择第二个窗口，选择网卡，Bridge模式，选择设备，启动虚拟机</p>
+<p>建立连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virt-manager 本机/ 网络 连接
+</span></span><span class="line"><span class="cl">virt-manager 基本使用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>克隆创建虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">KVM不支持模板功能，但可将虚拟机关机作为模板使用<span class="o">(</span>右键，clone, 基于它作为<span class="s2">&#34;模板&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建虚拟机快，占资源少</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>虚拟机管理控制台（有很多好用的功能）</p>
+<p>**迁移(Migrate) **&ndash;&gt; 把某宿主机上(出现故障了)某台虚拟机迁移到另一台安装了kvm服务的服务器上</p>
+<h6 id="2命令行客户端">2.命令行客户端</h6>
+<blockquote>
+<p>命令行方便写脚本，·批量进行很多虚拟机的安装和管理</p>
+</blockquote>
+<p>创建虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 命令行创建虚拟机 virt-install</span>
+</span></span><span class="line"><span class="cl">sudo virt-install -n web1 -r <span class="m">2048</span> --disk <span class="nv">path</span><span class="o">=</span>/var/lib/libcire/images/web1.img,bus<span class="o">=</span>virtio,size<span class="o">=</span><span class="m">10</span> -c ubuntu-18.04-server-amd64.iso --newwork <span class="nv">newtork</span><span class="o">=</span>default,model<span class="o">=</span>virtio --graphics vnc, <span class="nv">listen</span><span class="o">=</span>0.0.0.0 --noautoconsele -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># --disk path   虚拟机镜像文件存放路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># size=4        硬盘文件大小4G</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bus=virtio    总线类型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -c            CDROM（iso文件、物理光驱）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --newwork newtork=default，model=virtio   接口模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --graphics vnc, listen=0.0.0.0        VNC控制接口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --noautoconsele    不自动连接虚拟机控制台</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>复制虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo virt-clone -o win10 -n win10-2 -f /var/lib/libcire/images/win10-2.img
+</span></span><span class="line"><span class="cl"><span class="c1"># -o    原始虚拟机</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -n    新建虚拟机</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -f    虚拟机镜像文件存放路径</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh connect qemu:///192.168.0.12
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看vm服务器上所有VM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#  查看run的</span>
+</span></span><span class="line"><span class="cl">virsh list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有状态的</span>
+</span></span><span class="line"><span class="cl">virsh list --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>管理VM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh console centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关闭当前console</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ctrl + <span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正常关机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh shutdown centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>强制关机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh destory centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh undefine centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>挂起VM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh <span class="nb">suspend</span> centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>恢复使用VM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">virsh resume centos_01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="使用云平台">使用云平台</h4>
+<p>下载适合不同环境的镜像: <a href="https://cloud-images.ubuntu.com/releases/bionic/release"target="_blank" rel="external nofollow noopener noreferrer">https://cloud-images.ubuntu.com/releases/bionic/release<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget /ubuntu-18.04-server-cloudimg-amd64.img  -O u18.img.dist
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解压下载的镜像文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qemu-img convert -O qcow2 u18.img.dist u18.img
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不能直接使用，可以理解这个为一个模板</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建用户数据文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim cloud-config
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cloud-config</span>
+</span></span><span class="line"><span class="cl">passwdor: <span class="m">123465</span>
+</span></span><span class="line"><span class="cl">chpasswd: <span class="o">{</span> expire: Flase <span class="o">}</span>  <span class="c1"># 密码不过期</span>
+</span></span><span class="line"><span class="cl">ssh_pwauth: True    <span class="c1"># 允许ssh身份认证</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>生成用户数据盘</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基于模板创建一个新的数据盘</span>
+</span></span><span class="line"><span class="cl">cloud-localds user-data.img cloud-config  <span class="c1"># 使用上面的配置文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动虚拟机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kvm -m <span class="m">2048</span> -smp <span class="m">2</span> -hda u18.img -hdb user-data.img -net nic -net user,hostfwd<span class="o">=</span>tcp::1810-:22 -nographic
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 帐号密码: ubuntu / 123465(上面配置文件指定的)</span>
+</span></span><span class="line"><span class="cl">sudo passwd ubuntu     <span class="c1"># 修改密码</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除云镜像初始化脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get remove cloud-init
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用云镜像创建VM</p>
+<p>部署完一个之后，就可以基于第一个进行clone</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e8%99%9a%e6%8b%9f%e5%8c%96.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/kvm/' class="post-tag">KVM</a><a href='/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/' class="post-tag">虚拟化</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" class="post-nav-item" rel="prev" title="ubuntu server-版本控制"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server-版本控制</a>
+      <a href="/ubuntu-server-%E5%AE%B9%E5%99%A8/" class="post-nav-item" rel="next" title="ubuntu server-容器">ubuntu server-容器<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

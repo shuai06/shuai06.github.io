@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>发现内网存活主机方法-简单整理 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="基于UDP发现内网存活主机 UDP显著特性: 1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也" /><meta name="keywords" content='渗透测试, 探测主机存活, 内网' /><meta itemprop="name" content="发现内网存活主机方法-简单整理">
+<meta itemprop="description" content="基于UDP发现内网存活主机 UDP显著特性: 1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也"><meta itemprop="datePublished" content="2020-06-07T10:57:47+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3517"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,探测主机存活,内网," /><meta property="og:title" content="发现内网存活主机方法-简单整理" />
+<meta property="og:description" content="基于UDP发现内网存活主机 UDP显著特性: 1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-07T10:57:47+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="发现内网存活主机方法-简单整理"/>
+<meta name="twitter:description" content="基于UDP发现内网存活主机 UDP显著特性: 1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/" /><link rel="prev" href="https://geoer.cn/tomcat%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" /><link rel="next" href="https://geoer.cn/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "发现内网存活主机方法-简单整理",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, 探测主机存活, 内网","wordcount":  3517 ,
+    "url": "https:\/\/geoer.cn\/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86\/","datePublished": "2020-06-07T10:57:47+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>发现内网存活主机方法-简单整理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-06-07&#32;10:57:47><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-06-07">2020-06-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3517 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="发现内网存活主机方法-简单整理">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#font-colorred基于udp发现内网存活主机--font"><font color=red>基于UDP发现内网存活主机  </font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#udp显著特性">UDP显著特性:</a></li>
+                    <li><a href="#1nmap扫描">1.nmap扫描</a></li>
+                    <li><a href="#2msf扫描">2.msf扫描</a></li>
+                    <li><a href="#3unicornscan扫描">3.unicornscan扫描</a></li>
+                    <li><a href="#4scanline扫描">4.ScanLine扫描</a></li>
+                    <li><a href="#5在线基于nmap的udp扫描">5.在线基于Nmap的udp扫描:</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred-基于arp发现内网存活主机font"><font color=red> 基于ARP发现内网存活主机</font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1nmap扫描-1">1.nmap扫描</a></li>
+                    <li><a href="#2msf扫描-1">2.msf扫描</a></li>
+                    <li><a href="#3netdiscover">3.netdiscover</a></li>
+                    <li><a href="#4arp-scanlinux">4.arp-scan(linux)</a></li>
+                    <li><a href="#5powershell">5.Powershell</a></li>
+                    <li><a href="#6arp-scannet">6.arp scannet</a></li>
+                    <li><a href="#7arp-scanwindows">7.arp-scan(windows)</a></li>
+                    <li><a href="#8arp-pingexe">8.arp-ping.exe</a></li>
+                    <li><a href="#9其他">9.其他</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred-基于netbios发现内网存活主机font"><font color=red> 基于netbios发现内网存活主机</font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1nmap扫描-2">1.nmap扫描</a></li>
+                    <li><a href="#2msf扫描-2">2.msf扫描</a></li>
+                    <li><a href="#3nbtscan扫描">3.nbtscan扫描</a></li>
+                    <li><a href="#4netbscanner">4.NetBScanner:</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred-基于snmp发现内网存活主机font"><font color=red> 基于snmp发现内网存活主机</font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1nmap扫描-3">1.nmap扫描</a></li>
+                    <li><a href="#2msf扫描-3">2.msf扫描</a></li>
+                    <li><a href="#3smbscan">3.SMBScan</a></li>
+                    <li><a href="#4netcrunch">4.NetCrunch</a></li>
+                    <li><a href="#5snmp-for-pl扫描">5.snmp for pl扫描:</a></li>
+                    <li><a href="#其他扫描">其他扫描:</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred基于icmp发现内网存活主机--font"><font color=red>基于ICMP发现内网存活主机  </font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1nmap扫描-4">1.nmap扫描</a></li>
+                    <li><a href="#2cmd下扫描">2.CMD下扫描</a></li>
+                    <li><a href="#3powershell扫描">3.powershell扫描</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred-基于smb发现内网存活主机font"><font color=red> 基于SMB发现内网存活主机</font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1基于msf">1.基于msf</a></li>
+                    <li><a href="#2基于cme参考第九十三课">2.基于cme(参考第九十三课)</a></li>
+                    <li><a href="#3基于nmap">3.基于nmap</a></li>
+                    <li><a href="#4基于cmd">4.基于CMD</a></li>
+                    <li><a href="#5基于powershell">5.基于powershell</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#font-colorred-基于msf发现内网存活主机-font"><font color=red> 基于MSF发现内网存活主机 </font></a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#一">一</a></li>
+                    <li><a href="#二">二</a></li>
+                    <li><a href="#三">三</a></li>
+                    <li><a href="#四">四</a></li>
+                    <li><a href="#五">五</a></li>
+                    <li><a href="#六">六</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h4 id="font-colorred基于udp发现内网存活主机--font"><font color=red>基于UDP发现内网存活主机  </font></h4>
+<h6 id="udp显著特性">UDP显著特性:</h6>
+<p>1.UDP 缺乏可靠性。UDP 本身不提供确认,超时重传等机制。UDP 数据报可能在网络中被复制,被重新排序,也不保证每个数据报只到达一次。
+2.UDP 数据报是有长度的。每个 UDP 数据报都有长度,如果一个数据报正确地到达目的地,那么该数据报的长度将随数据一起传递给接收方。而 TCP 是一个字节流协议,没有任
+何(协议上的)记录边界。
+3.UDP 是无连接的。UDP 客户和服务器之前不必存在长期的关系。大多数的UDP实现中都选择忽略源站抑制差错,在网络拥塞时,目的端无法接收到大量的UDP数据报
+4.UDP 支持多播和广播。</p>
+<h6 id="1nmap扫描">1.nmap扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -sU</span>
+</span></span><span class="line"><span class="cl">nmap -sU -T5 -sV --max-retries <span class="m">1</span> 192.168.1.100 -p <span class="m">500</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2msf扫描">2.msf扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/discovery/udp_probe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或这个模块</span>
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/discovery/udp_sweep
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3unicornscan扫描">3.unicornscan扫描</h6>
+<p>Linux下推荐</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">unicornscan -mU 192.168.1.100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4scanline扫描">4.ScanLine扫描</h6>
+<p>McAfee出品,win下使用推荐。管理员执行。
+项目地址:https://www.mcafee.com/ca/downloads/free-tools/scanline.aspx
+网盘地址:http://pan.baidu.com/s/1i4A1wLR 密码:hvyx
+自己搜索资源吧</p>
+<p>输入<code>sl</code>运行ScanLine</p>
+<h6 id="5在线基于nmap的udp扫描">5.在线基于Nmap的udp扫描:</h6>
+<p><a href="https://pentest-tools.com/network-vulnerability-scanning/udp-port-scanner-online-nmap"target="_blank" rel="external nofollow noopener noreferrer">点击链接<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h4 id="font-colorred-基于arp发现内网存活主机font"><font color=red> 基于ARP发现内网存活主机</font></h4>
+<h6 id="1nmap扫描-1">1.nmap扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sn -PR 192.168.1.1/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2msf扫描-1">2.msf扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/discovery/arp_sweep
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3netdiscover">3.netdiscover</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netdiscover -r 192.168.1.0/24 -i wlan0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4arp-scanlinux">4.arp-scan(linux)</h6>
+<p>(推荐)速度与快捷
+项目地址:<code>https://linux.die.net/man/1/arp-scan</code>
+arp-scan没有内置kali,需要下载安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get install arp-scan
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">arp-scan --interface<span class="o">=</span>wlan0 --localnet
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5powershell">5.Powershell</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">powershell.exe -exec bypass -Command <span class="s2">&#34;Import-Module .\arpscan.ps1;Invoke-ARPScan -CIDR 192.168.1.0/24&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="6arp-scannet">6.arp scannet</h6>
+<p>项目地址: <a href="https://sourceforge.net/projects/arpscannet/files/arpscannet/arpscannet%200.4/"target="_blank" rel="external nofollow noopener noreferrer">https://sourceforge.net/projects/arpscannet/files/arpscannet/arpscannet%200.4/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h6 id="7arp-scanwindows">7.arp-scan(windows)</h6>
+<p>(推荐)速度与快捷
+项目地址:https://github.com/QbsuranAlang/arp-scan-windows-/tree/master/arp-scan(非官方)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">arp-scan.exe -t 192.168.1.1/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="8arp-pingexe">8.arp-ping.exe</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">arp-ping.exe 192.168.1.100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="9其他">9.其他</h6>
+<p>如cain的arp发现,一些开源py,pl脚本等,不一 一介绍。</p>
+<blockquote>
+<p>下载的工具，后门自查</p>
+</blockquote>
+<h4 id="font-colorred-基于netbios发现内网存活主机font"><font color=red> 基于netbios发现内网存活主机</font></h4>
+<p>IBM公司开发,主要用于数十台计算机的小型局域网。该协议是一种在局域网上的程序可以
+使用的应用程序编程接口(API),为程序提供了请求低级服务的同一的命令集,作用是为了给局域网提供网络以及其他特殊功能。
+系统可以利用WINS服务、广播及Lmhost文件等多种模式将NetBIOS名-——特指基于
+NETBIOS协议获得计算机名称——解析为相应IP地址,实现信息通讯,所以在局域网内部使
+用NetBIOS协议可以方便地实现消息通信及资源的共享。</p>
+<h6 id="1nmap扫描-2">1.nmap扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nbstat.nse</span>
+</span></span><span class="line"><span class="cl">nmap -sU --script nbstat.nse -p137 192.168.1.0/24 -T4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2msf扫描-2">2.msf扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/netbios/nbname
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3nbtscan扫描">3.nbtscan扫描</h6>
+<p>项目地址:  <a href="http://www.unixwiz.net/tools/nbtscan.html"target="_blank" rel="external nofollow noopener noreferrer">http://www.unixwiz.net/tools/nbtscan.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+NBTscan version 1.5.1:  <a href="https://github.com/scallywag/nbtscan"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/scallywag/nbtscan<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">### Windows</span>
+</span></span><span class="line"><span class="cl">nbtscan-1.0.35.exe -m 192.168.1.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nbtscan -n    <span class="c1"># 推荐</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Linux （推荐）</span>
+</span></span><span class="line"><span class="cl">tar -zxvf ./nbtscan-source-1.0.35.tgz     <span class="c1"># (其他版本自己寻找)</span>
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">nbtscan -r 192.168.1.0/24
+</span></span><span class="line"><span class="cl">nbtscan -v -s: 192.168.1.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4netbscanner">4.NetBScanner:</h6>
+<p>项目地址:https://www.nirsoft.net/utils/netbios_scanner.html</p>
+<h4 id="font-colorred-基于snmp发现内网存活主机font"><font color=red> 基于snmp发现内网存活主机</font></h4>
+<p><strong>SNMP协议主要由两大部分构成:</strong> SNMP管理站和SNMP代理。
+SNMP管理站是一个中心节点,负责收集维护各个SNMP元素的信息,并对这些信息进行处理,最后反馈给网络管理员;而SNMP代理是运行在各个被管理的网络节点之上,负责统计该节点的各项信息,并且负责与SNMP管理站交互,接收并执行管理站的命令,上传各种本地的网络信息</p>
+<h6 id="1nmap扫描-3">1.nmap扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -sU --script snmp-brute 192.168.1.0/24 -T4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2msf扫描-3">2.msf扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_enum
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3smbscan">3.SMBScan</h6>
+<p>项目地址:https://www.mcafee.com/us/downloads/free-tools/snscan.aspx
+依然是一块macafee出品的攻击</p>
+<h6 id="4netcrunch">4.NetCrunch</h6>
+<p>项目地址:https://www.adremsoft.com/demo/
+内网安全审计工具,包含了DNS审计,ping扫描,端口,网络服务等。</p>
+<h6 id="5snmp-for-pl扫描">5.snmp for pl扫描:</h6>
+<p>项目地址:https://github.com/dheiland-r7/snmp</p>
+<h6 id="其他扫描">其他扫描:</h6>
+<p><strong>6.snmpbulkwalk</strong></p>
+<p><strong>7.snmp-check</strong></p>
+<p><strong>8.snmptest</strong></p>
+<p><strong>附录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/snmp/aix_version
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_enumuse auxiliary/scanner/snmp/arris_dg950
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_enum_hp_laserjet
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/brocade_enumhash
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_enumshares
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/cambium_snmp_loot
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_enumusers
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/cisco_config_tftp
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_login
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/cisco_upload_file
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/snmp_set
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/netopia_enum
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/ubee_ddw3611
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/sbg6580_enum
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/snmp/xerox_workcentre_enumusers
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>其他内网安全审计工具(snmp):</strong>
+项目地址: <code>https://www.solarwinds.com/topics/snmp-scanner</code>
+项目地址: <code>https://www.netscantools.com/nstpro_snmp.html</code></p>
+<p><strong>snmp for pl :</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget http://www.cpan.org/modules/by-module/NetAddr/NetAddr-IP-4.078.tar.gz
+</span></span><span class="line"><span class="cl">tar xvzf ./NetAddr-IP-4.078.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> NetAddr-IP-4.078/
+</span></span><span class="line"><span class="cl">perl Makefile.PL
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make install
+</span></span><span class="line"><span class="cl">./snmpbw.pl
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="font-colorred基于icmp发现内网存活主机--font"><font color=red>基于ICMP发现内网存活主机  </font></h4>
+<h6 id="1nmap扫描-4">1.nmap扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap ‐sP ‐PI 192.168.1.0/24 ‐T4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nmap ‐sn ‐PE ‐T4 192.168.1.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2cmd下扫描">2.CMD下扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cmd" data-lang="cmd"><span class="line"><span class="cl"><span class="k">for</span> <span class="k">/L</span> <span class="nv">%P in (1,1,254) DO @ping ‐w 1 ‐n 1 192.168.1.%</span>P <span class="p">|</span> findstr <span class="s2">&#34;TTL=&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3powershell扫描">3.powershell扫描</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># powershell脚本  ./Invoke‐TSPingSweep.ps1</span>
+</span></span><span class="line"><span class="cl"><span class="n">powershell</span><span class="p">.</span><span class="py">exe</span> <span class="err">‐</span><span class="n">exec</span> <span class="n">bypass</span> <span class="err">‐</span><span class="n">Command</span> <span class="s2">&#34;Import‐Module ./Invoke‐TSPingSwe
+</span></span></span><span class="line"><span class="cl"><span class="s2">ep.ps1; Invoke‐TSPingSweep ‐StartAddress 192.168.1.1 ‐EndAddress 192.168.1.2
+</span></span></span><span class="line"><span class="cl"><span class="s2">54 ‐ResolveHost ‐ScanPort ‐Port 445,135&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 或</span>
+</span></span><span class="line"><span class="cl"><span class="n">tcping</span><span class="p">.</span><span class="py">exe</span> <span class="err">‐</span><span class="n">n</span> <span class="mf">1</span> <span class="mf">192.168</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="py">0</span> <span class="mf">80</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="font-colorred-基于smb发现内网存活主机font"><font color=red> 基于SMB发现内网存活主机</font></h4>
+<h6 id="1基于msf">1.基于msf</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 模块 scanner/smb/smb_version</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2基于cme参考第九十三课">2.基于cme(参考第九十三课)</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cme smb 192.168.1.0/24
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3基于nmap">3.基于nmap</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap ‐sU ‐sS ‐‐script smb‐enum‐shares.nse ‐p <span class="m">445</span> 192.168.119
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4基于cmd">4.基于CMD</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> /l %a in <span class="o">(</span>1,1,254<span class="o">)</span> <span class="k">do</span> start /min /low telnet 192.168.1.%a <span class="m">445</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5基于powershell">5.基于powershell</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c">## 一句话扫描:</span>
+</span></span><span class="line"><span class="cl"><span class="c">#单IP:</span>
+</span></span><span class="line"><span class="cl"><span class="mf">445</span> <span class="p">|</span> <span class="p">%{</span> <span class="nb">echo </span><span class="p">((</span><span class="n">new</span><span class="err">‐</span><span class="n">object</span> <span class="n">Net</span><span class="p">.</span><span class="py">Sockets</span><span class="p">.</span><span class="n">TcpClient</span><span class="p">).</span><span class="py">Connect</span><span class="p">(</span><span class="s2">&#34;192.168.1.119&#34;</span><span class="p">,</span><span class="nv">$_</span><span class="p">))</span> <span class="s2">&#34;</span><span class="nv">$_</span><span class="s2"> is open&#34;</span><span class="p">}</span> <span class="mf">2</span><span class="p">&gt;</span><span class="vm">$null</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#多ip:</span>
+</span></span><span class="line"><span class="cl"><span class="mf">1</span><span class="p">.</span><span class="mf">.5</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span> <span class="nv">$a</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">;</span> <span class="mf">445</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span><span class="nb">echo </span><span class="p">((</span><span class="n">new</span><span class="err">‐</span><span class="n">objectNet</span><span class="p">.</span><span class="py">Sockets</span><span class="p">.</span><span class="n">TcpClient</span><span class="p">).</span><span class="py">Connect</span><span class="p">(</span><span class="s2">&#34;192.168.1.</span><span class="nv">$a</span><span class="s2">&#34;</span><span class="p">,</span><span class="nv">$_</span><span class="p">))</span> <span class="s2">&#34;Port </span><span class="nv">$_</span><span class="s2"> is open&#34;</span><span class="p">}</span><span class="mf">2</span><span class="p">&gt;</span><span class="vm">$null</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">#多port,多IP:</span>
+</span></span><span class="line"><span class="cl"><span class="mf">118</span><span class="p">.</span><span class="mf">.119</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span> <span class="nv">$a</span> <span class="p">=</span> <span class="nv">$_</span><span class="p">;</span> <span class="n">write</span><span class="err">‐</span><span class="n">host</span> <span class="s2">&#34;‐‐‐‐‐‐&#34;</span><span class="p">;</span> <span class="n">write</span><span class="err">‐</span><span class="n">host</span> <span class="s2">&#34;192.168.1.</span><span class="nv">$a</span><span class="s2">&#34;</span><span class="p">;</span> <span class="mf">80</span><span class="p">,</span><span class="mf">445</span> <span class="p">|</span> <span class="p">%</span> <span class="p">{</span><span class="nb">echo </span><span class="p">((</span><span class="n">new</span><span class="err">‐</span><span class="n">object</span> <span class="n">Net</span><span class="p">.</span><span class="py">Sockets</span><span class="p">.</span><span class="n">TcpClient</span><span class="p">).</span><span class="py">Connect</span><span class="p">(</span><span class="s2">&#34;192.168.1.</span><span class="nv">$a</span><span class="s2">&#34;</span><span class="p">,</span><span class="nv">$_</span><span class="p">))</span> <span class="s2">&#34;Port </span><span class="nv">$_</span><span class="s2"> is open&#34;</span><span class="p">}</span> <span class="mf">2</span><span class="p">&gt;</span><span class="vm">$null</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="font-colorred-基于msf发现内网存活主机-font"><font color=red> 基于MSF发现内网存活主机 </font></h4>
+<h6 id="一">一</h6>
+<p>search搜索</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">search scanner type:auxiliary
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>主要介绍<code>scanner</code>下的五个模块,辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/discovery/arp_sweep    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/discovery/udp_sweep    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/ftp/ftp_version      <span class="c1"># 发现FTP服务</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/http/http_version    <span class="c1"># 发现HTTP服务</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/smb/smb_version      <span class="c1"># 发现SMB服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="二">二</h6>
+<p>主要介绍<code>scanner</code>下的五个模块,辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/ssh/ssh_version        <span class="c1"># 发现SSH服务</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/telnet/telnet_version    <span class="c1"># 发现TELNET服务</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/discovery/udp_probe    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/dns/dns_amp            <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/mysql/mysql_version    <span class="c1"># 发现mysql服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="三">三</h6>
+<p>主要介绍<code>scanner</code>下的五个模块,辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/netbios/nbname    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/http/title        <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/db2/db2_version    <span class="c1"># 发现db2服务</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/ack    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/tcp    <span class="c1"># 发现内网存活主机</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="四">四</h6>
+<p>主要介绍<code>scanner</code>下的五个模块,辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/portscan/syn    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/ftpbounce    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/xmas        <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/rdp/rdp_scanner        <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/smtp/smtp_version        <span class="c1"># 发现内网存活主机</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="五">五</h6>
+<p>主要介绍<code>scanner</code>下的三个模块,以及db_nmap辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/pop3/pop3_version        <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/postgres/postgres_version    <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/ftp/anonymous            <span class="c1"># 发现内网存活主机</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">db_nmap            <span class="c1"># 发现内网存活主机(MSF内置强大的端口扫描工具Nmap,为了更好的区别,内置命令为:db_nmap, 使用方法与nmap一致)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如：</span>
+</span></span><span class="line"><span class="cl">db_nmap ‐p <span class="m">445</span> ‐T4 ‐sT 192.168.1.115‐120 ‐‐open
+</span></span><span class="line"><span class="cl">hosts        <span class="c1"># 查看数据库中已发现的内网存活主机</span>
+</span></span><span class="line"><span class="cl">hosts ‐h     <span class="c1"># hosts命令也支持数据库中查询与搜索,方便快速对应目标存活主机</span>
+</span></span><span class="line"><span class="cl">hosts ‐S <span class="m">192</span>    <span class="c1"># 搜索关键字</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>hosts ‐h  查看参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">‐a,‐‐add Add the hosts instead of searching
+</span></span><span class="line"><span class="cl">‐d,‐‐delete Delete the hosts instead of searching
+</span></span><span class="line"><span class="cl">‐c &lt;col1,col2&gt; Only show the given columns <span class="o">(</span>see list below<span class="o">)</span>
+</span></span><span class="line"><span class="cl">‐C &lt;col1,col2&gt; Only show the given columns <span class="k">until</span> the next restart <span class="o">(</span>se
+</span></span><span class="line"><span class="cl">e list below<span class="o">)</span>
+</span></span><span class="line"><span class="cl">‐h,‐‐help Show this <span class="nb">help</span> information
+</span></span><span class="line"><span class="cl">‐u,‐‐up Only show hosts which are up
+</span></span><span class="line"><span class="cl">‐o &lt;file&gt; Send output to a file in csv format
+</span></span><span class="line"><span class="cl">‐O &lt;column&gt; Order rows by specified column number
+</span></span><span class="line"><span class="cl">‐R,‐‐rhosts Set RHOSTS from the results of the search
+</span></span><span class="line"><span class="cl">‐S,‐‐search Search string to filter by
+</span></span><span class="line"><span class="cl">‐i,‐‐info Change the info of a host
+</span></span><span class="line"><span class="cl">‐n,‐‐name Change the name of a host
+</span></span><span class="line"><span class="cl">‐m,‐‐comment Change the comment of a host
+</span></span><span class="line"><span class="cl">‐t,‐‐tag Add or specify a tag to a range of hosts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="六">六</h6>
+<p>主要介绍<code>post</code>下的六个模块,辅助发现内网存活主机,分别为:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">windows/gather/arp_scanner
+</span></span><span class="line"><span class="cl">windows/gather/enum_ad_computers
+</span></span><span class="line"><span class="cl">windows/gather/enum_computers
+</span></span><span class="line"><span class="cl">windows/gather/enum_domain
+</span></span><span class="line"><span class="cl">windows/gather/enum_domains
+</span></span><span class="line"><span class="cl">windows/gather/enum_ad_user_comments
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>1.基于<code>windows/gather/arp_scanner</code>发现内网存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/arp_scanner <span class="nv">RHOSTS</span><span class="o">=</span>192.168.1.110‐120 <span class="nv">THREADS</span><span class="o">=</span><span class="m">20</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.基于<code>windows/gather/enum_ad_computers</code>发现域中存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/enum_ad_computers
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.基于<code>windows/gather/enum_computers</code>发现域中存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/enum_computers
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.基于<code>windows/gather/enum_domain</code>发现域中存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/enum_domain
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.基于<code>windows/gather/enum_domains</code> 发现域中存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/enum_domains
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.基于<code>windows/gather/enum_ad_user_comments</code>发现域中存活主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">meterpreter &gt; run windows/gather/enum_ad_user_comments
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>POST</code>下相关模块如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">linux/gather/enum_network
+</span></span><span class="line"><span class="cl">linux/busybox/enum_hosts
+</span></span><span class="line"><span class="cl">windows/gather/enum_ad_users
+</span></span><span class="line"><span class="cl">windows/gather/enum_domain_tokens
+</span></span><span class="line"><span class="cl">windows/gather/enum_snmp
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%8f%91%e7%8e%b0%e5%86%85%e7%bd%91%e5%ad%98%e6%b4%bb%e4%b8%bb%e6%9c%ba%e6%96%b9%e6%b3%95-%e7%ae%80%e5%8d%95%e6%95%b4%e7%90%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/%E6%8E%A2%E6%B5%8B%E4%B8%BB%E6%9C%BA%E5%AD%98%E6%B4%BB/' class="post-tag">探测主机存活</a><a href='/tags/%E5%86%85%E7%BD%91/' class="post-tag">内网</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/tomcat%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" class="post-nav-item" rel="prev" title="Tomcat常见漏洞复现"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Tomcat常见漏洞复现</a>
+      <a href="/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" class="post-nav-item" rel="next" title="ubuntu sever-聊天服务">ubuntu sever-聊天服务<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

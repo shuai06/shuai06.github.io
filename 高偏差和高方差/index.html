@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>高偏差(high bias)和高方差(high variance) - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="本文主要参考别人的文章加入自己的话来帮助自己的理解，非原创哦 最近在学Andrew的Machine Learning课程，在学习欠拟合（unde" /><meta name="keywords" content='方差, 偏差, 机器学习' /><meta itemprop="name" content="高偏差(high bias)和高方差(high variance)">
+<meta itemprop="description" content="本文主要参考别人的文章加入自己的话来帮助自己的理解，非原创哦 最近在学Andrew的Machine Learning课程，在学习欠拟合（unde"><meta itemprop="datePublished" content="2022-07-12T09:28:52+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2255"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="方差,偏差,机器学习," /><meta property="og:title" content="高偏差(high bias)和高方差(high variance)" />
+<meta property="og:description" content="本文主要参考别人的文章加入自己的话来帮助自己的理解，非原创哦 最近在学Andrew的Machine Learning课程，在学习欠拟合（unde" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-12T09:28:52+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="高偏差(high bias)和高方差(high variance)"/>
+<meta name="twitter:description" content="本文主要参考别人的文章加入自己的话来帮助自己的理解，非原创哦 最近在学Andrew的Machine Learning课程，在学习欠拟合（unde"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE/" /><link rel="prev" href="https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week3-logistic-regression/" /><link rel="next" href="https://geoer.cn/%E5%88%9D%E5%AD%A6%E5%86%B3%E7%AD%96%E6%A0%91/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "高偏差(high bias)和高方差(high variance)",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "方差, 偏差, 机器学习","wordcount":  2255 ,
+    "url": "https:\/\/geoer.cn\/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE\/","datePublished": "2022-07-12T09:28:52+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>高偏差(high bias)和高方差(high variance)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2022-07-12&#32;09:28:52><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-12">2022-07-12</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2255 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="高偏差(high bias)和高方差(high variance)">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#几个概念区分">几个概念区分</a>
+      <ul>
+        <li><a href="#模型--训练模型">模型 &amp; 训练模型</a></li>
+        <li><a href="#参数parameter--超参数hyperparameter">参数(parameter) &amp; 超参数(hyperparameter)</a></li>
+      </ul>
+    </li>
+    <li><a href="#问题">问题</a></li>
+    <li><a href="#举例">举例</a>
+      <ul>
+        <li><a href="#打靶图">打靶图</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何解决">如何解决</a></li>
+    <li><a href="#如何判断">如何判断</a></li>
+    <li><a href="#参考文章">参考文章</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>本文主要参考别人的文章加入自己的话来帮助自己的理解，非原创哦</p>
+</blockquote>
+<p>最近在学Andrew的Machine Learning课程，在学习欠拟合（under fitting）和过拟合（over-fitting接触到了高偏差（high bias）和高方差（high variance）的概念，很轻易的记住了：</p>
+<ul>
+<li>过拟合&ndash;&gt;高方差</li>
+<li>欠拟合&ndash;&gt;高偏差
+的结论，但是对其中仍有许多不解，且Andrew举过他一个学生还是朋友的例子说高方差和高偏差需要很长时间去真正的理解，遂Google了一些文章帮助自己稍微理解这两个概念。</li>
+</ul>
+<h2 id="几个概念区分">几个概念区分</h2>
+<h3 id="模型--训练模型">模型 &amp; 训练模型</h3>
+<p>我们每次使用训练集训练出来一个&quot;模型&quot;(其实应该叫做训练模型，因为每次更换训练集，训练出的“模型”并不一样，即各个训练模型被训练出来的参数（系数）是不一样的)<br>
+我们不可能得到用于训练这个模型的所有数据，也就无法训练出使模型y=ax+b理论上100%正确的参数，所以我们只能得到不同的训练模型。</p>
+<h3 id="参数parameter--超参数hyperparameter">参数(parameter) &amp; 超参数(hyperparameter)</h3>
+<ul>
+<li>参数是被数据和算法训练出来的</li>
+<li>而超参数（比如学习速率）不是被训练出来的，而是人为手工调整的。
+调整超参数更像是一种艺术，而不是科学。</li>
+</ul>
+<h2 id="问题">问题</h2>
+<p>既然我们永远无法训练出那个理想的模型，只能训练出训练模型，那么训练模型预测的结果和理论模型（即现实）的结果肯定就存在误差。我们肯定希望这个误差越小越好，并且将这个训练模型应用在其他数据集上的误差也是越小越好。那么问题来了，如果这个误差很大，我们该如何是好？</p>
+<h2 id="举例">举例</h2>
+<blockquote>
+<p>该博主这个例子举得很好哈哈</p>
+</blockquote>
+<p>假设我们要训练一个股票市场的模型，模型的目标是预测某支股票第2天的收益率，如果收益为正则买入，反之则卖出。我们的模型天天都想发财，它希望能准确预测每一天的涨跌，所以它关注的是第二天的收益，什么一年翻一倍之类的中长线策略它根本不关心。</p>
+<ul>
+<li>A模型：阅读了大量的巴菲特，彼得林奇等等各种大师的书籍和数据，它发现买入低估值股票的收益很可观，于是每天满仓杀入估值最低的N支股票。没过几天，它亏成了狗。它去质问股神，股神曰：“你把投资想象的太简单了，除了看估值，我还看很多其他指标”。</li>
+<li>B模型：吸取A模型的教训，它罗列了各种稀奇古怪的指标，最终惊喜的发现，模型成功的预测某支股票第二天的收益。万分惊喜下，它满仓杀入。第三天，第四天，第N天过去了，模型有时预测的准确，但大多时候谬之千里，还是亏成了🐶。</li>
+</ul>
+<p>上面训练的2种模型，和我们期待的“神预测”模型有很大误差。我们要想减少预测误差，就要分析造成误差的原因。这里的误差包含：</p>
+<ul>
+<li><strong>偏差（bias）</strong>：我们要预测第二天的收益，而估值指标经常用于长线投资，虽然每次预测都是信誓旦旦，但是模型从本质上就把目标搞错了。</li>
+<li><strong>方差（variance）</strong>：过多的已知条件，导致模型无法给出确定的预测，预测结果和瞎蒙一样，给人的感觉是不靠谱。
+无法消除的误差：我们都知道，完美预测第二天的情况，是不可能的。这样的误差难以消除，我们希望它越小越好，一般就忽略掉了。</li>
+</ul>
+<p>所以，我们可以优化的<strong>误差=偏差+方差</strong></p>
+<h3 id="打靶图">打靶图</h3>
+<p>很经典的一张图（出处为第二个参考文献）：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712094612.png"
+    data-srcset="http://image.xpshuai.cn/20220712094612.png, http://image.xpshuai.cn/20220712094612.png 1.5x, http://image.xpshuai.cn/20220712094612.png 2x"
+    data-sizes="auto"
+    alt="打靶图"
+    title="打靶图"/></p>
+<p>图中每一个蓝点，都代表了一个<strong>训练模型的</strong>预测数据，即根据不同的训练集训练出一个训练模型，再用这个训练模型作出一次预测结果。如果将这个过程重复N次，相当于进行了N次射击。
+我们假设真实的函数关系是Y=f(x)，而训练模型预测的结果是p(x)，则</p>
+<ul>
+<li>偏差错误：偏差是衡量预测值和真实值的关系。即N次预测的平均值（也叫期望值），和实际真实值的差距。所以偏差bias=E(p(x)) - f(x)。即bias是指<strong>一个模型在不同训练集上的平均表现和真实值的差异，用来衡量一个模型的拟合能力</strong>。</li>
+<li>方差错误：方差用于<strong>衡量预测值之间的关系，和真实值无关</strong>。即对于给定的某一个输入，N次预测结果之间的方差。variance= E((p(x) - E(p(x)))^2)。这个公式就是数学里的方差公式，反应的是统计量的离散程度。只不过，我们需要搞清楚我们计算的方差的意义，它<strong>反映的是不同训练模型针对同一个预测的离散程度。即variance指一个模型在不同训练集上的差异，用来衡量一个模型是否容易过拟合</strong></li>
+</ul>
+<p><strong>打靶图的理解：</strong></p>
+<ul>
+<li>
+<p>高偏差，低方差：
+每次射击都很准确的击中同一个位置，故极端的情况方差为0。只不过，这个位置距离靶心相差了十万八千里。对于射击而言，每次都打到同一个点，很可能是因为它打的不是靶心。对于模型而言，往往是因为模型过于简单，才会造成“准”的假象。提高模型的复杂度，往往可以减少高偏差。</p>
+</li>
+<li>
+<p>高方差，低偏差：
+是不是偏差越低越好？是不是低偏差时，方差也会低呢？通过对偏差的定义，不难发现，偏差是一个期望值（平均值），如果一次射击偏左5环，另一次射击偏右5环，最终偏差是0。但是没一枪打中靶心，所以方差是巨大的，这种情况也是需要改进的。方差越大，预测结果的分布越离散</p>
+</li>
+</ul>
+<h2 id="如何解决">如何解决</h2>
+<p>一般来说，当一个模型在训练集上的错误率比较高时，说明模型的拟合能力不够，偏差较高。
+<strong>欠拟合（高偏差）的解决办法：</strong></p>
+<ul>
+<li>增加数据特征</li>
+<li>提高模型负责度</li>
+<li>减少正则化系数</li>
+</ul>
+<p>当模型在训练集上的错误率比较低，但验证集上错误率比较高时，说明模型过拟合，方差比较高。
+<strong>过拟合（高方差）的解决方法：</strong></p>
+<ul>
+<li>减低模型复杂度</li>
+<li>加大正则化系数</li>
+<li>引入先验知识</li>
+<li>使用集成模型，即通过多个高方差模型的平均来降低方差</li>
+</ul>
+<h2 id="如何判断">如何判断</h2>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100006.png"
+    data-srcset="http://image.xpshuai.cn/20220712100006.png, http://image.xpshuai.cn/20220712100006.png 1.5x, http://image.xpshuai.cn/20220712100006.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100006.png"
+    title="http://image.xpshuai.cn/20220712100006.png"/></p>
+<p>高偏差:
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100058.png"
+    data-srcset="http://image.xpshuai.cn/20220712100058.png, http://image.xpshuai.cn/20220712100058.png 1.5x, http://image.xpshuai.cn/20220712100058.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100058.png"
+    title="http://image.xpshuai.cn/20220712100058.png"/></p>
+<p>高方差:
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100125.png"
+    data-srcset="http://image.xpshuai.cn/20220712100125.png, http://image.xpshuai.cn/20220712100125.png 1.5x, http://image.xpshuai.cn/20220712100125.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100125.png"
+    title="http://image.xpshuai.cn/20220712100125.png"/></p>
+<p>在上述解决办法中提到了修改lamda值可以解决高偏差高方差问题，下图即是lamda值和两者之间的关系：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100546.png"
+    data-srcset="http://image.xpshuai.cn/20220712100546.png, http://image.xpshuai.cn/20220712100546.png 1.5x, http://image.xpshuai.cn/20220712100546.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100546.png"
+    title="http://image.xpshuai.cn/20220712100546.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100645.png"
+    data-srcset="http://image.xpshuai.cn/20220712100645.png, http://image.xpshuai.cn/20220712100645.png 1.5x, http://image.xpshuai.cn/20220712100645.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100645.png"
+    title="http://image.xpshuai.cn/20220712100645.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220712100832.png"
+    data-srcset="http://image.xpshuai.cn/20220712100832.png, http://image.xpshuai.cn/20220712100832.png 1.5x, http://image.xpshuai.cn/20220712100832.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220712100832.png"
+    title="http://image.xpshuai.cn/20220712100832.png"/></p>
+<h2 id="参考文章">参考文章</h2>
+<p>感谢博主的文章，受益匪浅：
+<a href="https://www.jianshu.com/p/a585d5506b1e"target="_blank" rel="external nofollow noopener noreferrer">https://www.jianshu.com/p/a585d5506b1e<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html"target="_blank" rel="external nofollow noopener noreferrer">http://scott.fortmann-roe.com/docs/BiasVariance.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E9%AB%98%E5%81%8F%E5%B7%AE%E5%92%8C%E9%AB%98%E6%96%B9%E5%B7%AE/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e9%ab%98%e5%81%8f%e5%b7%ae%e5%92%8c%e9%ab%98%e6%96%b9%e5%b7%ae.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%96%B9%E5%B7%AE/' class="post-tag">方差</a><a href='/tags/%E5%81%8F%E5%B7%AE/' class="post-tag">偏差</a><a href='/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/' class="post-tag">机器学习</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week3-logistic-regression/" class="post-nav-item" rel="prev" title="吴恩达2022新版机器学习课后题-课程1week3-Logistic Regression"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>吴恩达2022新版机器学习课后题-课程1week3-Logistic Regression</a>
+      <a href="/%E5%88%9D%E5%AD%A6%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-nav-item" rel="next" title="初学决策树">初学决策树<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-备份还原 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="备份还原 备份是免于损失的有效手段 防火防盗防自己（保持良好睡眠） 版本管理也视为一种备份(上下文不同) 备份还原基础 首先考虑问题 1. what to backup 1 数据、配" /><meta name="keywords" content='ubuntu, 备份还原, Rsync, Bacula' /><meta itemprop="name" content="ubuntu server-备份还原">
+<meta itemprop="description" content="备份还原 备份是免于损失的有效手段 防火防盗防自己（保持良好睡眠） 版本管理也视为一种备份(上下文不同) 备份还原基础 首先考虑问题 1. what to backup 1 数据、配"><meta itemprop="datePublished" content="2021-07-20T09:49:22+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3583"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="ubuntu,备份还原,Rsync,Bacula," /><meta property="og:title" content="ubuntu server-备份还原" />
+<meta property="og:description" content="备份还原 备份是免于损失的有效手段 防火防盗防自己（保持良好睡眠） 版本管理也视为一种备份(上下文不同) 备份还原基础 首先考虑问题 1. what to backup 1 数据、配" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-20T09:49:22+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-备份还原"/>
+<meta name="twitter:description" content="备份还原 备份是免于损失的有效手段 防火防盗防自己（保持良好睡眠） 版本管理也视为一种备份(上下文不同) 备份还原基础 首先考虑问题 1. what to backup 1 数据、配"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/" /><link rel="prev" href="https://geoer.cn/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/" /><link rel="next" href="https://geoer.cn/windows%E6%9B%B4%E6%8D%A2%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E6%A0%87/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-备份还原",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "ubuntu, 备份还原, Rsync, Bacula","wordcount":  3583 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F\/","datePublished": "2021-07-20T09:49:22+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-备份还原</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2021-07-20&#32;09:49:22><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-07-20">2021-07-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3583 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-备份还原">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#备份还原基础">备份还原基础</a>
+      <ul>
+        <li><a href="#首先考虑问题">首先考虑问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#备份方式">备份方式</a>
+      <ul>
+        <li><a href="#font-colorredshell脚本手动备份font"><font color=red>Shell脚本手动备份</font></a></li>
+        <li><a href="#font-colorredshell脚本自动备份font"><font color=red>Shell脚本自动备份</font></a></li>
+        <li><a href="#全量滚动备份计划">全量滚动备份计划</a></li>
+        <li><a href="#增量差异备份">增量差异备份</a>
+          <ul>
+            <li><a href="#font-colorredrsyncfont"><font color=red>Rsync</font></a></li>
+            <li><a href="#其他工具">其他工具</a></li>
+            <li><a href="#font-colorredbaculafont"><font color=red>Bacula</font></a>
+              <ul>
+                <li><a href="#简介">简介</a></li>
+                <li><a href="#安装配置">安装配置</a>
+                  <ul>
+                    <li><a href="#1安装数据库">1.安装数据库</a></li>
+                    <li><a href="#2安装-director">2.安装 Director</a></li>
+                    <li><a href="#3安装sdstorage">3.安装SD(storage)</a></li>
+                    <li><a href="#4安装fd客户端">4.安装FD(客户端)</a></li>
+                    <li><a href="#5安装console">5.安装Console</a></li>
+                  </ul>
+                </li>
+                <li><a href="#使用">使用</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p><strong>备份还原</strong></p>
+<blockquote>
+<p>备份是免于损失的有效手段
+防火防盗防自己（保持良好睡眠）
+版本管理也视为一种备份(上下文不同)</p>
+</blockquote>
+<h2 id="备份还原基础">备份还原基础</h2>
+<h3 id="首先考虑问题">首先考虑问题</h3>
+<p><strong>1. what to backup</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">数据、配置、操作系统、运行环境
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2. where to back</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">本地、远程、异地三个副本
+</span></span><span class="line"><span class="cl">磁盘、光盘、磁带、一次性写入介质
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3. how to restore it</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">备份系统自动恢复
+</span></span><span class="line"><span class="cl">人工手动恢复
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="备份方式">备份方式</h2>
+<h3 id="font-colorredshell脚本手动备份font"><font color=red>Shell脚本手动备份</font></h3>
+<blockquote>
+<p>tar打包压缩减小备份文件大小</p>
+</blockquote>
+<p>写个简单的shell脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 如脚本内容,对指定目录打包</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#备份源</span>
+</span></span><span class="line"><span class="cl"><span class="nv">backup_files</span><span class="o">=</span><span class="s2">&#34;/opt/google  /etc/Documents&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#备份目标</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dest</span><span class="o">=</span><span class="s2">&#34;/backup&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#创建归档文件(主机名-时间)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">day</span><span class="o">=</span><span class="k">$(</span>date +%Y-%m-%d-%A-%T<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">hostname</span><span class="o">=</span><span class="k">$(</span>hostname -s<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">archive_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$hostnane</span><span class="s2">-</span><span class="nv">$day</span><span class="s2">.tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#显示备份状态</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Backing up </span><span class="nv">$backup_files</span><span class="s2"> to </span><span class="nv">$dest</span><span class="s2">/</span><span class="nv">$archive_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">date
+</span></span><span class="line"><span class="cl"><span class="c1">#执行备份.</span>
+</span></span><span class="line"><span class="cl">tar czPf <span class="nv">$dest</span>/<span class="nv">$archive_file</span> <span class="nv">$backup_files</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后手动运行shell脚本(或做一个定时任务crontab)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod u+x backup.sh
+</span></span><span class="line"><span class="cl">./backup.sh    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>问题：在业务繁忙时候，影响服务器性能和网络带宽，影响正常业务运行（所有基于业务空闲时候来决定备份时间）</p>
+<p>验证备份</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -tzvf /backup/backup.tgz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还原/恢复</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 解压到指定目录</span>
+</span></span><span class="line"><span class="cl">tar -zxvf /backup/backup.tgz -C /tmp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压到原目录(会覆盖已有文件)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /
+</span></span><span class="line"><span class="cl">sudo tar -zxvf /backup/host-Monday.tgz 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="font-colorredshell脚本自动备份font"><font color=red>Shell脚本自动备份</font></h3>
+<blockquote>
+<p>cron计划任务</p>
+</blockquote>
+<p>配置文件：<code>/etc/crontab</code>
+配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo crontab -e    <span class="c1"># 这里是root权限运行（不同用户有自己的计划任务）</span>
+</span></span><span class="line"><span class="cl"><span class="m">30</span> <span class="m">23</span> <span class="m">0</span> * * <span class="m">1</span> /bin/bash /home/xps/backup.sh    <span class="c1"># 每周一的23:30执行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分(m,0-59)  时(h,0-23)  日(dom,1-31) 月(mon,1-12) 周(dow,0-7) 命令(command)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ctrl + o 保存， ctrl + x 退出</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">crontab -l    <span class="c1"># 查看当前用户已有计划任务列表</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="全量滚动备份计划">全量滚动备份计划</h3>
+<p>例如：每天做一个日备份，到一周就合并为一个周备份，到一个月就合并为一个月备份</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">两个月为周期滚动备份
+</span></span><span class="line"><span class="cl">每月1日执行月备份
+</span></span><span class="line"><span class="cl">每周六执行周备份
+</span></span><span class="line"><span class="cl">每天进行日备份
+</span></span><span class="line"><span class="cl">6个日备份 + 4个周备份 + 2个月备份
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#备份源</span>
+</span></span><span class="line"><span class="cl"><span class="nv">backup_files</span><span class="o">=</span><span class="s2">&#34; /home /var/spool/mail /etc /root /boot /opt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#备份目标</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dest</span><span class="o">=</span><span class="s2">&#34;/backup&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#归档文件名变量(星期几 / 主机名).</span>
+</span></span><span class="line"><span class="cl"><span class="nv">day</span><span class="o">=</span><span class="k">$(</span>date +%A<span class="k">)</span>
+</span></span><span class="line"><span class="cl">hos <span class="nv">tnane</span><span class="o">=</span><span class="k">$(</span>hostname -s<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#当前是每月中第几个星期</span>
+</span></span><span class="line"><span class="cl"><span class="nv">day_nun</span><span class="o">=</span>S<span class="o">(</span>date +%-d<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">((</span> <span class="nv">$day</span> .nun &lt;<span class="o">=</span> <span class="m">7</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">week_file</span><span class="o">=</span> <span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2"> -week1.tgz&#34;</span>
+</span></span><span class="line"><span class="cl">ellf <span class="o">((</span> <span class="nv">$day_num</span> &gt; <span class="m">7</span> <span class="p">&amp;</span> <span class="nv">$day_nun</span> &lt;<span class="o">=</span> <span class="m">14</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">week_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2"> -week2.tgz &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">((</span> <span class="nv">$day_nun</span> &gt;14 <span class="o">&amp;&amp;</span> <span class="nv">$day_nun</span> &lt;<span class="o">=</span> <span class="m">21</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">week_file</span><span class="o">=</span><span class="s2">&#34; </span><span class="nv">$hostname</span><span class="s2"> -week3.tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">(</span> <span class="nv">$day_num</span> &gt;21 <span class="o">&amp;&amp;</span> <span class="nv">$day_num</span> &lt; <span class="m">32</span> <span class="o">))</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">week_file</span><span class="o">=</span><span class="s2">&#34; hostname -week4. tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#单数月 / 双数月</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nonth_num</span><span class="o">=</span><span class="k">$(</span>date +%m<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">month</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$month_num</span> % 2<span class="k">)</span>    <span class="c1"># 如果余数</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$month</span> -eq θ <span class="o">]</span><span class="p">;</span> <span class="k">then</span>        <span class="c1"># 如果余数等于0</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nonth_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2"> - nonth2.tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="nv">month_file</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$hostname</span><span class="s2"> -nonth1.tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#创建归档文件(每月1日--&gt;月备份、 每周六--&gt;周备份、每天--&gt;日备份)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$day_num</span> <span class="o">==</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">archive_file</span><span class="o">=</span><span class="nv">$month_file</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[</span> <span class="nv">$day</span> !<span class="o">=</span> <span class="s2">&#34;Saturday&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">archive_file</span><span class="o">=</span><span class="s2">&#34; </span><span class="nv">$hostname</span><span class="s2"> -</span><span class="nv">$day</span><span class="s2">.tgz&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="nv">archive_file</span><span class="o">=</span><span class="nv">$week_file</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#显示备份开始信息</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Backing up Sbackup_ ftles to </span><span class="nv">$dest</span><span class="s2">/</span><span class="nv">$archive_file</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">date
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#使用tar命令备份</span>
+</span></span><span class="line"><span class="cl">tar CzPf <span class="nv">$dest</span>/<span class="nv">$archive_file</span> <span class="nv">$backup_files</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#显示备份结束信息</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Backup fintshed &#34;</span>
+</span></span><span class="line"><span class="cl">date
+</span></span><span class="line"><span class="cl"><span class="c1">#结束后查看备份文件大小</span>
+</span></span><span class="line"><span class="cl">ls -lh <span class="nv">$dest</span>/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以加入到计划任务里面执行</p>
+<p>缺陷：</p>
+<ul>
+<li>每个备份都是完整备份</li>
+<li>备份时间长,磁盘空间占用量大</li>
+</ul>
+<h3 id="增量差异备份">增量差异备份</h3>
+<h4 id="font-colorredrsyncfont"><font color=red>Rsync</font></h4>
+<ul>
+<li>Linux 下众多备份工具，只rsync是必须掌握的一个</li>
+<li>在两个目录或两个主机之间同步文件（ 从源<code>单向</code>同步到目标，但不双向同步）</li>
+<li>支持增量备份，节省时间带宽源</li>
+<li>参数众多</li>
+<li>学习时建议使用例子文件（使用不当可能破坏文件）</li>
+<li>还原时：先把最前面的完整备份还原，然后依次还原后面的增量备份</li>
+<li></li>
+</ul>
+<p><strong>文件服务器</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建演示文件</span>
+</span></span><span class="line"><span class="cl">mkdir sampledir
+</span></span><span class="line"><span class="cl">touch sampledir/file<span class="o">{</span>1..10<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>客户端</strong>同步(<code>下拉</code>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">apt install rsync
+</span></span><span class="line"><span class="cl"><span class="c1"># 同步服务端的文件</span>
+</span></span><span class="line"><span class="cl">rsync -azP -e ssh xps@1.1.1.1:~/sampledir  backup/
+</span></span><span class="line"><span class="cl"><span class="c1"># 也可以基于密钥、密码身份认证</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sampledir 后的/表示拷贝其中所有内容,没有/表示拷贝该目录</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#服务端新增、修改文件后再次运行此命令,只有变更的部分同步</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#服务器断删除文件后再次运行此命令,客户端不同步删除动作</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同步本地文件夹到服务端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 源    目标</span>
+</span></span><span class="line"><span class="cl">rsync /var/log/mysql  ~/mysql_log_backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>计划任务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 每天执行计划任务执行rsync</span>
+</span></span><span class="line"><span class="cl">crontab -e
+</span></span><span class="line"><span class="cl">@daily rsync -azPe ssh xps@1.1.1.1:~/sampledir /backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>向上同步(<code>推</code>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">rsync -azP -e ssh backup/ xps@1.1.1.1:~/sampledir
+</span></span><span class="line"><span class="cl">-a <span class="o">=</span>-rlptgoD    <span class="c1"># 归档，保留修改时间戳、符号链接、权限等元数据</span>
+</span></span><span class="line"><span class="cl">-r        <span class="c1"># 递归拷贝目录内容(不保留权限)</span>
+</span></span><span class="line"><span class="cl">-l        <span class="c1"># 拷贝符号链接</span>
+</span></span><span class="line"><span class="cl">-p        <span class="c1"># 保留权限</span>
+</span></span><span class="line"><span class="cl">-g        <span class="c1"># 保留组所有者</span>
+</span></span><span class="line"><span class="cl">-o        <span class="c1"># 保留用户所有者</span>
+</span></span><span class="line"><span class="cl">-D        <span class="c1"># 保留设备文件</span>
+</span></span><span class="line"><span class="cl">-v        <span class="c1"># 显示详细信息</span>
+</span></span><span class="line"><span class="cl">-z        <span class="c1"># 压缩</span>
+</span></span><span class="line"><span class="cl">-P        <span class="c1"># 生成进度文件，实现进程报告和断点续传</span>
+</span></span><span class="line"><span class="cl">-e        <span class="c1"># 指定远程shell类型，默认rsync明文传输数据</span>
+</span></span><span class="line"><span class="cl">--exclude pattern    <span class="c1"># 指定排除的文件名</span>
+</span></span><span class="line"><span class="cl">--exclude-from filename.txt    <span class="c1"># 排除文件名的特征文件(把几个文件名写到一个文件里面)</span>
+</span></span><span class="line"><span class="cl">--include pattern    <span class="c1"># 指定包含的文件名</span>
+</span></span><span class="line"><span class="cl">--include-from filename    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 排除文件</span>
+</span></span><span class="line"><span class="cl">rsync -azP --exclude <span class="s1">&#39;dir*&#39;</span> source/ destination/
+</span></span><span class="line"><span class="cl">rsync -azP --exclude-from <span class="s1">&#39;exclude-list.txt&#39;</span> source/ destination/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># SSH非标准端口</span>
+</span></span><span class="line"><span class="cl">rsync -azP -e <span class="s2">&#34;ssh -P port_number&#34;</span> <span class="nb">source</span> destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>rsync默认不删除目标文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">--delete	<span class="c1">#镜像源目的内容，源删文件目的也删</span>
+</span></span><span class="line"><span class="cl">--backup	<span class="c1">#删除/覆盖前备份源文件（改名防覆盖)</span>
+</span></span><span class="line"><span class="cl">--backup-dir	<span class="c1">#指定备份路径</span>
+</span></span><span class="line"><span class="cl">--remove-source-files	<span class="c1">#成功传输后删除来源文件</span>
+</span></span><span class="line"><span class="cl">--dry-run	<span class="c1">#模拟执行命令，并输出结果(并不真正修改文件)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rsync --remove-source-files -azPv srcl dest/
+</span></span><span class="line"><span class="cl">rsync --dry-run --remove-source-files -azPv src/ dest/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>增量备份：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># touch backup.sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># chmod +x backup.sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mv backup.sh usr/local/bin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vi backup.sh</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="nv">CURDATE</span><span class="o">=</span><span class="k">$(</span>date +%Y-%m-%d<span class="k">)</span>
+</span></span><span class="line"><span class="cl">rsync -avb --delete --backup-dir<span class="o">=</span>/backup/<span class="nv">$CURDATE</span> /src /dest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="其他工具">其他工具</h4>
+<p><strong>双向同步工具</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install unison
+</span></span><span class="line"><span class="cl">unison ~lsampledir ssh:l/1.1.1.1//homelyuanfh/documents
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>实时同步工具</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install lsyncd
+</span></span><span class="line"><span class="cl"><span class="c1">#lsyncd实时监视本地文目录变化</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#默认使用Rsync实现文件同步SCP / SSHFS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#参考以前章节内容</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>SCP/SSHFS</strong></p>
+<h4 id="font-colorredbaculafont"><font color=red>Bacula</font></h4>
+<h5 id="简介">简介</h5>
+<p>Bacula 是一款开源的跨平台网络备份工具，它提供了基于企业级的客户端/服务器的备份恢复解决方案。通过它，系统管理人员可以对数据进行备份、恢复，以及完整性验证等操作。同时，它还提供了许多高级存储管理功能，使系统管理人员能够很容易发现并恢复丢失的或已经损坏的文件。正因如此，Bacula 也被誉为<strong>最好的开源企业级备份工具</strong>。</p>
+<ul>
+<li><strong>基于网络</strong>的开源备份、还原、验证软件</li>
+<li>对标商业备份软件的功能</li>
+<li>客户端支持Windows(很久不更新了，主在其他系统)、Linux、Unix、MAC有多个开源工具组合而成</li>
+<li>软件架构</li>
+<li><strong>Director</strong> :主进程，控制所有备份、恢复、验证、归档操作</li>
+<li><strong>Console</strong>:管理员于Director通信的操作借口，分为三种类型
+<ul>
+<li>基于文本的命令行版本(完全的功能)</li>
+<li>基于Gnome GTK+的GUI版本(大部分功能)</li>
+<li>wxWidgets GUI版本(大部分功能)</li>
+</ul>
+</li>
+<li><strong>File Daemon</strong> : Bacula客户端程序，<strong>安装在需要备份的计算机上</strong>
+<ul>
+<li>负责在Director请求时提供文件属性和数据</li>
+<li>恢复阶段负责恢复文件属性和数据，以后台进程的形式运行</li>
+</ul>
+</li>
+<li><strong>Storage Daemon</strong> :读写备份存储介质，执行数据存储和恢复</li>
+<li><strong>Catalog</strong> :为所有备份文件维护索引和卷数据库
+<ul>
+<li>快速定位和恢复归档文件</li>
+<li>支持 MySQL、PostgreSQL、SQLite</li>
+<li>摘要信息(备份任务、客户端、被备份的文件以及他们存放在哪个卷上)</li>
+<li>不存放被备份的文件本身</li>
+<li>是bacula区别于简单备份工具的关键</li>
+</ul>
+</li>
+<li>Monitor :允许监视Dir、FD和SD(仅GTK+ GUI可用)</li>
+<li>C/S、模块化结构，可单机或分布式部署
+最新版支持一次性写入介质和Amazon s3</li>
+<li>适合大型环境</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/becula_arch.png"
+    data-srcset="http://image.xpshuai.cn/becula_arch.png, http://image.xpshuai.cn/becula_arch.png 1.5x, http://image.xpshuai.cn/becula_arch.png 2x"
+    data-sizes="auto"
+    alt="架构"
+    title="架构"/></p>
+<h5 id="安装配置">安装配置</h5>
+<h6 id="1安装数据库">1.安装数据库</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install bacula-director-pgsql
+</span></span><span class="line"><span class="cl"><span class="c1"># 各种根据自己情况选项</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据库安装在远程还是本地，创建数据库账号的密码或直接回车他自己会随机生成</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo su postgres
+</span></span><span class="line"><span class="cl">psql
+</span></span><span class="line"><span class="cl"><span class="se">\l</span>	<span class="c1"># 可以查看库</span>
+</span></span><span class="line"><span class="cl"><span class="se">\c</span> bacula	<span class="c1"># 连接上这个库</span>
+</span></span><span class="line"><span class="cl"><span class="se">\d</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2安装-director">2.安装 Director</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 和上面的数据库是可以不安装在一台机器上的</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt install bacula-director
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#-随机生成数据库密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-依赖Postfix(后期配置)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#-侦听TCP9101</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.1修改配置文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1.主配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/bacula/bacula-dir.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果要所有网卡都侦听9101，则直接注释当前DirAddress即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 否则有多高个网卡要侦听不同的端口，还需要在Director下增DirAddresses,并注释之前的DIRport</span>
+</span></span><span class="line"><span class="cl">Director <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#......</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">DirAddresses</span> <span class="o">={</span>
+</span></span><span class="line"><span class="cl">	  <span class="nv">ip</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">addr</span> <span class="o">=</span> 127.0.0.1<span class="p">;</span><span class="nv">port</span> <span class="o">=</span> 9101<span class="p">;</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">	  <span class="nv">ip</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">addr</span> <span class="o">=</span> 192.168.1.1<span class="p">;</span> <span class="nv">port</span> <span class="o">=</span> 9101<span class="p">;</span><span class="o">}</span>	
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2.重启服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctrl restart bacula-director
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3安装sdstorage">3.安装SD(storage)</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install bacula-sd  
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认监听tcp 9013端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同样也需要修改配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1.SD配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/bacula/bacula-sd.conf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#SDAddress和SDPort注释掉，并和上面一样增加</span>
+</span></span><span class="line"><span class="cl">Strage <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#......</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">SDAddress</span> <span class="o">={</span>
+</span></span><span class="line"><span class="cl">	  <span class="nv">ip</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">addr</span> <span class="o">=</span> 127.0.0.1<span class="p">;</span><span class="nv">port</span> <span class="o">=</span> 9101<span class="p">;</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">	  <span class="nv">ip</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">addr</span> <span class="o">=</span> 192.168.1.1<span class="p">;</span> <span class="nv">port</span> <span class="o">=</span> 9101<span class="p">;</span><span class="o">}</span>	
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2.重启服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctrl restart bacula-sd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4安装fd客户端">4.安装FD(客户端)</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install bacula-fd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/bacula/bacula-fd.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.FD配置</span>
+</span></span><span class="line"><span class="cl">FileDaemon <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#FDAddress = 127.0.0.1</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># 这个机器所有ip都侦听9102端口</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="c1">#仅客户端安装</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2.重启服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctrl restart bacula-fd
+</span></span><span class="line"><span class="cl"><span class="c1">#默认监听TCP 9102</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>在网络中其他计算机上安装FD Windows客户端</strong></p>
+<ul>
+<li><a href="https://sourceforge.net/projects/bacula/files/"target="_blank" rel="external nofollow noopener noreferrer">https://sourceforge.net/projects/bacula/files/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#配置FD</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 客户端配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#sudo vi /etc/bacula/bacula-fd.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Director <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> Server-dir <span class="c1"># 指定服务器的名字Name</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Password</span><span class="o">=</span> <span class="s2">&#34;FmvH&#34;</span>	<span class="c1"># </span>
+</span></span><span class="line"><span class="cl">	<span class="c1">#director:</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 服务器端配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vi /etc/bacula/bacula-dir.conf</span>
+</span></span><span class="line"><span class="cl">Client <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> Client-fd  <span class="c1"># 指定客户器的名字Name</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Address</span> <span class="o">=</span> 192.168.1.2
+</span></span><span class="line"><span class="cl">	<span class="nv">Password</span> <span class="o">=</span><span class="s2">&#34;FmvH&#34;</span>	<span class="c1"># </span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5安装console">5.安装Console</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install bacula-console
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo bconson	<span class="c1">#进入控制台</span>
+</span></span><span class="line"><span class="cl">show clients	<span class="c1">#配置文件添加成功</span>
+</span></span><span class="line"><span class="cl">status			<span class="c1">#验证连接是否成功</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="使用">使用</h5>
+<p>一些名词：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/becula_n1.png"
+    data-srcset="http://image.xpshuai.cn/becula_n1.png, http://image.xpshuai.cn/becula_n1.png 1.5x, http://image.xpshuai.cn/becula_n1.png 2x"
+    data-sizes="auto"
+    alt="1"
+    title="1"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/becula_n2.png"
+    data-srcset="http://image.xpshuai.cn/becula_n2.png, http://image.xpshuai.cn/becula_n2.png 1.5x, http://image.xpshuai.cn/becula_n2.png 2x"
+    data-sizes="auto"
+    alt="2"
+    title="2"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">level</span> <span class="o">=</span> Full	<span class="c1"># 全量备份</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">File</span> <span class="o">=</span> xxxx	<span class="c1"># 要备份的目录</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Schedule  <span class="o">{}</span>	<span class="c1"># 指定备份周期</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行磁盘备份(文件)</p>
+<p>添加Lable/指定备份客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vi /etc/bacula/bacula-dir.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Pool <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> File
+</span></span><span class="line"><span class="cl">	Label <span class="nv">Format</span> <span class="o">=</span> <span class="s2">&#34;Vol-S{Year}_</span><span class="si">${</span><span class="nv">Month</span><span class="si">}</span><span class="s2">_</span><span class="si">${</span><span class="nv">Day</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1">#备份文件名称格式，便于识别和管理</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Job <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> <span class="s2">&#34;BackupClient1&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">JobDefs</span> <span class="o">=</span> <span class="s2">&#34;DefaultJob&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Level</span> <span class="o">=</span> Full
+</span></span><span class="line"><span class="cl">	<span class="nv">Client</span> <span class="o">=</span> client-fd
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指定备份位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vi/etc/bacula/bacula-sd.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">Device <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> FileChgr1-Dev1
+</span></span><span class="line"><span class="cl">	Archive <span class="nv">Device</span> <span class="o">=</span> /backups    <span class="c1">#需要可写权限</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Device <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">Name</span> <span class="o">=</span> FileChgr1-Dev2
+</span></span><span class="line"><span class="cl">	Archive <span class="nv">Device</span> <span class="o">=</span> /backups2    <span class="c1">#需要可写权限</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行备份</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bconsole - run - BackupClient1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看备份任务状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bconsole - status - director — list <span class="nb">jobs</span>
+</span></span><span class="line"><span class="cl">message	<span class="c1">#查看成功/报错详细信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置FileSet</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">FileSet <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">File</span> <span class="o">=</span> /usr/sbin
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>报错等待连接存储</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi letc/bacula/bacula-dir.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Autochanger <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Name</span> <span class="o">=</span> File1
+</span></span><span class="line"><span class="cl"><span class="c1">#Do not use &#34;localhost&#34;&#34; here</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Address</span> <span class="o">=</span> 192.168.1.1  <span class="c1">#此处不要使用localhost</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Bacula 通知fd向sd存储数据，若sd侦听于localhost，网络不通</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e5%a4%87%e4%bb%bd%e8%bf%98%e5%8e%9f.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/' class="post-tag">备份还原</a><a href='/tags/rsync/' class="post-tag">Rsync</a><a href='/tags/bacula/' class="post-tag">Bacula</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/" class="post-nav-item" rel="prev" title="使用John the Ripper破解密码"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>使用John the Ripper破解密码</a>
+      <a href="/windows%E6%9B%B4%E6%8D%A2%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E6%A0%87/" class="post-nav-item" rel="next" title="Windows更换指定文件夹图标">Windows更换指定文件夹图标<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

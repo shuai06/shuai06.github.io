@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-存储管理 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="基本篇 存储 对磁盘的所有操作都要小心小心再小心 磁盘是计算机中最主要的存储设备 传统磁盘分区与逻辑卷管理 事前合理规划很重要 对磁盘的所有操作都要小心" /><meta name="keywords" content='Linux, ubuntu' /><meta itemprop="name" content="ubuntu server-存储管理">
+<meta itemprop="description" content="基本篇 存储 对磁盘的所有操作都要小心小心再小心 磁盘是计算机中最主要的存储设备 传统磁盘分区与逻辑卷管理 事前合理规划很重要 对磁盘的所有操作都要小心"><meta itemprop="datePublished" content="2020-02-09T10:20:20+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3499"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,ubuntu," /><meta property="og:title" content="ubuntu server-存储管理" />
+<meta property="og:description" content="基本篇 存储 对磁盘的所有操作都要小心小心再小心 磁盘是计算机中最主要的存储设备 传统磁盘分区与逻辑卷管理 事前合理规划很重要 对磁盘的所有操作都要小心" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-02-09T10:20:20+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-存储管理"/>
+<meta name="twitter:description" content="基本篇 存储 对磁盘的所有操作都要小心小心再小心 磁盘是计算机中最主要的存储设备 传统磁盘分区与逻辑卷管理 事前合理规划很重要 对磁盘的所有操作都要小心"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9/" /><link rel="next" href="https://geoer.cn/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-存储管理",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, ubuntu","wordcount":  3499 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86\/","datePublished": "2020-02-09T10:20:20+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-存储管理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-02-09&#32;10:20:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-02-09">2020-02-09</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3499 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 7 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-存储管理">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1磁盘设备名称">1.磁盘设备名称</a></li>
+                    <li><a href="#2硬盘分区">2.硬盘分区</a></li>
+                    <li><a href="#3文件系统格式化">3.文件系统格式化</a></li>
+                    <li><a href="#4-挂载">4. 挂载</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#swap文件">Swap文件</a></li>
+                    <li><a href="#swap分区">Swap分区</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>基本篇</p>
+</blockquote>
+<h1 id="存储">存储</h1>
+<blockquote>
+<p>对磁盘的所有操作都要小心小心再小心</p>
+</blockquote>
+<ul>
+<li>磁盘是计算机中最主要的存储设备</li>
+<li>传统磁盘分区与逻辑卷管理</li>
+<li>事前合理规划很重要</li>
+<li>对磁盘的所有操作都要小心小心再小心</li>
+</ul>
+<h1 id="磁盘空间管理">磁盘空间管理</h1>
+<ul>
+<li><code>df </code>  查看硬盘总体使用情况</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">df
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">第一列： 文件系统
+</span></span></span><span class="line"><span class="cl"><span class="s2">第二列： 存储空间（多少数据块）
+</span></span></span><span class="line"><span class="cl"><span class="s2">第三列： 使用量
+</span></span></span><span class="line"><span class="cl"><span class="s2">第四列： 可用量
+</span></span></span><span class="line"><span class="cl"><span class="s2">第五列：使用率
+</span></span></span><span class="line"><span class="cl"><span class="s2">第六列：挂载点
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">df -h   <span class="c1"># 人性化的方式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">df -i    <span class="c1"># 查看inodes使用量</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>du</code>   查看详细信息</li>
+</ul>
+<blockquote>
+<p>是谁拿走了我的存储空间</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">du   <span class="c1"># 查看所有</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">du /   <span class="c1"># 查看根目录/目录下的文件大小</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">结合sudo权限
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;-h   # 人类易于阅读方式&#39;</span>
+</span></span><span class="line"><span class="cl">sudo du  /  -h    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;- s   # 汇总&#39;</span>
+</span></span><span class="line"><span class="cl">sudo du  /*  -hs    <span class="c1"># 显示汇总结果</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;-c   # 除了子文件和子目录之外，外加一个总和 &#39;</span>
+</span></span><span class="line"><span class="cl">sudo du  /usr/*  -hsc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第三方工具 <code>ncdu</code>   （比较人性化的工具）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt install ncdu  <span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ncdu    <span class="c1"># 使用（可以方向键和回车进入返回从 查看）</span>
+</span></span><span class="line"><span class="cl">按住<span class="s1">&#39;t&#39;</span>  先显示目录，再显示文件
+</span></span><span class="line"><span class="cl">按住<span class="s1">&#39;g&#39;</span>  显示百分比
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;q&#39;</span>退出
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="添加硬盘">添加硬盘</h1>
+<blockquote>
+<p>扩容</p>
+</blockquote>
+<p>用vbox模拟添加硬盘：存储-&gt;SATA-&gt;添加硬盘</p>
+<h6 id="1磁盘设备名称">1.磁盘设备名称</h6>
+<p><code>dmsg</code>命令查看设备日志</p>
+<p><code>/dev/</code>目录下面可以查看设备的名称</p>
+<p><code>ls /dev/sd</code></p>
+<h6 id="2硬盘分区">2.硬盘分区</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 1. fdisk</span>
+</span></span><span class="line"><span class="cl">-m  帮助菜单（查看参数）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有硬盘设备和分区情况</span>
+</span></span><span class="line"><span class="cl">sudo fdisk -l
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分区</span>
+</span></span><span class="line"><span class="cl">sudo fdisk /dev/sdb   <span class="c1"># 进入向导</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 先创建分区表</span>
+</span></span><span class="line"><span class="cl">O   <span class="c1"># dos， MBR分区（基本分区） 传统分区格式，最大四个(主)分区，2T容量限制</span>
+</span></span><span class="line"><span class="cl">g   <span class="c1"># GPT     未来标准，128个分区，无容量限制，推荐使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 会生成一个16进制的guid</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 再创建分区</span>
+</span></span><span class="line"><span class="cl">n
+</span></span><span class="line"><span class="cl">输入数字编号（后门会递增）
+</span></span><span class="line"><span class="cl">第一个扇区在哪个位置【让扇区决定磁盘大小】
+</span></span><span class="line"><span class="cl">输入结束扇区（默认最后一个扇区）
+</span></span><span class="line"><span class="cl">【也可以直接输入100M这种方式】
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 再保存分区</span>
+</span></span><span class="line"><span class="cl">w
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看分区结果</span>
+</span></span><span class="line"><span class="cl">sudo fdisk -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3文件系统格式化">3.文件系统格式化</h6>
+<p><code>mkfs</code> 命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo mkfs.ext4 /dev/sdb1
+</span></span><span class="line"><span class="cl">sudo mkfs.xfs /dev/sdb2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Linux上常用的格式：</strong>
+ext4 （普通日常使用推荐）
+xfs （适用与超大空间比如100T, 多文件，数据库）</p>
+<h6 id="4-挂载">4. 挂载</h6>
+<blockquote>
+<p>绑定访问路径</p>
+</blockquote>
+<p><strong>一般两个挂载目录:</strong>
+<code>/mnt/</code>  一般是硬盘等  （下面创建空的子目录再挂到子目录下）
+<code>/media/</code>   一般习惯使用挂： u盘等移动存储</p>
+<p>1.<code>mount</code>命令   (临时性的，重启之后失效)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sdb代表那块硬盘， sdb1代表那个分区</span>
+</span></span><span class="line"><span class="cl">sudo mount /dev/sdb1 /mnt/storge/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -t 声明格式</span>
+</span></span><span class="line"><span class="cl">sudo mount /dev/sdb1 -t ext4 /mnt/storge/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 卸载目录下面的设备（如果busy就先退出这个目录先不要使用）</span>
+</span></span><span class="line"><span class="cl">sudo umount /storage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>自动挂载 <code>/etc/fstab</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">第一列：设备ID         UUID， 唯一的标号/ 设备名也可以，推荐id
+</span></span></span><span class="line"><span class="cl"><span class="s1">第二列：挂载点         swap无需挂载(none)
+</span></span></span><span class="line"><span class="cl"><span class="s1">第三列：文件系统      ext4, swap...
+</span></span></span><span class="line"><span class="cl"><span class="s1">第四列：options     （ 参数， error=remount-ro的意思是发生错误只读形式挂） 一般填写默认就行 defaults:rw,exec,auto,nouser.asynchronous（异步存储）           nouser表示当前用户才可以
+</span></span></span><span class="line"><span class="cl"><span class="s1">第五列：dump        （基本没用，写0不备份就行，   备份的时候才设置1）     一般写 0
+</span></span></span><span class="line"><span class="cl"><span class="s1">第六列：pass            (FS错误时fsck是否检查错误，0不检查，1优先，2后查）  一般写 2
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">实践：
+</span></span><span class="line"><span class="cl">1.
+</span></span><span class="line"><span class="cl">blkid  查看设备UUID
+</span></span><span class="line"><span class="cl">lsblk -fP  查看设备id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.编辑文件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3.
+</span></span><span class="line"><span class="cl">reboot   
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl">mount -a   <span class="c1">#将/etc/fstab的所有内容重新加载</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<blockquote>
+<p>高级篇</p>
+</blockquote>
+<h1 id="swap管理">SWAP管理</h1>
+<blockquote>
+<p>可能是你的救命稻草</p>
+</blockquote>
+<ul>
+<li>关于swap的争论
+<ul>
+<li>需要/不需要  （Raspberry Pi）</li>
+<li>大小多少才合理（2-16G）</li>
+<li>Swap分区，swap文件</li>
+</ul>
+</li>
+<li>理想状态下应该无事可做的swap
+<ul>
+<li>大量的swap空间使用意味着服务器已疲于奔命</li>
+<li>free -m      free -h     查看内存以及swap的</li>
+</ul>
+</li>
+<li>某些云主机默认没有swap</li>
+</ul>
+<p>ubuntu中，是swap文件</p>
+<h6 id="swap文件">Swap文件</h6>
+<p>/swapfile</p>
+<p>#创建文件 制定大小，位置
+<code>sudo fallocate -l 8G  /swapfile</code>
+#查看文件
+<code>sudo xxd  /swapfile</code>
+#格式成swap文件  (记下 UUID)
+<code>sudo mkswap  /swapfile</code>
+#把权限调小
+<code>sudo chmod 0600  /swapfile</code>
+#修改挂载文件
+sudo vim /etv/fstab/
+<code>/swapfile none swap sw 0 0</code>
+#关闭原来的swap
+<code>sudo swapoff -a</code>
+#开启
+<code>sudo swapon -a</code></p>
+<h6 id="swap分区">Swap分区</h6>
+<p>1.新增加一块硬盘
+（如果vox提示已经创建过了，打开目录，删除那个硬盘[不要误删主硬盘和快照]，和.pre文件； 编辑.vobx文件，把新增硬盘配置项删掉）</p>
+<p><code>ls /dev/sd*</code></p>
+<ol start="2">
+<li>分区
+<code>fdisk /dev/sdb</code></li>
+</ol>
+<p>3.新建主分区，<code>t</code>修改分区表类型为swap分区的格式 <code>82</code>，<code>w</code>保存退出  (L 列出所有支持的分区类型)
+可以看到：<code>/dev/sdb</code>已经分出了<code>/dev/sdb1</code></p>
+<ol start="4">
+<li>格式化为swap
+sudo mkswap /dev/sdb1</li>
+</ol>
+<p>5修改挂载文件
+sudo vim /etv/fstab/
+<code>UUID=xxxxxx none swap sw 0 0</code></p>
+<p>6.关闭原来的swap
+<code>sudo swapoff -a</code></p>
+<p>#7.重新开启
+<code>sudo swapon -a</code></p>
+<p>原有的swap就可以删除啦～～～</p>
+<h1 id="lvm管理">LVM管理</h1>
+<blockquote>
+<p>一项值得感谢的技术</p>
+</blockquote>
+<ul>
+<li>无须重启计算机灵活调整硬盘空间大小
+<ul>
+<li>硬盘分区太大浪费，太小无法满足业务发展需要</li>
+<li>将传统的硬盘分区逻辑的组合为资源池，按需分配</li>
+</ul>
+</li>
+<li>概念
+<ul>
+<li>Volumn Groups  （卷组）（池化）： 把物理资源的变成逻辑的</li>
+<li>Physical Volumns (物理卷)</li>
+<li>Logical Volumnes （基本分区、RAID）： 可以存储数据的逻辑的概念，VG一部分资源的分割</li>
+</ul>
+</li>
+<li>安装包
+<ul>
+<li>sudo apt install lvm2</li>
+</ul>
+</li>
+</ul>
+<p>添加硬盘， 先创建PV, 再创建VG, 再创建LV</p>
+<p><strong>1.物理卷：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建物理卷</span>
+</span></span><span class="line"><span class="cl">sudo pvcreate /dev/sdb
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看物理卷</span>
+</span></span><span class="line"><span class="cl">sudo pvdisplay
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看简略的摘要信息</span>
+</span></span><span class="line"><span class="cl">sudo pvs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.卷组：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo vgvreate vg01 /dev/sdb
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以一次性指定多个pv</span>
+</span></span><span class="line"><span class="cl">sudo vgextend vg01 /dev/sdc /dev/sdd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看概要信息</span>
+</span></span><span class="line"><span class="cl">vgscan / vgs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo vgs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.逻辑卷</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建逻辑卷， -n 名称, -L 大小， 从哪个vg里面分割的</span>
+</span></span><span class="line"><span class="cl">sudo lvcreate -n lv-database -L 1G vg01
+</span></span><span class="line"><span class="cl">    <span class="c1"># 查看简要信息</span>
+</span></span><span class="line"><span class="cl">    sudo lvdisplay
+</span></span><span class="line"><span class="cl">    sudo lvscan / lvs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 格式化，(fstab自动)挂载</span>
+</span></span><span class="line"><span class="cl">sudo mkfs.ext4 /dev/vg01/lv-database
+</span></span><span class="line"><span class="cl">    sudo mount /dev/vg01/lv-database/  /mnt/lv-01
+</span></span><span class="line"><span class="cl">    df -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 灵活拓展的特性</span>
+</span></span><span class="line"><span class="cl">sudo lvextend /dev/vg01/lv-01 -l  <span class="m">256</span>   <span class="c1"># 增加完毕后大大小 256</span>
+</span></span><span class="line"><span class="cl">sudo lvextend /dev/vg01/lv-01 -l +256  <span class="c1"># 带加号，又增加大小 256个块</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo lvextend /dev/vg01/lv-01 -L +2G    <span class="c1"># 增加2G</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># VG FREE  谁的百分比</span>
+</span></span><span class="line"><span class="cl">sudo lvextend /dev/vg01/lv-01 -l 50%VG   <span class="c1"># 拓展到vg的50%</span>
+</span></span><span class="line"><span class="cl">sudo lvextend /dev/vg01/lv-01 -l +50%VG   <span class="c1"># 再拓展vg的50%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 逻辑卷扩充了</span>
+</span></span><span class="line"><span class="cl">df -h  <span class="c1"># 是文件系统的查看。 这之后还没有告诉文件系统</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 把逻辑卷的扩充告诉文件系统，就可以用啦</span>
+</span></span><span class="line"><span class="cl">sudo resize2fs /dev/vg01/lv-01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>逻辑卷缩小</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">umount /dev/vg01/lv-01  <span class="c1"># 必须下线</span>
+</span></span><span class="line"><span class="cl">e2fsck -f /dev/vg01/lv-01  <span class="c1"># 检查文件系统</span>
+</span></span><span class="line"><span class="cl">resize2fs /dev/vg01/lv-01 1G <span class="c1"># 缩小文件系统</span>
+</span></span><span class="line"><span class="cl">lvresize /dev/vg01/lv-01 -L 1G  <span class="c1"># 缩小逻辑卷</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新挂载查看</span>
+</span></span><span class="line"><span class="cl">sudo mount /dev/vg01/lv-01 /mnt/lv-01/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>快照</strong></p>
+<ul>
+<li>故障时可回退</li>
+<li><strong>临时可回退机制，不可视为备份</strong> (备份应该是异地备份)
+<ul>
+<li>本地保存，安全性无法保证</li>
+</ul>
+</li>
+<li>系统根目录使用快照可以用于测试补丁更新
+<ul>
+<li>测试完成合并并删除快照</li>
+</ul>
+</li>
+<li>创建快照等同创建一个新的LV（默认是空的）
+<ul>
+<li>初始不占空间，但文件发生修改时原块数据被拷贝</li>
+<li>回退时将快照中原始数据覆盖当前快照已经被修改的</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 快照  -s 是快照lv，   -L大小</span>
+</span></span><span class="line"><span class="cl">sudo lvcreate -s -n s01 -L 2G vg01/lv-01
+</span></span><span class="line"><span class="cl"><span class="c1"># 快照LV可以被直接挂在，用于恢复单个文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 恢复快照（恢复后快照被删除）  --mergr 哪个快照</span>
+</span></span><span class="line"><span class="cl">sudo lvconvet --merge vg01/s01
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接是不能恢复的，我们查看一下</span>
+</span></span><span class="line"><span class="cl">sudo lvscan  <span class="c1"># 让他不是active才行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo umount /mnt/lv-01  <span class="c1"># 退出当前目录，执行此命令卸载目录</span>
+</span></span><span class="line"><span class="cl">sudo lvchange -an vg01/lv-01  <span class="c1"># -n 让他不active</span>
+</span></span><span class="line"><span class="cl">sudo lvchange -ay vg01/lv-01  <span class="c1"># -y 让他active</span>
+</span></span><span class="line"><span class="cl">sudo mount dev/vg01/lv-01  /mnt/lv-01   <span class="c1"># 重新挂载</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>移动物理卷数据</strong>
+当磁盘性能或老旧等因素需要更换硬盘，提前转移数据
+<code># 后门是目标盘，前面 -n 是指定lv数据,   -i 数值，每隔几秒显示一下运行状态  </code>
+<code>sudo promove -n lv-01 /dev/sdb  /dev/sdc -i 1</code>
+<code>sudo pvdislpay</code></p>
+<hr>
+<blockquote>
+<p>从业务的角度来思考技术，不要做书呆子技术人员</p>
+</blockquote>
+<hr>
+<h1 id="raid-高级管理">RAID 高级管理</h1>
+<blockquote>
+<p>与LVM结合将达到完美</p>
+</blockquote>
+<p><strong><code>软RAID</code>基于<code>mdadm</code>驱动实现</strong>
+软RAID并不比硬RAID差</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install mdadm
+</span></span><span class="line"><span class="cl">sudo mdadm -C -v /dev/md0 -l1 -n2 /dev/sdb /dev/sdc -z100M -x1 /dev/sdd
+</span></span><span class="line"><span class="cl">-C    创建
+</span></span><span class="line"><span class="cl">-v    详细信息
+</span></span><span class="line"><span class="cl">-l    RAID类型（0，1，5，6，10）
+</span></span><span class="line"><span class="cl">-n    RAID盘数量
+</span></span><span class="line"><span class="cl">-z    从每个硬盘占用多少空间创建RAID
+</span></span><span class="line"><span class="cl">-x    Spare盘（备用盘）数量+盘名
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 约定俗成： 逻辑设备：以0结尾，物理设备以1结尾</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用管理命令：</strong></p>
+<p><img src="http://image.xpshuai.cn/20200207110021066_291689330.png"> </img></p>
+<p>查看raid盘的状况：    <code>cat /proc/mdstat</code> （开机之后临时生成的）
+-r 删除物理硬盘（如果正常状态下是提示busy的， 可以-f设置失效, &ndash;re-add重新加入磁盘阵列）
+-A 手动出发数据同步</p>
+<ul>
+<li>
+<p>替换硬盘后安装Grub(系统启动盘)
+<code>sudo grub-install /dev/md0</code></p>
+</li>
+<li>
+<p>格式化和加载
+<code>sudo mkfs.ext4 /dev/md0</code></p>
+</li>
+</ul>
+<hr>
+<h1 id="链接">链接</h1>
+<ul>
+<li>
+<p>符号链接(软链接) 和 硬链接
+ls -li （查看inode值）
+inode: 存放文件元数据的数据对象，表现为一个数值编号</p>
+</li>
+<li>
+<p>创建<code>硬链接</code>（inode值是相同的， 给不同数据起了不同的名）
+ln fileS fileD
+ln log2013.log  ln2013</p>
+<p>目录不能创建硬链接
+不能移动硬链接到不同分区（inode改变）</p>
+</li>
+<li>
+<p>创建软<code>链接</code>
+不共用inode
+ln -s fileS fileD （可以跨设备，可以给目录&hellip; , 相对路径和绝对路径， 建议源文件是绝对路径，目标链接是相对路径）</p>
+</li>
+</ul>
+<hr>
+<h1 id="数据加密磁盘加密">数据加密/磁盘加密</h1>
+<blockquote>
+<p>数据最值钱</p>
+</blockquote>
+<p><strong>清除所有数据：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 把磁盘所有字节数据全覆盖为0</span>
+</span></span><span class="line"><span class="cl">sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/dev/sdc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>磁盘加密：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装软件包</span>
+</span></span><span class="line"><span class="cl">sudo apt install cryptsetup             
+</span></span><span class="line"><span class="cl"><span class="c1"># 加密分区（需提前分区 fdisk）  （boot/引导分区是不能加密的）</span>
+</span></span><span class="line"><span class="cl">sudo cryptsetup luksFormat /dev/sdc1
+</span></span><span class="line"><span class="cl"><span class="c1"># 打开加密分区（随意命名）</span>
+</span></span><span class="line"><span class="cl">sudo cryptsetup luksOpen /dev/sdc1 srypt1
+</span></span><span class="line"><span class="cl"><span class="c1"># 格式化加密分区</span>
+</span></span><span class="line"><span class="cl">sudo mkfs.ext4 /dev/mapper/crypt1
+</span></span><span class="line"><span class="cl"><span class="c1"># 挂载在加密分区</span>
+</span></span><span class="line"><span class="cl">sudo mount  /dev/mapper/crypt1  /mnt/crypt1
+</span></span><span class="line"><span class="cl"><span class="c1"># 更改所有者</span>
+</span></span><span class="line"><span class="cl">sudo chown xps:xps /mnt/crypt1
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭加密分区(先umount)</span>
+</span></span><span class="line"><span class="cl">sudo umount /mnt/crypt1
+</span></span><span class="line"><span class="cl">sudo cryptsetup:luksClose crypt1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>不仅对硬盘有用， 也可以对U盘进行加密
+可以用cryptsetup对u盘加密，设置一个足够强度的密码， 也可以再格式化为ext4格式，让win用户不能直接打开</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu%20server-%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9/" class="post-nav-item" rel="prev" title="ubuntu server-进程管理&amp;打包压缩"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server-进程管理&amp;打包压缩</a>
+      <a href="/%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-nav-item" rel="next" title="中缀表达式转换为后缀表达式">中缀表达式转换为后缀表达式<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

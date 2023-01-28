@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>感知机(Perceptron)学习笔记 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="简介 前言 感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。 感知机模型 感知机是什么？ 感知机接" /><meta name="keywords" content='感知机, 深度学习入门' /><meta itemprop="name" content="感知机(Perceptron)学习笔记">
+<meta itemprop="description" content="简介 前言 感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。 感知机模型 感知机是什么？ 感知机接"><meta itemprop="datePublished" content="2022-06-29T21:14:54+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3284"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="感知机,深度学习入门," /><meta property="og:title" content="感知机(Perceptron)学习笔记" />
+<meta property="og:description" content="简介 前言 感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。 感知机模型 感知机是什么？ 感知机接" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-29T21:14:54+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="感知机(Perceptron)学习笔记"/>
+<meta name="twitter:description" content="简介 前言 感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。 感知机模型 感知机是什么？ 感知机接"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://geoer.cn/markdown%E4%B8%AD%E5%86%99latex/" /><link rel="next" href="https://geoer.cn/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "感知机(Perceptron)学习笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "感知机, 深度学习入门","wordcount":  3284 ,
+    "url": "https:\/\/geoer.cn\/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0\/","datePublished": "2022-06-29T21:14:54+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>感知机(Perceptron)学习笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2022-06-29&#32;21:14:54><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3284 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 7 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="感知机(Perceptron)学习笔记">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#感知机模型">感知机模型</a></li>
+        <li><a href="#感知机原理">感知机原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#简单逻辑电路">简单逻辑电路</a>
+      <ul>
+        <li><a href="#与门and-gate">与门(AND gate)</a></li>
+        <li><a href="#与非门nand-gate">与非门(NAND gate)</a></li>
+        <li><a href="#或门">或门</a></li>
+      </ul>
+    </li>
+    <li><a href="#感知机的实现">感知机的实现</a>
+      <ul>
+        <li><a href="#简单的实现">简单的实现</a></li>
+        <li><a href="#使用权重和偏置的实现">使用权重和偏置的实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#感知机的局限">感知机的局限</a>
+      <ul>
+        <li><a href="#异或门"><strong>异或门：</strong></a></li>
+        <li><a href="#线性非线性">线性/非线性</a></li>
+      </ul>
+    </li>
+    <li><a href="#多层感知机">多层感知机</a>
+      <ul>
+        <li><a href="#已有电路的组合">已有电路的组合</a></li>
+        <li><a href="#异或门的实现">异或门的实现</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<h3 id="前言">前言</h3>
+<p>感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。</p>
+<h3 id="感知机模型">感知机模型</h3>
+<p>感知机是什么？
+感知机接收多个输入信号，输出一个信号。
+和电流向前传输一样，不过感知机的信号只有“流/不流”（1/0）两种取值。这里，0对应“不传递信号”，1对应“传递信号”。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701143919.png"
+    data-srcset="http://image.xpshuai.cn/20220701143919.png, http://image.xpshuai.cn/20220701143919.png 1.5x, http://image.xpshuai.cn/20220701143919.png 2x"
+    data-sizes="auto"
+    alt="图1 接收两个输入信号的感知机"
+    title="图1 接收两个输入信号的感知机"/>
+对感知机模型进行拆解：
+1.输入部分
+2.权重(就是w向量)
+3.偏置
+5.加权
+6.输出</p>
+<h3 id="感知机原理">感知机原理</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701144031.png"
+    data-srcset="http://image.xpshuai.cn/20220701144031.png, http://image.xpshuai.cn/20220701144031.png 1.5x, http://image.xpshuai.cn/20220701144031.png 2x"
+    data-sizes="auto"
+    alt="图1"
+    title="图1"/>
+如上图1是一个接收两个输入信号的感知机的例子。x1、x2是输入信号，
+y是输出信号，w1、w2是权重（w是weight的首字母）。图中的○称为“神
+经元”或者“节点”。输入信号被送往神经元时，会被分别乘以固定的权重$(\omega_1x_1、\omega_1x_1)$
+神经元会计算传送过来的信号的总和，只有当这个总和超过了某个界限值时，才会输出1。这也称为“神经元被激活”。
+这里将这个界限值称为阈值，用符号θ表示。</p>
+<p><strong>以上就是感知机的原理，用数学式1表示如下：</strong></p>
+<p>$$
+y =
+\begin{cases}
+0 &amp; \omega_1x_1 + \omega_2x_2 \le \theta \
+1 &amp; \omega_1x_1 + \omega_2x_2 &gt; \theta
+\end{cases}
+$$</p>
+<p>感知机的多个输入信号都有各自固有的权重，这些权重发挥着控制各个
+信号的重要性的作用。也就是说，权重越大，对应该权重的信号的重要性就越高。</p>
+<h2 id="简单逻辑电路">简单逻辑电路</h2>
+<h3 id="与门and-gate">与门(AND gate)</h3>
+<p>与门是有两个输入和一个输出的门电路，与门仅在两个输入均为1时输出1，其他时候则输出0，如下图（就跟我们学习C语言时候的与或非是一样的）
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701151855.png"
+    data-srcset="http://image.xpshuai.cn/20220701151855.png, http://image.xpshuai.cn/20220701151855.png 1.5x, http://image.xpshuai.cn/20220701151855.png 2x"
+    data-sizes="auto"
+    alt="图2 与门的真值表"
+    title="图2 与门的真值表"/></p>
+<p>下面考虑用感知机来表示这个与门
+实际上，满足图2的条件的参数的选择方法有无数多个。比如，当(w1, w2, θ) = (0.5, 0.5, 0.7) 时，可以满足图 2的条件。此外，当 (w1, w2, θ) 为(0.5, 0.5, 0.8)或者(1.0, 1.0, 1.0)时，同样也满足与门的条件。设定这样的
+参数后，仅当x1和x2同时为1时，信号的加权总和才会超过给定的阈值θ。</p>
+<h3 id="与非门nand-gate">与非门(NAND gate)</h3>
+<p>NAND是Not AND的意思，与非门就是颠倒了与门的输出。用真值表表示的话，如下图，仅当x1和x2同时为1时输出0，其他时候则输出1：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701152140.png"
+    data-srcset="http://image.xpshuai.cn/20220701152140.png, http://image.xpshuai.cn/20220701152140.png 1.5x, http://image.xpshuai.cn/20220701152140.png 2x"
+    data-sizes="auto"
+    alt="图3 与非门的真值表"
+    title="图3 与非门的真值表"/>
+要表示与非门，可以用(w1, w2, θ) = (−0.5, −0.5, −0.7)这样的组合（其他的组合也是无限存在的）。实际上，只要把实现与门的参数值的符号取反，就可以实现与非门。</p>
+<h3 id="或门">或门</h3>
+<p>或门是“只要有一个输入信号是1，输出就为1”的逻辑电路。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701152448.png"
+    data-srcset="http://image.xpshuai.cn/20220701152448.png, http://image.xpshuai.cn/20220701152448.png 1.5x, http://image.xpshuai.cn/20220701152448.png 2x"
+    data-sizes="auto"
+    alt="图4 或门的真值表"
+    title="图4 或门的真值表"/></p>
+<p>那么我们来思考一下，应该为这个或门设定什么样的参数呢？</p>
+<p>根据上述，我们可以知道：与门、与非门、或门的感知机构造是一样的。
+实际上，3个门电路只有参数的值（权重和阈值）不同。也就是说，相同构造的感知机，只需通过适当地调整参数的值，就可以像“变色龙演员”表演不同的角色一样，变身为与门、与非门、或门。</p>
+<h2 id="感知机的实现">感知机的实现</h2>
+<h3 id="简单的实现">简单的实现</h3>
+<p>我们先来简单实现上述的逻辑电路。
+我们先定义一个接收参数x1和x2的AND函数:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 与门</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">AND</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">x1</span><span class="o">*</span><span class="n">w1</span> <span class="o">+</span> <span class="n">x2</span><span class="o">*</span><span class="n">w2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="n">theta</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">tmp</span> <span class="o">&gt;</span> <span class="n">theta</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在函数内初始化$\omega_1、\omega_2、\theta$，当输入的加权总和超过阈值时返回1，否则返回0。</p>
+<p>以上我们就实现了<code>与门</code>，同理我们也可以实现非门和或门</p>
+<h3 id="使用权重和偏置的实现">使用权重和偏置的实现</h3>
+<p>刚才的与门的实现比较直接、容易理解，但是考虑到以后的事情，我们将其修改为另外一种实现形式。在此之前，首先把式1的θ换成−b，于是就可以用式2来表示感知机的行为。</p>
+<p>$$
+y =
+\begin{cases}
+0 &amp; b + \omega_1x_1 + \omega_2x_2 \le \theta \
+1 &amp; b + \omega_1x_1 + \omega_2x_2 &gt; \theta
+\end{cases}
+$$<br>
+此处，b称为偏置，w1和w2称为权重。
+感知机会计算输入信号和权重的乘积，然后加上偏置，如果这个值大于0则输出1，否则输出0</p>
+<p><strong>使用权重和偏置，可以像下面这样实现与门：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">AND</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.7</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> <span class="c1"># w*x是相同位置各个元素分别相乘，np.sum(w*x)再计算相乘后的各个元素的总和，最后再把偏置加到这个加权总和上</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这里，w1和w2是控制输入信号的重要性的参数，而偏置是调整神经元被激活的容易程度（输出信号为1的程度）的参数。
+比如，若b为 −0.1，则只要输入信号的加权总和超过0.1，神经元就会被激活。但是如果b 为−20.0，则输入信号的加权总和必须超过20.0，神经元才会被激活。像这样，偏置的值决定了神经元被激活的容易程度。另外，这里我们将w1和w2称为权重，将b称为偏置，但是根据上下文，有时也会将b、w1、w2这些参数统称为权重。</p>
+<p>实现与非门：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">NAND</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">])</span>  <span class="c1"># 仅权重和偏置与AND不同！</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="mf">0.7</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实现或门：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">OR</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>  <span class="c1"># 仅权重和偏置与AND不同！</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="感知机的局限">感知机的局限</h2>
+<h3 id="异或门"><strong>异或门：</strong></h3>
+<p>异或门也被称为逻辑异或电路。如下图所示，仅当x1或x2中的一方为1时，才会输出1（“异或”是拒绝其他的意思）。那么，要用感知机实现这个异或门的话，应该设定什么样的权重参数呢？
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701154922.png"
+    data-srcset="http://image.xpshuai.cn/20220701154922.png, http://image.xpshuai.cn/20220701154922.png 1.5x, http://image.xpshuai.cn/20220701154922.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701154922.png"
+    title="http://image.xpshuai.cn/20220701154922.png"/></p>
+<p>实际上，用前面介绍的感知机是无法实现这个异或门的。Why?
+首先，我们试着将或门的动作形象化。或门的情况下，当权重参数(b, w1, w2) = (−0.5, 1.0, 1.0)时，可满足上图的真值表条件。此时，感知机可用下面的式子表示。</p>
+<p>$$
+y =
+\begin{cases}
+0 &amp; -0.5 + x_1 + x_2 \le 0 \
+1 &amp; -0.5 + x_1 + x_2 &gt; 0
+\end{cases}
+$$<br>
+上面表示的感知机会生成由直线−0.5 + x1 + x2 = 0分割开的两个空
+间。其中一个空间输出1，另一个空间输出0，如图：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701155236.png"
+    data-srcset="http://image.xpshuai.cn/20220701155236.png, http://image.xpshuai.cn/20220701155236.png 1.5x, http://image.xpshuai.cn/20220701155236.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701155236.png"
+    title="http://image.xpshuai.cn/20220701155236.png"/></p>
+<p>或门在(x1, x2) = (0, 0)时输出0，在(x1, x2)为(0, 1)、(1, 0)、(1, 1)时输出1。上图中，○表示0，△表示1。如果想制作或门，需要用直线将图中的○和△分开。实际上，刚才的那条直线就将这4个点正确地分开了。<br>
+那么，换成异或门的话会如何呢？能否像或门那样，用一条直线作出分
+割图2-7中的○和△的空间呢？
+想要用一条直线将图2-7中的○和△分开，无论如何都做不到。事实上，用一条直线是无法将○和△分开的。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701155402.png"
+    data-srcset="http://image.xpshuai.cn/20220701155402.png, http://image.xpshuai.cn/20220701155402.png 1.5x, http://image.xpshuai.cn/20220701155402.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701155402.png"
+    title="http://image.xpshuai.cn/20220701155402.png"/></p>
+<h3 id="线性非线性">线性/非线性</h3>
+<p>上图的○和△无法用一条直线分开，但是如果将“直线”这个限制条件去掉，就可以实现了。比如，我们可以像上上个图那样，作出分开○和△的空间。
+感知机的局限性就在于它只能表示由一条直线分割的空间。上图这样弯曲的曲线无法用感知机表示。另外，由上图这样的曲线分割而成的空间称为
+<strong>非线性空间</strong>，由直线分割而成的空间称为<strong>线性空间</strong>。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701160008.png"
+    data-srcset="http://image.xpshuai.cn/20220701160008.png, http://image.xpshuai.cn/20220701160008.png 1.5x, http://image.xpshuai.cn/20220701160008.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701160008.png"
+    title="http://image.xpshuai.cn/20220701160008.png"/></p>
+<h2 id="多层感知机">多层感知机</h2>
+<p>感知机不能表示异或门让人深感遗憾，但也无需悲观。实际上，感知机的绝妙之处在于它可以“叠加层”（通过叠加层来表示异或门是本节的要点）</p>
+<h3 id="已有电路的组合">已有电路的组合</h3>
+<p>异或门的制作方法有很多，其中之一就是组合我们前面做好的与门、与非门、或门进行配置。这里，与门、与非门、或门用下图中的符号表示。
+另外，下图中与非门前端的○表示反转输出的意思
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701160343.png"
+    data-srcset="http://image.xpshuai.cn/20220701160343.png, http://image.xpshuai.cn/20220701160343.png 1.5x, http://image.xpshuai.cn/20220701160343.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701160343.png"
+    title="http://image.xpshuai.cn/20220701160343.png"/></p>
+<p>那么，思考一下，要实现异或门的话，需要如何配置与门、与非门和或门呢？
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701160526.png"
+    data-srcset="http://image.xpshuai.cn/20220701160526.png, http://image.xpshuai.cn/20220701160526.png 1.5x, http://image.xpshuai.cn/20220701160526.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701160526.png"
+    title="http://image.xpshuai.cn/20220701160526.png"/></p>
+<p>这里，x1和x2表示输入信号，y表示输出信号。x1和x2是与非门和或门的输入，而与非门和或门的输出则是与门的输入。</p>
+<p>我们来测试一下上图是否真正实现了异或门：
+这里，把s1作为与非门的输出，把s2作为或门的输出，填入真值表中。结果如下图所示，观察x1、x2、y，可以发现确实符合异或门的输出。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701160653.png"
+    data-srcset="http://image.xpshuai.cn/20220701160653.png, http://image.xpshuai.cn/20220701160653.png 1.5x, http://image.xpshuai.cn/20220701160653.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701160653.png"
+    title="http://image.xpshuai.cn/20220701160653.png"/></p>
+<h3 id="异或门的实现">异或门的实现</h3>
+<p>下面我们使用Python实现上图所示的异或门(使用之前定义的函数)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">XOR</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span> <span class="o">=</span> <span class="n">NAND</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span> <span class="o">=</span> <span class="n">OR</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">AND</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">y</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面我们试着用感知机的表示方法（明确地显示神经元）来表示这个异或门，如下图所示，异或门是一种多层结构的神经网络。这里，将最左边的一列称为第0层，中间的一列称为第1层，最右边的一列称为第2层。
+叠加了多层的感知机也称为<strong>多层感知机（multi-layered perceptron）</strong>。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701160941.png"
+    data-srcset="http://image.xpshuai.cn/20220701160941.png, http://image.xpshuai.cn/20220701160941.png 1.5x, http://image.xpshuai.cn/20220701160941.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701160941.png"
+    title="http://image.xpshuai.cn/20220701160941.png"/></p>
+<p>上图所示的2层感知机中，先在第0层和第1层的神经元之间进行信号的传送和接收，然后在第1层和第2层之间进行信号的传送和接收，具体如下所示。</p>
+<ol>
+<li>第0层的两个神经元接收输入信号，并将信号发送至第1层的神经元。</li>
+<li>第1层的神经元将信号发送至第2层的神经元，第2层的神经元输出y。</li>
+</ol>
+<p>通过这样的结构（2层结构），感知机得以实现异或门。这可以解释为“单层感知机无法表示的东西，通过增加一层就可以解决”。也就是说，通过叠加层（加深层），感知机能进行更加灵活的表示。</p>
+<blockquote>
+<p>多层感知机（在理论上）可以表示计算机</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e6%84%9f%e7%9f%a5%e6%9c%ba-Perceptron-%e5%ad%a6%e4%b9%a0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/' class="post-tag">感知机</a><a href='/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/' class="post-tag">深度学习入门</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/markdown%E4%B8%AD%E5%86%99latex/" class="post-nav-item" rel="prev" title="markdown中写Latex"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>markdown中写Latex</a>
+      <a href="/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" class="post-nav-item" rel="next" title="常用激活函数">常用激活函数<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

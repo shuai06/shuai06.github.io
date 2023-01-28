@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-引导过程 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="BIOS/UEFI 打开黑箱看看里面 操作系统是如何启动的 三个彼此独立但相互关联的过程 1.Bios/UEFI自检过程（POST） 1 2 3 4 - 加电自检 - 硬件识别与检" /><meta name="keywords" content='Linux, ubuntu, 引导过程, BIOS, UEFI, grub, 内核' /><meta itemprop="name" content="ubuntu server-引导过程">
+<meta itemprop="description" content="BIOS/UEFI 打开黑箱看看里面 操作系统是如何启动的 三个彼此独立但相互关联的过程 1.Bios/UEFI自检过程（POST） 1 2 3 4 - 加电自检 - 硬件识别与检"><meta itemprop="datePublished" content="2020-07-30T22:38:20+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="8193"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,ubuntu,引导过程,BIOS,UEFI,grub,内核," /><meta property="og:title" content="ubuntu server-引导过程" />
+<meta property="og:description" content="BIOS/UEFI 打开黑箱看看里面 操作系统是如何启动的 三个彼此独立但相互关联的过程 1.Bios/UEFI自检过程（POST） 1 2 3 4 - 加电自检 - 硬件识别与检" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-30T22:38:20+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-引导过程"/>
+<meta name="twitter:description" content="BIOS/UEFI 打开黑箱看看里面 操作系统是如何启动的 三个彼此独立但相互关联的过程 1.Bios/UEFI自检过程（POST） 1 2 3 4 - 加电自检 - 硬件识别与检"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/" /><link rel="next" href="https://geoer.cn/ubuntu-server-zabbix/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-引导过程",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, ubuntu, 引导过程, BIOS, UEFI, grub, 内核","wordcount":  8193 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B\/","datePublished": "2020-07-30T22:38:20+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-引导过程</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-07-30&#32;22:38:20><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-07-30">2020-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 8193 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 17 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-引导过程">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#biosuefi">BIOS/UEFI</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#三个彼此独立但相互关联的过程">三个彼此独立但相互关联的过程</a></li>
+                    <li><a href="#bios">BIOS</a></li>
+                    <li><a href="#uefi">UEFI</a></li>
+                    <li><a href="#安全引导secure-boot">安全引导(Secure-boot)</a></li>
+                    <li><a href="#硬盘分区表">硬盘分区表</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#boot-loader">Boot Loader</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#bios引导过程">BIOS引导过程</a></li>
+                    <li><a href="#uefi引导过程">UEFI引导过程</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#grub2">GRUB2</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#grub菜单">GRUB菜单</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#其他bootloaderlilo-grub之外的">其他BootLoader(LILO, Grub之外的)</a></li>
+            <li><a href="#系统无法启动">系统无法启动!</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#操作系统启动">操作系统启动</a></li>
+    <li><a href="#三种init">三种INIT</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#sysv">SysV</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#在不同运行级下启动程序的方法">在不同运行级下启动程序的方法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#upstart">Upstart</a></li>
+            <li><a href="#sytemd目前最主流">Sytemd(目前最主流)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#内核">内核</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#linux系统组成">Linux系统组成</a></li>
+            <li><a href="#内核控制计算机软硬件">内核控制计算机软硬件</a></li>
+            <li><a href="#操作系统的核心功能">操作系统的核心功能</a></li>
+            <li><a href="#内存管理">内存管理</a></li>
+            <li><a href="#软件程序管理">软件程序管理</a></li>
+            <li><a href="#硬件管理">硬件管理</a></li>
+            <li><a href="#文件系统管理">文件系统管理</a></li>
+            <li><a href="#内核的文件构成">内核的文件构成</a></li>
+            <li><a href="#内核模块">内核模块</a></li>
+            <li><a href="#内核源码">内核源码</a></li>
+            <li><a href="#内核补丁">内核补丁</a></li>
+            <li><a href="#内核头">内核头</a></li>
+            <li><a href="#内核文档">内核文档</a></li>
+            <li><a href="#内核版本">内核版本</a></li>
+            <li><a href="#维护内核">维护内核</a></li>
+            <li><a href="#常用模块命令">常用模块命令</a></li>
+            <li><a href="#内核排错">内核排错</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="biosuefi">BIOS/UEFI</h2>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<p>操作系统是如何启动的</p>
+<h6 id="三个彼此独立但相互关联的过程">三个彼此独立但相互关联的过程</h6>
+<p>1.Bios/UEFI自检过程（POST）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 加电自检
+</span></span><span class="line"><span class="cl">- 硬件识别与检测
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># UEFI比较新，原理和效果不一样</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.Boot Load加载执行过程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">引导加载程序允许您选择想要引导的操作系统
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.操作系统启动过程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">启动各种服务及操作系统本身
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="bios">BIOS</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<p>主板芯片（计算机运行的第一个程序）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 执行基本的检查或开机自测<span class="o">(</span>POST<span class="o">)</span>
+</span></span><span class="line"><span class="cl">- 识别连接在计算机上的所有硬件、可用性、底层参数
+</span></span><span class="line"><span class="cl">        例如内存、硬盘、键盘和显卡等
+</span></span><span class="line"><span class="cl">- 不同的BIOS可以设置检查参数
+</span></span><span class="line"><span class="cl">- 轮训硬盘控制器，启动其板载芯片，配置RAID等
+</span></span><span class="line"><span class="cl">- 引导顺序
+</span></span><span class="line"><span class="cl">- 不当的配置可导致计算机无法使用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="uefi">UEFI</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<p>较新的主板支持UEFI (2015年以后)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 视觉上与BIOS相似，但原理极不相同
+</span></span><span class="line"><span class="cl">- 运行速度略快于BIOS
+</span></span><span class="line"><span class="cl">- 创建UEFI是为了克服BIOS的故有缺陷
+</span></span><span class="line"><span class="cl">    - BIOS运行基于16位处理器，UEFI基于现代处理器
+</span></span><span class="line"><span class="cl">    - 内存使用量方面，BIOS有 限，UEFI按需要量使用
+</span></span><span class="line"><span class="cl">    - BIOS只能读取MBR引导操作系统<span class="p">;</span> UEFI可读取系统安装时划分的独立分区
+</span></span><span class="line"><span class="cl">    - BIOS支持最大2T的硬盘，UEFI使用GPT分区表，最大支持8-9Z硬盘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="安全引导secure-boot">安全引导(Secure-boot)</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 恶意软件可通过Boot Loader加载到系统中
+</span></span><span class="line"><span class="cl">- UEFI提供了安全引导 Secure-boot
+</span></span><span class="line"><span class="cl">- 加载前通过公钥/私钥验证签名的引<span class="p">|</span>导加载程序和硬件
+</span></span><span class="line"><span class="cl">- 64位操作系统支持Secure-boot,某些硬件无法更改操作系统类型（如某些电脑厂商不让电脑装其他系统，他给锁死了，要问好Secure-boot能不能关或在开启Secure-boot时候能不能按其他系统。其实建议Secure-boot开启）
+</span></span><span class="line"><span class="cl">- 目前绝大多数硬件同时支持BISO/UEFI，可自行选择启动
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="硬盘分区表">硬盘分区表</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 分区表通常位于硬盘起始位置
+</span></span><span class="line"><span class="cl">- 记录硬盘的划分情况
+</span></span><span class="line"><span class="cl">    - 两种类型：MBR / GPT
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/%E5%86%85%E6%A0%B81.png" />
+<h2 id="boot-loader">Boot Loader</h2>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<ul>
+<li>BIOS/UEFI不关系统安装的操作系统</li>
+<li>POST自检结束后，BIOS/UEFI读取硬盘Boot Loader</li>
+<li>读取并执行Boot L oder，由其引|导操作系统</li>
+<li>Linux世界里两大<code>Boot Loader程序</code>
+<ul>
+<li>LILO:基本已被废弃</li>
+<li>GRUB:目前绝大多数发行版采用</li>
+</ul>
+</li>
+</ul>
+<h6 id="bios引导过程">BIOS引导过程</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<p>BIOS -&gt; Boot Loader (<code>GRUB2</code>)
+第一阶段：boot.img读取并运行<code>MBR</code>硬盘起始的446字节<br>
+第二阶段：boot.img 查找并运行core.img (通常位于MBR Gap)<br>
+core.img的任务是访问<code>/boot/grub</code>，加载该目录下的所有模块<br>
+加载启动菜单，自动或手动选择进一步引导的系统内核</p>
+<h6 id="uefi引导过程">UEFI引导过程</h6>
+<blockquote>
+<p>打开黑箱看看里面</p>
+</blockquote>
+<p>第一阶段</p>
+<ul>
+<li>UEFI读取<code>GPT</code>分区表，找到<code>EFI分区</code>(格式Fat32 / 大小默认537M / boot esp )</li>
+<li>从中读取、执行boot loader代码，加载模块</li>
+<li>命令<code>parted</code> 一<code>print</code> (读的是文件：/boot/efi/EFl/ubuntu/ grubx64.efi)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo parted    
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 分区的信息</span>
+</span></span><span class="line"><span class="cl">print
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># disk 工具也可来查看分区</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二阶段</p>
+<ul>
+<li>查找<code>/boot/grub/x86_ 64- -efi/core.efi</code> 执行</li>
+<li>生成GRUB2菜单， 选择不同内核引导系统(内核二进制文件:<code>vmlinuz-&lt;release- number&gt;</code> )</li>
+<li>加载硬件驱动文件initrd.img到内存中，然后控制权交给内核，继续引导</li>
+<li>系统加载systemd / upstart / init, 启动各服务</li>
+</ul>
+<h4 id="grub2">GRUB2</h4>
+<p>GRUB是一个强大的多引导加载程序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- Windows --下的引导程序--&gt; ntldr    <span class="c1"># 不兼容Linux</span>
+</span></span><span class="line"><span class="cl">- MacOS ---&gt; Boot Camp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>两种启动方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-直接查找和加载所需的内核
+</span></span><span class="line"><span class="cl">-加载另一个引导加载程序
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>操作系统引导的四个核心组件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">内核文件、驱动器名称、内核文件所在分区号、初始化RAM盘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="grub菜单">GRUB菜单</h6>
+<p><strong>GRUB菜单文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/boot/grub/grub.cfg <span class="o">(</span>自动生成，不可修改<span class="o">)</span>
+</span></span><span class="line"><span class="cl">主要来源文件/etc/grub.d/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">菜单定义: menuentry / submenu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>显示菜单</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- Vi /etc/default/grub 
+</span></span><span class="line"><span class="cl">    <span class="nv">GRUB_TIMEOUT_STYLE</span><span class="o">=</span>menu    <span class="c1"># 让他显示菜单</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">GRUB_TIMEOUT</span><span class="o">=</span><span class="m">100</span>    <span class="c1"># 超时时间（100s如果不做选择，就启动默认的）</span>
+</span></span><span class="line"><span class="cl"> sudo update-grub
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>单用户模式</strong>
+类似于Windows启动时F8灾难恢复模式
+BIOS: Shift
+UEFI: Esc</p>
+<p>GRUB菜单
+-“<code>e&quot;</code>
+-在引导项最后增加<code>“single&quot;</code>
+-<code> Ctrl+ X</code>    进入</p>
+<p>手动生成GRUB菜单文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo grub-mkconfig --output mygrub.cfg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>安全风险</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">恶意用户可能修改boot loader, 造成安全问题
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置GRUB密码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/grub.d/40_custom    <span class="c1"># custom的文件在更新系统后不会被覆盖</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">set</span> <span class="nv">superusers</span><span class="o">=</span>xps
+</span></span><span class="line"><span class="cl">    password yuanfh pass123
+</span></span><span class="line"><span class="cl">sudo update--grub
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上明文存储GRUB密码存在风险隐患</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用工具 grub-mkpasswd-pbkdf2</span>
+</span></span><span class="line"><span class="cl">grub-mkpasswd-pbkdf2    <span class="c1"># 输入密码，会生成一段密文</span>
+</span></span><span class="line"><span class="cl">sudo vim /etc/grub.d/40_custom
+</span></span><span class="line"><span class="cl">    password_pbkdf2 xps grub.pbkdf2.sha512 ......    <span class="c1"># 上面的密文放到配置文件中</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">sudo update--grub
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此方法不适合远程托管到IDC机房的机器（一重启在grup时就要输入密码，此时SSH还未连接）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定启动项用户</span>
+</span></span><span class="line"><span class="cl">menuentry --&gt; --users xps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="其他bootloaderlilo-grub之外的">其他BootLoader(LILO, Grub之外的)</h4>
+<p><strong>1.SYSL INUX</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">从FAT分区引导系统的BootLoader <span class="o">(</span>U盘启动时<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.EXTL INUX</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 小型的Linux</span>
+</span></span><span class="line"><span class="cl">从ext2、ext3、 ext4、 btrfs引导系统的小型BootLoader
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.ISOL .INUX</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 光盘启动</span>
+</span></span><span class="line"><span class="cl">从LiveCD、LiveDVD引导系统的BootLoader
+</span></span><span class="line"><span class="cl"><span class="c1"># isolinux.bin 映像文件; isolinux.cfg 配置文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4.PXELINUX</strong></p>
+<ul>
+<li>(无盘站&ndash;&gt;无硬盘)<code>从网络服务器引导系统</code>的BootLoader</li>
+<li>PXE（Pre-boot eXecution Environment）</li>
+<li>使用DHCP为工作站分配IP</li>
+<li>使用BOOTP加载BootLoader映像</li>
+<li>TFTP将引导映像传输至工作站(基于UDP协议)</li>
+<li><code>/tftpboot/ pxelinux.0</code> : PXE BootLoader</li>
+<li><code>/tftpboot/ pxelinux.cfg</code> :配置文件</li>
+<li>目前新版支持NFS、HTTP、FTP服务器</li>
+</ul>
+<h4 id="系统无法启动">系统无法启动!</h4>
+<p><strong>两大问题原因</strong></p>
+<ul>
+<li>内核问题：手动安装内核时缺少模块、库文件(发行版错误)</li>
+<li>驱动器故障：无法读取根驱动器</li>
+</ul>
+<p><strong>处理办法:</strong></p>
+<ul>
+<li>使用先前无故障版本内核引导系统</li>
+<li>单用户模式(指定内核参数)</li>
+<li>对于驱动器故障，可以使用救援盘(CD/DVD、USB) 检修硬盘：<code>fsck /dev/sda1</code></li>
+</ul>
+<p><strong>显示GRUB菜单</strong></p>
+<ul>
+<li>可以开机<code>一直按住ESC键、或SHIFT键</code>（在故障发生时，且没修改过grup菜单显示时）</li>
+</ul>
+<h2 id="操作系统启动">操作系统启动</h2>
+<blockquote>
+<p>服务/Service (windows) ==后台/daemon (Linux)</p>
+</blockquote>
+<p>INIT：内核引导后运行<code>第一个程序INIT</code>,初始化操作系统并启动服务(直到关机)
+- 内核加载后的初始化进程，用于启动其他程序
+- 所有服务启动由init 程序处理(<code>PID=1</code>) ，所有系统服务进程都是其子进程
+- <code>pstree -p 1</code><br>
+- <code>/usr/sbin/init -&gt; /lib/ systemd/systemd</code>  现在的<code>init</code>程序早已不是以前那个init，只是沿用，实则是个符号链接
+- 早期版本配置文件：<code>/etc/inittab</code> (<code>ubuntu无此文件！</code>)</p>
+<img src="http://image.xpshuai.cn/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B2.png"/>
+<img src="http://image.xpshuai.cn/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B3.png"/>
+<h2 id="三种init">三种INIT</h2>
+<blockquote>
+<p>接上面</p>
+</blockquote>
+<p><strong>1.SysV / SysV-init</strong>
+源自UNIX System V (目前老版本Linux还在使用)</p>
+<p><strong>2.Upstart</strong>
+兼容SysV，Ubuntu意图用于替换SysV，其他发行版也有使用
+几乎没有完整实现的Upstart（Ubuntu自己都不用Upstart了）</p>
+<p><strong>3.Systemd</strong>
+目前主流发行版使用<code>systemd-sysv</code>包兼容SysV格式的initd脚本
+始于2010年，是目前最新的系统初始化后台程序;
+速度更快，效率更高</p>
+<h4 id="sysv">SysV</h4>
+<ul>
+<li>分成不同运行级别的一组Shell脚本(哪些程序，什么时候运行)</li>
+<li>每个程序有一个独立的脚本控制其启动或停止</li>
+<li>系统启动时进入一个运行级(一组随系统启动的程序)</li>
+<li>内核启动首先读取运行级别配置文件，决定进入哪个运行级</li>
+<li>运行级别：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="m">0</span>  关机
+</span></span><span class="line"><span class="cl"><span class="m">1</span>  单用户模式<span class="o">(</span>系统维护<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="m">2</span>  Debian多用户图形模式、
+</span></span><span class="line"><span class="cl"><span class="m">3</span>  多用户文本模式
+</span></span><span class="line"><span class="cl"><span class="m">4</span>  未定义
+</span></span><span class="line"><span class="cl"><span class="m">5</span>  RedHat多用户图形模式
+</span></span><span class="line"><span class="cl"><span class="m">6</span>  重启系统
+</span></span><span class="line"><span class="cl"><span class="c1"># 不同发行版可能略有不同</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="在不同运行级下启动程序的方法">在不同运行级下启动程序的方法</h6>
+<p><strong>方法1：<code>/etc/ inittab</code>：定义不同运行级下启动的程序，每行定义一个应用程序</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">id:runlevels:action:process
+</span></span><span class="line"><span class="cl"><span class="c1">#- ID: 包含1-4个字符，唯一标识一个程序</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#- runlevel: 运行级列表(在哪个运行级中运行该程序，例如: 345)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#- action:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#- id:3:initdefault: 系统启动后默认进入的运行级</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方法2：启动脚本</strong>
+<code>/etc/init.d/</code>下的脚本
+<code>/etc/rc1.d</code>为例是不同级别1下要运行的程序(符号链接)，<code>K</code>开头表示kill掉,<code>S</code>是启动，后面数字的值代表优先级，最后面代表程序的名称</p>
+<p>除了运行级，SysV也使用启动脚本控制程序启动、停止
+启动脚本存放于<code>/etc/init.d/</code>中，通过<code>/etc/rcX.d/</code>目录调用(X 运行级)
+脚本文件名<code>S: Start</code>; <code>K: Kill/Stop</code>，<code> 数字表示优先级</code>(依赖顺序)
+通过具体脚本启动停止程序稍嫌麻烦，系统包含工具指定脚本的运行级</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 给我们提供了管理工具</span>
+</span></span><span class="line"><span class="cl">chkconfig / update-rc.d  <span class="c1">#用于查看和修改程序的运行级(RedHat / Debian)</span>
+</span></span><span class="line"><span class="cl">chkconfig --list &lt;program_name&gt;    <span class="c1">#查看</span>
+</span></span><span class="line"><span class="cl">chkconfig -- levels <span class="m">12345</span> &lt;program_name&gt; on    <span class="c1">#设置</span>
+</span></span><span class="line"><span class="cl">update-rc.d program defaults / update rc.d &lt;program_name&gt; remove
+</span></span><span class="line"><span class="cl">update- -rc.d -f &lt;program_name&gt; start <span class="m">40</span> <span class="m">2</span> <span class="m">34</span> 5. stop <span class="m">80</span> <span class="m">0</span> <span class="m">1</span> 6. <span class="c1">#具体运行级别和顺序(在那几个级别启动这个程序，在那几个级别stop这个程序)  40、80指在具体运行级中程序的启动顺序(0-99)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>action字段</strong>(在Ubuntu中已经找不到了)</p>
+<ul>
+<li>boot  进程在系统扃动时启动</li>
+<li>bootwait  进程在系统启动时启动，系统会等待它启动完成</li>
+<li>initdefault  系统默认进入的运行级别</li>
+<li>kbrequest  进程在按下特殊的组合键后启动</li>
+<li>once  当进入运行级别时，进程启动一次，后面down了也就不管了</li>
+<li>powerfail  系统关闭时才运行</li>
+<li>powerwait  系统关闭时才运行，系统将等待其运行完成</li>
+<li>respawn  进入运行级时启动，并在终止时重新启动（病毒可以这样，你杀掉之后过一会又会起来）</li>
+<li>sysinit  在boot和bootwait项之前启动</li>
+<li>wait  进程启动一次，系统等待其完成</li>
+</ul>
+<p><strong>查看系统运行级</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">runlevel    <span class="c1"># 显示之前和现在的运行级</span>
+</span></span><span class="line"><span class="cl">N  <span class="m">5</span>    <span class="c1"># 上面命令的执行结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># N    表示系统【之前】处于原始boot运行级</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 5    表示【当前】运行级</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>更改运行级</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">init <span class="m">6</span>    <span class="c1"># 重启系统(teljinit)</span>
+</span></span><span class="line"><span class="cl">init <span class="m">0</span>    <span class="c1"># 关机</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># init的问题在于命令立刻生效。这对个人电脑没有问题，但对多用户环境有影响（可能造成其他用户也...）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 多用户环境，建议使用shutdown、halt、 poweroff、 reboot (时间、通知)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 接受别人给发的通知</span>
+</span></span><span class="line"><span class="cl">mesg y    <span class="c1"># 开启</span>
+</span></span><span class="line"><span class="cl">mesg    <span class="c1"># 查看</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">who -T    <span class="c1"># 第二列终端前面如果有+号，表示他允许别人给他发消息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">write xps tty1     <span class="c1"># 给指定用户在某个指定的终端发送消息</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#运行后直接写消息就行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wall xxxxxxx   <span class="c1"># 给所有登录用户发消息（广播）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="upstart">Upstart</h4>
+<ul>
+<li>操作系统的复杂度不断上升，造成SysV脚本越来越复杂</li>
+<li>ubuntu官方开发Upstart用于替换SysV
+<ul>
+<li>处理可热插拔设备在Linux系统中造成的动态环境</li>
+<li>使用公钥<code>/etc/init/</code>文件夹替代/etc/inittab 和/etc/init.d 中的启动脚本</li>
+<li>每个程序和服务在init文件夹中都有一个<code>&lt;program_name&gt;.conf</code>配置文件</li>
+</ul>
+</li>
+</ul>
+<p>启动和停止服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo start/stop bluetooth        <span class="c1"># ubuntu中没有</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Linux Standard Base (LSB)</strong></p>
+<ul>
+<li>是一些Linux发行版协商共同支持的规范</li>
+<li>目的是在不同Linux发行版之间创建一 致的使用体验</li>
+<li>LSB定义了标准的init命令:·<code>start、 stop、 restart</code></li>
+<li>所有遵循L SB的Linux发行版都应该支持以上命令</li>
+<li>但是Debian等发行方退出了LSB组织，目前ubuntu中不包含</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsb_release -a    <span class="c1"># </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Linux世界可能会日趋分裂，统一用户体验的缺失势必提高用户的学习成本</p>
+<h4 id="sytemd目前最主流">Sytemd(目前最主流)</h4>
+<ul>
+<li>
+<p>由RedHat开发，并迅速流行于Linux世界</p>
+<ul>
+<li>Systemd 在系统初始化的方式上引入了一个主要的范式转换，并引起了一些争议</li>
+<li>它放弃使用多 个小型初始化脚本，转而<code>使用单一程序</code>，配合每个服务独立的配置文件
+<ul>
+<li>这违背了早期的Linux哲学(小而专著是性能、稳定、安全性的基础)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>放弃了初始化脚本和运行级，Systemd创造了<code>target / unit</code>的概念</p>
+<ul>
+<li><code>unit</code>用来定义service、action</li>
+<li>由名称、类型、配置文件组成</li>
+<li>常见unit类型</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">automount、 device、 mount、 path、 service、 snapshot、 socket、 target 等等
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>unit的命名方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">name.type    <span class="c1"># 如sshd.service</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当前系统已加载的unit</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl list- -units     <span class="c1"># 查看</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Systemd 使用service类型的unit 管理后台服务</p>
+<p>target 类型组合多个unit实现同时启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">例如network.target组合了所有用于启动网卡的unit
+</span></span><span class="line"><span class="cl">系统初始化过程中，target 类似于SysV中运行级别的概念
+</span></span><span class="line"><span class="cl">一个target对应- -组service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配置unit</strong>
+每个unit需要一个配置文件来定义需要启动、如何启动什么程序
+配置文件路径<code>/lib/systemd/system/</code>，不同版本，路径不尽相同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /lib/systemd/system/ssh.service
+</span></span><span class="line"><span class="cl">    ExecStart    <span class="c1">#指定运行程序</span>
+</span></span><span class="line"><span class="cl">    After    <span class="c1">#依赖的服务(先于ssh服务运行的程序)</span>
+</span></span><span class="line"><span class="cl">    WantedBy    <span class="c1">#指定target (运行级)</span>
+</span></span><span class="line"><span class="cl">    Restart    <span class="c1">#何时重启</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>tartget配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">定义需要启动的unit<span class="o">(</span>不定义具体程序<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以graphical为例</span>
+</span></span><span class="line"><span class="cl">cat /lib/systemd/system/graphical.target
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认target</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 系统引导后默认启动的target(default.target)</span>
+</span></span><span class="line"><span class="cl">/lib/systemd/system/default.target -&gt; graphical.target    <span class="c1"># 只需对目标做个软链接</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>systemctl程序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 常用参数</span>
+</span></span><span class="line"><span class="cl">list-unites / start / stop / restart / reload /status /
+</span></span><span class="line"><span class="cl"><span class="nb">enable</span> / disable    <span class="c1">#计算机每次引导时启动/禁用</span>
+</span></span><span class="line"><span class="cl">isolate             <span class="c1">#启动指定单元(停止其他所有单元)</span>
+</span></span><span class="line"><span class="cl">default    <span class="c1">#修改默认target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>兼容SysV</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 对应的运行级别</span>
+</span></span><span class="line"><span class="cl">/lib/ systemd/system/runlevel0.target    <span class="c1"># poweroff.target</span>
+</span></span><span class="line"><span class="cl">/lib/ systemd/ system/ runlevel1.target    <span class="c1"># rescue.target</span>
+</span></span><span class="line"><span class="cl">/lib/ systemd/ system/ runlevel5.target    <span class="c1"># graphical.target</span>
+</span></span><span class="line"><span class="cl">/lib/ systemd/ system/ runlevel6.target    <span class="c1"># reboot.target</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 比如，进入到运行级别1</span>
+</span></span><span class="line"><span class="cl">systemctl isolate runlevel1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="内核">内核</h2>
+<h4 id="linux系统组成">Linux系统组成</h4>
+<ul>
+<li>Linux内核</li>
+<li>GNU系统工具</li>
+<li>图形化桌面环境</li>
+<li>应用软件</li>
+</ul>
+<h4 id="内核控制计算机软硬件">内核控制计算机软硬件</h4>
+<ul>
+<li>由L inus Torvalds(当年是赫尔辛基大学的学生)创造，</li>
+<li>直到目前为止的负责人(Linux Foundation)</li>
+</ul>
+<h4 id="操作系统的核心功能">操作系统的核心功能</h4>
+<ul>
+<li>
+<p>管理系统的内存</p>
+</li>
+<li>
+<p>管理软件程序</p>
+</li>
+<li>
+<p>管理硬件</p>
+</li>
+<li>
+<p>管理文件系统</p>
+</li>
+<li>
+<p>如何安装内核(其不同的组成部分)？</p>
+</li>
+<li>
+<p>如何创建新内核(支持新硬件和软件特性)？</p>
+</li>
+<li>
+<p>如何管理内核及内核模块？</p>
+</li>
+</ul>
+<h4 id="内存管理">内存管理</h4>
+<ul>
+<li>在系统的内存容量限制下，控制程序如何运行</li>
+<li>除管理物理内存，操作系统还负责创建和管理<code>虚拟内存</code>
+<ul>
+<li>虚拟内存并非真实存在，它<code>利用硬盘空间</code>创建并当作真实内存使用(<code>SWAP</code>)</li>
+<li>内核将一段时间不活跃的内容页转储到SWAP，并在需要时重新读入物理内存</li>
+<li><code>Swapping out机制</code>使系统认为自己拥有更多可用的内存空间(降低性能)</li>
+<li>内存空间被分组到称为内存页的块中</li>
+<li>内核定位物理内存或交换空间中的每个内存页</li>
+<li>内核维护内存页表，登记哪些页位于物理内存/SWAP</li>
+</ul>
+</li>
+</ul>
+<img src="http://image.xpshuai.cn/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png"/>
+<p><strong>查看虚拟内存</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat / proc/ meminfo    <span class="c1"># 运行实时的数据</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">MemTotal:    <span class="m">2048000</span> kB    <span class="c1"># 物理内存</span>
+</span></span><span class="line"><span class="cl">MemFree:    <span class="m">438123</span> kB      <span class="c1"># 空闲</span>
+</span></span><span class="line"><span class="cl">MemAvilable    <span class="m">3580848</span> KB    <span class="c1"># 实际可用的空间</span>
+</span></span><span class="line"><span class="cl">SwapTotal:     <span class="m">2048000</span> kB    <span class="c1">#</span>
+</span></span><span class="line"><span class="cl">SwapFree:    <span class="m">2048000</span> kB
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Linux系统每个进程的内存彼此独立</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">不同进程无法互访彼此内存空间，内核负责维护这种约束
+</span></span><span class="line"><span class="cl">没有其他进程可以访问内核使用的内存空间
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>共享内存页</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">内核可创建共享的内存区域，供多进程共享数据，内核负责验证和准入进程
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看当前系统共享内存页</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ipcs -m    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果字段：</span>
+</span></span><span class="line"><span class="cl">owner    <span class="c1">#创建此共享内存段的帐号</span>
+</span></span><span class="line"><span class="cl">perms    <span class="c1">#共享权限</span>
+</span></span><span class="line"><span class="cl">key    <span class="c1">#允许其他用户访问此内存段</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="软件程序管理">软件程序管理</h4>
+<p>运行中的程序称为进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">内核控制所有进程运行<span class="o">(</span>前台运行、后台运行<span class="o">)</span>
+</span></span><span class="line"><span class="cl">初始化进程<span class="o">(</span>init<span class="o">)</span> 负责启动所有其他进程
+</span></span><span class="line"><span class="cl">内核每启动一个进程，都在内存中为其分配独享的一段内存区域存放数据、代码
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看当前进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps
+</span></span><span class="line"><span class="cl">ps -ax    <span class="c1"># 建议加参数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 显示的字段含义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PID：进程ID</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># STAT：进程状态(Sleep、 Sleep and Wait、Run)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [process] swapping out    带放括号的都是放到虚拟内存中的</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="硬件管理">硬件管理</h4>
+<ul>
+<li>与系统通信的所有硬件都需要将驱动植入内核</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">内核编译同时包含硬件驱动<span class="o">(</span>早期唯一方法<span class="o">)</span>
+</span></span><span class="line"><span class="cl">驱动程序以内核模块型式加载
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>内核模块是一个自包含的驱动程序库，可动态与内核链接/取消链接</li>
+<li>Linux系统的三种硬件设备文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1. 字符设备文件: 一次只能处理一个字符数据的设备<span class="o">(</span>调制解调器、终端<span class="o">)</span>   c
+</span></span><span class="line"><span class="cl">2. 块设备文件: 一次能处理一大块数据的设备<span class="o">(</span>硬盘<span class="o">)</span>      b
+</span></span><span class="line"><span class="cl">3. 网络设备文件:使用包来发送和接收数据的设备<span class="o">(</span>网卡<span class="o">)</span>     
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Linux为系统上的每个硬件设备创建称为节点的特殊文件</strong></p>
+<ul>
+<li>内核通过<code>唯一的数字对</code>标识每个节点(<code>主</code>、<code>次</code>)</li>
+<li>同类型设备主节点号相同，同一主节点号下，次节点号唯一</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /dev <span class="o">&amp;&amp;</span> ls -al sd* ttyS*
+</span></span><span class="line"><span class="cl"><span class="c1"># 结果显示</span>
+</span></span><span class="line"><span class="cl">brw-rw---- <span class="m">1</span> root disk 8, <span class="m">0</span> 12月5 15:14 sda    <span class="c1"># 8，0 主设备标识/次设备标识</span>
+</span></span><span class="line"><span class="cl">brw-rw---- <span class="m">1</span> root disk 8, <span class="m">1</span> 12月5 15:14 sda1
+</span></span><span class="line"><span class="cl">brw-rw---- <span class="m">1</span> root disk 8, <span class="m">16</span> 12月5 15:14 sdb
+</span></span><span class="line"><span class="cl">brw-rw---- <span class="m">1</span> root disk 8, <span class="m">17</span> 12月5 15:14 sdb1
+</span></span><span class="line"><span class="cl">crw- -rW---- <span class="m">1</span> root uucp 4, <span class="m">64</span> 12月5 15:14 ttyS0
+</span></span><span class="line"><span class="cl">crw-rw---- <span class="m">1</span> root uucp 4, <span class="m">65</span> 12月5 15:14 ttyS1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="文件系统管理">文件系统管理</h4>
+<p>文件系统定义OS如何在存储设备上存储数据</p>
+<ul>
+<li>分区、格式化</li>
+<li>Linux 支持包括Windows在内的众多文件系统</li>
+<li>内核统一使用Virtual File System (<code>VFS</code>) 与不同文件系统进行交互</li>
+</ul>
+<h4 id="内核的文件构成">内核的文件构成</h4>
+<p><strong>内核二进制文件</strong></p>
+<ul>
+<li>内核程序本身，BootLoader加载到内存中执行的内容(位于<code>/boot</code>或<code>/</code>中)</li>
+<li>基于编译打包的驱动数量不同，内核=进制文件可能很大</li>
+<li>内核二进制文件通常被压缩，以便加载内核时节省内存空间</li>
+<li>压缩方式不同，将导致内核二进制文件名称差异</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>不同的Linux内核文件</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bzimage</td>
+<td>（常用）GNU zip压缩的大内核，常被拷贝为4(vmlinuz)</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>未压缩</td>
+</tr>
+<tr>
+<td>vmlinux</td>
+<td>未压缩，通常不用作最终的引导版本</td>
+</tr>
+<tr>
+<td>vmlinuz</td>
+<td>通用的压缩文件（如ubuntu下：vmlinuz-4.15.0-65-generic）</td>
+</tr>
+<tr>
+<td>zimage</td>
+<td>使用GNU zip压缩的小内核</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="内核模块">内核模块</h4>
+<p><strong>内核直接与硬件交互</strong></p>
+<ul>
+<li>内核与硬件通信需要驱动程序的支持</li>
+<li>将硬件驱动和内核的<code>源码</code>一并编译成二进制执行文件(体积大)</li>
+<li>将驱动编译为二进制的模块对象文件<code>.ko</code>， 运行时动态链接</li>
+</ul>
+<p><strong>硬件驱动的发布</strong></p>
+<ul>
+<li>源码：开源精神</li>
+<li>二进制文件：保护隐私、功能特性</li>
+</ul>
+<p><strong>内核模块(<code>modprob</code>)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/lib/modules/&lt;version&gt;/kernel/*.ko
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内核源码">内核源码</h4>
+<p><strong>获得</strong></p>
+<ul>
+<li>Linux内核开发库(<a href="https://www.kernel.org"target="_blank" rel="external nofollow noopener noreferrer">www.kernel.org<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> &ndash;&gt; 稳定版、开发版)</li>
+<li>对应Linux发行版的软件库(对本发行版最稳妥，下载方便)</li>
+<li>下载源码解压至<code>/usr/src/linux</code> (内核工具默认查找路径)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">链接到指定版本 /usr/src/linux-5.3.12    <span class="c1"># 维护多个版本</span>
+</span></span><span class="line"><span class="cl">/usr/src/kernels    <span class="c1"># Redhat</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内核补丁">内核补丁</h4>
+<ul>
+<li>针对bug修复和安全补丁的增量内核发行版</li>
+<li>内核补丁版本(<code>针对主版本的补丁</code>)
+<ul>
+<li>只包含应用于主内核源代码发行版以获得增量发行版的<code>更改</code>(5.3 &ndash;&gt; 5.3.1)</li>
+<li>使用<code>patch</code>命令将补丁源码包应用于主源码包，然后重新编译</li>
+</ul>
+</li>
+<li>后续补丁版本(5.3.1 -&gt; 5.3.2)
+<ul>
+<li>卸载早期版本补丁(<code>patch -R</code>)</li>
+<li>patch新版本补丁</li>
+<li>重新编译</li>
+</ul>
+</li>
+</ul>
+<h4 id="内核头">内核头</h4>
+<p>Linux内核绝大部分使用C语言编写
+- C语言头文件:编译时需要的库文件
+- 编译内核、模块都需要相同的内核头(库文件)</p>
+<p>Ubuntu内核头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install linux-headers-4.15.0-72-generic
+</span></span><span class="line"><span class="cl">/usr/src/linux-headers-4.1 5.0-72-generic/include/config/*.h    <span class="c1"># ubuntu</span>
+</span></span><span class="line"><span class="cl">/usr/src/kernels    <span class="c1"># Redhat</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不同发行版路径不同</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看使用的内核版本</span>
+</span></span><span class="line"><span class="cl">uname -r
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内核文档">内核文档</h4>
+<ul>
+<li>许多独立的文本文件，说明每个源代码文件在内核结构中的作用</li>
+<li>针对内核源码做任何操作之前，建议详细阅读文档</li>
+<li>由于文档体量巨大，通常以独立包形式发布</li>
+<li>文档路径</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/usr/src/linux/Documentation    <span class="c1"># Ubuntu</span>
+</span></span><span class="line"><span class="cl">/usr/src/kernels    <span class="c1"># Redhat</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内核版本">内核版本</h4>
+<ul>
+<li>
+<p>七个内核版本命名方式(系统)</p>
+</li>
+<li>
+<p>Linus于1991年9月发布了初始Linux内核版本号<font color=red>0</font>.01</p>
+<ul>
+<li>0表示该版本目的是测试，并非生产环境使用(延用至0.95 &ndash; 1 992.3)</li>
+</ul>
+</li>
+<li>
+<p>1994年3月，Linus 发布了Linux 的第一个生产版本<font color=red>1</font>.0 (<code>1.x.y</code>)</p>
+<ul>
+<li>x主版本号(<code>奇数</code>表示测试/开发版本；<code>偶数</code>表示稳定/生产版本)</li>
+<li>y主版本下的补丁版本</li>
+<li>此版本号延用至 1.3 (1995.5)</li>
+</ul>
+</li>
+<li>
+<p>1.3之后Linux内核变化很大，因此下一个版本为<font color=red>2</font>.0 (1996.6)</p>
+</li>
+<li>
+<p>2.x.y延用1.x.y 的命名方式，直至2.4 (2001.1)</p>
+</li>
+<li>
+<p>2003.12 Linus发布2.6.0版本，启动了一个新的版本命名系统</p>
+<ul>
+<li>由于2.6内核非常稳定，因此新内核版本格式为2.6.x.y（<code>不再通过奇偶数来区分稳定与否</code>）</li>
+<li>2.6 每个版本都是生产版本(<code>开发版结尾为-rc</code>)</li>
+<li>此版本延用至2.6.39 (2011.5)</li>
+</ul>
+</li>
+<li>
+<p>2011.7 Linus为庆祝Linux内核20岁生日，启动了内核的3.0版本</p>
+<ul>
+<li>3.x.y (开发版在结尾加-rc) -直延用至3.19 (2015.2)</li>
+<li>3.x.y-<font color=red>z</font> 临时特殊补丁版(主要与紧急的安全修复有关)</li>
+</ul>
+</li>
+<li>
+<p>2015.4发布4.0版本</p>
+<ul>
+<li>4.x.y (与3.0相同)</li>
+<li>4.x.y-<font color=red>z</font> (y的第z次<code>微调</code>版本)</li>
+</ul>
+</li>
+<li>
+<p>2019.3发布5.0版本</p>
+<ul>
+<li>目前最新，命名延用以前</li>
+</ul>
+</li>
+</ul>
+<p>查看内核版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uname -r
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="维护内核">维护内核</h4>
+<ul>
+<li>手动编译内核(较少使用，忽略)</li>
+<li>使用发行版包管理器维护内核（建议的方式）</li>
+<li>模块文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/lib/modules/version/kermel/*.ko
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>手动编译内核模块，当升级内核时需要重新编译模块
+<ul>
+<li>Dynamic Kernel Module Support (<code>DKMS</code>)</li>
+<li>注册自定义模块后，dkms监视内核变化，并自动运行脚本重新编译安装模块</li>
+</ul>
+</li>
+</ul>
+<h4 id="常用模块命令">常用模块命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 已安装模块列表</span>
+</span></span><span class="line"><span class="cl">lsmod    <span class="c1"># 模块之间存在依赖关系</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#  查看模块详细信息</span>
+</span></span><span class="line"><span class="cl">modinfo bluetooth    <span class="c1"># 比如查看蓝牙模块的信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装/删除模块</span>
+</span></span><span class="line"><span class="cl">insmod / rmmod    <span class="c1"># 需指定&#39;完整&#39;内核模块文件路径(依赖模块未加载时失败)</span>
+</span></span><span class="line"><span class="cl">modprobe -r    <span class="c1"># 或者这种方式安装，只需指定模块名，自动安装依赖（比较友好）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="内核排错">内核排错</h4>
+<p><strong>查看内核版本</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uname -r    <span class="c1"># -a显示全部信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>/proc目录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux内核创建的动态伪目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在内核运行时查看内核相关的配置、性能</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 包含硬件信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/proc/interrupts    <span class="c1"># 被分配的中断信息</span>
+</span></span><span class="line"><span class="cl">/proc/ioports    <span class="c1"># I0端口使用情况</span>
+</span></span><span class="line"><span class="cl">/proc/dma    <span class="c1"># DMA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lsdev    <span class="c1"># 查看以上综合参数的命令，apt install lsdev</span>
+</span></span><span class="line"><span class="cl">cat /proc/sys/kernel/version     <span class="c1"># 查看内核参数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 修改内核参数</span>
+</span></span><span class="line"><span class="cl">cat /proc/sys/net/ipv4/ip_forward/        <span class="c1"># 如：开启路由功能，查看</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward    <span class="c1"># 如：开启路由功能，修改</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sysctl net.ipv4.ip_ forward1    <span class="c1"># 或者使用命令，查看</span>
+</span></span><span class="line"><span class="cl">/sysctl -W net.ipv4.ip_ <span class="nv">_forward</span><span class="o">=</span><span class="m">1</span>   <span class="c1"># 使用命令开启，修改</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/etc/sysctl.conf    <span class="c1"># net.ipv4.ip_ forward = 1    修改配置文件，让它永久生效</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他发行版可能在这个目录修改</span>
+</span></span><span class="line"><span class="cl">/etc/sysctl.d    
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e5%bc%95%e5%af%bc%e8%bf%87%e7%a8%8b.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/' class="post-tag">引导过程</a><a href='/tags/bios/' class="post-tag">BIOS</a><a href='/tags/uefi/' class="post-tag">UEFI</a><a href='/tags/grub/' class="post-tag">grub</a><a href='/tags/%E5%86%85%E6%A0%B8/' class="post-tag">内核</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/" class="post-nav-item" rel="prev" title="ubuntu server-代理&amp;VPN"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server-代理&amp;VPN</a>
+      <a href="/ubuntu-server-zabbix/" class="post-nav-item" rel="next" title="ubuntu server-Zabbix">ubuntu server-Zabbix<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>LEMP - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/lemp/</link>
+    <description>LEMP - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 May 2020 13:09:37 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/lemp/" rel="self" type="application/rss+xml" /><item>
+  <title>ubuntu server-LAMP</title>
+  <link>https://geoer.cn/ubuntu-server-lamp/</link>
+  <pubDate>Fri, 01 May 2020 13:09:37 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-lamp/</guid>
+  <description><![CDATA[LAMP环境安装WordPress WEB应用程序基础套件 操作系统( Linux ) WEB服务器( Apache、Nginx ) 数据库( MySQL、Maria]]></description>
+</item>
+</channel>
+</rss>

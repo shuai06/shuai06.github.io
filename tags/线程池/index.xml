@@ -1,0 +1,40 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>线程池 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+    <description>线程池 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 24 Feb 2020 11:12:07 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" rel="self" type="application/rss+xml" /><item>
+  <title>python-自带的线程池和进程池</title>
+  <link>https://geoer.cn/python-%E8%87%AA%E5%B8%A6%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%B1%A0/</link>
+  <pubDate>Mon, 24 Feb 2020 11:12:07 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/python-%E8%87%AA%E5%B8%A6%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%B1%A0/</guid>
+  <description><![CDATA[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 # from multiprocessing import Pool # 进程池 from multiprocessing.dummy import Pool #线程池 from multiprocessing.pool import ThreadPool #]]></description>
+</item>
+<item>
+  <title>python-线程池并发服务器</title>
+  <link>https://geoer.cn/python-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+  <pubDate>Mon, 24 Feb 2020 11:11:44 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/python-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B9%B6%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+  <description><![CDATA[server 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 # 使用线程池来实现并发服务器 import socket from multiprocessing.dummy import Pool def worker(conn): while True: recv_data = conn.recv(1000) if not recv_data: break print(&#34;客]]></description>
+</item>
+<item>
+  <title>python-简单的线程池的实现</title>
+  <link>https://geoer.cn/python-%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+  <pubDate>Mon, 24 Feb 2020 11:10:53 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/python-%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+  <description><![CDATA[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 # 多进程服务器 创建 销毁 # 通过提前创建好线程 当]]></description>
+</item>
+<item>
+  <title>python-可重复利用的线程</title>
+  <link>https://geoer.cn/python-%E5%8F%AF%E9%87%8D%E5%A4%8D%E5%88%A9%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B/</link>
+  <pubDate>Mon, 24 Feb 2020 11:10:38 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/python-%E5%8F%AF%E9%87%8D%E5%A4%8D%E5%88%A9%E7%94%A8%E7%9A%84%E7%BA%BF%E7%A8%8B/</guid>
+  <description><![CDATA[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 import threading import queue class MyThread(threading.Thread): def __init__(self): super().__init__() self.queue = queue.Queue() self.daemon = True # 守护进程 self.start() # def run(self): # 只有run里的才]]></description>
+</item>
+</channel>
+</rss>

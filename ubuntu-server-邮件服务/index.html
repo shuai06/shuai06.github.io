@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu sever-邮件服务 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="直到今天，Emai仍然是互联网上最重要的信息传递方式之一 电子邮件基础 快速、便捷、通用、异步通信方式 1965年最早由MIT发明并开源（最早用于" /><meta name="keywords" content='邮件服务, ubuntu server' /><meta itemprop="name" content="ubuntu sever-邮件服务">
+<meta itemprop="description" content="直到今天，Emai仍然是互联网上最重要的信息传递方式之一 电子邮件基础 快速、便捷、通用、异步通信方式 1965年最早由MIT发明并开源（最早用于"><meta itemprop="datePublished" content="2020-07-11T23:15:23+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="4789"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="邮件服务,ubuntu server," /><meta property="og:title" content="ubuntu sever-邮件服务" />
+<meta property="og:description" content="直到今天，Emai仍然是互联网上最重要的信息传递方式之一 电子邮件基础 快速、便捷、通用、异步通信方式 1965年最早由MIT发明并开源（最早用于" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-11T23:15:23+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu sever-邮件服务"/>
+<meta name="twitter:description" content="直到今天，Emai仍然是互联网上最重要的信息传递方式之一 电子邮件基础 快速、便捷、通用、异步通信方式 1965年最早由MIT发明并开源（最早用于"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/" /><link rel="prev" href="https://geoer.cn/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://geoer.cn/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu sever-邮件服务",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "邮件服务, ubuntu server","wordcount":  4789 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1\/","datePublished": "2020-07-11T23:15:23+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu sever-邮件服务</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-07-11&#32;23:15:23><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-07-11">2020-07-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 4789 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 10 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu sever-邮件服务">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred-电子邮件基础font"><font color=red> 电子邮件基础</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#smtpsimple-mail-transfer-protocol">SMTP（Simple Mail Transfer Protocol）</a></li>
+            <li><a href="#mtamail-transfer-agent">MTA(Mail Transfer Agent)</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1-sendmial">1. Sendmial</a></li>
+                    <li><a href="#2-postfix">2. Postfix</a></li>
+                    <li><a href="#3-qmail">3. Qmail</a></li>
+                    <li><a href="#4-exim">4. Exim</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#邮箱存储">邮箱存储</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#mbox">MBOX</a></li>
+                    <li><a href="#maildir">MAILDIR</a></li>
+                    <li><a href="#mta可直接投递和读取文件">MTA可直接投递和读取文件</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#mdamail-delivery-agent-邮件投递代理">MDA(Mail Delivery Agent, 邮件投递代理)</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1-mailx">1. Mailx</a></li>
+                    <li><a href="#2-mainlocal">2. main.local</a></li>
+                    <li><a href="#3-procmail">3. procmail</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#muamail-user-agent">MUA(Mail User Agent)</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1mailx">1.Mailx</a></li>
+                    <li><a href="#2dovecot">2.Dovecot</a></li>
+                    <li><a href="#3-其他邮箱访问方式">3. 其他邮箱访问方式</a></li>
+                    <li><a href="#4-fetchmail">4. Fetchmail</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred电子邮件架构font"><font color=red>电子邮件架构</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#邮件结构">邮件结构</a></li>
+            <li><a href="#spam">SPAM</a></li>
+            <li><a href="#病毒木马蠕虫钓鱼邮件">病毒、木马、蠕虫、钓鱼邮件</a></li>
+            <li><a href="#font-colorred邮件规范font"><font color=red>邮件规范</font></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredpostfix简单部署font"><font color=red>Postfix简单部署</font></a></li>
+    <li><a href="#font-colorred企业级postfix邮件系统部署font"><font color=red>企业级Postfix邮件系统部署</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#组件">组件</a></li>
+            <li><a href="#postfix的两种域">Postfix的两种域</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1安装lemp">1.安装LEMP</a></li>
+                    <li><a href="#2安装postfixadmin">2.安装Postfixadmin</a></li>
+                    <li><a href="#3配置数据库">3.配置数据库</a></li>
+                    <li><a href="#4创建临时目录">4.创建临时目录</a></li>
+                    <li><a href="#5web安装阶段">5.WEB安装阶段</a></li>
+                    <li><a href="#6集成postfix">6.集成Postfix</a></li>
+                    <li><a href="#7数据库配置3个">7.数据库配置(3个)</a></li>
+                    <li><a href="#8启用sasl-强制-postfix发邮件使用dovecot进行身份验证">8.启用SASL 强制 Postfix发邮件使用Dovecot进行<code>身份验证</code></a></li>
+                    <li><a href="#9启动安全smtp端口">9.启动安全SMTP端口</a></li>
+                    <li><a href="#10验证配置">10.验证配置</a></li>
+                    <li><a href="#11安装配置dovecot">11.安装/配置Dovecot</a></li>
+                    <li><a href="#12集成postfix与dovecot">12.集成Postfix与Dovecot</a></li>
+                    <li><a href="#13测试">13.测试</a></li>
+                    <li><a href="#配置邮件客户端">配置邮件客户端</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredweb-mail安装font"><font color=red>Web MAIL安装</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1安装依赖包可选">1.安装依赖包（可选）</a></li>
+                    <li><a href="#2下载roundcube">2.下载Roundcube</a></li>
+                    <li><a href="#3创建数据库">3.创建数据库</a></li>
+                    <li><a href="#4配置站点文件">4.配置站点文件</a></li>
+                    <li><a href="#5权限">5.权限</a></li>
+                    <li><a href="#6web安装阶段">6.Web安装阶段</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>直到今天，Emai仍然是互联网上最重要的信息传递方式之一</p>
+</blockquote>
+<h2 id="font-colorred-电子邮件基础font"><font color=red> 电子邮件基础</font></h2>
+<p>快速、便捷、通用、异步通信方式
+1965年最早由MIT发明并开源（最早用于不同主机用户间通信）
+1971年确定邮件地址以<code>@</code>符号连接（在不同主机之间传递信息）
+MIME类型扩展邮件从纯文本到传递文件（文档、图片、媒体）</p>
+<p>邮件可被伪造，邮件炸弹，垃圾邮件</p>
+<p><strong>传统物理邮件：</strong>
+写信-&gt;到本地邮局-&gt;目的邮局-&gt;收件人</p>
+<p><strong>电子邮件</strong>
+Client1 -&gt; Server1 -&gt; Server2 -&gt; Client2 （邮件地址通过DNS解析完成邮件路由）
+无收件人返回报错（不通知），连不上目标服务器周期重发（直至失败）</p>
+<h4 id="smtpsimple-mail-transfer-protocol">SMTP（Simple Mail Transfer Protocol）</h4>
+<ul>
+<li>MTA(Mail transfer agents) 之间通信协议（SMTPD）
+<ul>
+<li>由很多小程序实现MTA所有功能</li>
+</ul>
+</li>
+<li>Sendmai、Postfix、Exim、Qmail</li>
+<li>客户端发起邮件 MUA -&gt; MTA  也是用SMTP协议</li>
+</ul>
+<h4 id="mtamail-transfer-agent">MTA(Mail Transfer Agent)</h4>
+<p>常见的MTA软件：</p>
+<h6 id="1-sendmial">1. Sendmial</h6>
+<blockquote>
+<p>一个MTA软件包</p>
+</blockquote>
+<ul>
+<li>处理着绝大多数互联网电子邮件</li>
+<li>开源免费版 / 商业版（GUI页面）</li>
+<li>配置过于<code>复杂</code>（默认配置已经可以良好工作）</li>
+<li>功能全面但性能不占优势</li>
+</ul>
+<h6 id="2-postfix">2. Postfix</h6>
+<ul>
+<li>来自于IBM的开源MTA（<code>Ubuntu默认首选MTA</code>）</li>
+<li>速度优于Sendmail，配置管理更简单（配置文件、命令）</li>
+<li>可以平滑替换Sendmail（模块化）</li>
+</ul>
+<h6 id="3-qmail">3. Qmail</h6>
+<ul>
+<li>Postfix的可替代选择（模块化的MTA，用户、配置相分离）</li>
+<li>设计初衷是实现取代Sendmail的更安全快速的MTA</li>
+<li>从Sendmail迁移到Qmail过程复杂</li>
+<li>众多插件，包含WebMail、POP服务</li>
+</ul>
+<h6 id="4-exim">4. Exim</h6>
+<ul>
+<li>比Sendmail、Postfix更安全快速，但配置方式不同</li>
+<li>与Qmail都使用maildir格式邮箱存储</li>
+</ul>
+<h4 id="邮箱存储">邮箱存储</h4>
+<h6 id="mbox">MBOX</h6>
+<ul>
+<li>传统的mbox格式邮箱存储将<code>所有邮件存于一个文件中</code>（索引定位具体邮件）</li>
+<li>文件和索引损坏可能造成邮件丢失，<code>故障恢复困难</code></li>
+<li>不适于存储于NFS挂载目录中</li>
+</ul>
+<h6 id="maildir">MAILDIR</h6>
+<ul>
+<li>Maildir格式包含三个子目录<code>/cur</code>,<code>/new</code>,<code>/tmp</code>， 每个邮件分隔独立保存</li>
+<li>可并行访问，性能更高（mbox不支持）</li>
+<li>可用NFS作为邮箱存储</li>
+</ul>
+<h6 id="mta可直接投递和读取文件">MTA可直接投递和读取文件</h6>
+<pre><code>更多时候邮件投递由MDA完成
+</code></pre>
+<h4 id="mdamail-delivery-agent-邮件投递代理">MDA(Mail Delivery Agent, 邮件投递代理)</h4>
+<p>MDA比MTA<code>额外实现</code>自动过滤、回复、规则转存、杀毒等
+但邮件的<code>收</code>还是靠MTA</p>
+<p>常见的MDA软件：</p>
+<h6 id="1-mailx">1. Mailx</h6>
+<ul>
+<li>MDA + MUA（<code>Ubuntu的默认MDA</code>）</li>
+<li>来自MTA的邮件交给Mailx投递到用户邮箱（<code>/var/mail/</code>）</li>
+<li>主目录下：<code>.forward</code>文件实现自动转发（如：公司邮箱的邮件，通过.forward进行转发到私人邮箱）</li>
+</ul>
+<h6 id="2-mainlocal">2. main.local</h6>
+<ul>
+<li>常用于BSD的MDA程序</li>
+<li>功能使用与Mailx类似</li>
+</ul>
+<h6 id="3-procmail">3. procmail</h6>
+<ul>
+<li>最流行的MDA之一</li>
+<li>Recipes允许用户自定义邮件处理脚本（<code>.procmailrc</code>）</li>
+</ul>
+<h4 id="muamail-user-agent">MUA(Mail User Agent)</h4>
+<ul>
+<li>读取和展示邮箱中的邮件（不金慈宁宫邮件传递）</li>
+<li>在哪读邮件/邮件显示格式（MIME）</li>
+</ul>
+<p>常见类型的MUA：</p>
+<h6 id="1mailx">1.Mailx</h6>
+<p>MUA + MDA
+服务器本地直接读取邮箱mail</p>
+<h6 id="2dovecot">2.Dovecot</h6>
+<blockquote>
+<p>远程客户端访问邮箱</p>
+</blockquote>
+<ul>
+<li>POP3(Post Office Protocol version 3)
+适合单一客户端，单项通信协议(MUA &lt;- MDA)</li>
+<li>IMAP4(Internet Message Access Protocol 4)
+适合多邮件客户端，双项同步协议( MUA &lt;&ndash;&gt; MDA)</li>
+</ul>
+<blockquote>
+<p>最基本的：MTA+MDA+MUA</p>
+</blockquote>
+<p>典型命令：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/ubuntu_mail_cmd.png"
+    data-srcset="http://image.xpshuai.cn/ubuntu_mail_cmd.png, http://image.xpshuai.cn/ubuntu_mail_cmd.png 1.5x, http://image.xpshuai.cn/ubuntu_mail_cmd.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/ubuntu_mail_cmd.png"
+    title="http://image.xpshuai.cn/ubuntu_mail_cmd.png"/></p>
+<h6 id="3-其他邮箱访问方式">3. 其他邮箱访问方式</h6>
+<pre><code>Web Mail
+WAPI（ 微软专有邮箱协议）
+</code></pre>
+<h6 id="4-fetchmail">4. Fetchmail</h6>
+<pre><code>自己本地邮箱服务器 &lt;- 运行商邮件服务器(POP3 / IMAP)
+适用于每月稳定互联网连接的小公司
+</code></pre>
+<h2 id="font-colorred电子邮件架构font"><font color=red>电子邮件架构</font></h2>
+<h4 id="邮件结构">邮件结构</h4>
+<ul>
+<li>信封：用于邮件路由，对用户透明不可见</li>
+<li>邮件头：邮件路由传输过程的记录日志（如果遇到不专业的小黑客，可以通过邮件头来溯源）</li>
+<li>邮件体：邮件要传递的具体内容</li>
+</ul>
+<h4 id="spam">SPAM</h4>
+<ul>
+<li>垃圾邮件，不请自来的邮件（Junk）</li>
+<li>处理浪费时间、网络带宽、存储空间</li>
+</ul>
+<h4 id="病毒木马蠕虫钓鱼邮件">病毒、木马、蠕虫、钓鱼邮件</h4>
+<ul>
+<li>包含恶意附件、链接、伪装、诈骗内容</li>
+<li>存在安全风险，谨慎打开陌生邮件</li>
+</ul>
+<h4 id="font-colorred邮件规范font"><font color=red>邮件规范</font></h4>
+<ul>
+<li><code>收件人</code>为事件直接相关人（其他相关人作为<code>抄送人</code>）</li>
+<li>次要相关人按职位顺序  CC(<code>抄送人</code>，收件人能看见我发给抄送人，<code>按职位顺序排列</code>)、BCC（<code>密送人</code>，收件人是不知道我发给密送人了）</li>
+<li>主题简介清晰，高度概括（<code>切忌把正文具体内容写到主题</code>）</li>
+<li>保证表述清楚的前提下邮件内容尽可能短（<code>避免语法错误</code>），不要使用模棱两可/时髦语言</li>
+<li>适当使用表情符</li>
+<li>回复、转发完整邮件流（<code>禁止单独新写邮件作为回复</code>）</li>
+<li>压缩附件</li>
+<li>附个人签名（公司的信息，职位，姓名 -&gt; 或弄成二维码-&gt;不太建议，建议直接用<code>文本形式</code>）</li>
+</ul>
+<blockquote>
+<p>沟通是所有企业面对的最大问题</p>
+</blockquote>
+<h2 id="font-colorredpostfix简单部署font"><font color=red>Postfix简单部署</font></h2>
+<p>MTA(能发出邮件最关键的组件)</p>
+<p>1.先安装DNS服务器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install bind9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/bind/named.conf.options</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 自己解析不了的域名，转发给互联网上其他的</span>
+</span></span><span class="line"><span class="cl">    forwarders <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        8.8.8.8<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/bind/named.conf.local</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 自己的域(可以是任何域名，虽然被别人占用的。可以用来发送恶意文件)</span>
+</span></span><span class="line"><span class="cl">    zone <span class="s2">&#34;qq.com&#34;</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">type</span> master<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        file <span class="s2">&#34;/etc/bind/db.qq.com&#34;</span><span class="p">;</span>    <span class="c1"># 区域文件</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cp /etc/bind/db.local.local</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/bind/db.qq.com</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$TTL</span>    <span class="m">604800</span>
+</span></span><span class="line"><span class="cl">@       IN      SOA     ns.qq.com. root.qq.com. <span class="o">(</span>
+</span></span><span class="line"><span class="cl">                              <span class="m">2</span>         <span class="p">;</span> Serial
+</span></span><span class="line"><span class="cl">                         <span class="m">604800</span>         <span class="p">;</span> Refresh
+</span></span><span class="line"><span class="cl">                          <span class="m">86400</span>         <span class="p">;</span> Retry
+</span></span><span class="line"><span class="cl">                        <span class="m">2419200</span>         <span class="p">;</span> Expire
+</span></span><span class="line"><span class="cl">                         <span class="m">604800</span> <span class="o">)</span>       <span class="p">;</span> Negative Cache TTL
+</span></span><span class="line"><span class="cl"><span class="p">;</span>
+</span></span><span class="line"><span class="cl">@       IN      NS      ns        <span class="c1"># 创建NS记录</span>
+</span></span><span class="line"><span class="cl">@       IN      MX  <span class="m">5</span>   mail      <span class="c1"># 创建MX记录，优先级(值越大，优先级越低)</span>
+</span></span><span class="line"><span class="cl">ns      IN      A       192.168.0.19    <span class="c1"># NS的记录</span>
+</span></span><span class="line"><span class="cl">mail    IN      A       192.168.0.19    <span class="c1"># MX的记录</span>
+</span></span><span class="line"><span class="cl">pop     IN      A       192.168.0.19
+</span></span><span class="line"><span class="cl">imap    IN      A       192.168.0.19
+</span></span><span class="line"><span class="cl">smtp    IN      A       192.168.0.19
+</span></span><span class="line"><span class="cl">@       IN      A       192.168.0.19    <span class="c1"># @代表本域域名自己</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.重启bind服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart bind9
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.网络配置（配置静态ip）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/netplan/50-cloud-init.yaml</span>
+</span></span><span class="line"><span class="cl">    dhcp4:no
+</span></span><span class="line"><span class="cl">    addresses:<span class="o">[</span>192.168.1.2/24<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    gateway4:192.168.1.1
+</span></span><span class="line"><span class="cl">    nameservers:
+</span></span><span class="line"><span class="cl">            search:<span class="o">[</span>qq.com<span class="o">]</span>
+</span></span><span class="line"><span class="cl">            addresses:<span class="o">[</span>192.168.1.2<span class="o">]</span>    <span class="c1"># 指向邮箱服务器的ip</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo netplan apply
+</span></span><span class="line"><span class="cl">sudo networkctrl status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.修改主机名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#sudo vim /etc/hostname</span>
+</span></span><span class="line"><span class="cl">    mail.qq.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接修改hostname后，重启后会变回去，所以修改下面的配置文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#sudo vim /etc/cloud/cloud.cfg</span>
+</span></span><span class="line"><span class="cl">    preserve_hostname:true
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.安装Postfix</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install postfix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">向导窗口，选择：
+</span></span><span class="line"><span class="cl">Internet Site    <span class="c1"># 一般选这个就好</span>
+</span></span><span class="line"><span class="cl">Internet Site  smarthost    <span class="c1"># 智能主机</span>
+</span></span><span class="line"><span class="cl">操作系统的主机名    <span class="c1"># mail.qq.com</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">grep mail /etc/group    <span class="c1"># 会自动生成一个用户组mail</span>
+</span></span><span class="line"><span class="cl">grep postfix /etc/group    <span class="c1"># 会自动生成一个用户组postfix</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 但是postfix默认使用操作系统的用户，要加入本地用户到相应组(只有该用户组的成员才可发邮件)</span>
+</span></span><span class="line"><span class="cl">sudo usermod -aG mail xps    
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo useradd -m -G mail xxx2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo passwd xxx2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mail           # mail命令默认不安装，先安装</span>
+</span></span><span class="line"><span class="cl">sudo apt install mailutils    <span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">mail    <span class="c1"># 再使用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mail xps@qq.com    <span class="c1"># 主要收件人</span>
+</span></span><span class="line"><span class="cl">cc:  xps2@163.com    <span class="c1"># 抄送人</span>
+</span></span><span class="line"><span class="cl">Subject: test2    <span class="c1"># 主题</span>
+</span></span><span class="line"><span class="cl">xxxxxx正文
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ctrl + D 发送邮件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su xxx2        <span class="c1"># 切换到该用户查看该用户收到的邮件</span>
+</span></span><span class="line"><span class="cl">mail           <span class="c1"># 可以查看该用户收到的邮件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">单机邮件一般存在/var/mail/用户名
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般大的邮箱服务商，如QQ，163等，会反查发件人邮件的地址是否是合法的</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>目前，只能发邮件，不能收邮件</p>
+</blockquote>
+<h2 id="font-colorred企业级postfix邮件系统部署font"><font color=red>企业级Postfix邮件系统部署</font></h2>
+<h4 id="组件">组件</h4>
+<ul>
+<li>Postfix: MTA</li>
+<li>Dovecot: POP /IMAP服务</li>
+<li>SASL: 身份认证</li>
+<li>Postfixadmin: 管理邮件、虚拟域、别名等的WEB应用</li>
+<li>LEMP：Postfixadmin的web环境依赖</li>
+</ul>
+<h4 id="postfix的两种域">Postfix的两种域</h4>
+<ul>
+<li>Local Domain：为本系统账号投递邮件(<code>/etc/passwd</code>)</li>
+<li>Virtual Domain：为非本系统账号投递邮件</li>
+</ul>
+<h6 id="1安装lemp">1.安装LEMP</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install nginx
+</span></span><span class="line"><span class="cl">sudo apt install mysql-server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo mysql_secure_installation
+</span></span><span class="line"><span class="cl">sudo mysql
+</span></span><span class="line"><span class="cl">ALTER USER <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> INDETIFIED WITH mysql_native_password BY <span class="s1">&#39;1234&#39;</span><span class="p">;</span>    <span class="c1"># 修改登录方式</span>
+</span></span><span class="line"><span class="cl">FLUSH PROVILEGES<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mysql -u root -p1234</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt install php-fpm php-mysql
+</span></span><span class="line"><span class="cl">sudo vim /etc/php/7.2/fpm/php.ini
+</span></span><span class="line"><span class="cl">    cgi.fix_pathinfo<span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">    date.timezone <span class="o">=</span> Asia/Shanghai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 验证能否正常使用</span>
+</span></span><span class="line"><span class="cl">sudo vim /etc/nginx/sites-avaliable/default
+</span></span><span class="line"><span class="cl">    index index.php
+</span></span><span class="line"><span class="cl">    server_name mail.qq.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    location ~<span class="se">\.</span>php<span class="si">${</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p">        include snippets/fastcgi-php.conf;
+</span></span></span><span class="line"><span class="cl"><span class="p">        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
+</span></span></span><span class="line"><span class="cl"><span class="p">    </span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">    location ~/.ht<span class="o">{</span>
+</span></span><span class="line"><span class="cl">        deny all<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo vim /var/www/html/info.php
+</span></span><span class="line"><span class="cl">    &lt;?php phpinfo<span class="o">()</span><span class="p">;</span> ?&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl restart nginx.service
+</span></span><span class="line"><span class="cl">systemctl restart php7.2-fmp.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2安装postfixadmin">2.安装Postfixadmin</h6>
+<p>推荐手动下载源码，然后解压</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装依赖包</span>
+</span></span><span class="line"><span class="cl">sudo apt install php-imap php-mbstring php7.2-imap php7.2-mbstring
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载源码</span>
+</span></span><span class="line"><span class="cl">sudo wget -P /opt https://github.com/postfixadmin/postfixadmin/archive/postfixadmin-3.2.4.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt <span class="o">&amp;&amp;</span> tar -xvf postfixadmin-3.2.tar.gz
+</span></span><span class="line"><span class="cl">mv postfixadmin-postfixadmin3.2/ postfixadmin
+</span></span><span class="line"><span class="cl"><span class="c1"># /opt/postfixadmin/public/setup.php    # 做web界面配置的文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 软链接目录</span>
+</span></span><span class="line"><span class="cl">ln -s /opt/postfixadmin/public/ /var/www/html/pfa
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3配置数据库">3.配置数据库</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mysql -u root -p</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建数据库和名字</span>
+</span></span><span class="line"><span class="cl">CREATE DATABASE postfix_db<span class="p">;</span>
+</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;post_user&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;1234&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON postfix_db.* TO <span class="s1">&#39;post_user&#39;</span>@<span class="s1">&#39;localhost&#39;</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Postfixadmin 数据库连接文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /opt/postfixadmin/  <span class="o">&amp;&amp;</span> cp config.inc.php config.local.php
+</span></span><span class="line"><span class="cl">sudo vim config.local.php
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;configured&#39;</span><span class="o">]</span> <span class="o">=</span> true<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;default_language&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;cn&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 数据库连接信息</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;database_type&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;mysqli&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;database_host&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;database_password&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;1234&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$CONF</span><span class="o">[</span><span class="s1">&#39;database_name&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;postfix_db&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4创建临时目录">4.创建临时目录</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir /opt/postfixadmin/templates_c <span class="o">&amp;&amp;</span> chmod <span class="m">755</span> -R /opt/postfixadmin/templates_c
+</span></span><span class="line"><span class="cl">chown -R www-data:www-data /opt/postfixadmin/templates_c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5web安装阶段">5.WEB安装阶段</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 访问前面设置的url和文件</span>
+</span></span><span class="line"><span class="cl">http://mail.qq.com/setup.php
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">设置 setup password
+</span></span><span class="line"><span class="cl">生成 setup password 的hash值，复制下来，添加到服务端中配置项
+</span></span><span class="line"><span class="cl"><span class="c1"># vim config.local.php</span>
+</span></span><span class="line"><span class="cl">$<span class="o">[</span><span class="s1">&#39;setup_password&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;xxxxxxx hash xxxxxxxx&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">然后创建管理员账号与密码
+</span></span><span class="line"><span class="cl">登录管理员账号
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>创建虚拟域、邮箱账号</strong></p>
+<ul>
+<li>域名清单 &ndash; 新建域</li>
+<li>虚拟用户清单 &ndash; 新建邮箱（别名）</li>
+</ul>
+<p><img src="http://image.xpshuai.cn/ubuntu_mail_virtual.png"></img></p>
+<p><img src="http://image.xpshuai.cn/ubuntu_mail_virtual2.png"></img></p>
+<p><img src="http://image.xpshuai.cn/ubuntu_mail_virtual3.png"></img></p>
+<h6 id="6集成postfix">6.集成Postfix</h6>
+<blockquote>
+<p>以下命令以root权限运行</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install Postfix Postfix-mysql sasl2-bin    <span class="c1"># sasl来实现身份认证</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置sasl自动启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/default/saslauthd</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">START</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl restart saslauthd.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>邮箱目录、访问账号、组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加组账号vmail</span>
+</span></span><span class="line"><span class="cl">groupadd -g <span class="m">5000</span> vmail <span class="o">&amp;&amp;</span> mkdir -p /var/mail/vmail
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建账号vmail, 属于组vmail</span>
+</span></span><span class="line"><span class="cl">useradd -u <span class="m">5000</span> vmail -s /usr/sbin/nologin -d /var/mail/vmail
+</span></span><span class="line"><span class="cl">chown -R vmail:vmail /var/mail/vmail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="7数据库配置3个">7.数据库配置(3个)</h6>
+<p>数据库配置文件1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p /etc/postfix/sql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 去数据库中找虚拟域的域名</span>
+</span></span><span class="line"><span class="cl">vim /etc/postfix/sql/mysql_virtual_domains_maps.cf
+</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="o">=</span> post_user
+</span></span><span class="line"><span class="cl">    <span class="nv">password</span> <span class="o">=</span> <span class="m">1234</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">hosts</span> <span class="o">=</span> 127.0.0.1
+</span></span><span class="line"><span class="cl">    <span class="nv">dbname</span> <span class="o">=</span> postfix_db
+</span></span><span class="line"><span class="cl">    <span class="nv">query</span> <span class="o">=</span> SELECT domain FROM domain WHERE <span class="nv">domain</span><span class="o">=</span><span class="s1">&#39;%s&#39;</span> AND <span class="nv">active</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 想要生效，配置加入 /etc/postfix/main.cf</span>
+</span></span><span class="line"><span class="cl">postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>mysql:/etc/postfix/sql/mysql_virtual_domains_maps.cf    <span class="c1"># 使用上面配置的配置文件,来查询虚拟域</span>
+</span></span><span class="line"><span class="cl">postmap -q qq.com mysql:/etc/postfix/sql/mysql_virtul_domains_maps.cf    <span class="c1"># 验证</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>数据库配置文件2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查邮箱</span>
+</span></span><span class="line"><span class="cl">vim /etc/postfix/sql/mysql_virtual_mailbox_maps.cf
+</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="o">=</span> post_user
+</span></span><span class="line"><span class="cl">    <span class="nv">password</span> <span class="o">=</span> <span class="m">1234</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">hosts</span> <span class="o">=</span> 127.0.0.1
+</span></span><span class="line"><span class="cl">    <span class="nv">dbname</span> <span class="o">=</span> postfix_db
+</span></span><span class="line"><span class="cl">    <span class="nv">query</span> <span class="o">=</span> SELECT maildir FROM mailbox WHERE <span class="nv">username</span><span class="o">=</span><span class="s1">&#39;%s&#39;</span> AND <span class="nv">active</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 想要生效，配置加入 /etc/postfix/main.cf</span>
+</span></span><span class="line"><span class="cl">postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>mysql:/etc/postfix/sql/mysql_virtual_mailbox_maps.cf    <span class="c1"># 使用上面配置的配置文件</span>
+</span></span><span class="line"><span class="cl">postmap -q tom@qq.com mysql:/etc/postfix/sql/mysql_virtual_mailbox_maps.cf    <span class="c1"># 验证</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>数据库配置文件3</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查别名</span>
+</span></span><span class="line"><span class="cl">vim /etc/postfix/sql/mysql_virtual_alias_maps.cf
+</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="o">=</span> post_user
+</span></span><span class="line"><span class="cl">    <span class="nv">password</span> <span class="o">=</span> <span class="m">1234</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">hosts</span> <span class="o">=</span> 127.0.0.1
+</span></span><span class="line"><span class="cl">    <span class="nv">dbname</span> <span class="o">=</span> postfix_db
+</span></span><span class="line"><span class="cl">    <span class="nv">query</span> <span class="o">=</span> SELECT goto FROM <span class="nb">alias</span> WHERE <span class="nv">address</span><span class="o">=</span><span class="s1">&#39;%s&#39;</span> AND <span class="nv">active</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 想要生效，配置加入 /etc/postfix/main.cf</span>
+</span></span><span class="line"><span class="cl">postconf -e <span class="nv">mysql_virtual_alias_maps</span><span class="o">=</span>mysql:/etc/postfix/sql/mysql_virtual_alias_maps.cf    <span class="c1"># 使用上面配置的配置文件</span>
+</span></span><span class="line"><span class="cl">postmap -q abuse@qq.com mysql:/etc/postfix/sql/mysql_virtual_alias_maps.cf    <span class="c1"># 验证</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>权限，属主</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chgrp postfix /etc/postfix/sql/mysql_*
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>至此，postfixadmin与postfix MTA安装完成</p>
+</blockquote>
+<h6 id="8启用sasl-强制-postfix发邮件使用dovecot进行身份验证">8.启用SASL 强制 Postfix发邮件使用Dovecot进行<code>身份验证</code></h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/postfix/main.cf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_sasl_type</span> <span class="o">=</span> dovecot
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_sasl_path</span> <span class="o">=</span> private/auth
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_sasl_auth_enable</span> <span class="o">=</span> yes
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_sasl_security_options</span> <span class="o">=</span> noanonymous
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_sasl_local_domain</span> <span class="o">=</span> <span class="nv">$myhostname</span>
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_tls_security_level</span> <span class="o">=</span> may
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_tls_auth_only</span> <span class="o">=</span> no
+</span></span><span class="line"><span class="cl"><span class="nv">smtpd_recipient_restrictions</span> <span class="o">=</span> permit_mynetworks permit_sasl_authenticated reject_unauth_destination
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="9启动安全smtp端口">9.启动安全SMTP端口</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/postfix/master.cf</span>
+</span></span><span class="line"><span class="cl">submission    inet    n     -    y    -    -    smtpd
+</span></span><span class="line"><span class="cl">-o <span class="nv">syslog_name</span><span class="o">=</span>postfix/submission
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_tls_security_level</span><span class="o">=</span>encrypt
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_sasl_aut_enable</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_client_restrictions</span><span class="o">=</span>permit_sasl_authenticated,reject
+</span></span><span class="line"><span class="cl">-o <span class="nv">milter_macro_daemon_name</span><span class="o">=</span>ORIGINATING
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">smtps    inet    n    -    y    -    -    smtpd
+</span></span><span class="line"><span class="cl">-o <span class="nv">syslog_name</span><span class="o">=</span>postfix/smtps
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_tls_wrappermode</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_sasl_aut_enable</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">-o <span class="nv">smtpd_client_restrictions</span><span class="o">=</span>permit_sasl_authenticated,reject
+</span></span><span class="line"><span class="cl">-o <span class="nv">milter_macro_daemon_name</span><span class="o">=</span>ORIGINATING
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="10验证配置">10.验证配置</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 验证配置</span>
+</span></span><span class="line"><span class="cl">postcnf -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">sytemctl restart postfix
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 证书可自行替换</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="11安装配置dovecot">11.安装/配置Dovecot</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装Dovecot</span>
+</span></span><span class="line"><span class="cl">apt install dovecot-imapd dovecot-mysql dovecot-managesieved dovecot-pop3d
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sieve</span>
+</span></span><span class="line"><span class="cl">负责创建并将邮件自动放入指定用户文件夹
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置Dovecot（多配置文件）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/dovecot/conf.d/ <span class="o">&amp;&amp;</span> vim 10-auth.conf    <span class="c1"># 系统账号/SQL账号</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">auth_mechanisms</span> <span class="o">=</span> plain login
+</span></span><span class="line"><span class="cl">    <span class="c1">#!include auth-system.conf.ext</span>
+</span></span><span class="line"><span class="cl">    !include auth-sql.conf.ext    <span class="c1"># 使用这个配置文件来访问数据库</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置SQL账号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/dovecot/conf.d/auth-sql.conf.ext</span>
+</span></span><span class="line"><span class="cl">passdb <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">driver</span> <span class="o">=</span> sql
+</span></span><span class="line"><span class="cl">    <span class="nv">args</span> <span class="o">=</span> /etc/dovecot/dovecot-sql.conf.ext    <span class="c1"># 连接数据库文件</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">userdb <span class="o">{</span>    <span class="c1"># 用户数据库</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">driver</span> <span class="o">=</span> static
+</span></span><span class="line"><span class="cl">    <span class="nv">args</span> <span class="o">=</span> <span class="nv">uid</span><span class="o">=</span>vmail <span class="nv">gid</span><span class="o">=</span>vmail <span class="nv">home</span><span class="o">=</span>/var/mail/vmail/%d/%n
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接数据库配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/dovecot/conf.d/dovecot-sql.conf.ext</span>
+</span></span><span class="line"><span class="cl"><span class="nv">driver</span> <span class="o">=</span> mysql
+</span></span><span class="line"><span class="cl"><span class="nv">connect</span> <span class="o">=</span> <span class="nv">host</span><span class="o">=</span>127.0.0.1 <span class="nv">dbname</span><span class="o">=</span>postfix_db <span class="nv">password</span><span class="o">=</span><span class="m">1324</span>
+</span></span><span class="line"><span class="cl"><span class="nv">password_query</span> <span class="o">=</span> SELECT usernme,domain,password FROM mailbox WHERE <span class="nv">username</span><span class="o">=</span><span class="s1">&#39;%u&#39;</span>,default_pass_schema<span class="o">=</span>MD5-CRYPT
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指定邮箱存储位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/dovecot/conf.d/10-mail.conf</span>
+</span></span><span class="line"><span class="cl"><span class="nv">mail_location</span> <span class="o">=</span> maildir:/var/mail/vmail/%d/%n/Maildir
+</span></span><span class="line"><span class="cl"><span class="nv">mail_privileged_group</span> <span class="o">=</span> mail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置服务连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/dovecot/conf.d/10-master.conf</span>
+</span></span><span class="line"><span class="cl">service auth <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    unix_listener auth-userdb <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">mode</span> <span class="o">=</span> <span class="m">0600</span>    <span class="c1"># 权限掩码</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">user</span> <span class="o">=</span> vmail
+</span></span><span class="line"><span class="cl">        <span class="nv">group</span> <span class="o">=</span> vmail
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    unix_listener /var/spool/postfix/privilege/auth <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">mode</span> <span class="o">=</span> <span class="m">0660</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">user</span> <span class="o">=</span> postfix
+</span></span><span class="line"><span class="cl">        <span class="nv">group</span> <span class="o">=</span> postfix
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="o">=</span> dovecot    <span class="c1"># 修改为我们指定的dovecot永固</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置sieve</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/dovecot/conf.d/15-lda.conf</span>
+</span></span><span class="line"><span class="cl">protocol lda <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">mail_plugins</span> <span class="o">=</span> mail_plugin sieve    <span class="c1"># sieve组件，会帮我们自动创建文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chgrp vmail /etc/dovecot/dovecot.conf    <span class="c1"># vmail执行Dovecot</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重启服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart dovecot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看日志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tail -n <span class="m">20</span> -f /var/log/mail.log
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到前面的服务启动正常</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="12集成postfix与dovecot">12.集成Postfix与Dovecot</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/postfix/master.cf</span>
+</span></span><span class="line"><span class="cl">dovecot    unix    -    n    n    -    -    pipe
+</span></span><span class="line"><span class="cl"><span class="nv">flags</span> <span class="o">=</span> DRhu <span class="nv">user</span><span class="o">=</span>vmail:vmail <span class="nv">argv</span><span class="o">=</span>/usr/lib/dovecot/deliver -f <span class="si">${</span><span class="nv">sender</span><span class="si">}</span> -d xxxxxx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/postfix.main.cf</span>
+</span></span><span class="line"><span class="cl"><span class="nv">virtual_transport</span> <span class="o">=</span> dovecot
+</span></span><span class="line"><span class="cl"><span class="nv">dovecot_destination_recipient_limit</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 重启服务</span>
+</span></span><span class="line"><span class="cl">systemctl restart dovecot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tail -n <span class="m">20</span> -f /var/log/mail.log
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到前面的服务启动正常</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="13测试">13.测试</h6>
+<p>发送邮件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">使用postfixadmin 的web界面来发送邮件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者 使用mail发送邮件</span>
+</span></span><span class="line"><span class="cl">apt install mailutils
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;hello xpshuai&#34;</span> <span class="p">|</span> mail <span class="s2">&#34;test mail&#34;</span> tom@qq.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tail -n <span class="m">20</span> -f /var/log/mail.log
+</span></span><span class="line"><span class="cl">ls -l /var/mail/vmail    <span class="c1"># 每个域的邮件存储的目录</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>增加其他虚拟域、邮箱(<code>jerry@taobao.com</code>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;hello jerry, it&#39;s tom&#34;</span> <span class="p">|</span>mail -s <span class="s2">&#34;Subject&#34;</span>-a From<span class="s2">&#34;tom\&lt;tom@qq.com&gt;\jerry@taobao.com
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="配置邮件客户端">配置邮件客户端</h6>
+<p>Outlook,Thunderbird, &hellip; &hellip;
+添加新邮箱账号（名字，地址，密码）
+配置Imap、pop3、smtp等的地址，SSL加密</p>
+<h2 id="font-colorredweb-mail安装font"><font color=red>Web MAIL安装</font></h2>
+<p>各大邮件服务商全部提供Web Mail
+基于浏览器的统一使用体验（无序配置客户端）</p>
+<p><code>Roundcube</code> &ndash; 一款非常流行且稳定的Web Mail应用</p>
+<h6 id="1安装依赖包可选">1.安装依赖包（可选）</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install php7.2-intl php-imagick php7.2-ldap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2下载roundcube">2.下载Roundcube</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /var/www/html <span class="o">&amp;&amp;</span> wget https://github.com/roundcube/roundcubemail/releases/download/1.4.7/roundcubemail-1.4.7-complete.tar.gz
+</span></span><span class="line"><span class="cl">tar -xvf roundcubemail-1.4.7-complete.tar.gz
+</span></span><span class="line"><span class="cl">mv roundcubemail-1.4.7-complete webmail <span class="o">&amp;&amp;</span> <span class="nb">cd</span> webmail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3创建数据库">3.创建数据库</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE DATABASE roundcubedb<span class="p">;</span>
+</span></span><span class="line"><span class="cl">CREATE DATABASE routecubemail<span class="p">;</span>
+</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;roundcube&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;1234&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON roundcubedb.* <span class="s1">&#39;roundcube&#39;</span>@<span class="s1">&#39;loocalhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON routecubemail.* <span class="s1">&#39;roundcube&#39;</span>@<span class="s1">&#39;loocalhost&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导入数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 当前目录下的SQL文件夹下的sql文件（针对不同类型的数据库进行导入）</span>
+</span></span><span class="line"><span class="cl">mysql -u roundcube -p roundcubedb &lt; SQL/mysql.initial.sql
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4配置站点文件">4.配置站点文件</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这里使用默认的配置文件</span>
+</span></span><span class="line"><span class="cl">vim /etc/nginx/sites-avaialable/default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">location /webmail <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    root /var/www/html<span class="p">;</span>s
+</span></span><span class="line"><span class="cl">    index index.php<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    location ~ ^/webmaik/<span class="o">(</span>.+<span class="se">\.</span>php<span class="o">)</span>$ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        root /var/www/html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        try files <span class="nv">$uri</span><span class="o">=</span>404<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        fastcgi_index index.php<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        fastcgi_pass unix:/run/php/php7.2-fpm.sock<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        fastcgi_param SCRIPT_FILENAME <span class="nv">$document_root</span> <span class="nv">$fastcgi_script_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        include /etc/nginx/fastcgi_params<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    location ~ ^/webmail/<span class="o">(</span>README<span class="p">|</span>INSTALL<span class="p">|</span>LICENSE<span class="p">|</span>CHANGELOG<span class="p">|</span>UPGRADING<span class="o">)</span>$ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        deny all<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    location ~ ^/webmail/<span class="o">(</span>bin<span class="p">|</span>SQL<span class="p">|</span>config<span class="p">|</span>temp<span class="p">|</span>logs<span class="o">)</span>/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        deny all<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>检查配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nginx -t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重启服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5权限">5.权限</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chown -R www-data:www-data /var/www/html/webmail
+</span></span><span class="line"><span class="cl">chmod <span class="m">755</span> /var/www/html/webmail/temp  /var/www/html/webmail/logs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="6web安装阶段">6.Web安装阶段</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 访问路径</span>
+</span></span><span class="line"><span class="cl">http://mail.qq.com/webmail/installer
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 检查环境</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 一些组件可能没安装，可以安装</span>
+</span></span><span class="line"><span class="cl">apt install php-dompdf
+</span></span><span class="line"><span class="cl">apt install php7.2-xml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 创建配置文件</span>
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># IP检查</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置数据库密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># managesieve</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...具体的自己看配置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 初始化数据库</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除installer目录</p>
+<p>登录Web Mail</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 访问web界面</span>
+</span></span><span class="line"><span class="cl">http://mail.qq.com/webmail
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e9%82%ae%e4%bb%b6%e6%9c%8d%e5%8a%a1.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/' class="post-tag">邮件服务</a><a href='/tags/ubuntu-server/' class="post-tag">ubuntu server</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" class="post-nav-item" rel="prev" title="ubuntu sever-聊天服务"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu sever-聊天服务</a>
+      <a href="/ubuntu-server-%E4%BB%A3%E7%90%86-vpn/" class="post-nav-item" rel="next" title="ubuntu server-代理&amp;VPN">ubuntu server-代理&amp;VPN<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

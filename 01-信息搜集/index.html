@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>01-信息搜集 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="一些web工具： https://www.uedbox.com/tools/type/webapp 1.收集域名信息 Whois查询 在线工具： 爱站网 站长之家 VirusTotal 备案信息查询 ICP备案查询网 天眼查 2.收集敏感信息 Google hacking 常用语法： site:" /><meta name="keywords" content='渗透测试' /><meta itemprop="name" content="01-信息搜集">
+<meta itemprop="description" content="一些web工具： https://www.uedbox.com/tools/type/webapp 1.收集域名信息 Whois查询 在线工具： 爱站网 站长之家 VirusTotal 备案信息查询 ICP备案查询网 天眼查 2.收集敏感信息 Google hacking 常用语法： site:"><meta itemprop="datePublished" content="2020-02-08T15:41:40+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3956"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试," /><meta property="og:title" content="01-信息搜集" />
+<meta property="og:description" content="一些web工具： https://www.uedbox.com/tools/type/webapp 1.收集域名信息 Whois查询 在线工具： 爱站网 站长之家 VirusTotal 备案信息查询 ICP备案查询网 天眼查 2.收集敏感信息 Google hacking 常用语法： site:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/01-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-02-08T15:41:40+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="01-信息搜集"/>
+<meta name="twitter:description" content="一些web工具： https://www.uedbox.com/tools/type/webapp 1.收集域名信息 Whois查询 在线工具： 爱站网 站长之家 VirusTotal 备案信息查询 ICP备案查询网 天眼查 2.收集敏感信息 Google hacking 常用语法： site:"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/01-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E5%8C%85%E7%AE%A1%E7%90%86/" /><link rel="next" href="https://geoer.cn/02-%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "01-信息搜集",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/01-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试","wordcount":  3956 ,
+    "url": "https:\/\/geoer.cn\/01-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86\/","datePublished": "2020-02-08T15:41:40+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>01-信息搜集</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-02-08&#32;15:41:40><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-02-08">2020-02-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3956 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="01-信息搜集">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#whois查询">Whois查询</a></li>
+            <li><a href="#备案信息查询">备案信息查询</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#google-hacking">Google hacking</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#子域名检测工具">子域名检测工具</a></li>
+            <li><a href="#搜索引擎枚举">搜索引擎枚举</a></li>
+            <li><a href="#第三方聚合应用枚举">第三方聚合应用枚举</a></li>
+            <li><a href="#证书透明度ct公开日志枚举">证书透明度(CT)公开日志枚举</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#常用端口和攻击方向汇总">常用端口和攻击方向汇总：</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#文件共享服务端口">文件共享服务端口</a></li>
+                    <li><a href="#远程连接服务端口">远程连接服务端口</a></li>
+                    <li><a href="#web应用服务端口">Web应用服务端口</a></li>
+                    <li><a href="#数据库服务端口">数据库服务端口</a></li>
+                    <li><a href="#邮件服务端口">邮件服务端口</a></li>
+                    <li><a href="#网络常见协议端口">网络常见协议端口</a></li>
+                    <li><a href="#特殊服务端口">特殊服务端口</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#判断有无cdn">判断有无CDN</a></li>
+            <li><a href="#绕过cdn寻找真实ip">绕过CDN寻找真实IP</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1内部邮箱源">（1）内部邮箱源</a></li>
+                    <li><a href="#2扫描网站测试文件">（2）扫描网站测试文件</a></li>
+                    <li><a href="#3分站域名">（3）分站域名</a></li>
+                    <li><a href="#4国外访问">（4）国外访问</a></li>
+                    <li><a href="#5查询域名解析记录">（5）查询域名解析记录</a></li>
+                    <li><a href="#6目标有自己的app">（6）目标有自己的App</a></li>
+                    <li><a href="#7绕过cloudflare-cdn查找真实ip">（7）绕过CloudFlare CDN查找真实IP</a></li>
+                    <li><a href="#9-其他方法">(9) 其他方法</a></li>
+                    <li><a href="#8验证获取的ip-是否真实">（8）验证获取的IP 是否真实？</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#网站源码脚本类型">网站源码脚本类型</a></li>
+            <li><a href="#网站对应数据库">网站对应数据库</a></li>
+            <li><a href="#网站搭建平台">网站搭建平台</a></li>
+            <li><a href="#服务器操作系统">服务器操作系统</a></li>
+            <li><a href="#有无waf防护">有无WAF防护</a></li>
+            <li><a href="#有无其他应用">有无其他应用</a></li>
+            <li><a href="#ip网段网络信息">IP网段网络信息</a></li>
+            <li><a href="#robots协议">robots协议</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#shodan">shodan</a></li>
+    <li><a href="#zoomeye">zoomeye</a>
+      <ul>
+        <li><a href="#fofa">fofa</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><!-- more -->
+<blockquote>
+<p>一些web工具： <a href="https://www.uedbox.com/tools/type/webapp"target="_blank" rel="external nofollow noopener noreferrer">https://www.uedbox.com/tools/type/webapp<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<h1 id="1收集域名信息">1.收集域名信息</h1>
+<h4 id="whois查询">Whois查询</h4>
+<p><strong>在线工具：</strong></p>
+<ul>
+<li>爱站网</li>
+<li>站长之家</li>
+<li>VirusTotal</li>
+</ul>
+<h4 id="备案信息查询">备案信息查询</h4>
+<ul>
+<li>ICP备案查询网</li>
+<li>天眼查</li>
+</ul>
+<h1 id="2收集敏感信息">2.收集敏感信息</h1>
+<h4 id="google-hacking">Google hacking</h4>
+<p><strong>常用语法：</strong>
+site:
+inurl:
+intext:
+filetype:
+intitle:
+link:
+info:
+cache:      缓存</p>
+<p>比如：site:edu.cn intext:后台管理</p>
+<p>还可以用它来搜集 后台，数据库文件，SQL注入，配置信息，源代码泄露，未授权访问，robots.txt等敏感信息</p>
+<p>百度，必应，Yandex, 雅虎，Shodan等类似</p>
+<h1 id="3收集子域名信息">3.收集子域名信息</h1>
+<h4 id="子域名检测工具">子域名检测工具</h4>
+<p><strong>工具：</strong></p>
+<ul>
+<li>Layer子域名挖掘机     (推荐)</li>
+<li>K8</li>
+<li>wydomain</li>
+<li>Sublist3r                    (推荐， 能列出多种资源)</li>
+<li>dnsmaper</li>
+<li>subDomainsBrute      (推荐，python开发的， 可以使用小字典递归地发现三四五级域名)</li>
+<li>Maltego CE</li>
+<li>&hellip;&hellip;</li>
+</ul>
+<h4 id="搜索引擎枚举">搜索引擎枚举</h4>
+<p>比如：
+搜索百度下面的子域名<br>
+site:baidu.com</p>
+<h4 id="第三方聚合应用枚举">第三方聚合应用枚举</h4>
+<p>很多第三方服务汇聚了大量DNS数据集， 可以通过他们检索某个给定域名的子域名</p>
+<p><strong>工具：</strong></p>
+<ul>
+<li>DNSdumpster 网站</li>
+<li>在线DNS侦查和搜索的工具<br>
+来挖掘制定域潜藏的大量子域</li>
+</ul>
+<h4 id="证书透明度ct公开日志枚举">证书透明度(CT)公开日志枚举</h4>
+<p>是证书授权机构(CA)的一个项目， CA会将每个SSL/TLS证书发布到公共日志中。<br>
+一个SSL/TLS证书通常包含域名、子域名、邮件地址  &hellip; &hellip;</p>
+<p><strong>方法：</strong>
+最简单的就是： 使用搜索引擎搜索一些公开的CT日志<br>
+<strong>推荐：</strong></p>
+<ul>
+<li>crt.sh:      <a href="https://crt.sh"target="_blank" rel="external nofollow noopener noreferrer">https://crt.sh<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 网站</li>
+<li><a href="https://censys.io"target="_blank" rel="external nofollow noopener noreferrer">https://censys.io<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>  网站</li>
+</ul>
+<p><strong>其他工具：</strong>
+一些在线网站</p>
+<ul>
+<li>子域名爆破网站：   <a href="https://phpinfo.me/domain"target="_blank" rel="external nofollow noopener noreferrer">https://phpinfo.me/domain<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li>IP反查绑定域名网站：  <a href="https://dns.zizhan.com"target="_blank" rel="external nofollow noopener noreferrer">https://dns.zizhan.com<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+</ul>
+<h1 id="4-收集常用端口信息">4. 收集常用端口信息</h1>
+<blockquote>
+<p>方便对症下药</p>
+</blockquote>
+<p><strong>工具：</strong></p>
+<ul>
+<li>Nmap</li>
+<li>无状态扫描工具 Masscan</li>
+<li>ZMap</li>
+<li>御剑高速TCP端口扫描工具</li>
+</ul>
+<p><a href="https://www.cnblogs.com/botoo/p/10475402.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/botoo/p/10475402.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h4 id="常用端口和攻击方向汇总">常用端口和攻击方向汇总：</h4>
+<h6 id="文件共享服务端口">文件共享服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20/21/<strong>69</strong></td>
+<td>Ftp/<strong>Tftp</strong>文件传输协议</td>
+<td>允许匿名的上传、下载、爆破和嗅探操作</td>
+</tr>
+<tr>
+<td>2049</td>
+<td>Nfs服务</td>
+<td>配置不当</td>
+</tr>
+<tr>
+<td>139</td>
+<td>Samba</td>
+<td>爆破、未授权访问、远程代码执行</td>
+</tr>
+<tr>
+<td>389</td>
+<td>Ldap目录访问权限</td>
+<td>注入、允许匿名访问、弱口令</td>
+</tr>
+</tbody>
+</table>
+<p>注：FTP协议的 21端口 &ndash;&gt; 传输控制信息， 20端口 &mdash;&gt; 传输数据</p>
+<h6 id="远程连接服务端口">远程连接服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22</td>
+<td>SSH远程连接</td>
+<td>爆破、SSH隧道及内网代理转发、文件传输</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Telnet远程连接</td>
+<td>爆破、嗅探、弱口令</td>
+</tr>
+<tr>
+<td>3389</td>
+<td>Rdp远程桌面连接</td>
+<td>Shift后门（需Windows Server 2003 及以下系统 ）、爆破</td>
+</tr>
+<tr>
+<td>5900</td>
+<td>VNC</td>
+<td>弱口令爆破</td>
+</tr>
+<tr>
+<td>5632</td>
+<td>PyAnywhere</td>
+<td>抓密码、代码执行</td>
+</tr>
+</tbody>
+</table>
+<h6 id="web应用服务端口">Web应用服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80/443/8080</td>
+<td>常见的web服务端口</td>
+<td>Web攻击、爆破、对于服务器版本漏洞</td>
+</tr>
+<tr>
+<td>7001/ 7002</td>
+<td>WebLogic控制台</td>
+<td>Java反序列化、弱口令</td>
+</tr>
+<tr>
+<td>8080/8089</td>
+<td>JBoss/Resin/Jetty/Jenkins</td>
+<td>反序列化、控制台弱口令</td>
+</tr>
+<tr>
+<td>9090</td>
+<td>WebSphere控制台</td>
+<td>Java反序列化、弱口令</td>
+</tr>
+<tr>
+<td>4848</td>
+<td>GlassFish 控制台</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>1352</td>
+<td>Lotus domino邮件服务</td>
+<td>弱口令、信息泄露、爆破</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>Webmin-Web控制面板</td>
+<td>弱口令</td>
+</tr>
+</tbody>
+</table>
+<h6 id="数据库服务端口">数据库服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3306</td>
+<td>Mysql</td>
+<td>注入、提权、爆破</td>
+</tr>
+<tr>
+<td>1433</td>
+<td>MSSQL数据库</td>
+<td>注入、提权、SA弱口令、爆破</td>
+</tr>
+<tr>
+<td>1521</td>
+<td>Oracle数据库</td>
+<td>TNS爆破、注入、反弹Shell</td>
+</tr>
+<tr>
+<td>5432</td>
+<td>PostgreSQL数据库</td>
+<td>爆破、注入、弱口令</td>
+</tr>
+<tr>
+<td>28017/27018</td>
+<td>MongoDB</td>
+<td>爆破、未授权访问</td>
+</tr>
+<tr>
+<td>6379</td>
+<td>Redis数据库</td>
+<td>可尝试未授权访问、弱口令爆破</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>SysBase/DB2数据库</td>
+<td>爆破、注入</td>
+</tr>
+</tbody>
+</table>
+<h6 id="邮件服务端口">邮件服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25</td>
+<td>SMTP邮件服务</td>
+<td>邮件伪造</td>
+</tr>
+<tr>
+<td>110</td>
+<td>POP3协议</td>
+<td>爆破、嗅探</td>
+</tr>
+<tr>
+<td>142</td>
+<td>IMAP协议</td>
+<td>爆破</td>
+</tr>
+</tbody>
+</table>
+<h6 id="网络常见协议端口">网络常见协议端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>53</td>
+<td>DNS域名系统</td>
+<td>允许区域传送、DNS劫持、缓存投毒、欺骗</td>
+</tr>
+<tr>
+<td>67/68</td>
+<td>DHCP服务</td>
+<td>劫持、欺骗</td>
+</tr>
+<tr>
+<td>161</td>
+<td>SNMP协议</td>
+<td>爆破、搜集目标内网信息</td>
+</tr>
+</tbody>
+</table>
+<h6 id="特殊服务端口">特殊服务端口</h6>
+<table>
+<thead>
+<tr>
+<th>端口</th>
+<th>端口说明</th>
+<th>攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2181</td>
+<td>Zookeeper服务</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>8069</td>
+<td>Zabbix服务</td>
+<td>远程执行、SQL注入</td>
+</tr>
+<tr>
+<td>9200</td>
+<td>Elasticsearch服务</td>
+<td>远程执行</td>
+</tr>
+<tr>
+<td>11211</td>
+<td>Memcache服务</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>512/513/514</td>
+<td>Linux Rexec服务</td>
+<td>爆破、Rlogin登录</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Rsync服务</td>
+<td>匿名访问、文件上传</td>
+</tr>
+<tr>
+<td>3690</td>
+<td>Svn服务</td>
+<td>Svn泄露、未授权访问</td>
+</tr>
+<tr>
+<td>50000</td>
+<td>SAP Mannagement Console</td>
+<td>远程执行1</td>
+</tr>
+</tbody>
+</table>
+<h1 id="5指纹识别">5.指纹识别</h1>
+<p>应用程序在html, css, js 等文件中多多少少会包含一些特征码（比如: WordPress在robots.txt中会包含<code>wp-admin</code>, 首页index.php中会包含<code>generator=wordpress 3.xx</code>）,帮助快速识别CMS</p>
+<p><strong>常见的CMS(整站系统)：</strong></p>
+<ul>
+<li>Dedecms(织梦)</li>
+<li>Discuz</li>
+<li>PHPWEB</li>
+<li>PHPCMS</li>
+<li>ECShop</li>
+<li>Dvbbs</li>
+<li>SiteWeaver</li>
+<li>ASPCMS</li>
+<li>帝国</li>
+<li>Z-Blog</li>
+<li>WordPress</li>
+</ul>
+<p><strong>工具：</strong></p>
+<ul>
+<li>御剑Web指纹识别</li>
+<li>What Web</li>
+<li>WEBrOBO</li>
+<li>椰树</li>
+<li>轻量WEB指纹识别</li>
+<li>&hellip;</li>
+</ul>
+<p><strong>在线网站工具：</strong></p>
+<ul>
+<li>BugScaner：      <a href="https://whatweb.bugscaner.com/look/"target="_blank" rel="external nofollow noopener noreferrer">https://whatweb.bugscaner.com/look/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li>云悉指纹：         <a href="https://www.yunsee.cn/finnger.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.yunsee.cn/finnger.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li>What Web:        <a href="https://whatweb.net/"target="_blank" rel="external nofollow noopener noreferrer">https://whatweb.net/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+</ul>
+<p><strong>推荐项目：</strong>
+<a href="https://github.com/Lucifer1993/cmsprint"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/Lucifer1993/cmsprint<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>         国内的
+<a href="https://github.com/anouarbensaad/vulnx"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/anouarbensaad/vulnx<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>       国外的
+<a href="https://github.com/Lucifer1993/AngelSword"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/Lucifer1993/AngelSword<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>      国内的  （停止维护）</p>
+<p><strong>phpStudy搭建的网站，数据包都有以下特点</strong>
+<code>Server: Apache/2.4.23 (Win32) OpenSSL/1.0.23 mod_fcgid/2.3.9</code></p>
+<h1 id="6查找真实ip">6.查找真实IP</h1>
+<p>如果目标服务器只有一个域名 ，获取真实ip就非常重要<br>
+如果没有CDN，可以通过 <code>www.ip138.com</code>等工具获取目标的ip</p>
+<p>CDN（内容分发网络， 通俗讲就是高速缓存服务器，把内容缓存到了距离我们最近的节点服务器上面&hellip;）</p>
+<h4 id="判断有无cdn">判断有无CDN</h4>
+<p>采用<code>超级ping</code>第三方平台判断：唯一IP无cdn，反之有cdn
+或者采用在线网站17CE (<a href="https://www17ce.com"target="_blank" rel="external nofollow noopener noreferrer">https://www17ce.com<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>)进行全国多地区的ping服务器操作</p>
+<p><strong>工具：</strong></p>
+<ul>
+<li>超级ping</li>
+<li>站长工具等</li>
+</ul>
+<h4 id="绕过cdn寻找真实ip">绕过CDN寻找真实IP</h4>
+<h6 id="1内部邮箱源">（1）内部邮箱源</h6>
+<p>一般邮件系统都在内部，没有经过CDN解析<br>
+通过网站<code>注册用户</code>或者<code>RSS</code>订阅功能，查看邮件头中的邮件服务器域名IP，ping这个邮件服务器的域名，就可以获取真实ip<br>
+注意：必须是目标自己的邮件服务器，第三方公共邮件服务器不行</p>
+<h6 id="2扫描网站测试文件">（2）扫描网站测试文件</h6>
+<p>如：<code>phpinfo</code>, <code>test</code>等一文件，从而找到真实ip</p>
+<h6 id="3分站域名">（3）分站域名</h6>
+<p>很多主站访问量大，挂了CDN，但是分站有可能没有CDN<br>
+可以通过ping二级域名获取分站ip， 很可能出现分站和主站部署同一个ip，但是在同一个C段下面的情况，从而判断目标的真实ip段</p>
+<h6 id="4国外访问">（4）国外访问</h6>
+<p>较小或者业务面向国内的网站的CDN往往只对国内的用户访问加速，而国外就不一定了<br>
+方法：</p>
+<ul>
+<li>可以通过挂国外的代理</li>
+<li>或者   使用国外的在线代理网站<code> App Synthetic Monitor  (https://asm.ca.com/en/ping.php)</code>访问
+可能会得到真实ip</li>
+</ul>
+<h6 id="5查询域名解析记录">（5）查询域名解析记录</h6>
+<p>也许目标很久之前没有使用CDN<br>
+通过网站<code>NETCRAFT （https://www.netcraft.com/）</code>来观察域名的ip历史记录，也可以大致分析出真实ip段</p>
+<h6 id="6目标有自己的app">（6）目标有自己的App</h6>
+<p>可以尝试用<code>Fiddller</code>或<code>Burp Suite</code> 抓取App的请求，从而找到目标的真实ip</p>
+<h6 id="7绕过cloudflare-cdn查找真实ip">（7）绕过CloudFlare CDN查找真实IP</h6>
+<p>很多网站都使用 CloudFlare 提供的cdn服务<br>
+可通过在线网站<code>FlareWatch (http://www.crimeflare.us/cfs.html#box)</code> 对CloudFlare客户网站进行真实ip查询</p>
+<h6 id="9-其他方法">(9) 其他方法</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">其他方法：遗留文件（比如google镜像），扫全网(比如)，黑暗引擎，dns历史记录（第三方平台，刚好开通cdn之前的ip地址），以量打量（需要肉鸡，cdn的流量用完就显示真实ip）
+</span></span><span class="line"><span class="cl">https://get-site-ip.com/
+</span></span><span class="line"><span class="cl">遗留文件中: phpinfo的server_ddr字段， http_x_forwarded_for
+</span></span><span class="line"><span class="cl">【文章：】
+</span></span><span class="line"><span class="cl">https://www.lstazl.com/cdn检测与绕过/
+</span></span><span class="line"><span class="cl">https://www.fujieace.com/penetration-test/cdn-find-ip.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="8验证获取的ip-是否真实">（8）验证获取的IP 是否真实？</h6>
+<p>如果是Web： 直接输入ip访问，看看相应页面是否和访问域名返回的一样<br>
+目标段比较大的情况下：借助<code>Masscan</code>的工具批扫描对应IP段中所有开了80,443,8080端口的ip，然后逐个ip尝试，观察响应结果是否是目标站点</p>
+<h1 id="7收集敏感目录-文件">7.收集敏感目录 文件</h1>
+<p>从中可以发现隐藏的后台管理页面，文件上传页面，甚至网站备份文件和源码</p>
+<p><strong>工具：</strong></p>
+<ul>
+<li>DirBuster                      java编写的，图形化界面</li>
+<li>御剑后台扫描珍藏版</li>
+<li>wwwscan</li>
+<li>Spinder.py (轻量级快速单目录后台扫描)</li>
+<li>Sensitivefilescan (轻量级快速单文件目录后台扫描 )</li>
+<li>Weakfilescan (轻量级快速单文件目录后台扫描 )</li>
+<li>awvs 爬行</li>
+<li>webPathBrute</li>
+<li>robots.txt</li>
+</ul>
+<p><strong>很多在线工具：</strong></p>
+<ul>
+<li>WebScan   (<a href="http://www.webscan.cc/"target="_blank" rel="external nofollow noopener noreferrer">http://www.webscan.cc/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>)</li>
+</ul>
+<h1 id="8社会工程学">8.社会工程学</h1>
+<p>邮件<br>
+社工库<br>
+&hellip;&hellip;</p>
+<h1 id="9-其他-web信息搜集">9. 其他 web信息搜集</h1>
+<h4 id="网站源码脚本类型">网站源码脚本类型</h4>
+<p>php, java, python, go, node.js, &hellip;&hellip;</p>
+<p><strong>脚本类型：</strong></p>
+<ol>
+<li>url直接显示: <code>xxx.php</code> 可以直接判断
+2.如果是伪静态：
+多构造请求数据包，f12，network中的数据包中，可以看到请求的URL(&hellip;xxx.jsp)或者接口&hellip;
+比如：<code>Request URL: http://www.cngis.cn/news/detail.aspx?classid=216454257090494464&amp;id=140</code> 这里是aspx的</li>
+</ol>
+<blockquote>
+<p>伪静态怎么注入没理解？？？
+<strong>伪静态</strong> 不是真正意义上的静态格式文件 : 展示的格式是&hellip;xxx.html<br>
+<strong>测试方法：</strong> f12打开network，查看请求数据包（）
+多提交地址访问抓包分析</p>
+</blockquote>
+<h4 id="网站对应数据库">网站对应数据库</h4>
+<p>常用的组合匹配：  如php程序 判定mysql aspx 判定mssql
+常见组合： asp+access php+mysql aspx+mssql jsp+mssql或oracle等</p>
+<p>端口扫描判定：内网服务器方法失效
+access无端口开发， mysql:3306， mssql:1433， oracle:1521，MongoDB：27017,Postgresql:5432, redis:6379等</p>
+<p>参考文章：https://www.cnblogs.com/botoo/p/10475402.html</p>
+<h4 id="网站搭建平台">网站搭建平台</h4>
+<p>查看元素或审查元素抓包获取
+比如Server:      Nginx, iis等中间件信息</p>
+<h4 id="服务器操作系统">服务器操作系统</h4>
+<p>大小写判断 windows大小写不敏感 linux相反</p>
+<h4 id="有无waf防护">有无WAF防护</h4>
+<p><strong>工具：</strong>
+可以借用 wafw000f 脚本判断waf类别。  <a href="https://github.com/EnableSecurity/wafw00f"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/EnableSecurity/wafw00f<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>              wafw00f <a href="http://www.cngis.cn"target="_blank" rel="external nofollow noopener noreferrer">http://www.cngis.cn<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>应用的防火墙、硬件的防火墙</p>
+<p>SQLMAP的几个WAF绕过方法：   <a href="https://9bie.org/index.php/archives/465/"target="_blank" rel="external nofollow noopener noreferrer">https://9bie.org/index.php/archives/465/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h4 id="有无其他应用">有无其他应用</h4>
+<p>APP或手机站点 第三方接口（微信公众号等）</p>
+<h4 id="ip网段网络信息">IP网段网络信息</h4>
+<p>** IP : **    IP对应网站 IP对应目录扫描   （设置的时候，目录设置为www.xxx,com。 192.168.1.112访问的是站点，但是www.xxx.com访问的是站点下面的一个目录。一个ip对应多个域名多个站点，单一个域名只有一个ip）
+<strong>网段：</strong>   C段信息扫描 网段 192.168.0.1 -192.168.0.255     在线C段查询（拿到同网段后，再进行另一个主机，相当于内网渗透了）
+<strong>工具:</strong></p>
+<ul>
+<li>DotNetScan</li>
+<li>iisput增强版</li>
+</ul>
+<h4 id="robots协议">robots协议</h4>
+<p>直接访问地址/robots.txt获取相关目录地址信息</p>
+<h2 id="shodan">shodan</h2>
+<h2 id="zoomeye">zoomeye</h2>
+<h3 id="fofa">fofa</h3>
+<blockquote>
+<p>利用搜索。或者脚本开发进行批量/调用</p>
+</blockquote>
+<hr>
+<h1 id="伪静态">伪静态</h1>
+<p>如果看到一个以.html或者.htm结尾的网页，此时可以通过呢在在地址输入框中输入：
+javascript:alert(document.lastModified)，来得到网页最后的修改时间，如果得到的时间和现在时间一致，此页面就是伪静态，反之是真静态；因为动态页面的最后修改时间总是当前时间，而静态页面的最后修改时间则是它生成的时间。</p>
+<p><a href="https://blog.csdn.net/Fly_hps/article/details/79487137"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/Fly_hps/article/details/79487137<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://blog.csdn.net/zezai3010/article/details/78797944"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/zezai3010/article/details/78797944<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/01-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/01-%e4%bf%a1%e6%81%af%e6%90%9c%e9%9b%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E5%8C%85%E7%AE%A1%E7%90%86/" class="post-nav-item" rel="prev" title="ubuntu server 包管理"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server 包管理</a>
+      <a href="/02-%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB/" class="post-nav-item" rel="next" title="02-漏洞分类">02-漏洞分类<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

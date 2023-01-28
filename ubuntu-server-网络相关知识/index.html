@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-网络相关知识 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="网络原理 ping 127.0.0.1 如果能通，说明本机的TCP/IP协议已经配置成功啦 arping 网卡配置 网卡接口 -enp2s0 (最近使用)、eth0 （以前这么使用） 1 2 3 4 5 6 7 8 9 10" /><meta name="keywords" content='Linux, ubuntu' /><meta itemprop="name" content="ubuntu server-网络相关知识">
+<meta itemprop="description" content="网络原理 ping 127.0.0.1 如果能通，说明本机的TCP/IP协议已经配置成功啦 arping 网卡配置 网卡接口 -enp2s0 (最近使用)、eth0 （以前这么使用） 1 2 3 4 5 6 7 8 9 10"><meta itemprop="datePublished" content="2020-03-08T17:48:37+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="5552"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,ubuntu," /><meta property="og:title" content="ubuntu server-网络相关知识" />
+<meta property="og:description" content="网络原理 ping 127.0.0.1 如果能通，说明本机的TCP/IP协议已经配置成功啦 arping 网卡配置 网卡接口 -enp2s0 (最近使用)、eth0 （以前这么使用） 1 2 3 4 5 6 7 8 9 10" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-08T17:48:37+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-网络相关知识"/>
+<meta name="twitter:description" content="网络原理 ping 127.0.0.1 如果能通，说明本机的TCP/IP协议已经配置成功啦 arping 网卡配置 网卡接口 -enp2s0 (最近使用)、eth0 （以前这么使用） 1 2 3 4 5 6 7 8 9 10"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" /><link rel="prev" href="https://geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" /><link rel="next" href="https://geoer.cn/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-网络相关知识",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, ubuntu","wordcount":  5552 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86\/","datePublished": "2020-03-08T17:48:37+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-网络相关知识</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-08&#32;17:48:37><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-08">2020-03-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 5552 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 12 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-网络相关知识">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#网络原理">网络原理</a></li>
+    <li><a href="#网卡配置">网卡配置</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#网卡接口">网卡接口</a></li>
+                    <li><a href="#管理网卡">管理网卡</a></li>
+                    <li><a href="#网络基本设置">网络基本设置</a></li>
+                    <li><a href="#网卡配置文件">网卡配置文件</a></li>
+                    <li><a href="#动态获取ip地址">动态获取IP地址</a></li>
+                    <li><a href="#静态ip地址">静态IP地址</a></li>
+                    <li><a href="#ubuntu-1804配置静态ip">Ubuntu 1804配置静态ip</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#dns配置">DNS配置</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#dns配置文件">DNS配置文件</a></li>
+                    <li><a href="#主机名解析">主机名解析</a></li>
+                    <li><a href="#查看路由">查看路由</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#网桥配置">网桥配置</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#在ubunut搭建网桥">在ubunut搭建网桥</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#网卡绑定---经常使用">网卡绑定   (经常使用)</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#一些常用称呼">一些常用称呼：</a></li>
+                    <li><a href="#目的">目的：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#配置">配置：</a></li>
+            <li><a href="#6种模式">6种模式</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#mode-0---round-robin轮询">Mode 0  ： round-robin(轮询)</a></li>
+                    <li><a href="#mode-1--ative-backup">Mode 1 : ative-backup</a></li>
+                    <li><a href="#mode-2--balance-xor">Mode 2:  balance-XOR</a></li>
+                    <li><a href="#mode-3---broadcast">Mode 3   broadcast</a></li>
+                    <li><a href="#mode-4---8023addynamic-link-aggregation">Mode 4   802.3ad（Dynamic link aggregation）</a></li>
+                    <li><a href="#mode-5----balance-tlb-adaptive-transmit-load-balancing">Mode 5    balance-tlb （Adaptive transmit load balancing）</a></li>
+                    <li><a href="#mode-6---balance-alb-adaptive-load-balance">Mode 6:   balance-alb (Adaptive load balance)</a></li>
+                    <li><a href="#查看bond端口和状态">查看bond端口和状态</a></li>
+                    <li><a href="#model-4-配置">Model 4 配置</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#dhcp服务">DHCP服务</a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#dynamic-host-configuration-protocol">Dynamic Host Configuration Protocol</a></li>
+                    <li><a href="#安装">安装</a></li>
+                    <li><a href="#日常的维护">日常的维护</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ntp服务-网络时间协议">NTP服务 （网络时间协议）</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ntp协议">NTP协议</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#ntp客户端">NTP客户端</a></li>
+                    <li><a href="#一个过时的东西ntpdate">一个过时的东西(ntpdate)</a></li>
+                    <li><a href="#ntpd----客户端服务器">ntpd &ndash; 客户端+服务器</a></li>
+                    <li><a href="#命令-ntpq----ntp服务端的查询命令">命令: ntpq &ndash; ntp服务端的查询命令</a></li>
+                    <li><a href="#其他命令">其他命令</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="网络原理">网络原理</h2>
+<img src="http://image.xpshuai.cn/20200214100233476_240785919.png" />
+<p><code>ping 127.0.0.1</code> 如果能通，说明本机的TCP/IP协议已经配置成功啦
+<code>arping </code></p>
+<h2 id="网卡配置">网卡配置</h2>
+<h6 id="网卡接口">网卡接口</h6>
+<p>-enp2s0 (最近使用)、eth0   （以前这么使用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#wl 开头的是无线网卡</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ifconfig 命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有网卡</span>
+</span></span><span class="line"><span class="cl">ifconfig -a
+</span></span><span class="line"><span class="cl">    字段意义：MTU,发包，收包，<span class="sb">`</span>collisions<span class="sb">`</span>发生多少次冲突
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ip 命令</span>
+</span></span><span class="line"><span class="cl"> ip link     <span class="c1"># 查看所有网卡和信息</span>
+</span></span><span class="line"><span class="cl"> ip address
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># lshw   查看系统硬件命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只查看网卡的命令</span>
+</span></span><span class="line"><span class="cl">sudo lshw -class network
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="管理网卡">管理网卡</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看网卡参数</span>
+</span></span><span class="line"><span class="cl">sud ethtool enp0s3
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># -s   配置 ： speed 速度 半双工 </span>
+</span></span><span class="line"><span class="cl">sud ethtool -s duplex half <span class="p">|</span> full speed <span class="m">1000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="网络基本设置">网络基本设置</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 临时设置IP地址</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 10.0.0.00 netmask 255.255.255.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 24位掩码</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 10.0.0.100/24
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置网关 gw</span>
+</span></span><span class="line"><span class="cl">sudo route add default gw 10.0.0.1 eth0
+</span></span><span class="line"><span class="cl"><span class="c1"># 网段路由 add-net   （静态路由：去哪个网段，应该怎么转发）</span>
+</span></span><span class="line"><span class="cl">sudo route add-net 0.0.0.0 netmask 0.0.0.0 gw 1.1.1.1
+</span></span><span class="line"><span class="cl"><span class="c1"># 主机路由 add-host    </span>
+</span></span><span class="line"><span class="cl">sudo route add-host 2.2.2.2 gw 1.1.1.1
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 清除网卡配置</span>
+</span></span><span class="line"><span class="cl">ip addr fulsh eth0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 向网络中要一个IP</span>
+</span></span><span class="line"><span class="cl">sudo dhcpclient
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用网卡</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 down
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用网卡</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 up
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启网络服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctrl restart networking.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="网卡配置文件">网卡配置文件</h6>
+<p><code>/etc/network/interfaces</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">文件字段：
+</span></span><span class="line"><span class="cl">iface 网卡name inet 网络配置（loopback/dhcp/static）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    sudo eth0
+</span></span><span class="line"><span class="cl">    iface eth0 inet static<span class="p">|</span>DHCP
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># pre-up 系统启动中(网卡运行前)  设置为1000M，全双工</span>
+</span></span><span class="line"><span class="cl">    pre-up/sbin/ethtool -s eth0 speed <span class="m">1000</span> duplex full
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="动态获取ip地址">动态获取IP地址</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl">auto eth0
+</span></span><span class="line"><span class="cl">iface inet dhcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="静态ip地址">静态IP地址</h6>
+<p>一般服务器是静态的IP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl">auto eth0
+</span></span><span class="line"><span class="cl">iface inet static
+</span></span><span class="line"><span class="cl">    address 192.168.123.9
+</span></span><span class="line"><span class="cl">    netmask 255.255.255.0        <span class="c1"># 掩码</span>
+</span></span><span class="line"><span class="cl">    gateway 192.168.123.1        <span class="c1"># 网关</span>
+</span></span><span class="line"><span class="cl">    dns-nameservers 192.168.123.1 202.99.96.68   <span class="c1"># 一般dns地址写俩</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 上面是基本配置, 下面是额外其他配置项</span>
+</span></span><span class="line"><span class="cl">    broadcast 192.168.123.255   <span class="c1"># 网段的广播地址</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># dns-search  abc.com  # 如果属于某个dns域,就默认去找这个</span>
+</span></span><span class="line"><span class="cl">    up route add -net 172.16.0.0/24  gw 192.168.23.1 eth0   <span class="c1"># 开机之后,添加一个网段(要指定具体网关)</span>
+</span></span><span class="line"><span class="cl">    mtu <span class="m">1460</span>   <span class="c1"># 指定MTU 字节</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># hwaddress 00:11:22:33:44:55   # 指定硬件mac地址</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新,重启网络, 配置文件的网络生效(实在不行就重启计算机)</span>
+</span></span><span class="line"><span class="cl">sudo ip address fulsh eth0 
+</span></span><span class="line"><span class="cl">sudo systemctrl restart networking.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="http://image.xpshuai.cn//20200214114820323_1273216811.png"></img>
+指定路由
+清除信息
+ip addr flush ens32</p>
+<blockquote>
+<p>Note： VmWare对网络的支持要好于VirtualBox(比如有些网络的配置可能有限制)</p>
+</blockquote>
+<h6 id="ubuntu-1804配置静态ip">Ubuntu 1804配置静态ip</h6>
+<p>ubuntu18.04 server，启用了新的网络工具<code>netplan</code>，对于命令行配置网络参数跟之前的版本有比较大的差别，现在介绍如下：</p>
+<ol>
+<li>其网络配置文件是放在<code>/etc/netplan/50-cloud-init.yaml</code>, 缺省是用dhcp方式，如果要配置静态地址，则需要修改此文件的想关内容，见如下的例子：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">network:
+</span></span><span class="line"><span class="cl">	version: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    ethernets:
+</span></span><span class="line"><span class="cl">        ens33:
+</span></span><span class="line"><span class="cl">            addresses: <span class="o">[</span>192.168.1.20/24<span class="o">]</span>	<span class="c1"># 可以是这种数组形式[1.1.1.1, 192.168.1.20/24]也可以是下面那样</span>
+</span></span><span class="line"><span class="cl">            dhcp4: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">            gateway4: 192.168.1.1
+</span></span><span class="line"><span class="cl">            nameservers:
+</span></span><span class="line"><span class="cl">                addresses: <span class="o">[</span>192.168.1.1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                optional: <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">            
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者下面这个格式(可能更清晰，有<code>ipv6</code>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># the datasource.  Changes to it will not persist across an instance.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># To disable cloud-init&#39;s network configuration capabilities, write a file</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># network: {config: disabled}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 前几项必填，其他根据需要填写</span>
+</span></span><span class="line"><span class="cl">network:
+</span></span><span class="line"><span class="cl">    version: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    ethernets:
+</span></span><span class="line"><span class="cl">        eth0:
+</span></span><span class="line"><span class="cl">            addresses:
+</span></span><span class="line"><span class="cl">                - 公共ipv4地址/20掩码
+</span></span><span class="line"><span class="cl">                - 私有ipv4地址/16
+</span></span><span class="line"><span class="cl">                - 公共ipv6地址/64
+</span></span><span class="line"><span class="cl">            dhcp4: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">            gateway4: <span class="s2">&#34;公共ipv4网关&#34;</span>
+</span></span><span class="line"><span class="cl">            gateway6: 公共ipv6网关
+</span></span><span class="line"><span class="cl">            match:
+</span></span><span class="line"><span class="cl">                macaddress: MAC地址<span class="o">(</span>不必须<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            nameservers:	<span class="c1"># DNS</span>
+</span></span><span class="line"><span class="cl">                addresses:
+</span></span><span class="line"><span class="cl">                    - <span class="s2">&#34;67.207.67.2&#34;</span>
+</span></span><span class="line"><span class="cl">                    - <span class="s2">&#34;67.207.67.3&#34;</span>
+</span></span><span class="line"><span class="cl">            set-name: eth0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.使其生效的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo netplan apply
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果配置有问题会报错，如果没问题，则会新的配置会立即生效。</p>
+<blockquote>
+<p>注意：此方法只是针对ubuntu18.04 Server版，对于18.04 desktop它缺省是使用NetworkManger来进行管理，可使用图形界面进行配置，其网络配置文件是保存在：/etc/NetworkManager/system-connections目录下的，跟Server版区别还是比较大的。</p>
+</blockquote>
+<p>netplan 工具还有其它比较丰富的功能，详细可参见其的说明文档。</p>
+<h2 id="dns配置">DNS配置</h2>
+<h6 id="dns配置文件">DNS配置文件</h6>
+<p><code>/etc/resolve.conf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/etc/resolve.conf    <span class="c1"># DNS设置（软连接）</span>
+</span></span><span class="line"><span class="cl">格式:
+</span></span><span class="line"><span class="cl">    nameserver 114.114.114.114
+</span></span><span class="line"><span class="cl">    nameserver 127.0.0.53
+</span></span><span class="line"><span class="cl">    options edns0
+</span></span><span class="line"><span class="cl">    search www.tendawifi.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="主机名解析">主机名解析</h6>
+<p>1.配置文件 <code>/etc/hosts</code>    优先级别<code>高</code>于resolve.conf里面的dns服务器的信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ip 和名称做解析</span>
+</span></span><span class="line"><span class="cl">127.0.0.1 localhost
+</span></span><span class="line"><span class="cl">192.168.0.111 www.qq.com
+</span></span><span class="line"><span class="cl"><span class="c1"># 现在这里找映射，有的话就不去resolve里面找了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.配置文件 <code>/etc/nsswitch.conf</code>        名称解析顺序配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 按照优先级先后排序来解析  （前面的不满足，才调用后面的）</span>
+</span></span><span class="line"><span class="cl">- files        /etc/hosts
+</span></span><span class="line"><span class="cl">- Resolve        全称systemd-resolved.service<span class="o">(</span>缓存、localhost、本机名<span class="o">)</span>   （默认安装）
+</span></span><span class="line"><span class="cl">- <span class="o">[</span><span class="nv">NOTFOUND</span><span class="o">=</span><span class="k">return</span><span class="o">]</span>        结果即权威  （正则表达式）  （当找不给我到的之后，返回）
+</span></span><span class="line"><span class="cl">- dns                    dns服务器（resolve文件配置的那些）
+</span></span><span class="line"><span class="cl">- mdns4_minimal            MulticastDNS<span class="o">(</span>多播dns服务<span class="o">)</span>     现在很多dns厂家用的就是多播dns服务
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">hosts:          files mdns4_minimal <span class="o">[</span><span class="nv">NOTFOUND</span><span class="o">=</span><span class="k">return</span><span class="o">]</span> dns myhostname
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>关于解析优先级：有的攻击者会修改你hosts文件映射到自己的恶意网址，此时如果把dns的顺序放到hosts前面，他就利用不成了</p>
+</blockquote>
+<h6 id="查看路由">查看路由</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 路由信息</span>
+</span></span><span class="line"><span class="cl">route -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">netstat -nr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="网桥配置">网桥配置</h2>
+<blockquote>
+<p>把服务器当交换机用实在是大材小用
+把多个以太网段以上层透明的方式连接在一起</p>
+</blockquote>
+<p>**应用场景： **
+1.可做防火墙<br>
+2.可以做虚拟机的服务器（搭建云平台，进行虚拟化的时候）
+3.桥接有线网与无线网（比如我的笔记本：连接网线访问互联网，另外让别人通过我的电脑无线上网，相当于一个AP）
+4.链路荣誉容错（需启用STP）
+5.通过网桥管理工具实现 <code>bridge-utils</code></p>
+<p><img src="http://image.xpshuai.cn//20200218132001375_1018333933.png"></img></p>
+<h6 id="在ubunut搭建网桥">在ubunut搭建网桥</h6>
+<p>在虚拟机添加2块网卡(一块NAT，另一块随便)</p>
+<p>**安装网桥管理包： **
+<code>sudo apt install bridge-utils </code></p>
+<p>**临时配置网桥： **
+命令： <code>btctl </code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo btctl addr br0     <span class="c1"># 添加一个网桥的网卡接口</span>
+</span></span><span class="line"><span class="cl">sudo btctl addif br0 eth0 eth1  <span class="c1"># 往网桥接口添加2块网卡</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo ifconfig eth0 down   # 把网卡down掉</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth0 0.0.0.0 up    <span class="c1"># 2者的ip变没了</span>
+</span></span><span class="line"><span class="cl">sudo ifconfig eth1 0.0.0.0 up
+</span></span><span class="line"><span class="cl">sudo ifconfig br0 1.1.1.1/24 up   <span class="c1"># 手动配置网桥网卡的ip并up</span>
+</span></span><span class="line"><span class="cl">sudo dhclient br0    <span class="c1"># 或者 dhcp自动获取网桥网卡的ip地址</span>
+</span></span><span class="line"><span class="cl">sudo route add default gw 1.1.1.10    <span class="c1"># 添加一个网关，就可以访问外网了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>持久配置网桥：</strong>
+修改配置文件： <code>/etc/network/interfaces</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auto eth0
+</span></span><span class="line"><span class="cl">iface eth0 inet manual
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto eth1
+</span></span><span class="line"><span class="cl">iface eth1 inet manual
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto br0
+</span></span><span class="line"><span class="cl">iface br0 inet dhcp   <span class="c1"># dncp  ， 也可以static，下面手动配置address，netmask和gateway</span>
+</span></span><span class="line"><span class="cl">bridge_ports eth0 eth1  <span class="c1"># 加入网卡</span>
+</span></span><span class="line"><span class="cl">bridge_stop off   <span class="c1">#关闭生成树 ,也可以 on开启成树，参与生成树计算</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改保存，然后 重启网络服务/重启服务器</p>
+<p>**查看网桥运行状态 **
+<code>sudo brctl show</code>
+<strong>查看mac情况</strong><br>
+<code>sudo brctl showmacs br0 </code>
+<strong>查看生成树情况</strong><br>
+<code>sudo brctl showstp br0 </code></p>
+<h2 id="网卡绑定---经常使用">网卡绑定   (经常使用)</h2>
+<blockquote>
+<p>还记得小时候这段一把筷子的故事吗</p>
+</blockquote>
+<p>实现多块网卡的绑定，实现高可用、负载均衡、更大发挥能力</p>
+<h6 id="一些常用称呼">一些常用称呼：</h6>
+<p>Bonding == Port Trunking == Link aggregation(链路聚合)  == Team</p>
+<h6 id="目的">目的：</h6>
+<p>将多个物理网卡组合为一个逻辑网卡</p>
+<ul>
+<li>高可用、负载平衡、高吞吐量</li>
+</ul>
+<h4 id="配置">配置：</h4>
+<p>在虚拟机做实验：先给虚拟机添加至少两块网卡</p>
+<p>1.第一步</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">echo</span> bonding &gt;&gt; /etc/modules        <span class="c1"># 添加内核支持</span>
+</span></span><span class="line"><span class="cl">sudo modprobe bonding       <span class="c1"># 手动加载内核(临时)， modeprobe加载bonding</span>
+</span></span><span class="line"><span class="cl">ifconfig -a    <span class="c1"># 可以看到自动生成了一个bonding0的网卡(但是没有up)</span>
+</span></span><span class="line"><span class="cl">sudo systemctl stop networking     
+</span></span><span class="line"><span class="cl"><span class="c1"># 永久配置，文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl">bounding    <span class="c1"># 添加一个模块</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart networking     
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.配置网卡配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Mode 1 配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl">auto eth0 
+</span></span><span class="line"><span class="cl">iface eth0 inet manual
+</span></span><span class="line"><span class="cl">bond-master  bond0    <span class="c1"># 绑定到哪个bound上</span>
+</span></span><span class="line"><span class="cl">bond-primary  eth0    <span class="c1"># 默认做的主的网卡</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto eth01
+</span></span><span class="line"><span class="cl">iface eth01 inet manual
+</span></span><span class="line"><span class="cl">bond-master  bond0      <span class="c1"># 备的网卡，协商要绑定那个</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto bond0
+</span></span><span class="line"><span class="cl">iface bond0 inet dhcp   <span class="c1"># 让ip地址dhcp； 或者static 手动制定</span>
+</span></span><span class="line"><span class="cl">bond-mode   <span class="m">1</span>    <span class="c1"># 绑定模式   active-backup</span>
+</span></span><span class="line"><span class="cl">bond-miimon <span class="m">100</span>    <span class="c1"># 故障检测间隔： 100ms</span>
+</span></span><span class="line"><span class="cl">bond-slaves none         <span class="c1"># 指定作为的的成员的网卡, 这里写none是因为：加入在自己物理网卡片段里面写了</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">--
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart networking  
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>PS: 绑定模式<br>
+bound-mode</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1     一个主，一个备(主的故障后才工作)  也叫： active-backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6种模式">6种模式</h4>
+<h6 id="mode-0---round-robin轮询">Mode 0  ： round-robin(轮询)</h6>
+<ul>
+<li>网络流量（数据包） 顺序平均分配给Bond中所有物理网卡（可以同时使用三个网卡发送和接收数据）</li>
+<li>高可用（容错，一个坏了，另一个网卡接管）、负载均衡（多个网卡，单独是，就是拥有了多G的带宽）</li>
+</ul>
+<h6 id="mode-1--ative-backup">Mode 1 : ative-backup</h6>
+<ul>
+<li>Bond中只有一个网卡Active， 其他网卡全部Stanby（效率并不是很高）</li>
+<li>对外只有一个网卡的MAC地址可见</li>
+<li>高可用<br>
+实现不了负载均衡，有多个接口也没用</li>
+</ul>
+<h6 id="mode-2--balance-xor">Mode 2:  balance-XOR</h6>
+<ul>
+<li>根据源目的MAC/IP/Port进行计算，确定从哪个网卡发出（性能优于Mode0）</li>
+<li>高可用，负载均衡</li>
+</ul>
+<p>（XOR &mdash; &gt; 异或）<br>
+只要不出现故障，不改变mac地址，第一次使用的第一个物理网卡进行的通信，以后所有的通信都是继续使用第一个物理网卡
+流量不是平均的</p>
+<h6 id="mode-3---broadcast">Mode 3   broadcast</h6>
+<ul>
+<li>发包广播给Bond中所有网卡，提供最短的故障恢复时间，应用连接不中断</li>
+<li>高可用</li>
+</ul>
+<h6 id="mode-4---8023addynamic-link-aggregation">Mode 4   802.3ad（Dynamic link aggregation）</h6>
+<ul>
+<li>链路聚合LACP组内的网卡使用相同速率、双工设置</li>
+<li>要求：计算机安装ethtool；交换机支持IEEE802.3ad标准，并进行额外配置</li>
+<li>高可用、负载均衡</li>
+</ul>
+<h6 id="mode-5----balance-tlb-adaptive-transmit-load-balancing">Mode 5    balance-tlb （Adaptive transmit load balancing）</h6>
+<ul>
+<li>隧道绑定不需要上连交换机额外配置，根据网卡负载出站负载均衡</li>
+<li>高可用、负载均衡</li>
+</ul>
+<h6 id="mode-6---balance-alb-adaptive-load-balance">Mode 6:   balance-alb (Adaptive load balance)</h6>
+<ul>
+<li>Mode 5 + balance-rlb (入站流量负载均衡)
+<ul>
+<li>Bond驱动拦截本机的ARP响应包，使用不同网卡硬件MAC替换源MAC</li>
+<li>不同的对端使用不同的服务器MAC地址，实现入站负载均衡</li>
+</ul>
+</li>
+<li>不需要上连交换机额外配置</li>
+</ul>
+<h6 id="查看bond端口和状态">查看bond端口和状态</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cat /proc/net/bonding/bond0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="model-4-配置">Model 4 配置</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/network/interfaces</span>
+</span></span><span class="line"><span class="cl">auto eth0     <span class="c1"># 其他物理网卡配置项同</span>
+</span></span><span class="line"><span class="cl">iface eth0 inet manual
+</span></span><span class="line"><span class="cl">bond-master  boud0    <span class="c1"># 绑定到哪个bound上</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto bon
+</span></span><span class="line"><span class="cl">d0
+</span></span><span class="line"><span class="cl">iface bond0 inet dhcp   <span class="c1"># 让ip地址dhcp； 或者static 手动制定</span>
+</span></span><span class="line"><span class="cl">bond-mode <span class="m">4</span>    <span class="c1"># 绑定模式   active-backup</span>
+</span></span><span class="line"><span class="cl">bond-miimon <span class="m">100</span>    <span class="c1"># 故障检测间隔： 100ms</span>
+</span></span><span class="line"><span class="cl">bond-lacp-rate <span class="m">1</span>         <span class="c1"># 每1s发送LACPDU（默认为0，即30s）</span>
+</span></span><span class="line"><span class="cl">bond-slaves eth0 eth1         <span class="c1"># 指定作为的的成员的网卡</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dhcp服务">DHCP服务</h2>
+<p>通常给客户端自动分配IP地址</p>
+<h6 id="dynamic-host-configuration-protocol">Dynamic Host Configuration Protocol</h6>
+<ul>
+<li>透明的配置网络参数</li>
+<li>IP/掩码、网关、DNS、域名、时间服务器、打印服务器(常用的参数是前三个)</li>
+<li>通过地址租约循环使用IP地址（有租约期，循环利用）</li>
+<li>基于UDP， 标准使用 端口： 67(服务端)，68(客户端)</li>
+</ul>
+<p>ps: 一般企业，dhcp都在核心交换机上，只有当企业网络非常大复杂时候，才会单独使用一个服务器来提供dhcp服务</p>
+<p>**请求和分配步骤： **
+1.客户端发生第一个广播(二层，因为此时还没有ip)，数据包：<code>dhcp discover</code><br>
+2.dhcp服务器回复数据包<code>dhcp offer </code>
+3.客户端就再发一个广播包<code>dhcp request </code>
+4.服务器端发送数据包<code>ack</code>， 包含ip等参数，标记这个ip为已分配</p>
+<h6 id="安装">安装</h6>
+<p>1.在vmware上，打开虚拟网络设置，以vmnet8为例，关闭vmware自带的dhcp服务（如果同时有两台dhcp服务:使用响应快的服务提供的ip），将这台虚拟机使用nat，<br>
+让其他虚拟机都使用这台虚拟机的dhcp服务，把这个虚拟机修改为静态ip, 修改配置文件<code>/etc/network/inertface</code>到vmnet8的网段，<code>sudo ip addr fulsh eth0</code>清除原来配置，重启网络服务</p>
+<p>2.安装dhcp服务的软件包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这里用的isc的  </span>
+</span></span><span class="line"><span class="cl">sudo apt install isc-dhcp-server  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.配置dhcp服务</p>
+<blockquote>
+<p>Note：能不安装的服务和软件就不要安装，反非必须，就不启用（缩小攻击面）</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">##1.先修改配置文件1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#sudo vim /etc/default/isc-dhcp-server   # 指定启动DHCP服务的网卡</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">INTERFACE</span><span class="o">=</span><span class="s2">&#34;eth0&#34;</span>   <span class="c1"># 要启动shcp的网卡name(一般是针对内网的那一块网卡)，可以多个网卡（空格隔开）</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">##2.再修改主配置文件（指定地址池和选项） </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#sudo vim /etc/dhcp/dhcpd.conf       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#option只对dhcp的作用域起效；其他的很对整个服务器起效</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#一致的配置写在文件起始位置，其他的个性的单独设置在各个网段的位置</span>
+</span></span><span class="line"><span class="cl">default-lease-time 600<span class="p">;</span>  <span class="c1">#租约期限， 单位：s</span>
+</span></span><span class="line"><span class="cl">max-lease-time 7200<span class="p">;</span>  <span class="c1">#最大租约期限(到达时间的一半，就刷新使用期；如果到达最大时间，就重新通过dhcp获取)</span>
+</span></span><span class="line"><span class="cl">authoritative<span class="p">;</span>   <span class="c1">#启用之后，证明这个是权威的授权dhcp服务器（一般情况下，网络中如果出现其他的dhcp就不会影响了）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#配置地址池(可以手动写，也可以在原注释的基础上配置) 网段</span>
+</span></span><span class="line"><span class="cl">subnet 10.1.8.0 netmask 255.255.255.0 <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    range 10.1.8.100 10.1.8.200<span class="p">;</span>   <span class="c1">#可分配的地址段</span>
+</span></span><span class="line"><span class="cl">    option routers 10.1.8.1<span class="p">;</span>  <span class="c1">#网关地址</span>
+</span></span><span class="line"><span class="cl">    option domain-name-servers 192.168.1.1,192.168.1.2<span class="p">;</span>  <span class="c1">#dns服务器地址，多个用逗号隔开; 一般配到这里就够了</span>
+</span></span><span class="line"><span class="cl">    option ntp-server 1.1.1.1<span class="p">;</span>     <span class="c1">#时间服务器</span>
+</span></span><span class="line"><span class="cl">    option domain-name <span class="s2">&#34;local.lan&#34;</span><span class="p">;</span>   <span class="c1">#统一的域名</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1">##3.重启服务</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#客户端一些操作</span>
+</span></span><span class="line"><span class="cl">ipconfig /all
+</span></span><span class="line"><span class="cl">ipconfig /release   <span class="c1"># 释放这个ip</span>
+</span></span><span class="line"><span class="cl">ipconfig /renew    <span class="c1">#重新获取ip</span>
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.特殊情况(指定某个ip只分配给某台计算机，IP保留)</p>
+<blockquote>
+<p>通过MAC地址来识别</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#sudo vim /etc/dhcp/dhcpd.conf       </span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">host yourname <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    hardware ethernet 00:11:22:33:44:55<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    fixed-address 10.1.8.8<span class="p">;</span>   <span class="c1">#尽量用上面地址池以外的地址</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">#保存，重启</span>
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="日常的维护">日常的维护</h6>
+<p>日志与状态查询</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#服务器地址租约结果（可查看分发详细信息）</span>
+</span></span><span class="line"><span class="cl">cat /var/lib/dhcp/dhcpd.leases
+</span></span><span class="line"><span class="cl"><span class="c1">#系统日志文件(客户端直接关机不会记录，release的时候会记录)</span>
+</span></span><span class="line"><span class="cl">tail -f /var/log/syslog
+</span></span><span class="line"><span class="cl"><span class="c1">#查看服务运行状态</span>
+</span></span><span class="line"><span class="cl">systemctl status isc-dhcp-server.service
+</span></span><span class="line"><span class="cl"><span class="c1">#客户端来查看获得地址历史(客户端是Linux时)</span>
+</span></span><span class="line"><span class="cl">less /var/lib/dhcp/dhcpd.leases
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<h2 id="ntp服务-网络时间协议">NTP服务 （网络时间协议）</h2>
+<blockquote>
+<p>时间都去哪了</p>
+</blockquote>
+<p><img src="http://image.xpshuai.cn//20200308150835487_32007.png"></img></p>
+<p>**时间表准： **</p>
+<ul>
+<li>GMT：格林威治标准时间</li>
+<li>UTC：世界协调时间</li>
+<li>CST：China Standard Time UT+8:00</li>
+</ul>
+<p><img src="http://image.xpshuai.cn/20200308153026228_153.png"></img></p>
+<h4 id="ntp协议">NTP协议</h4>
+<p><img src="http://image.xpshuai.cn/20200308154004613_29225.png"></img></p>
+<h6 id="ntp客户端">NTP客户端</h6>
+<ul>
+<li>客户端程序从时间服务器同步时间</li>
+<li>系统启动时自动同步时间</li>
+<li>网口激活时自动同步运行</li>
+<li>手动同步时间</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 新版系统，查看客户端时间  </span>
+</span></span><span class="line"><span class="cl">timedatectl  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># RTC时间：硬件时间  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新版系统使用<code>timesyncd</code>客户端同步时间<br>
+向这个域名请求：ntp.ubuntu.com</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">timedatectrl list-timezones   <span class="c1">#列出所有时区  </span>
+</span></span><span class="line"><span class="cl">timedatectrl set-timezone    <span class="c1">#设置时区</span>
+</span></span><span class="line"><span class="cl">timedatectrl set-time <span class="s2">&#34;2019-10-01 18:18:18&#34;</span> <span class="c1">#设置系统时间  </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">timedatectl set-ntp <span class="nb">true</span>  <span class="c1">#开始网络同步</span>
+</span></span><span class="line"><span class="cl">systemctl status systemd-timesyncd.service  <span class="c1"># 查看时间服务状态</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 硬件时间(RTC)与UTC时间同步</span>
+</span></span><span class="line"><span class="cl">sudo hwclock -w   <span class="c1"># 将系统时间写入到RTC时间</span>
+</span></span><span class="line"><span class="cl">sudo hwlock -s     <span class="c1"># 将硬件</span>
+</span></span><span class="line"><span class="cl">hwclock --set --date<span class="o">=</span><span class="s1">&#39;2019-10-01 18:18:18&#39;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置文件</span>
+</span></span><span class="line"><span class="cl">/etc/systemd/timesyncd.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="一个过时的东西ntpdate">一个过时的东西(ntpdate)</h6>
+<p><img src="http://image.xpshuai.cn/20200308170606501_6440.png"></img>
+新版本系统使用<code>timesyncd</code>替换<code>ntpd</code>的客户端功能
+一旦安装了ntpdate / ntp,   timedatectrl将被禁用</p>
+<h6 id="ntpd----客户端服务器">ntpd &ndash; 客户端+服务器</h6>
+<blockquote>
+<p>把机器设置成时间服务器</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">apt install ntp  <span class="c1"># 安装ntp服务</span>
+</span></span><span class="line"><span class="cl">systemctl start ntp  <span class="c1"># 启动服务(123端口就被打开了)</span>
+</span></span><span class="line"><span class="cl">systemctl status ntp  <span class="c1"># 查询服务状态</span>
+</span></span><span class="line"><span class="cl">systemctl restart ntp  <span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##配置文件（我也要跟上一级的时间服务器同步）</span>
+</span></span><span class="line"><span class="cl">vim /etc/ntp.conf
+</span></span><span class="line"><span class="cl"><span class="c1">#如果不使用官方的时间服务器，可以自己指定</span>
+</span></span><span class="line"><span class="cl">server 1.1.1.1  
+</span></span><span class="line"><span class="cl"><span class="c1">#首选网络时间服务器不可用的时候，使用本机始终作为备用时间源</span>
+</span></span><span class="line"><span class="cl">fudge 127.127.1.1 startum <span class="m">10</span>  <span class="c1"># 层级设置低点( startum 10, 这里设置为10层)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置文件中，主要的时间服务器如下<br>
+<img src="http://image.xpshuai.cn/20200308171832987_9157.png"></img></p>
+<h6 id="命令-ntpq----ntp服务端的查询命令">命令: ntpq &ndash; ntp服务端的查询命令</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ntpq -p     
+</span></span><span class="line"><span class="cl"><span class="c1">#命令执行结果详解如下图：  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="http://image.xpshuai.cn/20200308172254102_12604.png"></img>
+每行前面第一个字符含义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">空  表示无效主机  
+</span></span><span class="line"><span class="cl">x   已不再使用
+</span></span><span class="line"><span class="cl">- 已不再使用
+</span></span><span class="line"><span class="cl">#   状态良好但为使用
+</span></span><span class="line"><span class="cl">+   良好且优先使用
+</span></span><span class="line"><span class="cl">*   首选主同步主机    （一般是startum层级最高的）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="其他命令">其他命令</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#查看日期</span>
+</span></span><span class="line"><span class="cl">date  
+</span></span><span class="line"><span class="cl"><span class="c1">#设置</span>
+</span></span><span class="line"><span class="cl">date --set 1998-11-11  <span class="c1">#手动设置日期（要通过 sudo timedatectl set-ntp 0 来关掉ntp）</span>
+</span></span><span class="line"><span class="cl">date --set 21:21:21    <span class="c1">#设置时间</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat /etc/timezone      <span class="c1">#查看时区</span>
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu%20server-%e7%bd%91%e7%bb%9c%e7%9b%b8%e5%85%b3%e7%9f%a5%e8%af%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-nav-item" rel="prev" title="内网渗透"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网渗透</a>
+      <a href="/%E5%B7%A5%E5%85%B7-netcat%E4%BD%BF%E7%94%A8/" class="post-nav-item" rel="next" title="工具 - netcat使用">工具 - netcat使用<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

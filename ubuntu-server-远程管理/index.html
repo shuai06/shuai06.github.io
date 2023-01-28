@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-远程管理 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="第七章-远程管理 看我遥控你 远程访问方式 为什么要远程管理？ 服务器大多部署与专门的机房： 电磁、噪声、氧气、温度湿度等都不适宜人类长期居住 避免闲杂" /><meta name="keywords" content='Linux, Ubuntu, 远程管理' /><meta itemprop="name" content="ubuntu server-远程管理">
+<meta itemprop="description" content="第七章-远程管理 看我遥控你 远程访问方式 为什么要远程管理？ 服务器大多部署与专门的机房： 电磁、噪声、氧气、温度湿度等都不适宜人类长期居住 避免闲杂"><meta itemprop="datePublished" content="2020-03-31T13:31:13+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="4990"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,Ubuntu,远程管理," /><meta property="og:title" content="ubuntu server-远程管理" />
+<meta property="og:description" content="第七章-远程管理 看我遥控你 远程访问方式 为什么要远程管理？ 服务器大多部署与专门的机房： 电磁、噪声、氧气、温度湿度等都不适宜人类长期居住 避免闲杂" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-31T13:31:13+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-远程管理"/>
+<meta name="twitter:description" content="第七章-远程管理 看我遥控你 远程访问方式 为什么要远程管理？ 服务器大多部署与专门的机房： 电磁、噪声、氧气、温度湿度等都不适宜人类长期居住 避免闲杂"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://geoer.cn/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/" /><link rel="next" href="https://geoer.cn/ubuntu-server-dns%E6%9C%8D%E5%8A%A1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-远程管理",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, Ubuntu, 远程管理","wordcount":  4990 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2020-03-31T13:31:13+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-远程管理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-31&#32;13:31:13><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-31">2020-03-31</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 4990 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 10 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-远程管理">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred远程访问方式font"><font color=red>远程访问方式</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#telnet">Telnet</a></li>
+            <li><a href="#ssh">SSH</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredssh隧道font"><font color=red>SSH隧道</font></a></li>
+    <li><a href="#font-colorredssh安全font"><font color=red>SSH安全</font></a></li>
+    <li><a href="#font-colorredvnc服务font"><font color=red>VNC服务</font></a></li>
+    <li><a href="#font-colorredpuppetfont"><font color=red>PUPPET</font></a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="第七章-远程管理">第七章-远程管理</h1>
+<blockquote>
+<p>看我遥控你</p>
+</blockquote>
+<h2 id="font-colorred远程访问方式font"><font color=red>远程访问方式</font></h2>
+<p><strong>为什么要远程管理？</strong>
+服务器大多部署与专门的机房：</p>
+<ul>
+<li>电磁、噪声、氧气、温度湿度等都不适宜人类长期居住</li>
+<li>避免闲杂人等结束业务服务器</li>
+</ul>
+<p><strong>远程管理</strong></p>
+<ul>
+<li>不同的操作系统都支持远程管理技术</li>
+<li>命令行远程管理工具</li>
+<li>图形化远程管理工具</li>
+</ul>
+<h4 id="telnet">Telnet</h4>
+<blockquote>
+<p>账号证明就是你</p>
+</blockquote>
+<p>古老的命令行远程管理工具（保底的，建议能不用就不用）</p>
+<ul>
+<li>不安全（明文）</li>
+<li>应尽量避免适用（适用于不支持ssh的环境）</li>
+<li>客户端程序包含在所有系统的默认安装中</li>
+<li>服务端口默认TCP 23</li>
+</ul>
+<p><strong>客户端</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#可以连接任何域名和端口</span>
+</span></span><span class="line"><span class="cl">telnet 1.1.1.1 <span class="m">80</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#和80端口建立socket连接后，可以发送http数据</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>服务器端程序安装</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install telnetd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim /etc/issus.net <span class="c1"># 避免泄露版本信息,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#打开文件，修改tenlet的banner信息（可以修改为一些告知的警告信息:&#34;本公司的服务器,出问题承担法律责任&#34;哈哈）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看服务状态</span>
+</span></span><span class="line"><span class="cl">systemctl status inetd.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ssh">SSH</h4>
+<blockquote>
+<p>账号证明就是你</p>
+</blockquote>
+<p><strong>服务器安装</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ubuntu中ssh-server和ssh-client都默认安装了</span>
+</span></span><span class="line"><span class="cl">sudo apt install openssh-server  <span class="c1"># openssh是个工具套件(包含了sftp,scp等)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sftp(替代了sftp)  &lt;---&gt;  ftp(明文传输,不太安全)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scp(替代了rcp)   &lt;---&gt;  rcp(远程拷贝文件,明文传输,不太安全)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#查看服务状态</span>
+</span></span><span class="line"><span class="cl">systemctl status sshd.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 服务端口默认`22`  </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置文件(ubuntu上来就可以直接使用不用配置)</span>
+</span></span><span class="line"><span class="cl">vim /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl"><span class="c1">#修改配置在这个文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>SSH1、SSH2两个版本(版本2更安全)</p>
+<p><strong>配置文件</strong>
+<code>vim /etc/ssh/sshd_config</code>
+常用配置项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Banner /etc/ssh_banner.sh   <span class="c1"># 登录前的banner,指定文件</span>
+</span></span><span class="line"><span class="cl">Port  2222		<span class="c1"># 修改默认端口(修改后，下次连接会改变端口)</span>
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes	<span class="c1"># 开启后使用公钥登录/关闭(no)</span>
+</span></span><span class="line"><span class="cl">ListenAddress 12.34.56.78  <span class="c1"># 指定哪块网卡才能侦听22(被ssh连接)</span>
+</span></span><span class="line"><span class="cl">PermitRootLogin	yes		<span class="c1"># 是否允许root远程登录(不过还是建议使用普通账号),建议设置为no是禁止所有方式登录   #prohibit-password是禁用账号密码方式</span>
+</span></span><span class="line"><span class="cl">Protocol <span class="m">2</span>  <span class="c1"># 默认是2.0的协议，可以加一下这条配置，指定只接受2.0版本的连接</span>
+</span></span><span class="line"><span class="cl">Allowsers user1 user2		<span class="c1"># DenyUsers user3    允许/禁止ssh连接的用户</span>
+</span></span><span class="line"><span class="cl">AllowGroup sshusers			<span class="c1"># 允许/禁止ssh连接的用户`组`</span>
+</span></span><span class="line"><span class="cl">PasswordAuthentication no  <span class="c1"># 禁止使用密码登录(单一密码认证的安全性很低)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更多配置查文档</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>一些零散问题  &mdash; SSH工具</strong>
+1.scp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#默认连接22端口，如果修改了就需要指定端口号</span>
+</span></span><span class="line"><span class="cl">scp a.txt 192.168.1.10:  <span class="c1"># 拷贝一个文件(默认本地账号与原创系统账号同名，默认目标是主目录)   注意冒号</span>
+</span></span><span class="line"><span class="cl">scp a.txt user1@192.168.1.10:/home/b.txt   <span class="c1"># 指定用户名、目标路径</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">scp -rv dirs/ user1@192.168.1.10:   <span class="c1"># 拷贝一个目录， -r递归,-v详细信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">scp user1@192.168.1.10:/tmp/b.txt . <span class="c1"># 拷贝目标服务器的文件到我的机器当前目录上(下载)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.SFTP（ssh和ftp的组合）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 登录</span>
+</span></span><span class="line"><span class="cl">sftp xps@192.168.1.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载文件</span>
+</span></span><span class="line"><span class="cl">get a.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上传</span>
+</span></span><span class="line"><span class="cl">put
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一些命令：help, ls, cd, get, wget, put, mput</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出 quit   exit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>ssh公钥登录</strong>
+非对称算法（公钥算法）</p>
+<ul>
+<li>公钥</li>
+<li>私钥
+公钥加密，私钥解密；私钥加密，公钥解密</li>
+</ul>
+<p>生成秘钥对</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.在我的机器(客户端)产生一对， 选择rsa算法，秘钥长度选择4096</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -t rsa -b <span class="m">4096</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命名秘钥对</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -t rsa -b <span class="m">4096</span> -f id_mail
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改私钥密码文(这个密码要设置更加安全一点) -p， -f指定修改哪个key的</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -p -f ~/.ssh/id_rsa    <span class="c1"># 有多个的话，-f指定</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.设置公私钥保存的位置，和打开的密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 存放在下面两个文件</span>
+</span></span><span class="line"><span class="cl">~/.ssh/id_rsa  <span class="c1"># 私钥</span>
+</span></span><span class="line"><span class="cl">~/.ssh/id_rsa.pub  <span class="c1"># 公钥</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#ps：know_hosts是连接过的主机</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.把公钥文件--&gt;传送到目标服务器上(服务器上会变成.ssh/authorized_key)</span>
+</span></span><span class="line"><span class="cl">ssh-copy-id  xps@192.168.0.10  <span class="c1">#如果有多个，-i选择公钥</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 建议设本地私钥文件权限</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">400</span> .ssh/id_rsa
+</span></span><span class="line"><span class="cl"><span class="c1"># 5.服务端公钥权限也要修改</span>
+</span></span><span class="line"><span class="cl">.ssh/authorized_key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6.现在可放心登录了(现在输入的密码是对私钥加密的密码)</span>
+</span></span><span class="line"><span class="cl">ssh xps@192.168.0.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Note：记得配置文件修改为禁止使用ssh密码登录,使用公钥登录：</span>
+</span></span><span class="line"><span class="cl">PasswordAuthentication no
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes
+</span></span><span class="line"><span class="cl"><span class="c1"># Note:私钥千万不能泄露哦</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorredssh隧道font"><font color=red>SSH隧道</font></h2>
+<p>通过ssh隧道，封装一些其他的服务数据，保证安全性</p>
+<p><strong>登录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh xps@192.168.0.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 登录之后，不进入shell界面（只是获得会话后运行一个命令，但效果是一样的） -- 命令服务端去ping另外一台机器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -i指定私钥，-p指定端口</span>
+</span></span><span class="line"><span class="cl">ssh -i ~/.ssh/id_main ssh xps@192.168.0.10 -p <span class="m">2222</span> ping 192.168.0.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># (cstream -t限制传输速度通信带宽)拷贝文件夹到目标机器（本地打包, 在服务端解包），pv显示带宽占用情况 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --- 企业用的网络带宽(质量好)比家用的成本很贵</span>
+</span></span><span class="line"><span class="cl">tar -cj dir/ <span class="p">|</span> pv <span class="p">|</span>cstream -t 100k <span class="p">|</span> ssh xps@192.168.0.10 <span class="s1">&#39;tar -xj&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>ssh隧道 &ndash; 实现远程映射</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">###### 端口映射（两个机器之间，添加一个加密的管道 来连接）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 映射远程端口23到本机2001端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#（-f端口转发,-N不占用命令行窗口, -L侦听本机的端口，localhost理解为隧道，23为目标机器端口，最后是目标机器ip）</span>
+</span></span><span class="line"><span class="cl">ssh -fN -L2001:localhost:23 xps@192.168.0.10 
+</span></span><span class="line"><span class="cl"><span class="c1"># 现在，telnet本机的2001端口，就相当于通过机密的隧道来映射到目标的23端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他类型的服务也可以封装...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 拓展：远程映射</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 隧道的起点：我的机器，隧道的终点：&#39;另外机器&#39;。然后通过&#39;另外机器&#39;,访问目标机器(sina)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 本机的2002端口，通过ssh隧道，映射到&#39;另外机器&#39;(世界上随便一个机器)的ip的80端口，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用途：内网特殊的服务器运行访问外网(进行映射)，就能突破对内容不能上网的限制</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 限制：一对一，针对的外网的某一台（提高：一个端口访问外网所有资源，自己找资料）</span>
+</span></span><span class="line"><span class="cl">ssh -fN -L2002:123.206.96.26:80 xps@192.168.0.10  
+</span></span><span class="line"><span class="cl"><span class="c1"># 再telnet 127.0.0.1:2002,就是达到了访问123.206.96.26的80端口的目的(最后的ip只是建立隧道,类似中间的一个)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200330152732562_32379.png" />
+<img src="http://image.xpshuai.cn/20200330154229749_5054.png" />
+<p><strong>ssh隧道 &ndash; 实现文件系统挂载</strong>
+比如，一开机，就自动把远程机器的目录/分区挂载到我本机上，跟访问本地目录一样的效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## ssh隧道实现文件系统的挂载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 第一个ip的要挂载的远程机器，后面的本机目录</span>
+</span></span><span class="line"><span class="cl">sshfs xps@192.168.0.10:home/test  /mnt/myfiles	<span class="c1"># 远程挂载远程机器目录到本地</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 再查看，会发现本地目录多了远程服务器目录的文件（如果网络带宽不够，性能和体验就比较差）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在客户端/服务端对文件进行操作，都是可以的</span>
+</span></span><span class="line"><span class="cl">umount /mnt/myfiles		<span class="c1"># 卸载1</span>
+</span></span><span class="line"><span class="cl">fusermount -u /mnt/myfiles    <span class="c1"># 卸载2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#配置文件使用持久化挂载	</span>
+</span></span><span class="line"><span class="cl">vim /etc/fstab
+</span></span><span class="line"><span class="cl">user1@192.168.0.10:/path  /mntpotin   fuse,sshfs,	rw,noauto,user,_netdev0
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标机器的路径，本机的挂载点</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>SSH客户端</strong>
+若要管理的服务器的数目众多，对每台服务器做一个方便记忆的<code>标签</code>，简化登录</p>
+<p>在本机(客户端)创建一个客户端配置文件：<code>~/.ssh/config</code><br>
+内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">host server1  <span class="c1"># 别名随意</span>
+</span></span><span class="line"><span class="cl">	Hostname 192.168.1.10  <span class="c1"># 对应主机ip，端口，用户名</span>
+</span></span><span class="line"><span class="cl">	Port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">	User xps
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">host db2
+</span></span><span class="line"><span class="cl">	Hostname 192.168.1.10
+</span></span><span class="line"><span class="cl">	Port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">	User xps
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">host mail1
+</span></span><span class="line"><span class="cl">	Hostname 192.168.1.10
+</span></span><span class="line"><span class="cl">	Port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">	User xps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以后登录的话，直接：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接登录别名即可(不仅方便，还隐藏了ip，更加安全)</span>
+</span></span><span class="line"><span class="cl">ssh db1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorredssh安全font"><font color=red>SSH安全</font></h2>
+<p><strong>SSH防爆破</strong>
+密码爆破防护</p>
+<p>方法：监视：次数太多就禁止该ip访问</p>
+<p>借助<code>fail2ban</code>来实现:
+fail2ban原理：周期性的检查登录日志，对异常的ip进行屏蔽(调用防火墙实现)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">apt install fail2ban
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认主配置文件，软件更新时被覆盖(`所以一般不会使用它`)   jail --&gt; 监狱</span>
+</span></span><span class="line"><span class="cl">/etc/fail2ban/jail.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 本地配置文件，软件更新不被覆盖，优先级更高（`一般常修改这个文件`） 复制一份：cp jail.conf jail.local</span>
+</span></span><span class="line"><span class="cl">/etc/fail2ban/jail.local
+</span></span><span class="line"><span class="cl"><span class="c1">#配置项(一般只需配置几项)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1.全局的：</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ignoreip</span><span class="o">=</span>127.0.0.1/8 19.168.0.10  <span class="c1"># 忽略并不进行监视的地址（受信的ip地址段）</span>
+</span></span><span class="line"><span class="cl"><span class="nv">bantime</span><span class="o">=</span>-1   <span class="c1"># 禁用的时间(单位是s)， -1是永远屏蔽</span>
+</span></span><span class="line"><span class="cl"><span class="nv">findtime</span><span class="o">=</span><span class="m">1</span>   <span class="c1"># 查询间隔时间</span>
+</span></span><span class="line"><span class="cl"><span class="nv">maxretry</span><span class="o">=</span><span class="m">5</span>   <span class="c1"># 连着失败输入多少次密码，我就屏蔽你</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2.Actions: 有异常做什么动作(比如报警邮件，默认是防火墙屏蔽)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#3.Jails设置：针对不同类型的服务(并不仅限于ssh服务)，配置不同的（这里的优先级比全局配置项高）</span>
+</span></span><span class="line"><span class="cl">	<span class="o">[</span>sshd<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">ecabled</span><span class="o">=</span><span class="nb">true</span> <span class="c1"># 启用对ssh的jails</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">filter</span><span class="o">=</span>sshd  <span class="c1"># 查找的关键词</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">logpath</span> <span class="o">=</span> xxxxxx.log
+</span></span><span class="line"><span class="cl">	<span class="c1"># 以ssh服务为例(见下图)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务生效 </span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart fail2ban.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看身份认证日志文件</span>
+</span></span><span class="line"><span class="cl">tail -f /var/log/auth.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看jail列表(都有哪些jail，jail的情况)</span>
+</span></span><span class="line"><span class="cl">sudo fail2ban -client status
+</span></span><span class="line"><span class="cl">sudo fail2ban -client status sshd <span class="c1"># 查看ssh的jail的详细信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看防火墙规则</span>
+</span></span><span class="line"><span class="cl">sudo iptables -S
+</span></span><span class="line"><span class="cl">sudo iptables -L -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动解除被禁IP</span>
+</span></span><span class="line"><span class="cl">sudo iptables -D f2b-sshd-s 192.168.1.111 -j REJECT   <span class="c1"># 通过删除防火墙某一个规则 -D,  REJECT或DROP看自己的情况</span>
+</span></span><span class="line"><span class="cl">sudo fail2ban-client <span class="nb">set</span> sshd unbanip 192.168.1.8
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动解除禁用之后，但是如果重启服务，会再自动查看日志：还没有超过被禁期限的ip会再次被禁</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200330164545399_6809.png" />
+<h2 id="font-colorredvnc服务font"><font color=red>VNC服务</font></h2>
+<blockquote>
+<p>这里只介绍vnc，还有其他更优秀的工具，但是vnc的适用范围最广</p>
+</blockquote>
+<p>图形化界面（类似于windows下的远程桌面）</p>
+<ul>
+<li>使用图形化界面及工具</li>
+<li>是Linux系统最通用的远程图形管理工具（通用适用于windows）</li>
+</ul>
+<p>安装图形环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#这里安装简化版的xfce4桌面环境，这里选择vnc的一个软件包:tightvncserver. 也可以自己选择别的版本的</span>
+</span></span><span class="line"><span class="cl">sudo apt install gnome-core xfce4 xfce4-goodies tightvncserver
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一个vnc可以启动多个侦听端口(默认从5901开始)，从不同端口连接，打开不同会话(每个用户看到的桌面是不一样的)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若只侦听一个端口，通过一个端口连接，多个用户看到的都是一个桌面</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 建议：多用户，在每一个不同权限的用户下(su进去，运行启动实例)，这样不同用户连接就是不同的桌面了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vncserver  <span class="c1"># 启动vnc服务（接下来会让你输入连接密码和只读密码）</span>
+</span></span><span class="line"><span class="cl">~/.vnc/xstartup   <span class="c1"># 会生成运行文件</span>
+</span></span><span class="line"><span class="cl">vncserver -kill:1 <span class="c1"># 删掉自动生成的实例（因为不一定最适合我们的桌面环境。冒号后面是1是5901,如果是2就是5902）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份一下文件</span>
+</span></span><span class="line"><span class="cl">mv xstartup xstartup.bak
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建新运行文件， 手动配置适合我们xfce4的vnc配置</span>
+</span></span><span class="line"><span class="cl">vim xstartup
+</span></span><span class="line"><span class="cl">	<span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">	xrdb <span class="nv">$HOME</span>/.Xresources
+</span></span><span class="line"><span class="cl">	startxfce4 <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改权限</span>
+</span></span><span class="line"><span class="cl">chmod +x ~/.vnc/xstartup
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新运行</span>
+</span></span><span class="line"><span class="cl">vncserver   <span class="c1"># tcp的5901端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 就可以在客户端用客户端软件连接了(比如：Remote Desktop Viewer) 输入ip:端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: 服务器上，能少开端口就少开端口，能少开服务就少开服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 每个用户不用会话</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在每一个不同权限的用户下(su进去，运行启动实例)，这样不同用户连接就是不同的桌面了</span>
+</span></span><span class="line"><span class="cl">su newuser1
+</span></span><span class="line"><span class="cl">vncserver
+</span></span><span class="line"><span class="cl">~/.vnc/xstartup  
+</span></span><span class="line"><span class="cl">vncserver -kill:2
+</span></span><span class="line"><span class="cl">vim xstartup
+</span></span><span class="line"><span class="cl">	<span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl">	xrdb <span class="nv">$HOME</span>/.Xresources
+</span></span><span class="line"><span class="cl">	startxfce4 <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">chmod +x ~/.vnc/xstartup
+</span></span><span class="line"><span class="cl">vncserver :2   <span class="c1"># tcp的5902端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>ps: vnc的加密强度不是很高，所以：在不需要vnc的时候，建议杀掉vnc进程(<code>vncserver -kill:2</code>)</p>
+</blockquote>
+<p>因为 vnc的加密强度没有ssh高，所以，尝试：先建立ssh隧道，再在隧道的基础上建立图形化的连接</p>
+<h2 id="font-colorredpuppetfont"><font color=red>PUPPET</font></h2>
+<p>也是一个远程管理工具，可以不登录到被管理服务器上<br>
+利用puppet的服务端(我的机器)来管理puppet的客户端(安装在远程服务器上)，进行批量管理&hellip;</p>
+<p>全生命周期的远程管理方案</p>
+<ul>
+<li>软件安装部署(可以写一个脚本，然后批量下发给安装有puppet客户端的服务器上)</li>
+<li>权限设置</li>
+<li>账号管理</li>
+<li>支持云平台</li>
+<li>支持容器(Docker)</li>
+<li>适合大量服务器管理</li>
+</ul>
+<p><strong>准备</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这里以两台机器做实验</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 为了区分，改一下两台计算机名</span>
+</span></span><span class="line"><span class="cl">hostnamectrl set-hostname puppet
+</span></span><span class="line"><span class="cl">hostnamectrl set-hostname client
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改hosts文件，修改解析域名(这个随便起) -- 两台机器都要修改</span>
+</span></span><span class="line"><span class="cl">vim /etv/hosts
+</span></span><span class="line"><span class="cl">	192.168.1.10	puppet.lab.com		puppet
+</span></span><span class="line"><span class="cl">	192.168.1.11	client.lab.com		client
+</span></span><span class="line"><span class="cl">	<span class="c1"># 其他行都删掉就行</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># 可以在dns服务器上修改，这里通过hosts修改域名解析只是权宜之计(下一章学完DNS之后就在dns服务器修改域名的解析)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>安装</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装puppet服务端程序</span>
+</span></span><span class="line"><span class="cl">sudo apt install puppetmaster 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装puppet客户端程序</span>
+</span></span><span class="line"><span class="cl">sudo apt install puppet
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>配置</strong>
+服务端配置-1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/puppet
+</span></span><span class="line"><span class="cl">sudo mkdir -p modules/apache2/manifests  <span class="c1"># manifests 目录下面就是资源文件</span>
+</span></span><span class="line"><span class="cl">touch init.pp
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/puppet/modules/apache2/manifests/init.pp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 比如要给下面的机器安装apache, </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 一组资源就是一个类</span>
+</span></span><span class="line"><span class="cl">class apache2<span class="o">{</span>
+</span></span><span class="line"><span class="cl">	package<span class="o">{</span><span class="s1">&#39;apache2&#39;</span>:   <span class="c1"># 软件包</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">ensure</span><span class="o">=</span>&gt;installeds,
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	service<span class="o">{</span><span class="s1">&#39;apache2&#39;</span>:   <span class="c1"># apache的服务是否启动</span>
+</span></span><span class="line"><span class="cl">		<span class="nv">ensure</span><span class="o">=</span>&gt;ture,
+</span></span><span class="line"><span class="cl">		<span class="nv">ensure</span><span class="o">=</span>&gt;ture,
+</span></span><span class="line"><span class="cl">		<span class="nv">require</span><span class="o">=</span>&gt;Package<span class="o">[</span><span class="s1">&#39;apache2&#39;</span><span class="o">]</span>,  <span class="c1"># 包的名称</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端配置-2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 上面的配置文件定义了资源，那么这里确定要给哪些服务器安装哪个资源</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择哪个资源</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> manifests
+</span></span><span class="line"><span class="cl">touch site.pp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/puppet/manifests/site.pp</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 解析这个节点(通过域名解析到对应ip,只要那些计算机在这个域名即可)</span>
+</span></span><span class="line"><span class="cl">node <span class="s1">&#39;client.lab.com&#39;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		include apache2   <span class="c1"># 选择下发哪些资源。这里以推送apache2资源为例</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">systemctl restart puppetmaster.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># puppet的客户端和服务端是通过证书来通信等操作的</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/default/puppet          默认没有，自己新建</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">START</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务（会自动向puppet服务端发起请求申请证书）</span>
+</span></span><span class="line"><span class="cl">systemctl restart puppet.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端证书前面请求测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在查看客户端的指纹信息</span>
+</span></span><span class="line"><span class="cl">sudo puppet agent --figerprint
+</span></span><span class="line"><span class="cl"><span class="c1"># 服务端下面下发证书后，然后在客户端测试一下，获取证书</span>
+</span></span><span class="line"><span class="cl">sudo puppet agent --test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>服务端请求查看签名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在服务端查看哪些客户端跟我发起证书请求了</span>
+</span></span><span class="line"><span class="cl">sudo puppet cert list
+</span></span><span class="line"><span class="cl"><span class="c1"># 在服务端使用自己的私钥给对应的机器进行签名(sign)</span>
+</span></span><span class="line"><span class="cl">sudo puppet cert sign client.lab.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端查看证书下发进度： sudo puppet agent --test</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成上面的步骤(资源的下发配置，证书的请求与签名下发，重启服务)之后，在客户端查看<code>apache2</code>的服务已经安装好并启用了</p>
+<p>日志状态信息查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看状态</span>
+</span></span><span class="line"><span class="cl">systemctl status puppet.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/var/log/syslog
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面关于puppet只是简单的一小部分，后续高级用法，请自行探索</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu%20server-%e8%bf%9c%e7%a8%8b%e7%ae%a1%e7%90%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/' class="post-tag">远程管理</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E9%BB%91%E6%9A%97%E5%BC%95%E6%93%8E/" class="post-nav-item" rel="prev" title="黑暗引擎"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>黑暗引擎</a>
+      <a href="/ubuntu-server-dns%E6%9C%8D%E5%8A%A1/" class="post-nav-item" rel="next" title="ubuntu server-DNS服务">ubuntu server-DNS服务<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

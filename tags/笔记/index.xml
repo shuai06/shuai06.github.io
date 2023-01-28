@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>笔记 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E7%AC%94%E8%AE%B0/</link>
+    <description>笔记 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 May 2021 19:36:40 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+  <title>递归求具有n个元素的整型数组R的平均值</title>
+  <link>https://geoer.cn/%E9%80%92%E5%BD%92%E6%B1%82%E5%85%B7%E6%9C%89n%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E6%95%B4%E5%9E%8B%E6%95%B0%E7%BB%84r%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC/</link>
+  <pubDate>Wed, 12 May 2021 19:36:40 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E9%80%92%E5%BD%92%E6%B1%82%E5%85%B7%E6%9C%89n%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E6%95%B4%E5%9E%8B%E6%95%B0%E7%BB%84r%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC/</guid>
+  <description><![CDATA[递归求具有n个元素的整型数组R的平均值 今天做题的时候遇到这个不会的题，虽然题很简单单还是太菜了，记录下来，这还是问了一个小学妹之后才懂了，自]]></description>
+</item>
+</channel>
+</rss>

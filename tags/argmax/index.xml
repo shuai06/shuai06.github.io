@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>argmax - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/argmax/</link>
+    <description>argmax - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/argmax/" rel="self" type="application/rss+xml" /><item>
+  <title>torch.argmax 小记</title>
+  <link>https://geoer.cn/torch-argmax-%E5%B0%8F%E8%AE%B0/</link>
+  <pubDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/torch-argmax-%E5%B0%8F%E8%AE%B0/</guid>
+  <description><![CDATA[最近碰到torch.argmax的场景，就在这里简单记录一下。这里分二维和三维及以上记录 二维 1 2 3 4 5 6 7 8 9 &gt;&gt;&gt; a = torch.rand(15).reshape(3,5) &gt;&gt;&gt; a tensor([[0.7237, 0.6488, 0.2557, 0.0333, 0.4103], [0.8674, 0.7288, 0.3758, 0.6329,]]></description>
+</item>
+</channel>
+</rss>

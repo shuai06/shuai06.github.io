@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>日志 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%97%A5%E5%BF%97/</link>
+    <description>日志 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%97%A5%E5%BF%97/" rel="self" type="application/rss+xml" /><item>
+  <title>Linux日志异地备份</title>
+  <link>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
+  <pubDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</guid>
+  <description><![CDATA[日志的异地备份 日志服务器的建立尤其重要 这里使用Centos的登录日志做实验 tail -f /var/log/secure 实时查看日志变化 echo &quot; &quot; &gt; var/log/secure 最简单的清理日志 常见日志文件 1 2 3]]></description>
+</item>
+<item>
+  <title>Linux下面一些安全日志文件</title>
+  <link>https://geoer.cn/linux%E4%B8%8B%E9%9D%A2%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/</link>
+  <pubDate>Fri, 20 Mar 2020 11:57:43 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/linux%E4%B8%8B%E9%9D%A2%E4%B8%80%E4%BA%9B%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/</guid>
+  <description><![CDATA[1 2 3 4 5 6 7 8 9 文件 /var/run/utmp 记录现在登入的用户 文件 /var/log/wtmp 记录用户所有的登入和登出 文件 /var/log/lastlog 记录每一个用户最后登入时间 文件 /var/log/btmp 记录错误的登入尝试（注：可以查]]></description>
+</item>
+</channel>
+</rss>

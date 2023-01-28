@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>sqlmap - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/sqlmap/</link>
+    <description>sqlmap - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Mar 2020 19:57:40 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/sqlmap/" rel="self" type="application/rss+xml" /><item>
+  <title>sqlmap参数简介</title>
+  <link>https://geoer.cn/sqlmap%E5%8F%82%E6%95%B0%E7%AE%80%E4%BB%8B/</link>
+  <pubDate>Sun, 22 Mar 2020 19:57:40 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/sqlmap%E5%8F%82%E6%95%B0%E7%AE%80%E4%BB%8B/</guid>
+  <description><![CDATA[概述 官网 其他特性： 数据库直接连接 -d, 不通过SQL注入，执行身份认证信息，ip，端口 与BurpSuite，Google结合使用，支持政策表但是限]]></description>
+</item>
+</channel>
+</rss>

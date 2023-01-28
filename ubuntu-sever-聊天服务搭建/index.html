@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu sever-聊天服务 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="聊天服务与IRC服务 沟通是最重要的问题 发明网络的目的的沟通(信息交换) 高效的沟通是生产力 为什么不用QQ、微信、Telegram？ 企业信息流经" /><meta name="keywords" content='聊天服务, ubuntu server' /><meta itemprop="name" content="ubuntu sever-聊天服务">
+<meta itemprop="description" content="聊天服务与IRC服务 沟通是最重要的问题 发明网络的目的的沟通(信息交换) 高效的沟通是生产力 为什么不用QQ、微信、Telegram？ 企业信息流经"><meta itemprop="datePublished" content="2020-07-08T13:55:23+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2479"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="聊天服务,ubuntu server," /><meta property="og:title" content="ubuntu sever-聊天服务" />
+<meta property="og:description" content="聊天服务与IRC服务 沟通是最重要的问题 发明网络的目的的沟通(信息交换) 高效的沟通是生产力 为什么不用QQ、微信、Telegram？ 企业信息流经" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-08T13:55:23+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu sever-聊天服务"/>
+<meta name="twitter:description" content="聊天服务与IRC服务 沟通是最重要的问题 发明网络的目的的沟通(信息交换) 高效的沟通是生产力 为什么不用QQ、微信、Telegram？ 企业信息流经"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/" /><link rel="prev" href="https://geoer.cn/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/" /><link rel="next" href="https://geoer.cn/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu sever-聊天服务",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "聊天服务, ubuntu server","wordcount":  2479 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA\/","datePublished": "2020-07-08T13:55:23+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu sever-聊天服务</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-07-08&#32;13:55:23><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-07-08">2020-07-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2479 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu sever-聊天服务">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred聊天服务与irc服务font"><font color=red>聊天服务与IRC服务</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#irc">IRC</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#irc服务器的搭建">IRC服务器的搭建</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredmattermost服务搭建font"><font color=red>MatterMost服务搭建</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装部署">安装部署</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredopenfire服务搭建font"><font color=red>Openfire服务搭建</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#搭建服务端">搭建服务端</a></li>
+            <li><a href="#客户端">客户端</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#rochet-chat服务搭建">Rochet Chat服务搭建</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装">安装</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#f1自动安装">F1.自动安装</a></li>
+                    <li><a href="#f2手动安装">F2.手动安装</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred系统中文显示font"><font color=red>系统中文显示</font></a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="font-colorred聊天服务与irc服务font"><font color=red>聊天服务与IRC服务</font></h2>
+<blockquote>
+<p>沟通是最重要的问题</p>
+</blockquote>
+<ul>
+<li>发明网络的目的的沟通(信息交换)</li>
+<li>高效的沟通是生产力</li>
+<li>为什么不用QQ、微信、Telegram？
+<ul>
+<li>企业信息流经他人服务器（泄密）</li>
+<li>内部信息内部传递效率更高</li>
+<li>更专注于公司内部工作内容</li>
+</ul>
+</li>
+</ul>
+<h4 id="irc">IRC</h4>
+<p>Internet Relay Chat（因特网中继聊天）
+是一种通过网络的群体即时聊天方式（也可以用于个人间聊天）
+公开的协议（TCP和SSL协议）
+IRC服务器可以连接其他的IRC服务器形成一个IRC网络
+大多数的IRC服务器不需要客户注册登录
+目前已经很少见（黑客和老牌的技术群体的挚爱）
+部分流服务商依赖IRC协议进行信息传递</p>
+<h6 id="irc服务器的搭建">IRC服务器的搭建</h6>
+<p><code>Ircd-Hybrid</code>为例</p>
+<ul>
+<li>安装配置简单</li>
+<li>系统资源占用低</li>
+</ul>
+<p>1.安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装服务端</span>
+</span></span><span class="line"><span class="cl">sudo apt install ircd-hybrid
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.管理员口令(operator)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置管理员的密码（加密的方式保存密文）</span>
+</span></span><span class="line"><span class="cl">mkpaswd pass123    <span class="c1"># 生成密文，一会在后面用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/ircd-hybrid/ircd.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">serverinfo <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">name</span> <span class="o">=</span> <span class="s2">&#34;irc.lab.com&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">description</span> <span class="o">=</span> <span class="s2">&#34;LAB Campany IRC Server&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">network_name</span> <span class="o">=</span> <span class="s2">&#34;This is my Beijing Office IRC Network&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 其他配置项...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">operator <span class="o">{</span>    <span class="c1"># 管理员的片段（默认是注释的）</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">name</span> <span class="o">=</span> <span class="s2">&#34;admin&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">user</span> <span class="o">=</span> <span class="s2">&#34;*@*&#34;</span><span class="p">;</span>    <span class="c1"># 限制可以连接的用户和ip地址，这里是所有用户所有主机</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">password</span> <span class="o">=</span> <span class="s2">&#34;xxxxxx&#34;</span> <span class="c1"># 上面mkpaswd pass123 生成的密文</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 后面根据需要配置</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.Banner</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/ircd-hybrid/ircd.motd    <span class="c1"># 客户端登录信息的信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.重启服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart ircd-hybrid.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- mIRC      <span class="c1"># Win下的一款商业软件</span>
+</span></span><span class="line"><span class="cl">- irssi    <span class="c1"># Linux下常用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">sudo apt install irssi
+</span></span><span class="line"><span class="cl">sudo apt install ident2    <span class="c1"># 服务端才能访问该客户端的计算机名等信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端直接连接服务端就行</span>
+</span></span><span class="line"><span class="cl">irssi -c 192.168.175.130
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 服务端口，默认 666x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>7.客户端基本命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/help    <span class="c1"># 查看所有命令</span>
+</span></span><span class="line"><span class="cl">/help  channel
+</span></span><span class="line"><span class="cl">/opera admin pass123
+</span></span><span class="line"><span class="cl">/channel list    <span class="c1"># 查看频道</span>
+</span></span><span class="line"><span class="cl">/channel add -auto <span class="c1">#Football   # 添加频道</span>
+</span></span><span class="line"><span class="cl">/join <span class="c1">#Football    # 加入指定的聊天室</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 把自己提升为管理员身份</span>
+</span></span><span class="line"><span class="cl">/oper admin pass123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorredmattermost服务搭建font"><font color=red>MatterMost服务搭建</font></h2>
+<ul>
+<li>irssi这种命令行的方式并不是很友好，MatterMost使用十分友好</li>
+<li>团队群聊SaaS平台</li>
+<li>Go语言开发</li>
+<li>独立与操作系统的二进制部署方案(它已经给打包好了)</li>
+<li>基于MySQL、Postgresql数据库</li>
+<li>Slack(收费)的替代选择方案(兼容Slack，二者可进行通信)</li>
+<li>全平台客户端支持（Web）</li>
+<li>免费版、收费版</li>
+<li>适用于企业内部团队文件共享和信息交换</li>
+</ul>
+<p>服务端：https://github.com/mattermost/mattermost-server
+客户端程序：https://github.com/mattermost/desktop
+Web界面的：https://github.com/mattermost/mattermost-webapp</p>
+<h4 id="安装部署">安装部署</h4>
+<p>1.安装数据库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这里以mysql为例</span>
+</span></span><span class="line"><span class="cl">sudo apt install mysql-server
+</span></span><span class="line"><span class="cl">sudo mysql_secure_installation
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.建库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="s1">&#39;muser&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;12345678&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">mattermost</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">grant</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="k">privileges</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">mattermost</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="s1">&#39;muser&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- GRANT ALTER,CREATE,DELETE,DROP,INDEX,INSERT,SELECT,UPDATE ON mattermost.* to&#39;muser&#39;@&#39;%&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">flush</span><span class="w"> </span><span class="k">privileges</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.下载mattermost</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://releases.mattermost.com/5.24.2/mattermost-5.24.2-linux-amd64.tar.gz
+</span></span><span class="line"><span class="cl">tar -zxvf mattermost*.gz
+</span></span><span class="line"><span class="cl">sudo mv mattermost /opt    <span class="c1"># 个人安装的软件包，一般会放到opt下面</span>
+</span></span><span class="line"><span class="cl">sudo mkdir /opt/mattermost/data
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /opt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.权限设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo useradd -rU mattermost
+</span></span><span class="line"><span class="cl">sudo chown -R mattermost:mattermost /opt/mattermost
+</span></span><span class="line"><span class="cl">sudo chmod -R g+w /opt/mattermost
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /opt/mattermost/config/config.json</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里配置数据库项， mattermost库的名字</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;DriverName&#34;</span>: <span class="s2">&#34;mysql&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;DataSource&#34;</span>: <span class="s2">&#34;muser:passw123@tcp(localhost:3360)/mattermost?charset=utf8mb4,utf8&amp;readTimeout=30s&amp;writeTimeout=30s&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.测试数据库连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -u mattermost /opt/mattermost/bin/mattermost
+</span></span><span class="line"><span class="cl"><span class="c1"># 重点关注端口是否正常开启，一般默认为8065端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>7.Systemd 服务单元文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mattermost本身是不带service的，所以我们可以手动创建</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo touch /lib/system/mattermost.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加内容...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200704214555991_6879.png" />
+<p>8.中文字体</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /opt/mattermost/config/config.json</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;DefaultServerLocale&#34;</span>: <span class="s2">&#34;zh-CN&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;DefaultClientLocale&#34;</span>: <span class="s2">&#34;zh-CN&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;AvailableLocale&#34;</span>: <span class="s2">&#34;zh-CN&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>9.启动服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改完再启动服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start mattermost.service
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> mattermost.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后查看服务</span>
+</span></span><span class="line"><span class="cl">sudo systemctl status mattermost.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>10.Web配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 域名根据自己的来，或ip也行</span>
+</span></span><span class="line"><span class="cl">https://chat.lab.com:8065
+</span></span><span class="line"><span class="cl"><span class="c1"># 首个账号被赋予system_admin角色（管理员）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">建议：先建立一个团队<span class="o">(</span>相当于一个聊天室<span class="o">)</span>
+</span></span><span class="line"><span class="cl">然后可以根据提示下载客户端
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>11.系统控制台配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">常规-&gt;服务端口<span class="o">(</span>先指定页面上的命令，再在web界面修改<span class="o">)</span>，证书，地址，data存储目录<span class="o">(</span>本地存储/云存储<span class="o">)</span>,电子邮件通知
+</span></span><span class="line"><span class="cl">sudo <span class="nv">setcap_net_bind_service</span><span class="o">=</span>+ep./bin/mattermost    <span class="c1"># 修改服务端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>12.使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 别人进来的方式：</span>
+</span></span><span class="line"><span class="cl">1.邀请链接
+</span></span><span class="line"><span class="cl">2.单独添加成员
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端：</span>
+</span></span><span class="line"><span class="cl">- Web版
+</span></span><span class="line"><span class="cl">- 其他操作系统客户端
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持其他插件，可以与第三方软件集成使用</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>文件的传送，共享文件，置顶文件</p>
+<h2 id="font-colorredopenfire服务搭建font"><font color=red>Openfire服务搭建</font></h2>
+<p>开源免费的IM即时通信服务器
+Real-time collaboration(RTC)
+由java开发，需要java运行环境
+使用拓展通讯和表示协议（XMPP）Extensible Messaging and Presence Protocol
+号称单台服务器可支持上万并发用户
+兼容所有支持XMPP协议的客户端(spark),不建议web的方式(基于flash)
+支持插件开发
+支持mysql、postgrersql、内建数据库
+支持LDAP、TLS、群集部署</p>
+<h4 id="搭建服务端">搭建服务端</h4>
+<p>1.java环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install openjdk-8-jdk
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">java -version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.数据库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这里以mysql为例</span>
+</span></span><span class="line"><span class="cl">sudo apt install mysql-server
+</span></span><span class="line"><span class="cl">sudo mysql_secure_installation
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.建库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">create database openfire<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">grant all privileges on openfire.* to<span class="s1">&#39;fireuser&#39;</span>@<span class="s1">&#39;%&#39;</span> identified by <span class="s1">&#39;pass123&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">flush privileges<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.下载，安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># http://www.igniterealtime.org/downloads/index.jsp#openfire</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo dpkg -i openfire.deb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.导入数据库表</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo mysql<span class="p">;</span>
+</span></span><span class="line"><span class="cl">show databases<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">use openfire<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /usr/share/openfire/resources/databases/openfire_mysql.sql
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">show tables<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.Web界面配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## http://openfire.lab.com:9090</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#进行常用配置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#数据库URL路径： 地址:端口:库名</span>
+</span></span><span class="line"><span class="cl">jdbc:mysql://127.0.0.1/openfire?useUnicode<span class="o">=</span>true<span class="p">&amp;</span><span class="nv">chasacterEncoding</span><span class="o">=</span>UTF-8<span class="p">&amp;</span><span class="nv">characterSetResults</span><span class="o">=</span>UTF-8<span class="p">&amp;</span><span class="nv">rewriteBatchedStatements</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过Web进入管理界面</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>7.创建用户账号</p>
+<h4 id="客户端">客户端</h4>
+<p>可以使用<code>spark</code>
+<a href="http://www.igniterealtime.org/downloads/index.jsp#openfire"target="_blank" rel="external nofollow noopener noreferrer">http://www.igniterealtime.org/downloads/index.jsp#openfire<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+客户端登录忽略证书爆粗平
+spark使用5222端口连接服务端</p>
+<h2 id="rochet-chat服务搭建">Rochet Chat服务搭建</h2>
+<p>与Mattermost类似
+团队群聊SaaS平台
+Slack的替代选择方案
+全平台客户端支持(WEB)
+适用于企业内部文件共享和信息交换
+独立于操作系统的<code>Snap</code>部署方式</p>
+<h4 id="安装">安装</h4>
+<p>安装异常简单</p>
+<h6 id="f1自动安装">F1.自动安装</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 推荐</span>
+</span></span><span class="line"><span class="cl">sudo snap install rocketchat-server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="f2手动安装">F2.手动安装</h6>
+<p>1.安装数据库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install mongodb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.安装依赖</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install node.js build-essential npm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.指定Node.js版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo npm install -g n
+</span></span><span class="line"><span class="cl">sudo n 8.9.3    <span class="c1"># 这里的版本自己查看一下目前支持的版本号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.下载服务端源码，并安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载地址：</span>
+</span></span><span class="line"><span class="cl">https://releases.rocket.chat/latest/download
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tar -zxcf xxx.tgz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> bundle/programs/server
+</span></span><span class="line"><span class="cl">npm install
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ../
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">ROOT_URL</span><span class="o">=</span>http://1.1.1.1：3000/
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MONGO_URL</span><span class="o">=</span>mongodb://localhost:27017/rocketchat
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PORT</span><span class="o">=</span><span class="m">3000</span>
+</span></span><span class="line"><span class="cl">node main.js    <span class="c1"># 启动服务端程序</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.访问Web页面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 向导页面</span>
+</span></span><span class="line"><span class="cl">创建账号等配置（第一个账号是管理员）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>6.用户访问3000的地址，可以注册账号，加入聊天等</p>
+<p>7.配置数据库集群（自己查，生产环境建议配置）
+生产环境数据库复制集群</p>
+<p>Note：数据库建议使用单独的服务器</p>
+<h2 id="font-colorred系统中文显示font"><font color=red>系统中文显示</font></h2>
+<blockquote>
+<p>此为补充知识点</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先安装中文语言包</span>
+</span></span><span class="line"><span class="cl">sudo apt install language-pack-zh-hans
+</span></span><span class="line"><span class="cl">locale -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置中文语言环境变量</span>
+</span></span><span class="line"><span class="cl">vim /etc/environment
+</span></span><span class="line"><span class="cl">    <span class="nv">LANG</span><span class="o">=</span><span class="s2">&#34;zh_CN.UTF-8&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">LANGUAGE</span><span class="o">=</span><span class="s2">&#34;zh_CN:zh:en_US:en&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置中文，英文还是会继续使用的</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-sever-%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-sever-%e8%81%8a%e5%a4%a9%e6%9c%8d%e5%8a%a1%e6%90%ad%e5%bb%ba.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1/' class="post-tag">聊天服务</a><a href='/tags/ubuntu-server/' class="post-tag">ubuntu server</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%8F%91%E7%8E%B0%E5%86%85%E7%BD%91%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA%E6%96%B9%E6%B3%95-%E7%AE%80%E5%8D%95%E6%95%B4%E7%90%86/" class="post-nav-item" rel="prev" title="发现内网存活主机方法-简单整理"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>发现内网存活主机方法-简单整理</a>
+      <a href="/ubuntu-server-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1/" class="post-nav-item" rel="next" title="ubuntu sever-邮件服务">ubuntu sever-邮件服务<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

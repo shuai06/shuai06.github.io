@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>常用激活函数 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="什么是激活函数(what) Nerual Network中的每个神经元节点接受上一层神经元的输出值作为本神经元的输入值，并将输入值传递给下一层，输入层神经" /><meta name="keywords" content='激活函数, 深度学习入门, softmax, ReLU, Sigmoid' /><meta itemprop="name" content="常用激活函数">
+<meta itemprop="description" content="什么是激活函数(what) Nerual Network中的每个神经元节点接受上一层神经元的输出值作为本神经元的输入值，并将输入值传递给下一层，输入层神经"><meta itemprop="datePublished" content="2022-07-01T22:38:23+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="4757"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="激活函数,深度学习入门,softmax,ReLU,Sigmoid," /><meta property="og:title" content="常用激活函数" />
+<meta property="og:description" content="什么是激活函数(what) Nerual Network中的每个神经元节点接受上一层神经元的输出值作为本神经元的输入值，并将输入值传递给下一层，输入层神经" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-01T22:38:23+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="常用激活函数"/>
+<meta name="twitter:description" content="什么是激活函数(what) Nerual Network中的每个神经元节点接受上一层神经元的输出值作为本神经元的输入值，并将输入值传递给下一层，输入层神经"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/" /><link rel="next" href="https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "常用激活函数",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "激活函数, 深度学习入门, softmax, ReLU, Sigmoid","wordcount":  4757 ,
+    "url": "https:\/\/geoer.cn\/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0\/","datePublished": "2022-07-01T22:38:23+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>常用激活函数</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2022-07-01&#32;22:38:23><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-01">2022-07-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 4757 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 10 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="常用激活函数">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是激活函数what">什么是激活函数(what)</a></li>
+    <li><a href="#激活函数的用途why">激活函数的用途(why)</a></li>
+    <li><a href="#激活函数需要具备的性质">激活函数需要具备的性质</a>
+      <ul>
+        <li><a href="#1非线性">1.非线性</a></li>
+        <li><a href="#2可微性定义域内-存在导函数">2.可微性(定义域内 存在导函数)：</a></li>
+        <li><a href="#3单调性monotonic">3.单调性(monotonic)</a></li>
+        <li><a href="#4计算简单">4.计算简单</a></li>
+        <li><a href="#5非饱和性saturation">5.非饱和性(saturation)</a></li>
+        <li><a href="#6输出范围有限">6.输出范围有限</a></li>
+        <li><a href="#7接近恒等变换identity">7.接近恒等变换（identity）</a></li>
+        <li><a href="#8参数少">8.参数少</a></li>
+        <li><a href="#9归一化normalization">9.归一化(normalization)</a></li>
+      </ul>
+    </li>
+    <li><a href="#有哪些激活函数which">有哪些激活函数(which)</a>
+      <ul>
+        <li><a href="#1sigmoid函数">1.Sigmoid函数</a></li>
+        <li><a href="#2tanh函数">2.tanh函数</a></li>
+        <li><a href="#3relu函数">3.Relu函数</a></li>
+        <li><a href="#4leaky-relu函数prelu">4.Leaky ReLU函数(PReLU)</a></li>
+        <li><a href="#5eluexponential-linear-units函数">5.ELU(Exponential Linear Units)函数</a></li>
+        <li><a href="#6softplus">6.softPlus</a></li>
+        <li><a href="#7大一统maxout函数">7.大一统：Maxout函数</a></li>
+        <li><a href="#8softmax">8.softmax</a></li>
+        <li><a href="#9dice">9.Dice</a></li>
+      </ul>
+    </li>
+    <li><a href="#如何选择合适的激活函数how">如何选择合适的激活函数(how)</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="什么是激活函数what">什么是激活函数(what)</h2>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701224541.png"
+    data-srcset="http://image.xpshuai.cn/20220701224541.png, http://image.xpshuai.cn/20220701224541.png 1.5x, http://image.xpshuai.cn/20220701224541.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701224541.png"
+    title="http://image.xpshuai.cn/20220701224541.png"/>
+Nerual Network中的每个神经元节点接受上一层神经元的输出值作为本神经元的输入值，并将输入值传递给下一层，输入层神经元节点会将输入属性值直接传递给下一层（隐层或输出层）。
+在多层神经网络中，上层节点的输出和下层节点的输入之间具有一个函数关系，这个函数称为<strong>激活函数（又称激励函数, active function）</strong>。</p>
+<h2 id="激活函数的用途why">激活函数的用途(why)</h2>
+<blockquote>
+<p>加入激活函数，深度神经网络才能具备分层的非线性映射学习能力。因此激活函数是神经网络不可或缺的一部分</p>
+</blockquote>
+<p>如果不用激励函数（其实相当于激励函数是<code>f(x) = x</code>），在这种情况下你每一层节点的输入都是上层输出的线性函数，很容易验证，无论你神经网络有多少层，输出都是输入的线性组合，与没有隐藏层效果相当，这种情况就是最原始的感知机（Perceptron）了，那么网络的逼近能力就相当有限。
+正因为上面的原因，我们决定<strong>引入非线性函数作为激励函数</strong>，这样深层神经网络表达能力就更加强大（不再是输入的线性组合，而是几乎可以逼近任意函数）。</p>
+<h2 id="激活函数需要具备的性质">激活函数需要具备的性质</h2>
+<h3 id="1非线性">1.非线性</h3>
+<p>即导数不是常数。保证多层网络不退化成单层线性网络。这也是激活函数的意义所在。</p>
+<h3 id="2可微性定义域内-存在导函数">2.可微性(定义域内 存在导函数)：</h3>
+<p>可微性保证了在优化中梯度的可计算性。传统的激活函数如sigmoid等满足处处可微。对于分段线性函数比如ReLU，只满足几乎处处可微（即仅在有限个点处不可微）。对于SGD算法来说，由于几乎不可能收敛到梯度接近零的位置，有限的不可微点对于优化结果不会有很大影响。</p>
+<h3 id="3单调性monotonic">3.单调性(monotonic)</h3>
+<p>即导数符号不变。当激活函数是单调的时候，单层网络能够保证是凸函数。
+更通俗的理解：函数形式是当我输入一个数值，通过计算得到一个数值，里面没有超级参数，也就是说我们在保证函数分布不发生改变的情况下，对神经元的数值带来一个非线性的映射。但是需要保证单调的原因是不改变分布的规律发生大的改变。当不是单调的时候我们可能会有很多个局部最优，不能保证是一个凸函数，对后面我们做梯度下降时带来巨大影响。</p>
+<h3 id="4计算简单">4.计算简单</h3>
+<p>激活函数在神经网络前向的计算次数与神经元的个数成正比，因此简单的非线性函数自然更适合用作激活函数。这也是ReLU之流比其它使用Exp等操作的激活函数更受欢迎的其中一个原因。</p>
+<h3 id="5非饱和性saturation">5.非饱和性(saturation)</h3>
+<p>饱和指的是在某些区间梯度接近于零（即梯度消失），使得参数无法继续更新的问题。最经典的例子是Sigmoid，它的导数在x为比较大的正值和比较小的负值时都会接近于0。更极端的例子是阶跃函数，由于它在几乎所有位置的梯度都为0，因此处处饱和，无法作为激活函数。ReLU在x&gt;0时导数恒为1，因此对于再大的正值也不会饱和。但同时对于x&lt;0，其梯度恒为0，这时候它也会出现饱和的现象。Leaky ReLU[3]和PReLU的提出正是为了解决这一问题。</p>
+<h3 id="6输出范围有限">6.输出范围有限</h3>
+<p>有限的输出范围使得网络对于一些比较大的输入也会比较稳定，这也是为什么早期的激活函数都以此类函数为主，如Sigmoid、Tanh。但这导致了前面提到的梯度消失问题，而且强行让每一层的输出限制到固定范围会限制其表达能力。因此现在这类函数仅用于某些需要特定输出范围的场合，比如概率输出（此时loss函数中的log操作能够抵消其梯度消失的影响）、LSTM里的gate函数。</p>
+<h3 id="7接近恒等变换identity">7.接近恒等变换（identity）</h3>
+<p>f(x)≈x，即约等于x。这样的好处是使得输出的幅值不会随着深度的增加而发生显著的增加，从而使网络更为稳定，同时梯度也能够更容易地回传。这个与非线性是有点矛盾的，因此激活函数基本只是部分满足这个条件。</p>
+<h3 id="8参数少">8.参数少</h3>
+<p>大部分激活函数都是没有参数的。像PReLU带单个参数会略微增加网络的大小。还有一个例外是Maxout，尽管本身没有参数，但在同样输出通道数下k路Maxout需要的输入通道数是其它函数的k倍，这意味着神经元数目也需要变为k倍；但如果不考虑维持输出通道数的情况下，该激活函数又能将参数个数减少为原来的k倍。</p>
+<h3 id="9归一化normalization">9.归一化(normalization)</h3>
+<p>对应的激活函数是SELU，主要思想是使样本分布自动归一化到零均值、单位方差的分布，从而稳定训练。归一化的思想也被用于网络结构的设计，比如Batch Normalization。</p>
+<h2 id="有哪些激活函数which">有哪些激活函数(which)</h2>
+<p>激活函数的发展经历了Sigmoid -&gt; Tanh -&gt; ReLU -&gt; Leaky ReLU -&gt; Maxout这样的过程，还有一个特殊的激活函数Softmax，因为它只会被用在网络中的最后一层，用来进行最后的分类和归一化。
+如果按照饱和与否作为区分条件，表示如下图：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701225445.png"
+    data-srcset="http://image.xpshuai.cn/20220701225445.png, http://image.xpshuai.cn/20220701225445.png 1.5x, http://image.xpshuai.cn/20220701225445.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701225445.png"
+    title="http://image.xpshuai.cn/20220701225445.png"/></p>
+<h3 id="1sigmoid函数">1.Sigmoid函数</h3>
+<blockquote>
+<p>最常用的非线性的激活函数</p>
+</blockquote>
+<p>数学形式如下：
+$$
+f(z) = \frac{1}{1 + e^{-z}}
+$$</p>
+<p>导数是：
+$$
+f^{&rsquo;}(z) = f(z)(1-f(z))
+$$</p>
+<p>图像如下：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701230219.png"
+    data-srcset="http://image.xpshuai.cn/20220701230219.png, http://image.xpshuai.cn/20220701230219.png 1.5x, http://image.xpshuai.cn/20220701230219.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701230219.png"
+    title="http://image.xpshuai.cn/20220701230219.png"/></p>
+<p><strong>特点：</strong>
+它能够把输入的连续实值变换为0和1之间的输出，特别的，如果是非常大的负数，那么输出就是0；如果是非常大的正数，输出就是1
+平滑、易求导。可以将函数映射到(0, 1)之间，通常二分类算法会在最后套一层sigmoid函数。</p>
+<p><strong>缺点：</strong>
+sigmoid函数曾经被使用的很多，不过近年来，用它的人越来越少了。主要是因为它固有的一些缺点:
+缺点1：在深度神经网络中梯度反向传递时导致梯度爆炸和梯度消失，其中梯度爆炸发生的概率非常小，而梯度消失发生的概率比较大。首先来看Sigmoid函数的导数，如下图所示
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701230352.png"
+    data-srcset="http://image.xpshuai.cn/20220701230352.png, http://image.xpshuai.cn/20220701230352.png 1.5x, http://image.xpshuai.cn/20220701230352.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701230352.png"
+    title="http://image.xpshuai.cn/20220701230352.png"/>
+如果我们初始化神经网络的权值为 [ 0 , 1 ] [0,1][0,1] 之间的随机值，由反向传播算法的数学推导可知，梯度从后向前传播时，每传递一层梯度值都会减小为原来的0.25倍，如果神经网络隐层特别多，那么梯度在穿过多层后将变得非常小接近于0，即出现梯度消失现象；当网络权值初始化为 ( 1 , + ∞ ) (1,+∞)(1,+∞) 区间内的值，则会出现梯度爆炸情况。</p>
+<p>缺点2：Sigmoid函数的输出不是关于原点对称的。因为如果输入神经元的数据总是正数，那么关于w的梯度在反向传播的过程中，将会要么全部是正数，要么全部是负数，这将会导致梯度下降权重更新时出现z字型的下降。</p>
+<p>缺点3：其解析式中含有幂运算，计算机求解时相对来讲比较耗时。对于规模比较大的深度网络，这会较大地增加训练时间。</p>
+<p>用Python实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2tanh函数">2.tanh函数</h3>
+<p>数学式为:
+$$
+\tanh(x) = \frac{e_x - e^{-x}}{e_x + e^{-x}} = 2f(2x) - 1
+$$</p>
+<p>导数为：
+$$
+\tan h^{&rsquo;}(x) = 4f(2x)(1-f(2x))
+$$</p>
+<p>tanh函数及其导数的几何图像如下图：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701231613.png"
+    data-srcset="http://image.xpshuai.cn/20220701231613.png, http://image.xpshuai.cn/20220701231613.png 1.5x, http://image.xpshuai.cn/20220701231613.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701231613.png"
+    title="http://image.xpshuai.cn/20220701231613.png"/></p>
+<p><strong>优点：</strong>
+它解决了Sigmoid函数的不是zero-centered输出问题</p>
+<ul>
+<li>输出是0均值</li>
+<li>梯度取值范围在(0, 1)之间</li>
+</ul>
+<p><strong>缺点：</strong>
+同sigmoid一样，然而，梯度消失（gradient vanishing）的问题和幂运算的问题仍然存在</p>
+<h3 id="3relu函数">3.Relu函数</h3>
+<p>数学式子：
+$$
+f(x) = max(0,x)
+$$</p>
+<p>Relu函数及其导数的图像如下图所示：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701231939.png"
+    data-srcset="http://image.xpshuai.cn/20220701231939.png, http://image.xpshuai.cn/20220701231939.png 1.5x, http://image.xpshuai.cn/20220701231939.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701231939.png"
+    title="http://image.xpshuai.cn/20220701231939.png"/></p>
+<p>ReLU是一种后来才出现的激活函数。从图中 可以看到，当x&lt;0时，出现硬饱和，当x&gt;0时，不存在饱和问题。因此，ReLU 能够在x&gt;0时保持梯度不衰减，从而缓解梯度消失问题。然而，随着训练的推进，部分输入会落入硬饱和区，导致对应权重无法更新，这种现象被称为“神经元死亡”。与sigmoid类似，ReLU的输出均值也大于0。偏移现象和神经元死亡会共同影响网络的收敛性。</p>
+<p>产生激活函数大面积为被激活的原因是：
+1、初始化的参数设置时，使Relu没有被激活。
+2、学习率太高，神经元在一定范围内波动，可能会发生数据多样性的丢失，这种情况下神经元不会被激活，数据多样性的丢失不可逆。</p>
+<p>ReLU函数其实就是一个取最大值函数，注意这并不是全区间可导的，但是我们可以取sub-gradient，如上图所示。ReLU虽然简单，但却是近几年的重要成果，有以下几大优点：</p>
+<ol>
+<li>解决了gradient vanishing问题 (在正区间)</li>
+<li>计算速度非常快，只需要判断输入是否大于0</li>
+<li>收敛速度远快于sigmoid和tanh</li>
+</ol>
+<p>ReLU也有几个需要特别注意的问题：</p>
+<ol>
+<li>ReLU的输出不是zero-centered</li>
+<li>Dead ReLU Problem，指的是某些神经元可能永远不会被激活，导致相应的参数永远不能被更新。有两个主要原因可能导致这种情况产生: (1) 非常不幸的参数初始化，这种情况比较少见 (2) learning rate太高导致在训练过程中参数更新太大，不幸使网络进入这种状态。解决方法是可以采用Xavier初始化方法，以及避免将learning rate设置太大或使用adagrad等自动调节learning rate的算法。</li>
+</ol>
+<p>尽管存在这两个问题，<strong>ReLU目前仍是最常用的activation function，在搭建人工神经网络的时候推荐优先尝试！</strong></p>
+<p>Python代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4leaky-relu函数prelu">4.Leaky ReLU函数(PReLU)</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701232741.png"
+    data-srcset="http://image.xpshuai.cn/20220701232741.png, http://image.xpshuai.cn/20220701232741.png 1.5x, http://image.xpshuai.cn/20220701232741.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701232741.png"
+    title="http://image.xpshuai.cn/20220701232741.png"/></p>
+<p>PRelu函数：
+形式同leaky relu，区别在于PRelu的$\alpha$不是超参，而是学习出来的。</p>
+<h3 id="5eluexponential-linear-units函数">5.ELU(Exponential Linear Units)函数</h3>
+<p>函数表达式：
+$$
+f(x) =
+\begin{cases}
+x, &amp; if x&gt;0 \
+\alpha(e^x-1), &amp; 其他情况 \
+\end{cases}
+$$</p>
+<p>函数及其导数的图像如下图所示：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701233043.png"
+    data-srcset="http://image.xpshuai.cn/20220701233043.png, http://image.xpshuai.cn/20220701233043.png 1.5x, http://image.xpshuai.cn/20220701233043.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701233043.png"
+    title="http://image.xpshuai.cn/20220701233043.png"/></p>
+<p>ELU也是为解决ReLU存在的问题而提出，
+<strong>优点：</strong></p>
+<ul>
+<li>收敛速度快</li>
+<li>不会有Deal ReLU问题</li>
+<li>输出的均值接近0，zero-centered</li>
+<li>左侧软饱合能够让ELU对输入变化或噪声更鲁棒</li>
+</ul>
+<p>它的一个小问题在于计算量稍大(包含指数)。类似于Leaky ReLU，理论上虽然好于ReLU，但在实际使用中目前并没有好的证据ELU总是优于ReLU。</p>
+<h3 id="6softplus">6.softPlus</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701233234.png"
+    data-srcset="http://image.xpshuai.cn/20220701233234.png, http://image.xpshuai.cn/20220701233234.png 1.5x, http://image.xpshuai.cn/20220701233234.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701233234.png"
+    title="http://image.xpshuai.cn/20220701233234.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701233251.png"
+    data-srcset="http://image.xpshuai.cn/20220701233251.png, http://image.xpshuai.cn/20220701233251.png 1.5x, http://image.xpshuai.cn/20220701233251.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701233251.png"
+    title="http://image.xpshuai.cn/20220701233251.png"/></p>
+<h3 id="7大一统maxout函数">7.大一统：Maxout函数</h3>
+<p>$$
+f(x) = max(\omega_1^Tx+b_1, \omega_2^Tx+b_2, &hellip;,\omega_n^Tx+b_n,)
+$$
+使用maxout的默认先验：样本集是凸集可分的</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701233953.png"
+    data-srcset="http://image.xpshuai.cn/20220701233953.png, http://image.xpshuai.cn/20220701233953.png 1.5x, http://image.xpshuai.cn/20220701233953.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701233953.png"
+    title="http://image.xpshuai.cn/20220701233953.png"/></p>
+<p><strong>优点：</strong>
+Maxout具有ReLU的优点，如计算简单，不会 saturation饱和，同时又没有ReLU的一些缺点，如容易死掉。</p>
+<p><strong>缺点：</strong>
+每个神经元的参数double，这就导致整体参数的数量激增，明显增加了计算量，使得应用maxout的层的参数个数成k倍增加，原本只需要1组就可以，采用maxout之后就需要k倍了。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701233659.png"
+    data-srcset="http://image.xpshuai.cn/20220701233659.png, http://image.xpshuai.cn/20220701233659.png 1.5x, http://image.xpshuai.cn/20220701233659.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701233659.png"
+    title="http://image.xpshuai.cn/20220701233659.png"/></p>
+<h3 id="8softmax">8.softmax</h3>
+<p>$$
+softmax(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_i}}}
+$$</p>
+<ul>
+<li>值域0-1之间</li>
+<li>通常用于多分类的输出，所有分类的输出之和为1
+指数函数曲线呈现递增趋势，最重要的是斜率逐渐增大，也就是说在轴上一个很小的变化，可以导致y轴上很大的变化。经过使用指数形式的Softmax函数能够将差距大的数值距离拉的更大。但是这样也有可能会产生溢出。</li>
+<li>使用Softmax函数作为输出层激活函数时，常使用交叉熵作损失函数。Softmax函数计算过程中，容易因为输出节点的输出值较大产生溢出现象，在计算交叉熵时也可能会产生溢出。为了计算的稳定性，TensorFlow提供了一个统一的接口，将Softmax与交叉熵损失函数同时实现，同时也处理了数值不稳定的异常，使用TensorFlow深度学习框架的时候，推荐使用这个统一的接口，避免分开使用Softmax函数与交叉熵损失函数。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220701234423.png"
+    data-srcset="http://image.xpshuai.cn/20220701234423.png, http://image.xpshuai.cn/20220701234423.png 1.5x, http://image.xpshuai.cn/20220701234423.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220701234423.png"
+    title="http://image.xpshuai.cn/20220701234423.png"/></li>
+</ul>
+<p>Python实现softmax:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># softmax函数(用于多元分类问题)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">softmax</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exp_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum_exp_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exp_a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">exp_a</span> <span class="o">/</span> <span class="n">sum_exp_a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># softmax函数改良版</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">softmaxV2</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exp_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span>  <span class="c1"># 溢出对策</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum_exp_a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exp_a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">exp_a</span> <span class="o">/</span> <span class="n">sum_exp_a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">y</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9dice">9.Dice</h3>
+<p><a href="https://zhuanlan.zhihu.com/p/455474500"target="_blank" rel="external nofollow noopener noreferrer">https://zhuanlan.zhihu.com/p/455474500<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h2 id="如何选择合适的激活函数how">如何选择合适的激活函数(how)</h2>
+<p><strong>传统的激活函数选择的建议：</strong></p>
+<ol>
+<li>优先relu</li>
+<li>再考虑prelu、leaky relu、maxout</li>
+<li>再考虑tanh</li>
+<li>除非用作二分类的最后一层，其他一般不建议使用sigmoid</li>
+</ol>
+<p><strong>这个问题目前没有确定的方法，凭一些经验吧:</strong></p>
+<ol>
+<li>深度学习往往需要大量时间来处理大量数据，模型的收敛速度是尤为重要的。所以，总体上来讲，训练深度学习网络尽量使用zero-centered数据 (可以经过数据预处理实现) 和zero-centered输出。所以要尽量选择输出具有zero-centered特点的激活函数以加快模型的收敛速度。</li>
+<li>如果使用 ReLU，那么一定要小心设置 learning rate，而且要注意不要让网络出现很多 “dead” 神经元，如果这个问题不好解决，那么可以试试 Leaky ReLU、PReLU 或者 Maxout.</li>
+<li>最好不要用sigmoid，你可以试试tanh，不过可以预期它的效果会比不上 ReLU 和 Maxout.</li>
+</ol>
+<h2 id="参考">参考</h2>
+<p><a href="https://blog.csdn.net/qq_18310041/article/details/91042085"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_18310041/article/details/91042085<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://blog.csdn.net/tyhj_sf/article/details/79932893"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/tyhj_sf/article/details/79932893<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%B8%B8%E7%94%A8%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%b8%b8%e7%94%a8%e6%bf%80%e6%b4%bb%e5%87%bd%e6%95%b0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/' class="post-tag">激活函数</a><a href='/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/' class="post-tag">深度学习入门</a><a href='/tags/softmax/' class="post-tag">softmax</a><a href='/tags/relu/' class="post-tag">ReLU</a><a href='/tags/sigmoid/' class="post-tag">Sigmoid</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/" class="post-nav-item" rel="prev" title="感知机(Perceptron)学习笔记"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>感知机(Perceptron)学习笔记</a>
+      <a href="/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week2-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" class="post-nav-item" rel="next" title="吴恩达2022新版机器学习课后题-课程1Week2-线性回归">吴恩达2022新版机器学习课后题-课程1Week2-线性回归<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

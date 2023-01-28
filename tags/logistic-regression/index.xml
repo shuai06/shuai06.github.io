@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Logistic Regression - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/logistic-regression/</link>
+    <description>Logistic Regression - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Jul 2022 11:03:20 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/logistic-regression/" rel="self" type="application/rss+xml" /><item>
+  <title>吴恩达2022新版机器学习课后题-课程1week3-Logistic Regression</title>
+  <link>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week3-logistic-regression/</link>
+  <pubDate>Mon, 11 Jul 2022 11:03:20 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%AF%BE%E5%90%8E%E9%A2%98-%E8%AF%BE%E7%A8%8B1week3-logistic-regression/</guid>
+  <description><![CDATA[不带正则的 问题描述 Suppose that you are the administrator of a university department and you want to determine each applicant’s chance of admission based on their results on two exams. You have historical data from previous applicants that you can use as a training set for logistic regression. For each training example, you have]]></description>
+</item>
+<item>
+  <title>吴恩达2022新版机器学习-week3-逻辑回归(Logistic Regression)</title>
+  <link>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-week3-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistic-regression/</link>
+  <pubDate>Mon, 11 Jul 2022 11:00:12 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%90%B4%E6%81%A9%E8%BE%BE2022%E6%96%B0%E7%89%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-week3-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-logistic-regression/</guid>
+  <description><![CDATA[逻辑回归 实际上用于分类问题中（不要被名字迷惑），其输出值在0-1之间 这里采用sigmoid作为model，公式如下： $g(z)=\frac{1}{1+e^{-z}}$ model： $f(\vec{w},b)(\vec{x}) = g(\vec{w}\cdot{\vec{x}}+b) = \frac{1}{1+e^{-(\vec{w}\cdot{\vec{x}}+b)}}$]]></description>
+</item>
+</channel>
+</rss>

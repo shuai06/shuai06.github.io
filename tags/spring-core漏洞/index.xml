@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Spring Core漏洞 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/spring-core%E6%BC%8F%E6%B4%9E/</link>
+    <description>Spring Core漏洞 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 29 Apr 2022 18:23:41 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/spring-core%E6%BC%8F%E6%B4%9E/" rel="self" type="application/rss+xml" /><item>
+  <title>Spring core远程代码执行漏洞(CVE-2022-22965)复现</title>
+  <link>https://geoer.cn/spring-core%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-cve-2022-22965-%E5%A4%8D%E7%8E%B0/</link>
+  <pubDate>Fri, 29 Apr 2022 18:23:41 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/spring-core%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-cve-2022-22965-%E5%A4%8D%E7%8E%B0/</guid>
+  <description><![CDATA[漏洞简介 springframework 是spring 里面的一个基础开源框架，主要用于javaee的企业开发。2022年3月30日，Spring框架曝出RCE 0day漏洞]]></description>
+</item>
+</channel>
+</rss>

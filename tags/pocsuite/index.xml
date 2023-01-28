@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>pocsuite - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/pocsuite/</link>
+    <description>pocsuite - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Jan 2021 16:33:20 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/pocsuite/" rel="self" type="application/rss+xml" /><item>
+  <title>pocsuite简单学习</title>
+  <link>https://geoer.cn/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Mon, 11 Jan 2021 16:33:20 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/pocsuite%E7%AE%80%E5%8D%95%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[简介 读读英文&hellip; pocsuite3 is an open-sourced remote vulnerability testing and proof-of-concept development framework developed by the Knownsec 404 Team. It comes with a powerful proof-of-concept engine, many powerful features for the ultimate penetration testers and security researchers Pocsuite有两种交互模式： 一个是命令]]></description>
+</item>
+</channel>
+</rss>

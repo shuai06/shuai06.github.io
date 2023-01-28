@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-LDAP - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="LDAP 看书前先看目录 理解 不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录 目录服务是企业网络的核心基础结构 1 2 3 4 -" /><meta name="keywords" content='LDAP, Linux, ubuntu' /><meta itemprop="name" content="ubuntu server-LDAP">
+<meta itemprop="description" content="LDAP 看书前先看目录 理解 不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录 目录服务是企业网络的核心基础结构 1 2 3 4 -"><meta itemprop="datePublished" content="2020-05-07T16:23:59+08:00" />
+<meta itemprop="dateModified" content="2023-01-28T13:36:56+08:00" />
+<meta itemprop="wordCount" content="2312"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="LDAP,Linux,ubuntu," /><meta property="og:title" content="ubuntu server-LDAP" />
+<meta property="og:description" content="LDAP 看书前先看目录 理解 不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录 目录服务是企业网络的核心基础结构 1 2 3 4 -" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-ldap/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-07T16:23:59+08:00" />
+<meta property="article:modified_time" content="2023-01-28T13:36:56+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-LDAP"/>
+<meta name="twitter:description" content="LDAP 看书前先看目录 理解 不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录 目录服务是企业网络的核心基础结构 1 2 3 4 -"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-ldap/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" /><link rel="next" href="https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-LDAP",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-ldap\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "LDAP, Linux, ubuntu","wordcount":  2312 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-ldap\/","datePublished": "2020-05-07T16:23:59+08:00","dateModified": "2023-01-28T13:36:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-LDAP</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-07&#32;16:23:59><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-07">2020-05-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2312 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-LDAP">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#理解">理解</a></li>
+            <li><a href="#dap">DAP</a></li>
+            <li><a href="#ldap-1">LDAP</a></li>
+            <li><a href="#安装并配置ldap">安装并配置LDAP</a></li>
+            <li><a href="#web管理">Web管理</a></li>
+            <li><a href="#客户端">客户端</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#windows客户端">Windows客户端</a></li>
+                    <li><a href="#linux客户端">Linux客户端</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="ldap">LDAP</h1>
+<blockquote>
+<p>看书前先看目录</p>
+</blockquote>
+<h4 id="理解">理解</h4>
+<p>不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录</p>
+<p>目录服务是企业网络的核心基础结构</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 如此重要的服务并不被大多数熟悉
+</span></span><span class="line"><span class="cl">- 很少独立使用，与其他服务结合使用
+</span></span><span class="line"><span class="cl">- 微软的企业战略（埋坑: 一旦底层用了微软的AD,你以后的一些肯定也要用我的集成的产品）
+</span></span><span class="line"><span class="cl">- 类似: 每一本书都有自己的目录
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>数据集中存储的应用需求</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 集中存储、集中管理、集中定位
+</span></span><span class="line"><span class="cl">- 身份认证、公钥分发、邮件路由、地址查询、应用配置、单点登录(SSO -&gt; 只登录一次就不用重复登录了)
+</span></span><span class="line"><span class="cl">- 面向大量频繁的数据查询操作，少量写操作（基本不变的数据）
+</span></span><span class="line"><span class="cl">- 权限限制授权用户查询
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我是否应该使用目录服务(根据自己公司情况)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 用户认证
+</span></span><span class="line"><span class="cl">- 机器认证
+</span></span><span class="line"><span class="cl">- 用户和组
+</span></span><span class="line"><span class="cl">- 电话地址薄
+</span></span><span class="line"><span class="cl">- 组织呈现
+</span></span><span class="line"><span class="cl">- 资产跟踪
+</span></span><span class="line"><span class="cl">- 集中应用配置
+</span></span><span class="line"><span class="cl">- PEX / 网络设备配置
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="dap">DAP</h4>
+<p><strong>软件架构</strong></p>
+<ul>
+<li>不同与SQL的后端层级化数据库（<code>主要面向查询操作</code>）</li>
+<li>与DNS的分布式结构更接近，命名上通常与DBS命名保持一致(在目录服务内所有存储对象都有唯一的路径名称)</li>
+<li>数据库基于键值对的方式存储数据</li>
+<li>标准统一的服务前端应用查询访问接口(基于OSI协议栈,  X.500)</li>
+<li>统一的客户端查询组件和协议(C/S)</li>
+<li>支持通信会话加密</li>
+<li>Directory information tree (DIT)</li>
+</ul>
+<p><strong>与自建数据库开发相比</strong></p>
+<ul>
+<li>专门针对查询服务的数据库结构类型</li>
+<li>统一标准的查询结构以及通信协议（DAP -&gt;目录访问协议）</li>
+</ul>
+<h4 id="ldap-1">LDAP</h4>
+<blockquote>
+<p>Lightweight Directoy Access Protocol    轻量目录访问服务</p>
+</blockquote>
+<ul>
+<li>命名上通常与DBS命名保持一致(在目录服务内所有存储对象都有唯一的路径名称)</li>
+<li>数据库基于键值对的方式存储数据</li>
+<li>X.500标准的部分特性集, 各厂商不同</li>
+<li>基于TCP/IP协议通信(TCP <code>389</code>)</li>
+<li>可构建面向互联网和本地网络的目录服务</li>
+</ul>
+<p>最常见的LDAP服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 微软的活动目录 AD</span>
+</span></span><span class="line"><span class="cl">企业网络资源全部加入域，统一存储、统一呈现、统一管理、安全边界
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Novell eDirectory</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>命名空间</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 全局路径： Distinguished Name (DN)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 相对路径： Relative Distinguished</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 目录容器： Directory Container (DC)   每一层</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 组织单位:  Organisation Unit (OU)     通常按照部门划分</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据项： entries (object, class)</span>
+</span></span><span class="line"><span class="cl">        一组预先定义的属性集合
+</span></span><span class="line"><span class="cl">        uid, 姓，名，帐号，邮箱，电话, 照片...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基础架构：Schema</span>
+</span></span><span class="line"><span class="cl">        objectClass 定义所有对象类型及其属性
+</span></span><span class="line"><span class="cl">        Schame 可按应用需要扩展<span class="o">(</span>美国对象在ASN.1结构中都有自己的位置 -- SNMP<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通用名： common name (CN)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>传统命名空间</strong></p>
+<ul>
+<li>无固定的命名规则</li>
+<li>按照地理空间命名</li>
+</ul>
+<img src="http://image.xpshuai.cn/20200507135251359_1631864771.png" />
+<img src="http://image.xpshuai.cn/20200507135329746_833117774.png" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 写法</span>
+</span></span><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>babs, <span class="nv">ou</span><span class="o">=</span>People, <span class="nv">dc</span><span class="o">=</span>example, <span class="nv">dc</span><span class="o">=</span>com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>LDAP协议</strong>
+LDAP最初作为TCP/IP客户udan与X.500目录服务网关之间发通信协议
+LDAPv3:</p>
+<ul>
+<li>强身份认证和数据加密</li>
+<li>基于证书的SSL加密</li>
+<li>使用Unicode编码实现国际化</li>
+<li>Schema可扩展</li>
+</ul>
+<h4 id="安装并配置ldap">安装并配置LDAP</h4>
+<blockquote>
+<p>拿出一台服务器作为专门的LDAP的服务器，以后的身份认证都使用集中的LDAP的(不局限与操作系统，<code>Web应用也可以</code>，只要程序支持ldap就可以使用这个做身份认证)</p>
+</blockquote>
+<p>先修改主机名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo sed -i <span class="s1">&#39;s/preserve_hostname:false /preserve_hostname:true /g&#39;</span> /etc/cloud/cloud.cfg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;192.168.0.104 ldap.lab.com&#34;</span> <span class="p">|</span> sudo tee -a /etc/hosts  <span class="c1"># ip地址与名称的解析关系</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改主机名</span>
+</span></span><span class="line"><span class="cl">sudo hostnamectl set-hostname ldap.lab.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">reboot
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装 OpenLDAP</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Ubuntu Linux中默认的LDAP实现</span>
+</span></span><span class="line"><span class="cl">sudo apt install slapd ldap-utils
+</span></span><span class="line"><span class="cl"><span class="c1"># slapd 是服务端和后台进程(即LDAP server)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ldap-utils  （ldap工具）</span>
+</span></span><span class="line"><span class="cl">    ldapadd       <span class="c1"># 添加数据</span>
+</span></span><span class="line"><span class="cl">    ldapdelete    <span class="c1"># 删除数据</span>
+</span></span><span class="line"><span class="cl">    ldapmodify    <span class="c1"># 修改</span>
+</span></span><span class="line"><span class="cl">    ldapsearch    <span class="c1"># 查询（最常使用）</span>
+</span></span><span class="line"><span class="cl">    ldappasswd    <span class="c1"># 修改密码</span>
+</span></span><span class="line"><span class="cl">    ... ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/ldap/ldap.conf</span>
+</span></span><span class="line"><span class="cl">BASE    <span class="nv">dc</span><span class="o">=</span>lab,dc<span class="o">=</span>com    <span class="c1"># 目前和dns的域名保持一直即可</span>
+</span></span><span class="line"><span class="cl">URI     ldap://ldap.lab.com:389    <span class="c1"># 可以通过这个地址对..进行查询</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>初始化配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一次就够了!!!</span>
+</span></span><span class="line"><span class="cl">sudo dpkg-reconfigure slapd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 还可以设置一次密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据库建议选择MDB</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验证</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 多种验证方式</span>
+</span></span><span class="line"><span class="cl">sudo slapcat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo tree /etc/ldap/slapd.d/   <span class="c1"># 有内容就可</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认管理员帐号 admin</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ldapsearch -x -LLL -b <span class="nv">dc</span><span class="o">=</span>lab,dc<span class="o">=</span>com 
+</span></span><span class="line"><span class="cl">ldapsearch -x -LLL -b <span class="nv">dc</span><span class="o">=</span>lab,dc<span class="o">=</span>com dn  <span class="c1"># 后面的内容是筛选</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -x    简单身份验证</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -LLL  以标准LDIF文件格式显示结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -b    基地址</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>向目录中添加记录</strong>
+保存信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 保存信息到文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vim add.ldif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ou: 物理的层级结构划分</span>
+</span></span><span class="line"><span class="cl">dn: <span class="nv">ou</span><span class="o">=</span>People,dc<span class="o">=</span>lab,dc<span class="o">=</span>com
+</span></span><span class="line"><span class="cl">objectClass: organizationalUnit
+</span></span><span class="line"><span class="cl">ou: People
+</span></span><span class="line"><span class="cl"><span class="c1"># 物理的</span>
+</span></span><span class="line"><span class="cl">dn: <span class="nv">ou</span><span class="o">=</span>Group,dc<span class="o">=</span>lab,dc<span class="o">=</span>com  <span class="c1"># ou的名称叫Group, 一个对象只能在一个ou中, ou是物理上的</span>
+</span></span><span class="line"><span class="cl">objectClass: organizationalUnit
+</span></span><span class="line"><span class="cl">ou: Group
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 逻辑的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 组帐号s</span>
+</span></span><span class="line"><span class="cl">dn: <span class="nv">cn</span><span class="o">=</span>delevopment,ou<span class="o">=</span>Group,dc<span class="o">=</span>lab,dc<span class="o">=</span>com   <span class="c1"># 创建一个组，cn别名</span>
+</span></span><span class="line"><span class="cl">objectClass: organizationalUnit
+</span></span><span class="line"><span class="cl">cn: delevopment
+</span></span><span class="line"><span class="cl">gidNumber: <span class="m">3000</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用户帐号</span>
+</span></span><span class="line"><span class="cl">dn: <span class="nv">uid</span><span class="o">=</span>zhangsan,ou<span class="o">=</span>People,dc<span class="o">=</span>lab,dc<span class="o">=</span>com   <span class="c1"># 创建一个组，cn别名</span>
+</span></span><span class="line"><span class="cl">objectClass: inetOrgPerson    <span class="c1"># 继承某些对象类型</span>
+</span></span><span class="line"><span class="cl">objectClass: posixAccount
+</span></span><span class="line"><span class="cl">objectClass: shadowAccount
+</span></span><span class="line"><span class="cl">uid: zhangsan
+</span></span><span class="line"><span class="cl">sn: zhang
+</span></span><span class="line"><span class="cl">givenName: san
+</span></span><span class="line"><span class="cl">cn: san zhang     <span class="c1"># 别名</span>
+</span></span><span class="line"><span class="cl">displayName: San Zhang
+</span></span><span class="line"><span class="cl">uidNumber: <span class="m">2000</span>
+</span></span><span class="line"><span class="cl">gidNumber: <span class="m">3000</span>    <span class="c1"># 让用户加入某个组</span>
+</span></span><span class="line"><span class="cl">userPassword: <span class="m">123465</span>
+</span></span><span class="line"><span class="cl">loginShell: /bin/bash
+</span></span><span class="line"><span class="cl">homeDirectory: /home/zhangsan/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>导入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ldapadd -x -D <span class="nv">cn</span><span class="o">=</span>admin,dc<span class="o">=</span>lab,dc<span class="o">=</span>com -W -f add.ldif
+</span></span><span class="line"><span class="cl"><span class="c1"># -x    简单身份验证</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -D    指定管理员帐号(完整的别名： cn=admin,dc=lab,dc=com)   </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -W    提示输入密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -f    指定ldif文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>验证</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ldapsearch -x -LLL -b <span class="nv">dc</span><span class="o">=</span>lab,dc<span class="o">=</span>com <span class="s1">&#39;uid=zhangsan&#39;</span> cn sn gidNumber uidNumber givenName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看属性类型和值 参考网址</span>
+</span></span><span class="line"><span class="cl">https://ldapwiki.com/wiki/ObkectClass#Types
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>修改数据</strong>
+跟上面是类似的</p>
+<img src="http://image.xpshuai.cn/20200507151131491_1817511878.png" />
+<h4 id="web管理">Web管理</h4>
+<p>手动写配置太麻烦，图形化的简化了操作
+Web应用程序(有很多种)： <code>ldap-account-manager</code> (lam)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install apache2
+</span></span><span class="line"><span class="cl">sudo apt install php php-cgi libapache2-mod-php php-common php-pear php-mbstring
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo a2enconf php7.2-cgi    <span class="c1"># 激活这个模块</span>
+</span></span><span class="line"><span class="cl">sudo systemctl reload apache2
+</span></span><span class="line"><span class="cl">sudo systemctl restart apache2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt install ldap-account-manager
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ldap-account-manager使用的数据库使用的是目录服务的数据库，但是他的数据也没有写到数据库中，而是存在了配置文件中</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># http:/192.168.0.104/lam</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 点击右上角 LAM configuration 配置  edit server... , 进行简单配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他配置根据自己需求来改</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200507155013573_1158190765.png" />
+<img src="http://image.xpshuai.cn/20200507153818370_1691714384.png" />
+<img src="http://image.xpshuai.cn/20200507153853899_1124405028.png" />
+<p><strong>设置安全访问</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/apache2/conf-enabled/ldap-account-manager.conf
+</span></span><span class="line"><span class="cl">    <span class="c1">#Require all granted    注释掉所有ip可访问</span>
+</span></span><span class="line"><span class="cl">    Require ip 127.0.0.1 192.168.0.0/24
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>其他ldap基于web的管理工具</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># phpLDAPAdmin</span>
+</span></span><span class="line"><span class="cl">sudo apt install phpldapadmin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建组帐号 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建帐号</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="客户端">客户端</h4>
+<h6 id="windows客户端">Windows客户端</h6>
+<p>win自带的<code>GINA</code>提供Windows系统登录界面， 支持本机、域账户登陆</p>
+<p><code>pGina</code>开源身份认证提供者
+- 集成并替换window系统默认的GINA
+- 通过插件支持大量身份验证数据存储(LDAP, MySQL, RADIUS)
+- <code>http://pgina.org</code> 下载安装稳定版</p>
+<p>进行一些配置</p>
+<h6 id="linux客户端">Linux客户端</h6>
+<p>域名解析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;192.168.0.104 ldap.lab.com&#34;</span> <span class="p">|</span>sudo trr -a /etc/hostss
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install libnss-ldap libpam-ldap ldap-utils nscd
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定一些参数</span>
+</span></span><span class="line"><span class="cl">ldap://ldap.lab.com
+</span></span><span class="line"><span class="cl"><span class="nv">dc</span><span class="o">=</span>lab,dc<span class="o">=</span>com
+</span></span><span class="line"><span class="cl"><span class="nv">cn</span><span class="o">=</span>admin,dc<span class="o">=</span>lab,dc<span class="o">=</span>com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/nsswitch.conf</span>
+</span></span><span class="line"><span class="cl">passswd: compat systemd ldap
+</span></span><span class="line"><span class="cl">group: compat systemd    ldap
+</span></span><span class="line"><span class="cl">shadow: compat ldap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/pam.d/common-password</span>
+</span></span><span class="line"><span class="cl">    删除 use_authtok 这一小块
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/pam.d/common-session</span>
+</span></span><span class="line"><span class="cl">    session optional  pam_mkhomedir.so <span class="nv">skel</span><span class="o">=</span>/etc/skel <span class="nv">umask</span><span class="o">=</span><span class="m">077</span>   <span class="c1"># 允许创建用户主目录</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">sudo systemctl restart nscd.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证</span>
+</span></span><span class="line"><span class="cl">getent passwd zhangsan 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">reboot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 登录的时候，点击 not list 才能进入刚才的帐号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-28&#32;13:36:56>更新于 2023-01-28&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/f1f692c9ef3d82c1b6cf002b2c4d5ffdbe71d673" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) f1f692c9ef3d82c1b6cf002b2c4d5ffdbe71d673: first commit"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>f1f692c</a></span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-ldap/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-LDAP.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ldap/' class="post-tag">LDAP</a><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" class="post-nav-item" rel="prev" title="ubuntu server- ubuntu-server-数据库管理服务"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server- ubuntu-server-数据库管理服务</a>
+      <a href="/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="post-nav-item" rel="next" title="内网第二章-内网基础信息搜集">内网第二章-内网基础信息搜集<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

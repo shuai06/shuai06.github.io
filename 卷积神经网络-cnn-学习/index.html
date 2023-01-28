@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>卷积神经网络(CNN)学习 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神" /><meta name="keywords" content='卷积神经网络, CNN, 深度学习' /><meta itemprop="name" content="卷积神经网络(CNN)学习">
+<meta itemprop="description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神"><meta itemprop="datePublished" content="2022-07-30T16:21:12+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="8882"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="卷积神经网络,CNN,深度学习," /><meta property="og:title" content="卷积神经网络(CNN)学习" />
+<meta property="og:description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-30T16:21:12+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="卷积神经网络(CNN)学习"/>
+<meta name="twitter:description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://geoer.cn/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D-lenet-5/" /><link rel="next" href="https://geoer.cn/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E7%94%9F%E8%BF%98%E4%BD%9C%E4%B8%9A/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "卷积神经网络(CNN)学习",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "卷积神经网络, CNN, 深度学习","wordcount":  8882 ,
+    "url": "https:\/\/geoer.cn\/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0\/","datePublished": "2022-07-30T16:21:12+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>卷积神经网络(CNN)学习</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/ai/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> AI</a></span></div>
+      <div class="post-meta-line"><span title=2022-07-30&#32;16:21:12><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-30">2022-07-30</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 8882 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 18 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="卷积神经网络(CNN)学习">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#整体结构">整体结构</a></li>
+    <li><a href="#局部感受稀疏连接--权值共享">局部感受（稀疏连接） &amp; 权值共享</a></li>
+    <li><a href="#卷积层下采样层池化层全连接层概览">卷积层、下采样层(池化层)、全连接层概览</a></li>
+    <li><a href="#卷积层">卷积层</a>
+      <ul>
+        <li><a href="#全连接层存在的问题">全连接层存在的问题</a></li>
+        <li><a href="#卷积运算">卷积运算</a></li>
+        <li><a href="#padding填充">Padding(填充)</a></li>
+        <li><a href="#stride卷积步长">Stride(卷积步长)</a></li>
+        <li><a href="#三维卷积">三维卷积</a></li>
+        <li><a href="#一个多个卷积核">一个&amp;多个卷积核</a>
+          <ul>
+            <li><a href="#一个卷积核">一个卷积核</a></li>
+            <li><a href="#两个多个卷积核">两个(多个)卷积核</a></li>
+          </ul>
+        </li>
+        <li><a href="#构建卷积网络的一层">构建卷积网络的一层</a></li>
+        <li><a href="#结合方块思考">结合方块思考</a></li>
+      </ul>
+    </li>
+    <li><a href="#池化层plloing-layer">池化层(Plloing Layer)</a>
+      <ul>
+        <li><a href="#max-pooling最大池化">Max Pooling(最大池化)</a></li>
+        <li><a href="#average-pooling平均池化">Average Pooling(平均池化)</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么使用卷积">为什么使用卷积？</a></li>
+    <li><a href="#经典cnn模型">经典CNN模型</a>
+      <ul>
+        <li><a href="#lenet-5">LeNet-5</a></li>
+        <li><a href="#alexnet">AlexNet</a></li>
+        <li><a href="#vgg-16">VGG-16</a></li>
+      </ul>
+    </li>
+    <li><a href="#残差网络resnets">残差网络(ResNets)</a>
+      <ul>
+        <li><a href="#残差residual">残差(residual)</a></li>
+        <li><a href="#残差块residual-block">残差块（Residual block）</a></li>
+        <li><a href="#为什么残差网络会生效">为什么残差网络会生效</a></li>
+        <li><a href="#resnet50">ResNet50</a></li>
+      </ul>
+    </li>
+    <li><a href="#初始网络">初始网络</a>
+      <ul>
+        <li><a href="#1x1卷积核网中网">1x1卷积核(网中网)</a>
+          <ul>
+            <li><a href="#1x1卷积核的作用">1x1卷积核的作用：</a>
+              <ul>
+                <li><a href="#1-放缩通道数目">1. 放缩通道数目</a>
+                  <ul>
+                    <li><a href="#2-减少计算成本">2. 减少计算成本</a></li>
+                  </ul>
+                </li>
+                <li><a href="#3-增加网络的非线性性">3. 增加网络的非线性性</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#迁移学习transfer-learning"><strong>迁移学习（Transfer Learning）：</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#mobilenet">MobileNet</a>
+      <ul>
+        <li><a href="#深度可分离卷积">深度可分离卷积</a></li>
+        <li><a href="#mobilenet架构">MobileNet架构</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><script type="text/javascript" src="/js/src/bai.js"></script>
+<h2 id="前言">前言</h2>
+<p>卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神经网络(FNN)，是深度学习的代表算法之一。常被用于图像识别、语音识别等各种场合，在图像识别的比赛中，基于深度学习的方法几乎都以CNN为基础。</p>
+<p>CNN本质上是一个多层感知机，xx其成功的原因关键在于它所采用的局部连接和共享权值的方式xx，一方面减少了的权值的数量使得网络易于优化，另一方面降低了过拟合的风险。</p>
+<h2 id="整体结构">整体结构</h2>
+<p>一般情况下，CNN的结构形式是：输入层&ndash;&gt; Conv层 &ndash;&gt; Pooling层 &ndash;&gt; (重复Conv、Pooling层) … &ndash;&gt; FC(Full-connected)层 &ndash;&gt; 输出结果
+通常输入层大小一般为2的整数倍，通常卷积层使用较小的filter，如3x3，最大也就5x5。Pooling层用于对卷积结果进行降低维度，例如选择2x2的区域对卷积层进行降低维度，则选择2x2区域的最大值作为输出，这样卷积层的维度就降为之前一半。</p>
+<p>卷积神经网络整体架构： 卷积神经网络是一种多层的监督学习神经网络，隐含层的xx卷积层xx和xx池化层xx是实现卷积神经网络特征提取功能的核心模块。
+该网络模型通过采用梯度下降法最小化损失函数对网络中的权重参数逐层反向调节，通过频繁的迭代训练提高网络的精度。
+卷积神经网络的低隐层是由卷积层和最大池采样层交替组成，高层是全连接层对应传统多层感知器的隐含层和逻辑回归分类器。第一个全连接层的输入是由卷积层和子采样层进行特征提取得到的特征图像。最后一层输出层是一个分类器，可以采用逻辑回归，Softmax回归甚至是支持向量机对输入图像进行分类。</p>
+<p>xx卷积神经网络结构包括：xx卷积层，降采样层，全链接层。每一层有多个特征图(feature map)，每个特征图通过一种卷积滤波器(filter)提取输入的一种特征，每个特征图有多个神经元。</p>
+<p>输入图像统计和滤波器进行卷积之后，提取该局部特征，一旦该局部特征被提取出来之后，它与其他特征的位置关系也随之确定下来了，每个神经元的输入和前一层的局部感受野相连，每个特征提取层都紧跟一个用来求局部平均与二次提取的计算层，也叫特征映射层，网络的每个计算层由多个特征映射平面组成，平面上所有的神经元的权重相等。</p>
+<p>通常将输入层到隐藏层的映射称为一个特征映射，也就是通过卷积层得到特征提取层，经过pooling之后得到特征映射层。</p>
+<p>比如之前用Affine层实现了全连接层，一个5层的全连接的神经网络如下图的网络结构来实现：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729202558.png"
+    data-srcset="http://image.xpshuai.cn/20220729202558.png, http://image.xpshuai.cn/20220729202558.png 1.5x, http://image.xpshuai.cn/20220729202558.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729202558.png"
+    title="http://image.xpshuai.cn/20220729202558.png"/></p>
+<p>而CNN 中新增了Convolution层和Pooling层。CNN的层的连接顺序是<code>Convolution - ReLU -(Pooling)</code>（Pooling层有时会被省
+略）。这可以理解为之前的<code>Affine - ReLU</code>连接被替换成了<code>Convolution -  ReLU -（Pooling）</code>连接。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729202801.png"
+    data-srcset="http://image.xpshuai.cn/20220729202801.png, http://image.xpshuai.cn/20220729202801.png 1.5x, http://image.xpshuai.cn/20220729202801.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729202801.png"
+    title="http://image.xpshuai.cn/20220729202801.png"/></p>
+<p>xx卷积神经网络相比一般神经网络在图像中的优点：xx</p>
+<ul>
+<li>网络结构能够较好的适应图像的结构</li>
+<li>同时进行特征提取和分类，使得特征提取有助于特征分类</li>
+<li>权值共享可以减少网络的训练参数，使得神经网络结构变得简单，适应性更强</li>
+</ul>
+<p>xx在CNN中，权值更新是基于反向传播算法。xx</p>
+<p>xx训练算法主要包括四步，这四步被分为两个阶段：xx</p>
+<ul>
+<li>第一阶段，向前传播阶段：</li>
+<li>(1). 从样本集中取一个样本，输入网络；</li>
+<li>(2). 计算相应的实际输出；在此阶段，信息从输入层经过逐级的变换，传送到输出层。这个过程也是网络在完成训练后正常执行时执行的过程。</li>
+<li>第二阶段，向后传播阶段：</li>
+<li>(1). 计算实际输出与相应的理想输出的差；</li>
+<li>(2). 按极小化误差的方法调整权矩阵。
+这两个阶段的工作一般应受到精度要求的控制。</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729223317.png"
+    data-srcset="http://image.xpshuai.cn/20220729223317.png, http://image.xpshuai.cn/20220729223317.png 1.5x, http://image.xpshuai.cn/20220729223317.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729223317.png"
+    title="http://image.xpshuai.cn/20220729223317.png"/></p>
+<h2 id="局部感受稀疏连接--权值共享">局部感受（稀疏连接） &amp; 权值共享</h2>
+<p>卷积神经网络的核心思想就是局部感受野、是权值共享和pooling层，以此来达到简化网络参数并使得网络具有一定程度的位移、尺度、缩放、非线性形变稳定性。</p>
+<ul>
+<li>局部感受野：由于图像的空间联系是局部的，每个神经元不需要对全部的图像做感受，只需要感受局部特征即可，然后在更高层将这些感受得到的不同的局部神经元综合起来就可以得到全局的信息了，这样可以减少连接的数目</li>
+<li>权值共享：不同神经元之间的参数共享可以减少需要求解的参数，使用多种滤波器去卷积图像就会得到多种特征映射。权值共享其实就是对图像用同样的卷积核进行卷积操作，也就意味着第一个隐藏层的所有神经元所能检测到处于图像不同位置的完全相同的特征。其主要的能力就能检测到不同位置的同一类型特征，也就是卷积网络能很好的适应图像的小范围的平移性，即有较好的平移不变性（比如将输入图像的猫的位置移动之后，同样能够检测到猫的图像</li>
+</ul>
+<h2 id="卷积层下采样层池化层全连接层概览">卷积层、下采样层(池化层)、全连接层概览</h2>
+<ul>
+<li>xx卷积层：xx通过卷积运算我们可以提取出图像的特征，通过卷积运算可以使得原始信号的某些特征增强，并且降低噪声。</li>
+<li>xx下采样层(池化层)：xx因为对图像进行下采样，可以减少数据处理量同时保留有用信息，采样可以混淆特征的具体位置，因为某个特征找出来之后，它的位置已经不重要了，我们只需要这个特征和其他特征的相对位置，可以应对形变和扭曲带来的同类物体的变化。
+全连接层：采用softmax全连接，得到的激活值即卷积神经网络提取到的图片特征。</li>
+<li>xx全连接层xx：采用softmax全连接，得到的激活值即卷积神经网络提取到的图片特征。</li>
+</ul>
+<h2 id="卷积层">卷积层</h2>
+<blockquote>
+<p>相当于特征提取
+卷积神经网路中每层卷积层由若干卷积单元组成，每个卷积单元的参数都是通过反向传播算法优化得到的。卷积运算的目的是提取输入的不同特征，第一层卷积层可能只能提取一些低级的特征如边缘、线条和角等层级，更多层的网络能从低级特征中迭代提取更复杂的特征。</p>
+</blockquote>
+<p>CNN中每一层的由多个map组成，每个map由多个神经单元组成，同一个map的所有神经单元共用一个卷积核（即权重），卷积核往往代表一个特征</p>
+<h3 id="全连接层存在的问题">全连接层存在的问题</h3>
+<p>在全连接层中，相邻层的神经元全部连接在一起，输出的数量可以任意决定。
+xx全连接层存在什么问题呢？xx那就是数据的形状被“忽视”了。
+比如，输入数据是图像时，图像通常是高、长、通道方向上的3维形状。但是，向全连接层输入时，需要将3维数据拉平为1维数据。
+图像是3维形状，这个形状中应该含有重要的空间信息。比如，空间上邻近的像素为相似的值、RBG的各个通道之间分别有密切的关联性、相距较远的像素之间没有什么关联等，3维形状中可能隐藏有值得提取的本质模式。但是，因为全连接层会忽视形状，将全部的输入数据作为相同的神经元（同一维度的神经元）处理，所以无法利用与形状相关的信息。
+xx而卷积层可以保持形状不变。xx当输入数据是图像时，卷积层会以3维数据的形式接收输入数据，并同样以3维数据的形式输出至下一层。因此，在CNN中，可以（有可能）正确理解图像等具有形状的数据。
+CNN中，有时将卷积层的输入输出数据称为特征图（feature map）</p>
+<h3 id="卷积运算">卷积运算</h3>
+<blockquote>
+<p>卷积层进行的处理就是卷积运算。卷积运算相当于图像处理中的“滤波器运算”</p>
+</blockquote>
+<p>边缘检测包括垂直检测和水平检测：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729204217.png"
+    data-srcset="http://image.xpshuai.cn/20220729204217.png, http://image.xpshuai.cn/20220729204217.png 1.5x, http://image.xpshuai.cn/20220729204217.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729204217.png"
+    title="http://image.xpshuai.cn/20220729204217.png"/>
+以垂直边缘检测为例：
+对一个6x6的灰度图像做卷积运算(卷积符号是<code>x</code>),即6x6x1</p>
+<p>在神经网络卷积过程中，可以建立一个3x3的矩阵(即filter或者kernel)，如下图，那么就可以用这个filter去求它的卷积，最终输出会是一个右边4x4的图像。
+把3x3的filter贴到第一张图像矩阵上，对应位置数字相乘，最后求和(xx乘积累加运算xx，如在第一位置上的值为-5),把求和值写到输出图像对应第一个位置上
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729205212.png"
+    data-srcset="http://image.xpshuai.cn/20220729205212.png, http://image.xpshuai.cn/20220729205212.png 1.5x, http://image.xpshuai.cn/20220729205212.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729205212.png"
+    title="http://image.xpshuai.cn/20220729205212.png"/></p>
+<p>然后依次移动计算第二个元素，进行相同的运算，求出对应第2个第三个位置的值：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729205353.png"
+    data-srcset="http://image.xpshuai.cn/20220729205353.png, http://image.xpshuai.cn/20220729205353.png 1.5x, http://image.xpshuai.cn/20220729205353.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729205353.png"
+    title="http://image.xpshuai.cn/20220729205353.png"/></p>
+<p>继续移动到下一行进行计算：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729205418.png"
+    data-srcset="http://image.xpshuai.cn/20220729205418.png, http://image.xpshuai.cn/20220729205418.png 1.5x, http://image.xpshuai.cn/20220729205418.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729205418.png"
+    title="http://image.xpshuai.cn/20220729205418.png"/></p>
+<p>直到计算出所有结果：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729205510.png"
+    data-srcset="http://image.xpshuai.cn/20220729205510.png, http://image.xpshuai.cn/20220729205510.png 1.5x, http://image.xpshuai.cn/20220729205510.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729205510.png"
+    title="http://image.xpshuai.cn/20220729205510.png"/></p>
+<p>上述垂直检测的步骤在课后习题中，使用的是<code>conv_forward</code>函数来实现，在tensflow使用的是<code>tf.conv2d</code>,&hellip;&hellip;</p>
+<p>当然检测水平边缘也是类似的：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729210348.png"
+    data-srcset="http://image.xpshuai.cn/20220729210348.png, http://image.xpshuai.cn/20220729210348.png 1.5x, http://image.xpshuai.cn/20220729210348.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729210348.png"
+    title="http://image.xpshuai.cn/20220729210348.png"/></p>
+<p>xx3x3的filter中填充的数字的值到底为多少仍有争议xx：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729210709.png"
+    data-srcset="http://image.xpshuai.cn/20220729210709.png, http://image.xpshuai.cn/20220729210709.png 1.5x, http://image.xpshuai.cn/20220729210709.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729210709.png"
+    title="http://image.xpshuai.cn/20220729210709.png"/>
+有不同的filter</p>
+<blockquote>
+<p>用fxf的filter来卷积nxn的的图像，得到的新图像的维度是(n-f+1)x(n-f+1)</p>
+</blockquote>
+<p>维度公式：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729210858.png"
+    data-srcset="http://image.xpshuai.cn/20220729210858.png, http://image.xpshuai.cn/20220729210858.png 1.5x, http://image.xpshuai.cn/20220729210858.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729210858.png"
+    title="http://image.xpshuai.cn/20220729210858.png"/></p>
+<p>xx偏置：xx
+不仅在FCN中，在CNN中除了权重参数(filter中的参数就对应之前的权重)，也存在偏置项
+如下图，向应用了滤波器的数据加上了偏置。偏置通常只有1个(1x1)，这个值
+会被加到应用了滤波器的所有元素上(广播机制)。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729215915.png"
+    data-srcset="http://image.xpshuai.cn/20220729215915.png, http://image.xpshuai.cn/20220729215915.png 1.5x, http://image.xpshuai.cn/20220729215915.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729215915.png"
+    title="http://image.xpshuai.cn/20220729215915.png"/></p>
+<h3 id="padding填充">Padding(填充)</h3>
+<blockquote>
+<p>使用填充主要是为了调整输出的大小
+xx前面卷积操作的缺点：xx
+● 每次卷积操作，图像都会变小
+● 图片边缘的像素只会在输出时使用一次，丢失许多图片边界上的信息
+xx解决办法：xx
+卷积操作前，填充(pad)图片，比如用1个像素添加额外边缘，这样图片就变成了8x8，这样output的图片就是6x6(保持了原始尺寸)，同时也减轻图片边缘被忽略的程度
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729211049.png"
+    data-srcset="http://image.xpshuai.cn/20220729211049.png, http://image.xpshuai.cn/20220729211049.png 1.5x, http://image.xpshuai.cn/20220729211049.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729211049.png"
+    title="http://image.xpshuai.cn/20220729211049.png"/></p>
+</blockquote>
+<blockquote>
+<p>添加pandding后，尺寸 用fxf的filter来卷积nxn的的图像，填充宽度为p，得到的新图像的维度是(n+2p-f+1)x(n+2p-f+1)</p>
+</blockquote>
+<p>xx到底需要填充多少宽度呢？xx
+有两种卷积：</p>
+<ul>
+<li>valid卷积&ndash;&gt;填充p宽度为0(即不填充，输出尺寸同前面)</li>
+<li>same卷积&ndash;&gt;有足够的填充
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729211243.png"
+    data-srcset="http://image.xpshuai.cn/20220729211243.png, http://image.xpshuai.cn/20220729211243.png 1.5x, http://image.xpshuai.cn/20220729211243.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729211243.png"
+    title="http://image.xpshuai.cn/20220729211243.png"/></li>
+</ul>
+<p>filter的尺寸f取值通常是奇数（如果是偶数可能会不对称）</p>
+<h3 id="stride卷积步长">Stride(卷积步长)</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729211454.png"
+    data-srcset="http://image.xpshuai.cn/20220729211454.png, http://image.xpshuai.cn/20220729211454.png 1.5x, http://image.xpshuai.cn/20220729211454.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729211454.png"
+    title="http://image.xpshuai.cn/20220729211454.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729211623.png"
+    data-srcset="http://image.xpshuai.cn/20220729211623.png, http://image.xpshuai.cn/20220729211623.png 1.5x, http://image.xpshuai.cn/20220729211623.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729211623.png"
+    title="http://image.xpshuai.cn/20220729211623.png"/></p>
+<p>综上，增大步幅后，输出大小会变小。而增大填充后，输出大小会变大。</p>
+<p>xx最终维度总结：xx
+用<code>fxf</code>的filter对<code>nxn</code>图像进行卷积，步长设为<code>s</code>，padding值设置为<code>p</code>，最终得到的维度为：$\frac{n+2p-f}{s}+1$ x $\frac{n+2p-f}{s}+1$</p>
+<p>我们尝试用上述维度公式做几个计算：
+1.输入大小：(28, 31)；填充：2；步幅：3；滤波器大小：(5, 5)
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729220354.png"
+    data-srcset="http://image.xpshuai.cn/20220729220354.png, http://image.xpshuai.cn/20220729220354.png 1.5x, http://image.xpshuai.cn/20220729220354.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729220354.png"
+    title="http://image.xpshuai.cn/20220729220354.png"/></p>
+<ol start="2">
+<li></li>
+</ol>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729220413.png"
+    data-srcset="http://image.xpshuai.cn/20220729220413.png, http://image.xpshuai.cn/20220729220413.png 1.5x, http://image.xpshuai.cn/20220729220413.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729220413.png"
+    title="http://image.xpshuai.cn/20220729220413.png"/></p>
+<p>当除不尽的时候，一般使用<code>floor</code>向下取整</p>
+<p>补充：交叉相关(cross correlation)
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729212215.png"
+    data-srcset="http://image.xpshuai.cn/20220729212215.png, http://image.xpshuai.cn/20220729212215.png 1.5x, http://image.xpshuai.cn/20220729212215.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729212215.png"
+    title="http://image.xpshuai.cn/20220729212215.png"/>
+我们前面的操作没有对filter进行翻转，实际上只能称为交叉相关，并不能称为数学意义上卷积(进行翻转的才叫卷积)，但由于深度学习的约定，所以我们都称之为卷积。</p>
+<h3 id="三维卷积">三维卷积</h3>
+<p>和二维的卷积是类似的，通道方向上有多个特征图时，会按通道
+进行输入数据和滤波器的卷积运算，并将结果相加，从而得到输出。</p>
+<p>对于多通道的RGB图像如图(6x6x3),使用3x3的filter(3x3x3)，注意filter的通道数量必须和前面图片中的通道数相匹配。</p>
+<p>设置为filter为3维是为了简化3x3x3的filter的运算，而不能理解为矩阵的叠加。
+filter分别与图像的RGB通道对应的数字相乘,最后得到的也是二维的输出，如下图：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729214817.png"
+    data-srcset="http://image.xpshuai.cn/20220729214817.png, http://image.xpshuai.cn/20220729214817.png 1.5x, http://image.xpshuai.cn/20220729214817.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729214817.png"
+    title="http://image.xpshuai.cn/20220729214817.png"/></p>
+<p>然后移动到下一个位置，继续做27个(3x3x3)次相乘并求和
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729214908.png"
+    data-srcset="http://image.xpshuai.cn/20220729214908.png, http://image.xpshuai.cn/20220729214908.png 1.5x, http://image.xpshuai.cn/20220729214908.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729214908.png"
+    title="http://image.xpshuai.cn/20220729214908.png"/></p>
+<blockquote>
+<p>Note：根据想在哪个颜色上检测边缘，来决定在第几层通道设置上值，而另外的通道设置为0</p>
+</blockquote>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729215035.png"
+    data-srcset="http://image.xpshuai.cn/20220729215035.png, http://image.xpshuai.cn/20220729215035.png 1.5x, http://image.xpshuai.cn/20220729215035.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729215035.png"
+    title="http://image.xpshuai.cn/20220729215035.png"/></p>
+<p>xx维度公式总结：xx
+$n \times n \times c_n$的图片
+$f \times f \times c_f$的过滤器
+会得到一个<code>(n-f+1, n-f+1, filter_num)</code>的输出</p>
+<h3 id="一个多个卷积核">一个&amp;多个卷积核</h3>
+<h4 id="一个卷积核">一个卷积核</h4>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729222402.png"
+    data-srcset="http://image.xpshuai.cn/20220729222402.png, http://image.xpshuai.cn/20220729222402.png 1.5x, http://image.xpshuai.cn/20220729222402.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729222402.png"
+    title="http://image.xpshuai.cn/20220729222402.png"/></p>
+<h4 id="两个多个卷积核">两个(多个)卷积核</h4>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729222449.png"
+    data-srcset="http://image.xpshuai.cn/20220729222449.png, http://image.xpshuai.cn/20220729222449.png 1.5x, http://image.xpshuai.cn/20220729222449.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729222449.png"
+    title="http://image.xpshuai.cn/20220729222449.png"/></p>
+<h3 id="构建卷积网络的一层">构建卷积网络的一层</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221305.png"
+    data-srcset="http://image.xpshuai.cn/20220729221305.png, http://image.xpshuai.cn/20220729221305.png 1.5x, http://image.xpshuai.cn/20220729221305.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221305.png"
+    title="http://image.xpshuai.cn/20220729221305.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221342.png"
+    data-srcset="http://image.xpshuai.cn/20220729221342.png, http://image.xpshuai.cn/20220729221342.png 1.5x, http://image.xpshuai.cn/20220729221342.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221342.png"
+    title="http://image.xpshuai.cn/20220729221342.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221410.png"
+    data-srcset="http://image.xpshuai.cn/20220729221410.png, http://image.xpshuai.cn/20220729221410.png 1.5x, http://image.xpshuai.cn/20220729221410.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221410.png"
+    title="http://image.xpshuai.cn/20220729221410.png"/></p>
+<p>课后习题用到的符号的总结：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221234.png"
+    data-srcset="http://image.xpshuai.cn/20220729221234.png, http://image.xpshuai.cn/20220729221234.png 1.5x, http://image.xpshuai.cn/20220729221234.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221234.png"
+    title="http://image.xpshuai.cn/20220729221234.png"/></p>
+<p>层的类型：
+● 卷积层(CONN)
+● 池化层(POOL)
+● 全连接(FC)</p>
+<h3 id="结合方块思考">结合方块思考</h3>
+<p>来自鱼书，可能和文中其他地方维度书写顺序不一致
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729220837.png"
+    data-srcset="http://image.xpshuai.cn/20220729220837.png, http://image.xpshuai.cn/20220729220837.png 1.5x, http://image.xpshuai.cn/20220729220837.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729220837.png"
+    title="http://image.xpshuai.cn/20220729220837.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221002.png"
+    data-srcset="http://image.xpshuai.cn/20220729221002.png, http://image.xpshuai.cn/20220729221002.png 1.5x, http://image.xpshuai.cn/20220729221002.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221002.png"
+    title="http://image.xpshuai.cn/20220729221002.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221035.png"
+    data-srcset="http://image.xpshuai.cn/20220729221035.png, http://image.xpshuai.cn/20220729221035.png 1.5x, http://image.xpshuai.cn/20220729221035.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221035.png"
+    title="http://image.xpshuai.cn/20220729221035.png"/></p>
+<h2 id="池化层plloing-layer">池化层(Plloing Layer)</h2>
+<blockquote>
+<p>相当于降维压缩数据(缩小高、常方向上的空间的运算)</p>
+</blockquote>
+<p>池化层通常接在卷积层后面，引入它的目的就是为了简化卷积层的输出。
+通俗地理解，池化层也在卷积层上架了一个窗口，但这个窗口比卷积层的窗口简单许多，不需要w，b这些参数，它只是对窗口范围内的神经元做简单的操作，如求和，求最大值，把求得的值作为池化层神经元的输入值</p>
+<h3 id="max-pooling最大池化">Max Pooling(最大池化)</h3>
+<blockquote>
+<p>常用，效果也比较好
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221642.png"
+    data-srcset="http://image.xpshuai.cn/20220729221642.png, http://image.xpshuai.cn/20220729221642.png 1.5x, http://image.xpshuai.cn/20220729221642.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221642.png"
+    title="http://image.xpshuai.cn/20220729221642.png"/></p>
+</blockquote>
+<p><strong>机制：</strong>
+max pooling做的是，如果在滤波器中任何地方检测到了这些特征，就保留最大的数值，如果没有检测到，可能左侧上方四分之一区域就没有这个特征，于是那些数值的最大值仍然相当小</p>
+<p><strong>特性：</strong></p>
+<ul>
+<li>有超参数，但是没有需要学习的参数</li>
+<li>通道数不发生变化</li>
+<li>对微小的位置变化具有鲁棒性</li>
+</ul>
+<h3 id="average-pooling平均池化">Average Pooling(平均池化)</h3>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221518.png"
+    data-srcset="http://image.xpshuai.cn/20220729221518.png, http://image.xpshuai.cn/20220729221518.png 1.5x, http://image.xpshuai.cn/20220729221518.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729221518.png"
+    title="http://image.xpshuai.cn/20220729221518.png"/></p>
+<p>Pooling的总结：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729221537.png"
+    data-srcset="http://image.xpshuai.cn/20220729221537.png, http://image.xpshuai.cn/20220729221537.png 1.5x, http://image.xpshuai.cn/20220729221537.png 2x"
+    data-sizes="auto"
+    alt="20220729221537"
+    title="20220729221537"/></p>
+<h2 id="为什么使用卷积">为什么使用卷积？</h2>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729222113.png"
+    data-srcset="http://image.xpshuai.cn/20220729222113.png, http://image.xpshuai.cn/20220729222113.png 1.5x, http://image.xpshuai.cn/20220729222113.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729222113.png"
+    title="http://image.xpshuai.cn/20220729222113.png"/></p>
+<p><strong>使用卷积网络的两个原因：</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729222202.png"
+    data-srcset="http://image.xpshuai.cn/20220729222202.png, http://image.xpshuai.cn/20220729222202.png 1.5x, http://image.xpshuai.cn/20220729222202.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729222202.png"
+    title="http://image.xpshuai.cn/20220729222202.png"/></p>
+<h2 id="经典cnn模型">经典CNN模型</h2>
+<ul>
+<li>LeNet-5</li>
+<li>AlexNet</li>
+<li>VGG</li>
+</ul>
+<h3 id="lenet-5">LeNet-5</h3>
+<blockquote>
+<p>这篇paper比较难，可以先不读
+卷积网络的“鼻祖” —— LeNet</p>
+</blockquote>
+<p>从一个32x32x1的灰度图像中识别手写数字为例子，
+当时还不用填充，所以卷积之后尺寸都会减小</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729231429.png"
+    data-srcset="http://image.xpshuai.cn/20220729231429.png, http://image.xpshuai.cn/20220729231429.png 1.5x, http://image.xpshuai.cn/20220729231429.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729231429.png"
+    title="http://image.xpshuai.cn/20220729231429.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220729231524.png"
+    data-srcset="http://image.xpshuai.cn/20220729231524.png, http://image.xpshuai.cn/20220729231524.png 1.5x, http://image.xpshuai.cn/20220729231524.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220729231524.png"
+    title="http://image.xpshuai.cn/20220729231524.png"/></p>
+<p>见另一文章：</p>
+<h3 id="alexnet">AlexNet</h3>
+<blockquote>
+<p>这篇paper容易看懂，建议读一读</p>
+</blockquote>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730100445.png"
+    data-srcset="http://image.xpshuai.cn/20220730100445.png, http://image.xpshuai.cn/20220730100445.png 1.5x, http://image.xpshuai.cn/20220730100445.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730100445.png"
+    title="http://image.xpshuai.cn/20220730100445.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730101056.png"
+    data-srcset="http://image.xpshuai.cn/20220730101056.png, http://image.xpshuai.cn/20220730101056.png 1.5x, http://image.xpshuai.cn/20220730101056.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730101056.png"
+    title="http://image.xpshuai.cn/20220730101056.png"/></p>
+<p>从227x227x3的图像开始，第一层用一组96个11x11的步长为4的filter，然后图像缩小到55x55，随后的最大池化层用了3x3的filter，步长为2，降到27x27x96，然后用5x5的same卷积填充，得到27x27x256，再次做最大池化得到13x13x256，然后用3x3的same卷积填充，得到13x13x384，再次用3x3的same卷积填充，再次用3x3的same卷积填充，然后用最大池化，结果降到6x6x256=9216，所以展开为9216分结点，然后有基层全连接层，最后用sofamax输出结果。</p>
+<p><strong>AlexNet采用了ReLU激活函数，data augmentation和dropout等训练技巧，为后续深度神经网络的构建提供了范本，之后的卷积神经网络都是遵循AlexNet的构建思路</strong></p>
+<p><a href="https://www.cnblogs.com/wangguchangqing/p/10333370.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/wangguchangqing/p/10333370.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h3 id="vgg-16">VGG-16</h3>
+<blockquote>
+<p>这篇paper容易看懂，建议读一读</p>
+</blockquote>
+<p>与大量超参数不同，结构更简单，更关注卷积层
+优点：真正简化了神经网络结构</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730100655.png"
+    data-srcset="http://image.xpshuai.cn/20220730100655.png, http://image.xpshuai.cn/20220730100655.png 1.5x, http://image.xpshuai.cn/20220730100655.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730100655.png"
+    title="http://image.xpshuai.cn/20220730100655.png"/>
+vgg16中的16指的是有16个带权重的层
+高和宽尺寸每次(因为池化层)会按因子1减少，每次用一组卷积层时通道数会按因子2增加</p>
+<p>VGG-19</p>
+<h2 id="残差网络resnets">残差网络(ResNets)</h2>
+<p>残差网络（Residual Networks）是一种卷积神经网络，其内部使用了<strong>跳跃连接</strong>，由大量的残差块组成，这缓解了深度神经网络中增加深度带来的梯度消失和梯度爆炸问题，由此可以利用残差网络训练很深很深的网络。</p>
+<p><a href="https://blog.csdn.net/qq_30093417/article/details/121108090"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_30093417/article/details/121108090<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h3 id="残差residual">残差(residual)</h3>
+<p>“残差在数理统计中是指实际观察值与估计值（拟合值）之间的差。”
+“如果回归模型正确的话， 我们可以将残差看作误差的观测值。”
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730103517.png"
+    data-srcset="http://image.xpshuai.cn/20220730103517.png, http://image.xpshuai.cn/20220730103517.png 1.5x, http://image.xpshuai.cn/20220730103517.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730103517.png"
+    title="http://image.xpshuai.cn/20220730103517.png"/></p>
+<h3 id="残差块residual-block">残差块（Residual block）</h3>
+<p>把某层的输入跳跃连接到下一层乃至更深层的激活层之前，同本层输出一起经过激活函数输出。
+即ResNet无需遵循主路径，可以通过快捷路径(跳过n层)进入更深的网络：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730102535.png"
+    data-srcset="http://image.xpshuai.cn/20220730102535.png, http://image.xpshuai.cn/20220730102535.png 1.5x, http://image.xpshuai.cn/20220730102535.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730102535.png"
+    title="http://image.xpshuai.cn/20220730102535.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730102551.png"
+    data-srcset="http://image.xpshuai.cn/20220730102551.png, http://image.xpshuai.cn/20220730102551.png 1.5x, http://image.xpshuai.cn/20220730102551.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730102551.png"
+    title="http://image.xpshuai.cn/20220730102551.png"/>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730102941.png"
+    data-srcset="http://image.xpshuai.cn/20220730102941.png, http://image.xpshuai.cn/20220730102941.png 1.5x, http://image.xpshuai.cn/20220730102941.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730102941.png"
+    title="http://image.xpshuai.cn/20220730102941.png"/></p>
+<p><strong>普通网络：</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730102657.png"
+    data-srcset="http://image.xpshuai.cn/20220730102657.png, http://image.xpshuai.cn/20220730102657.png 1.5x, http://image.xpshuai.cn/20220730102657.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730102657.png"
+    title="http://image.xpshuai.cn/20220730102657.png"/></p>
+<p><strong>残差网络：</strong>
+所训练网络越深，训练误差越小。下图的残差网络由五个残差块组成，该残差网络只跳跃了一层，还可跳跃多层
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730102737.png"
+    data-srcset="http://image.xpshuai.cn/20220730102737.png, http://image.xpshuai.cn/20220730102737.png 1.5x, http://image.xpshuai.cn/20220730102737.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730102737.png"
+    title="http://image.xpshuai.cn/20220730102737.png"/></p>
+<p>举例：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730103714.png"
+    data-srcset="http://image.xpshuai.cn/20220730103714.png, http://image.xpshuai.cn/20220730103714.png 1.5x, http://image.xpshuai.cn/20220730103714.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730103714.png"
+    title="http://image.xpshuai.cn/20220730103714.png"/></p>
+<p>残差网络可以不是卷积神经网络，用全连接层也可以。当然，残差网络在被提出的论文中是用来处理图像识别问题。</p>
+<h3 id="为什么残差网络会生效">为什么残差网络会生效</h3>
+<p>残差网络解决网络退化的原理:
+如果某层网络冗余，我们希望该层能够学习到一个恒等映射函数也就是h(x)=x，但是学习这样的函数很困难，但学习F(x)=0要更简单，所以通过跳跃连接可以实现h(x)=F(x)+x的学习。</p>
+<p>残差网络解决梯度消失的原理:
+多个Resnet Blocks累积起来能解决梯度消失问题。
+Resnet Block = main path + skip connection</p>
+<h3 id="resnet50">ResNet50</h3>
+<p>ResNet50由两个基本的块构成：<code>Conv Block</code>和<code>Identity Block</code>。</p>
+<ul>
+<li>Conv Block：跳跃连接上有卷积操作，输入和输出维度不一样，改变图片的大小和通道数，不能串联，用于改变网络维度。</li>
+<li>Identity Block：跳跃连接上没有卷积操作，输入和输出维度一样，不改变通道数，能串联，用于加深网络。</li>
+</ul>
+<p>ResNet的各种网络结构图:
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730131358.png"
+    data-srcset="http://image.xpshuai.cn/20220730131358.png, http://image.xpshuai.cn/20220730131358.png 1.5x, http://image.xpshuai.cn/20220730131358.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730131358.png"
+    title="http://image.xpshuai.cn/20220730131358.png"/>
+重点说明一下ResNet-50，可以看到上图中所示，ResNet-50经过了4个Block，每一个Block中分别有3，4，6，3个Bottleneck，另外网络最开始有一个卷积层，所以:3+4+6+3 * 3 + 1 = 49，加上取样层。</p>
+<h2 id="初始网络">初始网络</h2>
+<h3 id="1x1卷积核网中网">1x1卷积核(网中网)</h3>
+<p>当1*1卷积出现时，在大多数情况下它作用是升/降特征的维度，这里的维度指的是通道数（厚度），而不改变图片的宽和高。</p>
+<p>例子：
+过滤器为1×1，这里是filter的数字是2，输入一张6×6×1的图片，然后对它做卷积，过滤器大小为1×1×1，结果相当于把这个图片乘以数字2，所以前三个单元格分别是2、4、6等等。用1×1的过滤器进行卷积，似乎用处不大，只是对输入矩阵乘以某个数字。但这仅仅是对于6×6×1的一个通道图片来说，1×1卷积效果不佳。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730115347.png"
+    data-srcset="http://image.xpshuai.cn/20220730115347.png, http://image.xpshuai.cn/20220730115347.png 1.5x, http://image.xpshuai.cn/20220730115347.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730115347.png"
+    title="http://image.xpshuai.cn/20220730115347.png"/></p>
+<p>如果是一张6×6×32的图片，那么使用1×1过滤器进行卷积效果更好。具体来说，1×1卷积所实现的功能是遍历这36个单元格，计算左图中32个数字和过滤器中32个数字的元素积之和，然后应用ReLU非线性函数。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730115617.png"
+    data-srcset="http://image.xpshuai.cn/20220730115617.png, http://image.xpshuai.cn/20220730115617.png 1.5x, http://image.xpshuai.cn/20220730115617.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730115617.png"
+    title="http://image.xpshuai.cn/20220730115617.png"/></p>
+<p>我们以其中一个单元为例，它是这个输入层上的某个切片，用这36个数字乘以这个输入层上1×1切片，得到一个实数，像这样把它画在输出中。</p>
+<p>这个1×1×32过滤器中的32个数字可以这样理解，一个神经元的输入是32个数字（输入图片中左下角位置32个通道中的数字），即相同高度和宽度上某一切片上的32个数字，这32个数字具有不同通道，乘以32个权重（将过滤器中的32个数理解为权重），然后应用ReLU非线性函数，在这里输出相应的结果。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730115722.png"
+    data-srcset="http://image.xpshuai.cn/20220730115722.png, http://image.xpshuai.cn/20220730115722.png 1.5x, http://image.xpshuai.cn/20220730115722.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730115722.png"
+    title="http://image.xpshuai.cn/20220730115722.png"/>
+一般来说，如果过滤器不止一个，而是多个，就好像有多个输入单元，其输入内容为一个切片上所有数字，输出结果是6×6过滤器数量。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730115843.png"
+    data-srcset="http://image.xpshuai.cn/20220730115843.png, http://image.xpshuai.cn/20220730115843.png 1.5x, http://image.xpshuai.cn/20220730115843.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730115843.png"
+    title="http://image.xpshuai.cn/20220730115843.png"/>
+所以<strong>1×1卷积可以从根本上理解为对这32个不同的位置都应用一个全连接层</strong>，全连接层的作用是输入32个数字（过滤器数量标记为，在这36个单元上重复此过程）,输出结果是6×6×#filters（过滤器数量），以便在输入层上实施一个非平凡（non-trivial）计算。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730115916.png"
+    data-srcset="http://image.xpshuai.cn/20220730115916.png, http://image.xpshuai.cn/20220730115916.png 1.5x, http://image.xpshuai.cn/20220730115916.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730115916.png"
+    title="http://image.xpshuai.cn/20220730115916.png"/>
+这种方法<strong>通常称为1×1卷积，有时也被称为Network in Network</strong></p>
+<p><strong>再举个例子：</strong>
+假设下图左侧这是一个28×28×192的输入层，你可以使用池化层压缩它的高度和宽度，这个过程我们很清楚。但如果通道数量很大，该如何把它压缩为28×28×32维度的层呢？你可以用32个大小为1×1的过滤器，严格来讲每个过滤器大小都是1×1×192维，因为过滤器中通道数量必须与输入层中通道的数量保持一致。但是你使用了32个过滤器，输出层为28×28×32，这就是压缩通道数（）的方法，对于池化层我只是压缩了这些层的高度和宽度。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730120142.png"
+    data-srcset="http://image.xpshuai.cn/20220730120142.png, http://image.xpshuai.cn/20220730120142.png 1.5x, http://image.xpshuai.cn/20220730120142.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730120142.png"
+    title="http://image.xpshuai.cn/20220730120142.png"/></p>
+<p>在之后我们看到在某些网络中1×1卷积是如何压缩通道数量并减少计算的。当然如果你想保持通道数192不变，这也是可行的，1×1卷积只是添加了非线性函数，当然也可以让网络学习更复杂的函数，比如，我们再添加一层，其输入为28×28×192，输出为28×28×192。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730130549.png"
+    data-srcset="http://image.xpshuai.cn/20220730130549.png, http://image.xpshuai.cn/20220730130549.png 1.5x, http://image.xpshuai.cn/20220730130549.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730130549.png"
+    title="http://image.xpshuai.cn/20220730130549.png"/></p>
+<p>1×1卷积层就是这样实现了一些重要功能的（doing something pretty non-trivial），它给神经网络添加了一个非线性函数，从而减少或保持输入层中的通道数量不变，当然如果你愿意，也可以增加通道数量。</p>
+<h4 id="1x1卷积核的作用">1x1卷积核的作用：</h4>
+<h5 id="1-放缩通道数目">1. 放缩通道数目</h5>
+<p>假如现在有一个64x64x128的输入，需要通过卷积之后生成一个32x32x128，那我们直接可以对这个输入坐卷积或者做池化，就可以改变输入的长和宽，因为输入和输出的通道数目都是相同的。
+但是如果我们需要输出一个64x64x192。那这个时候就必须要用到1x1的卷积。因为input和filter都需要一样的通道数目，因此我们可以用32个1x1x192的filter去做卷积，卷积运算的结果就是28x28x32。如图所示：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730110652.png"
+    data-srcset="http://image.xpshuai.cn/20220730110652.png, http://image.xpshuai.cn/20220730110652.png 1.5x, http://image.xpshuai.cn/20220730110652.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730110652.png"
+    title="http://image.xpshuai.cn/20220730110652.png"/></p>
+<h6 id="2-减少计算成本">2. 减少计算成本</h6>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730110847.png"
+    data-srcset="http://image.xpshuai.cn/20220730110847.png, http://image.xpshuai.cn/20220730110847.png 1.5x, http://image.xpshuai.cn/20220730110847.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730110847.png"
+    title="http://image.xpshuai.cn/20220730110847.png"/></p>
+<h5 id="3-增加网络的非线性性">3. 增加网络的非线性性</h5>
+<p>如果我们不用改变通道数目，也不用改变长和宽。那么1x1的卷积还有另外一个好处就是增加网络的非线性。因为从一个28x28x192-&gt;28x28x192经过一个1*1的卷积之后，使得网络可以学习到更加复杂的函数形式。这样就此增加了网络的非线性性。</p>
+<p>对1*1卷积的一种理解是：它本质上是一个完全连接的神经网络，逐一作用于这36个位置，这个全连接网络做的事情就是接收32个数字=的输入，然后输出过滤器个数的输出值</p>
+<h3 id="迁移学习transfer-learning"><strong>迁移学习（Transfer Learning）：</strong></h3>
+<p>相比于从头训练权重，如果使用别人已经训练好的网络结构的权重，通常能够进展得相当快，用这个作为预训练。</p>
+<p>如果任务只有一个很小的数据集,如图所示，我们可以完全使用它的权重，把前面的层都冻结；
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730103231.png"
+    data-srcset="http://image.xpshuai.cn/20220730103231.png, http://image.xpshuai.cn/20220730103231.png 1.5x, http://image.xpshuai.cn/20220730103231.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730103231.png"
+    title="http://image.xpshuai.cn/20220730103231.png"/>
+要是有一个更大的训练集，如图所示，我们冻结更少的层，然后训练后面的层；
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730103248.png"
+    data-srcset="http://image.xpshuai.cn/20220730103248.png, http://image.xpshuai.cn/20220730103248.png 1.5x, http://image.xpshuai.cn/20220730103248.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730103248.png"
+    title="http://image.xpshuai.cn/20220730103248.png"/>
+或者如图3所示，换成自己的网络结构。
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730103302.png"
+    data-srcset="http://image.xpshuai.cn/20220730103302.png, http://image.xpshuai.cn/20220730103302.png 1.5x, http://image.xpshuai.cn/20220730103302.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730103302.png"
+    title="http://image.xpshuai.cn/20220730103302.png"/>
+最后，如果有大量数据，我们应该用这些网络和它的权重当做初始化，用它们来代替随机初始化，接着你可以用梯度下降训练，更新网络所有层的所有权重。</p>
+<h2 id="mobilenet">MobileNet</h2>
+<blockquote>
+<p>是一种在低运算环境(比如手机)中也能运行的网络</p>
+</blockquote>
+<p>MobileNet是一个轻量级卷积神经网络，它进行卷积的参数比标准卷积要少很多。
+MobileNet的基本单元是深度级可分离卷积，其可以分解为两个更小的操作：depthwise convolution(深度卷积)和pointwise convolution(逐点卷积)</p>
+<h3 id="深度可分离卷积">深度可分离卷积</h3>
+<ul>
+<li>深度卷积(逐通道卷积)</li>
+<li>逐点卷积</li>
+</ul>
+<p>这篇文章介绍的很清晰，推荐看看： <a href="https://zhuanlan.zhihu.com/p/165632315"target="_blank" rel="external nofollow noopener noreferrer">https://zhuanlan.zhihu.com/p/165632315<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>标准卷积将每个卷积核与图片的所有输入通道分别进行卷积运算，而深度可分离卷积将一个标准卷积拆分为深度卷积和逐点卷积，<strong>深度卷积</strong>针对每个输入通道采用不同的卷积核，即一个卷积核对应一个输入通道，而<strong>逐点卷积</strong>其实就是普通的卷积，只不过其采用 1x1 的卷积核，其目的是实现不同通道间特征的融合以及通道方向上的升维或降维，从卷积的结果上看二者差别不大，但深度可分离卷积的运算量要远远低于标准卷积的运算量。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730133720.png"
+    data-srcset="http://image.xpshuai.cn/20220730133720.png, http://image.xpshuai.cn/20220730133720.png 1.5x, http://image.xpshuai.cn/20220730133720.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730133720.png"
+    title="http://image.xpshuai.cn/20220730133720.png"/>
+以输入特征层为 M∗N∗16，输出 32 通道为例，卷积核尺寸为 33，在标准卷积情况下计算量为 M∗N∗16∗3∗3∗32(M∗N∗4608)，而在深度可分离卷积情况下计算量（M∗N∗656）为深度卷积的计算量 M∗N∗16∗3∗3 加上逐点卷积的计算量:M∗N∗16∗1∗1*∗32[28]，可以看到计算量大大减少了，随着网络的加深，这种卷积的计算优势会更加明显。</p>
+<h3 id="mobilenet架构">MobileNet架构</h3>
+<p>MobileNetV2的变化：
+● 在架构中添加残差连接(有助于高效向后传播)
+● 在深度卷积核逐点卷积之前添加一个扩展层（在V2中，我们将扩展层+深度卷积+投影称为区块2，并重复多次利用区块2）
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730133504.png"
+    data-srcset="http://image.xpshuai.cn/20220730133504.png, http://image.xpshuai.cn/20220730133504.png 1.5x, http://image.xpshuai.cn/20220730133504.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730133504.png"
+    title="http://image.xpshuai.cn/20220730133504.png"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/20220730133518.png"
+    data-srcset="http://image.xpshuai.cn/20220730133518.png, http://image.xpshuai.cn/20220730133518.png 1.5x, http://image.xpshuai.cn/20220730133518.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/20220730133518.png"
+    title="http://image.xpshuai.cn/20220730133518.png"/></p>
+<h2 id="参考">参考</h2>
+<p><a href="https://blog.csdn.net/qq_42363032/article/details/108180740"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_42363032/article/details/108180740<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+吴恩达深度学习课程
+<a href="https://aistudio.csdn.net/62e38a7ecd38997446774cc7.html"target="_blank" rel="external nofollow noopener noreferrer">https://aistudio.csdn.net/62e38a7ecd38997446774cc7.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.cnblogs.com/wuliytTaotao/p/9560205.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/wuliytTaotao/p/9560205.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://zsweety.blog.csdn.net/article/details/81985082"target="_blank" rel="external nofollow noopener noreferrer">https://zsweety.blog.csdn.net/article/details/81985082<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://blog.csdn.net/amusi1994/article/details/81091145"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/amusi1994/article/details/81091145<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://blog.csdn.net/qq_42859149/article/details/119904365"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_42859149/article/details/119904365<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://blog.csdn.net/qq_30093417/article/details/121108090"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_30093417/article/details/121108090<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%8d%b7%e7%a7%af%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c-CNN-%e5%ad%a6%e4%b9%a0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/' class="post-tag">卷积神经网络</a><a href='/tags/cnn/' class="post-tag">CNN</a><a href='/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/' class="post-tag">深度学习</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E7%BB%8F%E5%85%B8%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D-lenet-5/" class="post-nav-item" rel="prev" title="经典网络模型介绍-LeNet-5"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>经典网络模型介绍-LeNet-5</a>
+      <a href="/%E4%BD%BF%E7%94%A8pytorch%E9%A2%84%E6%B5%8B%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E7%94%9F%E8%BF%98%E4%BD%9C%E4%B8%9A/" class="post-nav-item" rel="next" title="使用PyTorch预测泰坦尼克生还作业">使用PyTorch预测泰坦尼克生还作业<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

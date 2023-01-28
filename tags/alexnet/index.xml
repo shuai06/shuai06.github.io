@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>AlexNet - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/alexnet/</link>
+    <description>AlexNet - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 15 Sep 2022 09:50:23 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/alexnet/" rel="self" type="application/rss+xml" /><item>
+  <title>经典现代卷积网络1-AlexNet</title>
+  <link>https://geoer.cn/%E7%BB%8F%E5%85%B8%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C-alexnet/</link>
+  <pubDate>Thu, 15 Sep 2022 09:50:23 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E7%BB%8F%E5%85%B8%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C-alexnet/</guid>
+  <description><![CDATA[前言 接下来一次介绍现代卷积神经网络的架构： AlexNet。它是第一个在大规模视觉竞赛中击败传统计算机视觉模型的大型神经网络； 使用重复块的网络]]></description>
+</item>
+</channel>
+</rss>

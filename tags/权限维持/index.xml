@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>权限维持 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/</link>
+    <description>权限维持 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Sep 2020 22:16:57 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" rel="self" type="application/rss+xml" /><item>
+  <title>Windows sc命令与权限维持</title>
+  <link>https://geoer.cn/windows-sc%E5%91%BD%E4%BB%A4/</link>
+  <pubDate>Tue, 22 Sep 2020 22:16:57 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/windows-sc%E5%91%BD%E4%BB%A4/</guid>
+  <description><![CDATA[sc命令用来创建和删除windows服务 使用SC命令创建windows服务 命令格式： 1 sc [servername] create Servicename [Optionname= Optionvalues] 1 2 3 4 5 6 7 8 9 10 11 12 # servername 可选，可以使用]]></description>
+</item>
+</channel>
+</rss>

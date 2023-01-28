@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>感知机 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/</link>
+    <description>感知机 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 29 Jun 2022 21:14:54 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%84%9F%E7%9F%A5%E6%9C%BA/" rel="self" type="application/rss+xml" /><item>
+  <title>感知机(Perceptron)学习笔记</title>
+  <link>https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Wed, 29 Jun 2022 21:14:54 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E6%84%9F%E7%9F%A5%E6%9C%BA-perceptron-%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[简介 前言 感知机是由美国学者Frank Rosenblatt在1957年提出来的，是神经网络和支持向量机的基础。 感知机模型 感知机是什么？ 感知机接]]></description>
+</item>
+</channel>
+</rss>

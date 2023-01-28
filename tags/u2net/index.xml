@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>U2net - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/u2net/</link>
+    <description>U2net - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 14 Oct 2022 16:35:53 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/u2net/" rel="self" type="application/rss+xml" /><item>
+  <title>U2-Net</title>
+  <link>https://geoer.cn/u2-net/</link>
+  <pubDate>Fri, 14 Oct 2022 16:35:53 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/u2-net/</guid>
+  <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
+</item>
+</channel>
+</rss>

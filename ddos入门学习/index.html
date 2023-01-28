@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>DDoS入门学习 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="之前以为DDos很简单，现在发现学问还是大滴很呢！！！ 理论 DDOS简介 DDOS(Distributed Denial of Service)，又称分布式拒绝服务攻击。 是指处于不同位置的多个" /><meta name="keywords" content='渗透测试, DDos' /><meta itemprop="name" content="DDoS入门学习">
+<meta itemprop="description" content="之前以为DDos很简单，现在发现学问还是大滴很呢！！！ 理论 DDOS简介 DDOS(Distributed Denial of Service)，又称分布式拒绝服务攻击。 是指处于不同位置的多个"><meta itemprop="datePublished" content="2020-05-08T14:50:36+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="7048"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,DDos," /><meta property="og:title" content="DDoS入门学习" />
+<meta property="og:description" content="之前以为DDos很简单，现在发现学问还是大滴很呢！！！ 理论 DDOS简介 DDOS(Distributed Denial of Service)，又称分布式拒绝服务攻击。 是指处于不同位置的多个" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-08T14:50:36+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="DDoS入门学习"/>
+<meta name="twitter:description" content="之前以为DDos很简单，现在发现学问还是大滴很呢！！！ 理论 DDOS简介 DDOS(Distributed Denial of Service)，又称分布式拒绝服务攻击。 是指处于不同位置的多个"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" /><link rel="next" href="https://geoer.cn/python%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%85%A8%E5%B1%80%E9%94%81-gil/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "DDoS入门学习",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, DDos","wordcount":  7048 ,
+    "url": "https:\/\/geoer.cn\/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0\/","datePublished": "2020-05-08T14:50:36+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>DDoS入门学习</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-08&#32;14:50:36><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-08">2020-05-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 7048 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 15 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="DDoS入门学习">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#理论">理论</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ddos简介">DDOS简介</a></li>
+            <li><a href="#ddos危害">DDOS危害</a></li>
+            <li><a href="#流量特点">流量特点</a></li>
+            <li><a href="#ddos攻击类型与防御">DDOS攻击类型与防御</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1smurf攻击">1.Smurf攻击</a></li>
+                    <li><a href="#2teardrop攻击">2.TearDrop攻击</a></li>
+                    <li><a href="#3land-attack着陆攻击">3.Land Attack（着陆攻击）</a></li>
+                    <li><a href="#4yn-flood攻击">4.YN FLOOD攻击</a></li>
+                    <li><a href="#5ack-flood攻击">5.ACK FLOOD攻击</a></li>
+                    <li><a href="#6udp-flood攻击udp泛洪攻击">6.UDP FLOOD攻击(UDP泛洪攻击)</a></li>
+                    <li><a href="#7ntp放大攻击">7.NTP放大攻击</a></li>
+                    <li><a href="#8dns放大攻击">8.DNS放大攻击</a></li>
+                    <li><a href="#9snmp放大攻击">9.SNMP放大攻击</a></li>
+                    <li><a href="#10tftp放大攻击">10.TFTP放大攻击</a></li>
+                    <li><a href="#11cc攻击">11.CC攻击</a></li>
+                    <li><a href="#12http慢速攻击">12.HTTP慢速攻击</a></li>
+                    <li><a href="#13xss-dos">13.XSS-DOS</a></li>
+                    <li><a href="#14时间透镜攻击">14.时间透镜攻击</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实践">实践</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>之前以为DDos很简单，现在发现学问还是大滴很呢！！！</p>
+</blockquote>
+<h2 id="理论">理论</h2>
+<h4 id="ddos简介">DDOS简介</h4>
+<p>DDOS(Distributed Denial of Service)，又称分布式拒绝服务攻击。
+是指处于不同位置的多个攻击者同时向一个或数个目标发动攻击，或者一个攻击者控制了位于不同位置的多台机器并利用这些机器对受害者同时实施攻击。由于攻击的发出点是分布在不同地方的，这类攻击称为分布式拒绝服务攻击，其中的攻击者可以有多个。
+分布式拒绝服务攻击方式在进行攻击的时候，可以对源IP地址进行伪造，这样就使得这种攻击在发生的时候隐蔽性是非常好的，同时要对攻击进行检测也是非常困难的，因此这种攻击方式也成为了非常难以防范的攻击。</p>
+<h4 id="ddos危害">DDOS危害</h4>
+<p>出口带宽堵死
+游戏掉线导致客户流失
+服务器连接数多，连接资源被耗尽
+服务器卡、慢、死机、无法连接</p>
+<h4 id="流量特点">流量特点</h4>
+<p>IP地址随机或固定某些IP段随机
+没有完整完成三次握手
+地址多数是伪造的
+请求数量大、快</p>
+<h4 id="ddos攻击类型与防御">DDOS攻击类型与防御</h4>
+<h6 id="1smurf攻击">1.Smurf攻击</h6>
+<p>攻击者向网关(网络广播地址)发送ICMP请求包，并将该ICMP请求报文的源地址伪造成受害主机IP地址，目的地址为广播地址。路由器在接受到该数据包，发现目的地址是广播地址，就会将该数据包广播出去，局域网内所有的存活主机都会受到一个ICMP请求包，源地址是受害主机IP。接下来受害主机就会收到该网络内所有主机发来的ICMP应答报文，通过大量返回的ICMP应答报文来淹没受害主机，最终导致网络阻塞，受害主机崩溃。下面是smurf攻击示意图（盗的图）
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png"
+    data-srcset="http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png, http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png 1.5x, http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png"
+    title="http://image.xpshuai.cn/smurf%E6%94%BB%E5%87%BB.png"/></p>
+<p><strong>防护方案：</strong></p>
+<ul>
+<li>禁止路由器广播ICMP请求包；</li>
+<li>禁止操作系统对广播发出的ICMP请求包做出响应；</li>
+<li>配置防火墙静止来自你所处网络外部的ping包</li>
+</ul>
+<h6 id="2teardrop攻击">2.TearDrop攻击</h6>
+<p>是一种畸形报文攻击，基于UDP的病态分片数据包的攻击方法。
+通过设置错误的片偏移(IP分段)，使得数据包到达目的地时，服务器无法重新组合数据包，因为数据包的组合是通过片偏移来组装的，最终导致崩溃。对比一下正常IP数据包和错误IP数据包
+这种攻击主要对旧的windows版本和Linux版本有效。</p>
+<p><strong>防护：</strong>
+可以检测发来的数据包片偏移是否合法，如果合法在组装，不合法直接丢弃。比如这个：<a href="https://wenku.baidu.com/view/b45bba61ddccda38376baf7f.html"target="_blank" rel="external nofollow noopener noreferrer">分片重组检查算法<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h6 id="3land-attack着陆攻击">3.Land Attack（着陆攻击）</h6>
+<p>攻击者发动Land Attack攻击时，需要先发出一个SYN数据包，并将数据包的源IP与目的IP都设置成要攻击的目标IP，这样目标在接收到SYN数据包后，会根据源IP回应一个SYN+ACK数据包，即和自己建立一个空连接，然后到达idel超时时间时，才会释放这个连接。攻击者发送大量这样的数据包，从而耗尽目标的TCP连接池，最终导致拒绝服务。</p>
+<p>Kali Linux提供的很多工具，都可以实现伪造包的功能，如<code>hping3</code>。</p>
+<p><strong>防御方案：</strong>
+这种攻击对早期系统有效。通过防火墙、路由设备，建立规则，丢弃源地址和目标地址相同的SYN、SYN+ACK的TCP。</p>
+<h6 id="4yn-flood攻击">4.YN FLOOD攻击</h6>
+<p>SYN FLOOD攻击是在TCP三次握手过程中产生的。
+攻击者通过发送大量伪造的带有SYN标志位的TCP报文，与目标主机建立了很多<code>虚假的半开连接</code>，在服务器返回SYN+ACK数据包后，攻击者不对其做出响应，也就是<code>不返回ACK数据包给服务器</code>，这样服务器就会一直等待直到超时。这种攻击方式会使目标服务器连接资源耗尽、链路堵塞，从而达到拒绝服务的目的
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/syn.png"
+    data-srcset="http://image.xpshuai.cn/syn.png, http://image.xpshuai.cn/syn.png 1.5x, http://image.xpshuai.cn/syn.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/syn.png"
+    title="http://image.xpshuai.cn/syn.png"/></p>
+<p><strong>防御：</strong></p>
+<ul>
+<li>SYNCheck：使用防护设备，3次握手变成了6次握手，由防护设备检测SYN请求是否合法，通过后再由防护设备将报文转发给服务器，后续报文仍由防护设备代理。</li>
+<li>Micro blocks：管理员可以在内存中为每个SYN请求创建一个小索引(小于16字节)，而不必把整个连接对象存入内存。</li>
+<li>RST cookies：在客户端发起第一个SYN请求后，服务器故意回应一个错误的SYN+ACK报文。如果合法用户收到这个报文，就会给服务器响应RST报文。当服务器收到这个报文时，就将这个主机的IP记录进合法IP列表，下次该主机发起SYN请求时，就可以直接通过了。</li>
+<li>STACK tweaking：管理员可以调整TCP堆栈以减缓SYN泛洪攻击的影响。这包括减小超时时间，等到堆栈存释内放时再分配连接，否则就随机性地删除传入的连接。</li>
+</ul>
+<h6 id="5ack-flood攻击">5.ACK FLOOD攻击</h6>
+<p>ACK FLOOD攻击是利用TCP三次握手过程。这里可以分为两种。
+<strong>第一种：</strong>
+攻击者伪造大量的SYN+ACK包发送给目标主机，目标主机每收到一个SYN+ACK数据包时，都会去自己的TCP连接表中查看有没有与ACK的发送者建立连接 ，如果有则发送ACK包完成TCP连接，如果没有则发送ACK+RST 断开连接。但是在查询过程中会消耗一定的CUP计算资源。如果瞬间收到大量的SYN+ACK数据包，将会消耗服务器的大量cpu资源，导致正常的连接无法建立或增加延迟，甚至造成服务器瘫痪、死机。</p>
+<p><strong>第二种：</strong>
+利用TCP三次握手的ACK+SYN应答，攻击者向不同的服务器发送大量的SYN请求，这些<code>SYN请求数据包的源IP均为受害主机IP</code>，这样就会有大量的SYN+ACK应答数据包发往受害主机，从而占用目标的网络带宽资源，形成拒绝服务。</p>
+<blockquote>
+<p>通常DDOS攻击会将ACK flood与SYN flood<code>结合</code>在一起，从而扩大威力。</p>
+</blockquote>
+<p><strong>防御方案参考：</strong></p>
+<ul>
+<li>采用CDN进行流量稀释；</li>
+<li>避免服务器IP暴露在公网上；</li>
+<li>通过限速或动态指纹的方式；</li>
+<li>利用对称性判断来分析出是否有攻击存在；</li>
+<li>在连续收到用户发送的ACK包时，中断回话，让其重连。</li>
+</ul>
+<h6 id="6udp-flood攻击udp泛洪攻击">6.UDP FLOOD攻击(UDP泛洪攻击)</h6>
+<p>因为UDP不需要三次握手，这就造成UDP泛洪攻击不但效率高，而且还可以在资源相对较少的情况下执行。
+UDP FLOOD可以使用小数据包(64字节)进行攻击,也可以使用大数据包(大于1500字节,以太网MTU为1500字节)进行攻击。
+大量<strong>小数据包</strong>会增大网络设备处理数据包的压力；
+而对于<strong>大数据包</strong>，网络设备需要进行分片、重组，最终达到的效果就是占用网络传输接口的带宽、网络堵塞、服务器响应慢等等。</p>
+<p><strong>防御方案：</strong></p>
+<ul>
+<li>限制每秒钟接受到的流量(可能产生误判)；</li>
+<li>通过动态指纹学习(需要攻击发生一定时间)，将非法用户加入黑名单。</li>
+</ul>
+<h6 id="7ntp放大攻击">7.NTP放大攻击</h6>
+<p>NTP(Network Time Protocol，网络时间协议)，是用来使计算机网络时间同步化的一种协议，使用UDP<code>123</code>端口进行通信。
+通常在NTP服务器上会有一些调试接口，而利用这些接口中的monlist请求，就可触发放大攻击。当主机向NTP服务器发送monlist查询请求时，NTP服务器会将与之进行时间同步的最后600个IP地址返回。所以攻击者只需要将源地址伪造为受害主机的IP，向NTP服务器发送一个monlist查询请求包，受害主机就会收到大量的UDP响应包。这种攻击在放大攻击里，危害相对较大。</p>
+<p><strong>这种攻击产生的原因：</strong></p>
+<ul>
+<li>请求与响应数据包不等价；</li>
+<li>UDP协议的通信模糊性（无数据传输确认机制）；</li>
+<li>以及NTP服务器的无认证机制。</li>
+</ul>
+<p><strong>防御方案：</strong></p>
+<ul>
+<li>使用防 DDoS 设备进行清洗；</li>
+<li>加固并升级NTP服务器；</li>
+<li>在网络出口封禁 UDP 123 端口；</li>
+<li>通过网络层或者借助运营商实施 ACL 来防御；</li>
+<li>关闭现在 NTP 服务的 monlist 功能，在ntp.conf配置文件中增加disable monitor选项。</li>
+</ul>
+<h6 id="8dns放大攻击">8.DNS放大攻击</h6>
+<p>DNS报文格式(借个图)：
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png"
+    data-srcset="http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png, http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png 1.5x, http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png"
+    title="http://image.xpshuai.cn/DNS%E6%8A%A5%E6%96%87.png"/></p>
+<p>首先，攻击者向僵尸网络发出指令，使僵尸网络中的每一台主机均发出一个伪造源地址的DNS查询请求包，这些请求包查询类型设置为ANY，因为这种类型会请求所有的记录，这些记录会在返回的响应包中，也就是说这种数据包的大小较其他类型是最大的。
+接着查询类型设为递归查询，为什么不是迭代查询呢，仔细看两种查询的过程图可发现，如果迭代查询第一个请求的DNS服务器没有查询到结果，那么第一个请求的服务器会返回另一个DNS服务器IP，让请求主机向这个IP去继续查询，然而攻击者的数据包源地址是伪造的，所以并不会发起第二次查询，因为第一次查询根本就不是它发起的；而递归查询却是在查询到结果之后，才返回给查询请求发起者。
+利用这两个特点，攻击者就可以成功发起DNS放大攻击。这种普通的查询请求可以将攻击流量放大2~10倍，如果想增大攻击倍数，可以使用RFC 2671中定义的DNS拓展机制EDNS0。未使用EDNS0时，若响应包大小小于512字节，就使用UDP封装数据；若响应包大小超过512字节，就使用TCP连接或者服务器截断响应报文，丢弃超过512字节的部分，并把TC位置1。这两种方式都不利于进行DNS放大攻击。然而在开启EDNS0机制后，增加了OPT RR字段，这两个字段包含了能够处理的最大UDP报文大小信息，所以攻击者将这个信息设置的很大，服务器就会根据这个信息生成响应报文。最后看一下DNS放大攻击演示图
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png"
+    data-srcset="http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png, http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png 1.5x, http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png"
+    title="http://image.xpshuai.cn/DNS%E6%94%BE%E5%A4%A7%E6%94%BB%E5%87%BB.png"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 四个步骤</span>
+</span></span><span class="line"><span class="cl">1.攻击者使用受损端点将带有欺骗性IP地址的UDP数据包发送到DNS recursor<span class="o">(</span>递归<span class="o">)</span>。数据包上的欺骗地址指向受害者的真实IP地址。
+</span></span><span class="line"><span class="cl">2.每个UDP数据包都向DNS解析器发出请求，通常会传递诸如“ANY”之类的参数，以便接收可能的最大响应。
+</span></span><span class="line"><span class="cl">3.在收到请求后，尝试通过响应提供帮助的DNS解析器会向欺骗的IP地址发送大量响应。
+</span></span><span class="line"><span class="cl">4.目标的IP地址接收响应，周围的网络基础设施因流量泛滥而变得不堪重负，导致拒绝服务。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">虽然一些请求不足以取消网络基础设施，但当此序列在多个请求和DNS解析器之间成倍增加时，目标接收的数据放大可能很大。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>防御的话，可以参考以下几点：</strong></p>
+<ul>
+<li>联系ISP清洗上游流量；</li>
+<li>DNS服务器只对可信域内提供服务，限制对域外用户提供DNS解析服务；</li>
+<li>对单个IP的查询速率做限制；</li>
+<li>拥有足够的带宽承受小规模攻击；</li>
+<li>关闭DNS服务器的递归查询；</li>
+<li>利用防火墙等对ANY Request进行过滤。</li>
+<li>源IP验证 - 停止欺骗数据包离开网络</li>
+</ul>
+<h6 id="9snmp放大攻击">9.SNMP放大攻击</h6>
+<p>SNMP(Simple Network Management Protocol，简单网络管理协议)，它使用UDP <code>161</code>端口进行通信
+攻击者向互联网上开启SNMP服务的设备发送GetBulk请求，并使用默认通信字符串作为认证凭据。常见的默认通信字符串如public、private以及一些厂商默认的通信字符串。GetBulk请求是在SNMPv2中添加的的，该请求会让SNMP设备尽可能多的返回数据，这也就是SNMP放大攻击的利用点</p>
+<p>攻击者先将源地址改成要攻击的目标IP，再使用默认的通信字符串，向大量SNMP设备发出GetBulk请求，设备收到GetBulk请求数据包后，会将一大段的设备检索信息返回给目标主机，最终目标主机会被这些SNMP设备返回的数据包淹没，导致拒绝服务。</p>
+<p><strong>防御措施：</strong></p>
+<ul>
+<li>禁止已开启SNMP的设备响应GetBulk请求，避免自己的设备被黑客利用；</li>
+<li>更改默认的通信字符串；</li>
+<li>修改默认端口161；</li>
+<li>隐藏开启SNMP设备的公网IP</li>
+</ul>
+<h6 id="10tftp放大攻击">10.TFTP放大攻击</h6>
+<p>TFTP（Trivial File Transfer Protocol，简单文件传输协议），使用UDP <code>69</code>端口进行通信。
+由于TFTP使用的是不可靠的UDP协议，所以他不能确保发送的任何报文都能真正到达目的地，因此他必须使用定时器来检测并重传报文</p>
+<p>FTP协议将数据分成好多个数据块进行传输，每个数据块最大为512字节，客户端在接受到数据块时，需要给服务器端返回一个ACK确认报文，然后才会继续传输下一个报文。
+<code>若服务器没有收到客户端发来ACK报文</code>，则在时间到达超时计数器时，便会开启重传机制，这也就是攻击利用点。
+攻击者利用TFTP协议上的缺陷，伪造源地址向服务器发起请求，服务器回复的第1个data数据包后无法收到客户端发送的ACK。此时TFTP就会利用他的重传机制，定时重传第1个data数据包，当攻击者发出大量的这种请求时，TFTP放大攻击也就发生了</p>
+<p><strong>防御方案可参考如下：</strong></p>
+<ul>
+<li>不要将TFTP服务器暴露在公网上；</li>
+<li>对流经TFTP服务的流量进行入侵检测；</li>
+<li>将重传（数据包）率设置为1；</li>
+<li>只为信任域内的主机提供服务。</li>
+</ul>
+<h6 id="11cc攻击">11.CC攻击</h6>
+<p>CC攻击（ChallengeCollapsar）又称作HTTP 泛洪攻击。
+原理是攻击者控制肉鸡、僵尸网络或使用代理服务器，不停地向目标的web服务发送大量合法请求，使得正常用户的web请求处理缓慢甚至得不到处理，制造大量的后台数据库查询动作，消耗目标CPU资源，最终导致服务器宕机崩溃。
+这种攻击方式不需要很大的带宽，且<code>无法使用伪造IP地址进行攻击，需要真实的机器与web服务器建立连接</code>，因为HTTP协议是建立在TCP协议上，必须先进行TCP三次握手才能进行HTTP通信。
+如果目标web服务器支持HTTPS，那么发起的HTTPS泛洪攻击还能穿透一些防护设备。</p>
+<p>ddos攻击和cc攻击区别知主要是针对对象的不同：
+ddos是主要针对IP的攻击，而<code>CC攻击的主要是网页</code>。CC攻击相对来说，攻击的危害不是毁灭性的，但是持续时间长;而ddos攻击就是流量攻击，这种攻击的危害性较大，通过向目标服务器发送大量数据包，道耗尽其带宽，更难防御。</p>
+<p><strong>防御方案：</strong></p>
+<ul>
+<li>必要时将网页做成静态，减少数据库的使用；</li>
+<li>通过缓存的方式进行，尽量由设备的缓存直接返回结果来保护后端业务</li>
+<li>Token随IP地址变化</li>
+<li>限制连接数量；</li>
+<li>修改最大超时时间；</li>
+<li>让用户手动输入验证码；</li>
+<li>在response报文中添加特殊字段，验证IP合法性；</li>
+<li>屏蔽频繁访问服务器的主机IP。</li>
+</ul>
+<p>一个防CC攻击的脚本：https://zhangge.net/4649.html</p>
+<p>参考文章：https://www.jianshu.com/p/dff5a0d537d8</p>
+<h6 id="12http慢速攻击">12.HTTP慢速攻击</h6>
+<p>Slow HTTP Dos AttACKs（慢速HTTP拒绝服务攻击）
+黑客模拟正常用户向web服务器发送慢速http请求，由于是慢速的，服务器端需要保持连接资源，直到数据传输结束或请求结束才可释放连接。当服务器端建立了大量这样的慢速连接，就会导致服务器拒绝服务。
+这种攻击可以分为两类：一类是客户端发数据，另一类是客户端读取服务器发来的数据。
+HTTP慢速攻击对基于线程处理的web服务器影响显著，如apache、dhttpd，而对基于事件处理的web服务器影响不大，如nginx、lighttpd。</p>
+<p><strong>HTTP慢速攻击还可以细分成以下几种攻击方式：</strong>
+a. Slowloris攻击方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">HTTP协议规定请求头以一个空行结束，所以完整的http请求头结尾是<span class="se">\r\n\r\n</span>。
+</span></span><span class="line"><span class="cl">然而<span class="s1">&#39;使用非正常的\r\n来结尾&#39;</span>，就会导致服务端认为我们的请求头还没结束，等待我们继续发送数据直到超时时间。
+</span></span><span class="line"><span class="cl"><span class="c1"># CRLF（Carriage Return Line Feed）表示回车换行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>b. Slow post攻击方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">在http头部信息，可以使用content-length声明HTTP消息实体的传输长度，服务器端会content-length的值作为HTTP BODY的长度。
+</span></span><span class="line"><span class="cl">利用这一特点，攻击者<span class="s1">&#39;把content-length设置得很大的，然后缓慢发送数据部分&#39;</span>，比如一次只发送一个字节，这样服务器端就要一直保持连接，直到客户端传完所有的数据。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 利用工具  slowloris</span>
+</span></span><span class="line"><span class="cl">https://github.com/gkbrk/slowloris.git
+</span></span><span class="line"><span class="cl">参考文章：https://www.fujieace.com/hacker/tools/slowloris-dos.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>c. Slow read攻击方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">攻击者发送一个完整的HTTP数据请求，之后服务器会给出响应，这时攻击者再<span class="s1">&#39;将自己的TCP窗口大小设置的很小&#39;</span>，服务器会根据客户的TCP窗口大小来传送数据。
+</span></span><span class="line"><span class="cl">由于客户端的TCP窗口大小很小，服务器只能缓慢的传输数据给客户端。当建立大量的这种连接时，web应用的并发连接池将被耗尽，最终导致拒绝服务。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>d. Apache range header攻击</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这种攻击方式只针对apache</span>
+</span></span><span class="line"><span class="cl">当客户端传输大文件时会有range字段，表示将大文件分段，分成几个小段进行传输。
+</span></span><span class="line"><span class="cl">例如攻击者将一个文件按照一个字节一段，分成好多段，这样就会造成传输数据缓慢，长时间占用连接，消耗服务器CPU和内存资源
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>防御</strong>
+这里至只看apache的防护策略(具体的需要实践)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 设置并使用以下模块</span>
+</span></span><span class="line"><span class="cl">mod_reqtimeout 模块  <span class="c1"># 控制请求数据传输的超时时间及最小速率</span>
+</span></span><span class="line"><span class="cl">mod_qos 模块         <span class="c1"># Apache的一个服务质量控制模块，用户可配置各种不同阈值</span>
+</span></span><span class="line"><span class="cl">mod_security模块     <span class="c1"># 一个开源的WAF模块，有专门针对慢速攻击防护的规则</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于其他中间件：<a href="https://blog.qualys.com/securitylabs/2011/11/02/how-to-protect-against-slow-http-attacks"target="_blank" rel="external nofollow noopener noreferrer">参考文章<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h6 id="13xss-dos">13.XSS-DOS</h6>
+<p>利用网站存在的存储型XXS漏洞，在网站中插入恶意的javascript代码。
+代码的功能是不断向web服务器发起大量请求，从而导致服务器宕机，无法响应正常用户的请求</p>
+<p>由于这种攻击的是由存储型XSS导致的，我们再防御方面就要考虑如何防御存储型XSS。
+<strong>防御策略如下：</strong></p>
+<ul>
+<li>对用户的输入以及url参数进行特殊字符过滤；</li>
+<li>对输出内容进行编码转换；</li>
+<li>结合黑白名单机制;</li>
+<li>等防御存储型XSS的方式</li>
+</ul>
+<h6 id="14时间透镜攻击">14.时间透镜攻击</h6>
+<p>通过控制相同源和相同目的IP报文，使得走不同路径的数据包，在同一时刻到达目标服务器，从而达到流量集中攻击的目的。</p>
+<p><strong>防御方案：</strong></p>
+<ul>
+<li>增加抖动，干扰攻击路径，使得数据包无法预期到达；</li>
+<li>由运营商禁止源路由。</li>
+<li>采用高性能的网络设备；</li>
+<li>充足的网络带宽保证；</li>
+<li>升级主机服务器硬件；</li>
+<li>避免将服务器的真实IP暴露在公网中；</li>
+<li>使用CDN对流量进行稀释，当大流量稀释到各个CDN节点时，再对流量进行清洗，从而达到防护源站的目的（然而这种防御方式只能用在对域名发起的DDOS攻击，如果攻击者直接对IP进行攻击，则需要使用anycast技术来防御）。</li>
+</ul>
+<p><strong>可以参考：</strong>
+<a href="http://icir.org/vern/papers/lensing.oak15.pdf"target="_blank" rel="external nofollow noopener noreferrer">http://icir.org/vern/papers/lensing.oak15.pdf<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7163026"target="_blank" rel="external nofollow noopener noreferrer">http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7163026<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.cnblogs.com/h2zZhou/p/6513238.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/h2zZhou/p/6513238.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.youtube.com/watch?v=QwAHNnKDVxQ"target="_blank" rel="external nofollow noopener noreferrer">https://www.youtube.com/watch?v=QwAHNnKDVxQ<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://mp.weixin.qq.com/s?__biz=MzI2NjUwNjU4OA==&amp;amp;mid=2247483685&amp;amp;idx=1&amp;amp;sn=8ac38ff22d571bbbf7716cb9e83b9b35&amp;amp;chksm=ea8c5916ddfbd00008d9b28e22fccba8c201ce78c70c2d78d10ee732f22a39ccf46d4b197634&amp;amp;mpshare=1&amp;amp;scene=23&amp;amp;srcid=0831Wr5YJPYzSrQU6gnfGVd0"target="_blank" rel="external nofollow noopener noreferrer">https://mp.weixin.qq.com/s?__biz=MzI2NjUwNjU4OA==&amp;mid=2247483685&amp;idx=1&amp;sn=8ac38ff22d571bbbf7716cb9e83b9b35&amp;chksm=ea8c5916ddfbd00008d9b28e22fccba8c201ce78c70c2d78d10ee732f22a39ccf46d4b197634&amp;mpshare=1&amp;scene=23&amp;srcid=0831Wr5YJPYzSrQU6gnfGVd0<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<blockquote>
+<p>所有这些方案都不完美各有利弊，最终的策略可能是几种方案的结合使用，形成防御体系，将攻击提前化解在局部，不至于影响整个系统。</p>
+</blockquote>
+<hr>
+<h2 id="实践">实践</h2>
+<p>暂时有待实践</p>
+<p><strong>参考(基本是完全参考大佬的，整理的太全了)：</strong>
+<a href="https://xz.aliyun.com/t/71"target="_blank" rel="external nofollow noopener noreferrer">https://xz.aliyun.com/t/71<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://xz.aliyun.com/t/70"target="_blank" rel="external nofollow noopener noreferrer">https://xz.aliyun.com/t/70<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><strong>其他链接资源：</strong>
+<a href="https://www.freebuf.com/articles/network/76021.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.freebuf.com/articles/network/76021.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.cnblogs.com/wuyuan2011woaini/p/5800062.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/wuyuan2011woaini/p/5800062.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.cnblogs.com/micr067/p/12519779.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/micr067/p/12519779.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://yq.aliyun.com/articles/480125/"target="_blank" rel="external nofollow noopener noreferrer">https://yq.aliyun.com/articles/480125/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>      kali下的DDos测试工具</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ddos%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/DDoS%e5%85%a5%e9%97%a8%e5%ad%a6%e4%b9%a0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/ddos/' class="post-tag">DDos</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="post-nav-item" rel="prev" title="内网第二章-内网基础信息搜集"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网第二章-内网基础信息搜集</a>
+      <a href="/python%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%85%A8%E5%B1%80%E9%94%81-gil/" class="post-nav-item" rel="next" title="python进程之间全局锁(GIL)">python进程之间全局锁(GIL)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

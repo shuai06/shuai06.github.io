@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>IO流 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/io%E6%B5%81/</link>
+    <description>IO流 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 30 Jan 2021 18:23:54 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/io%E6%B5%81/" rel="self" type="application/rss+xml" /><item>
+  <title>Java学习之IO流</title>
+  <link>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8Bio%E6%B5%81/</link>
+  <pubDate>Sat, 30 Jan 2021 18:23:54 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/java%E5%AD%A6%E4%B9%A0%E4%B9%8Bio%E6%B5%81/</guid>
+  <description><![CDATA[File类的使用 java.io.File类:文件和文件目录路径的抽象表示形式，与平台无关 File能新建、删除、重命名文件和目录，但 File不]]></description>
+</item>
+</channel>
+</rss>

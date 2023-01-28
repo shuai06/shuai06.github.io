@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>隧道技术 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/</link>
+    <description>隧道技术 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 May 2020 21:47:03 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" rel="self" type="application/rss+xml" /><item>
+  <title>内网第三章-隐藏隧道通信技术</title>
+  <link>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</link>
+  <pubDate>Sat, 16 May 2020 21:47:03 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/</guid>
+  <description><![CDATA[内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2]]></description>
+</item>
+</channel>
+</rss>

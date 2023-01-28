@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Linux - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/linux/</link>
+    <description>Linux - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Dec 2020 18:00:08 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/linux/" rel="self" type="application/rss+xml" /><item>
+  <title>使用sz与rz命令在Xshell上下载和上传文件</title>
+  <link>https://geoer.cn/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</link>
+  <pubDate>Fri, 04 Dec 2020 18:00:08 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</guid>
+  <description><![CDATA[概述 安装 1 sudo apt-get install lrzsz 常见参数 1 2 3 4 参数 参数说明 -a 以文本方式传输（ascii） -b 以二进制方式传输（binary） -e 对控制字符转义（escape]]></description>
+</item>
+<item>
+  <title>ubuntu server-引导过程</title>
+  <link>https://geoer.cn/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/</link>
+  <pubDate>Thu, 30 Jul 2020 22:38:20 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B/</guid>
+  <description><![CDATA[BIOS/UEFI 打开黑箱看看里面 操作系统是如何启动的 三个彼此独立但相互关联的过程 1.Bios/UEFI自检过程（POST） 1 2 3 4 - 加电自检 - 硬件识别与检]]></description>
+</item>
+<item>
+  <title>Linux安全加固(初级)</title>
+  <link>https://geoer.cn/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/</link>
+  <pubDate>Mon, 11 May 2020 17:54:47 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/</guid>
+  <description><![CDATA[Linux安全加固 一、安装和升级 使用custom自定义安装,不必要的软件包尽量不装,如有必要给lilo/grub引导器加入口令限制, 安装完成]]></description>
+</item>
+<item>
+  <title>ubuntu server-虚拟化</title>
+  <link>https://geoer.cn/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/</link>
+  <pubDate>Sun, 10 May 2020 22:18:38 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/</guid>
+  <description><![CDATA[云计算 资源就像水龙头里的水，按需索取 信息时代计算资源是最主要的生产力 主机时代、网络时代 集中和分散、三十年河东三十年河西 量子计算可能颠覆一切 计]]></description>
+</item>
+<item>
+  <title>ubuntu server-版本控制</title>
+  <link>https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
+  <pubDate>Sun, 10 May 2020 15:14:50 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</guid>
+  <description><![CDATA[107-版本控制 概述 简介 version control system（版本控制系统） revision control system (修订控制系统) 开发工具，但不仅限于源码文件 记录文件的每次变更 随时可以回到历史]]></description>
+</item>
+<item>
+  <title>ubuntu server-LDAP</title>
+  <link>https://geoer.cn/ubuntu-server-ldap/</link>
+  <pubDate>Thu, 07 May 2020 16:23:59 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-ldap/</guid>
+  <description><![CDATA[LDAP 看书前先看目录 理解 不同于文件系统的目录(D/d) -&gt; 首字母大写是目录服务，首字母小写的文件系统目录 目录服务是企业网络的核心基础结构 1 2 3 4 -]]></description>
+</item>
+<item>
+  <title>ubuntu server- ubuntu-server-数据库管理服务</title>
+  <link>https://geoer.cn/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</link>
+  <pubDate>Fri, 01 May 2020 13:10:10 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/</guid>
+  <description><![CDATA[ubuntu-server-数据库管理服务 数据就是生产力 数据就是应用的核心 按照结构组织，存储和管理数据的仓库 Oracle, DB2, MySQL, MSSQL, PostgreSQL, Infomix, MongoDB 数据库管理系统(D]]></description>
+</item>
+<item>
+  <title>ubuntu server-LAMP</title>
+  <link>https://geoer.cn/ubuntu-server-lamp/</link>
+  <pubDate>Fri, 01 May 2020 13:09:37 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-lamp/</guid>
+  <description><![CDATA[LAMP环境安装WordPress WEB应用程序基础套件 操作系统( Linux ) WEB服务器( Apache、Nginx ) 数据库( MySQL、Maria]]></description>
+</item>
+<item>
+  <title>ubuntu server-Web服务</title>
+  <link>https://geoer.cn/ubuntu-server-web%E6%9C%8D%E5%8A%A1/</link>
+  <pubDate>Tue, 28 Apr 2020 18:11:19 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-web%E6%9C%8D%E5%8A%A1/</guid>
+  <description><![CDATA[WWW介绍 www 万维网 静态网站：所有人看到的内容都一样 动态应用程序： 数据库、中间件 每个用户看到的内容不同 根据用户输入返回不同结果 访问方式 FQDN]]></description>
+</item>
+<item>
+  <title>Linux日志异地备份</title>
+  <link>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</link>
+  <pubDate>Thu, 16 Apr 2020 15:49:02 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/linux%E6%97%A5%E5%BF%97%E5%BC%82%E5%9C%B0%E5%A4%87%E4%BB%BD/</guid>
+  <description><![CDATA[日志的异地备份 日志服务器的建立尤其重要 这里使用Centos的登录日志做实验 tail -f /var/log/secure 实时查看日志变化 echo &quot; &quot; &gt; var/log/secure 最简单的清理日志 常见日志文件 1 2 3]]></description>
+</item>
+</channel>
+</rss>

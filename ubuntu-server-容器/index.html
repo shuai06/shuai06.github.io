@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-容器 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="容器 有了新武器，并不表示旧武器没有用 题外话 容器 SDN -&gt; 软件定义网络 容器 -&gt; 基于操作系统内核，共享宿主机的CPU -&gt; 操作系统的进程之间进行隔离 -&gt; 安全性" /><meta name="keywords" content='ubuntu, 容器, Docker, LXD' /><meta itemprop="name" content="ubuntu server-容器">
+<meta itemprop="description" content="容器 有了新武器，并不表示旧武器没有用 题外话 容器 SDN -&gt; 软件定义网络 容器 -&gt; 基于操作系统内核，共享宿主机的CPU -&gt; 操作系统的进程之间进行隔离 -&gt; 安全性"><meta itemprop="datePublished" content="2020-05-11T16:33:51+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="4341"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="ubuntu,容器,Docker,LXD," /><meta property="og:title" content="ubuntu server-容器" />
+<meta property="og:description" content="容器 有了新武器，并不表示旧武器没有用 题外话 容器 SDN -&gt; 软件定义网络 容器 -&gt; 基于操作系统内核，共享宿主机的CPU -&gt; 操作系统的进程之间进行隔离 -&gt; 安全性" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-11T16:33:51+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-容器"/>
+<meta name="twitter:description" content="容器 有了新武器，并不表示旧武器没有用 题外话 容器 SDN -&gt; 软件定义网络 容器 -&gt; 基于操作系统内核，共享宿主机的CPU -&gt; 操作系统的进程之间进行隔离 -&gt; 安全性"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E5%AE%B9%E5%99%A8/" /><link rel="prev" href="https://geoer.cn/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/" /><link rel="next" href="https://geoer.cn/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-容器",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E5%AE%B9%E5%99%A8\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "ubuntu, 容器, Docker, LXD","wordcount":  4341 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E5%AE%B9%E5%99%A8\/","datePublished": "2020-05-11T16:33:51+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-容器</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-11&#32;16:33:51><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-11">2020-05-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 4341 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 9 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-容器">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#常见的容器技术">常见的容器技术</a></li>
+    <li><a href="#docker">Docker</a>
+      <ul>
+        <li><a href="#安装docker引擎两种方法">安装Docker引擎(两种方法)</a></li>
+        <li><a href="#基本命令">基本命令</a></li>
+        <li><a href="#docker基本概念">Docker基本概念</a></li>
+        <li><a href="#docker容器"><strong>Docker容器</strong></a></li>
+        <li><a href="#docker使用">Docker使用</a></li>
+        <li><a href="#dockerfiles">Dockerfiles</a></li>
+      </ul>
+    </li>
+    <li><a href="#docker-compose">docker-compose</a>
+      <ul>
+        <li><a href="#官方docker-composeyml">官方docker-compose.yml</a></li>
+        <li><a href="#docker-compose管理mysql和apache容器"><strong>Docker-compose管理Mysql和apache容器</strong></a></li>
+        <li><a href="#docker-compose配置dockerfile使用"><strong>docker-compose配置Dockerfile使用</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#lxd">LXD</a></li>
+    <li><a href="#k8s">k8s</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="容器">容器</h1>
+<blockquote>
+<p>有了新武器，并不表示旧武器没有用</p>
+</blockquote>
+<p><strong>题外话</strong></p>
+<img src="http://image.xpshuai.cn/20200510223525320_174889579.png" />
+<p><strong>容器</strong></p>
+<img src="http://image.xpshuai.cn/20200510225525049_1760370298.png" />
+<p>SDN -&gt; 软件定义网络</p>
+<p>容器 -&gt; 基于操作系统内核，共享宿主机的CPU
+-&gt; 操作系统的进程之间进行隔离
+-&gt; 安全性比虚拟机差一些
+-&gt; 可移植性</p>
+<p><strong>什么是容器</strong>
+有个感性的认识即可，现在还没有明确的统一定义，根据不同产品具体理解</p>
+<img src="http://image.xpshuai.cn/20200510230949837_2077847896.png" />
+<img src="http://image.xpshuai.cn/20200510231620776_117992917.png" />
+<img src="http://image.xpshuai.cn/20200511102236109_1751941655.png" />
+<img src="http://image.xpshuai.cn/20200511103008352_761812684.png" />
+<h2 id="常见的容器技术">常见的容器技术</h2>
+<p><strong>Docker vs LXD/LXC</strong></p>
+<img src="http://image.xpshuai.cn/20200511103208058_29787066.png" />
+<img src="http://image.xpshuai.cn/20200511103734465_306114851.png" />
+<p>不同容器的程序的pid可以相同</p>
+<img src="http://image.xpshuai.cn/20200511104628559_66294885.png" />
+<p>越狱</p>
+<h2 id="docker">Docker</h2>
+<blockquote>
+<p>应用程序方面的容器</p>
+</blockquote>
+<img src="http://image.xpshuai.cn/20200511104948809_1439233734.png" />
+<p>Docker引擎只可以直接运行在Linux系统上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">利用<span class="s1">&#39;Boot2Docker&#39;</span>等适配器帮助，使用轻量级<span class="s1">&#39;Linux vm&#39;</span>可在mac和微软系统上运行
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装docker引擎两种方法">安装Docker引擎(两种方法)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">uname -m    <span class="c1"># 仅64位系统保障(但32位系统可用)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 第一种办法：直接从ubuntu软件包安装(比较旧), 已经有一个老版本ubuntu包名为docker，</span>
+</span></span><span class="line"><span class="cl">sudo apt install docker.io
+</span></span><span class="line"><span class="cl">systemctl status docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将当前用户加入docker组(不用sudo了)</span>
+</span></span><span class="line"><span class="cl">sudo usermod -aG docker <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 第二种办法：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装依赖包</span>
+</span></span><span class="line"><span class="cl">udo apt-get install apt-transport-https ca-certificates  curl software-properties-common
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加docker官方GPG key(防止伪造,供应链攻击)</span>
+</span></span><span class="line"><span class="cl">url -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加docker官方库更新源</span>
+</span></span><span class="line"><span class="cl">sudo add-apt-repository  <span class="s2">&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu  </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装</span>
+</span></span><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt-get install docker-ce  <span class="c1"># 社区版本</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端工具: <code>docker</code></p>
+<h3 id="基本命令">基本命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看信息</span>
+</span></span><span class="line"><span class="cl">docker version
+</span></span><span class="line"><span class="cl">docker info   <span class="c1"># 查看运行了几个容器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Registry: 应用程序的仓库(基本linux映像，)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 搜索镜像(有官方有个人的: 用户名/容器名) --&gt; 建议下载官方的image然后自己打造容器</span>
+</span></span><span class="line"><span class="cl">docker search apache2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载镜像</span>
+</span></span><span class="line"><span class="cl">docker pull hello-world
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载时候指定-a（会下载所有版本）</span>
+</span></span><span class="line"><span class="cl">docker pull hello-world -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看镜像</span>
+</span></span><span class="line"><span class="cl">docker images 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行容器</span>
+</span></span><span class="line"><span class="cl">docker run busybox <span class="nb">echo</span> <span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除image</span>
+</span></span><span class="line"><span class="cl">docker rmi busybox:1-musl
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker基本概念">Docker基本概念</h3>
+<p><strong>Docker 映像</strong></p>
+<ul>
+<li>组成应用程序运行所需的全部文件合集</li>
+<li>只读/读写 <code>分层</code>结构(每次对映像的修改都通过commit形成一个新层)</li>
+<li><code>容器层</code> 是基于映像<code>可读写</code>的顶层</li>
+<li><code>映像层</code>所有的Docker映像都源自于一个<code>基础镜像</code>(Debian/Ubuntu)  &ndash;&gt; 只读，不可修改i</li>
+<li>其他的功能模块附加于基础影像形成最终程序</li>
+</ul>
+<img src="http://image.xpshuai.cn/20200511111809612_1403827030.png" />
+<ul>
+<li>
+<p>Docker images 是构建Docker container的基础</p>
+</li>
+<li>
+<p>Docker 层/容器层</p>
+<img src="http://image.xpshuai.cn/20200511112309748_1071300544.png" />
+</li>
+</ul>
+<p>每个映像有唯一的ID(SHA256/  取前6字节来显示)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker images
+</span></span><span class="line"><span class="cl"><span class="c1"># 可看到唯一的image id</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># TAG:  默认是最新版本(latest)   </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker images --no-trunc
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到完整的SHA256完整的字节</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker容器"><strong>Docker容器</strong></h3>
+<p>images是只读的，在基础上创建并运行容器(可读写)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看运行的容器（每个容器都有唯一的id）</span>
+</span></span><span class="line"><span class="cl">docker ps    <span class="c1"># 不显示关闭的容器</span>
+</span></span><span class="line"><span class="cl">docker ps -a  <span class="c1"># 显示所有状态的容器</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#显示字段： 有容器id, 基于image的名字，command, 容器创建时间， status, ports, names(随机生成的,可以改)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基于image运行容器(每次运行一次都产生一个新的容器!)</span>
+</span></span><span class="line"><span class="cl">docker run busybox <span class="nb">echo</span> <span class="s2">&#34;hello&#34;</span>
+</span></span><span class="line"><span class="cl">docker run busybox:1-uclibc <span class="nb">echo</span> <span class="s2">&#34;hello&#34;</span>  <span class="c1"># 指定标签来用哪个(如果本机没有，会自动pull)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">docker run -i -t busybox:ubuntu-16.04 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除容器</span>
+</span></span><span class="line"><span class="cl">docker stop d751d48a6d0a  <span class="c1"># 如果运行了先stop掉</span>
+</span></span><span class="line"><span class="cl">docker rm d751d48a6d0a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>pull的时候，默认会去一个人url地址寻找镜像</p>
+<p>Docker Resigtry相当于目录，Repository相当于具体文件位置</p>
+<p>可以自建映像库</p>
+<img src="http://image.xpshuai.cn/20200511143726490_328609255.png" />
+<h3 id="docker使用">Docker使用</h3>
+<p>基本命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 运行镜像后交互登录入容器（这里基于ubuntu）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --name  修改容器的默认名字，指定</span>
+</span></span><span class="line"><span class="cl">docker run --name xxx01 -it ubuntu /bin/bash
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> /   ctrl + D
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出容器终端，但退出不关闭容器</span>
+</span></span><span class="line"><span class="cl">ctrl + P , ctrl + Q   <span class="c1"># 组合</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动容器</span>
+</span></span><span class="line"><span class="cl">docker start id_id_id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 继续进入正在运行的容器</span>
+</span></span><span class="line"><span class="cl">docker attach xxx01
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重命名容器</span>
+</span></span><span class="line"><span class="cl">docker rename 453dsdaojp test01
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 容器与镜像对比变化</span>
+</span></span><span class="line"><span class="cl">docker diff 453dsdaojp test02
+</span></span><span class="line"><span class="cl">- C:修改了
+</span></span><span class="line"><span class="cl">- A:增加了
+</span></span><span class="line"><span class="cl">- D:删除了
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 日常管理命令</span>
+</span></span><span class="line"><span class="cl">docker start 453dsdaojp
+</span></span><span class="line"><span class="cl">docker restart 453dsdaojp
+</span></span><span class="line"><span class="cl">docker stop 453dsdaojp
+</span></span><span class="line"><span class="cl">docker rename 453dsdaojp
+</span></span><span class="line"><span class="cl">docker pause 453dsdaojp    <span class="c1"># 挂起</span>
+</span></span><span class="line"><span class="cl">docker unpause 453dsdaojp  <span class="c1"># 恢复</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建映像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -it ubuntu /bin/bash    
+</span></span><span class="line"><span class="cl">....    <span class="c1"># 进入容器进行一些了修改</span>
+</span></span><span class="line"><span class="cl">ctrl + p, ctrl + q
+</span></span><span class="line"><span class="cl">docker commit test01 xps/test:0.1  <span class="c1"># 创建了新的image</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后可以上传到docker Resigtry</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 后面就跟别的image一样使用可以创建容器等</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>后台运行容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 不进入交互方式的shell</span>
+</span></span><span class="line"><span class="cl">docker run -d ubuntu /bin/bash -c <span class="s2">&#34;while true; sleep 3; do date&#34;</span><span class="p">;</span><span class="k">done</span>  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看日志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker logs 453dsdaojp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>实例</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置一个apache，并可以外部访问</span>
+</span></span><span class="line"><span class="cl">docker run -dit -p 8080:80 ubuntu /bin/bash  <span class="c1"># 端口映射(外部:容器端口)</span>
+</span></span><span class="line"><span class="cl">docker attach doasdkop463fd    <span class="c1"># 进入容器</span>
+</span></span><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt install apache2  <span class="c1"># 正常操作</span>
+</span></span><span class="line"><span class="cl">/etc/init.d/apache2 start
+</span></span><span class="line"><span class="cl">ctrl+p, ctrl+Q
+</span></span><span class="line"><span class="cl"><span class="c1"># 宿主机浏览器访问 http://宿主机ip:8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 服务自动启动(或者手动把下面内容输入进去)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;/etc/init.d/apache2 start&#39;</span> &gt;&gt; /etc/bash/rc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 基于配置好的容器创建新的镜像</span>
+</span></span><span class="line"><span class="cl">docker commit ubuntu xps/apache1:0.1  <span class="c1"># 创建了新的image</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 打包好之后上传到hub，就可以正常下载和使用image了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dockerfiles">Dockerfiles</h3>
+<blockquote>
+<p>前面的下载，制作，上传，再下载的方法也挺麻烦的</p>
+</blockquote>
+<p>使用Dockerfile自动创建映像（Dockerfile文本文件，包含创建容器的指令）</p>
+<p>这里还是以apacha2为例
+1.先写配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vim Dockerfile</span>
+</span></span><span class="line"><span class="cl">FROM ubuntu     <span class="c1"># 从官方下载镜像</span>
+</span></span><span class="line"><span class="cl">MAINTAINER xps &lt;xps@admin.com&gt;
+</span></span><span class="line"><span class="cl">RUN apt update<span class="p">;</span> apt dist-upgrade -y
+</span></span><span class="line"><span class="cl">RUN apt install -y apache2 vim
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s1">&#39;/etc/init.d/apache2 start&#39;</span> &gt;&gt; /etc/bash/rc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.基于dockerfile来创建容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 标签自己定义即可, 最后的点(.) 表示当前目录下的dockerfile</span>
+</span></span><span class="line"><span class="cl">docker build -t test/apache-server:1.0 .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后run创建启动容器</span>
+</span></span><span class="line"><span class="cl">docker run -dit -p 8080:80 test/apache-server:1.0 /bin/bash
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>PS: 更深入的Dockerfile知识再另外学</p>
+</blockquote>
+<h2 id="docker-compose">docker-compose</h2>
+<p>**作用：**之前运行一个镜像，需要添加大量的参数，可以通过Docker-Compose编写这些参数，Docker-Compose可以帮助我们批量的管理容器，只需要通过一个docker-compose.yml文件去维护。</p>
+<p>下载：https://github.com/docker/compose/releases</p>
+<p><a href="https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-darwin-aarch64"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-darwin-aarch64<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<blockquote>
+<p>参考文章：https://blog.csdn.net/chenfeidi1/article/details/80866841?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-1-80866841-blog-122964874.pc_relevant_without_ctrlist_v3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7Edefault-1-80866841-blog-122964874.pc_relevant_without_ctrlist_v3&amp;utm_relevant_index=2</p>
+<p><a href="https://www.jb51.net/article/237876.htm"target="_blank" rel="external nofollow noopener noreferrer">https://www.jb51.net/article/237876.htm<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<h3 id="官方docker-composeyml">官方docker-compose.yml</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">version: <span class="s2">&#34;3&#34;</span>
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  redis:
+</span></span><span class="line"><span class="cl">    image: redis:alpine
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - <span class="s2">&#34;6379&#34;</span>
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - frontend
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      replicas: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">      update_config:
+</span></span><span class="line"><span class="cl">        parallelism: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">        delay: 10s
+</span></span><span class="line"><span class="cl">      restart_policy:
+</span></span><span class="line"><span class="cl">        condition: on-failure
+</span></span><span class="line"><span class="cl">  db:
+</span></span><span class="line"><span class="cl">    image: postgres:9.4
+</span></span><span class="line"><span class="cl">    volumes:
+</span></span><span class="line"><span class="cl">      - db-data:/var/lib/postgresql/data
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - backend
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      placement:
+</span></span><span class="line"><span class="cl">        constraints: <span class="o">[</span>node.role <span class="o">==</span> manager<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  vote:
+</span></span><span class="line"><span class="cl">    image: dockersamples/examplevotingapp_vote:before
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - 5000:80
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - frontend
+</span></span><span class="line"><span class="cl">    depends_on:
+</span></span><span class="line"><span class="cl">      - redis
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      replicas: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">      update_config:
+</span></span><span class="line"><span class="cl">        parallelism: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">      restart_policy:
+</span></span><span class="line"><span class="cl">        condition: on-failure
+</span></span><span class="line"><span class="cl">  result:
+</span></span><span class="line"><span class="cl">    image: dockersamples/examplevotingapp_result:before
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - 5001:80
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - backend
+</span></span><span class="line"><span class="cl">    depends_on:
+</span></span><span class="line"><span class="cl">      - db
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      replicas: <span class="m">1</span>
+</span></span><span class="line"><span class="cl">      update_config:
+</span></span><span class="line"><span class="cl">        parallelism: <span class="m">2</span>
+</span></span><span class="line"><span class="cl">        delay: 10s
+</span></span><span class="line"><span class="cl">      restart_policy:
+</span></span><span class="line"><span class="cl">        condition: on-failure
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  worker:
+</span></span><span class="line"><span class="cl">    image: dockersamples/examplevotingapp_worker
+</span></span><span class="line"><span class="cl">    networks:
+</span></span><span class="line"><span class="cl">      - frontend
+</span></span><span class="line"><span class="cl">      - backend
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      mode: replicated
+</span></span><span class="line"><span class="cl">      replicas: <span class="m">1</span>
+</span></span><span class="line"><span class="cl">      labels: <span class="o">[</span><span class="nv">APP</span><span class="o">=</span>VOTING<span class="o">]</span>
+</span></span><span class="line"><span class="cl">      restart_policy:
+</span></span><span class="line"><span class="cl">        condition: on-failure
+</span></span><span class="line"><span class="cl">        delay: 10s
+</span></span><span class="line"><span class="cl">        max_attempts: <span class="m">3</span>
+</span></span><span class="line"><span class="cl">        window: 120s
+</span></span><span class="line"><span class="cl">      placement:
+</span></span><span class="line"><span class="cl">        constraints: <span class="o">[</span>node.role <span class="o">==</span> manager<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  visualizer:
+</span></span><span class="line"><span class="cl">    image: dockersamples/visualizer:stable
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - <span class="s2">&#34;8080:8080&#34;</span>
+</span></span><span class="line"><span class="cl">    stop_grace_period: 1m30s
+</span></span><span class="line"><span class="cl">    volumes:
+</span></span><span class="line"><span class="cl">      - <span class="s2">&#34;/var/run/docker.sock:/var/run/docker.sock&#34;</span>
+</span></span><span class="line"><span class="cl">    deploy:
+</span></span><span class="line"><span class="cl">      placement:
+</span></span><span class="line"><span class="cl">        constraints: <span class="o">[</span>node.role <span class="o">==</span> manager<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">networks:
+</span></span><span class="line"><span class="cl">  frontend:
+</span></span><span class="line"><span class="cl">  backend:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">volumes:
+</span></span><span class="line"><span class="cl">  db-data:
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-compose管理mysql和apache容器"><strong>Docker-compose管理Mysql和apache容器</strong></h3>
+<p>yml文件以key：value方式来指定配置信息，多个配置信息以换行+缩进的方式来区分，在docker-compose.yml文件中，不要使用制表符就是tab键，规则用两个空格缩进</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.1&#39;</span><span class="w">   </span><span class="c"># 指定了 compose file 的版本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span><span class="w">                                                      </span><span class="c">#服务名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always                                          </span><span class="w"> </span><span class="c">#代表只要docker启动，那么这个容器就跟着一起启动</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">daocloud.io/library/mysql:5.7.4                   </span><span class="w"> </span><span class="c">#指定镜像路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">mysql                                    </span><span class="w"> </span><span class="c">#指定容器名称</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">3306</span><span class="p">:</span><span class="m">3306</span><span class="w">                                             </span><span class="c">#指定端口的映射</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="m">123456</span><span class="w">                             </span><span class="c">#指定MySQL账号root的密码</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="l">Asia/shanghai                                      </span><span class="w"> </span><span class="c">#指定时区</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/opt/docker_mysql_tomcat/mysql:/var/lib/mysql               </span><span class="w"> </span><span class="c">#指定映射数据卷</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">httpd</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">php:7.2-apache</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">apache</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">80</span><span class="p">:</span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">TZ</span><span class="p">:</span><span class="w"> </span><span class="l">Asia/shanghai</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/opt/docker_mysql_tomcat/www:/var/www/html</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/opt/docker_mysql_tomcat/logs:/var/log/apache2</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>操作命令：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker-compose up -d                    基于docker-compose.yml启动管理容器
+</span></span><span class="line"><span class="cl">docker-compose down                     关闭并删除容器
+</span></span><span class="line"><span class="cl">docker-compose start<span class="p">|</span>stop<span class="p">|</span>restart       开启<span class="p">|</span>关闭<span class="p">|</span>重启已经存在的由docker-compose维护的容器
+</span></span><span class="line"><span class="cl">docker-compose ps                       查看由docker-compose管理的容器
+</span></span><span class="line"><span class="cl">docker-compose logs -f                  查看日志
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="docker-compose配置dockerfile使用"><strong>docker-compose配置Dockerfile使用</strong></h3>
+<p>使用docker-compose.yml文件以及Dockerfile文件在生成自定义镜像的同时启动当前镜像，并且由docker-compose去管理器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">version: <span class="s1">&#39;3.1&#39;</span>
+</span></span><span class="line"><span class="cl">services:
+</span></span><span class="line"><span class="cl">  ssm:
+</span></span><span class="line"><span class="cl">    restart: always
+</span></span><span class="line"><span class="cl">    build:	<span class="c1"># build 指定构建镜像上下文、Dockerfile 文件和 ARGS 等。</span>
+</span></span><span class="line"><span class="cl">      context: ../
+</span></span><span class="line"><span class="cl">      dockerfile: Dockerfile
+</span></span><span class="line"><span class="cl">    image: ssm:1.0.1
+</span></span><span class="line"><span class="cl">    container_name: ssm
+</span></span><span class="line"><span class="cl">    ports:
+</span></span><span class="line"><span class="cl">      - 80:80
+</span></span><span class="line"><span class="cl">    environment:
+</span></span><span class="line"><span class="cl">      TZ: Asia/Shanghai
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>创建Dcokerfile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">from php:7.2-apache
+</span></span><span class="line"><span class="cl">copy wordpress /var/www/html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/2022-05-07-073540.png"
+    data-srcset="http://image.xpshuai.cn/2022-05-07-073540.png, http://image.xpshuai.cn/2022-05-07-073540.png 1.5x, http://image.xpshuai.cn/2022-05-07-073540.png 2x"
+    data-sizes="auto"
+    alt="image-20220507153540102"
+    title="image-20220507153540102"/></p>
+<p>依赖docker-compose.yml启动容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker-compose up -d
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/2022-05-07-073612.png"
+    data-srcset="http://image.xpshuai.cn/2022-05-07-073612.png, http://image.xpshuai.cn/2022-05-07-073612.png 1.5x, http://image.xpshuai.cn/2022-05-07-073612.png 2x"
+    data-sizes="auto"
+    alt="image-20220507153612265"
+    title="image-20220507153612265"/></p>
+<h2 id="lxd">LXD</h2>
+<p>特点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- lxd 新部署容器过程比Docker更容易
+</span></span><span class="line"><span class="cl">- 退出容器时不必以特定的方式退出
+</span></span><span class="line"><span class="cl">- lxd 容器中没有层的概念
+</span></span><span class="line"><span class="cl">- Docker中的层可以使部署更快(没有清理也可能感觉混乱)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># snap适用所有发行版本</span>
+</span></span><span class="line"><span class="cl">sudo snap install lxd    <span class="c1"># sudo apt install lxd    # ubuntu官方包apt一般中不会是最新的软件包</span>
+</span></span><span class="line"><span class="cl">sudo usermod -aG lxd <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>    <span class="c1"># 当前用户加入lxd组，就具有管理权限了</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启主机</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>初始化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxd init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 回答问题(默认即可)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建容器</span>
+</span></span><span class="line"><span class="cl">lxc launch ubuntu:18.04 C01 <span class="c1"># C01是容器名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 自动从远程服务器下载映像并创建、运行容器(从国外下载，速度稍微慢)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># - lxd命令针对lxd管理层</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># - 容器管理命令仍然使用lxc</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常用管理命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc list  <span class="c1"># 列出所有的容器</span>
+</span></span><span class="line"><span class="cl">lxc start c_name  <span class="c1"># 启动容器</span>
+</span></span><span class="line"><span class="cl">lxc stop c_name   <span class="c1"># 停止容器</span>
+</span></span><span class="line"><span class="cl">lxc delete c_name <span class="c1"># 删除容器</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lxc image list    <span class="c1"># 查看镜像</span>
+</span></span><span class="line"><span class="cl">lxc image delete  <span class="c1"># 删除镜像</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>交互登录容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 执行某个容器的什么命令</span>
+</span></span><span class="line"><span class="cl">lxc <span class="nb">exec</span> C01 bash    <span class="c1"># root帐号登录</span>
+</span></span><span class="line"><span class="cl">lxc <span class="nb">exec</span> C01  -- sudo --login --user ubuntu    <span class="c1"># ubuntu镜像包含一个默认账户ubuntu</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在本地终端直接执行容器内部的命令</span>
+</span></span><span class="line"><span class="cl">lxc <span class="nb">exec</span> C01 -- apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 退出容器(容器依然是run的状态)</span>
+</span></span><span class="line"><span class="cl">ctrl+D / <span class="nb">exit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>随宿主机的启动, 自动启动某个容器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc config <span class="nb">set</span> C01 boot.autostart <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>远程映像存储服务器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 列出远程映像存储服务器</span>
+</span></span><span class="line"><span class="cl">lxc remote list    <span class="c1"># 默认三个</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- images         <span class="c1"># 存储其他Linux发行版镜像</span>
+</span></span><span class="line"><span class="cl">- ubuntu         <span class="c1"># ubuntu自己正式发布的系统镜像</span>
+</span></span><span class="line"><span class="cl">- ubuntu-daily   <span class="c1"># ubuntu自己的非正式的系统镜像(每天更新的)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从远程复制映像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc launch images:debian/stretch test01
+</span></span><span class="line"><span class="cl"><span class="c1"># 只下载映像到本地，不创建容器</span>
+</span></span><span class="line"><span class="cl">lxc image copy ubuntu-daily:18.10 local: --alias u1910
+</span></span><span class="line"><span class="cl">lxc image list    <span class="c1"># 查看本地的映像</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从本地映像来创建容器</span>
+</span></span><span class="line"><span class="cl">lxc launch u1910 c03
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看本地容器</span>
+</span></span><span class="line"><span class="cl">lxc list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对容器进行上传下载文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接在宿主机器上执行</span>
+</span></span><span class="line"><span class="cl">lxc file pull c01/etc/hosts . <span class="c1"># 把文件下载到当前目录</span>
+</span></span><span class="line"><span class="cl">lxc file push hosts c01/tmp/  <span class="c1"># 上传文件到容器中路径</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 当然，也可以进入交互shell复制  lxc exec C01 bash</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>映像自动更新间隔(小时)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 每隔24小时自动更新映像</span>
+</span></span><span class="line"><span class="cl">lxc config <span class="nb">set</span> images.auto_update_interval <span class="m">24</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>自动清除未使用的映像(天数)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc config ser images.remote_cache_expiry <span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lxc config show
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装apache2</span>
+</span></span><span class="line"><span class="cl">lxc <span class="nb">exec</span> c01 bash
+</span></span><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt install apache2
+</span></span><span class="line"><span class="cl">ip addr show
+</span></span><span class="line"><span class="cl">curl 1.1.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>外部网络对容器内部访问</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 防火墙规则路由流量
+</span></span><span class="line"><span class="cl">- 创建配置我呢见DHCP 获取物理网络地址<span class="o">(</span>类似VM<span class="o">)</span>
+</span></span><span class="line"><span class="cl">- 宿主机创建桥接网卡 br0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="k8s">k8s</h2>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E5%AE%B9%E5%99%A8/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e5%ae%b9%e5%99%a8.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/%E5%AE%B9%E5%99%A8/' class="post-tag">容器</a><a href='/tags/docker/' class="post-tag">docker</a><a href='/tags/lxd/' class="post-tag">LXD</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ubuntu-server-%E8%99%9A%E6%8B%9F%E5%8C%96/" class="post-nav-item" rel="prev" title="ubuntu server-虚拟化"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ubuntu server-虚拟化</a>
+      <a href="/linux%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA-%E5%88%9D%E7%BA%A7/" class="post-nav-item" rel="next" title="Linux安全加固(初级)">Linux安全加固(初级)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

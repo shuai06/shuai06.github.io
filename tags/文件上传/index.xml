@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>文件上传 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</link>
+    <description>文件上传 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 17 Jan 2022 21:13:46 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="self" type="application/rss+xml" /><item>
+  <title>文件上传漏洞</title>
+  <link>https://geoer.cn/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Mon, 17 Jan 2022 21:13:46 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[简介 上传漏洞顾名思义，就是攻击者上传了一个可执行文件如木马，病毒，恶意脚本，WebShell等到服务器执行，并最终获得网站控制权限的高危漏洞]]></description>
+</item>
+<item>
+  <title>泛微OA weaver.common.Ctrl 任意文件上传漏洞</title>
+  <link>https://geoer.cn/%E6%B3%9B%E5%BE%AEoa-weaver-common-ctrl-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Thu, 20 May 2021 14:48:04 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E6%B3%9B%E5%BE%AEoa-weaver-common-ctrl-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[声明 由于传播、利用此文所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，文章作者不为此承担任何责任。d 漏洞描述 泛微OA weaver.common.Ctrl]]></description>
+</item>
+<item>
+  <title>upload-labs通关记录</title>
+  <link>https://geoer.cn/upload-labs%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/</link>
+  <pubDate>Mon, 17 Feb 2020 18:08:02 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/upload-labs%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/</guid>
+  <description><![CDATA[本文主要记录一下upload-labs最新21关卡的过程，作为自己的一个笔记。 靶场地址：https://github.com/c0ny1/u]]></description>
+</item>
+</channel>
+</rss>

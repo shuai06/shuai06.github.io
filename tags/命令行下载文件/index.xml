@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>命令行下载文件 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/</link>
+    <description>命令行下载文件 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 22 Sep 2020 20:50:27 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" rel="self" type="application/rss+xml" /><item>
+  <title>Windows命令行下载文件方法</title>
+  <link>https://geoer.cn/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/</link>
+  <pubDate>Tue, 22 Sep 2020 20:50:27 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/</guid>
+  <description><![CDATA[当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机一般有两种方式： 远程下载文件到本地，然后再执]]></description>
+</item>
+</channel>
+</rss>

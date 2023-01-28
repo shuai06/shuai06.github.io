@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>注册表 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/</link>
+    <description>注册表 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Jan 2021 14:32:08 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/" rel="self" type="application/rss+xml" /><item>
+  <title>一条命令修改windows注册表</title>
+  <link>https://geoer.cn/%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E4%BF%AE%E6%94%B9windows%E6%B3%A8%E5%86%8C%E8%A1%A8/</link>
+  <pubDate>Sun, 17 Jan 2021 14:32:08 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E4%BF%AE%E6%94%B9windows%E6%B3%A8%E5%86%8C%E8%A1%A8/</guid>
+  <description><![CDATA[在网上看到大佬们的文章，我也在此记录以下 这里以修改windows远程桌面端口3389为33333为例子。 修改注册表，命令如下： 1 REG ADD “HKE]]></description>
+</item>
+</channel>
+</rss>

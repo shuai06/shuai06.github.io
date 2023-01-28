@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>变量覆盖 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/</link>
+    <description>变量覆盖 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 18 Aug 2020 09:30:00 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/" rel="self" type="application/rss+xml" /><item>
+  <title>php变量覆盖</title>
+  <link>https://geoer.cn/php%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/</link>
+  <pubDate>Tue, 18 Aug 2020 09:30:00 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/php%E5%8F%98%E9%87%8F%E8%A6%86%E7%9B%96/</guid>
+  <description><![CDATA[可以用自定义的参数值替换原有变量值的情况称为变量覆盖漏洞 场景 $$使用不当 extract()函数使用不当 parse_str()函数使用不当 im]]></description>
+</item>
+</channel>
+</rss>

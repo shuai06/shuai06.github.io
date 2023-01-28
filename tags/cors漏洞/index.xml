@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>CORS漏洞 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/cors%E6%BC%8F%E6%B4%9E/</link>
+    <description>CORS漏洞 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 Jan 2022 21:10:57 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/cors%E6%BC%8F%E6%B4%9E/" rel="self" type="application/rss+xml" /><item>
+  <title>CORS漏洞检测和利用方式</title>
+  <link>https://geoer.cn/cors%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F/</link>
+  <pubDate>Wed, 12 Jan 2022 21:10:57 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/cors%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E5%92%8C%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F/</guid>
+  <description><![CDATA[简介 CORS全称Cross-Origin Resource Sharing, 跨域资源共享，是HTML5的一个新特性，已被所有浏览器支持，不同于古老的jsonp只能get请求]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>lrzsz - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/lrzsz/</link>
+    <description>lrzsz - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Dec 2020 18:00:08 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/lrzsz/" rel="self" type="application/rss+xml" /><item>
+  <title>使用sz与rz命令在Xshell上下载和上传文件</title>
+  <link>https://geoer.cn/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</link>
+  <pubDate>Fri, 04 Dec 2020 18:00:08 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E4%BD%BF%E7%94%A8sz%E4%B8%8Erz%E5%91%BD%E4%BB%A4%E5%9C%A8xshell%E4%B8%8A%E4%B8%8B%E8%BD%BD%E5%92%8C%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/</guid>
+  <description><![CDATA[概述 安装 1 sudo apt-get install lrzsz 常见参数 1 2 3 4 参数 参数说明 -a 以文本方式传输（ascii） -b 以二进制方式传输（binary） -e 对控制字符转义（escape]]></description>
+</item>
+</channel>
+</rss>

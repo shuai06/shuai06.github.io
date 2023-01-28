@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-账号管理 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="​ 用户账号管理基础 用户账号管理 为新员工创建账号 修改账号密码策略 禁用休假员工账号 删除离职员工账号(一般先禁用, 如果要删除, 注意提前把重要文件备" /><meta name="keywords" content='Linux, ubuntu, 账号管理' /><meta itemprop="name" content="ubuntu server-账号管理">
+<meta itemprop="description" content="​ 用户账号管理基础 用户账号管理 为新员工创建账号 修改账号密码策略 禁用休假员工账号 删除离职员工账号(一般先禁用, 如果要删除, 注意提前把重要文件备"><meta itemprop="datePublished" content="2020-03-18T21:07:50+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="3576"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="Linux,ubuntu,账号管理," /><meta property="og:title" content="ubuntu server-账号管理" />
+<meta property="og:description" content="​ 用户账号管理基础 用户账号管理 为新员工创建账号 修改账号密码策略 禁用休假员工账号 删除离职员工账号(一般先禁用, 如果要删除, 注意提前把重要文件备" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-18T21:07:50+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-账号管理"/>
+<meta name="twitter:description" content="​ 用户账号管理基础 用户账号管理 为新员工创建账号 修改账号密码策略 禁用休假员工账号 删除离职员工账号(一般先禁用, 如果要删除, 注意提前把重要文件备"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://geoer.cn/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" /><link rel="next" href="https://geoer.cn/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-账号管理",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "Linux, ubuntu, 账号管理","wordcount":  3576 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86\/","datePublished": "2020-03-18T21:07:50+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-账号管理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-03-18&#32;21:07:50><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-03-18">2020-03-18</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 3576 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 8 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-账号管理">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#font-colorred用户账号管理基础font"><font color=red>用户账号管理基础</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#关于linux账号管理基础知识">关于Linux账号管理基础知识</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred账号数据库font"><font color=red>账号数据库</font></a></li>
+    <li><a href="#font-colorred组账号管理font"><font color=red>组账号管理</font></a></li>
+    <li><a href="#font-colorred密码策略font"><font color=red>密码策略</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#权限">权限</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred属主与属组font"><font color=red>属主与属组</font></a></li>
+    <li><a href="#font-colorred权限管理font"><font color=red>权限管理</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#掩码">掩码</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>​</p>
+<h2 id="font-colorred用户账号管理基础font"><font color=red>用户账号管理基础</font></h2>
+<p><strong>用户账号管理</strong></p>
+<ul>
+<li>为新员工创建账号</li>
+<li>修改账号密码策略</li>
+<li>禁用休假员工账号</li>
+<li>删除离职员工账号(一般先禁用, 如果要删除, 注意提前把重要文件备份)</li>
+<li>设置账号访问权限(只赋予其工作必需的权限)</li>
+</ul>
+<p><strong>每个人保管自己的密码</strong></p>
+<ul>
+<li>不要将密码泄露给任何人</li>
+<li>保证密码复杂度</li>
+<li>不要将密码写在纸条贴在限制器上</li>
+</ul>
+<h4 id="关于linux账号管理基础知识">关于Linux账号管理基础知识</h4>
+<p><strong>Root账号</strong></p>
+<ul>
+<li>能做任何事情（甚至删除操作系统自身）</li>
+<li>大部分Linux发行版安装时要求设置root账号密码</li>
+<li>而Ubuntu默认禁用Root账号
+<ul>
+<li>可<code>sudo</code>或<code>临时切换为root</code>账号</li>
+<li>可手动启用root账号</li>
+</ul>
+</li>
+<li>平时以普通员工账号管理计算机</li>
+<li>在Ubuntu中执行<code>sudo rm -rf /</code>后，有提示</li>
+</ul>
+<p><strong>安装过程中创建管理员个人账号：</strong> 作为日常管理使用</p>
+<p><strong>创建账号</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 本机用户账号存储文件: `/etc/passwd`  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 冒号分隔：第二列是占位符(x来代替密码，此文件不存储密码,在shadow中)，第三四列（uid,组id）root的id是0，第五列是用户描述，第六列是主目录,最后一列是终端类型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 逗号分隔的部分：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建用户（useradd） 建议添加-m参数</span>
+</span></span><span class="line"><span class="cl">useradd user01 -m   <span class="c1"># 一般是这样使用多</span>
+</span></span><span class="line"><span class="cl">useradd user01 -m -d /home/user01   <span class="c1"># -d自定义主目录位置，父目录必须是存在</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果只是sudo useradd user01    #是没有用户家目录的，且该用户的终端为sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 新添加的账号的uid是递增的（系统会自动创建一个和uid相同的组id组账号）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数：</span>
+</span></span><span class="line"><span class="cl">-d		<span class="c1"># 账号主目录（复制于/etc/skel）</span>
+</span></span><span class="line"><span class="cl">-m		<span class="c1"># 同时创建主目录（默认首次登录时创建主目录）   用户主目录内容拷贝自`/etc/skel`</span>
+</span></span><span class="line"><span class="cl">-c		<span class="c1"># 全名（描述,即/etc/passwd中第五列那个）</span>
+</span></span><span class="line"><span class="cl">-e		<span class="c1"># 账号过期（YYYY-MM-DD） -- 适合临时工作的人</span>
+</span></span><span class="line"><span class="cl">-N		<span class="c1"># 不创建同名组账号(gid会默认设置为100)   useradd user01 -m -N</span>
+</span></span><span class="line"><span class="cl">-g		<span class="c1"># 指定主组（必须已经存在）		useradd user01 -m -g sudo</span>
+</span></span><span class="line"><span class="cl">-G		<span class="c1"># 额外组</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Note:</span>
+</span></span><span class="line"><span class="cl">账号名最长32个字符（不要以数字或其他特殊字符开头）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 给用户设置密码</span>
+</span></span><span class="line"><span class="cl">sudo passwd user02
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred账号数据库font"><font color=red>账号数据库</font></h2>
+<p><strong>1./etc/passwd</strong>
+格式：<code>用户名:密码占位符:UID:GID:全名(描述),房间号,公司电话,家庭电话,others:主目录:shell</code></p>
+<p><strong>2./etc/shadow</strong>
+存放密码等其他相关信息, 默认root才能查看与读写
+格式：<code>用户名:密码:上次修改时间:密码最小使用期限:密码最长使用期:'密码'过期前几天提醒:密码过期几天后账号会被锁定:'账号'过期日(距离1970-01-01的天数):保留</code></p>
+<ul>
+<li>密码位置为<code>!</code>、<code>*</code>的账号不能直接登陆系统(其他账号登录可切换为其账号) , <code>!</code>表示密码被锁定</li>
+<li>上次修改时间：自从1970-01-01起的<code>天数</code>，如果为<code>0</code>表示用户下次登陆需要修改密码，<code>空</code>表示关闭密码过期功能(不会被锁定)</li>
+<li>密码最长使用期限&lt;密码最小使用期 时候，用户无法更改密码(一般会设置密码有效期为90天)</li>
+<li>密码过期几天后账号会被锁定：
+<ul>
+<li>账号过期用户不能登录</li>
+<li>密码过期看是否锁定账号</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>账户修改：建议多登陆几个会话备用，防止手滑出现问题导致登不上去</p>
+</blockquote>
+<p><strong>设置账号密码</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">passwd user01
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数：</span>
+</span></span><span class="line"><span class="cl">-l		<span class="c1"># 锁定账户密码   sudo passwd -l user01</span>
+</span></span><span class="line"><span class="cl">-u		<span class="c1"># 解锁账号   sudo passwd -u user01</span>
+</span></span><span class="line"><span class="cl">-d		<span class="c1"># 删除密码（账号无密码可登录）</span>
+</span></span><span class="line"><span class="cl">-n/-x   <span class="c1"># 密码最小 / 最大 使用期限</span>
+</span></span><span class="line"><span class="cl">-w		<span class="c1"># 密码过期前几天发警告</span>
+</span></span><span class="line"><span class="cl">-i		<span class="c1"># 密码过期后锁账号</span>
+</span></span><span class="line"><span class="cl">-e		<span class="c1"># 密码立刻过期（下次登录必须修改密码）</span>
+</span></span><span class="line"><span class="cl">-s		<span class="c1"># 查看账号的密码状态(L 锁定, P有密码,NP没密码 )  passwd -aS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看账号密码状态（同上）</span>
+</span></span><span class="line"><span class="cl">passwd -a -S
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>添加账号</strong>
+adduser   参数少，更简洁</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adduser user02
+</span></span><span class="line"><span class="cl"><span class="c1"># 基于useradd的perl脚本</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 并非所有Linux发行版中都包含</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 向导方式运行（不需记忆命令参数）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 位置： /usr/sbin/adduser</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 另一个批量添加账号   newusers</span>
+</span></span><span class="line"><span class="cl">sudo newusers users.txt  <span class="c1"># 文件内容按passwd格式填写:   user05:pass15:::hahaha:/home/user15:/bin/bash</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>删除账号</strong>
+userdel或deluser</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo userdel user02 <span class="c1"># 不会删除主目录</span>
+</span></span><span class="line"><span class="cl">userdel -r user02   <span class="c1"># 删除账号同时删除主目录（一般先禁用几个月等到不需要一下文件时候再删除但是要提前备份）</span>
+</span></span><span class="line"><span class="cl">userdel -f user02   <span class="c1"># 强制删除文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rm -rf /home/user02   <span class="c1"># 删除用户主目录</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>切换账号</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 切换到root账号</span>
+</span></span><span class="line"><span class="cl">su			<span class="c1"># 需要输入root密码（默认root没密码,先给root设密码[sudo passwd root]再操作）</span>
+</span></span><span class="line"><span class="cl">sudo su		<span class="c1"># 输入当前账号密码(是输入的当前账号的密码)</span>
+</span></span><span class="line"><span class="cl">sudo -i		<span class="c1"># 同上（root前面的命令提示符是井号）  exit退出到自己的回话</span>
+</span></span><span class="line"><span class="cl">sudo -s		<span class="c1"># 同上</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换到其他账号</span>
+</span></span><span class="line"><span class="cl">su user01	<span class="c1"># 切换到其他账号（输入的user01的密码）</span>
+</span></span><span class="line"><span class="cl">sudo su user01	<span class="c1">#切换到其他账号（输入的是当前用户的密码）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred组账号管理font"><font color=red>组账号管理</font></h2>
+<blockquote>
+<p>分组归类统一管理</p>
+</blockquote>
+<ul>
+<li>将用户账号分组管理和指派权限</li>
+<li>用户创建同时生成同名的组账号</li>
+<li>每个文件有<code>唯一</code>的所属账号和所属组（属主、数组）
+<ul>
+<li>每个用户可以同属属于多个组，但<code>只有一个主组</code></li>
+</ul>
+</li>
+</ul>
+<p>查看当前用户所属的组： <code>groups</code></p>
+<p>cat /etc/groups
+格式： <code>组名:密码(通常不使用):GID:逗号分隔的'成员'用户账号</code></p>
+<p><strong>组管理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo groupadd g_name		<span class="c1"># 添加组</span>
+</span></span><span class="line"><span class="cl">sudo groupdel g_name		<span class="c1"># 删除组</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">gpasswd -a u_name g_name	<span class="c1"># 将用户加入&#39;额外组&#39;</span>
+</span></span><span class="line"><span class="cl">gpasswd -d u_name g_name    <span class="c1"># 将用户从组中删除</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">usermod -aG g_name user	<span class="c1"># 将用户加入&#39;额外组&#39;  a是添加,G是组</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># -a    附件（否则替换）</span>
+</span></span><span class="line"><span class="cl">usermod -g g_name user  <span class="c1"># 修改用户的&#39;主组&#39;    -g    把user01的主组改为IT: sudo usermod -g IT user01</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">usermod -d /home/user2 user2 -m  <span class="c1"># 将某用户主目录内容移动到当前目录</span>
+</span></span><span class="line"><span class="cl">usermod -l user2 user1		<span class="c1"># 将用户user1修改为user2(只是名称换了，其他的权限和id都不变)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 等等其他参数......</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred密码策略font"><font color=red>密码策略</font></h2>
+<p>使用足够复杂的密码<br>
+Pluggable Authentication Module(PAM)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装pam</span>
+</span></span><span class="line"><span class="cl">apt install libpam-cracklib
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vim /etc/pam.d/common-password    增加配置</span>
+</span></span><span class="line"><span class="cl">password      required    pam_pwhistory.so.remember<span class="o">=</span><span class="m">9</span> use_authok
+</span></span><span class="line"><span class="cl"><span class="c1"># 最近几次的密码不能相同</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="权限">权限</h6>
+<p>每个文件和文件夹拥有唯一的属主和属组（<code>ls -l</code>）</p>
+<p><strong>权限类型：</strong></p>
+<ul>
+<li>r, w, x			读，写，执行		4, 2,	1 （这个数字是二进制转换来的，假设数组的权限为r&ndash;,对应二进制为100,转为十进制为4，其他类似）</li>
+<li>u，g，o		属主，属组，其他</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 除了第一位，后面每三位一组（所有者u，所有组g，其他用户o）
+</span></span><span class="line"><span class="cl">-rwxrwxrwx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 权限		文件					   文件夹
+</span></span><span class="line"><span class="cl"># R		读取文件内容，拷贝		 列出目录内容
+</span></span><span class="line"><span class="cl"># W		更改文件内容				 创建、删除文件及文件夹
+</span></span><span class="line"><span class="cl"># X		作为应用程序执行文件		 cd进入；读取文件属性和权限
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>权限修改命令：</strong>
+chmod</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 只有其属主和root可以修改权限</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 对文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># + - 方式</span>
+</span></span><span class="line"><span class="cl">chmod u+x a.txt
+</span></span><span class="line"><span class="cl">chmod u-r a.txt
+</span></span><span class="line"><span class="cl">chmod g-x a.txt
+</span></span><span class="line"><span class="cl">chmod o+r a.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 数字方式 </span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">777</span> b.txt
+</span></span><span class="line"><span class="cl">chmod <span class="m">764</span> b.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 对目录(一般都给x权限，不然cd不进去)</span>
+</span></span><span class="line"><span class="cl">chmod u+x code/
+</span></span><span class="line"><span class="cl">chmod u-wx code/  
+</span></span><span class="line"><span class="cl"><span class="c1"># 对目录：r只能看到里面的文件，要写看到属性，得加x权限</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 父级目录的权限/子文件的权限</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 递归修改权限</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">770</span> -R code/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 权限与搜索</span>
+</span></span><span class="line"><span class="cl">find . -perm <span class="m">770</span>   <span class="c1"># 搜索权限为770的文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  -type f   只搜文件；    -type d  只搜目录</span>
+</span></span><span class="line"><span class="cl">find /path/dir/ -type f perm <span class="m">664</span> -user xps -group xps  <span class="c1"># 属于xps组，属于xps用户，权限为664的文件</span>
+</span></span><span class="line"><span class="cl">find /path/dir/ -type f perm <span class="m">755</span> -user xps -exec ls -l <span class="o">{}</span><span class="se">\;</span>   <span class="c1"># 搜索完之后执行命令</span>
+</span></span><span class="line"><span class="cl">find /path/dir/ -type f perm <span class="m">755</span> -user xps -exec chmod <span class="m">770</span> <span class="o">{}</span><span class="se">\;</span>   <span class="c1"># 搜索完之后再进行权限修改</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果用户删了，并且该用户有文件没删除干净，下面找到没有所属用户的文件或文件夹</span>
+</span></span><span class="line"><span class="cl">find /home -nouser -exec rm -rf <span class="o">{}</span><span class="se">\;</span>    <span class="c1"># 查找无有效属主对象，然后删除</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred属主与属组font"><font color=red>属主与属组</font></h2>
+<p><strong>修改属主和属组</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># chown需要sudo</span>
+</span></span><span class="line"><span class="cl">sudo chown user01 a.txt   <span class="c1"># 修改a.txt的所有者为user01</span>
+</span></span><span class="line"><span class="cl">sudo chown -R user01 /code   <span class="c1"># 递归修改目录的所有者</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改所有组为user01</span>
+</span></span><span class="line"><span class="cl">sudo chgrp user01 a.txt
+</span></span><span class="line"><span class="cl"><span class="c1"># 所有者和所有组都修改</span>
+</span></span><span class="line"><span class="cl">chown user01:user01 a.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>特殊权限</strong></p>
+<ol>
+<li>Setuid(4)
+主要针对可执行程序<br>
+一旦设置了suid之后：任何用户执行程序时都具备使用属主的权限
+设置：<code>chmod u+s a.sh</code>或<code>chmod 4777 /bin/cat</code> (前面三个二进制, 二进制为100,即4；第二种数值方式对链接不生效)
+比如使用<code>passwd</code>修改自己密码的时候修改的是shadow文件(他的属主是root)，它就是设置了<code>s</code>权限
+<img src="http://image.xpshuai.cn/20200318203240319_8090.png" /></li>
+</ol>
+<blockquote>
+<p>如果不太懂，尽量不要随便设置suid，否则后患无穷</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>Setgid(2)
+主要针对可执行程序和目录
+对于程序一旦设置了sgid：任何用户执行程序时都具备使用属组的权限
+应用于目录时：可实现<code>共享文件访问效果</code>(新建文件的数组集成目录属组):  一个用户再在里面新建文件之后，一个组里的用户就都可以共享
+设置：<code>chmod g+s code/</code>或<code>sudo chmod 2775 /bin/cat</code>
+设置完之后，数组位置权限就多了s权限
+<img src="http://image.xpshuai.cn/20200318203113628_4438.png" /></p>
+</li>
+<li>
+<p>stick bit(1)
+<code>针对目录</code>的受限删除位（root、属主可以删）
+典型例子：<code>/tmp</code>目录
+设置： <code>chmod o+t code/</code>
+加了stick位(其他用户的位置)，自己创建的文件只有自己能删除，别人无法删除
+<img src="http://image.xpshuai.cn/20200318202916501_30856.png" /></p>
+</li>
+</ol>
+<h2 id="font-colorred权限管理font"><font color=red>权限管理</font></h2>
+<h6 id="掩码">掩码</h6>
+<p>决定文件和目录的<code>默认权限</code><br>
+- 文件默认权限：<code>666</code>-掩码（如果掩码为002, 6-2=4，权限就为664）
+- 文件夹默认权限：<code>777</code>-掩码（如果掩码为002, 7-2=5，权限就为775）</p>
+<p>命令：<code>umask</code>查看当前掩码
+修改掩码命令：<code>umask 007</code>（临时性的）
+<strong>长久修改：</strong>
+配置文件<code>vi /etc/login.defs</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 配置其中umask
+</span></span><span class="line"><span class="cl">UMASK 	022   # 属主的掩码0，数组的掩码2，其他用户的掩码2
+</span></span><span class="line"><span class="cl">USERGROUPS_ENAB	yes  # 改为yes，属主的掩码来覆盖数组的掩码
+</span></span><span class="line"><span class="cl"># 要想使得真正的权限与umask设置的一致：
+</span></span><span class="line"><span class="cl">F1.可以把上面的改为no
+</span></span><span class="line"><span class="cl">F2.设置用户账号名称和组账号名称不一样，让用户id和组id也不一样（推荐这种方式修改）
+</span></span><span class="line"><span class="cl">sudo usermod -g users user01 # 把用户的主组改为users
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>umask
+002			用户名与组名相同、UID与GID相同</p>
+<p>umask
+027     		通常设置027就行</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu%20server-%e8%b4%a6%e5%8f%b7%e7%ae%a1%e7%90%86.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/' class="post-tag">账号管理</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-item" rel="prev" title="Linux Shell基础知识"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Linux Shell基础知识</a>
+      <a href="/powershell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="post-nav-item" rel="next" title="PowerShell基础知识">PowerShell基础知识<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

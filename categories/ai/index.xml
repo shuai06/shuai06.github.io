@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>AI - 分类 - 剑胆琴心</title>
+    <link>https://geoer.cn/categories/ai/</link>
+    <description>AI - 分类 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/categories/ai/" rel="self" type="application/rss+xml" /><item>
+  <title>torch.argmax 小记</title>
+  <link>https://geoer.cn/torch-argmax-%E5%B0%8F%E8%AE%B0/</link>
+  <pubDate>Fri, 21 Oct 2022 10:08:49 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/torch-argmax-%E5%B0%8F%E8%AE%B0/</guid>
+  <description><![CDATA[最近碰到torch.argmax的场景，就在这里简单记录一下。这里分二维和三维及以上记录 二维 1 2 3 4 5 6 7 8 9 &gt;&gt;&gt; a = torch.rand(15).reshape(3,5) &gt;&gt;&gt; a tensor([[0.7237, 0.6488, 0.2557, 0.0333, 0.4103], [0.8674, 0.7288, 0.3758, 0.6329,]]></description>
+</item>
+<item>
+  <title>PyTorch模型文件.pth浅析</title>
+  <link>https://geoer.cn/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/</link>
+  <pubDate>Fri, 21 Oct 2022 09:16:40 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/</guid>
+  <description><![CDATA[保存模型 在pytorch进行模型保存的时候，一般有两种保存方式: 一种是保存整个模型 另一种是只保存模型的参数 1 2 torch.save(model.state_dict(), &#34;my_model.pth&#34;) # 只保存模型的参数 torch.save(model, &#34;my_model.pth&#34;) # 保]]></description>
+</item>
+<item>
+  <title>U2-Net</title>
+  <link>https://geoer.cn/u2-net/</link>
+  <pubDate>Fri, 14 Oct 2022 16:35:53 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/u2-net/</guid>
+  <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
+</item>
+<item>
+  <title>Attention UNet</title>
+  <link>https://geoer.cn/attention-unet/</link>
+  <pubDate>Mon, 10 Oct 2022 10:33:04 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/attention-unet/</guid>
+  <description><![CDATA[论文简介 论文地址：https://arxiv.org/abs/1804.03999 出自于MIDL2018(深度学习医学影像会议), 论文中提出]]></description>
+</item>
+<item>
+  <title>Attention Is All You Need论文及代码</title>
+  <link>https://geoer.cn/attention-is-all-you-need%E8%AE%BA%E6%96%87%E5%8F%8A%E4%BB%A3%E7%A0%81/</link>
+  <pubDate>Sun, 09 Oct 2022 13:35:15 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/attention-is-all-you-need%E8%AE%BA%E6%96%87%E5%8F%8A%E4%BB%A3%E7%A0%81/</guid>
+  <description><![CDATA[简介 论文地址：https://arxiv.org/abs/1706.03762 该论文提出了Transformer模型，完全基于Attenti]]></description>
+</item>
+<item>
+  <title>常见语义分割评价指标</title>
+  <link>https://geoer.cn/%E5%B8%B8%E8%A7%81%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/</link>
+  <pubDate>Mon, 03 Oct 2022 11:55:49 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%B8%B8%E8%A7%81%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/</guid>
+  <description><![CDATA[常见语义分割评价指标 Pixel Accuracy/global accuary 分子是所有预测正确像素总和，分母是所有的像素 例子： 预测正确是用绿色表示，预测错误的用红色表示。 那对于预测0来说，就]]></description>
+</item>
+<item>
+  <title>FCN学习</title>
+  <link>https://geoer.cn/fcn%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Mon, 03 Oct 2022 10:49:46 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/fcn%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[FCN(全卷积神经网络, Fully Convolutional Networks for Semantic Segmentation) 首个端对端的针对像素级预测的全卷积网络 论文地址：论文：https://arxiv.org/abs/141]]></description>
+</item>
+<item>
+  <title>U-Net学习</title>
+  <link>https://geoer.cn/u-net%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Wed, 21 Sep 2022 14:06:14 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/u-net%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[文献地址：https://arxiv.org/pdf/1505.04597v1.pdf 简介&amp;网络结构 UNet是医学分割领域经典论文，]]></description>
+</item>
+<item>
+  <title>ResNet</title>
+  <link>https://geoer.cn/resnet/</link>
+  <pubDate>Tue, 20 Sep 2022 21:03:37 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/resnet/</guid>
+  <description><![CDATA[ResNet ResNet沿用了VGG全3×3卷积层的设计。残差块里首先有2个有相同输出通道数的3×3卷积层。每个卷积层后接一个批量归一化层和ReLU激]]></description>
+</item>
+<item>
+  <title>经典现代卷积网络4-含并行连结的网络(GoogLeNet)</title>
+  <link>https://geoer.cn/%E7%BB%8F%E5%85%B8%E7%8E%B0%E4%BB%A3%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C4-%E5%90%AB%E5%B9%B6%E8%A1%8C%E8%BF%9E%E7%BB%93%E7%9A%84%E7%BD%91%E7%BB%9C-googlenet/</link>
+  <pubDate>Thu, 15 Sep 2022 16:36:04 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E7%BB%8F%E5%85%B8%E7%8E%B0%E4%BB%A3%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C4-%E5%90%AB%E5%B9%B6%E8%A1%8C%E8%BF%9E%E7%BB%93%E7%9A%84%E7%BD%91%E7%BB%9C-googlenet/</guid>
+  <description><![CDATA[2014年提出 GoogLeNet吸收了NiN中网络串联网络的思想，并在此基础上做了很大改进。在随后的几年里，研究人员对GoogLeNet进行]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>ubuntu server-安全相关设置 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://geoer.cn">
+<meta name="description" content="142-安全设置 Linux默认安装已经很安全，当很多的了解安全仍非常必要 打造一个相当安全的系统（增加入侵者的成本，安全也是要考虑成本的） 大部" /><meta name="keywords" content='ubuntu, UFW, 文件加密, AppArmor, ClamAV' /><meta itemprop="name" content="ubuntu server-安全相关设置">
+<meta itemprop="description" content="142-安全设置 Linux默认安装已经很安全，当很多的了解安全仍非常必要 打造一个相当安全的系统（增加入侵者的成本，安全也是要考虑成本的） 大部"><meta itemprop="datePublished" content="2020-05-20T13:12:19+08:00" />
+<meta itemprop="dateModified" content="2023-01-21T16:47:23+08:00" />
+<meta itemprop="wordCount" content="6223"><meta itemprop="image" content="https://geoer.cn/logo.png"/>
+<meta itemprop="keywords" content="ubuntu,UFW,文件加密,AppArmor,ClamAV," /><meta property="og:title" content="ubuntu server-安全相关设置" />
+<meta property="og:description" content="142-安全设置 Linux默认安装已经很安全，当很多的了解安全仍非常必要 打造一个相当安全的系统（增加入侵者的成本，安全也是要考虑成本的） 大部" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://geoer.cn/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" /><meta property="og:image" content="https://geoer.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-20T13:12:19+08:00" />
+<meta property="article:modified_time" content="2023-01-21T16:47:23+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://geoer.cn/logo.png"/>
+
+<meta name="twitter:title" content="ubuntu server-安全相关设置"/>
+<meta name="twitter:description" content="142-安全设置 Linux默认安装已经很安全，当很多的了解安全仍非常必要 打造一个相当安全的系统（增加入侵者的成本，安全也是要考虑成本的） 大部"/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://geoer.cn/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" /><link rel="prev" href="https://geoer.cn/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/" /><link rel="next" href="https://geoer.cn/%E7%BB%95%E8%BF%87cdn%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9Eip/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ubuntu server-安全相关设置",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/geoer.cn\/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/geoer.cn\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "ubuntu, UFW, 文件加密, AppArmor, ClamAV","wordcount":  6223 ,
+    "url": "https:\/\/geoer.cn\/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE\/","datePublished": "2020-05-20T13:12:19+08:00","dateModified": "2023-01-21T16:47:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/geoer.cn\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tests/"
+                title="FixIt 测试"
+                
+              ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tests/"
+                  title="FixIt 测试"
+                  
+                ><i class="fa-solid fa-flask fa-fw fa-sm" aria-hidden="true"></i> 测试</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>ubuntu server-安全相关设置</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://geoer.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp"
+    data-srcset="https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 1.5x, https://./avatar/0f8538ba0036972bb22ac39c1aeb6f26?s=32&amp;d=mp 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/linux/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a></span></div>
+      <div class="post-meta-line"><span title=2020-05-20&#32;13:12:19><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-20">2020-05-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 6223 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 13 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="ubuntu server-安全相关设置">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#防护思路">防护思路</a></li>
+            <li><a href="#常见错误理解">常见错误理解</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred帐号管理font"><font color=red>帐号管理</font></a></li>
+    <li><a href="#font-colorred系统信息font"><font color=red>系统信息</font></a></li>
+    <li><a href="#font-colorred文件加密font"><font color=red>文件加密</font></a></li>
+    <li><a href="#font-colorred防火墙font"><font color=red>防火墙</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ufw">UFW</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#基本使用">基本使用</a></li>
+                    <li><a href="#安全相关">安全相关</a></li>
+                    <li><a href="#日志功能">日志功能</a></li>
+                    <li><a href="#恢复默认规则">恢复默认规则</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#shorewall">Shorewall</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred-apparmorfont"><font color=red> AppArmor</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#简介">简介</a></li>
+            <li><a href="#使用">使用</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#samba为例">samba为例</a></li>
+                    <li><a href="#从头开始创建新的配置文件">从头开始创建新的配置文件</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#font-colorred防病毒font"><font color=red>防病毒</font></a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#clamav">ClamAV</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h1 id="142-安全设置">142-安全设置</h1>
+<p>Linux默认安装已经很安全，当很多的了解安全仍非常必要
+打造一个相当安全的系统（增加入侵者的成本，安全也是要考虑成本的）</p>
+<p>大部分的安全事件来自于内部员工和已经离职的员工</p>
+<img src="http://image.xpshuai.cn/20200519144331629_1148039304.png" />
+<h4 id="防护思路">防护思路</h4>
+<ul>
+<li>风险评估：攻击面</li>
+<li>制定策略：最小化、明确需求</li>
+<li>安全管理：安全是管理</li>
+<li>应急预案：突发事件</li>
+<li>威胁情报：了解安全行业</li>
+</ul>
+<h4 id="常见错误理解">常见错误理解</h4>
+<ul>
+<li>安全是安全从业者的事情</li>
+<li>为了安装简单，装所有的包，开所有的服务(版本号、banner信息)</li>
+<li>有了边界防火墙则不需要主机防火墙</li>
+<li>随意开放各种访问方式(后门)</li>
+<li>公司内部网络是安全的</li>
+</ul>
+<h2 id="font-colorred帐号管理font"><font color=red>帐号管理</font></h2>
+<p><strong>用户管理是系统安全最重要的方面</strong></p>
+<ul>
+<li>密码策略</li>
+<li>权限控制</li>
+</ul>
+<p><strong>Ubuntu默认禁用root帐号</strong>
+使用不匹配任何加密值的密码，无法直接登陆(sudo)
+设置密码之后即可启用root登录
+安装过程创建的用户帐号默认属于sudo组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo passwd  <span class="c1"># 设置root密码(还是不建议使用root登录系统)</span>
+</span></span><span class="line"><span class="cl">sudo passwd -l root  <span class="c1"># 禁用root帐号密码(用完之后解锁: -u) sudo passwd -u root </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>增加管理员帐号</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo usermod -aG sudo xps    <span class="c1"># 加入sudo组</span>
+</span></span><span class="line"><span class="cl">sudo viudo    <span class="c1"># 本质是编辑 /etc/sudoers</span>
+</span></span><span class="line"><span class="cl">sudo su
+</span></span><span class="line"><span class="cl"><span class="c1"># 尽量减少管理员帐号数量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 离职手续办完之前，要把他的帐号禁用然后逐渐删除</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>多用户环境下，用户主目录默认权限是全局可读</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -ld /home/username
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动修改权限(不建议-R，会有一些使用的问题)</span>
+</span></span><span class="line"><span class="cl">sudo chmod <span class="m">0750</span> /home/username
+</span></span><span class="line"><span class="cl"><span class="c1"># 预先修改配置（新添加的帐号权限都确定了）</span>
+</span></span><span class="line"><span class="cl">sudo vi /etc/adduser.conf
+</span></span><span class="line"><span class="cl">    <span class="nv">DIR_MODE</span><span class="o">=</span><span class="m">0750</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 再添加用户，主目录权限就是我们规定的了</span>
+</span></span><span class="line"><span class="cl">sudo adduser username
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>密码复杂度</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用sudo设置密码时 不受密码规则限制</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 编辑配置文件</span>
+</span></span><span class="line"><span class="cl">sudo vi /etc/pam.d/common-password
+</span></span><span class="line"><span class="cl">    password    <span class="o">[</span><span class="nv">success</span><span class="o">=</span><span class="m">1</span> <span class="nv">default</span><span class="o">=</span>ignore<span class="o">]</span>  pam_unix.so obscure sha512 <span class="nv">minlen</span><span class="o">=</span><span class="m">8</span> <span class="nv">lcredit</span><span class="o">=</span><span class="m">1</span> <span class="nv">ucredit</span><span class="o">=</span><span class="m">1</span> <span class="nv">dcredit</span><span class="o">=</span><span class="m">2</span> <span class="nv">ocredit</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># minlen 最小长度</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># lcredit 最少包含的小写字母个数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ucredit 最少包含的大写字母个数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dcredit 最少包含的数字个数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ocredit 最少包含的其他字符个数</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>密码过期</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo chage -l username    <span class="c1"># 查看用户帐号</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置密码过期时间</span>
+</span></span><span class="line"><span class="cl">sudo chage -E 01/31/2015 -m <span class="m">5</span> -M <span class="m">90</span> -I <span class="m">30</span> -W <span class="m">14</span> username
+</span></span><span class="line"><span class="cl"><span class="c1"># -E  密码过期时间</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -m / -M     密码使用期限</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -I    密码过期后多少天仍可以改密码，过期锁定帐号</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -W    过期前多少天警告</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>帐号SSH登录</strong>
+应用和服务使用其他身份认证机制，需要单独配置帐号安全
+锁定帐号无法是无法组织公钥认证的SSH远程登录用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除 .ssh目录</span>
+</span></span><span class="line"><span class="cl">~/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>禁用帐号不会强制断开<code>已经建立</code>的SSH连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">who <span class="p">|</span>grep username    <span class="c1"># 查询用户 pt/num 终端</span>
+</span></span><span class="line"><span class="cl">sudo pkill -f pts/num    <span class="c1"># 强制踢掉</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指定可SSH远程登录的用户</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/ssh/sshd_config    <span class="c1"># 需重启服务生效</span>
+</span></span><span class="line"><span class="cl">    AllowGroups sshlogin    <span class="c1"># 设置允许的组</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建ssh登录组，创建属于sshlogin组的用户</span>
+</span></span><span class="line"><span class="cl">sudo addgroup sshlogin <span class="o">&amp;&amp;</span> sudo adduser username sshlogin
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>控制台安全</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一般，启用机器后，到了登录界面，不用登录即可进行远程连接，其他服务也尅启动了</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 避免误触，建议禁用ctrl+Alt+Delete 快捷键重启</span>
+</span></span><span class="line"><span class="cl">sudo systemctl mask ctrl-alt-del.target
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred系统信息font"><font color=red>系统信息</font></h2>
+<p><strong>当前登录帐号</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看登录会话</span>
+</span></span><span class="line"><span class="cl">w
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># TTY1 是本地登录，pts/0 是远程终端</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 字段： 用户-终端-来源-登录时间-发呆时间(空闲)---当前正在运行的程序</span>
+</span></span><span class="line"><span class="cl">xps@xps:~$ w
+</span></span><span class="line"><span class="cl"> 08:51:23 up  1:15,  <span class="m">3</span> users,  load average: 0.00, 0.00, 0.00
+</span></span><span class="line"><span class="cl">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+</span></span><span class="line"><span class="cl">xps      tty1     -                08:49    1:47   0.09s  0.04s -bash
+</span></span><span class="line"><span class="cl">xps      pts/0    192.168.0.115    07:37    1.00s  0.23s  0.01s w
+</span></span><span class="line"><span class="cl">xps      pts/1    192.168.0.115    08:49    3.00s  0.07s  0.03s vim 1.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>历史登录信息</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">last -d    <span class="c1"># 从下往上看</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#xps      pts/0        bogon            Tue May 19 07:37   still logged in</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#reboot   system boot  4.15.0-99-generi Tue May 19 07:36   still running</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 系统启动之后，就会显示reboot的一条记录，显示内核信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>lsof命令</strong>
+Linux中一切皆文件，运行中的文件成为进程
+目录中被打开的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo lsof +D /home/xps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lsof <span class="p">|</span>grep /var/log/   <span class="c1">#查看/var/log/下的文件被哪些进程打开</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用户打开的所有文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo lsof -u xps
+</span></span><span class="line"><span class="cl">sudo lsof -u ^xps    <span class="c1"># 除了xps账户之外</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lsof -u <span class="m">0</span>  	<span class="c1">#查看uid为0的用户打开的文件（uid为0代表是root）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结束指定用户的所有进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">kill</span> -p <span class="sb">`</span>lsof -t -u xps<span class="sb">`</span>    <span class="c1"># -t提取pid值</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>列出所有的网络连接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo lsof -i    <span class="c1"># 类似 ss 命令</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lsof -i:22	<span class="c1">#查看22端口都有哪些进程在访问</span>
+</span></span><span class="line"><span class="cl">lsof -p 1168	<span class="c1">#查看1168进程号所打开的文件</span>
+</span></span><span class="line"><span class="cl">lsof -c sshd <span class="c1">#查看sshd服务打开的文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其他</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 利用lsof恢复已删除文件(日志被删除后可以这样)</span>
+</span></span><span class="line"><span class="cl">lsof <span class="p">|</span>grep /var/log/messages <span class="c1">#以meaages日志为例,查看状态，记住编号id</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /proc/xx_刚才的id/fd
+</span></span><span class="line"><span class="cl">ls -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>suid /sgid的安全隐患</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># suid 在在user的x位置多了个S。在用户执行该程序时,用户的权限度是该程序文件属主的权限。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sgid与suid类似，只是执行程序时获得的是文件属组的权限。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果suid的属主为root，那任何人都可以root权限执行命令，危害太大</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 找启用了suid的文件</span>
+</span></span><span class="line"><span class="cl">sudo find / -type f -perm -u<span class="o">=</span>s -ls        <span class="c1"># 如果有不应该有suid文件，需要注意</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 找启用了guid的文件</span>
+</span></span><span class="line"><span class="cl">sudo find / -type f -perm -g<span class="o">=</span>s -ls    
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果员工离职，那员工的账户没被清理，被新人所沿用，就可以读取之前的文件--&gt;因为系统靠uid识别</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查无属主和无属组的，根据需要保存和清理(如：离职员工帐号被删除，的文件)</span>
+</span></span><span class="line"><span class="cl">find -xdev <span class="se">\(</span>-nouser -o nogroup <span class="se">\)</span> -print    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 题外话：</span>
+</span></span><span class="line"><span class="cl">当t出现在其他组的x权限位置时，表示其他组具有SBIT的权限。
+</span></span><span class="line"><span class="cl">SBIT（Sticky Bit）目前只针对目录有效，对于目录的作用是：当用户在该目录下建立文件或目录时，仅有自己与 root才有权力删除。 
+</span></span><span class="line"><span class="cl">最具有代表的就是/tmp目录，任何人都可以在/tmp内增加、修改文件（因为权限全是rwx），但仅有该文件/目录建立者与 root能够删除自己的目录或文件。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred文件加密font"><font color=red>文件加密</font></h2>
+<p><strong>网络本身不加密</strong></p>
+<ul>
+<li>通过不受信网络连接上网</li>
+<li>加密信息传输通道是首选方案(VPN)</li>
+<li>传输单个文件可使用文件级加密</li>
+</ul>
+<p><strong>很多应用也不加密</strong>
+传输机密信息使用SSH、SCP</p>
+<p><strong>GnuPG</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基于文件的加密。免费开源</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux默认安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 斯诺登推荐</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 使用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.生成密钥对(公钥，私钥)，发送方和接收方都要生成</span>
+</span></span><span class="line"><span class="cl">gpg --gen-key
+</span></span><span class="line"><span class="cl"><span class="c1">#输入name,email,密码文(保护密钥)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#会自动进行系统信息搜集生成随机数据(越随机越安全，如果半天没响应，执行下面的命令)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#生成随机操作 熵(促使)</span>
+</span></span><span class="line"><span class="cl">sudo find / -type f<span class="p">|</span>xargs grep somerandomstring&gt; /dev/null
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.公钥交换:接收者先把公钥发给发送者(这里使用原始的方式)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#2.1 接收者导出公钥文件</span>
+</span></span><span class="line"><span class="cl">gpg --export user2_name &gt; user2_name.pub
+</span></span><span class="line"><span class="cl"><span class="c1">#2.2 公钥文件拷贝给发送者</span>
+</span></span><span class="line"><span class="cl">scp  mygpg.pub xps1@192.168.0.11:~/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.发送者执行</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#3.1查看当前都有哪些密钥</span>
+</span></span><span class="line"><span class="cl">gpg --list-keys
+</span></span><span class="line"><span class="cl"><span class="c1">#3.2发送者导入接收者的公钥</span>
+</span></span><span class="line"><span class="cl">gpg --import user2_name.pub
+</span></span><span class="line"><span class="cl"><span class="c1">#查看当前都有哪些密钥</span>
+</span></span><span class="line"><span class="cl">gpg --list-keys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4.发送者开始加密文件（-recipient 是接收者的名字）</span>
+</span></span><span class="line"><span class="cl">gpg --encrypt --recipient zhangsan secert.txt    <span class="c1"># secert.txt是要加密的文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#5.加密文件发送给接收者</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#接收者解密(使用私钥)</span>
+</span></span><span class="line"><span class="cl">gpg --output result.txt --decrypt secret.txt.gpg
+</span></span><span class="line"><span class="cl"><span class="c1">#输入私钥的加密密码串</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 其他命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#查看当前都有哪些密钥</span>
+</span></span><span class="line"><span class="cl">gpg --list-keys
+</span></span><span class="line"><span class="cl"><span class="c1">#删除某人的公钥</span>
+</span></span><span class="line"><span class="cl">gpg --delete-keys zhangsan
+</span></span><span class="line"><span class="cl"><span class="c1">#删除自己的私钥</span>
+</span></span><span class="line"><span class="cl">gpg --delete-secret-keys xps
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 通过密钥服务器交换密钥(指定密钥服务器， 后面16进制0x---是id值的后8位)</span>
+</span></span><span class="line"><span class="cl">gpg --keyserver certserver.pgp.com --send-key 0xAABBCCDD    <span class="c1"># 我发送</span>
+</span></span><span class="line"><span class="cl">gpg --keyserver certserver.pgp.com --recv-key 0xAABBCCDD    <span class="c1"># 对方获取</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#但是这种方式在国内受限</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>GnuPG大致工作流程：</p>
+<img src="http://image.xpshuai.cn/20200519173953416_754675779.png" />
+<h2 id="font-colorred防火墙font"><font color=red>防火墙</font></h2>
+<blockquote>
+<p>访问控制设备</p>
+</blockquote>
+<p><strong>Linux内核包含<code>Netfilter</code>子系统</strong></p>
+<ul>
+<li>用于操作经过服务器的流量</li>
+<li>实现包管理</li>
+<li>用户空间管理工具<code>iptables</code>(功能强大，但是命令比较复杂)</li>
+</ul>
+<p><strong>Ubuntu默认的防火墙管理工具<code>UFW</code></strong></p>
+<ul>
+<li>操作简单，默认禁用</li>
+<li>功能不全面</li>
+<li>主要用作<code>主机防火墙</code>(本身就是目标，对自己加防护)</li>
+</ul>
+<h4 id="ufw">UFW</h4>
+<blockquote>
+<p>适合做主机防火墙，如果做网络防火墙不是很好</p>
+</blockquote>
+<h6 id="基本使用">基本使用</h6>
+<p>启用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw <span class="nb">enable</span>    <span class="c1"># 注意：会有提示:&#34;可能会导致现有的连接断开,比如22&#34;--&gt;有默认策略</span>
+</span></span><span class="line"><span class="cl">sudo ufw disable
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 规则的顺序很重要(如果中间匹配了，就不往下匹配规则了)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw status
+</span></span><span class="line"><span class="cl">sudo ufw status verbose    <span class="c1"># 详细展示: Logging: on (low)日志详细级别  Default: allow (incoming), allow (outgoing), deny (routed) --&gt;入站的默认允许，出战的默认禁止，若作为网络防火墙(路由)默认是禁用的</span>
+</span></span><span class="line"><span class="cl">sudo ufw status numbered    <span class="c1"># 列出序号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw default allow<span class="p">|</span>deny<span class="p">|</span>reject DIRECTION<span class="o">(</span>incoming/outigoing/routed<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 两个拒绝的区别</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># deny 无视，也没有响应，不告诉发起者(推荐这个，更安全，防扫描)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># reject 会给发起者一个响应，告诉他</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>添加策略</strong>
+添加规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw allow <span class="m">22</span>    <span class="c1"># 不指定协议类型时，ctp和udp都开</span>
+</span></span><span class="line"><span class="cl">sudo ufw allow 22/tcp   <span class="c1"># 最小化原则，只开tcp的22</span>
+</span></span><span class="line"><span class="cl">sudo ufw deny <span class="m">22</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ipv4的默认在上面, ipv6的默认在下面</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>设置方向(in ,out)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw allow in http    <span class="c1"># 默认设置入站规则</span>
+</span></span><span class="line"><span class="cl">sudo ufw reject out smtp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>规则描述</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 规则太多了记不清</span>
+</span></span><span class="line"><span class="cl">sudo ufw reject telnet comment <span class="s1">&#39;telnet is unencrypted&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以后不用的规则就可以方面清理删除（安全管理意识很重要 --&gt; 详细文档很重要，统一管理平台:工单）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>插入规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 指定新规则的位置是2，后面的向后顺延</span>
+</span></span><span class="line"><span class="cl">sudo ufw insert <span class="m">2</span> allow <span class="m">80</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>删除规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 按照id序号删除</span>
+</span></span><span class="line"><span class="cl">sudo ufw delete <span class="m">3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 按照 添加时候的规则删除</span>
+</span></span><span class="line"><span class="cl">sudo ufw delete allow http
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>定向规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 5个：源ip，目的ip，源端口(很少做限制)，目的端口，通信协议</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在2的位置插入，允许 proto协议为tcp，从1.1.1.10来的到1.1.1.9的22端口</span>
+</span></span><span class="line"><span class="cl">sudo ufw insert <span class="m">2</span> allow proto tcp from 1.1.1.10 to any port <span class="m">22</span> 
+</span></span><span class="line"><span class="cl">sudo ufw insert <span class="m">2</span> allow proto tcp from 1.1.1.10 to 1.1.1.9 port <span class="m">22</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw insert <span class="m">2</span> allow proto tcp from 192.168.0.0/24 to any port <span class="m">22</span> <span class="c1"># 使用于只允许公司内部访问</span>
+</span></span><span class="line"><span class="cl">sudo ufw insert <span class="m">2</span> allow proto tcp from 192.168.0.0/24 to 192.168.0.102 port <span class="m">22</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw deny proto tcp from 2001:db8::/32 to any port <span class="m">25</span>   <span class="c1"># IPv6</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># /etc/default/ufw   启用/禁用IPv6规则(IPV6=YES)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他协议：ah, esp, gre, ipv6, igmp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>端口名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 前面 http 等是与端口对应的，不是随便起的，配置文件如下</span>
+</span></span><span class="line"><span class="cl">/etc/services
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以自定义</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw deny in on eth0 to 224.0.0. proto igmp    <span class="c1"># 指定网卡（拒绝eth0入的方向使用igmp协议访问组播地址）</span>
+</span></span><span class="line"><span class="cl">sudo ufw allow in on eth0 to 224.0.0. proto gre
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw allow proto tcp from any to any port 80,443,8080:8090 comment <span class="s1">&#39;web&#39;</span>  <span class="c1"># 一段端口范围-&gt;用冒号</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw allow in on eth0 to any port <span class="m">80</span> proto tcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>开启路由模式</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启用路由功能</span>
+</span></span><span class="line"><span class="cl">sudo vi /etc/ufw/sysctl.conf
+</span></span><span class="line"><span class="cl">    netipv4/ip_forward<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">    net/ipv6/conf/default/forwarding<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">    net/ipv6/conf/all/forwarding<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">sudo sysctl -p
+</span></span><span class="line"><span class="cl">ufw disable
+</span></span><span class="line"><span class="cl">ufw <span class="nb">enable</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>路由模式规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 启用路由功能(转发数据包)，先添加规则再开启路由也可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 7个：源网卡接口，目的网卡接口，源ip，目的ip，源端口(很少做限制)，目的端口，通信协议</span>
+</span></span><span class="line"><span class="cl">sudo ufw route allow in on eth1 out on eth2  <span class="c1"># eth1网卡in的流量， eth2出的流量</span>
+</span></span><span class="line"><span class="cl">sudo ufw route allow in on eth1 out on eth2 to 192.167.11 port <span class="m">80</span> proto tcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>限制连接频率</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 尽量规避暴力破解</span>
+</span></span><span class="line"><span class="cl">ufw limit ssh/tcp    <span class="c1"># 30s超过6次就deny</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="安全相关">安全相关</h6>
+<p>UFW作为网络防火墙(先开启路由转发)</p>
+<p><strong>IP遮盖</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># sudo vi /etc/default/ufw</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&#34;ACCEPT&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vi /etc/ufw/sysctl.conf</span>
+</span></span><span class="line"><span class="cl">    net/ipv4/ip_forward<span class="o">=</span><span class="m">1</span>    <span class="c1"># 启用路由功能</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vi /etc/ufw/before.rules</span>
+</span></span><span class="line"><span class="cl">    *nat            <span class="c1"># 开启nat地址转换</span>
+</span></span><span class="line"><span class="cl">    ：POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>    <span class="c1"># 接收路由转发</span>
+</span></span><span class="line"><span class="cl">    -A POSTROUTING -s 10.8.0.0/8 -o enp0s3 -j MASQUERADE    <span class="c1"># 添加规则：制定来源内网网段，指定另一个有公网ip的的网卡然后进行地址转换并发出去</span>
+</span></span><span class="line"><span class="cl">    COMMIT    <span class="c1"># </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完整语法规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo ufw route allow/reject/deny/limit insert/delete/pretend in on eth0 out on eth1 from 1.1.1.1 oport 1:65535 to 2.2.2.2 port <span class="m">22</span> proto tcp/udp/igmp/esp/ah
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果不指定规则id位置，就默认在后面依次；pretend是依次从前面添加</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>小技巧 &ndash; 应用程序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 为非标准端口的应用定义名称</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 为每个开放端口的服务程序分别定义程序配置文件  /etc/ufw/applications.d/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo ufw allow from 192.168.0.0/24 to any app CUPS
+</span></span><span class="line"><span class="cl">sudo ufw app into CUPS
+</span></span><span class="line"><span class="cl">    <span class="o">[</span>&lt;name&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">title</span><span class="o">=</span>&lt;title&gt;
+</span></span><span class="line"><span class="cl">    <span class="nv">description</span><span class="o">=</span>&lt;description&gt;
+</span></span><span class="line"><span class="cl">    <span class="nv">portd</span><span class="o">=</span>&lt;ports&gt;
+</span></span><span class="line"><span class="cl">    <span class="nv">ports</span><span class="o">=</span>12/udp<span class="p">|</span>32<span class="p">|</span>56,78:90/tcp    <span class="c1"># 竖线隔开</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 应用防火墙规则</span>
+</span></span><span class="line"><span class="cl">sudo ufw app update &lt;name&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 适用情景：</span>
+</span></span><span class="line"><span class="cl">非标准业务的服务端口，一个应用同时绑定多个端口，业务描述也可以添加进去，修改也方便
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="日志功能">日志功能</h6>
+<blockquote>
+<p>UFW默认不记录日志，因为占用存储空间</p>
+</blockquote>
+<p>日志的价值在于：识别攻击、规则排错、诊断问题</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 全局开启日志，以及级别 / 关闭日志</span>
+</span></span><span class="line"><span class="cl">sudo ufw logging on<span class="p">|</span>off<span class="p">|</span>LEVEL<span class="o">(</span>LOW/medium/high/full<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 存储位置：/var/log/ufw.log</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 单独为每条规则添加日志</span>
+</span></span><span class="line"><span class="cl">sudo ufw allow log 22/tcp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="恢复默认规则">恢复默认规则</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 系统全新安装的状态(实在搞不清才使用，会提前备份-&gt;/etc/ufw/日期命名的文件)</span>
+</span></span><span class="line"><span class="cl">sudo ufw reset
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="shorewall">Shorewall</h4>
+<p>适合任何网络的高级防火墙
+有图形管理界面</p>
+<p>因为iptables语法有点麻烦，不想使用</p>
+<h2 id="font-colorred-apparmorfont"><font color=red> AppArmor</font></h2>
+<h4 id="简介">简介</h4>
+<p><strong>AppArmor是一个Linux安全模块</strong></p>
+<ul>
+<li>使不安全和不受信进程在受限的约束下运行</li>
+<li>保证进程访问共享文件、行使特权、与其他进程通信</li>
+<li>针对某一个进程层面</li>
+<li>界面美观，操作较简单</li>
+</ul>
+<p><strong>全局强制访问控制机制(MAC)</strong></p>
+<ul>
+<li>基于LSM的额外安全功能</li>
+<li>系统调用前，内核查询AppArmor策略，确定程序是否有权执行操作</li>
+<li>不同与SELinux(过于庞大, 针对操作系统层面)，与用户无关，可用于限制超级用户权限（所有用户继承）</li>
+<li>将进程限制在有限的系统资源之上</li>
+<li>预设的控制机制，一定程度可预防未知安全漏洞（0day）</li>
+</ul>
+<p><strong>Ubuntu默认的安全系统</strong>
+默认已安装并加载</p>
+<p><strong>控制策略</strong></p>
+<ul>
+<li>基于安装路径识别程序并控制</li>
+<li>策略保存于相应配置文件(profile)中</li>
+<li>集合高级静态分析和基于文件<code>/etc/apparmor.d</code></li>
+<li>部分安装包自带配置文件</li>
+</ul>
+<h4 id="使用">使用</h4>
+<p><strong>安装额外配置文件</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install apparmor-profiles apparmor-profiles-extra
+</span></span><span class="line"><span class="cl"><span class="c1"># apparmor-profiles        # 由上游社区管理维护的配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># apparmor-profiles-extra    # 由ubuntu、debian开发的配置文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装用户端管理工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install apparmor-utils
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo aa-status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>控制模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># enforcing      强制策略实施并记录被禁用请求</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># complaining    只记录被禁请求，但不强制实施禁止   --&gt;策略调试时候用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 切换模式</span>
+</span></span><span class="line"><span class="cl">aa-enforce    <span class="c1"># 切换为强制模式</span>
+</span></span><span class="line"><span class="cl">aa-complain   <span class="c1"># 切换为包容模式</span>
+</span></span><span class="line"><span class="cl">aa-disable    <span class="c1"># 禁用指定pofile(不对这个程序做限制，不loaded)</span>
+</span></span><span class="line"><span class="cl">aa-audit      <span class="c1"># 审计模式，= enforce + 记录成功访问的请求(并不是很常见)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当前已经加载的配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/sys/kernel/security/apparmor/profiles
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置文件命令</p>
+<ul>
+<li>与可执行程序结对路径相同，<code>/</code> -&gt; <code>.</code></li>
+<li>软连接将最终解析到目标程序</li>
+</ul>
+<p>默认配置文件
+安装包携带并有效（bind9, mysql &hellip;）
+安装包携带但为空（mariadb）
+安装包无配置文件，额外包故障（samba）</p>
+<h6 id="samba为例">samba为例</h6>
+<p>1.安装samba服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">sudo apt install samba samba-common apparmor-profiles
+</span></span><span class="line"><span class="cl">sudo aa-status
+</span></span><span class="line"><span class="cl"><span class="c1">#/etc/apparmor.d/usr.sbin.smbd     # nmbd服务也可以</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.启用强制策略</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo aa-enforce /usr/sbin/smbd    <span class="c1"># 对smbd进行策略限制</span>
+</span></span><span class="line"><span class="cl">sudo aa-status
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.重启服务</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl restart smbd    <span class="c1"># 会发现报错无法启动服务(因为配置文件有问题)</span>
+</span></span><span class="line"><span class="cl">tail /vat/log/syslog    <span class="c1"># 查看系统日志，发现 apparmor=&#34;DENIED&#34;， 建议：从第一个DENIED开始往下看,一次修改一条</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.修正配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/apparmor.d/usr.sbin.smbd
+</span></span><span class="line"><span class="cl">    <span class="c1">## 这里根据日志DENIED的内容来写（每一行都有逗号）</span>
+</span></span><span class="line"><span class="cl">    /var/run/smbd rw,    <span class="c1"># path路径项权限 根据自己的写...</span>
+</span></span><span class="line"><span class="cl">    capability net_admin,    <span class="c1"># capability进程权限</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新加载配置文件</span>
+</span></span><span class="line"><span class="cl">sudo apparmor_parser -r usr.sbin.smbd
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新加载所有配置文件</span>
+</span></span><span class="line"><span class="cl">sudo systemctl reload apparmor.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后重启服务，查看能不能起来，如果不能起来-&gt;继续查看日志和修改配置的步骤</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart smbd 
+</span></span><span class="line"><span class="cl">sudo systemctl status smbd 
+</span></span><span class="line"><span class="cl">。。。。。。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="从头开始创建新的配置文件">从头开始创建新的配置文件</h6>
+<p>不建议对所有程序都做限制，主要面向<code>对外/接收提供网络服务相关</code>的程序(apache, samba, 浏览器等等容易遭受攻击的)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="c1"># 查看进了行网络请求，但是没有apparmor配置文件对其进行保护的程序</span>
+</span></span><span class="line"><span class="cl">sudo aa-unconfined   
+</span></span><span class="line"><span class="cl">sudo aa-unconfined --paranoid    <span class="c1"># 所有关联网络端口的进程</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里拿mtr作为例子</span>
+</span></span><span class="line"><span class="cl">aa-genprof mtr    <span class="c1"># 指定对什么程序进行配置</span>
+</span></span><span class="line"><span class="cl">mtr www.baidu.com    <span class="c1"># 运行示例程序</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 继续按照提示选择</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">sudo apparmor_parse -r usr.bin.mtr
+</span></span><span class="line"><span class="cl">sudo aa-logpro    <span class="c1"># 检查日志更新配置文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="font-colorred防病毒font"><font color=red>防病毒</font></h2>
+<img src="http://image.xpshuai.cn/20200520113246789_2113511743.png" />
+<p><strong>恶意软件</strong>
+病毒、木马、蠕虫、远控、僵尸程序、勒索、挖矿、漏洞利用</p>
+<p>通常防病毒和Linux不会出现在同一句话里，BUT！</p>
+<ul>
+<li>专门针对Liunx发行版的恶意软件</li>
+<li>没有100%有效的单个杀毒软件（病毒库互补）</li>
+</ul>
+<p><strong>ClamAV</strong>: 开源免费全平台</p>
+<h4 id="clamav">ClamAV</h4>
+<p>1.安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install clamav clamav-daemon   <span class="c1"># 如果只安装clamav，就不做自动监控；clamav-daemon 自动查杀</span>
+</span></span><span class="line"><span class="cl">sudo apt install install libclamunrar6    <span class="c1"># 对压缩包也查杀病毒</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 有桌面环境的话，可以安装客户端图形管理工具</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.更新病毒库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl stop clamav-freshclam
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">sudo freshclam    <span class="c1"># 会报错(因为他已经自动更新了)，可以先停止掉(上面)，再手动。也可以等待他更新完</span>
+</span></span><span class="line"><span class="cl">less /var/log/clamav/freshclam.log  <span class="c1"># 可以查看日志记录</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/clamav/freshclam.conf
+</span></span><span class="line"><span class="cl">    HTTPProxyServer server_address
+</span></span><span class="line"><span class="cl">    HTTPPrpxyPort port_number
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>图形化前端工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">clamtk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.手动扫描</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 扫描会占用系统资源，所以选择业务不是繁忙的时间来查杀</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动扫描的当前用户能扫描的位置</span>
+</span></span><span class="line"><span class="cl">clamscan /home/xps -i -r    <span class="c1"># -r递归， -i显示</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># --max-filesize 限制大小(超过大小就不会扫它)， --max-scansize最大扫多少(比如一个文件我只扫多少)， --exclude-dir排除目录</span>
+</span></span><span class="line"><span class="cl">sudo clamscan --max-filesize<span class="o">=</span>3999M --max-scansize<span class="o">=</span>3999M --exclude-dir<span class="o">=</span>/sys/* -i -r /home
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认不具有杀毒能力，只是检测    </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># --remove    查到感染的文件，删除</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --bell      查到感染的文件，嘟嘟嘟提醒</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># move=/tmp/VIRUS    查到感染的文件，移动到某个位置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># copy=/tmp/VIRUS</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget http://www.eicar.org/download/eicar.com    <span class="c1"># 测试病毒文件,含毒，但是没破坏作用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">clamscan -i -r ./
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.扫描调度(定时任务) &ndash; 防止误杀(管理员要提前做好管理备份或者实时监视)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">at 13:00 tomorrow
+</span></span><span class="line"><span class="cl">    clamscan -i -r /home/xps
+</span></span><span class="line"><span class="cl">    freshclam
+</span></span><span class="line"><span class="cl">    &lt;EOF&gt;
+</span></span><span class="line"><span class="cl">    &lt;CTRL-D&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者其他调度命令 crontab</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2023-01-21&#32;16:47:23>更新于 2023-01-21&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ubuntu-server-%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="https://github.com/shuai06/edit/main/content/posts/ubuntu-server-%e5%ae%89%e5%85%a8%e7%9b%b8%e5%85%b3%e8%ae%be%e7%bd%ae.md" title="编辑此页"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-edit">编辑此页</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a><a href='/tags/ufw/' class="post-tag">UFW</a><a href='/tags/%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86/' class="post-tag">文件加密</a><a href='/tags/apparmor/' class="post-tag">AppArmor</a><a href='/tags/clamav/' class="post-tag">ClamAV</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E5%86%85%E7%BD%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%90%E8%97%8F%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF/" class="post-nav-item" rel="prev" title="内网第三章-隐藏隧道通信技术"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>内网第三章-隐藏隧道通信技术</a>
+      <a href="/%E7%BB%95%E8%BF%87cdn%E5%AF%BB%E6%89%BE%E7%9C%9F%E5%AE%9Eip/" class="post-nav-item" rel="next" title="绕过CDN寻找真实IP">绕过CDN寻找真实IP<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="hugo-fixit/FixIt"
+            data-repo-id="R_kgDOGihPtQ"
+            data-category="General"
+            data-category-id="DIC_kwDOGihPtc4CApHX"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+        </div>
+        <noscript>
+          Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+        </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.109.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://geoer.cn"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line visitor">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/algoliasearch/algoliasearch-lite.umd.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"giscus":{"darkTheme":"dark_dimmed","lightTheme":"light"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"algoliaAppID":"YKOM6PKLUY","algoliaIndex":"index.zh-cn","algoliaSearchKey":"a44c110d3ac360be2c69cd79d34b77a8","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"watermark":{"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"height":21,"opacity":0.0125}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

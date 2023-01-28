@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>scrcpy - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/scrcpy/</link>
+    <description>scrcpy - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 24 Feb 2020 22:11:37 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/scrcpy/" rel="self" type="application/rss+xml" /><item>
+  <title>scrcpy-手机与电脑投屏神器</title>
+  <link>https://geoer.cn/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</link>
+  <pubDate>Mon, 24 Feb 2020 22:11:37 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/scrcpy-%E6%89%8B%E6%9C%BA%E4%B8%8E%E7%94%B5%E8%84%91%E6%8A%95%E5%B1%8F%E7%A5%9E%E5%99%A8/</guid>
+  <description><![CDATA[scrcpy 安装 1 snap install scrcpy adb服务安装 1 sudo apt-get install android-tools-adb adb配置 手机通过USB连接电脑 1 lsusb 找到自己手机的识别号,(可以对比数据线插入之前和插入之后多了哪个就]]></description>
+</item>
+</channel>
+</rss>

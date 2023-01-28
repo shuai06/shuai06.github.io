@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>琐碎复习 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0/</link>
+    <description>琐碎复习 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 26 Mar 2020 12:26:22 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0/" rel="self" type="application/rss+xml" /><item>
+  <title>C语言琐碎复习（内容简单,仅自己看）</title>
+  <link>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9%E7%AE%80%E5%8D%95-%E4%BB%85%E8%87%AA%E5%B7%B1%E7%9C%8B/</link>
+  <pubDate>Thu, 26 Mar 2020 12:26:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/c%E8%AF%AD%E8%A8%80%E7%90%90%E7%A2%8E%E5%A4%8D%E4%B9%A0%E5%86%85%E5%AE%B9%E7%AE%80%E5%8D%95-%E4%BB%85%E8%87%AA%E5%B7%B1%E7%9C%8B/</guid>
+  <description><![CDATA[由于好久时间不看C了，好多东西都忘了 本文是跟着郝斌老师的视频做的随堂笔记，课下也没做整理，并不成系统，只是一些简单堆叠，且编码规范都没有，看]]></description>
+</item>
+</channel>
+</rss>

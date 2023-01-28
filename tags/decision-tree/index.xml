@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Decision Tree - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/decision-tree/</link>
+    <description>Decision Tree - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 12 Jul 2022 11:53:15 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/decision-tree/" rel="self" type="application/rss+xml" /><item>
+  <title>初学决策树</title>
+  <link>https://geoer.cn/%E5%88%9D%E5%AD%A6%E5%86%B3%E7%AD%96%E6%A0%91/</link>
+  <pubDate>Tue, 12 Jul 2022 11:53:15 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/%E5%88%9D%E5%AD%A6%E5%86%B3%E7%AD%96%E6%A0%91/</guid>
+  <description><![CDATA[问题陈述 问题陈述： Suppose you are starting a company that grows and sells wild mushrooms. Since not all mushrooms are edible, you&rsquo;d like to be able to tell whether a given mushroom is edible or poisonous based on it&rsquo;s physical attributes You have some existing data that you can use for this task. Can you use the data to help you identify which mushrooms]]></description>
+</item>
+</channel>
+</rss>

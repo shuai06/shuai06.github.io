@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>远程管理 - 标签 - 剑胆琴心</title>
+    <link>https://geoer.cn/tags/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/</link>
+    <description>远程管理 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 31 Jul 2020 14:38:04 &#43;0800</lastBuildDate><atom:link href="https://geoer.cn/tags/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+  <title>ubuntu server-远程管理 Webmin&amp;usermin&amp;Xrdp</title>
+  <link>https://geoer.cn/ubuntu-server-webminuserminxrdp/</link>
+  <pubDate>Fri, 31 Jul 2020 14:38:04 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-webminuserminxrdp/</guid>
+  <description><![CDATA[Webmin 基于WEB的系统远程管理 基于图形化的友好操作界面 多开启一个服务端口，增加了攻击面 Webmin WEB应用程序，完成部分服务器日常管理操作 安装依赖包 1 apt]]></description>
+</item>
+<item>
+  <title>ubuntu server-远程管理</title>
+  <link>https://geoer.cn/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/</link>
+  <pubDate>Tue, 31 Mar 2020 13:31:13 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://geoer.cn/ubuntu-server-%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86/</guid>
+  <description><![CDATA[第七章-远程管理 看我遥控你 远程访问方式 为什么要远程管理？ 服务器大多部署与专门的机房： 电磁、噪声、氧气、温度湿度等都不适宜人类长期居住 避免闲杂]]></description>
+</item>
+</channel>
+</rss>
