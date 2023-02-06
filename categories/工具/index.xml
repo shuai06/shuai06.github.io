@@ -4,7 +4,15 @@
     <link>https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
     <description>工具 - 分类 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 06 Feb 2023 22:36:17 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/" rel="self" type="application/rss+xml" /><item>
+  <title>使用GithubAction部署Hugo博客</title>
+  <link>https://shuai06.github.io/%E4%BD%BF%E7%94%A8githubaction%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/</link>
+  <pubDate>Mon, 06 Feb 2023 22:36:17 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E4%BD%BF%E7%94%A8githubaction%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>使用John the Ripper破解密码</title>
   <link>https://shuai06.github.io/%E4%BD%BF%E7%94%A8john-the-ripper%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81/</link>
   <pubDate>Tue, 08 Jun 2021 14:44:42 &#43;0800</pubDate>
