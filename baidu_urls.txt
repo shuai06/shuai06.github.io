@@ -1,3 +1,4 @@
+https://shuai06.github.io/burp%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%901/
 https://shuai06.github.io/%E4%BD%BF%E7%94%A8githubaction%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/
 https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/
 https://shuai06.github.io/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/
