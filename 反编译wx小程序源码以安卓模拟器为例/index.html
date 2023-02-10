@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='反编译, 微信小程序, 渗透测试' /><meta itemprop="name" content="反编译wx小程序源码(以安卓模拟器为例)">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-02-10T21:37:11+08:00" />
-<meta itemprop="dateModified" content="2023-02-10T13:58:09+00:00" />
-<meta itemprop="wordCount" content="1957"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
+<meta itemprop="dateModified" content="2023-02-10T14:55:14+00:00" />
+<meta itemprop="wordCount" content="1961"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="反编译,微信小程序,渗透测试," /><meta property="og:title" content="反编译wx小程序源码(以安卓模拟器为例)" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/%E5%8F%8D%E7%BC%96%E8%AF%91wx%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E4%BB%A5%E5%AE%89%E5%8D%93%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B8%BA%E4%BE%8B/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-02-10T21:37:11+08:00" />
-<meta property="article:modified_time" content="2023-02-10T13:58:09+00:00" />
+<meta property="article:modified_time" content="2023-02-10T14:55:14+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -39,8 +39,8 @@
               "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
               "width":  1842 ,
               "height":  1036 
-            }],"genre": "posts","keywords": "反编译, 微信小程序, 渗透测试","wordcount":  1957 ,
-    "url": "https:\/\/shuai06.github.io\/%E5%8F%8D%E7%BC%96%E8%AF%91wx%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E4%BB%A5%E5%AE%89%E5%8D%93%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B8%BA%E4%BE%8B\/","datePublished": "2023-02-10T21:37:11+08:00","dateModified": "2023-02-10T13:58:09+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            }],"genre": "posts","keywords": "反编译, 微信小程序, 渗透测试","wordcount":  1961 ,
+    "url": "https:\/\/shuai06.github.io\/%E5%8F%8D%E7%BC%96%E8%AF%91wx%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%BA%90%E7%A0%81%E4%BB%A5%E5%AE%89%E5%8D%93%E6%A8%A1%E6%8B%9F%E5%99%A8%E4%B8%BA%E4%BE%8B\/","datePublished": "2023-02-10T21:37:11+08:00","dateModified": "2023-02-10T14:55:14+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -53,7 +53,7 @@
       },"description": ""
   }
   </script></head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
       <a href="/" title="剑胆琴心"><img
@@ -216,7 +216,7 @@
     alt="剑胆琴心"
     title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
           <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
-      <div class="post-meta-line"><span title=2023-02-10&#32;21:37:11><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-10">2023-02-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1957 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
+      <div class="post-meta-line"><span title=2023-02-10&#32;21:37:11><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-10">2023-02-10</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1961 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -239,13 +239,13 @@
 </nav></div>
       </div><div class="content" id="content"><h2 id="安卓模拟器实验">安卓模拟器实验</h2>
 <h3 id="1准备">1.准备</h3>
-<p>1.一台ROOT的安卓手机
-2.解密工具：UnpackMiniApp.exe：https://gitee.com/steinven/wxpkg/blob/master/UnpackMiniApp.exe
-3.反编译工具：wxappUnpacker.zip：有好多人改进的，用法类似
-<a href="https://github.com/HQEasy/wxappUnpacker"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/HQEasy/wxappUnpacker<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>  我用的这个
-<a href="https://gitee.com/steinven/wxpkg/blob/master/wxappUnpacker.zip"target="_blank" rel="external nofollow noopener noreferrer">https://gitee.com/steinven/wxpkg/blob/master/wxappUnpacker.zip<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
-<a href="https://ukm028kzyr.feishu.cn/docs/doccnW1w3vwpcnjTeTYKcdErjtK"target="_blank" rel="external nofollow noopener noreferrer">https://ukm028kzyr.feishu.cn/docs/doccnW1w3vwpcnjTeTYKcdErjtK<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
-<a href="https://github.com/xuedingmiaojun/wxappUnpacker"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/xuedingmiaojun/wxappUnpacker<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<p>1.一台ROOT的安卓手机<br>
+2.解密工具：UnpackMiniApp.exe：https://gitee.com/steinven/wxpkg/blob/master/UnpackMiniApp.exe<br>
+3.反编译工具：wxappUnpacker.zip：有好多人改进的，用法类似<br>
+<a href="https://github.com/HQEasy/wxappUnpacker"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/HQEasy/wxappUnpacker<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>  我用的这个<br>
+<a href="https://gitee.com/steinven/wxpkg/blob/master/wxappUnpacker.zip"target="_blank" rel="external nofollow noopener noreferrer">https://gitee.com/steinven/wxpkg/blob/master/wxappUnpacker.zip<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
+<a href="https://ukm028kzyr.feishu.cn/docs/doccnW1w3vwpcnjTeTYKcdErjtK"target="_blank" rel="external nofollow noopener noreferrer">https://ukm028kzyr.feishu.cn/docs/doccnW1w3vwpcnjTeTYKcdErjtK<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
+<a href="https://github.com/xuedingmiaojun/wxappUnpacker"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/xuedingmiaojun/wxappUnpacker<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
 4.PC安装node环境</p>
 <blockquote>
 <p>这里先以安卓mumu模拟器为例</p>
@@ -261,7 +261,7 @@
     title="http://image.xpshuai.cn/20230210180352.png"/></p>
 <h3 id="2提取微信小程序wxapkg包">2.提取微信小程序wxapkg包</h3>
 <blockquote>
-<p>PC端和mc段也能找到wxapkg文件，但是会有加密，建议直接用手机端的
+<p>PC端和mc段也能找到wxapkg文件，但是会有加密，建议直接用手机端的<br>
 打开微信进入测试的小程序<br>
 然后去目录里面找：<code>/data/data/com.tencent.mm/MicroMsg/{User}/appbrand/pkg</code><br>
 将里面的<code>wxapkg</code>的文件导出到电脑上<br>
@@ -298,12 +298,12 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="3解密">3.解密</h3>
-<p>直接运行<code>UnpackMiniApp.exe</code>，如果是加密的包，会自动解密。
+<p>直接运行<code>UnpackMiniApp.exe</code>，如果是加密的包，会自动解密。<br>
 没有加密的话，就跳过这条步骤，继续下面步骤。</p>
 <h3 id="4反编译">4.反编译</h3>
 <p><a href="https://github.com/HQEasy/wxappUnpacker"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/HQEasy/wxappUnpacker<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-<p>clone之后进入到<code>wxappUnpacker</code>文件夹中，安装依赖:<code>npm install</code>,
-然后执行<code>node wuWxapkg.js 包的路径</code>，即可解包到当前目录的一个以包名为名字的新文件夹中：
+<p>clone之后进入到<code>wxappUnpacker</code>文件夹中，安装依赖:<code>npm install</code>,<br>
+然后执行<code>node wuWxapkg.js 包的路径</code>，即可解包到当前目录的一个以包名为名字的新文件夹中： <br>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -320,7 +320,7 @@
     data-sizes="auto"
     alt="http://image.xpshuai.cn/20230210212342.png"
     title="http://image.xpshuai.cn/20230210212342.png"/></p>
-<p><strong>如果执行脚本中可能会出现以下报错(没报错请略过)：</strong></p>
+<p>**如果执行脚本中可能会出现以下报错(没报错请略过)： **</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -343,8 +343,8 @@
 </span></span><span class="line"><span class="cl">    at FSReqCallback.readFileAfterClose [as oncomplete] (node:internal/fs/read_file_context:68:3)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>解决方案：
-第一步：修改wuWxss.js文件31行
+</div><p>解决方案：<br>
+第一步：修改wuWxss.js文件31行<br>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -383,7 +383,7 @@
 </span></span><span class="line"><span class="cl">			}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>第二步：修改wuWxss.js文件243行
+</div><p>第二步：修改wuWxss.js文件243行<br>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -404,8 +404,8 @@
 </div>
 </div><h3 id="5使用">5.使用</h3>
 <p><strong>然后就是源码查看了：</strong><br>
-在解包完成之后，我们可以直接审计代码
-或者也可以打开微信小程序开发者工具，选择“导入项目”，“AppID”选择测试号并导入；接着来到“本地设置”模块，勾选上“不校验合法域名”功能,关闭JS编译成ES5 、不校验合法域名、调试基础库，然后可以愉快的开始调试对应小程序的源码了。
+在解包完成之后，我们可以直接审计代码<br>
+或者也可以打开微信小程序开发者工具，选择“导入项目”，“AppID”选择测试号并导入；接着来到“本地设置”模块，  勾选上“不校验合法域名”功能,关闭JS编译成ES5 、不校验合法域名、调试基础库，然后可以愉快的开始调试对应小程序的源码了。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
@@ -415,27 +415,27 @@
     alt="http://image.xpshuai.cn/20230210204006.png"
     title="http://image.xpshuai.cn/20230210204006.png"/></p>
 <h2 id="pc端实验">PC端实验</h2>
-<p><strong>1.打开对应小程序的目录：</strong> 打开目录我们可以看到有很多以wx开头+16位16进制数命名的文件夹，每个文件夹下就是一个微信小程序的缓存。
-随便打开一个目录目录下名为__APP__.wxapkg包就是微信小程序的主包。
+<p><strong>1.打开对应小程序的目录：</strong> 打开目录我们可以看到有很多以wx开头+16位16进制数命名的文件夹，每个文件夹下就是一个微信小程序的缓存。 <br>
+随便打开一个目录目录下名为__APP__.wxapkg包就是微信小程序的主包。<br>
 有些小程序可能会有下面这种情况除了__APP__.wxapkg包外还有一个或多个其他.wxapkg后缀的文件，其他的文件就是也是小程序的包，可以看做是子包，对于功能比较复杂的小程序可能会有多个包。</p>
 <p><strong>2.解密：</strong><br>
 PC段为了保护源码微信使用加密的方式把wxapkg包源码进行加密，加密后的文件的起始为V1MMWX。</p>
-<p>加密方法如下
-首先pbkdf2生成AES的key。利用微信小程序id字符串为pass，salt为saltiest 迭代次数为1000。调用pbkdf2生成一个32位的key
-取原始的wxapkg的包得前1023个字节通过AES通过1生成的key和iv(the iv: 16 bytes),进行加密
-接着利用微信小程序id字符串的倒数第2个字符为xor key，依次异或1023字节后的所有数据，如果微信小程序id小于2位，则xorkey 为 0x66
+<p>加密方法如下:<br>
+首先pbkdf2生成AES的key。利用微信小程序id字符串为pass，salt为saltiest 迭代次数为1000。调用pbkdf2生成一个32位的key<br>
+取原始的wxapkg的包得前1023个字节通过AES通过1生成的key和iv(the iv: 16 bytes),进行加密<br>
+接着利用微信小程序id字符串的倒数第2个字符为xor key，依次异或1023字节后的所有数据，如果微信小程序id小于2位，则xorkey 为 0x66<br>
 把AES加密后的数据（1024字节）和xor后的数据一起写入文件，并在文件头部添加V1MMWX标识</p>
 <p>知道解密方法可以自己写解密工具或者用现成的：UnpackMiniApp.exe或者 <a href="https://codeload.github.com/superBiuBiuMan/wechatMiniAppReverse/zip/refs/heads/main"target="_blank" rel="external nofollow noopener noreferrer">https://codeload.github.com/superBiuBiuMan/wechatMiniAppReverse/zip/refs/heads/main<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 <p><strong>3.反编译：</strong> 跟移动端一样使用<code>wxappUnpacker</code>进行反编译</p>
 <h2 id="参考文章">参考文章</h2>
-<p><a href="https://www.hackinn.com/index.php/archives/672/"target="_blank" rel="external nofollow noopener noreferrer">https://www.hackinn.com/index.php/archives/672/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
-<a href="https://blog.csdn.net/hbqjzx/article/details/126215511"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/hbqjzx/article/details/126215511<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
-<a href="https://www.cnblogs.com/lrain/p/16596405.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/lrain/p/16596405.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
+<p><a href="https://www.hackinn.com/index.php/archives/672/"target="_blank" rel="external nofollow noopener noreferrer">https://www.hackinn.com/index.php/archives/672/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
+<a href="https://blog.csdn.net/hbqjzx/article/details/126215511"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/hbqjzx/article/details/126215511<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
+<a href="https://www.cnblogs.com/lrain/p/16596405.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/lrain/p/16596405.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a><br>
 <a href="https://blog.csdn.net/weixin_43919632/article/details/124831351"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/weixin_43919632/article/details/124831351<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-10&#32;13:58:09>更新于 2023-02-10&nbsp;</span>
+        <span title=2023-02-10&#32;14:55:14>更新于 2023-02-10&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

@@ -9,7 +9,7 @@
 
 js文件中会包含大量前端路由和后端api的链接信息，获取到这些链接能提供更多的有效信息。
 
-
+  
 
 
 
@@ -25,7 +25,7 @@ https://github.com/InitRoot/BurpJSLinkFinder
 
 
 
-
+  
 
 
 
@@ -35,21 +35,21 @@ https://github.com/InitRoot/BurpJSLinkFinder
 
 burp自带的`JS Link Finder`效果很不错，不过找到的链接不能直接复制使用，需要再做处理，使用起来很不方便，**根据js-link-finder,使用burp-clj脚本重新实现**，并根据LinkFinder提供的正则表达式，新增了REST API的支持，**现在可以直接通过js link对js中找到的链接进行处理，然后作为burp Intruder的payload使用。**
 
-
+  
 
 **安装：**
 
-**1.**下载burp-clj.jar，并在burp中加载该插件:https://github.com/ntestoc3/burp-clj/releases
+1. 下载burp-clj.jar，并在burp中加载该插件:https://github.com/ntestoc3/burp-clj/releases  
 
-**2.添加脚本源：**启用burp-clj插件后，切换到`Clojure Plugin`选项卡,点Add按钮添加脚本源：https://github.com/ntestoc3/burp-scripts  
+2. 添加脚本源：启用burp-clj插件后，切换到`Clojure Plugin`选项卡,点Add按钮添加脚本源：https://github.com/ntestoc3/burp-scripts    
 
 (这里使用github地址，也可以git clone下来，使用本地目录)。
 
-
+  
 
 添加脚本源之后，点`Reload Scripts`!加载脚本。
 
-
+  
 
 **3.启用jslink脚本**
 
