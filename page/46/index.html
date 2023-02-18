@@ -198,6 +198,18 @@
 
 </div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/ubuntu%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDmysql%E5%B9%B6%E4%B8%94%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85/">ubuntu彻底卸载mysql并且重新安装</a>
+  </h1><div class="post-meta"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>&nbsp;<span class="post-publish" title='2019-03-02 13:47:20'>发布于 <time datetime="2019-03-02">2019-03-02</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 数据库</a></span></div><div class="content">首先删除mysql: 1 sudo apt-get remove mysql-* 然后清理残留的数据 1 dpkg -l |grep ^rc|awk &#39;{print $2}&#39; |sudo xargs dpkg -P 它会跳出一个对话框，你选择yes就好了 然后安装mysql 1 sudo apt-get install mysql-client mysql-server 安</div><div class="post-footer">
+    <a href="/ubuntu%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDmysql%E5%B9%B6%E4%B8%94%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/mysql/' class="post-tag">mysql</a><a href='/tags/ubuntu/' class="post-tag">Ubuntu</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/%E5%AE%89%E8%A3%85mysql%E7%AB%9F%E7%84%B6%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA%E4%BD%A0%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/">安装mysql竟然没让你输入密码</a>
   </h1><div class="post-meta"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
     class="lazyload avatar"
@@ -256,18 +268,6 @@
     alt="剑胆琴心"
     title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>&nbsp;<span class="post-publish" title='2018-11-21 13:47:44'>发布于 <time datetime="2018-11-21">2018-11-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%88%AC%E8%99%AB/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 爬虫</a></span></div><div class="content">urllib是Python自带的标准库，无需安装，直接可以用。 提供了如下功能： 网页请求 响应获取 代理和cookie设置 异常处理 URL解析 爬虫所</div><div class="post-footer">
     <a href="/urllib%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E7%88%AC%E8%99%AB/' class="post-tag">爬虫</a><a href='/tags/python/' class="post-tag">Python</a><a href='/tags/urllib/' class="post-tag">urllib</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-    <a href="/virtualenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">virtualenv</a>
-  </h1><div class="post-meta"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
-    class="lazyload avatar"
-    src="/svg/loading.min.svg"
-    data-src="/images/avatar.png"
-    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
-    data-sizes="auto"
-    alt="剑胆琴心"
-    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>&nbsp;<span class="post-publish" title='2018-11-21 13:47:44'>发布于 <time datetime="2018-11-21">2018-11-21</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/python/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Python</a></span></div><div class="content">注意： 1 2 # 腾讯云的源有时候不行，可以更换源 pip3 install virtualenv -i https://pypi.doubanio.com/simple/ --user 搭建虚拟环境 先安装 virtualenv, 再安装 virtualenvwrapper 1 2 pip install virtaulenv pip install virtualenvwrapper 设置虚拟的环境变量 . 先找到 virtualenvwrapper.sh 文件 1 find / -name</div><div class="post-footer">
-    <a href="/virtualenv%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">阅读全文</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/virtualenv/' class="post-tag">virtualenv</a><a href='/tags/python/' class="post-tag">Python</a><a href='/tags/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/' class="post-tag">虚拟环境</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item">
           <span class="page-link">
