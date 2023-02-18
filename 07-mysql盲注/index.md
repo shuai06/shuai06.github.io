@@ -98,7 +98,7 @@ less-24 及实际举例
 
 ###### 原理
 
-<img src="http://image.xpshuai.cn/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5.png"></img>
+<img src="http://image.geoer.cn/%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5.png"></img>
 
 
 

@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="部署域名解析 首先，用一台公网的Linux系统的VPS作为 C&amp;C 服务器 (注意：VPS 的 53 端口一定要开放)，并准备好一个可以配置的域名 (这里我们假设" /><meta name="keywords" content='渗透测试, 防溯源, DNS Beacon, C2' /><meta itemprop="name" content="Cobalt Strike DNS Beacon">
 <meta itemprop="description" content="部署域名解析 首先，用一台公网的Linux系统的VPS作为 C&amp;C 服务器 (注意：VPS 的 53 端口一定要开放)，并准备好一个可以配置的域名 (这里我们假设"><meta itemprop="datePublished" content="2022-06-21T14:58:33+08:00" />
-<meta itemprop="dateModified" content="2023-02-11T23:19:26+08:00" />
+<meta itemprop="dateModified" content="2023-02-18T18:45:46+08:00" />
 <meta itemprop="wordCount" content="618"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="渗透测试,防溯源,DNS Beacon,C2," /><meta property="og:title" content="Cobalt Strike DNS Beacon" />
 <meta property="og:description" content="部署域名解析 首先，用一台公网的Linux系统的VPS作为 C&amp;C 服务器 (注意：VPS 的 53 端口一定要开放)，并准备好一个可以配置的域名 (这里我们假设" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/cobalt-strike-dns-beacon/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-21T14:58:33+08:00" />
-<meta property="article:modified_time" content="2023-02-11T23:19:26+08:00" />
+<meta property="article:modified_time" content="2023-02-18T18:45:46+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "渗透测试, 防溯源, DNS Beacon, C2","wordcount":  618 ,
-    "url": "https:\/\/shuai06.github.io\/cobalt-strike-dns-beacon\/","datePublished": "2022-06-21T14:58:33+08:00","dateModified": "2023-02-11T23:19:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/cobalt-strike-dns-beacon\/","datePublished": "2022-06-21T14:58:33+08:00","dateModified": "2023-02-18T18:45:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -239,11 +239,11 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621150543.png"
-    data-srcset="http://image.xpshuai.cn/20220621150543.png, http://image.xpshuai.cn/20220621150543.png 1.5x, http://image.xpshuai.cn/20220621150543.png 2x"
+    data-src="http://image.geoer.cn/20220621150543.png"
+    data-srcset="http://image.geoer.cn/20220621150543.png, http://image.geoer.cn/20220621150543.png 1.5x, http://image.geoer.cn/20220621150543.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621150543.png"
-    title="http://image.xpshuai.cn/20220621150543.png"/>
+    alt="http://image.geoer.cn/20220621150543.png"
+    title="http://image.geoer.cn/20220621150543.png"/>
 为什么要设置 NS 类型的记录呢？因为 NS 类型的记录不是用于设置某个域名的 DNS 服务器的，而是用于设置某个子域名的 DNS 服务器的。</p>
 <p><strong>验证域名解析设置是否成功？</strong>
 1.验证A类解析
@@ -251,40 +251,40 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621150932.png"
-    data-srcset="http://image.xpshuai.cn/20220621150932.png, http://image.xpshuai.cn/20220621150932.png 1.5x, http://image.xpshuai.cn/20220621150932.png 2x"
+    data-src="http://image.geoer.cn/20220621150932.png"
+    data-srcset="http://image.geoer.cn/20220621150932.png, http://image.geoer.cn/20220621150932.png 1.5x, http://image.geoer.cn/20220621150932.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621150932.png"
-    title="http://image.xpshuai.cn/20220621150932.png"/></p>
+    alt="http://image.geoer.cn/20220621150932.png"
+    title="http://image.geoer.cn/20220621150932.png"/></p>
 <p>2.验证NS解析
 先查看VPS的53端口是否打开：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621152040.png"
-    data-srcset="http://image.xpshuai.cn/20220621152040.png, http://image.xpshuai.cn/20220621152040.png 1.5x, http://image.xpshuai.cn/20220621152040.png 2x"
+    data-src="http://image.geoer.cn/20220621152040.png"
+    data-srcset="http://image.geoer.cn/20220621152040.png, http://image.geoer.cn/20220621152040.png 1.5x, http://image.geoer.cn/20220621152040.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621152040.png"
-    title="http://image.xpshuai.cn/20220621152040.png"/></p>
+    alt="http://image.geoer.cn/20220621152040.png"
+    title="http://image.geoer.cn/20220621152040.png"/></p>
 <p>2.1然后在我们的 VPS 上执行以下命令监听 UDP53 端口:<code>tcpdump -n -i eth0 udp dst port 53</code></p>
 <p>2.2在任意一台机器上执行<code>nslookup test1.hack.com</code>命令，如果在我们的 VPS 监听的端口有查询信息，说明第二条记录设置成功</p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621151411.png"
-    data-srcset="http://image.xpshuai.cn/20220621151411.png, http://image.xpshuai.cn/20220621151411.png 1.5x, http://image.xpshuai.cn/20220621151411.png 2x"
+    data-src="http://image.geoer.cn/20220621151411.png"
+    data-srcset="http://image.geoer.cn/20220621151411.png, http://image.geoer.cn/20220621151411.png 1.5x, http://image.geoer.cn/20220621151411.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621151411.png"
-    title="http://image.xpshuai.cn/20220621151411.png"/></p>
+    alt="http://image.geoer.cn/20220621151411.png"
+    title="http://image.geoer.cn/20220621151411.png"/></p>
 <h2 id="cs开启监听dns-beacon">CS开启监听DNS Beacon</h2>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621151802.png"
-    data-srcset="http://image.xpshuai.cn/20220621151802.png, http://image.xpshuai.cn/20220621151802.png 1.5x, http://image.xpshuai.cn/20220621151802.png 2x"
+    data-src="http://image.geoer.cn/20220621151802.png"
+    data-srcset="http://image.geoer.cn/20220621151802.png, http://image.geoer.cn/20220621151802.png 1.5x, http://image.geoer.cn/20220621151802.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621151802.png"
-    title="http://image.xpshuai.cn/20220621151802.png"/></p>
+    alt="http://image.geoer.cn/20220621151802.png"
+    title="http://image.geoer.cn/20220621151802.png"/></p>
 <h2 id="生成dns木马">生成DNS木马</h2>
 <h2 id="上线">上线</h2>
 <p>只要木马在目标主机执行成功，我们的 CobaltStrike 就能接收到反弹的 shell。但是默认情况下，主机信息是黑色的。
@@ -292,11 +292,11 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621152248.png"
-    data-srcset="http://image.xpshuai.cn/20220621152248.png, http://image.xpshuai.cn/20220621152248.png 1.5x, http://image.xpshuai.cn/20220621152248.png 2x"
+    data-src="http://image.geoer.cn/20220621152248.png"
+    data-srcset="http://image.geoer.cn/20220621152248.png, http://image.geoer.cn/20220621152248.png 1.5x, http://image.geoer.cn/20220621152248.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621152248.png"
-    title="http://image.xpshuai.cn/20220621152248.png"/></p>
+    alt="http://image.geoer.cn/20220621152248.png"
+    title="http://image.geoer.cn/20220621152248.png"/></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -310,16 +310,16 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/20220621152311.png"
-    data-srcset="http://image.xpshuai.cn/20220621152311.png, http://image.xpshuai.cn/20220621152311.png 1.5x, http://image.xpshuai.cn/20220621152311.png 2x"
+    data-src="http://image.geoer.cn/20220621152311.png"
+    data-srcset="http://image.geoer.cn/20220621152311.png, http://image.geoer.cn/20220621152311.png 1.5x, http://image.geoer.cn/20220621152311.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/20220621152311.png"
-    title="http://image.xpshuai.cn/20220621152311.png"/></p>
+    alt="http://image.geoer.cn/20220621152311.png"
+    title="http://image.geoer.cn/20220621152311.png"/></p>
 </div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-11&#32;23:19:26>更新于 2023-02-11&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/9394a1e0b73c5d1bb7a15f845759768e07c0b577" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) 9394a1e0b73c5d1bb7a15f845759768e07c0b577: (update)burp addon"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>9394a1e</a></span>
+        <span title=2023-02-18&#32;18:45:46>更新于 2023-02-18&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/6f6481e8086d4d5c2f071d38bc36fa6473b36a51" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) 6f6481e8086d4d5c2f071d38bc36fa6473b36a51: (update)modify img"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>6f6481e</a></span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

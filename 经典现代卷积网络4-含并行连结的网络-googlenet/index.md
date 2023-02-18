@@ -4,15 +4,15 @@
 2014年提出
 GoogLeNet吸收了NiN中网络串联网络的思想，并在此基础上做了很大改进。在随后的几年里，研究人员对GoogLeNet进行了数次改进，这里将介绍这个模型系列的第一个版本。
 
-![20220915200530](http://image.xpshuai.cn/20220915200530.png)
+![20220915200530](http://image.geoer.cn/20220915200530.png)
 
 
 ## Inception块
 GoogLeNet中的基础卷积块叫作Inception块
 4个路径从不同层面抽取信息，然后再输出通道维合并
-![结构](http://image.xpshuai.cn/20220915195600.png)
+![结构](http://image.geoer.cn/20220915195600.png)
 
-![](http://image.xpshuai.cn/20220915195702.png)
+![](http://image.geoer.cn/20220915195702.png)
 
 - 提供了4条路径（四种方法），输入输出等同高宽，然后作为不同的通道叠加
 - 每个路径输出的通道数，可以自己来决定，相当于通过通道数来给每个路径分配权重
@@ -23,7 +23,7 @@ GoogLeNet中的基础卷积块叫作Inception块
 跟单3x3或5x5卷积层相比，Inception块有更少的参数个数和计算复杂度
 
 Inception后续有很多变种
-![20220915203121](http://image.xpshuai.cn/20220915203121.png)
+![20220915203121](http://image.geoer.cn/20220915203121.png)
 
 
 
@@ -74,16 +74,16 @@ Inception块 之间的最⼤汇聚层可降低维度。
 第⼀个模块类似于AlexNet 和LeNet，Inception块的栈从VGG继承，全局平 均汇聚层避免了在最后使⽤全连接层。
 
 GoogLeNet结构
-![20220915201257](http://image.xpshuai.cn/20220915201257.png)
+![20220915201257](http://image.geoer.cn/20220915201257.png)
 
 
 
 **多个inception块叠加（一个stage一般意味着高宽减半操作：**
-![20220915200326](http://image.xpshuai.cn/20220915200326.png)
+![20220915200326](http://image.geoer.cn/20220915200326.png)
 下面是详细讨论每个stage：
-![20220915200353](http://image.xpshuai.cn/20220915200353.png)
-![20220915200407](http://image.xpshuai.cn/20220915200407.png)
-![20220915203000](http://image.xpshuai.cn/20220915203000.png)
+![20220915200353](http://image.geoer.cn/20220915200353.png)
+![20220915200407](http://image.geoer.cn/20220915200407.png)
+![20220915203000](http://image.geoer.cn/20220915203000.png)
 
 
 ```python

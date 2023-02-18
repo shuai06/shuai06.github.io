@@ -57,7 +57,7 @@ print(im.mode)  # 查看图片的模式
 
 
 ```
-![20220717102300](http://image.xpshuai.cn/20220717102300.png)
+![20220717102300](http://image.geoer.cn/20220717102300.png)
 
 
 #### 创建图像
@@ -252,7 +252,7 @@ im.save(fp)  # 保存图片
 ```
 
 图像模式：
-![20220717102735](http://image.xpshuai.cn/20220717102735.png)
+![20220717102735](http://image.geoer.cn/20220717102735.png)
 
 **其中最常用的有三种：**
 **1.RGB模式：**
@@ -289,7 +289,7 @@ im2 = im.convert('1')
 im2.show()
 
 ```
-![20220717103442](http://image.xpshuai.cn/20220717103442.png)
+![20220717103442](http://image.geoer.cn/20220717103442.png)
 
 
 
@@ -307,7 +307,7 @@ im2 = im.convert('L')
 im2.show()
 
 ```
-![20220717103640](http://image.xpshuai.cn/20220717103640.png)
+![20220717103640](http://image.geoer.cn/20220717103640.png)
 
 
 
@@ -344,7 +344,7 @@ b = im.resize((100, 200))
 b.show()
 
 ```
-![20220717111201](http://image.xpshuai.cn/20220717111201.png)
+![20220717111201](http://image.geoer.cn/20220717111201.png)
 
 
 
@@ -411,7 +411,7 @@ b.show()
 
 
 ```
-![20220717111724](http://image.xpshuai.cn/20220717111724.png)
+![20220717111724](http://image.geoer.cn/20220717111724.png)
 
 
 
@@ -569,7 +569,7 @@ Pillow 通过`ImageFilter`类达到图像降噪的目的，该类中集成了不
 对图像添加一些滤镜效果
 
 图像降噪滤波器：
-![](http://image.xpshuai.cn/20220717113217.png)
+![](http://image.geoer.cn/20220717113217.png)
 
 语法：`im_ft = im.filter(filt_mode)  # 返回图像对象，里面传入滤波器`
 
@@ -583,7 +583,7 @@ im_ft = im.filter(ImageFilter.EMBOSS)  # 添加浮雕滤波器
 im_ft.show()
 
 ```
-![](http://image.xpshuai.cn/20220717113338.png)
+![](http://image.geoer.cn/20220717113338.png)
 
 
 实例：轮廓滤波
@@ -595,7 +595,7 @@ im_ft = im.filter(ImageFilter.EMBOSS)  # 添加浮雕滤波器
 im_ft.show()
 
 ```
-![](http://image.xpshuai.cn/20220717124056.png)
+![](http://image.geoer.cn/20220717124056.png)
 
 
 
@@ -617,12 +617,12 @@ img.show()
 filter_img = img.filter(ImageFilter.MedianFilter)
 filter_img.show()
 ```
-![20220717113622](http://image.xpshuai.cn/20220717113622.png)
+![20220717113622](http://image.geoer.cn/20220717113622.png)
 
 
 #### 图像增强
 增强（或减弱）图像的亮度、对比度、色度和锐度
-![](http://image.xpshuai.cn/20220717114111.png)
+![](http://image.geoer.cn/20220717114111.png)
 
 1、ImageEnhance.Brightness：调整图像的亮度
 ```python
@@ -738,7 +738,7 @@ def image_compose():
 image_compose()
 
 ```
-![](http://image.xpshuai.cn/20220717120507.png)
+![](http://image.geoer.cn/20220717120507.png)
 
 
 

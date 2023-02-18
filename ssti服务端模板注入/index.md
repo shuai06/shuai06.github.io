@@ -79,7 +79,7 @@ def index():
 
 `dir()`函数用于向我们展示一个对象的属性有哪些，在没有提供对象的时候，将会提供当前环境所导入的所有模块。
 
-![](http://image.xpshuai.cn/img/image-20220120210407271.png)
+![](http://image.geoer.cn/img/image-20220120210407271.png)
 
 
 
@@ -391,7 +391,7 @@ object.__subclasses__()[59].__init__.func_globals['linecache'].__dict__['o'+'s']
 **前期收集**好网站的开发语言以及框架，防止错误利用{{}}而导致错误判断。
 如下图较全的反映了ssti的一些模板渲染引擎及利用：
 
-![ssti](http://image.xpshuai.cn/img/ssti.png)
+![ssti](http://image.geoer.cn/img/ssti.png)
 
 
 

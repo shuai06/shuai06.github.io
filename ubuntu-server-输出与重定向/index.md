@@ -80,7 +80,7 @@ ls a/ > f1 2>&1   # 标准输出、标准错误都输出到文件f1  （&1代表
 
 ###### 常见报错信息
 
-<img src="http://image.xpshuai.cn//error.png"></img>
+<img src="http://image.geoer.cn//error.png"></img>
 
 
 

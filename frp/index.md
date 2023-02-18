@@ -11,11 +11,11 @@
 
 #### 服务端
 
-<img src="http://image.xpshuai.cn/frp1.png"></img>
+<img src="http://image.geoer.cn/frp1.png"></img>
 
 #### 客户端
 
-<img src="http://image.xpshuai.cn/frp2.jpg"></img>
+<img src="http://image.geoer.cn/frp2.jpg"></img>
 
 
 

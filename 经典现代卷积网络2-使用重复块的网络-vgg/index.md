@@ -3,7 +3,7 @@
 <script type="text/javascript" src="/js/src/bai.js"></script>
 
 VGG:更大更深、VGG块
-![VGG](http://image.xpshuai.cn/20220915190047.png)
+![VGG](http://image.geoer.cn/20220915190047.png)
 
 
 
@@ -14,7 +14,7 @@ VGG:更大更深、VGG块
 
 
 VGG架构：
-![](http://image.xpshuai.cn/20220915190502.png)
+![](http://image.geoer.cn/20220915190502.png)
 
 
 

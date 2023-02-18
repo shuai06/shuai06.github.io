@@ -311,7 +311,7 @@ print('数据类型：', dt.dtype)
 
 ### Numpy数值类型如下：
 
-![http://image.xpshuai.cn/numpy%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png](http://image.xpshuai.cn/numpy%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png)
+![http://image.geoer.cn/numpy%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png](http://image.geoer.cn/numpy%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png)
 
 每一种数据类型都有相应的数据转换函数，如下：
 
@@ -712,7 +712,7 @@ np.concatenate((b,c),axis=0)
 
 对数组的轴为0或1的方向经常会混淆，参考如下图：
 
-![](http://image.xpshuai.cn/numpy%E6%95%B0%E7%BB%84%E6%96%B9%E5%90%91.png)
+![](http://image.geoer.cn/numpy%E6%95%B0%E7%BB%84%E6%96%B9%E5%90%91.png)
 
 
 

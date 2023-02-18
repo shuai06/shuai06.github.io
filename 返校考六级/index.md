@@ -19,23 +19,24 @@
 
 下面是一些当天拍的照片：
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%281%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%281%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%282%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%282%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%283%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%283%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%284%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%284%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%285%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%285%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%286%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%286%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%287%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%287%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/xuexiao1%20%288%29.jpg"></img>
+<img src="http://image.geoer.cn/xuexiao1%20%288%29.jpg"></img>
 
-<img src="http://image.xpshuai.cn/yh.png"></img>
+<img src="http://image.geoer.cn/yh.png"></img>
+
 
 ---
 

@@ -20,7 +20,7 @@ result = np.dot(x1, x2)
 print(result)
 
 ```
-![20220716161855](http://image.xpshuai.cn/20220716161855.png)
+![20220716161855](http://image.geoer.cn/20220716161855.png)
 
 
 ### 2.如果是二维数组（矩阵）之间的运算，则得到的是矩阵积（等同于矩阵乘法）
@@ -43,10 +43,10 @@ result = np.dot(a, b) # a.dot(b) 与 np.dot(a,b)效果相同
 print(result)
 
 ```
-![20220716162757](http://image.xpshuai.cn/20220716162757.png)
-![20220716162302](http://image.xpshuai.cn/20220716162302.png)
+![20220716162757](http://image.geoer.cn/20220716162757.png)
+![20220716162302](http://image.geoer.cn/20220716162302.png)
 
-![20220716162738](http://image.xpshuai.cn/20220716162738.png)
+![20220716162738](http://image.geoer.cn/20220716162738.png)
 
 
 ### 3.如果 a 或者 b 中有一个是标量的，效果等价于np.multiply ，可以使用 multiply(a,b) 或者 a * b 也可以
@@ -67,7 +67,7 @@ multiply_result_ab = np.multiply(a, b)
 print(multiply_result_ab)
 
 ```
-![20220716162951](http://image.xpshuai.cn/20220716162951.png)
+![20220716162951](http://image.geoer.cn/20220716162951.png)
 
 
 ## np.outer
@@ -83,7 +83,7 @@ result = np.outer(a,b)
 print(result)
 
 ```
-![20220716163859](http://image.xpshuai.cn/20220716163859.png)
+![20220716163859](http://image.geoer.cn/20220716163859.png)
 
 
 ### 2.矩阵
@@ -96,7 +96,7 @@ np.outer(a,b)
 
 
 ```
-![20220716163932](http://image.xpshuai.cn/20220716163932.png)
+![20220716163932](http://image.geoer.cn/20220716163932.png)
 
 
 
@@ -113,7 +113,7 @@ b = a[::-1]
 result = np.multiply(a,b)
 print(result)
 ```
-![20220716163431](http://image.xpshuai.cn/20220716163431.png)
+![20220716163431](http://image.geoer.cn/20220716163431.png)
 
 ### 2.矩阵
 ```python
@@ -125,7 +125,7 @@ b = np.arange(0,4).reshape(2,2)
 print(np.multiply(a,b))
 
 ```
-![20220716163500](http://image.xpshuai.cn/20220716163500.png)
+![20220716163500](http://image.geoer.cn/20220716163500.png)
 
 
 
@@ -139,7 +139,7 @@ b = a[::-1]
 print(a*b)
 
 ```
-![20220716164024](http://image.xpshuai.cn/20220716164024.png)
+![20220716164024](http://image.geoer.cn/20220716164024.png)
 
 ### 2.对矩阵执行的是矩阵相乘
 ```python
@@ -151,7 +151,7 @@ print(a * b)
 
 
 ```
-![20220716164119](http://image.xpshuai.cn/20220716164119.png)
+![20220716164119](http://image.geoer.cn/20220716164119.png)
 
 
 ## Note
@@ -159,8 +159,8 @@ print(a * b)
 - 对于matrix对象，*直接代表了原生的矩阵乘法，而如果特殊情况下需要使用数量积，则应该使用np.multiply函数。
 
 比较两幅图的不同：
-![20220716163201](http://image.xpshuai.cn/20220716163201.png)
-![20220716163230](http://image.xpshuai.cn/20220716163230.png)
+![20220716163201](http://image.geoer.cn/20220716163201.png)
+![20220716163230](http://image.geoer.cn/20220716163230.png)
 
 
 ## 题外话
@@ -168,7 +168,7 @@ print(a * b)
 np.linalg.norm就是**元素平方求和之后开根号**
 
 函数的参数：
-![20220716164703](http://image.xpshuai.cn/20220716164703.png)
+![20220716164703](http://image.geoer.cn/20220716164703.png)
 默认参数`ord=None，axis=None，keepdims=False`
 
 

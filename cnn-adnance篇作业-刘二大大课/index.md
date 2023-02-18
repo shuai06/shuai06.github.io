@@ -5,7 +5,7 @@
 
 阅读论文《Identity Mappings in Deep Residual Networks》并实现网络（使用手写数字辨识数据集做测试）
 
-![](http://image.xpshuai.cn/20220820094008.png)
+![](http://image.geoer.cn/20220820094008.png)
 
 constant scaling:
 ```python
@@ -140,7 +140,7 @@ if __name__ == "__main__":
 ```
 
 
-![](http://image.xpshuai.cn/20220820094029.png)
+![](http://image.geoer.cn/20220820094029.png)
 
 conv shortcut:
 ```python

@@ -15,23 +15,23 @@
 
 
 ### 网络架构
-![](http://image.xpshuai.cn/20221014172349.png)
+![](http://image.geoer.cn/20221014172349.png)
 
 其中：
-![](http://image.xpshuai.cn/20221014172414.png)
+![](http://image.geoer.cn/20221014172414.png)
 
-![](http://image.xpshuai.cn/20221014172427.png)
+![](http://image.geoer.cn/20221014172427.png)
 
 
 ### RSU结构(ReSidual U-blocks)
-![](http://image.xpshuai.cn/20221014172814.png)
+![](http://image.geoer.cn/20221014172814.png)
 
-![](http://image.xpshuai.cn/20221014172943.png)
+![](http://image.geoer.cn/20221014172943.png)
 
 
 
 **U型嵌套结构：**
-![](http://image.xpshuai.cn/20221014173133.png)
+![](http://image.geoer.cn/20221014173133.png)
 
 
 
@@ -50,7 +50,7 @@
 > 替换为自己的遥感影像建筑物提取的数据集，简单测试了一下能跑通，代码有点乱还没改
 
 整体目录如下：
-![](http://image.xpshuai.cn/20221014164356.png)
+![](http://image.geoer.cn/20221014164356.png)
 
 my_dataset.py
 ```python
@@ -135,7 +135,7 @@ class UpConvBNReLU(ConvBNReLU):
 class RSU(nn.Module):
     """通用的RSU模块
     height：深度，传入不同的height来实现RSU7..6..5...4
-    ![20221013212413](http://image.xpshuai.cn/20221013212413.png)
+![20221013212413](http://image.geoer.cn/20221013212413.png)
     """
     def __init__(self, height: int, in_ch: int, mid_ch: int, out_ch: int):
         super().__init__()
@@ -172,7 +172,7 @@ class RSU(nn.Module):
 
 class RSU4F(nn.Module):
     """在RSU4的基础上将所有上下采样替换为膨胀卷积
-    ![20221013212305](http://image.xpshuai.cn/20221013212305.png)
+![20221013212305](http://image.geoer.cn/20221013212305.png)
     """
     def __init__(self, in_ch: int, mid_ch: int, out_ch: int):
         super().__init__()
@@ -984,9 +984,9 @@ def init_distributed_mode(args):
 ```
 
 跑出来的效果：
-![](http://image.xpshuai.cn/20221014171951.png)
+![](http://image.geoer.cn/20221014171951.png)
 
-![](http://image.xpshuai.cn/20221014172033.png)
+![](http://image.geoer.cn/20221014172033.png)
 
 
 > 代码没好好整合过，后面等换个好电脑再弄吧，

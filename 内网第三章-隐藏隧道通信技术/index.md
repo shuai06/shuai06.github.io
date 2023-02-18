@@ -981,7 +981,7 @@ mstsc 192.168.128:3389  # 等方法
 
 
 ###### 各种隧道技术的优劣
-<img src="http://image.xpshuai.cn/20200516154814996_1523296228.png" />
+<img src="http://image.geoer.cn/20200516154814996_1523296228.png" />
 
 根据实际环境选择技术  
 DNS+SSH隧道结合
@@ -995,9 +995,9 @@ DNS+SSH隧道结合
 3.服务器在内网，对外只开放了部分端口(如80端口)，且服务器不能访问外部网络
 ```
 
-<img src="http://image.xpshuai.cn/20200516172238149_1110777522.png" />
+<img src="http://image.geoer.cn/20200516172238149_1110777522.png" />
 
-<img src="http://image.xpshuai.cn/20200516172346684_1234877527.png" />
+<img src="http://image.geoer.cn/20200516172346684_1234877527.png" />
 
 SOCKS是一种代理服务，可简单的将一端的系统连接另一端。
 SOCKS支持多种协议。

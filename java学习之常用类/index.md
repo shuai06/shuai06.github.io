@@ -40,9 +40,9 @@ Permanent Space永久存储区		   Perm
 
 **事实上永久区是划分在方法区的：**
 
-![JVM优化是哪里](http://image.xpshuai.cn/JVM%E4%BC%98%E5%8C%96%E6%98%AF%E5%93%AA%E9%87%8C.png)
+![JVM优化是哪里](http://image.geoer.cn/JVM%E4%BC%98%E5%8C%96%E6%98%AF%E5%93%AA%E9%87%8C.png)
 
-![代](http://image.xpshuai.cn/%E4%BB%A3.png)
+![代](http://image.geoer.cn/%E4%BB%A3.png)
 
 
 
@@ -58,7 +58,7 @@ Jdk1.7:有，但已经逐步“去永久代”，1.7在堆
 
 Jdk1.8及之后:无，1.8在元空间
 
-![在不用jdk中区别](http://image.xpshuai.cn/jdk%E6%B0%B8%E4%B9%85%E5%8C%BA.png)
+![在不用jdk中区别](http://image.geoer.cn/jdk%E6%B0%B8%E4%B9%85%E5%8C%BA.png)
 
 
 
@@ -88,7 +88,7 @@ String s4 = new String(char[]a,int startIndex,int count);
 
 **两种创建方式的区别：**
 
-![两种创建方式的区别](http://image.xpshuai.cn/string%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB.jpg)
+![两种创建方式的区别](http://image.geoer.cn/string%E4%B8%A4%E7%A7%8D%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB.jpg)
 
 
 
@@ -96,7 +96,7 @@ String s4 = new String(char[]a,int startIndex,int count);
 
 
 
-![字符串的特性](http://image.xpshuai.cn/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%89%B9%E6%80%A7.png)
+![字符串的特性](http://image.geoer.cn/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%89%B9%E6%80%A7.png)
 
 
 
@@ -223,7 +223,7 @@ public class StringTest {
 
 **练习1：**
 
-![分析](http://image.xpshuai.cn/string%E7%BB%83%E4%B9%A01.jpg)
+![分析](http://image.geoer.cn/string%E7%BB%83%E4%B9%A01.jpg)
 
 **面试题2：**
 
@@ -267,7 +267,7 @@ public class CaseTest {
 
 #### String常用方法
 
-![String常用方法](http://image.xpshuai.cn/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.jpg)
+![String常用方法](http://image.geoer.cn/String%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.jpg)
 
 
 
@@ -381,7 +381,7 @@ public class StringMethodTest {
 
 ##### 1.String与基本数据类型、包装类之间的转换
 
-![string与其他类型转换](http://image.xpshuai.cn/string%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.jpg)
+![string与其他类型转换](http://image.geoer.cn/string%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.jpg)
 
 ```java
 /**
@@ -431,7 +431,7 @@ public void test1(){
 
 ##### 3.String与字节数组byte[]之间的转换
 
-![String与字节数组byte[]之间的转换](http://image.xpshuai.cn/String%E4%B8%8E%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84byte%5B%5D%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2.png)
+![String与字节数组byte[]之间的转换](http://image.geoer.cn/String%E4%B8%8E%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84byte%5B%5D%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2.png)
 
 ```java
     /**
@@ -486,7 +486,7 @@ public void test4(){
 
 #### 常见算法题
 
-![string常见算法题.](http://image.xpshuai.cn/string%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.jpg)
+![string常见算法题.](http://image.geoer.cn/string%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98.jpg)
 
 
 
@@ -564,7 +564,7 @@ public class StringBufferTest {
 
 ##### StringBuffer中常用方法
 
-![StringBuffer中常用方法](http://image.xpshuai.cn/StringBuffer%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.jpg)
+![StringBuffer中常用方法](http://image.geoer.cn/StringBuffer%E4%B8%AD%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95.jpg)
 
 
 
@@ -687,7 +687,7 @@ public class StringBufferTest {
 
 #### JDK8之前日期和之间API
 
-![JDK8之前日期和之间API](http://image.xpshuai.cn/JDK8%E4%B9%8B%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E4%B9%8B%E9%97%B4API.jpg)
+![JDK8之前日期和之间API](http://image.geoer.cn/JDK8%E4%B9%8B%E5%89%8D%E6%97%A5%E6%9C%9F%E5%92%8C%E4%B9%8B%E9%97%B4API.jpg)
 
 
 
@@ -958,7 +958,7 @@ java.time.zone-包含时区支持的类
 
 
 
-![java新时间API的方法](http://image.xpshuai.cn/java%E6%96%B0%E6%97%B6%E9%97%B4API%E7%9A%84%E6%96%B9%E6%B3%95.jpg)
+![java新时间API的方法](http://image.geoer.cn/java%E6%96%B0%E6%97%B6%E9%97%B4API%E7%9A%84%E6%96%B9%E6%B3%95.jpg)
 
 
 
@@ -1018,7 +1018,7 @@ java.time.zone-包含时区支持的类
 
 **Instant(瞬时)：**
 
-![Instant](http://image.xpshuai.cn/java%E6%97%B6%E9%97%B4-instant.jpg)
+![Instant](http://image.geoer.cn/java%E6%97%B6%E9%97%B4-instant.jpg)
 
 
 
@@ -1056,7 +1056,7 @@ java.time.zone-包含时区支持的类
 
 **格式化与解析日期或时间：**
 
-![格式化与解析日期或时间](http://image.xpshuai.cn/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E8%A7%A3%E6%9E%90%E6%97%A5%E6%9C%9F%E6%88%96%E6%97%B6%E9%97%B4.jpg)
+![格式化与解析日期或时间](http://image.geoer.cn/%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E8%A7%A3%E6%9E%90%E6%97%A5%E6%9C%9F%E6%88%96%E6%97%B6%E9%97%B4.jpg)
 
 
 
@@ -1107,13 +1107,13 @@ java.time.zone-包含时区支持的类
 
 **java其他时间api：**
 
-![java其他时间api](http://image.xpshuai.cn/java%E5%85%B6%E4%BB%96%E6%97%B6%E9%97%B4api.jpg)
+![java其他时间api](http://image.geoer.cn/java%E5%85%B6%E4%BB%96%E6%97%B6%E9%97%B4api.jpg)
 
 
 
 **与传统日期的处理转换：**
 
-![与传统日期的处理转换](http://image.xpshuai.cn/%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%97%A5%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86%E8%BD%AC%E6%8D%A2.jpg)
+![与传统日期的处理转换](http://image.geoer.cn/%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%97%A5%E6%9C%9F%E7%9A%84%E5%A4%84%E7%90%86%E8%BD%AC%E6%8D%A2.jpg)
 
 
 
@@ -1133,7 +1133,7 @@ java.time.zone-包含时区支持的类
 
 
 
-![自然排序1](http://image.xpshuai.cn/%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F1.jpg)
+![自然排序1](http://image.geoer.cn/%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F1.jpg)
 
 
 
@@ -1331,7 +1331,7 @@ public class ComparableTest {
 
 #### Comparator接口
 
-![定制排序2](http://image.xpshuai.cn/%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F2.jpg)
+![定制排序2](http://image.geoer.cn/%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F2.jpg)
 
 
 
@@ -1424,7 +1424,7 @@ public class ComparableTest {
 
 ### System类
 
-![System类](http://image.xpshuai.cn/javaSystem%E7%B1%BB.jpg)
+![System类](http://image.geoer.cn/javaSystem%E7%B1%BB.jpg)
 
 
 
@@ -1442,7 +1442,7 @@ public class ComparableTest {
 
 ### Math类
 
-![Math类](http://image.xpshuai.cn/javaMath%E7%B1%BB.jpg)
+![Math类](http://image.geoer.cn/javaMath%E7%B1%BB.jpg)
 
 
 
@@ -1454,7 +1454,7 @@ public class ComparableTest {
 
 ### BigInteger与BigDecimal
 
-![BigInteger与BigDecimal](http://image.xpshuai.cn/javaBigInteger%E4%B8%8EBigDecimal.jpg)
+![BigInteger与BigDecimal](http://image.geoer.cn/javaBigInteger%E4%B8%8EBigDecimal.jpg)
 
 
 

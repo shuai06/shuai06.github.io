@@ -166,7 +166,7 @@ sudo apt install virt-manager ssh-askpass
 **网卡桥接配置**
 默认虚拟机网络模式为NAT（可以访问外部网络，但外部计算机无法访问虚拟机），可以使用`网桥`实现VM被外部网络访问
 
-<img src="http://image.xpshuai.cn/20200510211152045_955020812.png" />
+<img src="http://image.geoer.cn/20200510211152045_955020812.png" />
 
 网桥的配置
 ```bash

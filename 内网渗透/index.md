@@ -293,11 +293,11 @@ nishang的使用是要在PowerShell3.0以上的环境中才可以正常使用。
 
 #### 目录结构：
 
-<img src="http://image.xpshuai.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E7%9B%AE%E5%BD%95.png"></img>
+<img src="http://image.geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E7%9B%AE%E5%BD%95.png"></img>
 
 #### 模块和功能介绍：
 
-<img src="http://image.xpshuai.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E5%8A%9F%E8%83%BD.png"></img>
+<img src="http://image.geoer.cn/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-%E5%8A%9F%E8%83%BD.png"></img>
 
 #### 演示：
 

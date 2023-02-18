@@ -27,7 +27,7 @@
 
 
 
-<img src="http://image.xpshuai.cn/%E4%B8%BB%E5%8A%A8%E6%A8%A1%E5%BC%8Fftp.jpg" alt="盗张图"></img>
+<img src="http://image.geoer.cn/%E4%B8%BB%E5%8A%A8%E6%A8%A1%E5%BC%8Fftp.jpg" alt="盗张图"></img>
 
 
 
@@ -49,7 +49,8 @@
 
 
 
-<img src="http://image.xpshuai.cn/%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8Fftp.jpg" alt="盗张图"></img>
+<img src="http://image.geoer.cn/%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8Fftp.jpg" alt="盗张图"></img>
+
 
 ---
 

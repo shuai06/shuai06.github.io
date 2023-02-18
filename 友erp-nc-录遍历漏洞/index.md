@@ -13,7 +13,7 @@
 app="⽤友-UFIDA-NC"
 ```
 
-![](http://image.xpshuai.cn/%E7%94%A8%E5%8F%8Bfofa.jpg)
+![](http://image.geoer.cn/%E7%94%A8%E5%8F%8Bfofa.jpg)
 
 
 
@@ -25,11 +25,12 @@ POC:
  /NCFindWeb?service=IPreAlertConfigService&filename=
 ```
 
-![](http://image.xpshuai.cn/%E7%94%A8%E5%8F%8B%E4%BA%BApoc1.jpg)
+![](http://image.geoer.cn/%E7%94%A8%E5%8F%8B%E4%BA%BApoc1.jpg)
 
 查看文件（这里以admin.jsp为例）：
 
-![](http://image.xpshuai.cn/%E7%94%A8%E5%8F%8Bpoc.jpg)
+![](http://image.geoer.cn/%E7%94%A8%E5%8F%8Bpoc.jpg)
+
 
 ---
 

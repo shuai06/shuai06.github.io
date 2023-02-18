@@ -3,15 +3,15 @@
 
 
 
-<img src="http://image.xpshuai.cn/20200126205055895_1655667133.png" />
+<img src="http://image.geoer.cn/20200126205055895_1655667133.png" />
 
-<img src="http://image.xpshuai.cn/20200126210117946_1080742536.png" />
+<img src="http://image.geoer.cn/20200126210117946_1080742536.png" />
 
-<img src="http://image.xpshuai.cn/20200126210349356_2002672330.png" />
+<img src="http://image.geoer.cn/20200126210349356_2002672330.png" />
 
 
 #### DPKG包管理器（本地）
-<img src="http://image.xpshuai.cn/20200126210801883_1750439429.png" />
+<img src="http://image.geoer.cn/20200126210801883_1750439429.png" />
 
 ​     
 
@@ -120,7 +120,7 @@ sudo pt install apticron
 ## APT更新源配置
 **推荐使用官方更新源**  
 
-<img src="http://image.xpshuai.cn/20200127152919657_1859338354.png" />
+<img src="http://image.geoer.cn/20200127152919657_1859338354.png" />
 
 deb   指的是安装包文件  
 deb-src  是deb相关的，还没有编译成deb的源文件  
@@ -129,21 +129,21 @@ deb-src  是deb相关的，还没有编译成deb的源文件
 
 **第三方库  **
 
-<img src="http://image.xpshuai.cn/20200127153629331_1188888659.png" />
+<img src="http://image.geoer.cn/20200127153629331_1188888659.png" />
 
 `apt-key add`
 `apt-ket del`
 
 
 ###### PPA
-<img src="http://image.xpshuai.cn/20200127154253164_223311205.png" />
+<img src="http://image.geoer.cn/20200127154253164_223311205.png" />
 
 
 
 ###### SNAP包管理 
 > 发展趋势非常好
 
-<img src="http://image.xpshuai.cn/20200127155257588_792061499.png" />
+<img src="http://image.geoer.cn/20200127155257588_792061499.png" />
 
 
 ###### SNAP包管理

@@ -5,30 +5,30 @@
 >最牛X的地方是：支持整个渗透测试过程
 
 ## <font color=red> 理论方面</font>
-![](http://image.xpshuai.cn/msf_1.png)
+![](http://image.geoer.cn/msf_1.png)
 
 
 #### 技术架构
 **1.辅助模块（auxiliary）**
 包含了扫描、嗅探、指纹识别、网络欺骗等相关功能模块
-![](http://image.xpshuai.cn/msf_2.png)
+![](http://image.geoer.cn/msf_2.png)
 
 **2.渗透攻击模块(exploits)**
 利用程序，针对漏洞、权限进行利用，是主要使用的模块
-![](http://image.xpshuai.cn/msf_3.png)
+![](http://image.geoer.cn/msf_3.png)
 
 **3.攻击载荷模块(payload)**
 用于在目标系统中运行任意命令或者执行特定代码，主要用于shell获取
-![](http://image.xpshuai.cn/msf_5.png)
+![](http://image.geoer.cn/msf_5.png)
 
 **4.空指令模块(nops)**
-![](http://image.xpshuai.cn/msf_5.png)
+![](http://image.geoer.cn/msf_5.png)
 
 **5.编码器模块(encoders)**
-![](http://image.xpshuai.cn/msf_6.png)
+![](http://image.geoer.cn/msf_6.png)
 
 **6.后渗透攻击模块(post)**
-![](http://image.xpshuai.cn/msf_7.png)
+![](http://image.geoer.cn/msf_7.png)
 
 **7.免杀模块(evasion)**
 
@@ -44,24 +44,24 @@ MSF有四种接口对外提供：`msfconsole`, `msfcli`,  `msfgui`,  `msfweb`
 
 
 #### 为什么要使用Metasploit
-![](http://image.xpshuai.cn/msf_8.png)
+![](http://image.geoer.cn/msf_8.png)
 开发版是没有生成报告的功能的（商业版才有），但是开发版的脚本更多，每个版本各有利弊
 
 1. 情报搜集阶段
-![](http://image.xpshuai.cn/msf_9.png)
+![](http://image.geoer.cn/msf_9.png)
 有数据库
 
 2. 威胁建模阶段
-![](http://image.xpshuai.cn/msf_10.png)
+![](http://image.geoer.cn/msf_10.png)
 
 3. 漏洞分析阶段
-![](http://image.xpshuai.cn/msf_11.png)
+![](http://image.geoer.cn/msf_11.png)
 
 4. 后渗透攻击模块
-![](http://image.xpshuai.cn/msf_13.png)
+![](http://image.geoer.cn/msf_13.png)
 
 5. 报告生成模块
-![](http://image.xpshuai.cn/msf_13.png)
+![](http://image.geoer.cn/msf_13.png)
 
 ---------------------------------------------
 
@@ -124,7 +124,7 @@ setg, unsetg  # 用于在msfconsole中设置或取消设置全局性的参数，
 ## 用于主机发现的辅助模块，位于 modules/auxiliary/scanner/discovery
 use /auxiliary/scanner/discovery/arp_sweep
 ```
-![](http://image.xpshuai.cn/msf_14.png)
+![](http://image.geoer.cn/msf_14.png)
 
 还是nmap速度快, 可以直接在msf中使用`nmap`
 
@@ -141,17 +141,17 @@ use ......
 show options
 set xxx
 ```
-![](http://image.xpshuai.cn/msf_15.png)
+![](http://image.geoer.cn/msf_15.png)
 
 **4.探测服务详细信息**
-![](http://image.xpshuai.cn/msf_16.png)
+![](http://image.geoer.cn/msf_16.png)
 
 
 **5.服务查点**
 用户服务扫描和查点的工具，通常以`[server_name]_version`命名
 
 - telnet服务查点(查哪些主机开了telnet服务，而namp是查看某主机开放了哪些服务)
-![](http://image.xpshuai.cn/msf_17.png)
+![](http://image.geoer.cn/msf_17.png)
 
 - SSH服务查点
 ```bash

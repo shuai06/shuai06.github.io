@@ -42,7 +42,7 @@ nc -l -p 4444
 nc -nv 1.1.1.1 4444
 
 ```
-![](http://image.xpshuai.cn/nc_use.png)
+![](http://image.geoer.cn/nc_use.png)
 
 ###### 用途：
 **远程电子取证** (原则:尽可能少修改被审计系统的状态，避免影响证据)

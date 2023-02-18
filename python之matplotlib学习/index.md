@@ -40,11 +40,11 @@ matplotlib是Python最常用的绘图库，提供了一整套十分适合交互�
 
 
 
-![](http://image.xpshuai.cn/matlib.png)
+![](http://image.geoer.cn/matlib.png)
 
 
 
-![](http://image.xpshuai.cn/matlib2.png)
+![](http://image.geoer.cn/matlib2.png)
 
 
 
@@ -127,7 +127,7 @@ ax4.plot(df2,alpha=0.5,linestyle='--',marker='.')
 #fig, ax = plt.subplots(num=10, clear=True)
 ```
 
-![](http://image.xpshuai.cn/subplot_1.png)
+![](http://image.geoer.cn/subplot_1.png)
 
 
 
@@ -148,7 +148,7 @@ ax1.plot(ts) #ax1进行画图
 fig.show()
 ```
 
-![](http://image.xpshuai.cn/subplot_2.png)
+![](http://image.geoer.cn/subplot_2.png)
 
 
 

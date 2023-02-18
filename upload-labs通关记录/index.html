@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="本文主要记录一下upload-labs最新21关卡的过程，作为自己的一个笔记。 靶场地址：https://github.com/c0ny1/u" /><meta name="keywords" content='渗透测试, 文件上传' /><meta itemprop="name" content="upload-labs通关记录">
 <meta itemprop="description" content="本文主要记录一下upload-labs最新21关卡的过程，作为自己的一个笔记。 靶场地址：https://github.com/c0ny1/u"><meta itemprop="datePublished" content="2020-02-17T18:08:02+08:00" />
-<meta itemprop="dateModified" content="2023-02-11T15:19:57+00:00" />
+<meta itemprop="dateModified" content="2023-02-18T10:46:11+00:00" />
 <meta itemprop="wordCount" content="7199"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="渗透测试,文件上传," /><meta property="og:title" content="upload-labs通关记录" />
 <meta property="og:description" content="本文主要记录一下upload-labs最新21关卡的过程，作为自己的一个笔记。 靶场地址：https://github.com/c0ny1/u" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/upload-labs%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-02-17T18:08:02+08:00" />
-<meta property="article:modified_time" content="2023-02-11T15:19:57+00:00" />
+<meta property="article:modified_time" content="2023-02-18T10:46:11+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "渗透测试, 文件上传","wordcount":  7199 ,
-    "url": "https:\/\/shuai06.github.io\/upload-labs%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95\/","datePublished": "2020-02-17T18:08:02+08:00","dateModified": "2023-02-11T15:19:57+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/upload-labs%E9%80%9A%E5%85%B3%E8%AE%B0%E5%BD%95\/","datePublished": "2020-02-17T18:08:02+08:00","dateModified": "2023-02-18T10:46:11+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -608,7 +608,7 @@
 <p>- 为了快速验证效果，此处上传的webshell代码为<code>&lt;php? phpinfo(); ?&gt;</code></p>
 <p>- 解题思路五花八门，我这里想起了啥就用啥。</p>
 <p>- 因为比较菜，所以做题直接看代码了就(谁料有的题目看了代码都看不懂)，哈哈哈。</p>
-<img src="http://image.xpshuai.cn/20200218195326654_1642698147.png" />
+<img src="http://image.geoer.cn/20200218195326654_1642698147.png" />
 <h2 id="相关函数">相关函数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -727,9 +727,9 @@
 <h6 id="绕过">绕过</h6>
 <p>**F1: **</p>
 <p>禁用js，直接上传php</p>
-<img src="http://image.xpshuai.cn/20200217215459803_1606358356.png" />
+<img src="http://image.geoer.cn/20200217215459803_1606358356.png" />
 <p>成功：</p>
-<img src="http://image.xpshuai.cn/20200217215605878_1982942629.png" />
+<img src="http://image.geoer.cn/20200217215605878_1982942629.png" />
 <p><strong>F2：</strong></p>
 <p>在本地创建html，action为服务器请求地址，（去掉相应js部分）</p>
 <p><strong>F3:</strong></p>
@@ -740,17 +740,17 @@
 <p>服务端验证 &ndash; 文件MIME类型</p>
 </blockquote>
 <p>只检测文件自带的类型</p>
-<img src="http://image.xpshuai.cn/20200217215941532_643347454.png" />
+<img src="http://image.geoer.cn/20200217215941532_643347454.png" />
 <h5 id="绕过-1">绕过：</h5>
 <p>burp修改数据包中修改MIME类型（Content-Type）为允许的类型</p>
-<img src="http://image.xpshuai.cn/20200217220124560_567357512.png" />
+<img src="http://image.geoer.cn/20200217220124560_567357512.png" />
 <h1 id="pass03-pass10------黑名单校验">Pass03-Pass10:      黑名单校验</h1>
 <h2 id="pass-03">Pass-03</h2>
 <blockquote>
 <p>服务端验证(黑名单方式) &ndash; 多种格式后缀解析</p>
 </blockquote>
 <p>对上传的文件先过滤，后判断文件后缀，再随机命名</p>
-<img src="http://image.xpshuai.cn/20200217220446232_1542284348.png" />
+<img src="http://image.geoer.cn/20200217220446232_1542284348.png" />
 <p><strong>比如：</strong>         a.php</p>
 <p>先删掉文件名前后的空格</p>
 <p>删除末尾的点：  a.php</p>
@@ -778,14 +778,14 @@
 <p>右键图片查看地址, 从这里可以得知上传的文件被重命名了,  打开图片地址，OK</p>
 <p><strong>F2:  上传图片马</strong></p>
 <p>上传图片马，然后利用BP拦截，将后缀名 <code>改为phtml,php3,php4,php5,pht</code></p>
-<img src="http://image.xpshuai.cn/20200218144512768_1843220897.png" />
+<img src="http://image.geoer.cn/20200218144512768_1843220897.png" />
 <p>​</p>
 <p>​</p>
 <h2 id="pass-04">Pass-04</h2>
 <blockquote>
 <p>服务端（php5之类的也进行了过滤）</p>
 </blockquote>
-<img src="http://image.xpshuai.cn/20200217222608134_260661208.png" />
+<img src="http://image.geoer.cn/20200217222608134_260661208.png" />
 <p>但是没有过滤<code>.htaccess</code>，可以考虑重写文件解析规则绕过</p>
 <p>info.php.jpg.</p>
 <h6 id="绕过-3">绕过</h6>
@@ -812,7 +812,7 @@
 </div>
 </div><p>2.然后再上传一个info.php, burp拦截数据包修改filename为<code>info.jpg</code>   / 或者直接上图片马， url访问图片路径，正常解析</p>
 <h2 id="pass-05">Pass-05</h2>
-<img src="http://image.xpshuai.cn/20200217223711503_294591319.png" />
+<img src="http://image.geoer.cn/20200217223711503_294591319.png" />
 <p>连.htaccess都放黑名单了</p>
 <p><strong>缺陷：</strong></p>
 <p><code>strrchr函数</code>：  搜索参数在字符串中的位置，并返回从该位置到字符串结尾的所有字符</p>
@@ -835,18 +835,18 @@
 <p>前后去空：后缀为<code>.</code>, 不在黑名单范围，成功绕过</p>
 <p>最后上传文件名为：<code>a.php.</code>, 在windows保存文件的之后的<code>.</code>会消失</p>
 <p>如下图，win服务器保存的文件：</p>
-<img src="http://image.xpshuai.cn/20200217224221081_348766282.png" />
+<img src="http://image.geoer.cn/20200217224221081_348766282.png" />
 <p>正常解析：</p>
-<img src="http://image.xpshuai.cn/20200217224244474_173158029.png" />
+<img src="http://image.geoer.cn/20200217224244474_173158029.png" />
 <h2 id="pass-06">Pass-06</h2>
-<img src="http://image.xpshuai.cn/20200218145809732_1096167348.png" />
+<img src="http://image.geoer.cn/20200218145809732_1096167348.png" />
 <p>没有进行后缀名大小写转换</p>
 <h6 id="绕过-5">绕过</h6>
 <p>burp修改filename后缀名为<code>.phP</code>，绕过检测，上传OK</p>
 <p>正常解析</p>
-<img src="http://image.xpshuai.cn/20200218150044751_461792168.png" />
+<img src="http://image.geoer.cn/20200218150044751_461792168.png" />
 <h2 id="pass-07">Pass-07</h2>
-<img src="http://image.xpshuai.cn/20200218150316897_1558000982.png" />
+<img src="http://image.geoer.cn/20200218150316897_1558000982.png" />
 <p>最后没有将后缀首尾去空</p>
 <p>可以利用win文件名字保存格式的特性: 比如最后一个为空格<code>info.php </code>,</p>
 <p><code>.php </code>不在黑名单<code>.php</code>等中，成功绕过，</p>
@@ -854,7 +854,7 @@
 <h6 id="绕过-6">绕过</h6>
 <p>burp修改filename为<code>info.php </code>，后面加一个空格，上传</p>
 <h2 id="pass-08">Pass-08</h2>
-<img src="http://image.xpshuai.cn/20200218151055198_961499757.png" />
+<img src="http://image.geoer.cn/20200218151055198_961499757.png" />
 <p>少了提前删除文件名末尾的点 的功能(deldot)；</p>
 <p><code>strrchr</code>过滤匹配的是最后一个点；</p>
 <p>没有对上传的文件重命名</p>
@@ -887,7 +887,7 @@
 <blockquote>
 <p>Windows文件流绕过</p>
 </blockquote>
-<img src="http://image.xpshuai.cn/20200218152924608_961861669.png" />
+<img src="http://image.geoer.cn/20200218152924608_961861669.png" />
 <p>少了 <code>$file_ext = str_ireplace('::$DATA', '', $file_ext);//去除字符串::$DATA</code>    &ndash;&gt; 含义：把后缀中是 ::DATA替换为空</p>
 <p><code>str_ireplace('要替换的对象','替换为','字符串')</code>函数</p>
 <p>由上可知，文件<code>没有对后缀名进行去”::DATA”处理</code>。</p>
@@ -905,26 +905,26 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>1.如图 ，在BP中修改图片马的 jpg 的后缀名，将其改为 php ，并且在后面加上 ::$DATA ;</p>
-<img src="http://image.xpshuai.cn/20200218161807873_1645216989.png" />
+<img src="http://image.geoer.cn/20200218161807873_1645216989.png" />
 <p>2.在网页上检查图片马的执行情况时，将图片马的后缀名中 ::$DATA ，删去，便可浏览。</p>
 <p>如图，这个是没有去掉后缀时，会发生报错。（因为我们实际上传的是PHP文件，即upload文件夹中只有php文件，而不存在带有后缀 ::$DATA的文件）</p>
-<img src="http://image.xpshuai.cn/20200218162201913_251841335.png" />
+<img src="http://image.geoer.cn/20200218162201913_251841335.png" />
 <h1 id="pass-10---11-将filename拼接路径会带来极大风险">Pass 10 - 11 （将filename拼接路径会带来极大风险）</h1>
 <h2 id="pass-10">Pass-10</h2>
-<img src="http://image.xpshuai.cn/20200218163307924_285954321.png" />
+<img src="http://image.geoer.cn/20200218163307924_285954321.png" />
 <h6 id="绕过-9">绕过</h6>
 <p><strong>构造后缀名点空绕过</strong></p>
 <p><code>strrchr</code>函数 搜索参数在字符串中的位置，并返回从该位置到字符串结尾的所有字符</p>
 <p>如果有多个，匹配的是最后一个（前面的就会漏掉</p>
 <p>由上可知，该关进行的是现在文件末尾先去点，再去空便没有再做任何处理，因此我们可以利用这个漏洞，构造后缀名为php+点+空+点</p>
 <p>burp修改文件名<code>info.php. .</code></p>
-<img src="http://image.xpshuai.cn/20200218163126238_1032488863.png" />
+<img src="http://image.geoer.cn/20200218163126238_1032488863.png" />
 <h2 id="pass-11">Pass-11</h2>
 <blockquote>
 <p>双写绕过</p>
 </blockquote>
 <p>没有strrchr</p>
-<img src="http://image.xpshuai.cn/20200218163843491_1975433720.png" />
+<img src="http://image.geoer.cn/20200218163843491_1975433720.png" />
 <p>str_ireplace函数：</p>
 <p><code>str_ireplace('要替换的对象','替换为','字符串')</code>,   他把我们的php后缀替换为空</p>
 <p><strong>函数缺陷：</strong></p>
@@ -933,7 +933,7 @@
 <p>扰乱，删除里面后，外面还能组合成功后缀</p>
 <p>burp修改filename=<code>info.pphphp</code></p>
 <p>info.pphphp &mdash; &gt; &lsquo;info.php&rsquo;</p>
-<img src="http://image.xpshuai.cn/20200218163953790_921378631.png" />
+<img src="http://image.geoer.cn/20200218163953790_921378631.png" />
 <h1 id="pass-12---13-将filename当做变量加入最终路径会带来极大风险">Pass 12 - 13 将filename当做变量加入最终路径会带来极大风险</h1>
 <h2 id="pass---12">Pass - 12</h2>
 <blockquote>
@@ -944,7 +944,7 @@
 </blockquote>
 <p><strong>魔术引号 magic_quotes_gpc 作用</strong>： 对（反斜杠？，单引号，双引号，none）产生影响, 自动加上/</p>
 <p><strong>白名单绕过</strong></p>
-<p>)<img src="http://image.xpshuai.cn/20200218165050537_741059186.png" /></p>
+<p>)<img src="http://image.geoer.cn/20200218165050537_741059186.png" /></p>
 <p>save_path可控， <code>$_GET['save_path']</code> 通过get获取，可以把get中url参数带上00截断</p>
 <p>%00 截断（类似注释符号，后面的不再执行）</p>
 <blockquote>
@@ -956,51 +956,51 @@
 <p>URI中00截断</p>
 <p><strong>方法一：拦包00截断</strong></p>
 <p>由于是在get的url中，<code>%00</code>就不进行decode了，</p>
-<img src="http://image.xpshuai.cn/20200218170335768_2032329037.png" />
+<img src="http://image.geoer.cn/20200218170335768_2032329037.png" />
 <p>上传成功：</p>
 <p>查看图片路径：</p>
-<img src="http://image.xpshuai.cn/20200218170644694_1142415094.png" />
+<img src="http://image.geoer.cn/20200218170644694_1142415094.png" />
 <p>查看服务器保存文件：</p>
-<img src="http://image.xpshuai.cn/20200218170437679_903547409.png" />
+<img src="http://image.geoer.cn/20200218170437679_903547409.png" />
 <p>访问的时候，去掉后面的jpg，只访问php，OK：</p>
-<img src="http://image.xpshuai.cn/20200218170513646_522012281.png" />
+<img src="http://image.geoer.cn/20200218170513646_522012281.png" />
 <p><strong>方法二：前端直接修改为 &ldquo;php+00截断&quot;格式</strong></p>
 <p>如下可得，直接将参数save_path修改为php+00截断的格式，因此它会将之后上传的所有文件以PHP的格式进行解析。</p>
 <p>ps:图片是盗取的</p>
-<img src="http://image.xpshuai.cn/20200218170957259_1424254637.png" />
+<img src="http://image.geoer.cn/20200218170957259_1424254637.png" />
 <p>burp只修改下面的filename为<code>x.jpg</code>即可</p>
 <h2 id="pass---13">Pass - 13</h2>
 <blockquote>
 <p>POST请求，00截断</p>
 </blockquote>
 <p><strong>白名单绕过</strong></p>
-<img src="http://image.xpshuai.cn/20200218165118835_726563878.png" />
+<img src="http://image.geoer.cn/20200218165118835_726563878.png" />
 <p><strong>F1:</strong></p>
 <p>同12关，只是修改的地方不同</p>
 <p>**1.**burp拦截。在post后面加上<code>info.php%00</code> (%00是url decode之后的)，再发送即可</p>
-<img src="http://image.xpshuai.cn/20200218172018042_1656668337.png" />
+<img src="http://image.geoer.cn/20200218172018042_1656668337.png" />
 <p>**2.**burp拦截，然后在上面的upload 的后面加上 <code>123.php+</code>（这里的123可以为任何名字，他只是一个代号。并且 php后面的 <code>+ </code>好也是一个标记，他的二进制代码为 <code>2b</code>）</p>
 <p>由上可知，将二进制中的 + 改为 00 截断，即将 + 的二进制码 2b 改为 <code>00</code> .</p>
-<img src="http://image.xpshuai.cn/20200218171415601_503298826.png" />
+<img src="http://image.geoer.cn/20200218171415601_503298826.png" />
 <p>同样，访问的时候访问php文件：</p>
-<img src="http://image.xpshuai.cn/20200218171807564_1778234073.png" />
+<img src="http://image.geoer.cn/20200218171807564_1778234073.png" />
 <p><strong>F2 意外发现：文件覆盖</strong></p>
-<img src="http://image.xpshuai.cn/20200218172227317_2113414909.png" />
+<img src="http://image.geoer.cn/20200218172227317_2113414909.png" />
 <p>由于名字可以不相同，即我们可以任意定义uploads旁边的 PHP 文件名，如果将文件名改为uploads中本身存在的文件，那么新的文件将会覆盖原来的文件。</p>
-<img src="http://image.xpshuai.cn/20200218172321670_308115506.png" />
+<img src="http://image.geoer.cn/20200218172321670_308115506.png" />
 <h2 id="pass---20-也是类似的便于比较就放这里了">Pass - 20 （也是类似的，便于比较就放这里了）</h2>
-<img src="http://image.xpshuai.cn/20200218172852998_939565232.png" />
-<img src="http://image.xpshuai.cn/20200218172525227_655899960.png" />
+<img src="http://image.geoer.cn/20200218172852998_939565232.png" />
+<img src="http://image.geoer.cn/20200218172525227_655899960.png" />
 <p>这里进行过滤的是他的那个文件名，而不是我们上传文件最开始的文件名，所以要在他的文件名上做手脚</p>
 <p><code>$file_ext = pathinfo($file_name,PATHINFO_EXTENSION)</code>   返回拓展后缀</p>
 <p>这里的文件名<code>filename</code>是可控的：  <code>$_POST['save_name']</code></p>
 <h6 id="绕过-12">绕过</h6>
 <p>我们可以在save_path中加入php+00截断，由于是POST发送方式，因此我们需进行00截断。<code>111.php%00upload-19.jpg</code> （注意url decode）</p>
-<img src="http://image.xpshuai.cn/20200218174147577_857047164.png" />
+<img src="http://image.geoer.cn/20200218174147577_857047164.png" />
 <p>上传OK：</p>
-<img src="http://image.xpshuai.cn/20200218174246606_1092693624.png" />
+<img src="http://image.geoer.cn/20200218174246606_1092693624.png" />
 <p>去掉00后面内容，访问php，正常解析</p>
-<img src="http://image.xpshuai.cn/20200218174323338_682125752.png" />
+<img src="http://image.geoer.cn/20200218174323338_682125752.png" />
 <h1 id="pass14---17-文件包含漏洞">Pass14 - 17 （文件包含漏洞）</h1>
 <h2 id="pass---14">Pass - 14</h2>
 <blockquote>
@@ -1011,7 +1011,7 @@
 <p>Linux下：cat a.jpg b.php &gt; shell.jpg</p>
 <p>文件包含漏洞（xx.php?file=uploads/x.jpg） 文件不限格式后缀</p>
 <p><strong>意义</strong>：如果存在包含漏洞，需要上传一张图片(图片马)，就可以getshell</p>
-<img src="http://image.xpshuai.cn/20200218175651617_999905544.png" />
+<img src="http://image.geoer.cn/20200218175651617_999905544.png" />
 <p><code>$strInfo = @unpack(&quot;C2chars&quot;, $bin);</code>// C为无符号整数，网上搜到的都是c，为有符号整数，这样会产生负数判断不正常</p>
 <p><code>$bin = fread($file, 2);</code> //只读2字节进行验证</p>
 <p>表示只是对文件头做了检测</p>
@@ -1025,10 +1025,10 @@
 <h6 id="绕过-13">绕过</h6>
 <p>上传图片马，上传。打开测试页面，引用刚才的图片马</p>
 <h2 id="pass---15----getimagesize">Pass - 15    getimagesize</h2>
-<img src="http://image.xpshuai.cn/20200218185841047_937742626.png" />
+<img src="http://image.geoer.cn/20200218185841047_937742626.png" />
 <p>函数拓展：<code>getimagesize（）</code>   判断是否为一个完整的图像</p>
 <p>索引2<code>$info[2]</code> 是图像的类型</p>
-<img src="http://image.xpshuai.cn/20200218185758469_1439877358.png" />
+<img src="http://image.geoer.cn/20200218185758469_1439877358.png" />
 <p>image_type_to_extension 获取的是MIME类型</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1052,16 +1052,16 @@
 <p>上传图片马，</p>
 <p>打开测试页面，直接包含<code>include</code>file=&lsquo;文件.jpg&rsquo;, 就是当成php解析</p>
 <h2 id="pass---16---php_exif模块">Pass - 16   php_exif模块</h2>
-<img src="http://image.xpshuai.cn/20200218185919196_54375063.png" />
+<img src="http://image.geoer.cn/20200218185919196_54375063.png" />
 <p>函数拓展：<code>exif_imagetype（）</code></p>
-<img src="http://image.xpshuai.cn/20200218190317887_1240325255.png" />
+<img src="http://image.geoer.cn/20200218190317887_1240325255.png" />
 <p>php_exif模块来判断文件类型</p>
 <p>版本：PHP&gt;=4.3.0,  PHP5, PHP7</p>
 <h6 id="绕过-15">绕过</h6>
 <p>需要开启<code>php_exif</code>模块：</p>
 <p>1.打开配置文件，php拓展，<code>php_exif</code>打开；</p>
 <p>2.配置文件在<code>php.ini</code>,分号是注释，可以直接解除注释启用,并将此行移动到extension=php_exif.dll之前，使之首先加载*。</p>
-<img src="http://image.xpshuai.cn/20200218220405641_1769279545.png" />
+<img src="http://image.geoer.cn/20200218220405641_1769279545.png" />
 <p>上传图片马（注意MIME与后缀和文件头要一直，然后打开测试页面，包含gif，OK</p>
 <h2 id="pass---17---图片二次编码">Pass - 17   （图片二次编码）</h2>
 <p>其实就是检测两次</p>
@@ -1092,7 +1092,7 @@
 </blockquote>
 <h1 id="18--19-条件竞争-多线程发包">18 -19 条件竞争 （多线程发包）</h1>
 <h2 id="pass---18">Pass - 18</h2>
-<img src="http://image.xpshuai.cn/20200218222155590_1020797820.png" />
+<img src="http://image.geoer.cn/20200218222155590_1020797820.png" />
 <p><code>unlink</code>函数：   数删除文件。若成功，则返回 true，失败则返回 false</p>
 <p><strong>执行步骤：</strong></p>
 <p>1.取出上传文件的后缀名</p>
@@ -1138,7 +1138,7 @@
 <p><strong>方法：</strong></p>
 <p>1.利用burp的Intruder使用多线程发包(如下图)，</p>
 <p>2.然后不断在浏览器访问我们的webshell，会有一瞬间的访问成功。（即当线程足够的时候 ，将可能会跳过某个步骤，而直接访问到我们的 webshell，新文件也会创建成功 )</p>
-<img src="http://image.xpshuai.cn/20200218222719652_1510553817.png" />
+<img src="http://image.geoer.cn/20200218222719652_1510553817.png" />
 <p><strong>F2:</strong>   Python</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1340,7 +1340,7 @@
 <p>所以上传一个 “ .php.7z ” 的文件，然后 再利用条件竞争漏洞进行多线程不断的发送 “ .php.7z”的文件，</p>
 <p>由于版本问题，这次的文件没有上传到upload的文件夹下面，而是上传到 WWW 的文件夹下面，但是不影响，并且这次的文件上传后就<code>不会被删掉</code>，就会保存在 该文件夹下面，这样的话我们将可以<code>稳定的访问到</code>。</p>
 <p>可以看到，burp进行多线程发包后，在浏览器一致访问上传文件的地址，一定会有那么一瞬间会访问到（这时，文件里新建webshell的代码执行了，新的后门建立成功了，我们就可以访问后门了）</p>
-<img src="http://image.xpshuai.cn/20200218224226603_822814111.png" />
+<img src="http://image.geoer.cn/20200218224226603_822814111.png" />
 <h1 id="00截断和move_uploaded_file函数">00截断和move_uploaded_file（）函数</h1>
 <h2 id="pass---20">Pass - 20</h2>
 <p><code>pathinfo(）函数</code>：以数组的形式返回关于文件路径的信息。</p>
@@ -1474,7 +1474,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-11&#32;15:19:57>更新于 2023-02-11&nbsp;</span>
+        <span title=2023-02-18&#32;10:46:11>更新于 2023-02-18&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

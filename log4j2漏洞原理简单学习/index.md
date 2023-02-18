@@ -39,7 +39,7 @@
 
 
 
-![lookup](http://image.xpshuai.cn/jndi_lookup.png)
+![lookup](http://image.geoer.cn/jndi_lookup.png)
 
 
 
@@ -258,7 +258,7 @@ public class Log4Test {
 
 ### 3.打开dnslog，发现成功获取ip
 
-![](http://image.xpshuai.cn/log4_dnslog.png)
+![](http://image.geoer.cn/log4_dnslog.png)
 
 
 
@@ -367,7 +367,7 @@ public class Log4Test {
 
 成功执行：
 
-![](http://image.xpshuai.cn/wiershark_ok)
+![](http://image.geoer.cn/wiershark_ok)
 
 
 

@@ -282,7 +282,7 @@ post请求
 ​     
 
 #### <font color=red>6. Miscelianeous:    </font>
-![](http://image.xpshuai.cn/sqlmap_z.png)
+![](http://image.geoer.cn/sqlmap_z.png)
 ```bash
 -z  # 参数助记符, 
 --answer="extending=N"   # 让出现提示的选项都选Y或N

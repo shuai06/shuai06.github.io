@@ -110,7 +110,7 @@ def compute_cost(X, y, w, b, lambda_= 1):
 
 ### 梯度下降
 
-![20220711145459](http://image.xpshuai.cn/20220711145459.png)
+![20220711145459](http://image.geoer.cn/20220711145459.png)
 
 ```python
 def compute_gradient(X, y, w, b, lambda_=None):
@@ -552,9 +552,9 @@ To help you make the decision, you have a dataset of test results on past microc
 
 
 
-![20220711151224](http://image.xpshuai.cn/20220711151224.png)
-![20220711151329](http://image.xpshuai.cn/20220711151329.png)
-![20220711151529](http://image.xpshuai.cn/20220711151529.png)
+![20220711151224](http://image.geoer.cn/20220711151224.png)
+![20220711151329](http://image.geoer.cn/20220711151329.png)
+![20220711151529](http://image.geoer.cn/20220711151529.png)
 ```python
 """
 Suppose you are the product manager of the factory and you have the test results for some microchips on two different tests.

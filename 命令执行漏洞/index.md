@@ -135,7 +135,7 @@ test
 cat$a /etc$a/passwd$a
 ```
 
-![读取成功](http://image.xpshuai.cn/img/image-20220118110911969.png)
+![读取成功](http://image.geoer.cn/img/image-20220118110911969.png)
 
 
 
@@ -239,15 +239,15 @@ public Process exec(String[] cmdarray, String[] envp, File dir)
 
 可以看到如下对字符串类型参数进行处理的代码：
 
-![字符串参数的exec的实现](http://image.xpshuai.cn/img/image-20220118104123543.png)
+![字符串参数的exec的实现](http://image.geoer.cn/img/image-20220118104123543.png)
 
 `StringTokenizer`对传入的字符串命令参数进行处理，然后再调用` exec(String[] cmdarray, String[] envp, File dir)`
 
-![image-20220118104339231](http://image.xpshuai.cn/img/image-20220118104339231.png)
+![image-20220118104339231](http://image.geoer.cn/img/image-20220118104339231.png)
 
 关键点就在于`StringTokenizer`如何进行处理的，跟进去发现：
 
-![StringTokenizer](http://image.xpshuai.cn/img/image-20220118104549229.png)
+![StringTokenizer](http://image.geoer.cn/img/image-20220118104549229.png)
 
 会用空格和换行符tab符等空白符`\t\n\r\f`对传入的字符串进行分割，返回一个`cmdarray`数组，其中cmdarray的第一个要素为执行的命令，该处理导致了再调用exec方法执行命令时，传入字符串参数和数组参数时的返回结果不同。
 

@@ -27,12 +27,12 @@
 2.对似然函数取对数，并整理；
 3.求导数 ；
 4.解似然方程 
-![](http://image.xpshuai.cn/20220717091228.png)
+![](http://image.geoer.cn/20220717091228.png)
 
 
-![](http://image.xpshuai.cn/20220717093039.png)
+![](http://image.geoer.cn/20220717093039.png)
 
-![](http://image.xpshuai.cn/20220717093337.png)
+![](http://image.geoer.cn/20220717093337.png)
 
 
 > 来自：https://blog.csdn.net/zouxy09/article/details/8537620
@@ -51,16 +51,16 @@
 那么如何用这100只橘猫的数据集D去推测橘猫具体的体重分布呢？
 我们将这100只橘猫体重设为数据集D：`D={x_1, x_2, ... , x_100}`
 
-![](http://image.xpshuai.cn/20220717092601.png)
+![](http://image.geoer.cn/20220717092601.png)
 
-![](http://image.xpshuai.cn/20220717092714.png)
+![](http://image.geoer.cn/20220717092714.png)
 
 
 ### 离散型例子
 有两外形相同的箱子，各装100个球，一箱99个白球1个红球，一箱1个白球99个红球，现从两箱中任取一箱，并从箱中任取一球，问：所取的球来自哪一箱 ?  答：第一箱。
-![](http://image.xpshuai.cn/20220717093420.png)
+![](http://image.geoer.cn/20220717093420.png)
 
-![](http://image.xpshuai.cn/20220717093527.png)
+![](http://image.geoer.cn/20220717093527.png)
 
 
 

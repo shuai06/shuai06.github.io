@@ -90,13 +90,13 @@ public class ArrayTest {
 
 **首先，在jvm中，内存的简化结构如下:**
 
-![](http://image.xpshuai.cn/%E7%AE%80%E5%8C%96%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.jpg)
+![](http://image.geoer.cn/%E7%AE%80%E5%8C%96%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.jpg)
 
 
 
 **一维数组的内存解析如下：**
 
-![](http://image.xpshuai.cn/%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%90.png)
+![](http://image.geoer.cn/%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%90.png)
 
 
 
@@ -189,9 +189,9 @@ public class DoubleArrayTest {
 
 #### 二维数组的内存解析
 
-![](http://image.xpshuai.cn/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%901.jpg)
+![](http://image.geoer.cn/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%901.jpg)
 
-![](http://image.xpshuai.cn/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%902.jpg)
+![](http://image.geoer.cn/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%902.jpg)
 
 
 

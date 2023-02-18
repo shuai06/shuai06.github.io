@@ -59,7 +59,7 @@ tcpdump -nX port 80 -r file.pcap
 
 ###### 高级筛选
 TCP的包头：
-<img src="http://image.xpshuai.cn/20200315180543581_5798.png" />
+<img src="http://image.geoer.cn/20200315180543581_5798.png" />
 可以看到上图中Flag中的标志位  
 tcpdump可以对如此细致的东西进行筛选  
 

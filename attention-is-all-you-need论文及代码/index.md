@@ -9,7 +9,7 @@
 
 ## Transformer架构
 先整体看一下架构图，
-![架构图](http://image.xpshuai.cn/20221009133916.png)
+![架构图](http://image.geoer.cn/20221009133916.png)
 
 对于上图左边的`Nx`标注出来的部分，就是encoder的一层，一共有6层。同理右边的decoder也是。
 
@@ -42,15 +42,15 @@ encoder由6层相同的层组成，每一层分别由两部分组成：
 attention是指，对于某个时刻的输出y，它在输入x上各个部分的注意力。这个注意力实际上可以理解为权重。
 
 attension机制有很多种，下面连接有一张较全面的表格：https://lilianweng.github.io/posts/2018-06-24-attention/
-![Attention机制种类](http://image.xpshuai.cn/20221009134755.png)
+![Attention机制种类](http://image.geoer.cn/20221009134755.png)
 
 上图中，第一种加性注意力(additive attention)在seq2seq模型里面用的很多，但是这里transformer中使用的另外一种**乘性注意力(multiplicative attention)，即两个隐状态进行点积**
 
 
 
 ### Self-Attention
-![](http://image.xpshuai.cn/20221009153650.png)
-![](http://image.xpshuai.cn/20221009153626.png)
+![](http://image.geoer.cn/20221009153650.png)
+![](http://image.geoer.cn/20221009153626.png)
 
 
 前面说attention机制的时候，都会说两个隐状态：
@@ -64,18 +64,18 @@ attension机制有很多种，下面连接有一张较全面的表格：https://
 它是encoder和decoder之间的attention。所以，你也可以称之为encoder-decoder attention。
 
 不管是self-attention还是context-attention，它们计算attention分数的时候，可以选择很多方式，比如上面表中提到的：
-![](http://image.xpshuai.cn/20221009134755.png)
+![](http://image.geoer.cn/20221009134755.png)
 
 Transformer模型采用的是：`scaled dot-product attention`。
 
 
 ### Scaled dot-product attention
 通过确定Q和K之间的相似程度来选择V。
-![](http://image.xpshuai.cn/20221009135734.png)
+![](http://image.geoer.cn/20221009135734.png)
 
 
 论文也提供了结构图：
-![](http://image.xpshuai.cn/20221009135800.png)
+![](http://image.geoer.cn/20221009135800.png)
 
 
 其中，K和Q和V是一个东西，在之前复制了三份。
@@ -131,17 +131,17 @@ class ScaledDotProductAttention(nn.Module):
 
 
 ### Multi-head attention
-![](http://image.xpshuai.cn/20221009153550.png)
+![](http://image.geoer.cn/20221009153550.png)
 将Q、K、V通过一个线性映射之后，分成`h`份，对每一份进行scaled dot-product attention效果更好。
 然后，把各个部分的结果合并起来，再次经过线性映射，得到最终的输出。这就是所谓的multi-head attention。
 上面的超参数h就是heads数量。论文默认是`8`。
 
 multi-head attention结构图：
-![](http://image.xpshuai.cn/20221009143410.png)
+![](http://image.geoer.cn/20221009143410.png)
 
 
 
-![](http://image.xpshuai.cn/20221009143614.png)
+![](http://image.geoer.cn/20221009143614.png)
 
 **Multi-head attention的实现：**
 ```python
@@ -209,7 +209,7 @@ class MultiHeadAttention(nn.Module):
 
 其中
 ### Residual connection
-![](http://image.xpshuai.cn/20221009144335.png)
+![](http://image.geoer.cn/20221009144335.png)
 
 $F(x) + x$，其中的`+x`就是一个shortcut
 那么残差结构有什么好处呢？显而易见：因为增加了一项x，那么该层网络对x求偏导的时候，多了一个常数项1！所以在反向传播过程中，梯度连乘，也不会造成梯度消失！
@@ -320,7 +320,7 @@ attn_mask参数有几种情况？
 > 对序列中的词语出现的位置进行编码。如果对位置进行编码，那么我们的模型就可以捕捉顺序信息
 
 
-![](http://image.xpshuai.cn/20221009150149.png)
+![](http://image.geoer.cn/20221009150149.png)
 
 
 PE的代码实现，按照公式即可：
@@ -398,7 +398,7 @@ seq_embedding = seq_embedding(inputs)*np.sqrt(d_model)
 
 ## Position-wise Feed-Forward network
 
-![](http://image.xpshuai.cn/20221009150539.png)
+![](http://image.geoer.cn/20221009150539.png)
 
 ```python
 import torch

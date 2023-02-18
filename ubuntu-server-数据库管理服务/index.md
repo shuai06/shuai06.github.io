@@ -11,15 +11,15 @@ Oracle, DB2, MySQL, MSSQL, PostgreSQL, Infomix, MongoDB
 
 
 
-<img src="http://image.xpshuai.cn/20200430085915705_995731668.png" />
+<img src="http://image.geoer.cn/20200430085915705_995731668.png" />
 
 
 ## <font color=red>数据库管理系统(DBMS)</font>
-<img src="http://image.xpshuai.cn/20200430090504409_350097281.png" />
+<img src="http://image.geoer.cn/20200430090504409_350097281.png" />
 
 
 ## <font color=red>MySQL数据库管理</font>
-<img src="http://image.xpshuai.cn/20200430091905869_1159836654.png" />
+<img src="http://image.geoer.cn/20200430091905869_1159836654.png" />
 
 
 安装
@@ -119,7 +119,7 @@ create table users(
 ```
 
 
-<img src="http://image.xpshuai.cn/20200430105007407_399865569.png" />
+<img src="http://image.geoer.cn/20200430105007407_399865569.png" />
 
 char的性能要优于varchar
 
@@ -525,26 +525,26 @@ copy users from '/home/user/users.txt'
 
 ## <font color=red>NoSQL概览与MongoDB</font>
 
-<img src="http://image.xpshuai.cn/20200430164041499_1710130793.png" />
+<img src="http://image.geoer.cn/20200430164041499_1710130793.png" />
 
-<img src="http://image.xpshuai.cn/20200430164659724_1776362163.png" />
+<img src="http://image.geoer.cn/20200430164659724_1776362163.png" />
 
-<img src="http://image.xpshuai.cn/20200430165730935_61571111.png" />
+<img src="http://image.geoer.cn/20200430165730935_61571111.png" />
 
 **常见的NoSQL数据库类型**
 1.键值对类型
 
-<img src="http://image.xpshuai.cn/20200430165836806_1146424929.png" />
+<img src="http://image.geoer.cn/20200430165836806_1146424929.png" />
 
-<img src="http://image.xpshuai.cn/20200430165955029_600511168.png" />
+<img src="http://image.geoer.cn/20200430165955029_600511168.png" />
 
-<img src="http://image.xpshuai.cn/20200430170233715_1141118525.png" />
+<img src="http://image.geoer.cn/20200430170233715_1141118525.png" />
 
-<img src="http://image.xpshuai.cn/20200430170407242_2033108350.png" />
+<img src="http://image.geoer.cn/20200430170407242_2033108350.png" />
 
-<img src="http://image.xpshuai.cn/20200430170848764_1597209188.png" />
+<img src="http://image.geoer.cn/20200430170848764_1597209188.png" />
 
-<img src="http://image.xpshuai.cn/20200430171004638_167406085.png" />
+<img src="http://image.geoer.cn/20200430171004638_167406085.png" />
 
 `Paper`推荐多看看
 

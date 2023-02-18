@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="JBoss 5.x/6.x 反序列化漏洞( CVE-2017-12149 ) 验证： 访问/invoker/readonly，如果返回 500 ,说明页面存在,此页面存在反序列化漏洞。 利用工具：JavaDe" /><meta name="keywords" content='JBoss, 渗透测试, 中间件漏洞, 未授权访问' /><meta itemprop="name" content="jboss常见漏洞复现">
 <meta itemprop="description" content="JBoss 5.x/6.x 反序列化漏洞( CVE-2017-12149 ) 验证： 访问/invoker/readonly，如果返回 500 ,说明页面存在,此页面存在反序列化漏洞。 利用工具：JavaDe"><meta itemprop="datePublished" content="2020-05-26T15:57:44+08:00" />
-<meta itemprop="dateModified" content="2023-02-11T15:19:57+00:00" />
+<meta itemprop="dateModified" content="2023-02-18T10:46:11+00:00" />
 <meta itemprop="wordCount" content="1225"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="JBoss,渗透测试,中间件漏洞,未授权访问," /><meta property="og:title" content="jboss常见漏洞复现" />
 <meta property="og:description" content="JBoss 5.x/6.x 反序列化漏洞( CVE-2017-12149 ) 验证： 访问/invoker/readonly，如果返回 500 ,说明页面存在,此页面存在反序列化漏洞。 利用工具：JavaDe" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/jboss%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-05-26T15:57:44+08:00" />
-<meta property="article:modified_time" content="2023-02-11T15:19:57+00:00" />
+<meta property="article:modified_time" content="2023-02-18T10:46:11+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "JBoss, 渗透测试, 中间件漏洞, 未授权访问","wordcount":  1225 ,
-    "url": "https:\/\/shuai06.github.io\/jboss%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0\/","datePublished": "2020-05-26T15:57:44+08:00","dateModified": "2023-02-11T15:19:57+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/jboss%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0\/","datePublished": "2020-05-26T15:57:44+08:00","dateModified": "2023-02-18T10:46:11+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -256,11 +256,11 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jboss_500.png"
-    data-srcset="http://image.xpshuai.cn/jboss_500.png, http://image.xpshuai.cn/jboss_500.png 1.5x, http://image.xpshuai.cn/jboss_500.png 2x"
+    data-src="http://image.geoer.cn/jboss_500.png"
+    data-srcset="http://image.geoer.cn/jboss_500.png, http://image.geoer.cn/jboss_500.png 1.5x, http://image.geoer.cn/jboss_500.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jboss_500.png"
-    title="http://image.xpshuai.cn/jboss_500.png"/></p>
+    alt="http://image.geoer.cn/jboss_500.png"
+    title="http://image.geoer.cn/jboss_500.png"/></p>
 <p>利用工具：<a href="https://github.com/joaomatosf/JavaDeserH2HC"target="_blank" rel="external nofollow noopener noreferrer">JavaDeserH2HC<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
 <strong>步骤：</strong>
 1.先编译</p>
@@ -309,11 +309,11 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/JBossEJBInvokerServlet1.png"
-    data-srcset="http://image.xpshuai.cn/JBossEJBInvokerServlet1.png, http://image.xpshuai.cn/JBossEJBInvokerServlet1.png 1.5x, http://image.xpshuai.cn/JBossEJBInvokerServlet1.png 2x"
+    data-src="http://image.geoer.cn/JBossEJBInvokerServlet1.png"
+    data-srcset="http://image.geoer.cn/JBossEJBInvokerServlet1.png, http://image.geoer.cn/JBossEJBInvokerServlet1.png 1.5x, http://image.geoer.cn/JBossEJBInvokerServlet1.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/JBossEJBInvokerServlet1.png"
-    title="http://image.xpshuai.cn/JBossEJBInvokerServlet1.png"/></p>
+    alt="http://image.geoer.cn/JBossEJBInvokerServlet1.png"
+    title="http://image.geoer.cn/JBossEJBInvokerServlet1.png"/></p>
 <p>这里直接利用 CVE-2017-12149 生成的 ser ,发送到 <code>/invoker/JMXInvokerServlet</code>接口中。</p>
 <p>也可以直接利用工具检测：<a href="https://cdn.vulhub.org/deserialization/DeserializeExploit.jar"target="_blank" rel="external nofollow noopener noreferrer">工具下载地址<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 <div class="highlight"><div class="chroma">
@@ -331,11 +331,11 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/JBossEJBInvokerServlet.png"
-    data-srcset="http://image.xpshuai.cn/JBossEJBInvokerServlet.png, http://image.xpshuai.cn/JBossEJBInvokerServlet.png 1.5x, http://image.xpshuai.cn/JBossEJBInvokerServlet.png 2x"
+    data-src="http://image.geoer.cn/JBossEJBInvokerServlet.png"
+    data-srcset="http://image.geoer.cn/JBossEJBInvokerServlet.png, http://image.geoer.cn/JBossEJBInvokerServlet.png 1.5x, http://image.geoer.cn/JBossEJBInvokerServlet.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/JBossEJBInvokerServlet.png"
-    title="http://image.xpshuai.cn/JBossEJBInvokerServlet.png"/></p>
+    alt="http://image.geoer.cn/JBossEJBInvokerServlet.png"
+    title="http://image.geoer.cn/JBossEJBInvokerServlet.png"/></p>
 <p>这里直接利用 CVE-2017-12149 生成的 ser ,发送到 <code>/invoker/EJBInvokerServlet</code> 接口中</p>
 <h3 id="修复建议">修复建议</h3>
 <ol>
@@ -422,20 +422,20 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jmx_console.png"
-    data-srcset="http://image.xpshuai.cn/jmx_console.png, http://image.xpshuai.cn/jmx_console.png 1.5x, http://image.xpshuai.cn/jmx_console.png 2x"
+    data-src="http://image.geoer.cn/jmx_console.png"
+    data-srcset="http://image.geoer.cn/jmx_console.png, http://image.geoer.cn/jmx_console.png 1.5x, http://image.geoer.cn/jmx_console.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jmx_console.png"
-    title="http://image.xpshuai.cn/jmx_console.png"/></p>
+    alt="http://image.geoer.cn/jmx_console.png"
+    title="http://image.geoer.cn/jmx_console.png"/></p>
 <p>2.点击<code>jboss.deployment</code>进入应用部署页面
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jboss_deployment.png"
-    data-srcset="http://image.xpshuai.cn/jboss_deployment.png, http://image.xpshuai.cn/jboss_deployment.png 1.5x, http://image.xpshuai.cn/jboss_deployment.png 2x"
+    data-src="http://image.geoer.cn/jboss_deployment.png"
+    data-srcset="http://image.geoer.cn/jboss_deployment.png, http://image.geoer.cn/jboss_deployment.png 1.5x, http://image.geoer.cn/jboss_deployment.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jboss_deployment.png"
-    title="http://image.xpshuai.cn/jboss_deployment.png"/></p>
+    alt="http://image.geoer.cn/jboss_deployment.png"
+    title="http://image.geoer.cn/jboss_deployment.png"/></p>
 <p>3.使用apache搭建远程木马服务器(这里在kali上搭建)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -459,20 +459,20 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jboss_war.png"
-    data-srcset="http://image.xpshuai.cn/jboss_war.png, http://image.xpshuai.cn/jboss_war.png 1.5x, http://image.xpshuai.cn/jboss_war.png 2x"
+    data-src="http://image.geoer.cn/jboss_war.png"
+    data-srcset="http://image.geoer.cn/jboss_war.png, http://image.geoer.cn/jboss_war.png 1.5x, http://image.geoer.cn/jboss_war.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jboss_war.png"
-    title="http://image.xpshuai.cn/jboss_war.png"/></p>
+    alt="http://image.geoer.cn/jboss_war.png"
+    title="http://image.geoer.cn/jboss_war.png"/></p>
 <p>成功部署
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jboss_war_ok.png"
-    data-srcset="http://image.xpshuai.cn/jboss_war_ok.png, http://image.xpshuai.cn/jboss_war_ok.png 1.5x, http://image.xpshuai.cn/jboss_war_ok.png 2x"
+    data-src="http://image.geoer.cn/jboss_war_ok.png"
+    data-srcset="http://image.geoer.cn/jboss_war_ok.png, http://image.geoer.cn/jboss_war_ok.png 1.5x, http://image.geoer.cn/jboss_war_ok.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jboss_war_ok.png"
-    title="http://image.xpshuai.cn/jboss_war_ok.png"/></p>
+    alt="http://image.geoer.cn/jboss_war_ok.png"
+    title="http://image.geoer.cn/jboss_war_ok.png"/></p>
 <p>5.连接木马</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -485,11 +485,11 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.xpshuai.cn/jboss_war_connect.png"
-    data-srcset="http://image.xpshuai.cn/jboss_war_connect.png, http://image.xpshuai.cn/jboss_war_connect.png 1.5x, http://image.xpshuai.cn/jboss_war_connect.png 2x"
+    data-src="http://image.geoer.cn/jboss_war_connect.png"
+    data-srcset="http://image.geoer.cn/jboss_war_connect.png, http://image.geoer.cn/jboss_war_connect.png 1.5x, http://image.geoer.cn/jboss_war_connect.png 2x"
     data-sizes="auto"
-    alt="http://image.xpshuai.cn/jboss_war_connect.png"
-    title="http://image.xpshuai.cn/jboss_war_connect.png"/></p>
+    alt="http://image.geoer.cn/jboss_war_connect.png"
+    title="http://image.geoer.cn/jboss_war_connect.png"/></p>
 <h6 id="防护">防护</h6>
 <ul>
 <li>对jmx控制页面访问添加访问验证。</li>
@@ -499,7 +499,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-11&#32;15:19:57>更新于 2023-02-11&nbsp;</span>
+        <span title=2023-02-18&#32;10:46:11>更新于 2023-02-18&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

@@ -54,7 +54,7 @@ burp自带的`JS Link Finder`效果很不错，不过找到的链接不能直接
 **3.启用jslink脚本**
 
 在Clojure Plugin选项卡的Scripts List中勾选js link parse的复选框，启用jslink脚本。
-![20230207144802](http://image.xpshuai.cn/20230207144802.png)
+![20230207144802](http://image.geoer.cn/20230207144802.png)
 
 
 

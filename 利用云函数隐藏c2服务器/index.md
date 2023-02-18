@@ -40,15 +40,15 @@ def main_handler(event, context):
 
 
 点击API服务名：
-![20220614141805](http://image.xpshuai.cn/20220614141805.png)
+![20220614141805](http://image.geoer.cn/20220614141805.png)
 点击编辑：
-![20220614141944](http://image.xpshuai.cn/20220614141944.png)
+![20220614141944](http://image.geoer.cn/20220614141944.png)
 
 路径修改为`/`，点击下一步：
-![20220614142034](http://image.xpshuai.cn/20220614142034.png)
+![20220614142034](http://image.geoer.cn/20220614142034.png)
 
 配置如下，点击完成：
-![20220614142122](http://image.xpshuai.cn/20220614142122.png)
+![20220614142122](http://image.geoer.cn/20220614142122.png)
 
 
 
@@ -146,15 +146,15 @@ http-post {
 **Note:**
 上线地址 需要去掉`http://`和`:80`
 取`service-miuk9icj-1309081727.bj.apigw.tencentcs.com`
-![20220614154332](http://image.xpshuai.cn/20220614154332.png)
+![20220614154332](http://image.geoer.cn/20220614154332.png)
 
 
 
 ### 创建监听
-![20220614154545](http://image.xpshuai.cn/20220614154545.png)
+![20220614154545](http://image.geoer.cn/20220614154545.png)
 
 成功上线，可以看到外部IP第一栏是不断变化的，也就是隐藏了我们C2服务器
-![20220614162832](http://image.xpshuai.cn/20220614162832.png)
+![20220614162832](http://image.geoer.cn/20220614162832.png)
 
 
 附：

@@ -278,7 +278,7 @@ phonebook操作符可以用来搜索商业和住宅电话列表。
 
 #### 操作符的混合使用
 
-<img src="http://image.xpshuai.cn/googlehack.png"> </img>
+<img src="http://image.geoer.cn/googlehack.png"> </img>
 
 
 
@@ -358,9 +358,9 @@ site:"xpshuai.cn" intext:index of/ | ../ | Parent Directory
 
 **常见的配置文件搜索示例：**
 
-<img src="http://image.xpshuai.cn/google_conf1.jpg"></img>
+<img src="http://image.geoer.cn/google_conf1.jpg"></img>
 
-<img src="http://image.xpshuai.cn/google_conf2.jpg"></img>
+<img src="http://image.geoer.cn/google_conf2.jpg"></img>
 
 
 
@@ -376,7 +376,7 @@ site:"xpshuai.cn" intext:index of/ | ../ | Parent Directory
 
 **搜索可能敏感的Office文档的查询样例：**
 
-<img src="http://image.xpshuai.cn/google_office.jpg"></img>
+<img src="http://image.geoer.cn/google_office.jpg"></img>
 
 
 
@@ -396,13 +396,13 @@ site:"xpshuai.cn" intext:index of/ | ../ | Parent Directory
 
 ###### 错误消息
 
-<img src="http://image.xpshuai.cn/google_error1.jpg"> </img>
+<img src="http://image.geoer.cn/google_error1.jpg"> </img>
 
-<img src="http://image.xpshuai.cn/google_error1.jpg"> </img>
+<img src="http://image.geoer.cn/google_error1.jpg"> </img>
 
-<img src="http://image.xpshuai.cn/google_error3.jpg"> </img>
+<img src="http://image.geoer.cn/google_error3.jpg"> </img>
 
-<img src="http://image.xpshuai.cn/google_error4.jpg"> </img>
+<img src="http://image.geoer.cn/google_error4.jpg"> </img>
 
 
 
@@ -410,7 +410,7 @@ site:"xpshuai.cn" intext:index of/ | ../ | Parent Directory
 
 ###### 数据库转储
 
-<img src="http://image.xpshuai.cn/google_zuanchu.jpg"></img>
+<img src="http://image.geoer.cn/google_zuanchu.jpg"></img>
 
 
 
