@@ -32,11 +32,11 @@
 
 **Java集合框架概述：**
 
-![collection接口继承树](http://image.geoer.cn/collection%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
+![collection接口继承树](https://image.geoer.cn/collection%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
 
 
 
-![map接口继承树](http://image.geoer.cn/map%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
+![map接口继承树](https://image.geoer.cn/map%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
 
 
 
@@ -202,7 +202,7 @@ public class MyCollectionTest {
 - **Iterator仅用于遍历集合，lterator木身并不提供承装对象的能力**。如果需要创建lterator对象，则必须有一个被迭代的集合。
 - **集合对象每次调用iterator()方法都得到一个全新的迭代器对象**，默认游标都在集合的第一个元素之前。
 
-![迭代器的执行原理](http://image.geoer.cn/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.png)
+![迭代器的执行原理](https://image.geoer.cn/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E6%89%A7%E8%A1%8C%E5%8E%9F%E7%90%86.png)
 
 
 
@@ -372,7 +372,7 @@ public void test3(){
 - List容器中的元素都对应一个整数型的序号记载其在容器中的位置，可以根据序号存取容器中的元素。
 - JDK API中List接口的实现类常用的有: ArrayList、LinkedList和Vector。
 
-![JavaList实现类2-LinkedList](http://image.geoer.cn/JavaList%E5%AE%9E%E7%8E%B0%E7%B1%BB2-LinkedList.png)
+![JavaList实现类2-LinkedList](https://image.geoer.cn/JavaList%E5%AE%9E%E7%8E%B0%E7%B1%BB2-LinkedList.png)
 
 
 
@@ -909,13 +909,13 @@ class Person implements Comparable{
 
 
 
-![set实现类-HashSet](http://image.geoer.cn/set%E5%AE%9E%E7%8E%B0%E7%B1%BB-HashSet.png)
+![set实现类-HashSet](https://image.geoer.cn/set%E5%AE%9E%E7%8E%B0%E7%B1%BB-HashSet.png)
 
 
 
-![编译器中hashCode的重写](http://image.geoer.cn/%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%ADhashCode%E7%9A%84%E9%87%8D%E5%86%99.png)
+![编译器中hashCode的重写](https://image.geoer.cn/%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%ADhashCode%E7%9A%84%E9%87%8D%E5%86%99.png)
 
-![TreeSet红黑树](http://image.geoer.cn/TreeSet%E7%BA%A2%E9%BB%91%E6%A0%91.png)
+![TreeSet红黑树](https://image.geoer.cn/TreeSet%E7%BA%A2%E9%BB%91%E6%A0%91.png)
 
 
 
@@ -925,7 +925,7 @@ class Person implements Comparable{
 
 HashSet可以用来去重
 
-![HashSet去重练习](http://image.geoer.cn/HashSet%E5%8E%BB%E9%87%8D%E7%BB%83%E4%B9%A0.png)
+![HashSet去重练习](https://image.geoer.cn/HashSet%E5%8E%BB%E9%87%8D%E7%BB%83%E4%B9%A0.png)
 
 
 
@@ -947,7 +947,7 @@ HashSet先HashCode再equals()
 
 **Map接口继承树：**
 
-![map接口继承树](http://image.geoer.cn/map%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
+![map接口继承树](https://image.geoer.cn/map%E6%8E%A5%E5%8F%A3%E7%BB%A7%E6%89%BF%E6%A0%91.png)
 
 
 
@@ -955,7 +955,7 @@ HashSet先HashCode再equals()
 
 **Map结构的理解:** 
 
-![Map结构的理解](http://image.geoer.cn/Map%E7%BB%93%E6%9E%84%E7%9A%84%E7%90%86%E8%A7%A3.png)
+![Map结构的理解](https://image.geoer.cn/Map%E7%BB%93%E6%9E%84%E7%9A%84%E7%90%86%E8%A7%A3.png)
 
 
 
@@ -969,15 +969,15 @@ HashSet先HashCode再equals()
 
 **HashMap源码中重要常量：**
 
-![HashMap源码中重要常量](http://image.geoer.cn/HashMap%E6%BA%90%E7%A0%81%E4%B8%AD%E9%87%8D%E8%A6%81%E5%B8%B8%E9%87%8F.png)
+![HashMap源码中重要常量](https://image.geoer.cn/HashMap%E6%BA%90%E7%A0%81%E4%B8%AD%E9%87%8D%E8%A6%81%E5%B8%B8%E9%87%8F.png)
 
-![HashMap内部类Node,Entry](http://image.geoer.cn/HashMap%E5%86%85%E9%83%A8%E7%B1%BBNode%2CEntry.png)
+![HashMap内部类Node,Entry](https://image.geoer.cn/HashMap%E5%86%85%E9%83%A8%E7%B1%BBNode%2CEntry.png)
 
 
 
 **Map中常用的方法:** 
 
-![Map接口中常用的方法](http://image.geoer.cn/Map%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95.png)
+![Map接口中常用的方法](https://image.geoer.cn/Map%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95.png)
 
 
 
@@ -1356,7 +1356,7 @@ void copy(List dest,List src):将src中的内容复制到dest中
 boolean replaceAll(List list，Object oldVal，Object newVal):使用新值替换List对象的所有旧值
 ```
 
-![Collections常用方法-同步控制](http://image.geoer.cn/Collections%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%90%8C%E6%AD%A5%E6%8E%A7%E5%88%B6.png)
+![Collections常用方法-同步控制](https://image.geoer.cn/Collections%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%90%8C%E6%AD%A5%E6%8E%A7%E5%88%B6.png)
 
 
 

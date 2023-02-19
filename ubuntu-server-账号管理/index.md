@@ -266,7 +266,7 @@ chown user01:user01 a.txt
 一旦设置了suid之后：任何用户执行程序时都具备使用属主的权限
 设置：`chmod u+s a.sh`或`chmod 4777 /bin/cat` (前面三个二进制, 二进制为100,即4；第二种数值方式对链接不生效)
 比如使用`passwd`修改自己密码的时候修改的是shadow文件(他的属主是root)，它就是设置了`s`权限
-<img src="http://image.geoer.cn/20200318203240319_8090.png" />
+<img src="https://image.geoer.cn/20200318203240319_8090.png" />
 >如果不太懂，尽量不要随便设置suid，否则后患无穷
 
 2. Setgid(2)
@@ -275,14 +275,14 @@ chown user01:user01 a.txt
 应用于目录时：可实现`共享文件访问效果`(新建文件的数组集成目录属组):  一个用户再在里面新建文件之后，一个组里的用户就都可以共享
 设置：`chmod g+s code/`或`sudo chmod 2775 /bin/cat`
 设置完之后，数组位置权限就多了s权限
-<img src="http://image.geoer.cn/20200318203113628_4438.png" />
+<img src="https://image.geoer.cn/20200318203113628_4438.png" />
 
 3. stick bit(1)
 `针对目录`的受限删除位（root、属主可以删）
 典型例子：`/tmp`目录
 设置： `chmod o+t code/`
 加了stick位(其他用户的位置)，自己创建的文件只有自己能删除，别人无法删除
-<img src="http://image.geoer.cn/20200318202916501_30856.png" />
+<img src="https://image.geoer.cn/20200318202916501_30856.png" />
 
 
 

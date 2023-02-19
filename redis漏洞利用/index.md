@@ -24,7 +24,7 @@ cp redis.conf /etc/
 
 3.修改`redis.conf`, 开启外部访问，关闭保护模式(保护模式下运行redis是利用不成功滴)
 
-<img src="http://image.geoer.cn/20200525210801776_1038672757.png"/>
+<img src="https://image.geoer.cn/20200525210801776_1038672757.png"/>
 
 4.启动redis服务
 
@@ -129,7 +129,7 @@ ssh  -o StrictHostKeyChecking=no 192.168.0.100
 
 同时也要注意系统的乱码问题
 
-<img src="http://image.geoer.cn/20200525224703847_1050926657.png"/>
+<img src="https://image.geoer.cn/20200525224703847_1050926657.png"/>
 
 
 ###### 3.低权限写入WebShell
@@ -143,7 +143,7 @@ save
 
 # 访问webshell
 ```
-<img src="http://image.geoer.cn/20200525222440751_1498038879.png"/>
+<img src="https://image.geoer.cn/20200525222440751_1498038879.png"/>
 
 
 ###### 4.开机自启目录
@@ -175,7 +175,7 @@ save
 nmap -p 6379 --script redis-info 192.168.0.100
 #地址:https://svn.nmap.org/nmap/scripts/redis-info.nse
 ```
-<img src="http://image.geoer.cn/20200525225557672_1832619508.png"/>
+<img src="https://image.geoer.cn/20200525225557672_1832619508.png"/>
 
 
 ######  安全检查
@@ -239,7 +239,7 @@ https://github.com/QAX-A-Team/redis_lua_exploit/
 
 修改`redis_lua.py`中目标地址为靶机的地址和端口
 
-<img src="http://image.geoer.cn/20200526092701919_308935847.png"/>
+<img src="https://image.geoer.cn/20200526092701919_308935847.png"/>
 
 运行exp
 
@@ -266,14 +266,14 @@ set threads ...
 set pass_file xxxxxxx.txt
 run
 ```
-<img src="http://image.geoer.cn/20200526094633220_1454687311.png"/>
+<img src="https://image.geoer.cn/20200526094633220_1454687311.png"/>
 
 3.hydra
 ```bash
 # 还是hydra好用，速度还快
 hydra -P redis_pass.txt redis://192.168.0.100
 ```
-<img src="http://image.geoer.cn/20200526095113424_1824777352.png"/>
+<img src="https://image.geoer.cn/20200526095113424_1824777352.png"/>
 
 
 ## 防御手段

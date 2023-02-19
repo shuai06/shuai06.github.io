@@ -111,7 +111,7 @@ critical
 
 ###### logging常用的格式化:
 
-<img src="http://image.geoer.cn/logging%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8C%96.jpg"></img>
+<img src="https://image.geoer.cn/logging%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A0%BC%E5%BC%8F%E5%8C%96.jpg"></img>
 
 
 

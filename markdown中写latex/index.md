@@ -20,7 +20,7 @@ $$\Large \frac{3}{12} = \frac{1}{4}$$
 
 
 ### 希腊字母
-![](http://image.geoer.cn/20220628201803.png)
+![](https://image.geoer.cn/20220628201803.png)
 
 
 ### 上标、下标
@@ -44,14 +44,14 @@ $$\Large \frac{3}{12} = \frac{1}{4}$$
 
 ### 数学符号
 #### 运算符
-![](http://image.geoer.cn/20220628201837.png)
+![](https://image.geoer.cn/20220628201837.png)
 
 #### 关系符
-![](http://image.geoer.cn/20220628201859.png)
+![](https://image.geoer.cn/20220628201859.png)
 
 
 #### 省略号
-![](http://image.geoer.cn/20220628201915.png)
+![](https://image.geoer.cn/20220628201915.png)
 
 
 

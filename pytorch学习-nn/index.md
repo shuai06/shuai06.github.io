@@ -51,7 +51,7 @@ for name, parameter in layer1.named_parameters():
 
 
 实现多层感知机(MLP)
-![](http://image.geoer.cn/20220905172144.png)
+![](https://image.geoer.cn/20220905172144.png)
 ```python
 """
 多层感知机
@@ -119,14 +119,14 @@ layer2.b torch.Size([1])
 
 nn.Modlue还有很多其他层，可以自己翻看官方文档，有以下几个主注意的点：
 1.关注构造参数的作用
-![](http://image.geoer.cn/20220905172717.png)
+![](https://image.geoer.cn/20220905172717.png)
 
 2.关注属性、可学习的网络、和包含的子Module
-![](http://image.geoer.cn/20220905172933.png)
+![](https://image.geoer.cn/20220905172933.png)
 
 
 3.输入输出的形状
-![](http://image.geoer.cn/20220905172843.png)
+![](https://image.geoer.cn/20220905172843.png)
 
 
 
@@ -143,10 +143,10 @@ https://pytorch.org/docs/stable/nn.html#convolution-layers
 
 以二维卷积类Conv2d为例：
 https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html#torch.nn.Conv2d
-![](http://image.geoer.cn/20220905174352.png)
+![](https://image.geoer.cn/20220905174352.png)
 
 卷积输出结果的形状：
-![](http://image.geoer.cn/20220905174456.png)
+![](https://image.geoer.cn/20220905174456.png)
 
 
 

@@ -19,7 +19,7 @@ CORS全称`Cross-Origin Resource Sharing`, 跨域资源共享，是HTML5的一�
 
 CORS本质上就是使用各种头信息让浏览器与服务器之间进行交流，上面提到的名单就是用下面的http头字段来控制的：
 
-![cors的http字段](http://image.geoer.cn/img/image-20220112212319982.png)
+![cors的http字段](https://image.geoer.cn/img/image-20220112212319982.png)
 
 其中比较重要的相应头为：
 

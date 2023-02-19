@@ -320,7 +320,7 @@ Java中的删除不走'回收站'。
 1. Java的IO流共涉及40多个类，实 际上非常规则，都是从如上4个抽象基类派生的。
 2. 由这四个类派生出来的子类名称都是以其父类名作为子类名后缀（比如后缀带Stream的都是`字节`，后缀带`Reader`或`Writer`的都是`字节`）。
 
-![IO流体系](http://image.geoer.cn/JavaIO%E6%B5%81%E4%BD%93%E7%B3%BB.png)
+![IO流体系](https://image.geoer.cn/JavaIO%E6%B5%81%E4%BD%93%E7%B3%BB.png)
 
 > 深色的为重点
 
@@ -888,7 +888,7 @@ public void bufferCopyTxtFile(String srcPath, String dstPath){
 
 
 
-![几个IO流小汇总](http://image.geoer.cn/%E5%87%A0%E4%B8%AAIO%E6%B5%81%E5%B0%8F%E6%B1%87%E6%80%BB.png)
+![几个IO流小汇总](https://image.geoer.cn/%E5%87%A0%E4%B8%AAIO%E6%B5%81%E5%B0%8F%E6%B1%87%E6%80%BB.png)
 
 
 
@@ -1060,7 +1060,7 @@ public class WordCount {
 字节流中的数据都是字符时，转成字符流操作更高效。
 很多时候我们使用转换流来处理文件乱码问题。实现编码和解码的功能。
 
-![Java转换流](http://image.geoer.cn/Java%E8%BD%AC%E6%8D%A2%E6%B5%81.png)
+![Java转换流](https://image.geoer.cn/Java%E8%BD%AC%E6%8D%A2%E6%B5%81.png)
 
 
 
@@ -1836,9 +1836,9 @@ Java API中提供了两套NIO，一套是针对标准输入输出NIO，另一套
 
 **Files类：**
 
-![JavaFiles类1](http://image.geoer.cn/JavaFiles%E7%B1%BB1.png)
+![JavaFiles类1](https://image.geoer.cn/JavaFiles%E7%B1%BB1.png)
 
-![JavaFiles类2](http://image.geoer.cn/JavaFiles%E7%B1%BB2.png)
+![JavaFiles类2](https://image.geoer.cn/JavaFiles%E7%B1%BB2.png)
 
 
 

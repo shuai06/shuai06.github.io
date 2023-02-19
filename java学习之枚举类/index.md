@@ -134,7 +134,7 @@ enum Season1{
 
 #### Enum类的主要方法
 
-![Enum类的主要方法](http://image.geoer.cn/JavaEnum%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95.png)
+![Enum类的主要方法](https://image.geoer.cn/JavaEnum%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95.png)
 
 ![image-20210125164002288](C:\Users\19401\AppData\Roaming\Typora\typora-user-images\image-20210125164002288.png)
 

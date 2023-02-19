@@ -53,7 +53,7 @@ JSONP全称是`JSON with Padding` ，是基于JSON格式的为解决跨域请求
 
 访问test.html，页面会执行script，请求`http://127.0.0.1/callback.php?callback=fun`，然后将请求的内容作为参数，执行fun函数，fun函数将请求的内容alert出来。这样我们就实现了通过js操作跨域请求到的资源，绕过了同源策略。
 
-![alert](http://image.geoer.cn/img/image-20220112223611220.png)
+![alert](https://image.geoer.cn/img/image-20220112223611220.png)
 
 
 
@@ -71,7 +71,7 @@ JSONP使用不当也会造成很多安全问题。
 
 
 
-![jsonp漏洞用过程](http://image.geoer.cn/img/image-20220112223806037.png)
+![jsonp漏洞用过程](https://image.geoer.cn/img/image-20220112223806037.png)
 
 
 

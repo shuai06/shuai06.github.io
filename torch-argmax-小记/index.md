@@ -19,7 +19,7 @@ tensor([1, 1, 2, 1, 1])
 >>> a.argmax(dim=1)
 tensor([0, 4, 2])
 ```
-![](http://image.geoer.cn/20221021102505.png)
+![](https://image.geoer.cn/20221021102505.png)
 
 
 
@@ -45,7 +45,7 @@ tensor([[0, 0, 0, 1, 2],
 tensor([[1, 3, 4],
         [4, 4, 0]])
 ```
-![](http://image.geoer.cn/20221021102920.png)
+![](https://image.geoer.cn/20221021102920.png)
 
 
 四维同理

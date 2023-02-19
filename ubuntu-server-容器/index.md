@@ -8,11 +8,11 @@
 
 **题外话**
 
-<img src="http://image.geoer.cn/20200510223525320_174889579.png" />
+<img src="https://image.geoer.cn/20200510223525320_174889579.png" />
 
 **容器**
 
-<img src="http://image.geoer.cn/20200510225525049_1760370298.png" />
+<img src="https://image.geoer.cn/20200510225525049_1760370298.png" />
 
 SDN -> 软件定义网络
 
@@ -24,24 +24,24 @@ SDN -> 软件定义网络
 **什么是容器**
 有个感性的认识即可，现在还没有明确的统一定义，根据不同产品具体理解
 
-<img src="http://image.geoer.cn/20200510230949837_2077847896.png" />
+<img src="https://image.geoer.cn/20200510230949837_2077847896.png" />
 
-<img src="http://image.geoer.cn/20200510231620776_117992917.png" />
+<img src="https://image.geoer.cn/20200510231620776_117992917.png" />
 
-<img src="http://image.geoer.cn/20200511102236109_1751941655.png" />
+<img src="https://image.geoer.cn/20200511102236109_1751941655.png" />
 
-<img src="http://image.geoer.cn/20200511103008352_761812684.png" />
+<img src="https://image.geoer.cn/20200511103008352_761812684.png" />
 
 ## 常见的容器技术
 **Docker vs LXD/LXC**
 
-<img src="http://image.geoer.cn/20200511103208058_29787066.png" />
+<img src="https://image.geoer.cn/20200511103208058_29787066.png" />
 
-<img src="http://image.geoer.cn/20200511103734465_306114851.png" />
+<img src="https://image.geoer.cn/20200511103734465_306114851.png" />
 
 不同容器的程序的pid可以相同
 
-<img src="http://image.geoer.cn/20200511104628559_66294885.png" />
+<img src="https://image.geoer.cn/20200511104628559_66294885.png" />
 
 越狱
 
@@ -54,7 +54,7 @@ SDN -> 软件定义网络
 
 
 
-<img src="http://image.geoer.cn/20200511104948809_1439233734.png" />
+<img src="https://image.geoer.cn/20200511104948809_1439233734.png" />
 
 
 Docker引擎只可以直接运行在Linux系统上
@@ -132,13 +132,13 @@ docker rmi busybox:1-musl
 
 
 
-<img src="http://image.geoer.cn/20200511111809612_1403827030.png" />
+<img src="https://image.geoer.cn/20200511111809612_1403827030.png" />
 
 - Docker images 是构建Docker container的基础
 
 - Docker 层/容器层
 
-<img src="http://image.geoer.cn/20200511112309748_1071300544.png" />
+<img src="https://image.geoer.cn/20200511112309748_1071300544.png" />
 
 每个映像有唯一的ID(SHA256/  取前6字节来显示)
 ```bash
@@ -184,7 +184,7 @@ Docker Resigtry相当于目录，Repository相当于具体文件位置
 
 可以自建映像库
 
-<img src="http://image.geoer.cn/20200511143726490_328609255.png" />
+<img src="https://image.geoer.cn/20200511143726490_328609255.png" />
 
 
 
@@ -504,7 +504,7 @@ from php:7.2-apache
 copy wordpress /var/www/html
 ```
 
-![image-20220507153540102](http://image.geoer.cn/2022-05-07-073540.png)
+![image-20220507153540102](https://image.geoer.cn/2022-05-07-073540.png)
 
 依赖docker-compose.yml启动容器
 
@@ -512,7 +512,7 @@ copy wordpress /var/www/html
 docker-compose up -d
 ```
 
-![image-20220507153612265](http://image.geoer.cn/2022-05-07-073612.png)
+![image-20220507153612265](https://image.geoer.cn/2022-05-07-073612.png)
 
 
 

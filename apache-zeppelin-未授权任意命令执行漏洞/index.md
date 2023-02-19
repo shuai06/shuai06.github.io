@@ -17,17 +17,17 @@ icon_hash="960250052"
 
 ### 漏洞复现
 
-![先点击这里创建一个note](http://image.geoer.cn/zeppelin_click.jpg)
+![先点击这里创建一个note](https://image.geoer.cn/zeppelin_click.jpg)
 
 
 
-![继续填写，选择sh](http://image.geoer.cn/zeppelin_click2.jpg)
+![继续填写，选择sh](https://image.geoer.cn/zeppelin_click2.jpg)
 
 
 
 
 
-![命令执行成功](http://image.geoer.cn/zeppelin_success.jpg)
+![命令执行成功](https://image.geoer.cn/zeppelin_success.jpg)
 
 
 

@@ -61,7 +61,7 @@ def cat_data():
 
 ### 计算熵
 
-![20220712120924](http://image.geoer.cn/20220712120924.png)
+![20220712120924](https://image.geoer.cn/20220712120924.png)
 
 
 ```python
@@ -104,7 +104,7 @@ print("Entropy at root node: ", compute_entropy(y_train))
 
 ### Split the dataset
 
-![20220712121431](http://image.geoer.cn/20220712121431.png)
+![20220712121431](https://image.geoer.cn/20220712121431.png)
 
 ```python
 
@@ -155,7 +155,7 @@ print("Right indices: ", right_indices)
 
 
 ### 计算信息增益
-![20220712124434](http://image.geoer.cn/20220712124434.png)
+![20220712124434](https://image.geoer.cn/20220712124434.png)
 
 
 ```python

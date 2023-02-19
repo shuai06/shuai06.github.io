@@ -33,7 +33,7 @@ cat.stdout.on("data", data => {
 });</script>
 ```
 
-![插入payload](http://image.geoer.cn/xmind_payload1.png)
+![插入payload](https://image.geoer.cn/xmind_payload1.png)
 
 
 
@@ -61,7 +61,7 @@ console.log(n);
 
 **2.点击大纲。在大纲模式下，选中payload，按下Ctrl+C快捷键触发该Payload，执行`calc`命令。**
 
-![执行成功](http://image.geoer.cn/xmind_attack_ok.png)
+![执行成功](https://image.geoer.cn/xmind_attack_ok.png)
 
 
 

@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数" /><meta name="keywords" content='反序列化, 代码审计' /><meta itemprop="name" content="反序列化漏洞">
 <meta itemprop="description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数"><meta itemprop="datePublished" content="2022-01-19T10:03:37+08:00" />
-<meta itemprop="dateModified" content="2023-02-18T11:34:34+00:00" />
+<meta itemprop="dateModified" content="2023-02-19T12:36:40+00:00" />
 <meta itemprop="wordCount" content="5602"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="反序列化,代码审计," /><meta property="og:title" content="反序列化漏洞" />
 <meta property="og:description" content="反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-19T10:03:37+08:00" />
-<meta property="article:modified_time" content="2023-02-18T11:34:34+00:00" />
+<meta property="article:modified_time" content="2023-02-19T12:36:40+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "反序列化, 代码审计","wordcount":  5602 ,
-    "url": "https:\/\/shuai06.github.io\/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-19T10:03:37+08:00","dateModified": "2023-02-18T11:34:34+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E\/","datePublished": "2022-01-19T10:03:37+08:00","dateModified": "2023-02-19T12:36:40+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -292,11 +292,11 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119091034314.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119091034314.png, http://image.geoer.cn/img/image-20220119091034314.png 1.5x, http://image.geoer.cn/img/image-20220119091034314.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119091034314.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119091034314.png, https://image.geoer.cn/img/image-20220119091034314.png 1.5x, https://image.geoer.cn/img/image-20220119091034314.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119091034314.png"
-    title="http://image.geoer.cn/img/image-20220119091034314.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119091034314.png"
+    title="https://image.geoer.cn/img/image-20220119091034314.png"/></p>
 <h2 id="漏洞原理">漏洞原理</h2>
 <p>序列化和反序列化本身并不存在问题。但当输入的反序列化的数据可被用户控制，那么攻击者即可通过构造恶意输入，让反序列化产生非预期的对象，在此过程中执行构造的任意代码。</p>
 <h2 id="php反序列化">PHP反序列化</h2>
@@ -348,19 +348,19 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119091308709.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119091308709.png, http://image.geoer.cn/img/image-20220119091308709.png 1.5x, http://image.geoer.cn/img/image-20220119091308709.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119091308709.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119091308709.png, https://image.geoer.cn/img/image-20220119091308709.png 1.5x, https://image.geoer.cn/img/image-20220119091308709.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119091308709.png"
-    title="http://image.geoer.cn/img/image-20220119091308709.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119091308709.png"
+    title="https://image.geoer.cn/img/image-20220119091308709.png"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119091604297.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119091604297.png, http://image.geoer.cn/img/image-20220119091604297.png 1.5x, http://image.geoer.cn/img/image-20220119091604297.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119091604297.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119091604297.png, https://image.geoer.cn/img/image-20220119091604297.png 1.5x, https://image.geoer.cn/img/image-20220119091604297.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119091604297.png"
-    title="http://image.geoer.cn/img/image-20220119091604297.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119091604297.png"
+    title="https://image.geoer.cn/img/image-20220119091604297.png"/></p>
 <p>例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -639,11 +639,11 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119104525612.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119104525612.png, http://image.geoer.cn/img/image-20220119104525612.png 1.5x, http://image.geoer.cn/img/image-20220119104525612.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119104525612.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119104525612.png, https://image.geoer.cn/img/image-20220119104525612.png 1.5x, https://image.geoer.cn/img/image-20220119104525612.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119104525612.png"
-    title="http://image.geoer.cn/img/image-20220119104525612.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119104525612.png"
+    title="https://image.geoer.cn/img/image-20220119104525612.png"/></p>
 <p>如果需要在web中请求传输，url编码后就可以发送了。</p>
 <h5 id="指定protocol">指定protocol</h5>
 <p><code>pickle.dumps(object)</code>在生成序列化数据时可以指定protocol参数，其取值包括：</p>
@@ -888,11 +888,11 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119092018167.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119092018167.png, http://image.geoer.cn/img/image-20220119092018167.png 1.5x, http://image.geoer.cn/img/image-20220119092018167.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119092018167.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119092018167.png, https://image.geoer.cn/img/image-20220119092018167.png 1.5x, https://image.geoer.cn/img/image-20220119092018167.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119092018167.png"
-    title="http://image.geoer.cn/img/image-20220119092018167.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119092018167.png"
+    title="https://image.geoer.cn/img/image-20220119092018167.png"/></p>
 <h3 id="条件">条件</h3>
 <ul>
 <li>类必须实现反序列化接口，同时设置serialVersionUID以便适用不同jvm环境（可通过SerializationDumper这个工具来查看其存储格式,主要包括Magic头：0xaced,TC_OBJECT:0x73,TC_CLASS:0x72,serialVersionUID,newHandle）</li>
@@ -962,29 +962,29 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119100756465.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119100756465.png, http://image.geoer.cn/img/image-20220119100756465.png 1.5x, http://image.geoer.cn/img/image-20220119100756465.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119100756465.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119100756465.png, https://image.geoer.cn/img/image-20220119100756465.png 1.5x, https://image.geoer.cn/img/image-20220119100756465.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119100756465.png"
-    title="http://image.geoer.cn/img/image-20220119100756465.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119100756465.png"
+    title="https://image.geoer.cn/img/image-20220119100756465.png"/></p>
 <p>object文件中的内容：</p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119101145971.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119101145971.png, http://image.geoer.cn/img/image-20220119101145971.png 1.5x, http://image.geoer.cn/img/image-20220119101145971.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119101145971.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119101145971.png, https://image.geoer.cn/img/image-20220119101145971.png 1.5x, https://image.geoer.cn/img/image-20220119101145971.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119101145971.png"
-    title="http://image.geoer.cn/img/image-20220119101145971.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119101145971.png"
+    title="https://image.geoer.cn/img/image-20220119101145971.png"/></p>
 <p>其中<code>Ac ed 00 05</code>是java序列化内容的<strong>特征</strong>，base64编码后是<code>rO0ABQ==</code></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119101214156.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119101214156.png, http://image.geoer.cn/img/image-20220119101214156.png 1.5x, http://image.geoer.cn/img/image-20220119101214156.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119101214156.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119101214156.png, https://image.geoer.cn/img/image-20220119101214156.png 1.5x, https://image.geoer.cn/img/image-20220119101214156.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119101214156.png"
-    title="http://image.geoer.cn/img/image-20220119101214156.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119101214156.png"
+    title="https://image.geoer.cn/img/image-20220119101214156.png"/></p>
 <h3 id="使用场景"><strong>使用场景:</strong></h3>
 <p>• http参数，cookie，sesion，存储方式可能是base64（rO0），压缩后的base64（H4sl），MII等</p>
 <p>• Servlets HTTP，Sockets，Session管理器 包含的协议就包括JMX，RMI，JMS，JNDI等（\xac\xed）</p>
@@ -1075,29 +1075,29 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119102101701.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119102101701.png, http://image.geoer.cn/img/image-20220119102101701.png 1.5x, http://image.geoer.cn/img/image-20220119102101701.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119102101701.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119102101701.png, https://image.geoer.cn/img/image-20220119102101701.png 1.5x, https://image.geoer.cn/img/image-20220119102101701.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119102101701.png"
-    title="http://image.geoer.cn/img/image-20220119102101701.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119102101701.png"
+    title="https://image.geoer.cn/img/image-20220119102101701.png"/></p>
 <p>漏洞发生在反序列化过程，MyObject类实现了Serializable接口，并重写了readObject()函数（从源输入流中读取字节序列，反序列化成对象），这里定制的行为是打开计算器：</p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119102001598.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119102001598.png, http://image.geoer.cn/img/image-20220119102001598.png 1.5x, http://image.geoer.cn/img/image-20220119102001598.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119102001598.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119102001598.png, https://image.geoer.cn/img/image-20220119102001598.png 1.5x, https://image.geoer.cn/img/image-20220119102001598.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119102001598.png"
-    title="http://image.geoer.cn/img/image-20220119102001598.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119102001598.png"
+    title="https://image.geoer.cn/img/image-20220119102001598.png"/></p>
 <p>攻击时序图：</p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="http://image.geoer.cn/img/image-20220119101931782.png"
-    data-srcset="http://image.geoer.cn/img/image-20220119101931782.png, http://image.geoer.cn/img/image-20220119101931782.png 1.5x, http://image.geoer.cn/img/image-20220119101931782.png 2x"
+    data-src="https://image.geoer.cn/img/image-20220119101931782.png"
+    data-srcset="https://image.geoer.cn/img/image-20220119101931782.png, https://image.geoer.cn/img/image-20220119101931782.png 1.5x, https://image.geoer.cn/img/image-20220119101931782.png 2x"
     data-sizes="auto"
-    alt="http://image.geoer.cn/img/image-20220119101931782.png"
-    title="http://image.geoer.cn/img/image-20220119101931782.png"/></p>
+    alt="https://image.geoer.cn/img/image-20220119101931782.png"
+    title="https://image.geoer.cn/img/image-20220119101931782.png"/></p>
 <h3 id="代码审计">代码审计</h3>
 <h4 id="常见关键字">常见关键字：</h4>
 <div class="highlight"><div class="chroma">
@@ -1157,7 +1157,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-18&#32;11:34:34>更新于 2023-02-18&nbsp;</span>
+        <span title=2023-02-19&#32;12:36:40>更新于 2023-02-19&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

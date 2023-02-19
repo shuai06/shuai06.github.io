@@ -9,7 +9,7 @@ XML全称“可扩展标记语言”（extensible markup language），XML是一
 
 包括：`XML声明+DTD文档类型定义+文档元素`，例如：
 
-![xml](http://image.geoer.cn/img/image-20220118140948748.png)
+![xml](https://image.geoer.cn/img/image-20220118140948748.png)
 
 其中<note>是根元素，所有XML文档必须包含一个根元素，根元素是所有其他元素的父元素。
 
@@ -310,11 +310,11 @@ Validator
 
 搜索关键字发现使用了`DocumentBuilderFactory.newInstance()`
 
-![DocumentBuilderFactory](http://image.geoer.cn/img/image-20220118151849457.png)
+![DocumentBuilderFactory](https://image.geoer.cn/img/image-20220118151849457.png)
 
 进入代码查看xml是否可控
 
-![查看代码](http://image.geoer.cn/img/image-20220118151945401.png)
+![查看代码](https://image.geoer.cn/img/image-20220118151945401.png)
 
 可以发现：程序首先通过`DocumentBuilderFactory.newInstance()`来获取一个实例，然后通过`DocumentBuilder::parse`来解析，通过`request.getInputStream()`来传入的body内容，并返回一个`Document`实例。
 

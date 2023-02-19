@@ -31,7 +31,7 @@ void main()
 
 最后一句：return (R[n-1] + get_agv(R, n-1)*<font color=red>(n-1</font>))/n;中的n-1是用来约分母的(约前面一个数的分母)，比如下面这样更直观一点
 
-![示意图](http://image.geoer.cn/%E6%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC%E9%A2%98.jpg)
+![示意图](https://image.geoer.cn/%E6%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC%E9%A2%98.jpg)
 
 
 

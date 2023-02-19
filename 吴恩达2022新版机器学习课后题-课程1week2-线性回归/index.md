@@ -66,16 +66,16 @@ def cat_data():
 
 
 ### 回顾线性回归模型
-![20220710215207](http://image.geoer.cn/20220710215207.png)
+![20220710215207](https://image.geoer.cn/20220710215207.png)
 我们预测的餐厅利润就是$f_{w,b}(x^{(i)})$的值
 
 
 ### 实现代价函数
 复习代价函数：
-![20220710215403](http://image.geoer.cn/20220710215403.png)
+![20220710215403](https://image.geoer.cn/20220710215403.png)
 
 
-![20220710215626](http://image.geoer.cn/20220710215626.png)
+![20220710215626](https://image.geoer.cn/20220710215626.png)
 
 根据上面的公式，我们可以补充代码如下：
 ```python
@@ -127,14 +127,14 @@ def compute_cost(x, y, w, b):
     compute_cost_test(compute_cost)
 
 ```
-![20220710220228](http://image.geoer.cn/20220710220228.png)
+![20220710220228](https://image.geoer.cn/20220710220228.png)
 
 
 
 ### 梯度下降
 #### 梯度
 复习：
-![20220710220427](http://image.geoer.cn/20220710220427.png)
+![20220710220427](https://image.geoer.cn/20220710220427.png)
 
 ```python
 
@@ -263,7 +263,7 @@ print("w,b found by gradient descent:", w, b)
 
 
 ```
-![20220711091918](http://image.geoer.cn/20220711091918.png)
+![20220711091918](https://image.geoer.cn/20220711091918.png)
 
 ### 画出图像
 
@@ -298,7 +298,7 @@ def draw_plot(w, b):
 
 ```
 
-![20220711092113](http://image.geoer.cn/20220711092113.png)
+![20220711092113](https://image.geoer.cn/20220711092113.png)
 可以看到最终的w和b可以用来进行预测
 
 
@@ -311,7 +311,7 @@ predict2 = 7.0 * w + b
 print('For population = 70,000, we predict a profit of $%.2f' % (predict2*10000))
 ```
 
-![20220711091900](http://image.geoer.cn/20220711091900.png)
+![20220711091900](https://image.geoer.cn/20220711091900.png)
 
 
 

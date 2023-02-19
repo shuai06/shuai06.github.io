@@ -27,7 +27,7 @@ FCN是图像语义分割的开山之作，这是一篇发表在2015 CVPR上的�
 比较简单，其实现存的指明的分类模型都可以转化为FCN模型，  
 将传统的CNN拿过来，然后将最后的全连接和全局池化层去掉，替换为一个转置卷积层(如果前面卷积层让图片缩小了32倍，这里转置卷积层就放大32倍)，从而实现每个像素的预测 （输出空间映射而不是分类的分数）
 其中通道数就是类别的个数+1，当前前面可以加一个1x1卷积来降低运算量(降低维度)
-![](http://image.geoer.cn/20221003111119.png)
+![](https://image.geoer.cn/20221003111119.png)
 
 
 全卷积⽹络先使⽤卷积神经⽹络抽取图像特征，然后通过1×1卷积层将通道数变换为类别个数，最后通过转置卷积层将特征图的⾼和宽变换为输⼊图像的尺⼨。
@@ -44,28 +44,28 @@ FCN是图像语义分割的开山之作，这是一篇发表在2015 CVPR上的�
 
     
 FCN正向编码网络结构：
-![](http://image.geoer.cn/20221003111759.png)
+![](https://image.geoer.cn/20221003111759.png)
 
 
 
 
 FCN反向编码网络结构：
-![](http://image.geoer.cn/20221003111902.png)
+![](https://image.geoer.cn/20221003111902.png)
 
 
 
 ### FCN-32s
-![](http://image.geoer.cn/20221003112244.png)
+![](https://image.geoer.cn/20221003112244.png)
 
 
 
 ### FCN-16s
-![](http://image.geoer.cn/20221003112257.png)
+![](https://image.geoer.cn/20221003112257.png)
 
 
 
 ### FCN-8s
-![](http://image.geoer.cn/20221003112316.png)
+![](https://image.geoer.cn/20221003112316.png)
 
 
 
@@ -187,7 +187,7 @@ d2l.show_images(imgs[::3] + imgs[1::3] + imgs[2::3], 3, n, scale=2);
 - **backbone**：骨干网络，意指特征提取网络，一般就是使用vgg, resnett,mobilenet是常用的，可以说目标识别网络softmax之前的部分都以用来作为backbone
 
 - **Bottleneck(瓶颈)**
-![](http://image.geoer.cn/20221003112508.png)
+![](https://image.geoer.cn/20221003112508.png)
 
 
 

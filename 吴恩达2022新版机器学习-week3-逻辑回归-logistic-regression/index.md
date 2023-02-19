@@ -14,10 +14,10 @@ $f(\vec{w},b)(\vec{x}) = g(\vec{w}\cdot{\vec{x}}+b) = \frac{1}{1+e^{-(\vec{w}\cd
 ## 逻辑回归的Loss Function
 >损失函数只是在单个数据集中
 
-![20220711135232](http://image.geoer.cn/20220711135232.png)
+![20220711135232](https://image.geoer.cn/20220711135232.png)
 
 
-![20220711135317](http://image.geoer.cn/20220711135317.png)
+![20220711135317](https://image.geoer.cn/20220711135317.png)
 
 
 
@@ -26,7 +26,7 @@ $f(\vec{w},b)(\vec{x}) = g(\vec{w}\cdot{\vec{x}}+b) = \frac{1}{1+e^{-(\vec{w}\cd
 ## 逻辑回归的Cost Function
 > 需要对loss求和累加
 
-![20220711135603](http://image.geoer.cn/20220711135603.png)
+![20220711135603](https://image.geoer.cn/20220711135603.png)
 
 
 比如：
@@ -72,7 +72,7 @@ print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp))
 > 跟线性回归一样，只不过f的内容有些区别
 
 
-![20220711140056](http://image.geoer.cn/20220711140056.png)
+![20220711140056](https://image.geoer.cn/20220711140056.png)
 
 
 
@@ -248,13 +248,13 @@ print("Accuracy on training set:", lr_model.score(X, y))
 
 
 **这里以正则化说了：**
-![20220711142518](http://image.geoer.cn/20220711142518.png)
+![20220711142518](https://image.geoer.cn/20220711142518.png)
 
 正则化可以防止过拟合，进而增强泛化能力
 采取的方法是在原来平方差误差的基础上添加正则项(一般选择正则化w而非b)：
 
 线性回归：
-![20220711142957](http://image.geoer.cn/20220711142957.png)
+![20220711142957](https://image.geoer.cn/20220711142957.png)
 
 ```python
 def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
@@ -300,7 +300,7 @@ print("Regularized cost:", cost_tmp)
 
 逻辑回归添加正则项：
 
-![20220711143125](http://image.geoer.cn/20220711143125.png)
+![20220711143125](https://image.geoer.cn/20220711143125.png)
 
 
 ```python
@@ -349,7 +349,7 @@ print("Regularized cost:", cost_tmp)
 
 
 梯度下降中添加正则项：
-![20220711143259](http://image.geoer.cn/20220711143259.png)
+![20220711143259](https://image.geoer.cn/20220711143259.png)
 
 ```python
 def compute_gradient_linear_reg(X, y, w, b, lambda_): 

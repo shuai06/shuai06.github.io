@@ -436,9 +436,9 @@ class Data{
 
 
 
-![](http://image.geoer.cn/%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E4%B8%BA%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.jpg)
+![](https://image.geoer.cn/%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E4%B8%BA%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.jpg)
 
-![](http://image.geoer.cn/%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E4%B8%BA%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png)
+![](https://image.geoer.cn/%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E4%B8%BA%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png)
 
 但是，String作为引用数据类型，是例外的，是不能交换成功的，因为它存在字符串常量池中，会新造一个地址。所以，记下面这个结论：
 
@@ -724,7 +724,7 @@ public class OrderTest2 {  // 不同包下，可以起同名的类
 
 ```
 
-![](http://image.geoer.cn/java%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6.png)
+![](https://image.geoer.cn/java%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6.png)
 
 
 
@@ -824,7 +824,7 @@ JavaBean：是一种Java语言写成的可重用组件。
 
 ### UML类图
 
-![](http://image.geoer.cn/UML%E7%B1%BB%E5%9B%BE.jpg)
+![](https://image.geoer.cn/UML%E7%B1%BB%E5%9B%BE.jpg)
 
 
 
@@ -1269,7 +1269,7 @@ Java引用变量有两个类型：
 
 #### 虚拟方法
 
-![](http://image.geoer.cn/java%E8%99%9A%E6%8B%9F%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8.png)
+![](https://image.geoer.cn/java%E8%99%9A%E6%8B%9F%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8.png)
 
 
 
@@ -1327,7 +1327,7 @@ System.gc();
 
 ### == 与 equals()
 
-![](http://image.geoer.cn/qeuals%E5%92%8C%3D%3D%E5%8C%BA%E5%88%AB.png)
+![](https://image.geoer.cn/qeuals%E5%92%8C%3D%3D%E5%8C%BA%E5%88%AB.png)
 
 
 
@@ -1468,7 +1468,7 @@ class Customer{
 
 重写equals()方法的原则：
 
-![](http://image.geoer.cn/%E9%87%8D%E5%86%99qauals%28%29.png)
+![](https://image.geoer.cn/%E9%87%8D%E5%86%99qauals%28%29.png)
 
 
 
@@ -1538,13 +1538,13 @@ public class JUnitTest {
 
 > 让基本数据类型也具有类的特征，封装起来
 
-![](http://image.geoer.cn/java%E5%8C%85%E8%A3%85%E7%B1%BB.png)
+![](https://image.geoer.cn/java%E5%8C%85%E8%A3%85%E7%B1%BB.png)
 
 
 
 **基本类型、包装类、String三种类型相互转换：**
 
-![](http://image.geoer.cn/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8C%85%E8%A3%85%E7%B1%BB%E4%B8%8EString%E8%BD%AC%E6%8D%A2.png)
+![](https://image.geoer.cn/%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E4%B8%8E%E5%8C%85%E8%A3%85%E7%B1%BB%E4%B8%8EString%E8%BD%AC%E6%8D%A2.png)
 
 ```java
 package cn.xpshuai.java3;
@@ -1764,7 +1764,7 @@ class Chinese{
 
 ### 类变量和实例变量内存解析
 
-![](http://image.geoer.cn/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%901.png)
+![](https://image.geoer.cn/%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E8%A7%A3%E6%9E%901.png)
 
 
 

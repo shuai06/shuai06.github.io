@@ -123,7 +123,7 @@ MUA + MDA
 >最基本的：MTA+MDA+MUA
 
 典型命令：
-![](http://image.geoer.cn/ubuntu_mail_cmd.png)
+![](https://image.geoer.cn/ubuntu_mail_cmd.png)
 
 
 ###### 3. 其他邮箱访问方式
@@ -398,11 +398,11 @@ $['setup_password'] = 'xxxxxxx hash xxxxxxxx'
 - 域名清单 -- 新建域
 - 虚拟用户清单 -- 新建邮箱（别名）
 
-<img src="http://image.geoer.cn/ubuntu_mail_virtual.png"></img>
+<img src="https://image.geoer.cn/ubuntu_mail_virtual.png"></img>
 
-<img src="http://image.geoer.cn/ubuntu_mail_virtual2.png"></img>
+<img src="https://image.geoer.cn/ubuntu_mail_virtual2.png"></img>
 
-<img src="http://image.geoer.cn/ubuntu_mail_virtual3.png"></img>
+<img src="https://image.geoer.cn/ubuntu_mail_virtual3.png"></img>
 
 
 ###### 6.集成Postfix

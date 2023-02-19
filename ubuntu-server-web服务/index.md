@@ -13,17 +13,17 @@ www 万维网
 
 **访问方式**
 
-<img src="http://image.geoer.cn/20200424214945523_10883.png" />
+<img src="https://image.geoer.cn/20200424214945523_10883.png" />
 FQDN：(Fully Qualified Domain Name)全限定域名：同时带有主机名和域名的名称。（通过符号“.”）
 
 **传输协议**
 SSL基本被替代了，TSL使用最多
-<img src="http://image.geoer.cn/20200424215120585_7753.png" />
+<img src="https://image.geoer.cn/20200424215120585_7753.png" />
 put常用于上传文件
 options查看都支持哪些方法
 header只是头部的信息(请求/响应)
 
-<img src="http://image.geoer.cn/20200424235043151_8198.png" />
+<img src="https://image.geoer.cn/20200424235043151_8198.png" />
 
 
 
@@ -34,7 +34,7 @@ header只是头部的信息(请求/响应)
 
 ## <font color=red>HTTP协议</font>
 **常见服务端响应状态码**
-<img src="http://image.geoer.cn/20200425094030209_15175.png" />
+<img src="https://image.geoer.cn/20200425094030209_15175.png" />
 更多详细状态码，见地址：
 
 http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
@@ -62,7 +62,7 @@ sudo apt install apache2
 #### 通过众多`directives`进行配置
 在Ubuntu中，directives分散于多个配置文件中
 
-<img src="http://image.geoer.cn/20200425100139669_32000.png" />
+<img src="https://image.geoer.cn/20200425100139669_32000.png" />
 
 配置文件：`conf-enabled`(启用的)中的文件都是链接到`conf-available`(可用的)下的配置文件（创建了链接的才生效的，所以可以配置一些备用的不设置链接），修改完需要重启服务
 模块目录：mods-enabled与mods-available，跟上面两者关系类似
@@ -272,7 +272,7 @@ sudo openssl req -x509 -days 365 -sha256 -newkey rsa:2048 -nodes -keyout /etc/ss
 ###### 创建`HTTPS`虚拟主机
 和创建一般虚拟主机是类似的
 
-<img src="http://image.geoer.cn/20200425131432963_15883.png" />
+<img src="https://image.geoer.cn/20200425131432963_15883.png" />
 
 建议商业证书颁发机构(权威机构颁发，默认受信，增强特性，收费高昂，有效期长)
 
@@ -411,23 +411,23 @@ systemctl start keepalived
 哈哈哈，前几天20.04都已经正式发布了，我听课进度太慢
 >内核是关键
 
-<img src="http://image.geoer.cn/20200425142824240_1739.png" />
+<img src="https://image.geoer.cn/20200425142824240_1739.png" />
 
-<img src="http://image.geoer.cn/20200425144457182_27054.png" />
+<img src="https://image.geoer.cn/20200425144457182_27054.png" />
 
 ###### 网络配置
 
-<img src="http://image.geoer.cn/20200425145333762_14082.png" />
-<img src="http://image.geoer.cn/20200425145724172_15710.png" />
+<img src="https://image.geoer.cn/20200425145333762_14082.png" />
+<img src="https://image.geoer.cn/20200425145724172_15710.png" />
 多个地址，要用逗号分隔
 重启服务：`sudo netplan apply`
 
-<img src="http://image.geoer.cn/20200425145944914_17134.png" />
+<img src="https://image.geoer.cn/20200425145944914_17134.png" />
 桥接的物理网卡设置为没有ip
 
 **桌面端：**
 
-<img src="http://image.geoer.cn/20200425150429971_9910.png" />
+<img src="https://image.geoer.cn/20200425150429971_9910.png" />
 
 
 ```bash
@@ -979,7 +979,7 @@ sudo useradd -m -U -d /opt/tomcat -s /bin/false tomcat       # 创建tomcat帐�
 ```
 
 2.再下载安装包
-<img src="http://image.geoer.cn/20200428150102394_2075358316.png" />
+<img src="https://image.geoer.cn/20200428150102394_2075358316.png" />
 
 3.移动到/opt/tomcat目录
 ```bash
@@ -1001,7 +1001,7 @@ sudo chmod +x /opt/tomcat/latest/bin/*.sh
 `/etc/systemd/system/`
 `sudo vim tomcat.service`
 配置内容如下
-<img src="http://image.geoer.cn/20200428152651153_2000734872.png" />
+<img src="https://image.geoer.cn/20200428152651153_2000734872.png" />
 
 
 6.启动服务
@@ -1041,7 +1041,7 @@ xxx:8080/host-manager/html
 ```
 
 
-<img src="http://image.geoer.cn/20200428154603944_415659665.png" />
+<img src="https://image.geoer.cn/20200428154603944_415659665.png" />
 
 
 

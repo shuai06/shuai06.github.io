@@ -25,7 +25,7 @@ http://www.test.com?url=http://www.xxx.com
 
 **URL跳转漏洞：**也叫URL重定向漏洞。由于服务端未对传入的跳转url变量进行检查和控制，可导致恶意用户构造一个恶意地址，诱导用户跳转到恶意网站。因为是从用户可信站点跳转出去的，用户会比较信任该站点，所以其常用于用于钓鱼攻击，通过跳转到恶意网站欺骗用户输入用户名和密码来盗取用户信息，或欺骗用户进行金钱交易；还可以造成xss漏洞。
 
-![一次URL跳转攻击](http://image.geoer.cn/img/image-20220117201314903.png)
+![一次URL跳转攻击](https://image.geoer.cn/img/image-20220117201314903.png)
 
 
 
@@ -43,9 +43,9 @@ header("Location: $url");
 
 来生成自己的恶意链接，安全意识较低的用户很可能会以为该链接展现的内容是www.aaa.com从而可能产生欺诈行为
 
-![跟上链接，这里以百度为例](http://image.geoer.cn/img/image-20220117204812603.png)
+![跟上链接，这里以百度为例](https://image.geoer.cn/img/image-20220117204812603.png)
 
-![成功跳转](http://image.geoer.cn/img/image-20220117204908240.png)
+![成功跳转](https://image.geoer.cn/img/image-20220117204908240.png)
 
 
 

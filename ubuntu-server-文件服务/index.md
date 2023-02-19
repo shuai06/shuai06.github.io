@@ -176,7 +176,7 @@ hide_ids=YES		# 显示属主/数组名称，而不显示uid和gid(uid会比较�
 ftp -p 192.168.0.130
 ```
 
-<img src="http://image.geoer.cn/20200413153011895_32240.png" />
+<img src="https://image.geoer.cn/20200413153011895_32240.png" />
 
 
 限定`被动模式`数据通信端口
@@ -606,7 +606,7 @@ net config workstation
 
 共享名称以`$`结尾的，在win上会认为隐藏共享(Linux上还是会显示)
 
-<img src="http://image.geoer.cn/20200414155510404_5305.png" />
+<img src="https://image.geoer.cn/20200414155510404_5305.png" />
 
 ###### 二. 配置公开访问的Samba服务(开放共享文件件)
 

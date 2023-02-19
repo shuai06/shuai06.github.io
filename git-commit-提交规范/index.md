@@ -122,19 +122,19 @@ Footer 部分只用于两种情况。
 
 ## Pycharm的Git Commit Template插件
 
-![下载](http://image.geoer.cn/2022-05-10-141402.png)
+![下载](https://image.geoer.cn/2022-05-10-141402.png)
 
 
 
-![commit](http://image.geoer.cn/2022-05-10-141430.png)
+![commit](https://image.geoer.cn/2022-05-10-141430.png)
 
 
 
-![点击](http://image.geoer.cn/2022-05-10-141459.png)
+![点击](https://image.geoer.cn/2022-05-10-141459.png)
 
 
 
-![填写](http://image.geoer.cn/2022-05-10-141528.png)
+![填写](https://image.geoer.cn/2022-05-10-141528.png)
 
 
 

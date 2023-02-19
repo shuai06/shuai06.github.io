@@ -9,7 +9,7 @@ Linux默认安装已经很安全，当很多的了解安全仍非常必要
 
 大部分的安全事件来自于内部员工和已经离职的员工
 
-<img src="http://image.geoer.cn/20200519144331629_1148039304.png" />
+<img src="https://image.geoer.cn/20200519144331629_1148039304.png" />
 
 
 #### 防护思路
@@ -277,7 +277,7 @@ gpg --keyserver certserver.pgp.com --recv-key 0xAABBCCDD    # 对方获取
 
 GnuPG大致工作流程：
 
-<img src="http://image.geoer.cn/20200519173953416_754675779.png" />
+<img src="https://image.geoer.cn/20200519173953416_754675779.png" />
 
 
 
@@ -637,7 +637,7 @@ sudo aa-logpro    # 检查日志更新配置文件
 
 
 ## <font color=red>防病毒</font>
-<img src="http://image.geoer.cn/20200520113246789_2113511743.png" />
+<img src="https://image.geoer.cn/20200520113246789_2113511743.png" />
 
 
 **恶意软件**

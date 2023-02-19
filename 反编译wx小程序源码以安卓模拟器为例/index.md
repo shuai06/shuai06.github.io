@@ -19,7 +19,7 @@ https://github.com/xuedingmiaojun/wxappUnpacker
 
 mumu模拟器开启root：点击右上角的三条杠进入更多选项-->进入设置中心-->基本设置-->在root权限中开启root权限-->保存关闭  
 
-![1](http://image.geoer.cn/20230210180352.png)
+![1](https://image.geoer.cn/20230210180352.png)
 
 
 
@@ -69,9 +69,9 @@ https://github.com/HQEasy/wxappUnpacker
 clone之后进入到`wxappUnpacker`文件夹中，安装依赖:`npm install`,  
 然后执行`node wuWxapkg.js 包的路径`，即可解包到当前目录的一个以包名为名字的  新文件夹中：      
 
-![](http://image.geoer.cn/20230210212011.png)
+![](https://image.geoer.cn/20230210212011.png)
 
-![](http://image.geoer.cn/20230210212342.png)
+![](https://image.geoer.cn/20230210212342.png)
 
 ​    
 
@@ -93,7 +93,7 @@ SyntaxError: Unexpected end of input
 解决方案：  
 第一步：修改wuWxss.js文件31行    
 
-![](http://image.geoer.cn/20230210212150.png)
+![](https://image.geoer.cn/20230210212150.png)
 
 ```
 			function statistic(data) {
@@ -112,7 +112,7 @@ SyntaxError: Unexpected end of input
 ```
   第二步：修改wuWxss.js文件243行    
 
-![](http://image.geoer.cn/20230210212237.png)
+![](https://image.geoer.cn/20230210212237.png)
 
 ```
 						// pureData = vm.run(code + "\n_C");
@@ -127,7 +127,7 @@ SyntaxError: Unexpected end of input
 在解包完成之后，我们可以直接审计代码  
 或者也可以打开微信小程序开发者工具，选择“导入项目”，“AppID”选择测试号并导入；接着来到“本地设置”模块，  勾选上“不校验合法域名”功能,关闭JS编译成ES5 、不校验合法域名、调试基础库，然后可以愉快的开始调试对应小程序的源码了。  
 
-![](http://image.geoer.cn/20230210204006.png)
+![](https://image.geoer.cn/20230210204006.png)
 
 
 

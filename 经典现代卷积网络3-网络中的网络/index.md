@@ -8,7 +8,7 @@ NiN提出了另外一个思路，即串联多个由卷积层和“全连接”�
 
 NiN是在AlexNet问世不久后提出的
 
-![](http://image.geoer.cn/20220915192405.png)
+![](https://image.geoer.cn/20220915192405.png)
 
 
 **NiN块**是NiN中的基础块。它的架构：
@@ -17,7 +17,7 @@ NiN是在AlexNet问世不久后提出的
 其中第一个卷积层的超参数可以自行设置，而第二和第三个卷积层的超参数一般是固定的。
 - 除使用NiN块以外，NiN还有一个设计与AlexNet显著不同：NiN去掉了AlexNet最后的3个全连接层(全连接层耗时且容易过拟合)，取而代之地，NiN使用了输出通道数等于标签类别数的NiN块，然后使用**全局平均池化层**对每个通道中所有元素求平均并直接用于分类
 
-![](http://image.geoer.cn/20220915193724.png)
+![](https://image.geoer.cn/20220915193724.png)
 
 
 https://zhuanlan.zhihu.com/p/47391705

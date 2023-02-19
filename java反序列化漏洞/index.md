@@ -9,7 +9,7 @@
 
 
 
-![](http://image.geoer.cn/img/image-20220119091034314.png)
+![](https://image.geoer.cn/img/image-20220119091034314.png)
 
 
 
@@ -57,11 +57,11 @@ __invoke() # 当脚本尝试将对象调用为函数时触发
 
 先搞清楚序列化之后各个字段的意义:
 
-![](http://image.geoer.cn/img/image-20220119091308709.png)
+![](https://image.geoer.cn/img/image-20220119091308709.png)
 
 
 
-![](http://image.geoer.cn/img/image-20220119091604297.png)
+![](https://image.geoer.cn/img/image-20220119091604297.png)
 
 
 
@@ -259,7 +259,7 @@ pickle.loads(payload)
 
 ```
 
-![](http://image.geoer.cn/img/image-20220119104525612.png)
+![](https://image.geoer.cn/img/image-20220119104525612.png)
 
 如果需要在web中请求传输，url编码后就可以发送了。
 
@@ -470,7 +470,7 @@ pip3 install msgpack-python
 
 
 
-![](http://image.geoer.cn/img/image-20220119092018167.png)
+![](https://image.geoer.cn/img/image-20220119092018167.png)
 
 
 
@@ -520,15 +520,15 @@ public class TestSeri {
 
 ```
 
-![](http://image.geoer.cn/img/image-20220119100756465.png)
+![](https://image.geoer.cn/img/image-20220119100756465.png)
 
 object文件中的内容：
 
-![](http://image.geoer.cn/img/image-20220119101145971.png)
+![](https://image.geoer.cn/img/image-20220119101145971.png)
 
 其中`Ac ed 00 05`是java序列化内容的**特征**，base64编码后是`rO0ABQ==`
 
-![](http://image.geoer.cn/img/image-20220119101214156.png)
+![](https://image.geoer.cn/img/image-20220119101214156.png)
 
 
 
@@ -594,15 +594,15 @@ class MyObject implements Serializable{
 
 查看文件内容：
 
-![](http://image.geoer.cn/img/image-20220119102101701.png)
+![](https://image.geoer.cn/img/image-20220119102101701.png)
 
 漏洞发生在反序列化过程，MyObject类实现了Serializable接口，并重写了readObject()函数（从源输入流中读取字节序列，反序列化成对象），这里定制的行为是打开计算器：
 
-![](http://image.geoer.cn/img/image-20220119102001598.png)
+![](https://image.geoer.cn/img/image-20220119102001598.png)
 
 攻击时序图：
 
-![](http://image.geoer.cn/img/image-20220119101931782.png)
+![](https://image.geoer.cn/img/image-20220119101931782.png)
 
 
 

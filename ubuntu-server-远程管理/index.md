@@ -204,9 +204,9 @@ ssh -fN -L2002:123.206.96.26:80 xps@192.168.0.10
 
 
 
-<img src="http://image.geoer.cn/20200330152732562_32379.png" />
+<img src="https://image.geoer.cn/20200330152732562_32379.png" />
 
-<img src="http://image.geoer.cn/20200330154229749_5054.png" />
+<img src="https://image.geoer.cn/20200330154229749_5054.png" />
 
 **ssh隧道 -- 实现文件系统挂载**
 比如，一开机，就自动把远程机器的目录/分区挂载到我本机上，跟访问本地目录一样的效果
@@ -310,7 +310,7 @@ sudo fail2ban-client set sshd unbanip 192.168.1.8
 # 手动解除禁用之后，但是如果重启服务，会再自动查看日志：还没有超过被禁期限的ip会再次被禁
 
 ```
-<img src="http://image.geoer.cn/20200330164545399_6809.png" />
+<img src="https://image.geoer.cn/20200330164545399_6809.png" />
 
 
 

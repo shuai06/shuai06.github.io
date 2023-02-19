@@ -23,7 +23,7 @@
 
 
 
-![upload-labs](http://image.geoer.cn/img/image-20220118153454307.png)
+![upload-labs](https://image.geoer.cn/img/image-20220118153454307.png)
 
 
 
@@ -48,7 +48,7 @@ controller.ashx?action=catchimage
 /FCKeditor/_whatsnew.html
 ```
 
-![image-20220118154051352](http://image.geoer.cn/img/image-20220118154051352.png)
+![image-20220118154051352](https://image.geoer.cn/img/image-20220118154051352.png)
 
 
 
@@ -64,7 +64,7 @@ kindeditor/php/upload_json.php
 
 
 
-![image-20220118154120671](http://image.geoer.cn/img/image-20220118154120671.png)
+![image-20220118154120671](https://image.geoer.cn/img/image-20220118154120671.png)
 
 
 
@@ -126,13 +126,13 @@ www.a.com/index.php.xxx.qqq
 
 1.可解析的脚本后缀，也就是该语言有多个可解析的后缀
 
-![脚本后缀](http://image.geoer.cn/img/image-20220118154504496.png)
+![脚本后缀](https://image.geoer.cn/img/image-20220118154504496.png)
 
 2.大小写混合，如果系统过滤不严，可能大小写可以绕过
 
 3.中间件安全，部分中间件存在文件解析漏洞
 
-![文件解析漏洞](http://image.geoer.cn/img/image-20220118154543977.png)
+![文件解析漏洞](https://image.geoer.cn/img/image-20220118154543977.png)
 
 服务器特性:
 1.会将Request中的不能编码部分的%去掉
@@ -168,7 +168,7 @@ IS7.0/7.5和Nginx<0.8.3 以上的容器版本中默认php配置文件cgi.fix_pat
 
 4.系统特性
 
-![系统特性](http://image.geoer.cn/img/image-20220118154748278.png)
+![系统特性](https://image.geoer.cn/img/image-20220118154748278.png)
 
 ```bash
 test.asp.
@@ -179,13 +179,13 @@ test.php_
 
 ```
 
-![系统特性](http://image.geoer.cn/img/image-20220118154818983.png)
+![系统特性](https://image.geoer.cn/img/image-20220118154818983.png)
 
 5.语言漏洞，流行的三种脚本语言基本都存在00截断漏洞。
 
 JSP文件名绕过:
 
-![image-20220118154934765](http://image.geoer.cn/img/image-20220118154934765.png)
+![image-20220118154934765](https://image.geoer.cn/img/image-20220118154934765.png)
 
 
 
@@ -225,7 +225,7 @@ JSP文件名绕过:
 
 1.垃圾数据
 
-![垃圾数据](http://image.geoer.cn/img/image-20220118155153315.png)
+![垃圾数据](https://image.geoer.cn/img/image-20220118155153315.png)
 
 
 
@@ -270,19 +270,19 @@ p
 
 不规则Content-Disposition文件名覆盖:
 
-![](http://image.geoer.cn/img/image-20220118155331607.png)
+![](https://image.geoer.cn/img/image-20220118155331607.png)
 
 
 
 多个content-Disnosition文件名覆盖(Win2k8 +IIS7.0+ PHP):
 
-![](http://image.geoer.cn/img/image-20220118155402339.png)
+![](https://image.geoer.cn/img/image-20220118155402339.png)
 
 
 
 更换filename位置(iis 6):
 
-![](http://image.geoer.cn/img/image-20220118155419185.png)
+![](https://image.geoer.cn/img/image-20220118155419185.png)
 
 
 
@@ -292,7 +292,7 @@ p
 
 删除content-disposition空格:
 
-![](http://image.geoer.cn/img/image-20220118155441338.png)
+![](https://image.geoer.cn/img/image-20220118155441338.png)
 
 
 
@@ -300,13 +300,13 @@ p
 
 修改 Content-Disposition字段值的大小写:
 
-![](http://image.geoer.cn/img/image-20220118155500736.png)
+![](https://image.geoer.cn/img/image-20220118155500736.png)
 
 
 
 boundarv空格(Win2k3 +lIS6.0+ ASP):
 
-![](http://image.geoer.cn/img/image-20220118155519326.png)
+![](https://image.geoer.cn/img/image-20220118155519326.png)
 
 
 
@@ -317,25 +317,25 @@ boundary边界不一致(Win2k3 + IS6.0+ ASP):
 php+apache畸形的boundary:
 php在解析multipart data的时候有自己的特性，对于boundary的识别，只取了逗号前面的内容，例如我们设置的 boundarv为--aaaa,123456 , php解析的时候只识别了--aaaa ,后面的内容均没有识别。然而其他的如WAF在做解析的时候，有可能获取的是整个字符串，此时可能就会出现BYPASS
 
-![](http://image.geoer.cn/img/image-20220118155600100.png)
+![](https://image.geoer.cn/img/image-20220118155600100.png)
 
 
 
 `===`绕过：
 
-![](http://image.geoer.cn/img/image-20220118155804211.png)
+![](https://image.geoer.cn/img/image-20220118155804211.png)
 
 
 
 去除"""绕过：
 
-![](http://image.geoer.cn/img/image-20220118155811407.png)
+![](https://image.geoer.cn/img/image-20220118155811407.png)
 
 
 
 少“绕过：
 
-![](http://image.geoer.cn/img/image-20220118155825148.png)
+![](https://image.geoer.cn/img/image-20220118155825148.png)
 
 
 
@@ -351,7 +351,7 @@ php在解析multipart data的时候有自己的特性，对于boundary的识别�
 
 Content-Disposition:
 
-![](http://image.geoer.cn/img/image-20220118155621710.png)
+![](https://image.geoer.cn/img/image-20220118155621710.png)
 
 
 
@@ -359,7 +359,7 @@ Content-Disposition:
 
 Content-type:
 
-![](http://image.geoer.cn/img/image-20220118155651220.png)
+![](https://image.geoer.cn/img/image-20220118155651220.png)
 
 
 

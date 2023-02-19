@@ -250,7 +250,7 @@ nbtscan.exe 192.168.111/24
 ```
 参数说明(结果的第三列)：
 
-<img src="http://image.geoer.cn/20200307145109927_29873.png" />
+<img src="https://image.geoer.cn/20200307145109927_29873.png" />
 
 
 **2.利用`icmp`协议快速探测内网**
@@ -559,12 +559,12 @@ netsess -h
 
 ###### c.扫描远程系统上运行的任务
 前提：使用了共享
-<img src="http://image.geoer.cn/20200308144440441_12568.png" />
+<img src="https://image.geoer.cn/20200308144440441_12568.png" />
 
 ###### d.扫描远程系统上NetBISO信息
 NetBISO是一个协议，端口137,138,139之类
 也可使用工具：`nbtscan`
-<img src="http://image.geoer.cn/20200308144903911_31072.png" />
+<img src="https://image.geoer.cn/20200308144903911_31072.png" />
 
 
 
@@ -663,7 +663,7 @@ sh.exe -c all
 
 **查询信息**
 主界面左上角的查询`Queries`, 进入模块，可以看到预定义的常用查询条件
-<img src="http://image.geoer.cn/20200507194413982_1350438555.png" />
+<img src="https://image.geoer.cn/20200507194413982_1350438555.png" />
 
 按住`ctrl`键，可以循环显示； 在其图标上按住鼠标左键可以移动位置
 
@@ -698,7 +698,7 @@ sh.exe -c all
 
 3. `net group /domain`  
 可以查询域内所有用户组的信息, 同样可以利用该命令来定位公司内部人事结构
-<img src="http://image.geoer.cn/20200506224521447_1788866667.png" />
+<img src="https://image.geoer.cn/20200506224521447_1788866667.png" />
 除了内置重点组外, `自建的域组`需要特别关注
 ```bash
 (1)IT组/研发组: 他们掌握了大量的内网密码,数据库密码等。
@@ -840,7 +840,7 @@ DMZ 区而 DMZ 区访问不了内网区的情况下,相关知识在第 1 章中�
 
 
 ###### 基础信息搜集- 思维图
-<img src="http://image.geoer.cn/内网信息搜集-思维图.Jpeg" />
+<img src="https://image.geoer.cn/内网信息搜集-思维图.Jpeg" />
 
 
 

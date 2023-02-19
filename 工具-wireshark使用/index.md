@@ -22,7 +22,7 @@
 
 ###### 捕获->选项-> ... ... 
 **选择抓包网卡**
-<img src="http://image.geoer.cn/20200314214656188_15241.png" />
+<img src="https://image.geoer.cn/20200314214656188_15241.png" />
 
 **混杂模式**
 勾选上之后，如果数据包不是发送给我指定这个网卡的，也会被抓取
@@ -38,8 +38,8 @@
 
 ###### 首选项
 编辑->首选项   -> 可以自己根据需要修改和定制界面布局
-<img src="http://image.geoer.cn/20200314215811593_19130.png" />
-<img src="http://image.geoer.cn/20200314215743991_3733.png" />
+<img src="https://image.geoer.cn/20200314215811593_19130.png" />
+<img src="https://image.geoer.cn/20200314215743991_3733.png" />
 
 
 #### 筛选器
@@ -48,8 +48,8 @@
 - 显示筛选器(主界面那个, 更多使用)    -- 常用语法
 
 可以单独选择，也可以叠加(and, or)上面的条件进行筛选：
-<img src="http://image.geoer.cn/20200314220435486_29854.png" />
-<img src="http://image.geoer.cn/20200314220819061_8554.png" />
+<img src="https://image.geoer.cn/20200314220435486_29854.png" />
+<img src="https://image.geoer.cn/20200314220819061_8554.png" />
 
 
 
@@ -58,43 +58,43 @@
 数据包的分层结构显示
 
 ###### <font color=red>ARP</font>
-<img src="http://image.geoer.cn/20200315135242728_2582.png" />
-<img src="http://image.geoer.cn/20200315135851907_10980.png" />
+<img src="https://image.geoer.cn/20200315135242728_2582.png" />
+<img src="https://image.geoer.cn/20200315135851907_10980.png" />
 
 ###### <font color=red> IP</font>
 
 **Protocol字段：** 表示上层是： udp--> 17， tcp--> 6, icmp -->2, igmp -->2
 四层有好多中协议对应不同的数字
 Header checksum字段：校验和, 每两位进行异或
-<img src="http://image.geoer.cn/20200315141145151_10461.png" />
+<img src="https://image.geoer.cn/20200315141145151_10461.png" />
 tcp和udp一般不会有`option`字段（视情况而定）
 
 
 ###### <font color=red> TCP</font>
-<img src="http://image.geoer.cn/20200315141900321_8252.png" />
-<img src="http://image.geoer.cn/20200315142047940_28399.png" />
+<img src="https://image.geoer.cn/20200315141900321_8252.png" />
+<img src="https://image.geoer.cn/20200315142047940_28399.png" />
 
 **附：**
 三次握手
-<img src="http://image.geoer.cn/20200315142429852_2643.pn" />
+<img src="https://image.geoer.cn/20200315142429852_2643.pn" />
 
 四次挥手
-<img src="http://image.geoer.cn/20200315142522647_28638.png" />
+<img src="https://image.geoer.cn/20200315142522647_28638.png" />
 
 ###### <font color=red> UDP </font>
 udp和tcp的类似，自己实践能看懂
 udp开销更小
-<img src="http://image.geoer.cn/20200315142800334_28041.png" />
+<img src="https://image.geoer.cn/20200315142800334_28041.png" />
 
 
 ###### <font color=red> DNS </font>
 应用层协议，基于udp
-<img src="http://image.geoer.cn/20200315143306840_10579.png" />
+<img src="https://image.geoer.cn/20200315143306840_10579.png" />
 
 
 ###### <font color=red> HTTP </font>
-<img src="http://image.geoer.cn/20200315143952274_22660.png" />
-<img src="http://image.geoer.cn/20200315144406111_24695.png" />
+<img src="https://image.geoer.cn/20200315143952274_22660.png" />
+<img src="https://image.geoer.cn/20200315144406111_24695.png" />
 
 
 ###### <font color=red> ftp </font>
@@ -103,7 +103,7 @@ ftp也是一个应用层协议
 
 >wishark默认是用端口区分协议(假设我们手动把http不开在80端口，wireshark分不清非标准端口的, 需要我们手动修改.如下图.)
 
-<img src="http://image.geoer.cn/20200315144657089_4217.png" />
+<img src="https://image.geoer.cn/20200315144657089_4217.png" />
 
 
 
@@ -118,9 +118,9 @@ wireshark提供了<code>数据流</code>
 - ssl 等
 
 **操作(以http为例)：**
-<img src="http://image.geoer.cn/20200315145059801_20372.png" />
+<img src="https://image.geoer.cn/20200315145059801_20372.png" />
 按照上图操作完后，会来到数据流的界面，如下：
-<img src="http://image.geoer.cn/20200315145205546_28877.png" />
+<img src="https://image.geoer.cn/20200315145205546_28877.png" />
 
 
 

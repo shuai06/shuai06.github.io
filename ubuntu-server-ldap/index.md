@@ -100,9 +100,9 @@
 - 无固定的命名规则
 - 按照地理空间命名
 
-<img src="http://image.geoer.cn/20200507135251359_1631864771.png" />
+<img src="https://image.geoer.cn/20200507135251359_1631864771.png" />
 
-<img src="http://image.geoer.cn/20200507135329746_833117774.png" />
+<img src="https://image.geoer.cn/20200507135329746_833117774.png" />
 
 ```bash
 # 写法
@@ -240,7 +240,7 @@ https://ldapwiki.com/wiki/ObkectClass#Types
 **修改数据**
 跟上面是类似的
 
-<img src="http://image.geoer.cn/20200507151131491_1817511878.png" />
+<img src="https://image.geoer.cn/20200507151131491_1817511878.png" />
 
 
 
@@ -271,11 +271,11 @@ sudo apt install ldap-account-manager
 ```
 
 
-<img src="http://image.geoer.cn/20200507155013573_1158190765.png" />
+<img src="https://image.geoer.cn/20200507155013573_1158190765.png" />
 
-<img src="http://image.geoer.cn/20200507153818370_1691714384.png" />
+<img src="https://image.geoer.cn/20200507153818370_1691714384.png" />
 
-<img src="http://image.geoer.cn/20200507153853899_1124405028.png" />
+<img src="https://image.geoer.cn/20200507153853899_1124405028.png" />
 
 
 

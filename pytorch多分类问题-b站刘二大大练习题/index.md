@@ -5,7 +5,7 @@
 
 ## 前言
 回顾之前糖尿病的问题，是二分类的，但实际中二分类很少见，大多是手写数字识别等多分类问题
-![](http://image.geoer.cn/20220815131223.png)
+![](https://image.geoer.cn/20220815131223.png)
 下文以MINIST为例进行分析
 
 
@@ -15,7 +15,7 @@
 **如何使用sigmoid来实现手写数字识别？**
 把每一个分类作为二分类进行判断。
 eg：当输出为1时，对其他的非1输出都规定为0，以此来进行判断
-![](http://image.geoer.cn/20220815131443.png)
+![](https://image.geoer.cn/20220815131443.png)
 
 
 但这种情况下，类别之间所存在的互相抑制的关系没有办法体现，当一个类别出现的概率较高时，其他类别出现的概率仍然有可能很高。
@@ -38,14 +38,14 @@ $$
 
 ## 改进的网络
 使用Softmax层来实现多分类。
-![](http://image.geoer.cn/20220815132013.png)
+![](https://image.geoer.cn/20220815132013.png)
 
 
 假定$Z^l$为最后一层线性层的输出,$Z_i$为第i类的输出。则最终的softmax层函数应为：
 $$
 P(y=i) = \frac{e^{z_i}}{\sum^{K-1}_{j=0}{e^{z_j}}}, i \in \{0,\dots,K-1\}
 $$
-![](http://image.geoer.cn/20220815132309.png)
+![](https://image.geoer.cn/20220815132309.png)
 
 
 
@@ -61,7 +61,7 @@ H(P,Q) =-\sum^n_{i=1}\sum^m_{j=1} P(X_{ij})log(Q(X_{ij}))
 $$
 
 符号：
-![](http://image.geoer.cn/20220815132516.png)
+![](https://image.geoer.cn/20220815132516.png)
 
 
 一个样本所有分类的loss计算过程可以简化为
@@ -71,7 +71,7 @@ $$
 其中，$X$表示事件预测值与实际值相同，$Y$表示非0即1的指示变量，$\widehat Y$表示Softmax的输出。
 此时$Y$其实是作为独热编码（One-hot）输入的，以对离散的变量进行分类。即只在实际值处为1，其他均为0.
 
-![](http://image.geoer.cn/20220815132715.png)
+![](https://image.geoer.cn/20220815132715.png)
 
 代码实现：
 ```python
@@ -86,7 +86,7 @@ loss = (-y*np.log(y_pred)).sum()
 print(loss)
 ```
 上述代码封装在CrossEntropyLoss()函数中，如下图CrossEntropyLoss()包含了下面好几步：
-![](http://image.geoer.cn/20220815133222.png)
+![](https://image.geoer.cn/20220815133222.png)
 
 在PyTorch中可写成这样：
 ```python
@@ -110,46 +110,46 @@ CrossEntropyLoss <===> NLLLoss + LogSoftmax
 
 **nn.LogSoftmax:**
 softmax常用在网络的输出层上，以得到每个类别的概率，顾名思义，nn.LogSoftmax就是对softmax的结果取了一个log。
-![](http://image.geoer.cn/20220815133938.png)
+![](https://image.geoer.cn/20220815133938.png)
 使用这个类时最好要指定dim，即沿着tensor的哪一个维度做softmax，如果不指定，也能做，那么沿着哪一维做呢？通过层层查看源码，我们发现：
 https://pytorch.org/docs/stable/_modules/torch/nn/functional.html#log_softmax
-![](http://image.geoer.cn/20220815134528.png)
+![](https://image.geoer.cn/20220815134528.png)
 如果不指定dim，torch会调用到`_get_softmax_dim`函数，该函数会根据输入tensor的维度总数指定一个，0、1、3维tensor，沿着第0维做；其他的，沿着第1维做。同时，该函数给我们了警告，告诉我们应该人为指定dim.
-![](http://image.geoer.cn/20220815134618.png)
+![](https://image.geoer.cn/20220815134618.png)
 
 
 **nn.NLLLoss:**
 > 全称叫负对数似然loss（negative log likelihood loss）
 
-![](http://image.geoer.cn/20220815134940.png)
+![](https://image.geoer.cn/20220815134940.png)
 因为它要求输入就已经是每个类的对数值了。值得注意的是，target并不是one-hot向量，而是范围在[0, C-1]之间的类别索引。这一点和后面要说的CrossEntropyLoss是一样的。
 
 
 **nn.CrossEntropyLoss**
 nn.CrossEntropyLoss可以看作是nn.LogSoftmax和nn.NLLLoss的结合,即对输入数据先做log_softmax，再过NLLLoss。
-![](http://image.geoer.cn/20220815135123.png)
+![](https://image.geoer.cn/20220815135123.png)
 
 
 
 
 
-![](http://image.geoer.cn/20220815133612.png)
+![](https://image.geoer.cn/20220815133612.png)
 
 
 
 ## 实例：手写数字识别
 MINIST数据集中每个数字都是一个$28*28=784$大小的灰度图，将灰度图中的每个像素值映射到$(0,1)$区间内，可以进行映射。
 
-![原始图片](http://image.geoer.cn/20220815135459.png)
+![原始图片](https://image.geoer.cn/20220815135459.png)
 
-![映射后的图片](http://image.geoer.cn/20220815135516.png)
+![映射后的图片](https://image.geoer.cn/20220815135516.png)
 
 步骤：
-![](http://image.geoer.cn/20220815135444.png)
+![](https://image.geoer.cn/20220815135444.png)
 
 
 模型如下：
-![](http://image.geoer.cn/20220815140038.png)
+![](https://image.geoer.cn/20220815140038.png)
 
 ```python
 """

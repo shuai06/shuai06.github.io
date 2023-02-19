@@ -12,7 +12,7 @@
 
 ## 使用传统方法实验
 多变量回归模型：
-![20220711094938](http://image.geoer.cn/20220711094938.png)
+![20220711094938](https://image.geoer.cn/20220711094938.png)
 
 ```python
 def predict(x, w, b): 
@@ -40,7 +40,7 @@ print(f"f_wb shape {f_wb.shape}, prediction: {f_wb}")
 
 
 计算多变量的代价：
-![20220711095402](http://image.geoer.cn/20220711095402.png)
+![20220711095402](https://image.geoer.cn/20220711095402.png)
 ```python
 
 
@@ -71,8 +71,8 @@ print(f'Cost at optimal w : {cost}')
 
 
 计算梯度：
-![20220711095748](http://image.geoer.cn/20220711095748.png)
-![20220711095821](http://image.geoer.cn/20220711095821.png)
+![20220711095748](https://image.geoer.cn/20220711095748.png)
+![20220711095821](https://image.geoer.cn/20220711095821.png)
 
 ```python
 def compute_gradient(X, y, w, b): 
@@ -196,8 +196,8 @@ ax1.set_ylabel('Cost')             ;  ax2.set_ylabel('Cost')
 ax1.set_xlabel('iteration step')   ;  ax2.set_xlabel('iteration step') 
 plt.show()
 ```
-![20220711100547](http://image.geoer.cn/20220711100547.png)
-![20220711103631](http://image.geoer.cn/20220711103631.png)
+![20220711100547](https://image.geoer.cn/20220711100547.png)
+![20220711103631](https://image.geoer.cn/20220711103631.png)
 
 可以看到，结果并不满意
 
@@ -457,9 +457,9 @@ if __name__ == '__main__':
 
 
 ```
-![20220711103854](http://image.geoer.cn/20220711103854.png)
+![20220711103854](https://image.geoer.cn/20220711103854.png)
 
-![20220711103826](http://image.geoer.cn/20220711103826.png)
+![20220711103826](https://image.geoer.cn/20220711103826.png)
 
 
 ## 使用Scikit-Learn
@@ -532,7 +532,7 @@ if __name__ == '__main__':
 
 ```
 
-![20220711094700](http://image.geoer.cn/20220711094700.png)
+![20220711094700](https://image.geoer.cn/20220711094700.png)
 
 
 

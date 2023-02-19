@@ -52,12 +52,12 @@ sklearn绝大部分的函数的基本用法大概如此。但是不同的估计�
 
 
 ### 常用模块
-![](http://image.geoer.cn/20220717084654.png)
+![](https://image.geoer.cn/20220717084654.png)
 
 
 #### 样本数据集
 sklearn为初学者提供了一些经典数据集，通过这些数据集可快速搭建机器学习任务、对比模型性能。数据集主要围绕分类和回归两类经典任务，对于不同需求，常用数据集简介如下：
-![](http://image.geoer.cn/20220717084802.png)
+![](https://image.geoer.cn/20220717084802.png)
 
 
 ```python
@@ -91,7 +91,7 @@ plt.show()
 #### 数据预处理
 数据预处理包括：降维、数据归一化、特征提取和特征转换（one-hot）等，这在sklearn里面有很多方法，具体查看api。
 
-![](http://image.geoer.cn/20220717084855.png)
+![](https://image.geoer.cn/20220717084855.png)
 
 - MinMaxScaler：归一化去量纲处理，适用于数据有明显的上下限，不会存在严重的异常值，例如考试得分0-100之间的数据可首选归一化处理
 - StandardScaler：标准化去量纲处理，适用于可能存在极大或极小的异常值，此时用MinMaxScaler时，可能因单个异常点而将其他数值变换的过于集中，而用标准正态分布去量纲则可有效避免这一问题
@@ -133,7 +133,7 @@ print(preprocessing.scale(a))#标准化之后的a　
 ```
 
 #### 特征选择
-![](http://image.geoer.cn/20220717085004.png)
+![](https://image.geoer.cn/20220717085004.png)
 
 
 
@@ -146,7 +146,7 @@ print(preprocessing.scale(a))#标准化之后的a　
 
 - GridSearchCV：调参常用方法，通过字典类型设置一组候选参数，并制定度量标准，最后返回评分最高的参数
 
-![](http://image.geoer.cn/20220717085041.png)
+![](https://image.geoer.cn/20220717085041.png)
 
 
 
@@ -175,7 +175,7 @@ print(model.score(data_X,data_y))   #给训练模型打分，注意用在LinearR
 
 
 #### 度量参数
-![](http://image.geoer.cn/20220717085139.png)
+![](https://image.geoer.cn/20220717085139.png)
 
 
 #### 降维
@@ -192,12 +192,12 @@ print(model.score(data_X,data_y))   #给训练模型打分，注意用在LinearR
 
 
 #### 基本学习模型
-![](http://image.geoer.cn/20220717085258.png)
+![](https://image.geoer.cn/20220717085258.png)
 
 
 
 #### 集成学习模型
-![](http://image.geoer.cn/20220717085400.png)
+![](https://image.geoer.cn/20220717085400.png)
 当基本学习模型性能难以满足需求时，集成学习便应运而生。集成学习，顾名思义，就是将多个基学习器的结果集成起来汇聚出最终结果。而根据汇聚的过程，集成学习主要包括3种流派：
 
 - bagging，即bootstrap aggregating，通过自助取样（有放回取样）实现并行训练多个差异化的基学习器，虽然每个学习器效果可能并不突出，但通过最后投票得到的最终结果性能却会稳步提升。当基学习器采取决策树时，bagging思想的集成学习模型就是随机森林。另外，与bagging对应的另一种方式是无放回取样，相应的方法叫pasting，不过应用较少
