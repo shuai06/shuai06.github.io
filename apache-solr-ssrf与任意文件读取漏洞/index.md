@@ -37,7 +37,7 @@ app="APACHE-Solr"
 
 
 
-![获取实例名称](https://image.geoer.cn/solr_instance.png)
+![获取实例名称](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/solr_instance.png)
 
 如图，可以得到实例对象的名称为`Tourist-guide-Server`
 
@@ -81,7 +81,7 @@ stream.url=file:///etc/shadow
 
 
 
-![读取文件](https://image.geoer.cn/solr_ok.png)
+![读取文件](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/solr_ok.png)
 
 
 
@@ -145,7 +145,7 @@ if __name__ == '__main__':
 
 读取效果：
 
-![exp效果](https://image.geoer.cn/solrexp.png)
+![exp效果](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/solrexp.png)
 
 
 ---

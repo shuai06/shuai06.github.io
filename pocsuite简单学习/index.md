@@ -434,9 +434,9 @@ pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --attack
 
 
 
-![](https://image.geoer.cn/flask_ssti_verify.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/flask_ssti_verify.png)
 
-![](https://image.geoer.cn/flask_ssti_attack.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/flask_ssti_attack.png)
 
 
 
@@ -556,7 +556,7 @@ register_poc(FlaskPOCEXP)
 pocsuite -r flask_ssti_test.py -u http://192.168.0.105:8000  --verify  --command 'whoami'
 ```
 
-![](https://image.geoer.cn/pocsuite_flask_cmd.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pocsuite_flask_cmd.png)
 
 
 

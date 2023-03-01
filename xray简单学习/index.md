@@ -22,11 +22,11 @@ xray.exe webscan --basic-crawler http://xxxxx
 
 ###### 原理
 
-![](https://image.geoer.cn/xray%E8%A2%AB%E5%8A%A8%E4%BB%A3%E7%90%86.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray%E8%A2%AB%E5%8A%A8%E4%BB%A3%E7%90%86.png)
 
 ###### 设置代理步骤
 
-![](https://image.geoer.cn/xray%E8%AE%BE%E7%BD%AE%E8%A2%AB%E5%8A%A8%E4%BB%A3%E7%90%86.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray%E8%AE%BE%E7%BD%AE%E8%A2%AB%E5%8A%A8%E4%BB%A3%E7%90%86.png)
 
 其中，证书的生成(只要程序位置不变，证书就不需要重新安装)：`ca.crt`, 然后安装证书
 
@@ -77,18 +77,18 @@ http:
 ```
 
 **log如果改成`debug`，可以看到具体发包请求详情：**
-![](https://image.geoer.cn/xray_log.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray_log.png)
 
 **也可以设置cookie**
 
 大致配置项：
-![](https://image.geoer.cn/xray_cookie.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray_cookie.png)
 
 #### 2.xray与burp联动使用
 
 ###### （1）Burpsuite作为xray的上游代理（`抓取xray发包来学习`）
 
-![](https://image.geoer.cn/xray_after_burp.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray_after_burp.png)
 
 **作用：**
 burp可以拿到xray的数据包（可以学习xray是如何检测的的）
@@ -104,7 +104,7 @@ burp可以拿到xray的数据包（可以学习xray是如何检测的的）
 
 ###### （2）xray作为Burpsuite的上游代理（`协助测试`）
 
-![](https://image.geoer.cn/xray_before_burp.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray_before_burp.png)
 
 **作用：**
 burp可以选择是否放行，forward之后，可以用xray进行扫描
@@ -130,7 +130,7 @@ poc是yaml格式的
 
 ###### 原理
 
-![](https://image.geoer.cn/xray_poc.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/xray_poc.png)
 
 每个规则都是http请求，进行改造
 
@@ -140,7 +140,7 @@ poc是yaml格式的
 - name
 - rules：最关键部分。请求方法,路径,表达式(有唯一的返回值)。支持多条(就会发送几条数据包)
 - details：漏洞检测成功之后，输出一些提示信息
-![](https://image.geoer.cn/poc.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/poc.png)
 
 
 

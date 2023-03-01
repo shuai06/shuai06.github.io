@@ -44,13 +44,13 @@ if os.path.exists(module_save):
 
 ```
 
-![](https://image.geoer.cn/20221021100200.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221021100200.png)
 
 ```python
 for k in net.keys():
          print(k, net[k].shape, sep="    ")
 ```
-![](https://image.geoer.cn/20221021100618.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221021100618.png)
 
 
 

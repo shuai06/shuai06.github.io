@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap" /><meta name="keywords" content='渗透测试, Wireshark' /><meta itemprop="name" content="工具 - Wireshark使用">
 <meta itemprop="description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap"><meta itemprop="datePublished" content="2020-03-15T15:50:21+08:00" />
-<meta itemprop="dateModified" content="2023-02-19T12:36:40+00:00" />
+<meta itemprop="dateModified" content="2023-03-01T15:13:49+00:00" />
 <meta itemprop="wordCount" content="1270"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="渗透测试,Wireshark," /><meta property="og:title" content="工具 - Wireshark使用" />
 <meta property="og:description" content="Wireshark 简介 抓包嗅探协议分析 安全专家必备技能 抓包引擎(wireshark本身是分析数据包, 抓包靠下面两个引擎) Linux上： Libpcap Windows上： Winpcap" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-15T15:50:21+08:00" />
-<meta property="article:modified_time" content="2023-02-19T12:36:40+00:00" />
+<meta property="article:modified_time" content="2023-03-01T15:13:49+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "渗透测试, Wireshark","wordcount":  1270 ,
-    "url": "https:\/\/shuai06.github.io\/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8\/","datePublished": "2020-03-15T15:50:21+08:00","dateModified": "2023-02-19T12:36:40+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/%E5%B7%A5%E5%85%B7-wireshark%E4%BD%BF%E7%94%A8\/","datePublished": "2020-03-15T15:50:21+08:00","dateModified": "2023-03-01T15:13:49+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -293,7 +293,7 @@
 <h6 id="启动">启动</h6>
 <h6 id="捕获-选项---">捕获-&gt;选项-&gt; &hellip; &hellip;</h6>
 <p><strong>选择抓包网卡</strong>
-<img src="https://image.geoer.cn/20200314214656188_15241.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200314214656188_15241.png" /></p>
 <p><strong>混杂模式</strong>
 勾选上之后，如果数据包不是发送给我指定这个网卡的，也会被抓取</p>
 <p><strong>抓包筛选器</strong>
@@ -304,8 +304,8 @@
 <p>先停止，再保存(可以选择格式, 尽量使用<code>.pcap</code>格式)，压缩等, 下次可以导入已经抓取的数据包文件</p>
 <h6 id="首选项">首选项</h6>
 <p>编辑-&gt;首选项   -&gt; 可以自己根据需要修改和定制界面布局
-<img src="https://image.geoer.cn/20200314215811593_19130.png" />
-<img src="https://image.geoer.cn/20200314215743991_3733.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200314215811593_19130.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200314215743991_3733.png" /></p>
 <h4 id="筛选器">筛选器</h4>
 <ul>
 <li>过滤干扰的数据包</li>
@@ -313,44 +313,44 @@
 <li>显示筛选器(主界面那个, 更多使用)    &ndash; 常用语法</li>
 </ul>
 <p>可以单独选择，也可以叠加(and, or)上面的条件进行筛选：
-<img src="https://image.geoer.cn/20200314220435486_29854.png" />
-<img src="https://image.geoer.cn/20200314220819061_8554.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200314220435486_29854.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200314220819061_8554.png" /></p>
 <h2 id="常见协议数据包">常见协议数据包</h2>
 <p>数据包的分层结构显示</p>
 <h6 id="font-colorredarpfont"><font color=red>ARP</font></h6>
-<img src="https://image.geoer.cn/20200315135242728_2582.png" />
-<img src="https://image.geoer.cn/20200315135851907_10980.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315135242728_2582.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315135851907_10980.png" />
 <h6 id="font-colorred-ipfont"><font color=red> IP</font></h6>
 <p><strong>Protocol字段：</strong> 表示上层是： udp&ndash;&gt; 17， tcp&ndash;&gt; 6, icmp &ndash;&gt;2, igmp &ndash;&gt;2
 四层有好多中协议对应不同的数字
 Header checksum字段：校验和, 每两位进行异或
-<img src="https://image.geoer.cn/20200315141145151_10461.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315141145151_10461.png" />
 tcp和udp一般不会有<code>option</code>字段（视情况而定）</p>
 <h6 id="font-colorred-tcpfont"><font color=red> TCP</font></h6>
-<img src="https://image.geoer.cn/20200315141900321_8252.png" />
-<img src="https://image.geoer.cn/20200315142047940_28399.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315141900321_8252.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315142047940_28399.png" />
 <p><strong>附：</strong>
 三次握手
-<img src="https://image.geoer.cn/20200315142429852_2643.pn" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315142429852_2643.pn" /></p>
 <p>四次挥手
-<img src="https://image.geoer.cn/20200315142522647_28638.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315142522647_28638.png" /></p>
 <h6 id="font-colorred-udp-font"><font color=red> UDP </font></h6>
 <p>udp和tcp的类似，自己实践能看懂
 udp开销更小
-<img src="https://image.geoer.cn/20200315142800334_28041.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315142800334_28041.png" /></p>
 <h6 id="font-colorred-dns-font"><font color=red> DNS </font></h6>
 <p>应用层协议，基于udp
-<img src="https://image.geoer.cn/20200315143306840_10579.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315143306840_10579.png" /></p>
 <h6 id="font-colorred-http-font"><font color=red> HTTP </font></h6>
-<img src="https://image.geoer.cn/20200315143952274_22660.png" />
-<img src="https://image.geoer.cn/20200315144406111_24695.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315143952274_22660.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315144406111_24695.png" />
 <h6 id="font-colorred-ftp-font"><font color=red> ftp </font></h6>
 <p>这里没ftp服务器就先不放图了
 ftp也是一个应用层协议</p>
 <blockquote>
 <p>wishark默认是用端口区分协议(假设我们手动把http不开在80端口，wireshark分不清非标准端口的, 需要我们手动修改.如下图.)</p>
 </blockquote>
-<img src="https://image.geoer.cn/20200315144657089_4217.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315144657089_4217.png" />
 <h4 id="数据流">数据流</h4>
 <p>比如访问一个网页, 往往产生很多数据包
 wireshark提供了<code>数据流</code></p>
@@ -361,9 +361,9 @@ wireshark提供了<code>数据流</code></p>
 <li>ssl 等</li>
 </ul>
 <p><strong>操作(以http为例)：</strong>
-<img src="https://image.geoer.cn/20200315145059801_20372.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315145059801_20372.png" />
 按照上图操作完后，会来到数据流的界面，如下：
-<img src="https://image.geoer.cn/20200315145205546_28877.png" /></p>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200315145205546_28877.png" /></p>
 <h2 id="信息统计">信息统计</h2>
 <p><strong>1.查看导入数据包文件摘要信息</strong>
 导入数据包文件，打开“统计”-&gt;“文件属性”：可以看到一些摘要性的信息</p>
@@ -402,7 +402,7 @@ Tx表示发送, Rx表示接收的数据包</p>
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-19&#32;12:36:40>更新于 2023-02-19&nbsp;</span>
+        <span title=2023-03-01&#32;15:13:49>更新于 2023-03-01&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

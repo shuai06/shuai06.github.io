@@ -37,13 +37,13 @@ app="泛微-协同办公OA"
 
 查看发送的数据包：
 
-![](https://image.geoer.cn/fwoa_wiershark.jpg)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fwoa_wiershark.jpg)
 
 
 
 使用POC成功上传文件：
 
-![](https://image.geoer.cn/fwoa_shell.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fwoa_shell.png)
 
 
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     main()
 ```
 
-![](https://image.geoer.cn/fwoa-py.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fwoa-py.png)
 
 
 

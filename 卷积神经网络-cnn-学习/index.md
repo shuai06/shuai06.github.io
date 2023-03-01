@@ -29,12 +29,12 @@ xx卷积神经网络结构包括：xx卷积层，降采样层，全链接层。�
 
 
 比如之前用Affine层实现了全连接层，一个5层的全连接的神经网络如下图的网络结构来实现：
-![](https://image.geoer.cn/20220729202558.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png)
 
 而CNN 中新增了Convolution层和Pooling层。CNN的层的连接顺序是`Convolution - ReLU -(Pooling)`（Pooling层有时会被省
 略）。这可以理解为之前的`Affine - ReLU`连接被替换成了`Convolution - 
 ReLU -（Pooling）`连接。
-![](https://image.geoer.cn/20220729202801.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png)
 
 
 
@@ -57,7 +57,7 @@ xx训练算法主要包括四步，这四步被分为两个阶段：xx
 - (2). 按极小化误差的方法调整权矩阵。
 这两个阶段的工作一般应受到精度要求的控制。
 
-![](https://image.geoer.cn/20220729223317.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png)
 
 
 
@@ -102,49 +102,49 @@ CNN中，有时将卷积层的输入输出数据称为特征图（feature map）
 
 
 边缘检测包括垂直检测和水平检测：
-![](https://image.geoer.cn/20220729204217.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png)
 以垂直边缘检测为例：
 对一个6x6的灰度图像做卷积运算(卷积符号是`x`),即6x6x1
 
 在神经网络卷积过程中，可以建立一个3x3的矩阵(即filter或者kernel)，如下图，那么就可以用这个filter去求它的卷积，最终输出会是一个右边4x4的图像。
 把3x3的filter贴到第一张图像矩阵上，对应位置数字相乘，最后求和(xx乘积累加运算xx，如在第一位置上的值为-5),把求和值写到输出图像对应第一个位置上
-![](https://image.geoer.cn/20220729205212.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png)
 
 
 然后依次移动计算第二个元素，进行相同的运算，求出对应第2个第三个位置的值：
-![](https://image.geoer.cn/20220729205353.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png)
 
 
 继续移动到下一行进行计算：
-![](https://image.geoer.cn/20220729205418.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png)
 
 
 直到计算出所有结果：
-![](https://image.geoer.cn/20220729205510.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png)
 
 上述垂直检测的步骤在课后习题中，使用的是`conv_forward`函数来实现，在tensflow使用的是`tf.conv2d`,......
 
 
 当然检测水平边缘也是类似的：
-![](https://image.geoer.cn/20220729210348.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png)
 
 
 xx3x3的filter中填充的数字的值到底为多少仍有争议xx：
-![](https://image.geoer.cn/20220729210709.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png)
 有不同的filter
 
 
 > 用fxf的filter来卷积nxn的的图像，得到的新图像的维度是(n-f+1)x(n-f+1)
 
 维度公式：
-![](https://image.geoer.cn/20220729210858.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png)
 
 
 xx偏置：xx
 不仅在FCN中，在CNN中除了权重参数(filter中的参数就对应之前的权重)，也存在偏置项
 如下图，向应用了滤波器的数据加上了偏置。偏置通常只有1个(1x1)，这个值
 会被加到应用了滤波器的所有元素上(广播机制)。
-![](https://image.geoer.cn/20220729215915.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png)
 
 
 
@@ -158,7 +158,7 @@ xx前面卷积操作的缺点：xx
 ● 图片边缘的像素只会在输出时使用一次，丢失许多图片边界上的信息
 xx解决办法：xx
 卷积操作前，填充(pad)图片，比如用1个像素添加额外边缘，这样图片就变成了8x8，这样output的图片就是6x6(保持了原始尺寸)，同时也减轻图片边缘被忽略的程度
-![](https://image.geoer.cn/20220729211049.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png)
 
 > 添加pandding后，尺寸 用fxf的filter来卷积nxn的的图像，填充宽度为p，得到的新图像的维度是(n+2p-f+1)x(n+2p-f+1)
 
@@ -167,15 +167,15 @@ xx到底需要填充多少宽度呢？xx
 有两种卷积：
 - valid卷积-->填充p宽度为0(即不填充，输出尺寸同前面)
 - same卷积-->有足够的填充
-![](https://image.geoer.cn/20220729211243.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png)
 
 filter的尺寸f取值通常是奇数（如果是偶数可能会不对称）
 
 
 ### Stride(卷积步长)
 
-![](https://image.geoer.cn/20220729211454.png)
-![](https://image.geoer.cn/20220729211623.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png)
 
 综上，增大步幅后，输出大小会变小。而增大填充后，输出大小会变大。
 
@@ -185,16 +185,16 @@ xx最终维度总结：xx
 
 我们尝试用上述维度公式做几个计算：
 1.输入大小：(28, 31)；填充：2；步幅：3；滤波器大小：(5, 5)
-![](https://image.geoer.cn/20220729220354.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png)
 
 2.
-![](https://image.geoer.cn/20220729220413.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png)
 
 当除不尽的时候，一般使用`floor`向下取整
 
 
 补充：交叉相关(cross correlation)
-![](https://image.geoer.cn/20220729212215.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png)
 我们前面的操作没有对filter进行翻转，实际上只能称为交叉相关，并不能称为数学意义上卷积(进行翻转的才叫卷积)，但由于深度学习的约定，所以我们都称之为卷积。
 
 
@@ -208,15 +208,15 @@ xx最终维度总结：xx
 
 设置为filter为3维是为了简化3x3x3的filter的运算，而不能理解为矩阵的叠加。
 filter分别与图像的RGB通道对应的数字相乘,最后得到的也是二维的输出，如下图：
-![](https://image.geoer.cn/20220729214817.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png)
 
 然后移动到下一个位置，继续做27个(3x3x3)次相乘并求和
-![](https://image.geoer.cn/20220729214908.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png)
 
 
 > Note：根据想在哪个颜色上检测边缘，来决定在第几层通道设置上值，而另外的通道设置为0
 
-![](https://image.geoer.cn/20220729215035.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png)
 
 
 
@@ -229,24 +229,24 @@ $f \times f \times c_f$的过滤器
 
 ### 一个&多个卷积核
 #### 一个卷积核
-![](https://image.geoer.cn/20220729222402.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png)
 
 
 
 #### 两个(多个)卷积核
-![](https://image.geoer.cn/20220729222449.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png)
 
 
 
 ### 构建卷积网络的一层
-![](https://image.geoer.cn/20220729221305.png)
-![](https://image.geoer.cn/20220729221342.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png)
 
-![](https://image.geoer.cn/20220729221410.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png)
 
 
 课后习题用到的符号的总结：
-![](https://image.geoer.cn/20220729221234.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png)
 
 
 层的类型：
@@ -258,9 +258,9 @@ $f \times f \times c_f$的过滤器
 
 ### 结合方块思考
 来自鱼书，可能和文中其他地方维度书写顺序不一致
-![](https://image.geoer.cn/20220729220837.png)
-![](https://image.geoer.cn/20220729221002.png)
-![](https://image.geoer.cn/20220729221035.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png)
 
 
 
@@ -274,7 +274,7 @@ $f \times f \times c_f$的过滤器
 
 ### Max Pooling(最大池化)
 > 常用，效果也比较好
-![](https://image.geoer.cn/20220729221642.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png)
 
 **机制：**
 max pooling做的是，如果在滤波器中任何地方检测到了这些特征，就保留最大的数值，如果没有检测到，可能左侧上方四分之一区域就没有这个特征，于是那些数值的最大值仍然相当小
@@ -287,22 +287,22 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 
 
 ### Average Pooling(平均池化)
-![](https://image.geoer.cn/20220729221518.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png)
 
 
 Pooling的总结：
-![20220729221537](https://image.geoer.cn/20220729221537.png)
+![20220729221537](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221537.png)
 
 
 
 
 
 ## 为什么使用卷积？
-![](https://image.geoer.cn/20220729222113.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png)
 
 
 **使用卷积网络的两个原因：**
-![](https://image.geoer.cn/20220729222202.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png)
 
 
 
@@ -321,9 +321,9 @@ Pooling的总结：
 从一个32x32x1的灰度图像中识别手写数字为例子，
 当时还不用填充，所以卷积之后尺寸都会减小
 
-![](https://image.geoer.cn/20220729231429.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png)
 
-![](https://image.geoer.cn/20220729231524.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png)
 
 
 见另一文章：
@@ -331,8 +331,8 @@ Pooling的总结：
 ### AlexNet
 > 这篇paper容易看懂，建议读一读
 
-![](https://image.geoer.cn/20220730100445.png)
-![](https://image.geoer.cn/20220730101056.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png)
 
 从227x227x3的图像开始，第一层用一组96个11x11的步长为4的filter，然后图像缩小到55x55，随后的最大池化层用了3x3的filter，步长为2，降到27x27x96，然后用5x5的same卷积填充，得到27x27x256，再次做最大池化得到13x13x256，然后用3x3的same卷积填充，得到13x13x384，再次用3x3的same卷积填充，再次用3x3的same卷积填充，然后用最大池化，结果降到6x6x256=9216，所以展开为9216分结点，然后有基层全连接层，最后用sofamax输出结果。
 
@@ -349,7 +349,7 @@ https://www.cnblogs.com/wangguchangqing/p/10333370.html
 与大量超参数不同，结构更简单，更关注卷积层
 优点：真正简化了神经网络结构
 
-![](https://image.geoer.cn/20220730100655.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png)
 vgg16中的16指的是有16个带权重的层
 高和宽尺寸每次(因为池化层)会按因子1减少，每次用一组卷积层时通道数会按因子2增加
 
@@ -368,7 +368,7 @@ https://blog.csdn.net/qq_30093417/article/details/121108090
 ### 残差(residual)
 “残差在数理统计中是指实际观察值与估计值（拟合值）之间的差。”
 “如果回归模型正确的话， 我们可以将残差看作误差的观测值。”
-![](https://image.geoer.cn/20220730103517.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png)
 
 
 
@@ -377,21 +377,21 @@ https://blog.csdn.net/qq_30093417/article/details/121108090
 ### 残差块（Residual block）
 把某层的输入跳跃连接到下一层乃至更深层的激活层之前，同本层输出一起经过激活函数输出。
 即ResNet无需遵循主路径，可以通过快捷路径(跳过n层)进入更深的网络：
-![](https://image.geoer.cn/20220730102535.png)
-![](https://image.geoer.cn/20220730102551.png)
-![](https://image.geoer.cn/20220730102941.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png)
 
 **普通网络：**
-![](https://image.geoer.cn/20220730102657.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png)
 
 
 **残差网络：**
 所训练网络越深，训练误差越小。下图的残差网络由五个残差块组成，该残差网络只跳跃了一层，还可跳跃多层
-![](https://image.geoer.cn/20220730102737.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png)
 
 
 举例：
-![](https://image.geoer.cn/20220730103714.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png)
 
 
 残差网络可以不是卷积神经网络，用全连接层也可以。当然，残差网络在被提出的论文中是用来处理图像识别问题。
@@ -414,7 +414,7 @@ ResNet50由两个基本的块构成：`Conv Block`和`Identity Block`。
 - Identity Block：跳跃连接上没有卷积操作，输入和输出维度一样，不改变通道数，能串联，用于加深网络。
 
 ResNet的各种网络结构图:
-![](https://image.geoer.cn/20220730131358.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png)
 重点说明一下ResNet-50，可以看到上图中所示，ResNet-50经过了4个Block，每一个Block中分别有3，4，6，3个Bottleneck，另外网络最开始有一个卷积层，所以:3+4+6+3 * 3 + 1 = 49，加上取样层。
 
 
@@ -427,29 +427,29 @@ ResNet的各种网络结构图:
 
 例子：
 过滤器为1×1，这里是filter的数字是2，输入一张6×6×1的图片，然后对它做卷积，过滤器大小为1×1×1，结果相当于把这个图片乘以数字2，所以前三个单元格分别是2、4、6等等。用1×1的过滤器进行卷积，似乎用处不大，只是对输入矩阵乘以某个数字。但这仅仅是对于6×6×1的一个通道图片来说，1×1卷积效果不佳。
-![](https://image.geoer.cn/20220730115347.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png)
 
 如果是一张6×6×32的图片，那么使用1×1过滤器进行卷积效果更好。具体来说，1×1卷积所实现的功能是遍历这36个单元格，计算左图中32个数字和过滤器中32个数字的元素积之和，然后应用ReLU非线性函数。
-![](https://image.geoer.cn/20220730115617.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png)
 
 我们以其中一个单元为例，它是这个输入层上的某个切片，用这36个数字乘以这个输入层上1×1切片，得到一个实数，像这样把它画在输出中。
 
 这个1×1×32过滤器中的32个数字可以这样理解，一个神经元的输入是32个数字（输入图片中左下角位置32个通道中的数字），即相同高度和宽度上某一切片上的32个数字，这32个数字具有不同通道，乘以32个权重（将过滤器中的32个数理解为权重），然后应用ReLU非线性函数，在这里输出相应的结果。
-![](https://image.geoer.cn/20220730115722.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png)
 一般来说，如果过滤器不止一个，而是多个，就好像有多个输入单元，其输入内容为一个切片上所有数字，输出结果是6×6过滤器数量。
-![](https://image.geoer.cn/20220730115843.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png)
 所以**1×1卷积可以从根本上理解为对这32个不同的位置都应用一个全连接层**，全连接层的作用是输入32个数字（过滤器数量标记为，在这36个单元上重复此过程）,输出结果是6×6×#filters（过滤器数量），以便在输入层上实施一个非平凡（non-trivial）计算。
-![](https://image.geoer.cn/20220730115916.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png)
 这种方法**通常称为1×1卷积，有时也被称为Network in Network**
 
 
 
 **再举个例子：**
 假设下图左侧这是一个28×28×192的输入层，你可以使用池化层压缩它的高度和宽度，这个过程我们很清楚。但如果通道数量很大，该如何把它压缩为28×28×32维度的层呢？你可以用32个大小为1×1的过滤器，严格来讲每个过滤器大小都是1×1×192维，因为过滤器中通道数量必须与输入层中通道的数量保持一致。但是你使用了32个过滤器，输出层为28×28×32，这就是压缩通道数（）的方法，对于池化层我只是压缩了这些层的高度和宽度。
-![](https://image.geoer.cn/20220730120142.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png)
 
 在之后我们看到在某些网络中1×1卷积是如何压缩通道数量并减少计算的。当然如果你想保持通道数192不变，这也是可行的，1×1卷积只是添加了非线性函数，当然也可以让网络学习更复杂的函数，比如，我们再添加一层，其输入为28×28×192，输出为28×28×192。
-![](https://image.geoer.cn/20220730130549.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png)
 
 1×1卷积层就是这样实现了一些重要功能的（doing something pretty non-trivial），它给神经网络添加了一个非线性函数，从而减少或保持输入层中的通道数量不变，当然如果你愿意，也可以增加通道数量。
 
@@ -460,11 +460,11 @@ ResNet的各种网络结构图:
 ##### 1. 放缩通道数目
 假如现在有一个64x64x128的输入，需要通过卷积之后生成一个32x32x128，那我们直接可以对这个输入坐卷积或者做池化，就可以改变输入的长和宽，因为输入和输出的通道数目都是相同的。
 但是如果我们需要输出一个64x64x192。那这个时候就必须要用到1x1的卷积。因为input和filter都需要一样的通道数目，因此我们可以用32个1x1x192的filter去做卷积，卷积运算的结果就是28x28x32。如图所示：
-![](https://image.geoer.cn/20220730110652.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png)
 
 
 ###### 2. 减少计算成本
-![](https://image.geoer.cn/20220730110847.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png)
 
 
 ##### 3. 增加网络的非线性性
@@ -480,11 +480,11 @@ ResNet的各种网络结构图:
 相比于从头训练权重，如果使用别人已经训练好的网络结构的权重，通常能够进展得相当快，用这个作为预训练。
 
 如果任务只有一个很小的数据集,如图所示，我们可以完全使用它的权重，把前面的层都冻结；
-![](https://image.geoer.cn/20220730103231.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png)
 要是有一个更大的训练集，如图所示，我们冻结更少的层，然后训练后面的层；
-![](https://image.geoer.cn/20220730103248.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png)
 或者如图3所示，换成自己的网络结构。
-![](https://image.geoer.cn/20220730103302.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png)
 最后，如果有大量数据，我们应该用这些网络和它的权重当做初始化，用它们来代替随机初始化，接着你可以用梯度下降训练，更新网络所有层的所有权重。
 
 
@@ -512,7 +512,7 @@ MobileNet的基本单元是深度级可分离卷积，其可以分解为两个�
 
 
 
-![](https://image.geoer.cn/20220730133720.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png)
 以输入特征层为 M∗N∗16，输出 32 通道为例，卷积核尺寸为 33，在标准卷积情况下计算量为 M∗N∗16∗3∗3∗32(M∗N∗4608)，而在深度可分离卷积情况下计算量（M∗N∗656）为深度卷积的计算量 M∗N∗16∗3∗3 加上逐点卷积的计算量:M∗N∗16∗1∗1*∗32[28]，可以看到计算量大大减少了，随着网络的加深，这种卷积的计算优势会更加明显。
 
 
@@ -522,9 +522,9 @@ MobileNet的基本单元是深度级可分离卷积，其可以分解为两个�
 MobileNetV2的变化：
 ● 在架构中添加残差连接(有助于高效向后传播)
 ● 在深度卷积核逐点卷积之前添加一个扩展层（在V2中，我们将扩展层+深度卷积+投影称为区块2，并重复多次利用区块2）
-![](https://image.geoer.cn/20220730133504.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png)
 
-![](https://image.geoer.cn/20220730133518.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png)
 
 
 

@@ -40,15 +40,15 @@ def main_handler(event, context):
 
 
 点击API服务名：
-![20220614141805](https://image.geoer.cn/20220614141805.png)
+![20220614141805](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614141805.png)
 点击编辑：
-![20220614141944](https://image.geoer.cn/20220614141944.png)
+![20220614141944](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614141944.png)
 
 路径修改为`/`，点击下一步：
-![20220614142034](https://image.geoer.cn/20220614142034.png)
+![20220614142034](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614142034.png)
 
 配置如下，点击完成：
-![20220614142122](https://image.geoer.cn/20220614142122.png)
+![20220614142122](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614142122.png)
 
 
 
@@ -146,15 +146,15 @@ http-post {
 **Note:**
 上线地址 需要去掉`http://`和`:80`
 取`service-miuk9icj-1309081727.bj.apigw.tencentcs.com`
-![20220614154332](https://image.geoer.cn/20220614154332.png)
+![20220614154332](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614154332.png)
 
 
 
 ### 创建监听
-![20220614154545](https://image.geoer.cn/20220614154545.png)
+![20220614154545](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614154545.png)
 
 成功上线，可以看到外部IP第一栏是不断变化的，也就是隐藏了我们C2服务器
-![20220614162832](https://image.geoer.cn/20220614162832.png)
+![20220614162832](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614162832.png)
 
 
 附：

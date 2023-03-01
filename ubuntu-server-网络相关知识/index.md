@@ -7,7 +7,7 @@
 
 ## 网络原理
 
-<img src="https://image.geoer.cn/20200214100233476_240785919.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200214100233476_240785919.png" />
 
 `ping 127.0.0.1` 如果能通，说明本机的TCP/IP协议已经配置成功啦
 `arping `
@@ -126,7 +126,7 @@ sudo systemctrl restart networking.service
 
 ```
 
-<img src="https://image.geoer.cn//20200214114820323_1273216811.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com//20200214114820323_1273216811.png"></img>
 指定路由
 清除信息
 ip addr flush ens32
@@ -269,7 +269,7 @@ netstat -nr
 4.链路荣誉容错（需启用STP）
 5.通过网桥管理工具实现 `bridge-utils`  
 
-<img src="https://image.geoer.cn//20200218132001375_1018333933.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com//20200218132001375_1018333933.png"></img>
 
 
 
@@ -568,7 +568,7 @@ less /var/lib/dhcp/dhcpd.leases
 ## NTP服务 （网络时间协议）
 >时间都去哪了
 
-<img src="https://image.geoer.cn//20200308150835487_32007.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com//20200308150835487_32007.png"></img>
 
 **时间表准： ** 
 
@@ -576,10 +576,10 @@ less /var/lib/dhcp/dhcpd.leases
 - UTC：世界协调时间
 - CST：China Standard Time UT+8:00
 
-<img src="https://image.geoer.cn/20200308153026228_153.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200308153026228_153.png"></img>
 
 #### NTP协议  
-<img src="https://image.geoer.cn/20200308154004613_29225.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200308154004613_29225.png"></img>
 
 ###### NTP客户端  
 - 客户端程序从时间服务器同步时间
@@ -616,7 +616,7 @@ hwclock --set --date='2019-10-01 18:18:18'
 
 
 ###### 一个过时的东西(ntpdate)  
-<img src="https://image.geoer.cn/20200308170606501_6440.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200308170606501_6440.png"></img>
 新版本系统使用`timesyncd`替换`ntpd`的客户端功能
 一旦安装了ntpdate / ntp,   timedatectrl将被禁用
 
@@ -639,7 +639,7 @@ fudge 127.127.1.1 startum 10  # 层级设置低点( startum 10, 这里设置为1
 ```
 
 配置文件中，主要的时间服务器如下  
-<img src="https://image.geoer.cn/20200308171832987_9157.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200308171832987_9157.png"></img>
 
   
 
@@ -648,7 +648,7 @@ fudge 127.127.1.1 startum 10  # 层级设置低点( startum 10, 这里设置为1
 ntpq -p     
 #命令执行结果详解如下图：  
 ```
-<img src="https://image.geoer.cn/20200308172254102_12604.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200308172254102_12604.png"></img>
 每行前面第一个字符含义：
 
 ```

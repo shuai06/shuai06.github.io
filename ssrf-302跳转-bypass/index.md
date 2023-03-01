@@ -39,22 +39,22 @@
 
 发现后面有过get的url参数，尝试访问：`127.0.0.1/flag.php`，提示“被拦截，不允许内部ip访问”
 
-![被拦截](https://image.geoer.cn/img/image-20220112162357324.png)
+![被拦截](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112162357324.png)
 
 那我使用file协议获取flag其源码：`?url=file:///var/www/html/flag.php`
 
-![flag源码](https://image.geoer.cn/img/image-20220112164113528.png)
+![flag源码](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112164113528.png)
 
 可见通过`REMOTE_ADDR`请求头限制本地IP请求，但是源码中并没有之前的“hacker! Ban Intranet IP”，所以查看`index.php`页面的源码：`?url=file:///var/www/html/index.php`
 
-![index.php源码](https://image.geoer.cn/img/image-20220112164359513.png)
+![index.php源码](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112164359513.png)
 
 
 
 可以看到存在黑名单，限制了`127`、`172`、`10`、`192`网段，这里可以通过`localhost`的方式绕过: `?url=localhost/flag.php`
 也可以得到flag：
 
-![localhost获取flag](https://image.geoer.cn/img/image-20220112164508498.png)
+![localhost获取flag](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112164508498.png)
 
 
 
@@ -68,11 +68,11 @@
 
 利用生成的短地址构造Payload：`?url=surl-2.cn/0nPI`，发送请求，利用302跳转，得到flag：
 
-![image-20220112163235049](https://image.geoer.cn/img/image-20220112163235049.png)
+![image-20220112163235049](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112163235049.png)
 
 
 
-![image-20220112165633914](https://image.geoer.cn/img/image-20220112165633914.png)
+![image-20220112165633914](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220112165633914.png)
 
 
 

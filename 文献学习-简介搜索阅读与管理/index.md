@@ -136,7 +136,7 @@ https://elib.cnki.net/grid2008/brief/result.aspx?DbPrefix=hotspotcomp&showTitle=
 
 ### 缩小范围筛选文献
 按照下图查看到摘要是否相关:
-![20220902204816](https://image.geoer.cn/20220902204816.png)
+![20220902204816](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902204816.png)
 筛选工具推荐：
 - Stork文献鸟（通过输入研究方向关键词，设定提醒时间，会定时将符合关键词的文献发送邮箱）
 - Connected Pater（通过输入文献名或doi，可获得与文献相关的论文只是图谱，追踪文献的引用和被引关系） --> 类似citespace  和VOS
@@ -145,40 +145,40 @@ https://elib.cnki.net/grid2008/brief/result.aspx?DbPrefix=hotspotcomp&showTitle=
 
 ### 文献的阅读
 常规文献阅读顺序(因人而异)：
-![](https://image.geoer.cn/20220902204308.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902204308.png)
 
 
 #### 1.了解文章整体架构
-![20220902205018](https://image.geoer.cn/20220902205018.png)
+![20220902205018](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205018.png)
 
 1.1 读摘要：了解研究背景、论文主要目的、论文主要结论、研究意义
-![20220902205044](https://image.geoer.cn/20220902205044.png)
+![20220902205044](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205044.png)
 
 1.2 阅读前言：研究背景简介、现有研究不足、本论文创新点
-![20220902205111](https://image.geoer.cn/20220902205111.png)
+![20220902205111](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205111.png)
 
 1.3 材料和方法：试验材料、试验步骤、分析方法
 
 1.4 结果与讨论：试验现象与机理、他人研究对比、不足与未来展望
-![20220902205148](https://image.geoer.cn/20220902205148.png)
+![20220902205148](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205148.png)
 
 1.5 结论：凝练总结本论文主要试验现象和相关机理
-![20220902205213](https://image.geoer.cn/20220902205213.png)
+![20220902205213](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205213.png)
 
 
 
 #### 有选择的阅读方法
 > 针对不同目的，选择不同的阅读方法
-![20220902205309](https://image.geoer.cn/20220902205309.png)
+![20220902205309](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205309.png)
 
 
 ### 文献笔记
 **记笔记原因：**
-![20220902205429](https://image.geoer.cn/20220902205429.png)
+![20220902205429](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205429.png)
 
 
 **如何做：**
-![20220902205516](https://image.geoer.cn/20220902205516.png)
+![20220902205516](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902205516.png)
 > 可以做成文献阅读卡！！！
 
 
@@ -209,7 +209,7 @@ https://www.bilibili.com/video/BV1nA41157y4
 - MDPI
 
 #### OA与否
-![20220902210022](https://image.geoer.cn/20220902210022.png)
+![20220902210022](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902210022.png)
 
 
 #### 分区与影响因子查询
@@ -241,13 +241,13 @@ SCI-Hub, Web of science, 谷歌学术
 
 ### 写作
 总体包括：
-![20220902210722](https://image.geoer.cn/20220902210722.png)
+![20220902210722](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902210722.png)
 
 #### 1.Introduction
 > 引言
 
 这部分的组成：
-![image-20220810160223723](https://image.geoer.cn/image-20220810160223723.png)
+![image-20220810160223723](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image-20220810160223723.png)
 
 
 
@@ -256,7 +256,7 @@ SCI-Hub, Web of science, 谷歌学术
 #### 2.Materials and methods
 > 数据与研究方法
 
-![image-20220810160508002](https://image.geoer.cn/image-20220810160508002.png)
+![image-20220810160508002](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image-20220810160508002.png)
 
 
 
@@ -265,7 +265,7 @@ SCI-Hub, Web of science, 谷歌学术
 #### 3.Results and analysis
 > 结果与分析
 
-![image-20220810160713022](https://image.geoer.cn/image-20220810160713022.png)
+![image-20220810160713022](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image-20220810160713022.png)
 
 
 
@@ -278,14 +278,14 @@ SCI-Hub, Web of science, 谷歌学术
 有的文章只有Discussion，有的文章只有Conclusions，有的文章两者都有
 
 区别：
-![image-20220810161103467](https://image.geoer.cn/image-20220810161103467.png)
+![image-20220810161103467](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image-20220810161103467.png)
 
 
 
 #### 5.Abstract
 > 摘要
 
-![image-20220810161328791](https://image.geoer.cn/image-20220810161328791.png)
+![image-20220810161328791](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image-20220810161328791.png)
 
 
 
@@ -321,7 +321,7 @@ Rsferences
 
 
 ### 写作顺序
-![20220902211003](https://image.geoer.cn/20220902211003.png)
+![20220902211003](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220902211003.png)
 
 
 

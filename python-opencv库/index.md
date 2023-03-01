@@ -9,7 +9,7 @@
 ## 前言
 OpenCV-Python使用Numpy，这是一个高度优化的数据库操作库，具有MATLAB风格的语法。所有OpenCV数组结构都转换为Numpy数组。这也使得与使用Numpy的其他库（如SciPy和Matplotlib）集成更容易。
 OpenCV依赖一些库，比如Numpy，自行安装。
-![20220717132210](https://image.geoer.cn/20220717132210.png)
+![20220717132210](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717132210.png)
 
 
 OpenCV应用领域：
@@ -64,12 +64,12 @@ cv2.waitKey()
 
 ```
 
-![20220717132906](https://image.geoer.cn/20220717132906.png)
+![20220717132906](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717132906.png)
 
 **PIL库和opencv库在读取图片上的差异：**
 - opencv：图片的通道顺序为BGR，显示的尺寸为（高/行数，宽/列数，通道数）
 - PIL：通道顺序为RGB，显示的尺寸为（宽，高）
-![](https://image.geoer.cn/20220717132025.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717132025.png)
 
 
 ## 获取并修改图像中的像素点
@@ -88,7 +88,7 @@ img[100,100] = [255,255,255]
 ```
 
 ## 获取图像属性
-![20220717140247](https://image.geoer.cn/20220717140247.png)
+![20220717140247](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717140247.png)
 
 
 ## 图像通道的拆分与合并
@@ -105,7 +105,7 @@ img = cv.merge((b,g,r))
 ## 基本变换
 ### 图像缩放：resize()
 ```python
-![20220717135713](https://image.geoer.cn/20220717135713.png)
+![20220717135713](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717135713.png)
 """
 参数：
 src: 输入图像对象
@@ -169,7 +169,7 @@ cv2.imshow('gray',gray)
 cv2.waitKey()
 
 ```
-![](https://image.geoer.cn/20220717133634.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717133634.png)
 
 
 
@@ -210,10 +210,10 @@ cv2.imshow('imag1',img1)
 cv2.waitKey()
 
 ```
-![20220717134331](https://image.geoer.cn/20220717134331.png)
+![20220717134331](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717134331.png)
 
 阈值类型：
-![20220717133853](https://image.geoer.cn/20220717133853.png)
+![20220717133853](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717133853.png)
 
 
 ### 旋转：cv2.getRotationMatrix2D()
@@ -244,7 +244,7 @@ cv2.waitKey()
 
 
 
-![20220717134755](https://image.geoer.cn/20220717134755.png)
+![20220717134755](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717134755.png)
 
 ### 图像的矩阵变换：transpose()
 旋转
@@ -259,7 +259,7 @@ cv2.imshow('imag1',image)
 cv2.waitKey()
 
 ```
-![20220717135018](https://image.geoer.cn/20220717135018.png)
+![20220717135018](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220717135018.png)
 
 另一种旋转方法：`cv2.flip`：
 对图像矩阵进行翻转处理，参数可以设置为1，0，-1，分别对应着水平翻转、垂直翻转、水平垂直翻转。

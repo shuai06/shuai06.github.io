@@ -177,7 +177,7 @@ sudo touch /lib/system/mattermost.service
 ```
 
 
-<img src="https://image.geoer.cn/20200704214555991_6879.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200704214555991_6879.png" />
 
 8.中文字体
 

@@ -8,11 +8,11 @@
 
 
 
-![Java反射概述](https://image.geoer.cn/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png)
+![Java反射概述](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png)
 
 
 
-![动态vs静态语言](https://image.geoer.cn/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png)
+![动态vs静态语言](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png)
 
 有了反射，就有了Java动态的特性
 
@@ -303,7 +303,7 @@ public class Person {
 
 **Class实例可以是哪些结构的说明：**
 
-![Class实例可以是哪些结构](https://image.geoer.cn/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png)
+![Class实例可以是哪些结构](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png)
 
 
 
@@ -321,23 +321,23 @@ public class Person {
 
 
 
-![类的加载过程](https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg)
+![类的加载过程](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg)
 
 
 
 例子：
 
-![类的加载过程例子](https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png)
+![类的加载过程例子](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png)
 
 
 
 #### **类的加载器：**
 
-![类的加载器](https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png)
+![类的加载器](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png)
 
 
 
-![ClassLoader](https://image.geoer.cn/ClassLoader.png)
+![ClassLoader](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/ClassLoader.png)
 
 
 
@@ -1257,7 +1257,7 @@ public class ProxyTest {
 
 
 
-![动态代理辅助理解](https://image.geoer.cn/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png)
+![动态代理辅助理解](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png)
 
 
 
@@ -1267,9 +1267,9 @@ public class ProxyTest {
 
 > 面向切面编程
 
-![AOP1](https://image.geoer.cn/AOP1.png)
+![AOP1](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP1.png)
 
-![AOP2](https://image.geoer.cn/AOP2.png)
+![AOP2](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP2.png)
 
 
 

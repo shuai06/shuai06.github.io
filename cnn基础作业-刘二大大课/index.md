@@ -6,11 +6,11 @@
 
 
 作业如下：
-![](https://image.geoer.cn/20220818143323.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220818143323.png)
 
 
 网络结构：
-![](https://image.geoer.cn/20220818152354.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220818152354.png)
 
 额，我这里好像值用了两个全连接层......
 

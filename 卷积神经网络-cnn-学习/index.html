@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神" /><meta name="keywords" content='卷积神经网络, CNN, 深度学习' /><meta itemprop="name" content="卷积神经网络(CNN)学习">
 <meta itemprop="description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神"><meta itemprop="datePublished" content="2022-07-30T16:21:12+08:00" />
-<meta itemprop="dateModified" content="2023-02-19T12:36:40+00:00" />
+<meta itemprop="dateModified" content="2023-03-01T15:13:49+00:00" />
 <meta itemprop="wordCount" content="8882"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="卷积神经网络,CNN,深度学习," /><meta property="og:title" content="卷积神经网络(CNN)学习" />
 <meta property="og:description" content="前言 卷积神经网络（Convolutional Neural Network，CNN) 是多层感知机(MLP)的变种，是一类包含卷积计算且具有深度结构的前馈神" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-30T16:21:12+08:00" />
-<meta property="article:modified_time" content="2023-02-19T12:36:40+00:00" />
+<meta property="article:modified_time" content="2023-03-01T15:13:49+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "卷积神经网络, CNN, 深度学习","wordcount":  8882 ,
-    "url": "https:\/\/shuai06.github.io\/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0\/","datePublished": "2022-07-30T16:21:12+08:00","dateModified": "2023-02-19T12:36:40+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-cnn-%E5%AD%A6%E4%B9%A0\/","datePublished": "2022-07-30T16:21:12+08:00","dateModified": "2023-03-01T15:13:49+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -312,21 +312,21 @@
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729202558.png"
-    data-srcset="https://image.geoer.cn/20220729202558.png, https://image.geoer.cn/20220729202558.png 1.5x, https://image.geoer.cn/20220729202558.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729202558.png"
-    title="https://image.geoer.cn/20220729202558.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202558.png"/></p>
 <p>而CNN 中新增了Convolution层和Pooling层。CNN的层的连接顺序是<code>Convolution - ReLU -(Pooling)</code>（Pooling层有时会被省
 略）。这可以理解为之前的<code>Affine - ReLU</code>连接被替换成了<code>Convolution -  ReLU -（Pooling）</code>连接。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729202801.png"
-    data-srcset="https://image.geoer.cn/20220729202801.png, https://image.geoer.cn/20220729202801.png 1.5x, https://image.geoer.cn/20220729202801.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729202801.png"
-    title="https://image.geoer.cn/20220729202801.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729202801.png"/></p>
 <p>xx卷积神经网络相比一般神经网络在图像中的优点：xx</p>
 <ul>
 <li>网络结构能够较好的适应图像的结构</li>
@@ -347,11 +347,11 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729223317.png"
-    data-srcset="https://image.geoer.cn/20220729223317.png, https://image.geoer.cn/20220729223317.png 1.5x, https://image.geoer.cn/20220729223317.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729223317.png"
-    title="https://image.geoer.cn/20220729223317.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729223317.png"/></p>
 <h2 id="局部感受稀疏连接--权值共享">局部感受（稀疏连接） &amp; 权值共享</h2>
 <p>卷积神经网络的核心思想就是局部感受野、是权值共享和pooling层，以此来达到简化网络参数并使得网络具有一定程度的位移、尺度、缩放、非线性形变稳定性。</p>
 <ul>
@@ -386,11 +386,11 @@ CNN中，有时将卷积层的输入输出数据称为特征图（feature map）
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729204217.png"
-    data-srcset="https://image.geoer.cn/20220729204217.png, https://image.geoer.cn/20220729204217.png 1.5x, https://image.geoer.cn/20220729204217.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729204217.png"
-    title="https://image.geoer.cn/20220729204217.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729204217.png"/>
 以垂直边缘检测为例：
 对一个6x6的灰度图像做卷积运算(卷积符号是<code>x</code>),即6x6x1</p>
 <p>在神经网络卷积过程中，可以建立一个3x3的矩阵(即filter或者kernel)，如下图，那么就可以用这个filter去求它的卷积，最终输出会是一个右边4x4的图像。
@@ -398,57 +398,57 @@ CNN中，有时将卷积层的输入输出数据称为特征图（feature map）
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729205212.png"
-    data-srcset="https://image.geoer.cn/20220729205212.png, https://image.geoer.cn/20220729205212.png 1.5x, https://image.geoer.cn/20220729205212.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729205212.png"
-    title="https://image.geoer.cn/20220729205212.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205212.png"/></p>
 <p>然后依次移动计算第二个元素，进行相同的运算，求出对应第2个第三个位置的值：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729205353.png"
-    data-srcset="https://image.geoer.cn/20220729205353.png, https://image.geoer.cn/20220729205353.png 1.5x, https://image.geoer.cn/20220729205353.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729205353.png"
-    title="https://image.geoer.cn/20220729205353.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205353.png"/></p>
 <p>继续移动到下一行进行计算：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729205418.png"
-    data-srcset="https://image.geoer.cn/20220729205418.png, https://image.geoer.cn/20220729205418.png 1.5x, https://image.geoer.cn/20220729205418.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729205418.png"
-    title="https://image.geoer.cn/20220729205418.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205418.png"/></p>
 <p>直到计算出所有结果：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729205510.png"
-    data-srcset="https://image.geoer.cn/20220729205510.png, https://image.geoer.cn/20220729205510.png 1.5x, https://image.geoer.cn/20220729205510.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729205510.png"
-    title="https://image.geoer.cn/20220729205510.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729205510.png"/></p>
 <p>上述垂直检测的步骤在课后习题中，使用的是<code>conv_forward</code>函数来实现，在tensflow使用的是<code>tf.conv2d</code>,&hellip;&hellip;</p>
 <p>当然检测水平边缘也是类似的：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729210348.png"
-    data-srcset="https://image.geoer.cn/20220729210348.png, https://image.geoer.cn/20220729210348.png 1.5x, https://image.geoer.cn/20220729210348.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729210348.png"
-    title="https://image.geoer.cn/20220729210348.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210348.png"/></p>
 <p>xx3x3的filter中填充的数字的值到底为多少仍有争议xx：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729210709.png"
-    data-srcset="https://image.geoer.cn/20220729210709.png, https://image.geoer.cn/20220729210709.png 1.5x, https://image.geoer.cn/20220729210709.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729210709.png"
-    title="https://image.geoer.cn/20220729210709.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210709.png"/>
 有不同的filter</p>
 <blockquote>
 <p>用fxf的filter来卷积nxn的的图像，得到的新图像的维度是(n-f+1)x(n-f+1)</p>
@@ -457,11 +457,11 @@ CNN中，有时将卷积层的输入输出数据称为特征图（feature map）
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729210858.png"
-    data-srcset="https://image.geoer.cn/20220729210858.png, https://image.geoer.cn/20220729210858.png 1.5x, https://image.geoer.cn/20220729210858.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729210858.png"
-    title="https://image.geoer.cn/20220729210858.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729210858.png"/></p>
 <p>xx偏置：xx
 不仅在FCN中，在CNN中除了权重参数(filter中的参数就对应之前的权重)，也存在偏置项
 如下图，向应用了滤波器的数据加上了偏置。偏置通常只有1个(1x1)，这个值
@@ -469,11 +469,11 @@ CNN中，有时将卷积层的输入输出数据称为特征图（feature map）
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729215915.png"
-    data-srcset="https://image.geoer.cn/20220729215915.png, https://image.geoer.cn/20220729215915.png 1.5x, https://image.geoer.cn/20220729215915.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729215915.png"
-    title="https://image.geoer.cn/20220729215915.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215915.png"/></p>
 <h3 id="padding填充">Padding(填充)</h3>
 <blockquote>
 <p>使用填充主要是为了调整输出的大小
@@ -485,11 +485,11 @@ xx解决办法：xx
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729211049.png"
-    data-srcset="https://image.geoer.cn/20220729211049.png, https://image.geoer.cn/20220729211049.png 1.5x, https://image.geoer.cn/20220729211049.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729211049.png"
-    title="https://image.geoer.cn/20220729211049.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211049.png"/></p>
 </blockquote>
 <blockquote>
 <p>添加pandding后，尺寸 用fxf的filter来卷积nxn的的图像，填充宽度为p，得到的新图像的维度是(n+2p-f+1)x(n+2p-f+1)</p>
@@ -502,30 +502,30 @@ xx解决办法：xx
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729211243.png"
-    data-srcset="https://image.geoer.cn/20220729211243.png, https://image.geoer.cn/20220729211243.png 1.5x, https://image.geoer.cn/20220729211243.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729211243.png"
-    title="https://image.geoer.cn/20220729211243.png"/></li>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211243.png"/></li>
 </ul>
 <p>filter的尺寸f取值通常是奇数（如果是偶数可能会不对称）</p>
 <h3 id="stride卷积步长">Stride(卷积步长)</h3>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729211454.png"
-    data-srcset="https://image.geoer.cn/20220729211454.png, https://image.geoer.cn/20220729211454.png 1.5x, https://image.geoer.cn/20220729211454.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729211454.png"
-    title="https://image.geoer.cn/20220729211454.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211454.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729211623.png"
-    data-srcset="https://image.geoer.cn/20220729211623.png, https://image.geoer.cn/20220729211623.png 1.5x, https://image.geoer.cn/20220729211623.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729211623.png"
-    title="https://image.geoer.cn/20220729211623.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729211623.png"/></p>
 <p>综上，增大步幅后，输出大小会变小。而增大填充后，输出大小会变大。</p>
 <p>xx最终维度总结：xx
 用<code>fxf</code>的filter对<code>nxn</code>图像进行卷积，步长设为<code>s</code>，padding值设置为<code>p</code>，最终得到的维度为：$\frac{n+2p-f}{s}+1$ x $\frac{n+2p-f}{s}+1$</p>
@@ -534,32 +534,32 @@ xx解决办法：xx
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729220354.png"
-    data-srcset="https://image.geoer.cn/20220729220354.png, https://image.geoer.cn/20220729220354.png 1.5x, https://image.geoer.cn/20220729220354.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729220354.png"
-    title="https://image.geoer.cn/20220729220354.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220354.png"/></p>
 <ol start="2">
 <li></li>
 </ol>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729220413.png"
-    data-srcset="https://image.geoer.cn/20220729220413.png, https://image.geoer.cn/20220729220413.png 1.5x, https://image.geoer.cn/20220729220413.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729220413.png"
-    title="https://image.geoer.cn/20220729220413.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220413.png"/></p>
 <p>当除不尽的时候，一般使用<code>floor</code>向下取整</p>
 <p>补充：交叉相关(cross correlation)
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729212215.png"
-    data-srcset="https://image.geoer.cn/20220729212215.png, https://image.geoer.cn/20220729212215.png 1.5x, https://image.geoer.cn/20220729212215.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729212215.png"
-    title="https://image.geoer.cn/20220729212215.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729212215.png"/>
 我们前面的操作没有对filter进行翻转，实际上只能称为交叉相关，并不能称为数学意义上卷积(进行翻转的才叫卷积)，但由于深度学习的约定，所以我们都称之为卷积。</p>
 <h3 id="三维卷积">三维卷积</h3>
 <p>和二维的卷积是类似的，通道方向上有多个特征图时，会按通道
@@ -570,31 +570,31 @@ filter分别与图像的RGB通道对应的数字相乘,最后得到的也是二�
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729214817.png"
-    data-srcset="https://image.geoer.cn/20220729214817.png, https://image.geoer.cn/20220729214817.png 1.5x, https://image.geoer.cn/20220729214817.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729214817.png"
-    title="https://image.geoer.cn/20220729214817.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214817.png"/></p>
 <p>然后移动到下一个位置，继续做27个(3x3x3)次相乘并求和
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729214908.png"
-    data-srcset="https://image.geoer.cn/20220729214908.png, https://image.geoer.cn/20220729214908.png 1.5x, https://image.geoer.cn/20220729214908.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729214908.png"
-    title="https://image.geoer.cn/20220729214908.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729214908.png"/></p>
 <blockquote>
 <p>Note：根据想在哪个颜色上检测边缘，来决定在第几层通道设置上值，而另外的通道设置为0</p>
 </blockquote>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729215035.png"
-    data-srcset="https://image.geoer.cn/20220729215035.png, https://image.geoer.cn/20220729215035.png 1.5x, https://image.geoer.cn/20220729215035.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729215035.png"
-    title="https://image.geoer.cn/20220729215035.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729215035.png"/></p>
 <p>xx维度公式总结：xx
 $n \times n \times c_n$的图片
 $f \times f \times c_f$的过滤器
@@ -604,54 +604,54 @@ $f \times f \times c_f$的过滤器
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729222402.png"
-    data-srcset="https://image.geoer.cn/20220729222402.png, https://image.geoer.cn/20220729222402.png 1.5x, https://image.geoer.cn/20220729222402.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729222402.png"
-    title="https://image.geoer.cn/20220729222402.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222402.png"/></p>
 <h4 id="两个多个卷积核">两个(多个)卷积核</h4>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729222449.png"
-    data-srcset="https://image.geoer.cn/20220729222449.png, https://image.geoer.cn/20220729222449.png 1.5x, https://image.geoer.cn/20220729222449.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729222449.png"
-    title="https://image.geoer.cn/20220729222449.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222449.png"/></p>
 <h3 id="构建卷积网络的一层">构建卷积网络的一层</h3>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221305.png"
-    data-srcset="https://image.geoer.cn/20220729221305.png, https://image.geoer.cn/20220729221305.png 1.5x, https://image.geoer.cn/20220729221305.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221305.png"
-    title="https://image.geoer.cn/20220729221305.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221305.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221342.png"
-    data-srcset="https://image.geoer.cn/20220729221342.png, https://image.geoer.cn/20220729221342.png 1.5x, https://image.geoer.cn/20220729221342.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221342.png"
-    title="https://image.geoer.cn/20220729221342.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221342.png"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221410.png"
-    data-srcset="https://image.geoer.cn/20220729221410.png, https://image.geoer.cn/20220729221410.png 1.5x, https://image.geoer.cn/20220729221410.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221410.png"
-    title="https://image.geoer.cn/20220729221410.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221410.png"/></p>
 <p>课后习题用到的符号的总结：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221234.png"
-    data-srcset="https://image.geoer.cn/20220729221234.png, https://image.geoer.cn/20220729221234.png 1.5x, https://image.geoer.cn/20220729221234.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221234.png"
-    title="https://image.geoer.cn/20220729221234.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221234.png"/></p>
 <p>层的类型：
 ● 卷积层(CONN)
 ● 池化层(POOL)
@@ -661,27 +661,27 @@ $f \times f \times c_f$的过滤器
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729220837.png"
-    data-srcset="https://image.geoer.cn/20220729220837.png, https://image.geoer.cn/20220729220837.png 1.5x, https://image.geoer.cn/20220729220837.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729220837.png"
-    title="https://image.geoer.cn/20220729220837.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729220837.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221002.png"
-    data-srcset="https://image.geoer.cn/20220729221002.png, https://image.geoer.cn/20220729221002.png 1.5x, https://image.geoer.cn/20220729221002.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221002.png"
-    title="https://image.geoer.cn/20220729221002.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221002.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221035.png"
-    data-srcset="https://image.geoer.cn/20220729221035.png, https://image.geoer.cn/20220729221035.png 1.5x, https://image.geoer.cn/20220729221035.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221035.png"
-    title="https://image.geoer.cn/20220729221035.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221035.png"/></p>
 <h2 id="池化层plloing-layer">池化层(Plloing Layer)</h2>
 <blockquote>
 <p>相当于降维压缩数据(缩小高、常方向上的空间的运算)</p>
@@ -694,11 +694,11 @@ $f \times f \times c_f$的过滤器
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221642.png"
-    data-srcset="https://image.geoer.cn/20220729221642.png, https://image.geoer.cn/20220729221642.png 1.5x, https://image.geoer.cn/20220729221642.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221642.png"
-    title="https://image.geoer.cn/20220729221642.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221642.png"/></p>
 </blockquote>
 <p><strong>机制：</strong>
 max pooling做的是，如果在滤波器中任何地方检测到了这些特征，就保留最大的数值，如果没有检测到，可能左侧上方四分之一区域就没有这个特征，于是那些数值的最大值仍然相当小</p>
@@ -712,17 +712,17 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221518.png"
-    data-srcset="https://image.geoer.cn/20220729221518.png, https://image.geoer.cn/20220729221518.png 1.5x, https://image.geoer.cn/20220729221518.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729221518.png"
-    title="https://image.geoer.cn/20220729221518.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221518.png"/></p>
 <p>Pooling的总结：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729221537.png"
-    data-srcset="https://image.geoer.cn/20220729221537.png, https://image.geoer.cn/20220729221537.png 1.5x, https://image.geoer.cn/20220729221537.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221537.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221537.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221537.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729221537.png 2x"
     data-sizes="auto"
     alt="20220729221537"
     title="20220729221537"/></p>
@@ -730,20 +730,20 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729222113.png"
-    data-srcset="https://image.geoer.cn/20220729222113.png, https://image.geoer.cn/20220729222113.png 1.5x, https://image.geoer.cn/20220729222113.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729222113.png"
-    title="https://image.geoer.cn/20220729222113.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222113.png"/></p>
 <p><strong>使用卷积网络的两个原因：</strong>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729222202.png"
-    data-srcset="https://image.geoer.cn/20220729222202.png, https://image.geoer.cn/20220729222202.png 1.5x, https://image.geoer.cn/20220729222202.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729222202.png"
-    title="https://image.geoer.cn/20220729222202.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729222202.png"/></p>
 <h2 id="经典cnn模型">经典CNN模型</h2>
 <ul>
 <li>LeNet-5</li>
@@ -760,19 +760,19 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729231429.png"
-    data-srcset="https://image.geoer.cn/20220729231429.png, https://image.geoer.cn/20220729231429.png 1.5x, https://image.geoer.cn/20220729231429.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729231429.png"
-    title="https://image.geoer.cn/20220729231429.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231429.png"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220729231524.png"
-    data-srcset="https://image.geoer.cn/20220729231524.png, https://image.geoer.cn/20220729231524.png 1.5x, https://image.geoer.cn/20220729231524.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220729231524.png"
-    title="https://image.geoer.cn/20220729231524.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220729231524.png"/></p>
 <p>见另一文章：</p>
 <h3 id="alexnet">AlexNet</h3>
 <blockquote>
@@ -781,19 +781,19 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730100445.png"
-    data-srcset="https://image.geoer.cn/20220730100445.png, https://image.geoer.cn/20220730100445.png 1.5x, https://image.geoer.cn/20220730100445.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730100445.png"
-    title="https://image.geoer.cn/20220730100445.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100445.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730101056.png"
-    data-srcset="https://image.geoer.cn/20220730101056.png, https://image.geoer.cn/20220730101056.png 1.5x, https://image.geoer.cn/20220730101056.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730101056.png"
-    title="https://image.geoer.cn/20220730101056.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730101056.png"/></p>
 <p>从227x227x3的图像开始，第一层用一组96个11x11的步长为4的filter，然后图像缩小到55x55，随后的最大池化层用了3x3的filter，步长为2，降到27x27x96，然后用5x5的same卷积填充，得到27x27x256，再次做最大池化得到13x13x256，然后用3x3的same卷积填充，得到13x13x384，再次用3x3的same卷积填充，再次用3x3的same卷积填充，然后用最大池化，结果降到6x6x256=9216，所以展开为9216分结点，然后有基层全连接层，最后用sofamax输出结果。</p>
 <p><strong>AlexNet采用了ReLU激活函数，data augmentation和dropout等训练技巧，为后续深度神经网络的构建提供了范本，之后的卷积神经网络都是遵循AlexNet的构建思路</strong></p>
 <p><a href="https://www.cnblogs.com/wangguchangqing/p/10333370.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/wangguchangqing/p/10333370.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
@@ -806,11 +806,11 @@ max pooling做的是，如果在滤波器中任何地方检测到了这些特征
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730100655.png"
-    data-srcset="https://image.geoer.cn/20220730100655.png, https://image.geoer.cn/20220730100655.png 1.5x, https://image.geoer.cn/20220730100655.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730100655.png"
-    title="https://image.geoer.cn/20220730100655.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730100655.png"/>
 vgg16中的16指的是有16个带权重的层
 高和宽尺寸每次(因为池化层)会按因子1减少，每次用一组卷积层时通道数会按因子2增加</p>
 <p>VGG-19</p>
@@ -823,66 +823,66 @@ vgg16中的16指的是有16个带权重的层
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730103517.png"
-    data-srcset="https://image.geoer.cn/20220730103517.png, https://image.geoer.cn/20220730103517.png 1.5x, https://image.geoer.cn/20220730103517.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730103517.png"
-    title="https://image.geoer.cn/20220730103517.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103517.png"/></p>
 <h3 id="残差块residual-block">残差块（Residual block）</h3>
 <p>把某层的输入跳跃连接到下一层乃至更深层的激活层之前，同本层输出一起经过激活函数输出。
 即ResNet无需遵循主路径，可以通过快捷路径(跳过n层)进入更深的网络：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730102535.png"
-    data-srcset="https://image.geoer.cn/20220730102535.png, https://image.geoer.cn/20220730102535.png 1.5x, https://image.geoer.cn/20220730102535.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730102535.png"
-    title="https://image.geoer.cn/20220730102535.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102535.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730102551.png"
-    data-srcset="https://image.geoer.cn/20220730102551.png, https://image.geoer.cn/20220730102551.png 1.5x, https://image.geoer.cn/20220730102551.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730102551.png"
-    title="https://image.geoer.cn/20220730102551.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102551.png"/>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730102941.png"
-    data-srcset="https://image.geoer.cn/20220730102941.png, https://image.geoer.cn/20220730102941.png 1.5x, https://image.geoer.cn/20220730102941.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730102941.png"
-    title="https://image.geoer.cn/20220730102941.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102941.png"/></p>
 <p><strong>普通网络：</strong>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730102657.png"
-    data-srcset="https://image.geoer.cn/20220730102657.png, https://image.geoer.cn/20220730102657.png 1.5x, https://image.geoer.cn/20220730102657.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730102657.png"
-    title="https://image.geoer.cn/20220730102657.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102657.png"/></p>
 <p><strong>残差网络：</strong>
 所训练网络越深，训练误差越小。下图的残差网络由五个残差块组成，该残差网络只跳跃了一层，还可跳跃多层
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730102737.png"
-    data-srcset="https://image.geoer.cn/20220730102737.png, https://image.geoer.cn/20220730102737.png 1.5x, https://image.geoer.cn/20220730102737.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730102737.png"
-    title="https://image.geoer.cn/20220730102737.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730102737.png"/></p>
 <p>举例：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730103714.png"
-    data-srcset="https://image.geoer.cn/20220730103714.png, https://image.geoer.cn/20220730103714.png 1.5x, https://image.geoer.cn/20220730103714.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730103714.png"
-    title="https://image.geoer.cn/20220730103714.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103714.png"/></p>
 <p>残差网络可以不是卷积神经网络，用全连接层也可以。当然，残差网络在被提出的论文中是用来处理图像识别问题。</p>
 <h3 id="为什么残差网络会生效">为什么残差网络会生效</h3>
 <p>残差网络解决网络退化的原理:
@@ -900,11 +900,11 @@ Resnet Block = main path + skip connection</p>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730131358.png"
-    data-srcset="https://image.geoer.cn/20220730131358.png, https://image.geoer.cn/20220730131358.png 1.5x, https://image.geoer.cn/20220730131358.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730131358.png"
-    title="https://image.geoer.cn/20220730131358.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730131358.png"/>
 重点说明一下ResNet-50，可以看到上图中所示，ResNet-50经过了4个Block，每一个Block中分别有3，4，6，3个Bottleneck，另外网络最开始有一个卷积层，所以:3+4+6+3 * 3 + 1 = 49，加上取样层。</p>
 <h2 id="初始网络">初始网络</h2>
 <h3 id="1x1卷积核网中网">1x1卷积核(网中网)</h3>
@@ -914,68 +914,68 @@ Resnet Block = main path + skip connection</p>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730115347.png"
-    data-srcset="https://image.geoer.cn/20220730115347.png, https://image.geoer.cn/20220730115347.png 1.5x, https://image.geoer.cn/20220730115347.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730115347.png"
-    title="https://image.geoer.cn/20220730115347.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115347.png"/></p>
 <p>如果是一张6×6×32的图片，那么使用1×1过滤器进行卷积效果更好。具体来说，1×1卷积所实现的功能是遍历这36个单元格，计算左图中32个数字和过滤器中32个数字的元素积之和，然后应用ReLU非线性函数。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730115617.png"
-    data-srcset="https://image.geoer.cn/20220730115617.png, https://image.geoer.cn/20220730115617.png 1.5x, https://image.geoer.cn/20220730115617.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730115617.png"
-    title="https://image.geoer.cn/20220730115617.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115617.png"/></p>
 <p>我们以其中一个单元为例，它是这个输入层上的某个切片，用这36个数字乘以这个输入层上1×1切片，得到一个实数，像这样把它画在输出中。</p>
 <p>这个1×1×32过滤器中的32个数字可以这样理解，一个神经元的输入是32个数字（输入图片中左下角位置32个通道中的数字），即相同高度和宽度上某一切片上的32个数字，这32个数字具有不同通道，乘以32个权重（将过滤器中的32个数理解为权重），然后应用ReLU非线性函数，在这里输出相应的结果。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730115722.png"
-    data-srcset="https://image.geoer.cn/20220730115722.png, https://image.geoer.cn/20220730115722.png 1.5x, https://image.geoer.cn/20220730115722.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730115722.png"
-    title="https://image.geoer.cn/20220730115722.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115722.png"/>
 一般来说，如果过滤器不止一个，而是多个，就好像有多个输入单元，其输入内容为一个切片上所有数字，输出结果是6×6过滤器数量。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730115843.png"
-    data-srcset="https://image.geoer.cn/20220730115843.png, https://image.geoer.cn/20220730115843.png 1.5x, https://image.geoer.cn/20220730115843.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730115843.png"
-    title="https://image.geoer.cn/20220730115843.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115843.png"/>
 所以<strong>1×1卷积可以从根本上理解为对这32个不同的位置都应用一个全连接层</strong>，全连接层的作用是输入32个数字（过滤器数量标记为，在这36个单元上重复此过程）,输出结果是6×6×#filters（过滤器数量），以便在输入层上实施一个非平凡（non-trivial）计算。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730115916.png"
-    data-srcset="https://image.geoer.cn/20220730115916.png, https://image.geoer.cn/20220730115916.png 1.5x, https://image.geoer.cn/20220730115916.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730115916.png"
-    title="https://image.geoer.cn/20220730115916.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730115916.png"/>
 这种方法<strong>通常称为1×1卷积，有时也被称为Network in Network</strong></p>
 <p><strong>再举个例子：</strong>
 假设下图左侧这是一个28×28×192的输入层，你可以使用池化层压缩它的高度和宽度，这个过程我们很清楚。但如果通道数量很大，该如何把它压缩为28×28×32维度的层呢？你可以用32个大小为1×1的过滤器，严格来讲每个过滤器大小都是1×1×192维，因为过滤器中通道数量必须与输入层中通道的数量保持一致。但是你使用了32个过滤器，输出层为28×28×32，这就是压缩通道数（）的方法，对于池化层我只是压缩了这些层的高度和宽度。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730120142.png"
-    data-srcset="https://image.geoer.cn/20220730120142.png, https://image.geoer.cn/20220730120142.png 1.5x, https://image.geoer.cn/20220730120142.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730120142.png"
-    title="https://image.geoer.cn/20220730120142.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730120142.png"/></p>
 <p>在之后我们看到在某些网络中1×1卷积是如何压缩通道数量并减少计算的。当然如果你想保持通道数192不变，这也是可行的，1×1卷积只是添加了非线性函数，当然也可以让网络学习更复杂的函数，比如，我们再添加一层，其输入为28×28×192，输出为28×28×192。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730130549.png"
-    data-srcset="https://image.geoer.cn/20220730130549.png, https://image.geoer.cn/20220730130549.png 1.5x, https://image.geoer.cn/20220730130549.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730130549.png"
-    title="https://image.geoer.cn/20220730130549.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730130549.png"/></p>
 <p>1×1卷积层就是这样实现了一些重要功能的（doing something pretty non-trivial），它给神经网络添加了一个非线性函数，从而减少或保持输入层中的通道数量不变，当然如果你愿意，也可以增加通道数量。</p>
 <h4 id="1x1卷积核的作用">1x1卷积核的作用：</h4>
 <h5 id="1-放缩通道数目">1. 放缩通道数目</h5>
@@ -984,20 +984,20 @@ Resnet Block = main path + skip connection</p>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730110652.png"
-    data-srcset="https://image.geoer.cn/20220730110652.png, https://image.geoer.cn/20220730110652.png 1.5x, https://image.geoer.cn/20220730110652.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730110652.png"
-    title="https://image.geoer.cn/20220730110652.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110652.png"/></p>
 <h6 id="2-减少计算成本">2. 减少计算成本</h6>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730110847.png"
-    data-srcset="https://image.geoer.cn/20220730110847.png, https://image.geoer.cn/20220730110847.png 1.5x, https://image.geoer.cn/20220730110847.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730110847.png"
-    title="https://image.geoer.cn/20220730110847.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730110847.png"/></p>
 <h5 id="3-增加网络的非线性性">3. 增加网络的非线性性</h5>
 <p>如果我们不用改变通道数目，也不用改变长和宽。那么1x1的卷积还有另外一个好处就是增加网络的非线性。因为从一个28x28x192-&gt;28x28x192经过一个1*1的卷积之后，使得网络可以学习到更加复杂的函数形式。这样就此增加了网络的非线性性。</p>
 <p>对1*1卷积的一种理解是：它本质上是一个完全连接的神经网络，逐一作用于这36个位置，这个全连接网络做的事情就是接收32个数字=的输入，然后输出过滤器个数的输出值</p>
@@ -1007,29 +1007,29 @@ Resnet Block = main path + skip connection</p>
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730103231.png"
-    data-srcset="https://image.geoer.cn/20220730103231.png, https://image.geoer.cn/20220730103231.png 1.5x, https://image.geoer.cn/20220730103231.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730103231.png"
-    title="https://image.geoer.cn/20220730103231.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103231.png"/>
 要是有一个更大的训练集，如图所示，我们冻结更少的层，然后训练后面的层；
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730103248.png"
-    data-srcset="https://image.geoer.cn/20220730103248.png, https://image.geoer.cn/20220730103248.png 1.5x, https://image.geoer.cn/20220730103248.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730103248.png"
-    title="https://image.geoer.cn/20220730103248.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103248.png"/>
 或者如图3所示，换成自己的网络结构。
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730103302.png"
-    data-srcset="https://image.geoer.cn/20220730103302.png, https://image.geoer.cn/20220730103302.png 1.5x, https://image.geoer.cn/20220730103302.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730103302.png"
-    title="https://image.geoer.cn/20220730103302.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730103302.png"/>
 最后，如果有大量数据，我们应该用这些网络和它的权重当做初始化，用它们来代替随机初始化，接着你可以用梯度下降训练，更新网络所有层的所有权重。</p>
 <h2 id="mobilenet">MobileNet</h2>
 <blockquote>
@@ -1047,11 +1047,11 @@ MobileNet的基本单元是深度级可分离卷积，其可以分解为两个�
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730133720.png"
-    data-srcset="https://image.geoer.cn/20220730133720.png, https://image.geoer.cn/20220730133720.png 1.5x, https://image.geoer.cn/20220730133720.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730133720.png"
-    title="https://image.geoer.cn/20220730133720.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133720.png"/>
 以输入特征层为 M∗N∗16，输出 32 通道为例，卷积核尺寸为 33，在标准卷积情况下计算量为 M∗N∗16∗3∗3∗32(M∗N∗4608)，而在深度可分离卷积情况下计算量（M∗N∗656）为深度卷积的计算量 M∗N∗16∗3∗3 加上逐点卷积的计算量:M∗N∗16∗1∗1*∗32[28]，可以看到计算量大大减少了，随着网络的加深，这种卷积的计算优势会更加明显。</p>
 <h3 id="mobilenet架构">MobileNet架构</h3>
 <p>MobileNetV2的变化：
@@ -1060,19 +1060,19 @@ MobileNet的基本单元是深度级可分离卷积，其可以分解为两个�
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730133504.png"
-    data-srcset="https://image.geoer.cn/20220730133504.png, https://image.geoer.cn/20220730133504.png 1.5x, https://image.geoer.cn/20220730133504.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730133504.png"
-    title="https://image.geoer.cn/20220730133504.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133504.png"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20220730133518.png"
-    data-srcset="https://image.geoer.cn/20220730133518.png, https://image.geoer.cn/20220730133518.png 1.5x, https://image.geoer.cn/20220730133518.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20220730133518.png"
-    title="https://image.geoer.cn/20220730133518.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220730133518.png"/></p>
 <h2 id="参考">参考</h2>
 <p><a href="https://blog.csdn.net/qq_42363032/article/details/108180740"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_42363032/article/details/108180740<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>
 吴恩达深度学习课程
@@ -1086,7 +1086,7 @@ MobileNet的基本单元是深度级可分离卷积，其可以分解为两个�
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-19&#32;12:36:40>更新于 2023-02-19&nbsp;</span>
+        <span title=2023-03-01&#32;15:13:49>更新于 2023-03-01&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

@@ -18,7 +18,7 @@ hydra -L user.txt -P user.txt -f 10.10.10.81 -s 8080 http-get /manager/html
 # war包生成
 jar -cvf xx.war xx.jsp
 ```
-![](https://image.geoer.cn/tomcat_gen_war.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_gen_war.png)
 
 **3.部署后, 访问马**
 访问 `http://127.0.0.1:8080/war 包名(无后缀) / 包名内文件名` 
@@ -57,10 +57,10 @@ tail /root/tomcats/apache-tomcat-xxx/logs/xxxx_log
 
 ###### 复现
 正常状况：
-![](https://image.geoer.cn/tomcat_file_w_ok.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_file_w_ok.png)
 利用成功：
-![](https://image.geoer.cn/tomcat_file_w_ok.png)
-![](https://image.geoer.cn/tomcat_CVE20190232_ok.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_file_w_ok.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_CVE20190232_ok.png)
 
 
 ###### 安全检查
@@ -82,12 +82,12 @@ tail /root/tomcats/apache-tomcat-xxx/logs/xxxx_log
 
 配置Apache Tomcat服务器（修改conf目录配置文件，启用CGI）
 1、打开Tomcat安装目录的apache-tomcat-8.5.39\conf\web.xml修改如下配置，在默认情况下配置是注释的。
-![](https://image.geoer.cn/tomcat_CVE20190232.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_CVE20190232.png)
 
  
 
 2、打开Tomcat安装目录的`apache-tomcat-8.5.39\conf\context.xml`修改如下配置，添加privileged="true" 。
-![](https://image.geoer.cn/tomcat_CVE20190232_2.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/tomcat_CVE20190232_2.png)
 
 
 3、在apache-tomcat-8.5.39\webapps\ROOT\WEB-INF目录新建一个cgi-bin文件夹，创建一个test.bat的文件，内容随意

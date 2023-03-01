@@ -14,30 +14,30 @@
 比如，同一个IP可以被不同的域名进行绑定加速，例如现在有两个网站分别为www.abc.com和www.zxc.com都指定同一个IP：111.111.111.111(CDN服务器)；浏览器通过HTTP请求包里的HOST头域名进行精确访问www.abc.com还是访问www.zxc.com。比如我们ping www.xxxx.com得到一个IP，通过IP反查域名,可以看到很多域名绑定在这个IP上，这个就是CDN
 **CDN是通过HOST来判断你要访问那个网站的**
 因为CND服务器可以达到隐藏真实IP的效果，所以C2服务器的真实IP可以得到隐藏保护。
-![20220614234141](https://image.geoer.cn/20220614234141.png)
+![20220614234141](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614234141.png)
 
-![20220614233939](https://image.geoer.cn/20220614233939.png)
+![20220614233939](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220614233939.png)
 
 
 
 ## 域前置操作
 1.登录腾讯云，开启CDN
-![20220615095530](https://image.geoer.cn/20220615095530.png)
+![20220615095530](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615095530.png)
 
 
 2.设置CDN的域名
-![20220615095434](https://image.geoer.cn/20220615095434.png)
+![20220615095434](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615095434.png)
 
 
 3.回源地址设置为VPS的地址(teamserver的真实ip)
-![20220615095946](https://image.geoer.cn/20220615095946.png)
+![20220615095946](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615095946.png)
 
 成功添加
-![20220615095925](https://image.geoer.cn/20220615095925.png)
+![20220615095925](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615095925.png)
 
 
 多地ping，查看IP是不同的，证明CDN生效了
-![20220615110105](https://image.geoer.cn/20220615110105.png)
+![20220615110105](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615110105.png)
 
 
 
@@ -47,10 +47,10 @@
 选择合适的profile文件，修改HOST头为准备好的域名（get和post都要改）,我这里选择了: https://github.com/rsmudge/Malleable-C2-Profiles/tree/master/normal  
 
 
-![](https://image.geoer.cn/20220615100944.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615100944.png)
 
 
-![](https://image.geoer.cn/20220615101016.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615101016.png)
 
 
 
@@ -74,14 +74,14 @@ nohup ./teamserver xxx.xx.xx.99 qweqweqwe999 cdn.profile
 
 获取cdn的节点ip，超级ping这个cname获取到cdn的节点ip
 如下图设置，`http hosts`设置为超级ping中的多个DNS的结点IP，`http host header`设置为申请的高可信域名
-![image.png](https://image.geoer.cn/image.png.png)
+![image.png](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/image.png.png)
 
 
 
 Note:
 对于下图设置我还没有经过测试不知道怎么样，有点不太理解，各种玄学问题，先去吃饭了吧:smile:
 `http hosts`设置为cdn的域名，`http host header`设置为申请的高可信域名
-![](https://image.geoer.cn/20220615101531.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615101531.png)
 
 
 **6.测试通过cdn是否能指向到我们的cobalt strike**
@@ -93,9 +93,9 @@ curl ca.xxx.com.dsa.dnsv1.com/wcx -H “Host: ca.xxx.com”
 
 **7.生成马er，选择监听器**
 运行，正常上线
-![](https://image.geoer.cn/20220615112633.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615112633.png)
 
-![](https://image.geoer.cn/20220615113147.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220615113147.png)
 
 
 > Note: 为了方便本文采用HTTP，但实战建议使用 https

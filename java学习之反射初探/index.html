@@ -9,14 +9,14 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="Java反射机制概述 Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的" /><meta name="keywords" content='Java学习笔记, Java反射, 动态代理' /><meta itemprop="name" content="Java学习之反射初探">
 <meta itemprop="description" content="Java反射机制概述 Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的"><meta itemprop="datePublished" content="2021-02-06T22:01:11+08:00" />
-<meta itemprop="dateModified" content="2023-02-19T12:36:40+00:00" />
+<meta itemprop="dateModified" content="2023-03-01T15:13:49+00:00" />
 <meta itemprop="wordCount" content="8409"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="Java学习笔记,Java反射,动态代理," /><meta property="og:title" content="Java学习之反射初探" />
 <meta property="og:description" content="Java反射机制概述 Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取得任何类的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-02-06T22:01:11+08:00" />
-<meta property="article:modified_time" content="2023-02-19T12:36:40+00:00" />
+<meta property="article:modified_time" content="2023-03-01T15:13:49+00:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "Java学习笔记, Java反射, 动态代理","wordcount":  8409 ,
-    "url": "https:\/\/shuai06.github.io\/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2\/","datePublished": "2021-02-06T22:01:11+08:00","dateModified": "2023-02-19T12:36:40+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2\/","datePublished": "2021-02-06T22:01:11+08:00","dateModified": "2023-03-01T15:13:49+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -257,16 +257,16 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png"
-    data-srcset="https://image.geoer.cn/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png, https://image.geoer.cn/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png 1.5x, https://image.geoer.cn/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Java%E5%8F%8D%E5%B0%84%E6%A6%82%E8%BF%B0.png 2x"
     data-sizes="auto"
     alt="Java反射概述"
     title="Java反射概述"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png"
-    data-srcset="https://image.geoer.cn/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png, https://image.geoer.cn/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png 1.5x, https://image.geoer.cn/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81vs%E9%9D%99%E6%80%81%E8%AF%AD%E8%A8%80.png 2x"
     data-sizes="auto"
     alt="动态vs静态语言"
     title="动态vs静态语言"/></p>
@@ -752,8 +752,8 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png"
-    data-srcset="https://image.geoer.cn/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png, https://image.geoer.cn/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png 1.5x, https://image.geoer.cn/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/Class%E5%AE%9E%E4%BE%8B%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%93%AA%E4%BA%9B%E7%BB%93%E6%9E%84.png 2x"
     data-sizes="auto"
     alt="Class实例可以是哪些结构"
     title="Class实例可以是哪些结构"/></p>
@@ -762,8 +762,8 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg"
-    data-srcset="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg 1.5x, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.jpg 2x"
     data-sizes="auto"
     alt="类的加载过程"
     title="类的加载过程"/></p>
@@ -771,8 +771,8 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png"
-    data-srcset="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png 1.5x, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E4%BE%8B%E5%AD%90.png 2x"
     data-sizes="auto"
     alt="类的加载过程例子"
     title="类的加载过程例子"/></p>
@@ -780,16 +780,16 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png"
-    data-srcset="https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png 1.5x, https://image.geoer.cn/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%99%A8.png 2x"
     data-sizes="auto"
     alt="类的加载器"
     title="类的加载器"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/ClassLoader.png"
-    data-srcset="https://image.geoer.cn/ClassLoader.png, https://image.geoer.cn/ClassLoader.png 1.5x, https://image.geoer.cn/ClassLoader.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/ClassLoader.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/ClassLoader.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/ClassLoader.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/ClassLoader.png 2x"
     data-sizes="auto"
     alt="ClassLoader"
     title="ClassLoader"/></p>
@@ -2401,8 +2401,8 @@
 </div><p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png"
-    data-srcset="https://image.geoer.cn/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png, https://image.geoer.cn/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png 1.5x, https://image.geoer.cn/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E8%BE%85%E5%8A%A9%E7%90%86%E8%A7%A3.png 2x"
     data-sizes="auto"
     alt="动态代理辅助理解"
     title="动态代理辅助理解"/></p>
@@ -2413,16 +2413,16 @@
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/AOP1.png"
-    data-srcset="https://image.geoer.cn/AOP1.png, https://image.geoer.cn/AOP1.png 1.5x, https://image.geoer.cn/AOP1.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP1.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP1.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP1.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP1.png 2x"
     data-sizes="auto"
     alt="AOP1"
     title="AOP1"/></p>
 <p><img
     class="lazyload"
     src="/svg/loading.min.svg"
-    data-src="https://image.geoer.cn/AOP2.png"
-    data-srcset="https://image.geoer.cn/AOP2.png, https://image.geoer.cn/AOP2.png 1.5x, https://image.geoer.cn/AOP2.png 2x"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP2.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP2.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP2.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/AOP2.png 2x"
     data-sizes="auto"
     alt="AOP2"
     title="AOP2"/></p>
@@ -2678,7 +2678,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-02-19&#32;12:36:40>更新于 2023-02-19&nbsp;</span>
+        <span title=2023-03-01&#32;15:13:49>更新于 2023-03-01&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>

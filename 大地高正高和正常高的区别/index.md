@@ -7,7 +7,7 @@
 
 地形图上的高度是海拔高，GPS读出的高度是大地高。
 
-<img src="https://image.geoer.cn/%E5%A4%A7%E5%9C%B0%E6%B0%B4%E5%87%86%E9%9D%A2.png">
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%A4%A7%E5%9C%B0%E6%B0%B4%E5%87%86%E9%9D%A2.png">
 
 
 
@@ -37,13 +37,13 @@
 
 公式：`ξ=H-h`， 其中H是大地高，h是正常高。
 
-<img src="https://image.geoer.cn/%E9%AB%98%E7%A8%8B%E5%BC%82%E5%B8%B8.png">
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E9%AB%98%E7%A8%8B%E5%BC%82%E5%B8%B8.png">
 
 
 
 ## 大地高，正高，正常高之间的关系
 
-<img src="https://image.geoer.cn/%E5%A4%A7%E5%9C%B0%E9%AB%98%EF%BC%8C%E6%AD%A3%E9%AB%98%EF%BC%8C%E6%AD%A3%E5%B8%B8%E9%AB%98%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%A4%A7%E5%9C%B0%E9%AB%98%EF%BC%8C%E6%AD%A3%E9%AB%98%EF%BC%8C%E6%AD%A3%E5%B8%B8%E9%AB%98%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png">
 
 
 

@@ -165,11 +165,11 @@ public void test() throws UnknownHostException {
 
 
 
-![三次握手](https://image.geoer.cn/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
+![三次握手](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.jpg)
 
 
 
-![四次挥手](https://image.geoer.cn/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg)
+![四次挥手](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.jpg)
 
 
 
@@ -667,7 +667,7 @@ public class UDPTest {
 
 #### URL类构造器
 
-![url类构造器](https://image.geoer.cn/java-url%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8.jpg)
+![url类构造器](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/java-url%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8.jpg)
 
 
 

@@ -217,7 +217,7 @@ history(10)  #显示最近执行的10条命令
 
 **一个简单例子：**
 
-![](https://image.geoer.cn/%E8%AE%A4%E8%AF%86R%E7%9A%84%E5%B0%8F%E4%BE%8B%E5%AD%901.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E8%AE%A4%E8%AF%86R%E7%9A%84%E5%B0%8F%E4%BE%8B%E5%AD%901.png)
 
 ```R
 age <- c(1,3,5,2,11,9,3,9,12,3)
@@ -503,7 +503,7 @@ eigen(M)$vec
 
 
 
-![创建矩阵](https://image.geoer.cn/martrix_create.png)
+![创建矩阵](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/martrix_create.png)
 
 
 
@@ -848,7 +848,7 @@ ctrl+s保存为`.R`结尾的文件
 
 **run：**
 
-![](https://image.geoer.cn/rstudio%20run.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/rstudio%20run.png)
 
 
 
@@ -860,7 +860,7 @@ ctrl+s保存为`.R`结尾的文件
 
 **History：**
 
-![](https://image.geoer.cn/rstudio1.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/rstudio1.png)
 
 
 
@@ -908,7 +908,7 @@ Tools --> Import Dataset
 
 数据集：
 
-![image-20220412211923345](https://image.geoer.cn/img/image-20220412211923345.png)
+![image-20220412211923345](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220412211923345.png)
 
 画图：
 
@@ -920,7 +920,7 @@ plot(dose, drugA, type = "b")  #b表示既绘制点也绘制线
 
 ```
 
-![plot](https://image.geoer.cn/img/image-20220412214338899.png)
+![plot](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220412214338899.png)
 
 ### 图形参数的修改
 
@@ -949,13 +949,13 @@ plot(dose, drugA, type = "b", lty=6, pch=19, col="blue", col.axis="red", col.lab
 
 ```
 
-![符号和线的参数](https://image.geoer.cn/img/image-20220412214851860.png)
+![符号和线的参数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220412214851860.png)
 
 
 
 
 
-![颜色的参数](https://image.geoer.cn/img/image-20220412215247676.png)
+![颜色的参数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220412215247676.png)
 
 
 
@@ -965,7 +965,7 @@ plot(dose, drugA, type = "b", lty=6, pch=19, col="blue", col.axis="red", col.lab
 
 #### 文本属性
 
-![文本相关参数](https://image.geoer.cn/img/image-20220413093750180.png)
+![文本相关参数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413093750180.png)
 
 ```R
 dose = c(20,30,40,45,60)
@@ -992,7 +992,7 @@ names(pdfFonts())
 
 
 
-![图形、边界尺寸参数](https://image.geoer.cn/img/image-20220413094218857.png)
+![图形、边界尺寸参数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413094218857.png)
 
 ```R
 #opar = par(no.readonly=TRUE)  
@@ -1018,7 +1018,7 @@ title(sub="我的副标题", col.sub="green")
 
 #### 自定义坐标轴
 
-![坐标轴参数](https://image.geoer.cn/img/image-20220413094218857.png)
+![坐标轴参数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413094218857.png)
 
 ```R
 #plot(dose, drugA, type = "b",pch=12,col="red",mar=c(5,4,4,8)+0.1, yaxt="n", ann=FALSE) # mar是边界,  yaxt="n"禁用y轴刻度, ann=FALSE不会出现坐标轴默认的描述# 设置自己的参数
@@ -1077,7 +1077,7 @@ abline(v=2.5, col="red", lty=1)
 
 #### 图例
 
-![图例](https://image.geoer.cn/img/image-20220413105334159.png)
+![图例](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413105334159.png)
 
 
 
@@ -1108,7 +1108,7 @@ legend("topleft", inset=.05, title="类型", legend("A","B"), lty=c(1,2),pch=c(1
 
 > 想针对某个点进行标注的时候
 
-![文本标注](https://image.geoer.cn/img/image-20220413111139687.png)
+![文本标注](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413111139687.png)
 
 
 
@@ -1125,7 +1125,7 @@ text(wt,mpg,row.names(mcars),cex=0.5, pos=4, col="red")
 
 #### 图形组合、图形布局的精细控制
 
-![R如何画图](https://image.geoer.cn/img/image-20220413112126712.png)
+![R如何画图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413112126712.png)
 
 **图形组合：**
 
@@ -1158,7 +1158,7 @@ layout(martrix(c(1,1,2,3)), 2,2,width=c(3,1), height=c(1,2),byrow=TRUE)
 
 ```
 
-![一个图幅画放多个图](https://image.geoer.cn/img/image-20220413112455452.png)
+![一个图幅画放多个图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413112455452.png)
 
 
 
@@ -1171,7 +1171,7 @@ par(fig(0, 0.8, 0, 0.8), new=TRUE)  # 画布左下角位置是0,0，右上角为
 
 ```
 
-![画布坐标](https://image.geoer.cn/img/image-20220413114627765.png)
+![画布坐标](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220413114627765.png)
 
 
 
@@ -1183,7 +1183,7 @@ par(fig(0, 0.8, 0, 0.8), new=TRUE)  # 画布左下角位置是0,0，右上角为
 
 一个示例：
 
-![示例1](https://image.geoer.cn/img/image-20220414210257598.png)
+![示例1](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220414210257598.png)
 
 
 
@@ -1283,7 +1283,7 @@ days <- enddate - startdate
 
 ```
 
-![日期格式](https://image.geoer.cn/img/image-20220414212754868.png)
+![日期格式](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220414212754868.png)
 
 
 
@@ -1301,7 +1301,7 @@ is.numeric(b)
 
 ```
 
-![类型判断及转换函数](https://image.geoer.cn/img/image-20220414213710267.png)
+![类型判断及转换函数](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220414213710267.png)
 
 
 
@@ -1459,7 +1459,7 @@ runif(5)
 # 其他函数
 ```
 
-![image-20220415093505576](https://image.geoer.cn/img/image-20220415093505576.png)
+![image-20220415093505576](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415093505576.png)
 
 
 
@@ -1630,7 +1630,7 @@ barplot(counts) # 默认是堆砌的条形图
 
 ```
 
-![堆砌](https://image.geoer.cn/img/image-20220415140123913.png)
+![堆砌](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415140123913.png)
 
 **分组条形图：**
 
@@ -1639,7 +1639,7 @@ barplot(counts, beside=TRUE)  # beside=TRUE  值是并列的，不是堆砌的
 
 ```
 
-![分组](https://image.geoer.cn/img/image-20220415140158858.png)
+![分组](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415140158858.png)
 
 
 
@@ -1657,7 +1657,7 @@ x <- aggregate(states$Illiteracy, by=list(state.region), FUN=mean) # 统计地�
 barplot(x$x, names.arg=x$Group.1) # 画图并指定坐标名字
 ```
 
-![均值](https://image.geoer.cn/img/image-20220415140706515.png)
+![均值](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415140706515.png)
 
 
 
@@ -1722,7 +1722,7 @@ fan.plot(x, labels=lab, main="扇图")
 
 ```
 
-![扇形](https://image.geoer.cn/img/image-20220415142252862.png)
+![扇形](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415142252862.png)
 
 
 
@@ -1742,7 +1742,7 @@ hist(x)
 
 ```
 
-![最简单的直方图](https://image.geoer.cn/img/image-20220415142725870.png)
+![最简单的直方图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415142725870.png)
 
 
 
@@ -1751,7 +1751,7 @@ hist(x, breaks=12, col="red", xlab="每英里加仑数")
 # x轴上划分为12组
 ```
 
-![直方图2](https://image.geoer.cn/img/image-20220415142829530.png)
+![直方图2](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415142829530.png)
 
 
 
@@ -1798,7 +1798,7 @@ sm.density.compare(mpg, cyl, xlab="英里每加仑")
 
 ```
 
-![对比](https://image.geoer.cn/img/image-20220415144317890.png)
+![对比](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415144317890.png)
 
 
 
@@ -1810,7 +1810,7 @@ sm.density.compare(mpg, cyl, xlab="英里每加仑")
 
 **分位数**
 
-![箱线](https://image.geoer.cn/img/image-20220415144446522.png)
+![箱线](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415144446522.png)
 
 
 
@@ -1831,7 +1831,7 @@ boxplot(mpg~cyl, data=mtcars, main="箱线图", ylab="公里每加仑", xlab="�
 # 做质量检测的时候经常用到
 ```
 
-![箱线图](https://image.geoer.cn/img/image-20220415144928657.png)
+![箱线图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415144928657.png)
 
 
 
@@ -1849,13 +1849,13 @@ boxplot(mpg~cyl, data=mtcars, main="箱线图", ylab="公里每加仑", xlab="�
 
 **1.问题描述与目标：**
 
-![问题描述与目标](https://image.geoer.cn/img/image-20220415152642555.png)
+![问题描述与目标](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415152642555.png)
 
 
 
 **2.数据集的导入：**
 
-![数据集的导入](https://image.geoer.cn/img/image-20220415153129276.png)
+![数据集的导入](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415153129276.png)
 
 ```R
 # 以上数据集在 DMwR 包中
@@ -1872,7 +1872,7 @@ hist(algae$mxPH, prob=T, ylim=0:1) # prob表示显示概率密度
 lines(density(algae$mxPH, na.rm=T))
 ```
 
-![数据解读](https://image.geoer.cn/img/image-20220415160838980.png)
+![数据解读](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415160838980.png)
 
 
 
@@ -1880,7 +1880,7 @@ lines(density(algae$mxPH, na.rm=T))
 
 **3.数据预处理**
 
-![数据缺失的处理](https://image.geoer.cn/img/image-20220415162038434.png)
+![数据缺失的处理](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415162038434.png)
 
 查找缺失值：
 
@@ -1921,7 +1921,7 @@ lm(PO4~oPO4)
 
 **4.获取预测模型**
 
-![获取预测模型](https://image.geoer.cn/img/image-20220415165137648.png)
+![获取预测模型](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415165137648.png)
 
 
 
@@ -1940,19 +1940,19 @@ summary(lm.a1)
 
 ```
 
-![辅助变量](https://image.geoer.cn/img/image-20220415170604357.png)
+![辅助变量](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415170604357.png)
 
 
 
 调整后的R的平方越接近1，就说明模型越科学
 
-![调整后的R的平方](https://image.geoer.cn/img/image-20220415170741743.png)
+![调整后的R的平方](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415170741743.png)
 
 
 
 **5.预测模型的调优：**
 
-![精简模型](https://image.geoer.cn/img/image-20220415171029466.png)
+![精简模型](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415171029466.png)
 
 
 
@@ -1962,7 +1962,7 @@ anova(lm.a1)
 # 如下图：说明season是对拟合误差的贡献是最小的，所以season对a1影响小，把a1去除
 ```
 
-![去除a1](https://image.geoer.cn/img/image-20220415171523114.png)
+![去除a1](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415171523114.png)
 
 ```R
 # 去除a1
@@ -1976,7 +1976,7 @@ lm3.a1 <- update(lm1.a, . ~. -Chla)
 anova(lm.a1, lm2.a1)
 ```
 
-![误差减小](https://image.geoer.cn/img/image-20220415172000961.png)
+![误差减小](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415172000961.png)
 
 为了简化上述不断重复来减小误差，R提供了一个更加简便的函数：`step()`
 
@@ -1988,7 +1988,7 @@ summary(final.lm)
 # 如果想要提高预测精度，也可以选用其他分析模型
 ```
 
-![得到140个水样，第一种海藻的频率](https://image.geoer.cn/img/image-20220415172412717.png)
+![得到140个水样，第一种海藻的频率](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220415172412717.png)
 
 
 

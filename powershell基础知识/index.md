@@ -1,7 +1,7 @@
 # PowerShell基础知识
 
 
-<img src="https://image.geoer.cn/powershell.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/powershell.jpg"></img>
 
 <!-- more -->
 

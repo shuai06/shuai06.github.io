@@ -4,7 +4,7 @@
 折腾了好久，终于把地图聚合给做出来了，这还得感谢杨姐姐最终的指点（不对，是帮助了很多）。下面我就直接贴代码了。
   
 代码的主目录是这样的：
-<img src="https://image.geoer.cn/20200713141112325_1252.png">
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200713141112325_1252.png">
   
 > cluster.html
 
@@ -2833,9 +2833,9 @@ css
 
 标注的图标文件：
 
-https://image.geoer.cn/pins.png
+https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pins.png
 
-https://image.geoer.cn/pinsback.png
+https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pinsback.png
 
 demo项目文件：
 https://github.com/shuai06/openlayer2_Cluster_demo

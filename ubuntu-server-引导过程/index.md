@@ -74,7 +74,7 @@
 - 记录硬盘的划分情况
     - 两种类型：MBR / GPT
 ```
-<img src="https://image.geoer.cn/%E5%86%85%E6%A0%B81.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%86%85%E6%A0%B81.png" />
 
 
 ## Boot Loader
@@ -261,9 +261,9 @@ INIT：内核引导后运行`第一个程序INIT`,初始化操作系统并启动
         - `/usr/sbin/init -> /lib/ systemd/systemd`  现在的`init`程序早已不是以前那个init，只是沿用，实则是个符号链接
         - 早期版本配置文件：`/etc/inittab` (`ubuntu无此文件！`)
 
-<img src="https://image.geoer.cn/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B2.png"/>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B2.png"/>
 
-<img src="https://image.geoer.cn/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B3.png"/>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%BC%95%E5%AF%BC%E8%BF%87%E7%A8%8B3.png"/>
 
 
 ## 三种INIT
@@ -512,7 +512,7 @@ systemctl isolate runlevel1
     - 内核定位物理内存或交换空间中的每个内存页
     - 内核维护内存页表，登记哪些页位于物理内存/SWAP
 
-<img src="https://image.geoer.cn/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png"/>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.png"/>
 
 
 **查看虚拟内存**

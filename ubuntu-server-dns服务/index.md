@@ -36,11 +36,11 @@ DNS：将容易基于的主机名映射到IP地址
 
 
 
-<img src="https://image.geoer.cn/20200405094807682_18444.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200405094807682_18444.png" />
 
 **DNS命名空间**
 
-<img src="https://image.geoer.cn/20200405100714099_17972.png" />`www.ubuntu.com.`严格来说是有点的，但是为了方便，最后面不写点也可以
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200405100714099_17972.png" />`www.ubuntu.com.`严格来说是有点的，但是为了方便，最后面不写点也可以
 
 **DNS查询：** 逐级委派
 由机构`LCANN`负责管理, 负责根域`.`
@@ -56,7 +56,7 @@ DNS：将容易基于的主机名映射到IP地址
 3. Cache	（不保存任何记录，一般都是运营商提供的，跟下面的dns查询有关系，意义：本个区域内有缓存了减少dns会话的流量，提高了效率，减轻了带宽占用，超出生命周期之后才会再次查询）
    1. TTL
       4.Forward（转发类型的，比如会去转发给本地运营商的dns服务器(比如家用无线路由器会企业的域控)，而不是自己去进行递归查询啥的）
-<img src="https://image.geoer.cn/20200405101258270_2676.png" />
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200405101258270_2676.png" />
 
 同时是三种角色
 

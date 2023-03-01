@@ -373,7 +373,7 @@ a[[1,0], [1,1], [2,0]] # a[1,1,2] 和a[0,1,0]
 
 ### 5.逐元素&归并操作
 常用逐元素操作：
-![20220905104714](https://image.geoer.cn/20220905104714.png)
+![20220905104714](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220905104714.png)
 
 举例：
 ```python
@@ -382,7 +382,7 @@ clamp(torch.clamp(a,min=2,max=4)) # 上下截断
 ```
 
 常用归并操作：
-![20220905105000](https://image.geoer.cn/20220905105000.png)
+![20220905105000](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220905105000.png)
 大多数执行归并函数都有一个维度参数dim，指定在哪个维度上进行
 关于dim的解释有点乱，下面是经验总结(并非所有函数都符号如下变化)：
 假设输入形状(m,n,k):
@@ -410,7 +410,7 @@ b.sum(dim=1) # tensor([3., 3.])
 
 
 ### 6.比较
-![20220905105929](https://image.geoer.cn/20220905105929.png)
+![20220905105929](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220905105929.png)
 
 以max为例，有三种情况：
 - max(input)
@@ -533,7 +533,7 @@ img2 = img1.permute(1,2,0) # 代表 H,W,C的索引来进行转置
 
 ### 9.其他操作
 常用的线性代数基本操作
-![20220905110224](https://image.geoer.cn/20220905110224.png)
+![20220905110224](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220905110224.png)
 
 
 

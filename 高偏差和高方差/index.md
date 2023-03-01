@@ -50,7 +50,7 @@
 
 ###  打靶图
 很经典的一张图（出处为第二个参考文献）：
-![打靶图](https://image.geoer.cn/20220712094612.png)
+![打靶图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712094612.png)
 
 
 
@@ -92,23 +92,23 @@
 
 
 ## 如何判断
-![](https://image.geoer.cn/20220712100006.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100006.png)
 
 
 高偏差:
-![](https://image.geoer.cn/20220712100058.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100058.png)
 
 
 高方差:
-![](https://image.geoer.cn/20220712100125.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100125.png)
 
 
 在上述解决办法中提到了修改lamda值可以解决高偏差高方差问题，下图即是lamda值和两者之间的关系：
-![](https://image.geoer.cn/20220712100546.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100546.png)
 
-![](https://image.geoer.cn/20220712100645.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100645.png)
 
-![](https://image.geoer.cn/20220712100832.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220712100832.png)
 
 
 

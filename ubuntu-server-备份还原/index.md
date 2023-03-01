@@ -367,7 +367,7 @@ Bacula 是一款开源的跨平台网络备份工具，它提供了基于企业�
 
 
 
-![架构](https://image.geoer.cn/becula_arch.png)
+![架构](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/becula_arch.png)
 
 
 
@@ -538,9 +538,9 @@ status			#验证连接是否成功
 
 一些名词：
 
-![1](https://image.geoer.cn/becula_n1.png)
+![1](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/becula_n1.png)
 
-![2](https://image.geoer.cn/becula_n2.png)
+![2](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/becula_n2.png)
 
 
 

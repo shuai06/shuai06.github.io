@@ -25,7 +25,7 @@
 
 **使用与不使用泛型的区别：**
 
-![为何使用泛型](https://image.geoer.cn/%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B.png)
+![为何使用泛型](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B.png)
 
 
 
@@ -351,7 +351,7 @@ public class SubOrder1<T> extends Order<T> {
 
 ```
 
-![子父类泛型](https://image.geoer.cn/%E5%AD%90%E7%88%B6%E7%B1%BB%E6%B3%9B%E5%9E%8B.png)
+![子父类泛型](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E5%AD%90%E7%88%B6%E7%B1%BB%E6%B3%9B%E5%9E%8B.png)
 
 
 
@@ -456,7 +456,7 @@ public class Order<T> {
     }
 ```
 
-![自定义泛型方法](https://image.geoer.cn/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95.png)
+![自定义泛型方法](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95.png)
 
 
 
@@ -634,7 +634,7 @@ public class GenericTest {
 
 ### 通配符的使用
 
-![通配符的使用](https://image.geoer.cn/%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8.png)
+![通配符的使用](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8.png)
 
 ```java
 package cn.xpshuai.java2;
@@ -747,7 +747,7 @@ public class GenericTest {
 
 **有限制条件的通配符的使用**：
 
-![有限制条件的通配符](https://image.geoer.cn/%E6%9C%89%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B6%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6.png)
+![有限制条件的通配符](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E6%9C%89%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B6%E7%9A%84%E9%80%9A%E9%85%8D%E7%AC%A6.png)
 
 ```java
     /*
@@ -800,7 +800,7 @@ public class Students extends Person{
 
 泛型嵌套：
 
-![泛型嵌套举例](https://image.geoer.cn/%E6%B3%9B%E5%9E%8B%E5%B5%8C%E5%A5%97%E4%B8%BE%E4%BE%8B.png)
+![泛型嵌套举例](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E6%B3%9B%E5%9E%8B%E5%B5%8C%E5%A5%97%E4%B8%BE%E4%BE%8B.png)
 
 
 

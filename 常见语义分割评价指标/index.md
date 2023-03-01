@@ -4,7 +4,7 @@
 
 
 ## 常见语义分割评价指标
-![20221003114905](https://image.geoer.cn/20221003114905.png)
+![20221003114905](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003114905.png)
 
 
 
@@ -15,23 +15,23 @@
 #### **例子：**
 预测正确是用绿色表示，预测错误的用红色表示。
 那对于预测0来说，就是：绿色的0/(红色的0+绿色的0)
-![20221003115059](https://image.geoer.cn/20221003115059.png)
+![20221003115059](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115059.png)
 
 对预测为1的：正确的为绿色，错误的为红色
-![20221003115119](https://image.geoer.cn/20221003115119.png)
+![20221003115119](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115119.png)
 
 预测2
-![20221003115134](https://image.geoer.cn/20221003115134.png)
+![20221003115134](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115134.png)
 
 预测3
-![20221003115146](https://image.geoer.cn/20221003115146.png)
+![20221003115146](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115146.png)
 
 预测4
-![20221003115208](https://image.geoer.cn/20221003115208.png)
+![20221003115208](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115208.png)
 
 
 最后得到的混淆矩阵：
-![20221003115251](https://image.geoer.cn/20221003115251.png)
+![20221003115251](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115251.png)
 
 
 
@@ -48,7 +48,7 @@
 ### mean Accuracy
 > 每个类别的accuracy计算出来，然后求平均
 #### 计算
-![20221003115403](https://image.geoer.cn/20221003115403.png)
+![20221003115403](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115403.png)
 用上图的每个类别计算出来，取平均即可
 
 
@@ -67,7 +67,7 @@
 分子：每个类别预测正确的像素个数
 分母：真实标签像素个数 + 预测为这个类别的像素的个数-分子
 
-![20221003115557](https://image.geoer.cn/20221003115557.png)
+![20221003115557](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20221003115557.png)
 
 如上图例子，将这个5个类别的IoU分别求出来，取平均就可
 

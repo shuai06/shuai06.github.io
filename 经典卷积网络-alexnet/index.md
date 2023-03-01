@@ -38,21 +38,21 @@ LeNet可以在早期的小数据集上取得好的成绩，但是在更大的真
 
 2012年，AlexNet横空出世。它首次证明了学习到的特征可以超越手工设计的特征。它一举打破了计算机视觉研究的现状，通过CNN学习特征 。 AlexNet使用了8层卷积神经网络，并以很大的优势赢得了2012年ImageNet图像识别挑战赛。
 
-![AlexNet网络结构图](https://image.geoer.cn/20220915160010.png)
-![20220915175040](https://image.geoer.cn/20220915175040.png)
+![AlexNet网络结构图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915160010.png)
+![20220915175040](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915175040.png)
 
 
 
 **简化的两个网络的对比：**
-![](https://image.geoer.cn/20220915161233.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915161233.png)
 - stride=4 是受限于当时的算力所致
-![20220915172813](https://image.geoer.cn/20220915172813.png)
-![20220915172838](https://image.geoer.cn/20220915172838.png)
-![20220915172900](https://image.geoer.cn/20220915172900.png)
+![20220915172813](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915172813.png)
+![20220915172838](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915172838.png)
+![20220915172900](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915172900.png)
 
 
 复杂度对比：
-![20220915172721](https://image.geoer.cn/20220915172721.png)
+![20220915172721](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220915172721.png)
 
 
 ### AlexNet与LeNet区别
@@ -379,7 +379,7 @@ if __name__ == '__main__':
 
 ```
 我不跑了，忽然发现我的小mac已经烫手了，才跑了一个epoch，用时15分钟....唉没有配置好点的电脑学习都学不了......
-![呜呜](https://image.geoer.cn/20220918154155.png)
+![呜呜](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220918154155.png)
 
 
 一些可视化地址：

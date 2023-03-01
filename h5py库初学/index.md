@@ -35,7 +35,7 @@ for key in f.keys():
     print(f[key][:])
 
 ```
-![结果](https://image.geoer.cn/20220716224441.png)
+![结果](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220716224441.png)
 
 
 
@@ -50,7 +50,7 @@ d1[...]=np.arange(20)
 f["dset2"]=np.arange(15)
 
 ```
-![赋值](https://image.geoer.cn/20220716224746.png)
+![赋值](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220716224746.png)
 
 
 如果我们有现成的numpy数组，那么可以在创建数据集的时候就赋值，这个时候就不必指定数据的类型和形状了，只需要把数组名传给参数data:`d1=f.create_dataset("dset1",data=a)`
@@ -77,7 +77,7 @@ for key in g1.keys():
 
 
 ```
-![](https://image.geoer.cn/20220716225208.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220716225208.png)
 
 
 
@@ -118,7 +118,7 @@ print(c1.keys())
 
 ```
 
-![](https://image.geoer.cn/20220716230909.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220716230909.png)
 
 
 

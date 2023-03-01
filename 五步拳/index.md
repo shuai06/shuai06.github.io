@@ -23,17 +23,17 @@
 
 #### 1、**预备姿势**（并步抱拳）
 
-![image-20220111220445790](https://image.geoer.cn/img/image-20220111220445790.png)
+![image-20220111220445790](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111220445790.png)
 
 有的版本是预备式之后，右手抱拳于腰间，左掌平砍掌成仆步
 
-![image-20220111220936575](https://image.geoer.cn/img/image-20220111220936575.png)
+![image-20220111220936575](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111220936575.png)
 
 #### 2、**弓步冲拳**
 
 成左弓步,左手向左平搂收回腰间抱拳；冲右拳，目视前方
 
-![image-20220111220558151](https://image.geoer.cn/img/image-20220111220558151.png)
+![image-20220111220558151](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111220558151.png)
 
 
 
@@ -43,7 +43,7 @@
 
 
 
-![image-20220111221208073](https://image.geoer.cn/img/image-20220111221208073.png)
+![image-20220111221208073](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221208073.png)
 
 易犯错误：弹踢没有收大腿弹小腿
 
@@ -53,7 +53,7 @@
 
 右脚落地,向左转体90°,下蹲成马步,同时左拳变掌,屈臂上架,冲右拳，目视右方
 
-![image-20220111221228829](https://image.geoer.cn/img/image-20220111221228829.png)
+![image-20220111221228829](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221228829.png)
 
 
 
@@ -63,7 +63,7 @@
 
 左脚向右脚后插一步（有的版本`后插一步`在下一步的时候做）,同时右拳变掌向左下盖,掌外沿向前,身体左转90°,收左拳;目视右掌。
 
-![image-20220111221311435](https://image.geoer.cn/img/image-20220111221311435.png)
+![image-20220111221311435](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221311435.png)
 
 易犯错误：左脚没有后插一步，右掌只盖到头顶
 
@@ -71,7 +71,7 @@
 
 上动不停,两腿屈膝下蹲成歇步,同时冲左拳,收右拳，目视左拳。
 
-![image-20220111221321451](https://image.geoer.cn/img/image-20220111221321451.png)
+![image-20220111221321451](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221321451.png)
 
 易犯错误：歇步时臀部没有坐到后退脚跟上，坐拳变成下冲拳
 
@@ -81,7 +81,7 @@
 
 两腿起立,身体左转。随即左拳变掌,顺势收至右腋下;右拳变掌,由左手背上穿出,手心向上。同时左腿屈膝提起,目视右手。
 
-![image-20220111221446829](https://image.geoer.cn/img/image-20220111221446829.png)
+![image-20220111221446829](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221446829.png)
 
 
 
@@ -91,7 +91,7 @@
 
 上动不停,左脚落地成仆步;左手掌指朝前,沿左腿内侧穿至左脚面，目视左掌。
 
-![image-20220111221506876](https://image.geoer.cn/img/image-20220111221506876.png)
+![image-20220111221506876](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221506876.png)
 
 
 
@@ -99,13 +99,13 @@
 
 
 
-![image-20220111221121708](https://image.geoer.cn/img/image-20220111221121708.png)
+![image-20220111221121708](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221121708.png)
 
 #### 7、**虚步挑掌**:
 
 左腿屈膝前弓,右脚前上成右虚步。同时左手向后划弧成勾手,右手顺右腿外侧向上挑掌，目视前方。
 
-![image-20220111221534111](https://image.geoer.cn/img/image-20220111221534111.png)
+![image-20220111221534111](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221534111.png)
 
 易犯错误：身体容易前倾，重心容易落在前腿上
 
@@ -119,7 +119,7 @@
 
 1.与上一遍的衔接动作：提右脚，左手抱拳腰间，右手变掌防于左腋下
 
-![image-20220111222351500](https://image.geoer.cn/img/image-20220111222351500.png)
+![image-20220111222351500](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111222351500.png)
 
 2.**反向**再来一遍
 
@@ -129,7 +129,7 @@
 
 左脚向右脚靠拢成并步。同时左钩手和右掌变拳,回收抱于腰间，目视前方。
 
-![image-20220111221605761](https://image.geoer.cn/img/image-20220111221605761.png)
+![image-20220111221605761](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/img/image-20220111221605761.png)
 
 
 

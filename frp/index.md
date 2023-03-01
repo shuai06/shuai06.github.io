@@ -11,11 +11,11 @@
 
 #### 服务端
 
-<img src="https://image.geoer.cn/frp1.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/frp1.png"></img>
 
 #### 客户端
 
-<img src="https://image.geoer.cn/frp2.jpg"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/frp2.jpg"></img>
 
 
 

@@ -55,11 +55,11 @@ tcp_scoket = socket(socket.AF_INET, socket.SOCK_SREAM)
 
 服务端套接字函数：
 
-<img src="https://image.geoer.cn/socket01%20.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/socket01%20.png"></img>
 
 公共用途套接字函数：
 
-<img src="https://image.geoer.cn/socket02.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/socket02.png"></img>
 
 
 

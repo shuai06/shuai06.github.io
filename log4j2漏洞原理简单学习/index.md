@@ -39,7 +39,7 @@
 
 
 
-![lookup](https://image.geoer.cn/jndi_lookup.png)
+![lookup](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/jndi_lookup.png)
 
 
 
@@ -258,7 +258,7 @@ public class Log4Test {
 
 ### 3.打开dnslog，发现成功获取ip
 
-![](https://image.geoer.cn/log4_dnslog.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/log4_dnslog.png)
 
 
 
@@ -367,7 +367,7 @@ public class Log4Test {
 
 成功执行：
 
-![](https://image.geoer.cn/wiershark_ok)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/wiershark_ok)
 
 
 

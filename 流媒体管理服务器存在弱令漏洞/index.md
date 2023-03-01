@@ -9,17 +9,17 @@ fofa语句：
 title="流媒体管理服务器"
 ```
 
-![](https://image.geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%93%E5%BC%B1%E5%8F%A3%E4%BB%A4.jpg)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E6%B5%81%E5%AA%92%E4%BD%93%E5%BC%B1%E5%8F%A3%E4%BB%A4.jpg)
 
 
 
 登录：
 
-![](https://image.geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%93%E7%99%BB%E5%BD%95.jpg)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E6%B5%81%E5%AA%92%E4%BD%93%E7%99%BB%E5%BD%95.jpg)
 
 
 
-![](https://image.geoer.cn/%E6%B5%81%E5%AA%92%E4%BD%931.jpg)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E6%B5%81%E5%AA%92%E4%BD%931.jpg)
 
 
 ---

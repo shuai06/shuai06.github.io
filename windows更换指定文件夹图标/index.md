@@ -7,7 +7,7 @@
 
 
 
-![哈哈哈](https://image.geoer.cn/hahah.png)
+![哈哈哈](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/hahah.png)
 
 好了，那就写写吧，谁让我这么可爱呢（小菜鸡瑟瑟发抖） :sweat_smile:
 
@@ -19,7 +19,7 @@
 
 先画个界面（哈哈指向画界面不行写代码）
 
-![](https://image.geoer.cn/formui.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/formui.png)
 
 
 

@@ -6,10 +6,10 @@
 ## Python DBA API
 
 ###### 包含的内容
-<img src="https://image.geoer.cn/pydb1.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pydb1.png"></img>
 
 ###### 访问数据库流程
-<img src="https://image.geoer.cn/pydb2.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pydb2.png"></img>
 
 
 
@@ -62,7 +62,7 @@ finally:
 
 ###### cursor对象支持的方法
 
-<img src="https://image.geoer.cn/pydb3.png"></img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/pydb3.png"></img>
 
 
 

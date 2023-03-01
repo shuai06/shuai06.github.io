@@ -20,7 +20,7 @@ python -m ipykernel install --user --name dlenv --display-name "dlenv"
 ```
 
 4.打开jupyter notebook，即可选择刚加入的虚拟环境了
-![](https://image.geoer.cn/20220903104654.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220903104654.png)
 
 
 

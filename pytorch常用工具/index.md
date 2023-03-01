@@ -328,7 +328,7 @@ visdom成功启动后，会返回一个网址（如下图）。根据显示的�
 
 
 ```
-![20220906111022](https://image.geoer.cn/20220906111022.png)
+![20220906111022](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220906111022.png)
 
 
 
@@ -400,7 +400,7 @@ for step in range(10):
     time.sleep(0.5)
 
 ```
-![20220906111156](https://image.geoer.cn/20220906111156.png)
+![20220906111156](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20220906111156.png)
 
 
 监听多条数据：示例：监听train_loss和acc

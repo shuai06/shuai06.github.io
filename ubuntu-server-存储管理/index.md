@@ -396,7 +396,7 @@ sudo mdadm -C -v /dev/md0 -l1 -n2 /dev/sdb /dev/sdc -z100M -x1 /dev/sdd
 
 **常用管理命令：**
 
-<img src="https://image.geoer.cn/20200207110021066_291689330.png"> </img>
+<img src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/20200207110021066_291689330.png"> </img>
 
 查看raid盘的状况：    `cat /proc/mdstat` （开机之后临时生成的）
 -r 删除物理硬盘（如果正常状态下是提示busy的， 可以-f设置失效, --re-add重新加入磁盘阵列）

@@ -25,7 +25,7 @@ docker-compose up -d
 2.访问目标地址 http://192.168.0.100:8888
 
 3.New > Terminal 创建控制台：可以直接执行任意命令
-![](https://image.geoer.cn/smurf%E6%94%BB%E5%87%BB.png)
+![](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/smurf%E6%94%BB%E5%87%BB.png)
 
 4.后面就直接执行任意命令，比如反弹shell等
 ```bash

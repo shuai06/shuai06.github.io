@@ -3,7 +3,7 @@
 
 前几天重新读了一下道哥的《白帽子讲Web安全》，于是做了个粗略的思维导图：
 
-![思维图](https://image.geoer.cn/%E7%99%BD%E5%B8%BD%E5%AD%90%E8%AE%B2Web%E5%AE%89%E5%85%A8.png)
+![思维图](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/%E7%99%BD%E5%B8%BD%E5%AD%90%E8%AE%B2Web%E5%AE%89%E5%85%A8.png)
 
 
 
