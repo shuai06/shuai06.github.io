@@ -4,7 +4,7 @@
     <link>https://shuai06.github.io/posts/</link>
     <description>所有文章 | 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 Feb 2023 19:32:56 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>docker安装</title>
   <link>https://shuai06.github.io/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
   <pubDate>Fri, 09 Mar 2018 10:47:44 &#43;0800</pubDate>
@@ -2149,6 +2149,14 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>深度学习中常见名词</title>
+  <link>https://shuai06.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D/</link>
+  <pubDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>python-XPath</title>
   <link>https://shuai06.github.io/python-xpath/</link>
   <pubDate>Wed, 19 Feb 2020 19:58:52 &#43;0800</pubDate>
@@ -2309,6 +2317,14 @@
   <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
 </item>
 <item>
+  <title>深度学习中常见名词</title>
+  <link>https://shuai06.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D/</link>
+  <pubDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>测试</title>
   <link>https://shuai06.github.io/%E6%B5%8B%E8%AF%95/</link>
   <pubDate>Sat, 18 Feb 2023 19:32:56 &#43;0800</pubDate>
@@ -2379,14 +2395,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/u2-net/</guid>
   <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
-</item>
-<item>
-  <title>Attention UNet</title>
-  <link>https://shuai06.github.io/attention-unet/</link>
-  <pubDate>Mon, 10 Oct 2022 10:33:04 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/attention-unet/</guid>
-  <description><![CDATA[论文简介 论文地址：https://arxiv.org/abs/1804.03999 出自于MIDL2018(深度学习医学影像会议), 论文中提出]]></description>
 </item>
 </channel>
 </rss>
