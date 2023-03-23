@@ -4,7 +4,7 @@
     <link>https://shuai06.github.io/posts/</link>
     <description>所有文章 | 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 16 Mar 2023 19:53:52 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>docker安装</title>
   <link>https://shuai06.github.io/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
   <pubDate>Fri, 09 Mar 2018 10:47:44 &#43;0800</pubDate>
@@ -2165,6 +2165,14 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>自己搭建dnslog平台</title>
+  <link>https://shuai06.github.io/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAdnslog%E5%B9%B3%E5%8F%B0/</link>
+  <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAdnslog%E5%B9%B3%E5%8F%B0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>python-XPath</title>
   <link>https://shuai06.github.io/python-xpath/</link>
   <pubDate>Wed, 19 Feb 2020 19:58:52 &#43;0800</pubDate>
@@ -2325,6 +2333,14 @@
   <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
 </item>
 <item>
+  <title>自己搭建dnslog平台</title>
+  <link>https://shuai06.github.io/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAdnslog%E5%B9%B3%E5%8F%B0/</link>
+  <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAdnslog%E5%B9%B3%E5%8F%B0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>稀疏数组</title>
   <link>https://shuai06.github.io/%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84/</link>
   <pubDate>Thu, 16 Mar 2023 19:53:52 &#43;0800</pubDate>
@@ -2395,14 +2411,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/torch-argmax-%E5%B0%8F%E8%AE%B0/</guid>
   <description><![CDATA[最近碰到torch.argmax的场景，就在这里简单记录一下。这里分二维和三维及以上记录 二维 1 2 3 4 5 6 7 8 9 &gt;&gt;&gt; a = torch.rand(15).reshape(3,5) &gt;&gt;&gt; a tensor([[0.7237, 0.6488, 0.2557, 0.0333, 0.4103], [0.8674, 0.7288, 0.3758, 0.6329,]]></description>
-</item>
-<item>
-  <title>PyTorch模型文件.pth浅析</title>
-  <link>https://shuai06.github.io/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/</link>
-  <pubDate>Fri, 21 Oct 2022 09:16:40 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/pytorch%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6-pth/</guid>
-  <description><![CDATA[保存模型 在pytorch进行模型保存的时候，一般有两种保存方式: 一种是保存整个模型 另一种是只保存模型的参数 1 2 torch.save(model.state_dict(), &#34;my_model.pth&#34;) # 只保存模型的参数 torch.save(model, &#34;my_model.pth&#34;) # 保]]></description>
 </item>
 </channel>
 </rss>
