@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Categories - 分类 - 剑胆琴心</title>
+    <link>https://shuai06.github.io/categories/</link>
+    <description>Categories - 分类 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+  <title>渗透测试</title>
+  <link>https://shuai06.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+  <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Java</title>
+  <link>https://shuai06.github.io/categories/java/</link>
+  <pubDate>Thu, 16 Mar 2023 19:53:52 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/java/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>AI</title>
+  <link>https://shuai06.github.io/categories/ai/</link>
+  <pubDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/ai/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>draft</title>
+  <link>https://shuai06.github.io/categories/draft/</link>
+  <pubDate>Sat, 18 Feb 2023 19:32:56 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/draft/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>工具</title>
+  <link>https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/</link>
+  <pubDate>Mon, 06 Feb 2023 22:36:17 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E5%B7%A5%E5%85%B7/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>科研</title>
+  <link>https://shuai06.github.io/categories/%E7%A7%91%E7%A0%94/</link>
+  <pubDate>Sat, 17 Sep 2022 17:20:03 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E7%A7%91%E7%A0%94/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Python</title>
+  <link>https://shuai06.github.io/categories/python/</link>
+  <pubDate>Sat, 03 Sep 2022 10:43:30 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/python/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>数学</title>
+  <link>https://shuai06.github.io/categories/%E6%95%B0%E5%AD%A6/</link>
+  <pubDate>Sun, 17 Jul 2022 09:03:37 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E6%95%B0%E5%AD%A6/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>办公</title>
+  <link>https://shuai06.github.io/categories/%E5%8A%9E%E5%85%AC/</link>
+  <pubDate>Tue, 10 May 2022 21:53:44 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E5%8A%9E%E5%85%AC/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>计算机网络</title>
+  <link>https://shuai06.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</link>
+  <pubDate>Sat, 30 Apr 2022 23:19:55 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

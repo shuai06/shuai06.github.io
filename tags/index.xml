@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Tags - 标签 - 剑胆琴心</title>
+    <link>https://shuai06.github.io/tags/</link>
+    <description>Tags - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+  <title>dnslog</title>
+  <link>https://shuai06.github.io/tags/dnslog/</link>
+  <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/dnslog/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>渗透测试</title>
+  <link>https://shuai06.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
+  <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Java学习</title>
+  <link>https://shuai06.github.io/tags/java%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Thu, 16 Mar 2023 19:53:52 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/java%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>稀疏矩阵</title>
+  <link>https://shuai06.github.io/tags/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5/</link>
+  <pubDate>Thu, 16 Mar 2023 19:53:52 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>常识</title>
+  <link>https://shuai06.github.io/tags/%E5%B8%B8%E8%AF%86/</link>
+  <pubDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/%E5%B8%B8%E8%AF%86/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>深度学习</title>
+  <link>https://shuai06.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Thu, 09 Mar 2023 21:53:22 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>draft</title>
+  <link>https://shuai06.github.io/tags/draft/</link>
+  <pubDate>Sat, 18 Feb 2023 19:32:56 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/draft/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>Authz</title>
+  <link>https://shuai06.github.io/tags/authz/</link>
+  <pubDate>Sat, 11 Feb 2023 20:13:35 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/authz/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>burp插件</title>
+  <link>https://shuai06.github.io/tags/burp%E6%8F%92%E4%BB%B6/</link>
+  <pubDate>Sat, 11 Feb 2023 20:13:35 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/burp%E6%8F%92%E4%BB%B6/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>未授权</title>
+  <link>https://shuai06.github.io/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/</link>
+  <pubDate>Sat, 11 Feb 2023 20:13:35 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/tags/%E6%9C%AA%E6%8E%88%E6%9D%83/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
