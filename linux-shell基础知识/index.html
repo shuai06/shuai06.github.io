@@ -9,14 +9,15 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="shell脚本的一些基本知识" /><meta name="keywords" content='Linux, Shell' /><meta itemprop="name" content="Linux Shell基础知识">
 <meta itemprop="description" content="shell脚本的一些基本知识"><meta itemprop="datePublished" content="2020-03-16T17:01:17+08:00" />
-<meta itemprop="dateModified" content="2023-07-20T12:07:19+00:00" />
+<meta itemprop="dateModified" content="2023-11-24T14:08:27+00:00" />
 <meta itemprop="wordCount" content="17282"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="Linux,Shell," /><meta property="og:title" content="Linux Shell基础知识" />
 <meta property="og:description" content="shell脚本的一些基本知识" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-16T17:01:17+08:00" />
-<meta property="article:modified_time" content="2023-07-20T12:07:19+00:00" />
+<meta property="article:modified_time" content="2023-11-24T14:08:27+00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +41,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "Linux, Shell","wordcount":  17282 ,
-    "url": "https:\/\/shuai06.github.io\/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86\/","datePublished": "2020-03-16T17:01:17+08:00","dateModified": "2023-07-20T12:07:19+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/linux-shell%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86\/","datePublished": "2020-03-16T17:01:17+08:00","dateModified": "2023-11-24T14:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -1086,7 +1087,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 引用</span>
 </span></span><span class="line"><span class="cl">1. $变量
-</span></span><span class="line"><span class="cl">2. <span class="si">${</span><span class="p">变量</span><span class="si">}</span>   <span class="c1"># 大括号简单理解为：防止歧义</span>
+</span></span><span class="line"><span class="cl">2. <span class="si">${</span><span class="nv">变量</span><span class="si">}</span>   <span class="c1"># 大括号简单理解为：防止歧义</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h5 id="变量的运算">变量的运算</h5>
@@ -1245,12 +1246,12 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 没赋值或者为空，就可以替代；如果变量之前有值就不能替代</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">### 拓展：</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名+新变量值</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名:+新变量值</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名=新变量值</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名:=新变量值</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名?新变量值</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="p">变量名:?新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">+新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">:+新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">=新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">:=新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">?新变量值</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">变量名</span><span class="p">:?新变量值</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#### 自增自减</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># i++</span>
@@ -3263,7 +3264,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">do</span>
 </span></span><span class="line"><span class="cl">	<span class="nv">fac</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$fac</span>*<span class="nv">$i</span><span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="k">done</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$num</span><span class="s2">的阶乘:</span><span class="nv">$fac</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$num的阶乘</span><span class="s2">:</span><span class="nv">$fac</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="nv">num</span><span class="o">=</span><span class="m">5</span> <span class="c1"># 调用之前先定义变量</span>
 </span></span><span class="line"><span class="cl">factorial
@@ -4758,7 +4759,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-07-20&#32;12:07:19>更新于 2023-07-20&nbsp;</span>
+        <span title=2023-11-24&#32;14:08:27>更新于 2023-11-24&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -4783,7 +4784,7 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>

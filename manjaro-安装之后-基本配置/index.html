@@ -9,14 +9,15 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="Manjaro 安装之后 基本配置 配置国内源 1 sudo pacman-mirrors -i -c China -m rank #弹出来框，我选择的清华的源 升级系统 1 sudo pacman -Syy &amp;&amp; sudo pacam -Syyu 安装vim 1 sudo pacman -S vim 添加arch源 1 2 sudo vim /etc/pacman.conf" /><meta name="keywords" content='Manjaro, Linux' /><meta itemprop="name" content="Manjaro 安装之后 基本配置">
 <meta itemprop="description" content="Manjaro 安装之后 基本配置 配置国内源 1 sudo pacman-mirrors -i -c China -m rank #弹出来框，我选择的清华的源 升级系统 1 sudo pacman -Syy &amp;&amp; sudo pacam -Syyu 安装vim 1 sudo pacman -S vim 添加arch源 1 2 sudo vim /etc/pacman.conf"><meta itemprop="datePublished" content="2019-05-05T11:30:44+08:00" />
-<meta itemprop="dateModified" content="2023-07-20T12:07:19+00:00" />
+<meta itemprop="dateModified" content="2023-11-24T14:08:27+00:00" />
 <meta itemprop="wordCount" content="2290"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="Manjaro,Linux," /><meta property="og:title" content="Manjaro 安装之后 基本配置" />
 <meta property="og:description" content="Manjaro 安装之后 基本配置 配置国内源 1 sudo pacman-mirrors -i -c China -m rank #弹出来框，我选择的清华的源 升级系统 1 sudo pacman -Syy &amp;&amp; sudo pacam -Syyu 安装vim 1 sudo pacman -S vim 添加arch源 1 2 sudo vim /etc/pacman.conf" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-05-05T11:30:44+08:00" />
-<meta property="article:modified_time" content="2023-07-20T12:07:19+00:00" />
+<meta property="article:modified_time" content="2023-11-24T14:08:27+00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +41,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "Manjaro, Linux","wordcount":  2290 ,
-    "url": "https:\/\/shuai06.github.io\/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE\/","datePublished": "2019-05-05T11:30:44+08:00","dateModified": "2023-07-20T12:07:19+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/manjaro-%E5%AE%89%E8%A3%85%E4%B9%8B%E5%90%8E-%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE\/","datePublished": "2019-05-05T11:30:44+08:00","dateModified": "2023-11-24T14:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -375,11 +376,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ sudo vim /usr/bin/wps     # 编辑wps配置文件
-</span></span><span class="line"><span class="cl"># 在 紧跟#!/bin/bash后添加下列三行
-</span></span><span class="line"><span class="cl">export GTK_IM_MODULE=fcitx
-</span></span><span class="line"><span class="cl">export QT_IM_MODULE=fcitx
-</span></span><span class="line"><span class="cl">export XMODIFIERS=&#34;@im=fcitx&#34;
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">vim</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">wps</span>     <span class="c1"># 编辑wps配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 紧跟#!/bin/bash后添加下列三行</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s2">&#34;@im=fcitx&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>注销后再次登录输入法生效。</p>
@@ -422,13 +423,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 配置环境变量
-</span></span><span class="line"><span class="cl"># sudo vim /etc/profile #编辑文件
-</span></span><span class="line"><span class="cl"># 在文件末尾处追加下列几行
-</span></span><span class="line"><span class="cl">export JAVA_HOME=你的jdk解压后的绝对路径 
-</span></span><span class="line"><span class="cl">export JRE_HOME=${JAVA_HOME}/jre  
-</span></span><span class="line"><span class="cl">export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
-</span></span><span class="line"><span class="cl">export  PATH=${JAVA_HOME}/bin:$PATH
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1"># 配置环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo vim /etc/profile #编辑文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在文件末尾处追加下列几行</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">JAVA_HOME</span><span class="o">=</span><span class="err">你的</span><span class="n">jdk解压后的绝对路径</span> 
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">JRE_HOME</span><span class="o">=$</span><span class="p">{</span><span class="n">JAVA_HOME</span><span class="p">}</span><span class="o">/</span><span class="n">jre</span>  
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">CLASSPATH</span><span class="o">=.</span><span class="p">:</span><span class="o">$</span><span class="p">{</span><span class="n">JAVA_HOME</span><span class="p">}</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="o">$</span><span class="p">{</span><span class="n">JRE_HOME</span><span class="p">}</span><span class="o">/</span><span class="n">lib</span>  
+</span></span><span class="line"><span class="cl"><span class="k">export</span>  <span class="n">PATH</span><span class="o">=$</span><span class="p">{</span><span class="n">JAVA_HOME</span><span class="p">}</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="o">$</span><span class="n">PATH</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>安装终端显示信息neofetch(装b神器,安装screenfetch也可)</strong></p>
@@ -467,9 +468,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">export GTK_IM_MODULE=fcitx
-</span></span><span class="line"><span class="cl">export QT_IM_MODULE=fcitx
-</span></span><span class="line"><span class="cl">export XMODIFIERS=&#34;@im=fcitx&#34;
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">GTK_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">QT_IM_MODULE</span><span class="o">=</span><span class="n">fcitx</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">XMODIFIERS</span><span class="o">=</span><span class="s2">&#34;@im=fcitx&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>安装Deepin Terminal(终端)</strong>，安装完成之后，自行在deepin-terminal更改显示字体</p>
@@ -512,14 +513,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ sudo pacman -S mariadb mariadb-clients
-</span></span><span class="line"><span class="cl"># 安装成功后，根据提示，输入下列指令初始化MariaDb数据库
-</span></span><span class="line"><span class="cl">$ sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-</span></span><span class="line"><span class="cl"># 一番信息自动输出完成后，执行以下代码
-</span></span><span class="line"><span class="cl">$ sudo systemctl start mysqld # 启动MariaDb
-</span></span><span class="line"><span class="cl">$ mysqladmin -u root password &#34;root&#34; # 为root、用户添加密码
-</span></span><span class="line"><span class="cl">$ sudo systemctl enable mysqld # 设置mariaDb开机自启
-</span></span><span class="line"><span class="cl">$ mysql -uroot -p # 输入设置的的密码，登录数据库
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">mariadb</span> <span class="n">mariadb</span><span class="o">-</span><span class="n">clients</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装成功后，根据提示，输入下列指令初始化MariaDb数据库</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">mysql_install_db</span> <span class="o">--</span><span class="n">user</span><span class="o">=</span><span class="n">mysql</span> <span class="o">--</span><span class="n">basedir</span><span class="o">=/</span><span class="n">usr</span> <span class="o">--</span><span class="n">datadir</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 一番信息自动输出完成后，执行以下代码</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">start</span> <span class="n">mysqld</span> <span class="c1"># 启动MariaDb</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">mysqladmin</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="n">password</span> <span class="s2">&#34;root&#34;</span> <span class="c1"># 为root、用户添加密码</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">mysqld</span> <span class="c1"># 设置mariaDb开机自启</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">mysql</span> <span class="o">-</span><span class="n">uroot</span> <span class="o">-</span><span class="n">p</span> <span class="c1"># 输入设置的的密码，登录数据库</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>安装配置oh my zsh</strong>(听说是bash的升级版，装*专用，我就先不弄了)</p>
@@ -530,9 +531,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ sudo pacman -S zsh
-</span></span><span class="line"><span class="cl">$ sh -c &#34;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34; # 下载并配置ohmyzsh
-</span></span><span class="line"><span class="cl">$ chsh -s /bin/zsh  #更换默认bash，重启后生效
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sudo</span> <span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">zsh</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&#34;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&#34;</span> <span class="c1"># 下载并配置ohmyzsh</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">chsh</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zsh</span>  <span class="c1">#更换默认bash，重启后生效</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>卸载Manjaro自带的一些没用的软件</strong></p>
@@ -740,7 +741,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">du -t 100M /var
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">du</span> <span class="o">-</span><span class="n">t</span> <span class="mi">100</span><span class="n">M</span> <span class="o">/</span><span class="k">var</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>或</p>
@@ -801,7 +802,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-07-20&#32;12:07:19>更新于 2023-07-20&nbsp;</span>
+        <span title=2023-11-24&#32;14:08:27>更新于 2023-11-24&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -826,7 +827,7 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>

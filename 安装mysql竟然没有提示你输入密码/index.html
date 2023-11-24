@@ -9,14 +9,15 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="Mysql5.7这个版本的root密码在/etc/mysql/debian.cnf这个文件里面 使用sudo cat /etc/mysql/debia" /><meta name="keywords" content='mysql, 数据库' /><meta itemprop="name" content="安装mysql竟然没让你输入密码">
 <meta itemprop="description" content="Mysql5.7这个版本的root密码在/etc/mysql/debian.cnf这个文件里面 使用sudo cat /etc/mysql/debia"><meta itemprop="datePublished" content="2019-03-01T13:20:44+08:00" />
-<meta itemprop="dateModified" content="2023-07-20T12:07:19+00:00" />
+<meta itemprop="dateModified" content="2023-11-24T14:08:27+00:00" />
 <meta itemprop="wordCount" content="343"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="mysql,数据库," /><meta property="og:title" content="安装mysql竟然没让你输入密码" />
 <meta property="og:description" content="Mysql5.7这个版本的root密码在/etc/mysql/debian.cnf这个文件里面 使用sudo cat /etc/mysql/debia" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/%E5%AE%89%E8%A3%85mysql%E7%AB%9F%E7%84%B6%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA%E4%BD%A0%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-03-01T13:20:44+08:00" />
-<meta property="article:modified_time" content="2023-07-20T12:07:19+00:00" />
+<meta property="article:modified_time" content="2023-11-24T14:08:27+00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +41,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "mysql, 数据库","wordcount":  343 ,
-    "url": "https:\/\/shuai06.github.io\/%E5%AE%89%E8%A3%85mysql%E7%AB%9F%E7%84%B6%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA%E4%BD%A0%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81\/","datePublished": "2019-03-01T13:20:44+08:00","dateModified": "2023-07-20T12:07:19+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/%E5%AE%89%E8%A3%85mysql%E7%AB%9F%E7%84%B6%E6%B2%A1%E6%9C%89%E6%8F%90%E7%A4%BA%E4%BD%A0%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81\/","datePublished": "2019-03-01T13:20:44+08:00","dateModified": "2023-11-24T14:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -231,16 +232,16 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[client]
-</span></span><span class="line"><span class="cl">host     = localhost
-</span></span><span class="line"><span class="cl">user     = debian-sys-maint
-</span></span><span class="line"><span class="cl">password = M1WVft5X8S80rhE0
-</span></span><span class="line"><span class="cl">socket   = /var/run/mysqld/mysqld.sock
-</span></span><span class="line"><span class="cl">[mysql_upgrade]
-</span></span><span class="line"><span class="cl">host     = localhost
-</span></span><span class="line"><span class="cl">user     = debian-sys-maint
-</span></span><span class="line"><span class="cl">password = M1WVft5X8S80rhE0
-</span></span><span class="line"><span class="cl">socket   = /var/run/mysqld/mysqld.sock
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">client</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">host</span>     <span class="o">=</span> <span class="n">localhost</span>
+</span></span><span class="line"><span class="cl"><span class="n">user</span>     <span class="o">=</span> <span class="n">debian</span><span class="o">-</span><span class="n">sys</span><span class="o">-</span><span class="n">maint</span>
+</span></span><span class="line"><span class="cl"><span class="n">password</span> <span class="o">=</span> <span class="n">M1WVft5X8S80rhE0</span>
+</span></span><span class="line"><span class="cl"><span class="n">socket</span>   <span class="o">=</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">mysqld</span><span class="o">/</span><span class="n">mysqld</span><span class="o">.</span><span class="n">sock</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">mysql_upgrade</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">host</span>     <span class="o">=</span> <span class="n">localhost</span>
+</span></span><span class="line"><span class="cl"><span class="n">user</span>     <span class="o">=</span> <span class="n">debian</span><span class="o">-</span><span class="n">sys</span><span class="o">-</span><span class="n">maint</span>
+</span></span><span class="line"><span class="cl"><span class="n">password</span> <span class="o">=</span> <span class="n">M1WVft5X8S80rhE0</span>
+</span></span><span class="line"><span class="cl"><span class="n">socket</span>   <span class="o">=</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">mysqld</span><span class="o">/</span><span class="n">mysqld</span><span class="o">.</span><span class="n">sock</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>1、使用 mysql -u用户名 -p密码进行登陆，</p>
@@ -294,7 +295,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-07-20&#32;12:07:19>更新于 2023-07-20&nbsp;</span>
+        <span title=2023-11-24&#32;14:08:27>更新于 2023-11-24&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -319,7 +320,7 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>

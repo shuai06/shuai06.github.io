@@ -4,7 +4,7 @@
     <link>https://shuai06.github.io/posts/</link>
     <description>所有文章 | 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Jul 2023 20:04:29 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 24 Nov 2023 22:00:43 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/posts/" rel="self" type="application/rss+xml" /><item>
   <title>docker安装</title>
   <link>https://shuai06.github.io/docker%E7%9A%84%E5%AE%89%E8%A3%85/</link>
   <pubDate>Fri, 09 Mar 2018 10:47:44 &#43;0800</pubDate>
@@ -1346,7 +1346,7 @@
   <pubDate>Fri, 23 Jul 2021 09:37:17 &#43;0800</pubDate>
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/windows%E6%9B%B4%E6%8D%A2%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E6%A0%87/</guid>
-  <description><![CDATA[前景提示 小学弟要我写这种奇奇怪怪的东西，奇奇怪怪的东西&hellip;. 😆 好了，那就写写吧，谁让我这么可爱呢（小菜鸡瑟瑟发抖） 😅 正题 先画个界]]></description>
+  <description><![CDATA[前景提示 小学弟要我写这种奇奇怪怪的东西，奇奇怪怪的东西&hellip;. &#x1f606; 好了，那就写写吧，谁让我这么可爱呢（小菜鸡瑟瑟发抖） &#x1f605; 正题 先画个界]]></description>
 </item>
 <item>
   <title>准备迁移博客啦</title>
@@ -2181,6 +2181,22 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>CommonsCollections1利用链学习</title>
+  <link>https://shuai06.github.io/commonscollections1%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Fri, 24 Nov 2023 21:43:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/commonscollections1%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>CommonsCollections2利用链学习</title>
+  <link>https://shuai06.github.io/commonscollections2%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Fri, 24 Nov 2023 22:00:43 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/commonscollections2%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>python-XPath</title>
   <link>https://shuai06.github.io/python-xpath/</link>
   <pubDate>Wed, 19 Feb 2020 19:58:52 &#43;0800</pubDate>
@@ -2341,6 +2357,22 @@
   <description><![CDATA[简介 设计了一个简单而强大的深度网络架构U2-Net，用于显著目标检测(SOD)。我们的U2-Net的体系结构是一个两层嵌套的U结构。 该设计有]]></description>
 </item>
 <item>
+  <title>CommonsCollections2利用链学习</title>
+  <link>https://shuai06.github.io/commonscollections2%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Fri, 24 Nov 2023 22:00:43 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/commonscollections2%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
+  <title>CommonsCollections1利用链学习</title>
+  <link>https://shuai06.github.io/commonscollections1%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</link>
+  <pubDate>Fri, 24 Nov 2023 21:43:01 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/commonscollections1%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>基于SpringBoot和Vue3的前后端分离博客</title>
   <link>https://shuai06.github.io/%E5%9F%BA%E4%BA%8Espringboot%E5%92%8Cvue3%E7%9A%84%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%8D%9A%E5%AE%A2/</link>
   <pubDate>Thu, 20 Jul 2023 20:04:29 &#43;0800</pubDate>
@@ -2403,22 +2435,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/ssrf%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[SSRF简介 SSRF(server-site request forge，服务端请求伪造)是一种请求伪造，由服务器发起请求的安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部]]></description>
-</item>
-<item>
-  <title>Burp插件推荐-js信息搜集插件</title>
-  <link>https://shuai06.github.io/burp%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%901/</link>
-  <pubDate>Tue, 07 Feb 2023 10:54:38 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/burp%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%901/</guid>
-  <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>使用GithubAction部署Hugo博客</title>
-  <link>https://shuai06.github.io/%E4%BD%BF%E7%94%A8githubaction%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/</link>
-  <pubDate>Mon, 06 Feb 2023 22:36:17 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/%E4%BD%BF%E7%94%A8githubaction%E9%83%A8%E7%BD%B2hugo%E5%8D%9A%E5%AE%A2/</guid>
-  <description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>

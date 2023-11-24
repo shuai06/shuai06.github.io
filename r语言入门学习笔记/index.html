@@ -9,14 +9,15 @@
 <meta name="author-link" content="http://shuai06.github.io">
 <meta name="description" content="R语言起源 R语言由新西兰奥克兰大学Ross Ihaka和Ribert Gentlenman两人共同发明，其词法和语法分别源自Scheme和S语言" /><meta name="keywords" content='R语言, 编程语言, 科研' /><meta itemprop="name" content="R语言入门学习篇一">
 <meta itemprop="description" content="R语言起源 R语言由新西兰奥克兰大学Ross Ihaka和Ribert Gentlenman两人共同发明，其词法和语法分别源自Scheme和S语言"><meta itemprop="datePublished" content="2022-04-15T17:34:43+08:00" />
-<meta itemprop="dateModified" content="2023-07-20T12:07:19+00:00" />
+<meta itemprop="dateModified" content="2023-11-24T14:08:27+00:00" />
 <meta itemprop="wordCount" content="10203"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
 <meta itemprop="keywords" content="R语言,编程语言,科研," /><meta property="og:title" content="R语言入门学习篇一" />
 <meta property="og:description" content="R语言起源 R语言由新西兰奥克兰大学Ross Ihaka和Ribert Gentlenman两人共同发明，其词法和语法分别源自Scheme和S语言" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shuai06.github.io/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-15T17:34:43+08:00" />
-<meta property="article:modified_time" content="2023-07-20T12:07:19+00:00" />
+<meta property="article:modified_time" content="2023-11-24T14:08:27+00:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
@@ -40,7 +41,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "R语言, 编程语言, 科研","wordcount":  10203 ,
-    "url": "https:\/\/shuai06.github.io\/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2022-04-15T17:34:43+08:00","dateModified": "2023-07-20T12:07:19+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/r%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2022-04-15T17:34:43+08:00","dateModified": "2023-11-24T14:08:27+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -1306,9 +1307,9 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">myFUnction</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="kc">...</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">myFUnction</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="kc">...</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">  <span class="n">statements</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">return</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1332,8 +1333,8 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1"># 定义了一个函数</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># switch，如果形参type值为long，执行对应部分</span>
-</span></span><span class="line"><span class="cl"><span class="n">mydate</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">type</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">switch</span><span class="p">(</span><span class="n">type</span><span class="p">,</span>	
+</span></span><span class="line"><span class="cl"><span class="n">mydate</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">type</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">switch</span><span class="p">(</span><span class="n">type</span><span class="p">,</span>	
 </span></span><span class="line"><span class="cl">        <span class="n">long</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="nf">Sys.time</span><span class="p">(),</span> <span class="s">&#34;%A %B %d %Y&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="n">short</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="nf">Sys.time</span><span class="p">(),</span> <span class="s">&#34;%m-%d-%y&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">        <span class="nf">cat</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="s">&#34;is not reccongnized type\n&#34;</span><span class="p">)</span>
@@ -1362,12 +1363,12 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">sum</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">num</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">sum</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">num</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">  
-</span></span><span class="line"><span class="cl">  <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">num</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">num</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="nf">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">fix</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="c1"># 会进入编辑器中，打开后给x赋初值：在for循环前 x &lt;- 0</span>
@@ -2393,12 +2394,12 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1"># for</span>
-</span></span><span class="line"><span class="cl"><span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>  <span class="c1"># 循环1-5</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;hello&#34;</span><span class="p">)</span>  <span class="c1"># 循环1-5</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># while</span>
 </span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">&lt;-</span> <span class="m">5</span>
-</span></span><span class="line"><span class="cl"><span class="nf">while</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="n">x</span><span class="o">&lt;-</span> <span class="n">x</span><span class="m">-1</span><span class="p">}</span> <span class="c1"># 语句之间用分号</span>
+</span></span><span class="line"><span class="cl"><span class="kr">while</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span><span class="nf">print</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">);</span> <span class="n">x</span><span class="o">&lt;-</span> <span class="n">x</span><span class="m">-1</span><span class="p">}</span> <span class="c1"># 语句之间用分号</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>条件执行：</p>
@@ -2420,7 +2421,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1"># if-else</span>
-</span></span><span class="line"><span class="cl"><span class="nf">if</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="m">1</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;male&#34;</span><span class="p">)</span> <span class="n">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;female&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="m">1</span><span class="p">)</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;male&#34;</span><span class="p">)</span> <span class="kr">else</span> <span class="nf">print</span><span class="p">(</span><span class="s">&#34;female&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ifelse  满足条件执行1，不满足执行2</span>
@@ -2430,8 +2431,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># switch</span>
 </span></span><span class="line"><span class="cl"><span class="n">felling</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sad&#34;</span><span class="p">,</span> <span class="s">&#34;glad&#34;</span><span class="p">,</span> <span class="s">&#34;afraid&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">felling</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="nf">switch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">glad</span> <span class="o">=</span> <span class="s">&#34;我很开心&#34;</span><span class="p">,</span> <span class="n">afraid</span> <span class="o">=</span> <span class="s">&#34;害怕&#34;</span><span class="p">,</span> <span class="n">sad</span><span class="o">=</span><span class="s">&#34;悲伤&#34;</span><span class="p">)</span>  <span class="c1"># 如果i等于glad...</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="n">felling</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="kr">switch</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">glad</span> <span class="o">=</span> <span class="s">&#34;我很开心&#34;</span><span class="p">,</span> <span class="n">afraid</span> <span class="o">=</span> <span class="s">&#34;害怕&#34;</span><span class="p">,</span> <span class="n">sad</span><span class="o">=</span><span class="s">&#34;悲伤&#34;</span><span class="p">)</span>  <span class="c1"># 如果i等于glad...</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>转置</p>
@@ -3061,7 +3062,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2023-07-20&#32;12:07:19>更新于 2023-07-20&nbsp;</span>
+        <span title=2023-11-24&#32;14:08:27>更新于 2023-11-24&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -3086,7 +3087,7 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.120.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
