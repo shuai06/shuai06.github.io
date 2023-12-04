@@ -15,7 +15,31 @@ javasist用来动态修改java字节码的助手
 
 
 
-> 在cc4.0中，cc1也可以用
+> 在cc4.0中，cc1链也可以用
+
+
+
+环境：
+
+- [JDK8u65](https://www.oracle.com/cn/java/technologies/javase/javase8-archive-downloads.html)
+
+- [openJDK 8u65](http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/rev/af660750b2f4)
+
+- Maven 3.6.3(其余版本可以先试试，不行再降版本)
+
+- Commons-Collections **4.0**
+
+  
+
+Maven 下载 Commons-Collections4 依赖：
+
+```xml
+<dependency>  
+ <groupId>org.apache.commons</groupId>  
+ <artifactId>commons-collections4</artifactId>  
+ <version>4.0</version>  
+</dependency>
+```
 
 
 
@@ -670,6 +694,7 @@ public class CC2 {
 
 
 
+CC2 链区别与其他链子一点的区别在于**没有用** **Transformer** **数组**。不用数组是因为比如 shiro 当中的漏洞，它会重写很多动态加载数组的方法，这就可能会导致我们的 EXP 无法通过数组实现。
 
 
 
@@ -679,10 +704,11 @@ public class CC2 {
 
 
 
+## 总结
 
 
 
-
+![image](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image.png)
 
 
 
