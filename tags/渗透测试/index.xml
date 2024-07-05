@@ -4,7 +4,15 @@
     <link>https://shuai06.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</link>
     <description>渗透测试 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Jul 2024 22:01:02 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml" /><item>
+  <title>XXE漏洞</title>
+  <link>https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/</link>
+  <pubDate>Fri, 05 Jul 2024 22:01:02 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/</guid>
+  <description><![CDATA[虽然然XXE漏洞很基础，但是很久不用掌握的也不太好，所以借此机会重新复习一下 XML XML全称“可扩展标记语言”（extensible markup langu]]></description>
+</item>
+<item>
   <title>自己搭建dnslog平台</title>
   <link>https://shuai06.github.io/%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BAdnslog%E5%B9%B3%E5%8F%B0/</link>
   <pubDate>Thu, 23 Mar 2023 15:12:01 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/xss%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[由于时间和篇幅，只做浅析，往后时间充裕了再细细研究 简介 XSS（cross site scripting）跨站脚本为了不与网页中层叠样式表（css）混淆]]></description>
-</item>
-<item>
-  <title>URL跳转漏洞</title>
-  <link>https://shuai06.github.io/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</link>
-  <pubDate>Mon, 17 Jan 2022 18:08:16 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/url%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E/</guid>
-  <description><![CDATA[漏洞简介 **URL跳转：**目前很多Web应用因为业务需要，需要与内部的其他服务或者第三方的服务进行交互，这样就需要重定向的功能，由当前网页]]></description>
 </item>
 </channel>
 </rss>
