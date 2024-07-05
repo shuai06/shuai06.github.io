@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>requests - 标签 - 剑胆琴心</title>
+    <title>Requests - 标签 - 剑胆琴心</title>
     <link>https://shuai06.github.io/tags/requests/</link>
-    <description>requests - 标签 - 剑胆琴心</description>
+    <description>Requests - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 17 Feb 2020 18:07:34 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/requests/" rel="self" type="application/rss+xml" /><item>
   <title>python之requests库</title>

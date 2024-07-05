@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>usermin - 标签 - 剑胆琴心</title>
+    <title>Usermin - 标签 - 剑胆琴心</title>
     <link>https://shuai06.github.io/tags/usermin/</link>
-    <description>usermin - 标签 - 剑胆琴心</description>
+    <description>Usermin - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 31 Jul 2020 14:38:04 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/usermin/" rel="self" type="application/rss+xml" /><item>
   <title>ubuntu server-远程管理 Webmin&amp;usermin&amp;Xrdp</title>

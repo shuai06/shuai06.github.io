@@ -45,14 +45,6 @@
   <description><![CDATA[原理 指应用有时需要调用一些执行系统命令的函数，如PHP中的system、exec、shell_exec、passthru、popen、pro]]></description>
 </item>
 <item>
-  <title>XXE漏洞</title>
-  <link>https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/</link>
-  <pubDate>Mon, 17 Jan 2022 18:02:45 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/xxe%E6%BC%8F%E6%B4%9E/</guid>
-  <description><![CDATA[XML XML全称“可扩展标记语言”（extensible markup language），XML是一种用于存储和传输数据的语言。与HTML一样，XML使用标]]></description>
-</item>
-<item>
   <title>【PHP代码审计】 那些年我们一起挖掘SQL注入--集合</title>
   <link>https://shuai06.github.io/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1-%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E4%B8%80%E8%B5%B7%E6%8C%96%E6%8E%98sql%E6%B3%A8%E5%85%A5-%E9%9B%86%E5%90%88/</link>
   <pubDate>Fri, 17 Apr 2020 20:10:37 &#43;0800</pubDate>
