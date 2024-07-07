@@ -261,6 +261,20 @@ CommonsMultipartResolver
 
 
 
+
+
+
+
+note：解决IDEA下debug断点进不去：
+
+https://blog.csdn.net/xujie102360/article/details/81476774
+
+https://blog.csdn.net/searlas/article/details/80826777
+
+![image-20240707110830424](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707110830424.png)
+
+
+
 ## SQL注入
 
 已知系统使用的是mybatis，mybatis最常见的注入就是错误使用`${}`导致，
