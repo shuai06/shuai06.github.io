@@ -21,7 +21,11 @@
 
 ## SQL注入
 
+存在的sql注入较多
 
+
+
+### 1
 
 jfinal 框架下的预处理为如下，使用占位符：
 
@@ -58,6 +62,14 @@ http://localhost:8080/admin/admin?name=1
 ```
 
 ![image-20240707190900237](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707190900237.png)
+
+
+
+
+
+
+
+
 
 
 
@@ -226,6 +238,10 @@ http://192.168.3.214:8080/admin/template/delete?fileName=../../../../../../../..
 
 
 
+同理，`/admin/template/save`也一样
+
+
+
 
 
 
@@ -243,6 +259,16 @@ http://192.168.3.214:8080/ajax/html?html=../../../../../../../../../../../../../
 目录穿越 直接渲染读取:
 
 ![image-20240707174123502](https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240707174123502.png)
+
+
+
+
+
+
+
+
+
+
 
 
 

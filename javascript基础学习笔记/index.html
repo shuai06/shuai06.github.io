@@ -1,0 +1,2716 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>JavaScript基础学习笔记 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://shuai06.github.io">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='JavaScript, 编程基础, 前端' />
+  <meta itemprop="name" content="JavaScript基础学习笔记">
+  <meta itemprop="description" content="剑胆琴心的技术博客">
+  <meta itemprop="datePublished" content="2024-07-08T14:39:54+08:00">
+  <meta itemprop="dateModified" content="2024-07-09T11:28:24+00:00">
+  <meta itemprop="wordCount" content="439">
+  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
+  <meta itemprop="keywords" content="JavaScript,编程基础,前端"><meta property="og:url" content="https://shuai06.github.io/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+  <meta property="og:site_name" content="剑胆琴心">
+  <meta property="og:title" content="JavaScript基础学习笔记">
+  <meta property="og:description" content="剑胆琴心的技术博客">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-08T14:39:54+08:00">
+    <meta property="article:modified_time" content="2024-07-09T11:28:24+00:00">
+    <meta property="article:tag" content="JavaScript">
+    <meta property="article:tag" content="编程基础">
+    <meta property="article:tag" content="前端">
+    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
+  <meta name="twitter:title" content="JavaScript基础学习笔记">
+  <meta name="twitter:description" content="剑胆琴心的技术博客">
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuai06.github.io/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://shuai06.github.io/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><link rel="next" href="https://shuai06.github.io/cve-2019-9827%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "JavaScript基础学习笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/shuai06.github.io\/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "JavaScript, 编程基础, 前端","wordcount":  439 ,
+    "url": "https:\/\/shuai06.github.io\/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/","datePublished": "2024-07-08T14:39:54+08:00","dateModified": "2024-07-09T11:28:24+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/shuai06.github.io\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>JavaScript基础学习笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 编程</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-08&#32;14:39:54><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-08">2024-07-08</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 439 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 1 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#javascript引入方式">JavaScript引入方式</a>
+      <ul>
+        <li><a href="#1--内部脚本">1  内部脚本</a></li>
+        <li><a href="#2-外部脚本">2 外部脚本</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础语法">基础语法</a>
+      <ul>
+        <li><a href="#书写语法">书写语法</a></li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#数据类型">数据类型</a></li>
+        <li><a href="#运算符">运算符</a>
+          <ul>
+            <li><a href="#和区别">==和===区别</a></li>
+            <li><a href="#类型转换">类型转换</a></li>
+          </ul>
+        </li>
+        <li><a href="#流程控制语句">流程控制语句</a>
+          <ul>
+            <li><a href="#if-语句">if 语句</a></li>
+            <li><a href="#switch-语句">switch 语句</a></li>
+            <li><a href="#for-循环语句">for 循环语句</a></li>
+            <li><a href="#while-循环语句">while 循环语句</a></li>
+            <li><a href="#do-while-循环语句">do while 循环语句</a></li>
+          </ul>
+        </li>
+        <li><a href="#函数">函数</a>
+          <ul>
+            <li><a href="#定义格式">定义格式</a></li>
+            <li><a href="#函数调用">函数调用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#javascript常用对象">JavaScript常用对象</a>
+      <ul>
+        <li><a href="#基本对象之array">基本对象之Array</a>
+          <ul>
+            <li><a href="#定义格式-1">定义格式</a></li>
+            <li><a href="#元素访问">元素访问</a></li>
+            <li><a href="#特点">特点</a></li>
+            <li><a href="#属性">属性</a></li>
+            <li><a href="#方法">方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#string">String</a></li>
+        <li><a href="#自定义对象">自定义对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#bom">BOM</a>
+      <ul>
+        <li><a href="#window对象">Window对象</a>
+          <ul>
+            <li><a href="#获取window对象">获取window对象:</a></li>
+            <li><a href="#window对象属性">window对象属性</a></li>
+            <li><a href="#window对象函数">window对象函数</a></li>
+          </ul>
+        </li>
+        <li><a href="#history对象">History对象</a></li>
+        <li><a href="#location对象">Location对象</a>
+          <ul>
+            <li><a href="#获取location对象">获取Location对象</a></li>
+            <li><a href="#location对象属性">Location对象属性</a></li>
+          </ul>
+        </li>
+        <li><a href="#dom">DOM</a></li>
+        <li><a href="#获取-element对象">获取 Element对象</a></li>
+        <li><a href="#html-element对象使用">HTML Element对象使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#事件">事件</a>
+      <ul>
+        <li><a href="#事件绑定">事件绑定</a></li>
+        <li><a href="#常见事件">常见事件</a></li>
+        <li><a href="#案例">案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#正则表达式">正则表达式</a>
+      <ul>
+        <li><a href="#正则对象">正则对象</a>
+          <ul>
+            <li><a href="#创建对象">创建对象</a></li>
+            <li><a href="#函数-1">函数</a></li>
+          </ul>
+        </li>
+        <li><a href="#正则表达式-1">正则表达式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="简介">简介</h2>
+<p>JavaScript 是一门跨平台、面向对象的脚本语言，而Java语言也是跨平台的、面向对象的语言，只不过Java是编译语言，是需要编译成字节码文件才能运行的；JavaScript是<strong>脚本语言，不需要编译，由浏览器直接解析并执行</strong>。JavaScript 是用来控制网页行为的，它能使网页可交互。</p>
+<p>JavaScript（简称：JS） 在 1995 年由 Brendan Eich 发明，并于 1997 年成为一部 ECMA 标准。ECMA 规定了一套标准 就叫 <code>ECMAScript</code> ，所有的客户端校验语言必须遵守这个标准，当然 JavaScript 也遵守了这个标准。ECMAScript 6 (简称<strong>ES6</strong>) 是最新的 JavaScript 版本（发布于 2015 年)。</p>
+<h2 id="javascript引入方式">JavaScript引入方式</h2>
+<p>JavaScript 引入方式就是 HTML 和 JavaScript 的结合方式。JavaScript引入方式有两种：</p>
+<ul>
+<li>内部脚本：将 JS代码定义在HTML页面中</li>
+<li>外部脚本：将 JS代码定义在外部 JS文件中，然后引入到 HTML页面中</li>
+</ul>
+<h3 id="1--内部脚本">1  内部脚本</h3>
+<p>在 HTML 中，JavaScript 代码必须位于 <code>&lt;script&gt;</code> 与 <code>&lt;/script&gt;</code> 标签之间</p>
+<p><strong>代码如下：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;hello js&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>HTML 文档中可以在任意地方，放置任意数量的<script>标签，但是一般把脚本置于 <body> 元素的底部，可改善显示速度。</p>
+<p>因为浏览器在加载页面的时候会从上往下进行加载并解析。 我们应该让用户看到页面内容，然后再展示动态的效果。</p>
+</blockquote>
+<h3 id="2-外部脚本">2 外部脚本</h3>
+<p><strong>第一步：定义外部 js 文件。如定义名为 demo.js的文件</strong></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708144702269.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708144702269.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708144702269.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708144702269.png 2x"
+    data-sizes="auto"
+    alt="image-20240708144702269"
+    title="image-20240708144702269"/></p>
+<p>demo.js 文件内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alert(&#34;hello js&#34;);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>外部脚本不能包含 <code>&lt;script&gt;</code> 标签，在js文件中直接写 js 代码即可，不要在 js文件 中写 <code>script</code> 标签</p>
+</blockquote>
+<p><strong>第二步：在页面中引入外部的js文件</strong></p>
+<p>在页面使用 <code>script</code> 标签中使用 <code>src</code> 属性指定 js 文件的 URL 路径。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../js/demo.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="基础语法">基础语法</h2>
+<h3 id="书写语法">书写语法</h3>
+<ul>
+<li>
+<p>区分大小写：与 Java 一样，变量名、函数名以及其他一切东西都是区分大小写的</p>
+</li>
+<li>
+<p>每行结尾的分号可有可无。如果一行上写多个语句时，必须加分号用来区分多个语句。</p>
+</li>
+<li>
+<p>注释</p>
+<ul>
+<li>单行注释：<code>// 注释内容</code></li>
+<li>多行注释：<code>/* 注释内容 */</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>输出语句：
+<ul>
+<li>使用 window.alert() 写入警告框</li>
+<li>使用 document.write() 写入 HTML 输出</li>
+<li>使用 console.log() 写入浏览器控制台</li>
+</ul>
+</li>
+</ul>
+<h3 id="变量">变量</h3>
+<p>JavaScript 中用 var 关键字（variable 的缩写）来声明变量。格式 <code>var 变量名 = 数据值;</code>。而在JavaScript 是一门<strong>弱类型语言</strong>，变量<strong>可以存放不同类型的值</strong>；如下在定义变量时赋值为数字数据，还可以将变量的值改为字符串类型的数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">test</span> <span class="o">=</span> <span class="s2">&#34;张三&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>js 中的<strong>变量名命名也有如下规则</strong>，和java语言基本都相同</p>
+<ul>
+<li>组成字符可以是任何字母、数字、下划线（_）或美元符号（$）</li>
+<li>数字不能开头</li>
+<li>建议使用驼峰命名</li>
+</ul>
+<p>JavaScript 中 <code>var</code> 关键字有点特殊，有以下地方和其他语言不一样</p>
+<ul>
+<li>
+<p><strong>作用域：全局变量</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span>  <span class="c1">// 在代码块中定义的age 变量，在代码块外边还可以使用
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>变量可以重复定义</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span><span class="c1">//JavaScript 会用 30 将之前 age 变量的 20 替换掉
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//打印的结果是 30
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>针对如上的问题，<strong>ECMAScript 6 新增了 <code>let </code>关键字来定义变量</strong>。它的用法类似于 <code>var</code>，但是<strong>所声明的变量，只在 <code>let</code> 关键字所在的代码块内有效，且不允许重复声明。</strong></p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果定义在作用范围之外，通过 <code>F12</code> 打开开发者模式可以看到如下错误信息：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145451922.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145451922.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145451922.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145451922.png 2x"
+    data-sizes="auto"
+    alt="image-20240708145451922"
+    title="image-20240708145451922"/></p>
+<p>如果重复定义，在IDE报错直接：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145333063.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145333063.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145333063.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145333063.png 2x"
+    data-sizes="auto"
+    alt="image-20240708145333063"
+    title="image-20240708145333063"/></p>
+<p>同时，ECMAScript 6 新增了<code> const</code>关键字，用来声明一个<strong>只读的常量</strong>。一旦声明，常量的值就不能改变。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">PI</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">PI</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145531023.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145531023.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145531023.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145531023.png 2x"
+    data-sizes="auto"
+    alt="image-20240708145531023"
+    title="image-20240708145531023"/></p>
+<h3 id="数据类型">数据类型</h3>
+<p>JavaScript 中提供了两类数据类型：原始类型 和 引用类型。</p>
+<blockquote>
+<p>使用 typeof 运算符可以获取数据类型</p>
+<p><code>alert(typeof age);</code> 以弹框的形式将 age 变量的数据类型输出</p>
+</blockquote>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145813745.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145813745.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145813745.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145813745.png 2x"
+    data-sizes="auto"
+    alt="image-20240708145813745"
+    title="image-20240708145813745"/></p>
+<p>原始数据类型：</p>
+<ul>
+<li>
+<p><strong>number</strong>：数字（整数、小数、NaN(Not a Number)）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">price</span> <span class="o">=</span> <span class="mf">99.8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">age</span><span class="p">);</span> <span class="c1">// 结果是 ： number
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">price</span><span class="p">);</span><span class="c1">// 结果是 ： number
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>==注意：== NaN是一个特殊的number类型的值，后面用到再说</p>
+</blockquote>
+</li>
+<li>
+<p><strong>string</strong>：字符、字符串，单双引皆可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">ch</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;张三&#39;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">addr</span> <span class="o">=</span> <span class="s2">&#34;北京&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">ch</span><span class="p">);</span> <span class="c1">//结果是  string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">name</span><span class="p">);</span> <span class="c1">//结果是  string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">addr</span><span class="p">);</span> <span class="c1">//结果是  string
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：在 js 中 双引号和单引号都表示字符串类型的数据</p>
+</blockquote>
+</li>
+<li>
+<p><strong>boolean</strong>：布尔。true，false</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">flag2</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">flag</span><span class="p">);</span> <span class="c1">//结果是 boolean
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">flag2</span><span class="p">);</span> <span class="c1">//结果是 boolean
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>null</strong>：对象为空</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span><span class="p">);</span><span class="c1">//结果是 object
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>为什么打印上面的 obj 变量的数据类型，结果是object；这个官方给出了解释，下面是从官方文档截的图</p>
+</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145852895.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145852895.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145852895.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708145852895.png 2x"
+    data-sizes="auto"
+    alt="image-20240708145852895"
+    title="image-20240708145852895"/></p>
+<p><strong>undefined</strong>：当声明的变量未初始化时，该变量的默认值是 undefined</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">a</span><span class="p">);</span> <span class="c1">//结果是 undefined
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运算符">运算符</h3>
+<p>JavaScript 提供了如下的运算符。大部分和Java都是一样的，不同的是 JS 关系运算符中的 <code>==</code> 和 <code>===</code>，一会我们只演示这两个的区别，其他运算符将不做演示</p>
+<ul>
+<li>
+<p>一元运算符：++，&ndash;</p>
+</li>
+<li>
+<p>算术运算符：+，-，*，/，%</p>
+</li>
+<li>
+<p>赋值运算符：=，+=，-=…</p>
+</li>
+<li>
+<p>关系运算符：&gt;，&lt;，&gt;=，&lt;=，!=，==，===…</p>
+</li>
+<li>
+<p>逻辑运算符：&amp;&amp;，||，!</p>
+</li>
+<li>
+<p>三元运算符：条件表达式 ? true_value : false_value</p>
+</li>
+</ul>
+<h4 id="和区别">==和===区别</h4>
+<p><strong>概述:</strong></p>
+<ul>
+<li>
+<p>==：</p>
+<ol>
+<li>
+<p>判断类型是否一样，<strong>如果不一样，则进行类型转换</strong></p>
+</li>
+<li>
+<p>再去比较其值</p>
+</li>
+</ol>
+</li>
+<li>
+<p>===：js 中的全等于</p>
+<ol>
+<li>判断类型是否一样，<strong>如果不一样，直接返回false</strong></li>
+<li>再去比较其值</li>
+</ol>
+</li>
+</ul>
+<p><strong>代码：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">age1</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">age2</span> <span class="o">=</span> <span class="s2">&#34;20&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">age1</span> <span class="o">==</span> <span class="nx">age2</span><span class="p">);</span><span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">age1</span> <span class="o">===</span> <span class="nx">age2</span><span class="p">);</span><span class="c1">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="类型转换">类型转换</h4>
+<ul>
+<li>
+<p>其他类型转为number</p>
+<ul>
+<li>
+<p>string 转换为 number 类型：按照字符串的字面值，转为数字。如果字面值不是数字，则转为NaN</p>
+<p>将 string 转换为 number 有两种方式：</p>
+<ul>
+<li>
+<p>使用 <code>+</code> 正号运算符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="o">+</span><span class="s2">&#34;20&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">//21
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用 <code>parseInt()</code> 函数(方法)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;20&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<blockquote>
+<p>建议使用 <code>parseInt()</code> 函数进行转换</p>
+</blockquote>
+</li>
+<li>
+<p>boolean 转换为 number 类型：true 转为1，false转为0</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="o">+</span><span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">flag</span><span class="p">);</span> <span class="c1">// 0
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>其他类型转为boolean</p>
+<ul>
+<li>number 类型转换为 boolean 类型：0和NaN转为false，其他的数字转为true</li>
+<li>string 类型转换为 boolean 类型：空字符串转为false，其他的字符串转为true</li>
+<li>null类型转换为 boolean 类型是 false</li>
+<li>undefined 转换为 boolean 类型是 false</li>
+</ul>
+<p><strong>代码如下：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// var flag = 3;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// var flag = &#34;&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">flag</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为true&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为false&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>使用场景：</strong></p>
+<p>在 Java 中使用字符串前，一般都会先判断字符串不是null，并且不是空字符才会做其他的一些操作，JavaScript也有类型的操作，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;abc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//健壮性判断
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">str</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为true&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为false&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是由于 JavaScript 会自动进行类型转换，所以上述的判断可以进行简化，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;abc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//健壮性判断
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为true&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;转为false&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="流程控制语句">流程控制语句</h3>
+<p>JavaScript 中提供了和 Java 一样的流程控制语句，如下</p>
+<ul>
+<li>if</li>
+<li>switch</li>
+<li>for</li>
+<li>while</li>
+<li>dowhile</li>
+</ul>
+<h4 id="if-语句">if 语句</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="switch-语句">switch 语句</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期一&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期二&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">3</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期三&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期四&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">5</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期五&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">6</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期六&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">7</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;星期日&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;输入的星期有误&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="for-循环语句">for 循环语句</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//建议for循环小括号中定义的变量使用let
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="while-循环语句">while 循环语句</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="do-while-循环语句">do while 循环语句</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="函数">函数</h3>
+<p>函数（就是Java中的方法）是被设计为执行特定任务的代码块；JavaScript 函数通过 function 关键词进行定义。</p>
+<h4 id="定义格式">定义格式</h4>
+<p>函数定义格式有两种：</p>
+<ul>
+<li>
+<p>方式1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">函数名</span><span class="p">(</span><span class="nx">参数1</span><span class="p">,</span><span class="nx">参数2</span><span class="p">..){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">要执行的代码</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>方式2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">函数名</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">参数列表</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">要执行的代码</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<ul>
+<li>
+<p>形式参数不需要类型。因为JavaScript是弱类型语言</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述函数的参数 a 和 b 不需要定义数据类型，因为在每个参数前加上 var 也没有任何意义。</p>
+</li>
+<li>
+<p>返回值也不需要定义类型，可以在函数内部直接使用return返回即可</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="函数调用">函数调用</h4>
+<p>函数调用函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">函数名称</span><span class="p">(</span><span class="nx">实际参数列表</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：</p>
+<ul>
+<li>
+<p>JS中，函数调用可以传递<strong>任意个数</strong>参数，例如  <code>let result = add(1,2,3);</code></p>
+<p>它是将数据 1 传递给了变量a，将数据 2 传递给了变量 b，而数据 3 没有变量接收。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="javascript常用对象">JavaScript常用对象</h2>
+<p>总共分类三类：</p>
+<ul>
+<li>基本对象
+<ul>
+<li><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150359804.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150359804.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150359804.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150359804.png 2x"
+    data-sizes="auto"
+    alt="image-20240708150359804"
+    title="image-20240708150359804"/></li>
+</ul>
+</li>
+<li>BOM对象
+<ul>
+<li><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150407709.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150407709.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150407709.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150407709.png 2x"
+    data-sizes="auto"
+    alt="image-20240708150407709"
+    title="image-20240708150407709"/></li>
+</ul>
+</li>
+<li>DOM对象
+<ul>
+<li>比较多，部分示例如下：</li>
+<li><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150435160.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150435160.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150435160.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150435160.png 2x"
+    data-sizes="auto"
+    alt="image-20240708150435160"
+    title="image-20240708150435160"/></li>
+</ul>
+</li>
+</ul>
+<h3 id="基本对象之array">基本对象之Array</h3>
+<p>JavaScript Array对象用于定义数组</p>
+<h4 id="定义格式-1">定义格式</h4>
+<p>数组的定义格式有两种：</p>
+<ul>
+<li>
+<p>方式1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">变量名</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">元素列表</span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//1,2,3 是存储在数组中的数据（元素）
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>方式2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">变量名</span> <span class="o">=</span> <span class="p">[</span><span class="nx">元素列表</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span> <span class="c1">//1,2,3 是存储在数组中的数据（元素）
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：Java中的数组静态初始化使用的是{}定义，而 JavaScript 中使用的是 [] 定义</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="元素访问">元素访问</h4>
+<p>访问数组中的元素和 Java 语言的一样，格式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">arr</span><span class="p">[</span><span class="nx">索引</span><span class="p">]</span> <span class="o">=</span> <span class="nx">值</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>代码演示：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"> <span class="c1">// 方式一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// alert(arr);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 方式二
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//alert(arr2);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="特点">特点</h4>
+<p>JavaScript 中的数组相当于 Java 中集合。<strong>数组的长度是可以变化的</strong>，而 JavaScript 是弱类型，所以可以存储任意的类型的数据。</p>
+<p>例如如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 变长
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr3</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr3</span><span class="p">[</span><span class="mi">10</span><span class="p">]);</span> <span class="c1">// 10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">arr3</span><span class="p">[</span><span class="mi">9</span><span class="p">]);</span>  <span class="c1">//undefined
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面代码在定义数组中给了三个元素，又给索引是 10 的位置添加了数据 10，那么 <code>索引3</code> 到 <code>索引9</code> 位置的元素是什么呢？我们之前就介绍了，在 JavaScript 中没有赋值的话，默认就是 <code>undefined</code>。</p>
+<p>如果给 <code>arr3</code> 数组添加字符串的数据，也是可以添加成功的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">arr3</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;hello&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr3</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span> <span class="c1">// hello
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="属性">属性</h4>
+<p>Array 对象提供了很多属性，这里以<code>length</code>为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">//可以动态的获取数组的长度，可以遍历数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">alert</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="方法">方法</h4>
+<p>Array 对象同样也提供了很多方法</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150903684.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150903684.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150903684.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708150903684.png 2x"
+    data-sizes="auto"
+    alt="image-20240708150903684"
+    title="image-20240708150903684"/></p>
+<p>以 <code>push</code> 函数和 <code>splice</code> 函数为例：</p>
+<ul>
+<li>
+<p>push 函数：给数组添加元素，也就是在数组的末尾添加元素</p>
+<p>参数表示要添加的元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// push:添加方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">arr5</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr5</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr5</span><span class="p">);</span>  <span class="c1">//数组的元素是 {1,2,3,10}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>splice 函数：删除元素</p>
+<p>参数1：索引。表示从哪个索引位置删除</p>
+<p>参数2：个数。表示删除几个元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// splice:删除元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">arr5</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arr5</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//从 0 索引位置开始删除，删除一个元素 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">arr5</span><span class="p">);</span> <span class="c1">// {2,3}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="string">String</h3>
+<p>String对象的创建方式有两种</p>
+<ul>
+<li>
+<p>方式1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">变量名</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>方式2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">变量名</span> <span class="o">=</span> <span class="s2">&#34;数组&#34;</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>属性：</strong></p>
+<p>String对象提供了很多属性，以 <code>length</code>为例：该属性是用于动态的获取字符串的长度<img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151035641.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151035641.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151035641.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151035641.png 2x"
+    data-sizes="auto"
+    alt="image-20240708151035641"
+    title="image-20240708151035641"/></p>
+<p><strong>函数：</strong></p>
+<p>同样有很多，以<code>charAt()</code>返回在指定位置的字符，和<code>indexOf()</code>检索字符串，和<code>trim()</code>去掉字符串两端字符串(比如登录时候去掉用户输入的空格)为例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">var</span> <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;abcd&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">charAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151355977.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151355977.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151355977.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151355977.png 2x"
+    data-sizes="auto"
+    alt="image-20240708151355977"
+    title="image-20240708151355977"/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">var</span> <span class="n">str4</span> <span class="o">=</span> <span class="s1">&#39;  abc   &#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">alert</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">str4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>去掉空格：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">var</span> <span class="n">str4</span> <span class="o">=</span> <span class="s1">&#39;  abc   &#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">alert</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">str4</span><span class="o">.</span><span class="n">trim</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="自定义对象">自定义对象</h3>
+<p>自定义对象的格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">对象名称</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">属性名称1</span><span class="o">:</span><span class="nx">属性值1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">属性名称2</span><span class="o">:</span><span class="nx">属性值2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">函数名称</span><span class="o">:</span><span class="kd">function</span> <span class="p">(</span><span class="nx">形参列表</span><span class="p">){},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用属性的格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">对象名</span><span class="p">.</span><span class="nx">属性名</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>调用函数的格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">对象名</span><span class="p">.</span><span class="nx">函数名</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">name</span> <span class="o">:</span> <span class="s2">&#34;zhangsan&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">age</span> <span class="o">:</span> <span class="mi">23</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">eat</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;干饭~&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>  <span class="c1">//zhangsan
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">person</span><span class="p">.</span><span class="nx">eat</span><span class="p">();</span>  <span class="c1">//干饭~
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>有那么一点点点像Java中的类一样</p>
+</blockquote>
+<h2 id="bom">BOM</h2>
+<p>BOM：Browser Object Model <strong>浏览器对象模型</strong>。也就是 JavaScript 将浏览器的各个组成部分封装为对象。</p>
+<p>我们要操作浏览器的各个组成部分就可以通过操作 BOM 中的对象来实现。比如：我现在想将浏览器地址栏的地址改为 <code>https://www.itheima.com</code> 就可以通过使用 BOM 中定义的 <code>Location</code> 对象的 <code>href</code> 属性，代码： <code>location.href = &quot;https://itheima.com&quot;;</code></p>
+<p>BOM 中包含了如下对象：</p>
+<ul>
+<li>Window：浏览器窗口对象</li>
+<li>Navigator：浏览器对象</li>
+<li>Screen：屏幕对象</li>
+<li>History：历史记录对象</li>
+<li>Location：地址栏对象</li>
+</ul>
+<p>下图是 BOM 中的各个对象和浏览器的各个组成部分的对应关系：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151804401.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151804401.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151804401.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151804401.png 2x"
+    data-sizes="auto"
+    alt="image-20240708151804401"
+    title="image-20240708151804401"/></p>
+<h3 id="window对象">Window对象</h3>
+<p>window 对象是 JavaScript 对浏览器的窗口进行封装的对象。</p>
+<h4 id="获取window对象">获取window对象:</h4>
+<p>该对象不需要创建直接使用 <code>window</code>，其中 <code>window. </code> 可以省略。比如我们之前使用的 <code>alert()</code> 函数，其实就是 <code>window</code> 对象的函数，在调用是可以写成如下两种</p>
+<ul>
+<li>
+<p>显式使用 <code>window</code> 对象调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;abc&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>隐式调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alert(&#34;abc&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="window对象属性">window对象属性</h4>
+<p><code>window</code> 对象提供了用于获取其他 BOM 组成对象的属性</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151948647.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151948647.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151948647.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708151948647.png 2x"
+    data-sizes="auto"
+    alt="image-20240708151948647"
+    title="image-20240708151948647"/></p>
+<p>也就是说，我们想使用 <code>Location</code> 对象的话，就可以使用 <code>window</code> 对象获取；写成 <code>window.location</code>，而 <code>window.</code> 可以省略，简化写成 <code>location</code> 来获取 <code>Location</code> 对象。</p>
+<h4 id="window对象函数">window对象函数</h4>
+<p><code>window</code> 对象提供了很多函数供我们使用，常用如下：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152020174.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152020174.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152020174.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152020174.png 2x"
+    data-sizes="auto"
+    alt="image-20240708152020174"
+    title="image-20240708152020174"/></p>
+<p><strong>定时器代码演示：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;hehe&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span><span class="mi">3000</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当我们打开浏览器，3秒后才会弹框输出 <code>hehe</code>，并且只会弹出一次。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;hehe&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span><span class="mi">2000</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当我们打开浏览器，<strong>每隔2秒</strong>都会弹框输出 <code>hehe</code>。</p>
+<h3 id="history对象">History对象</h3>
+<p>History 对象是 JavaScript 对历史记录进行封装的对象。</p>
+<ul>
+<li>
+<p>History 对象的获取</p>
+<p>使用 window.history获取，其中window. 可以省略</p>
+</li>
+<li>
+<p>History 对象的函数</p>
+</li>
+</ul>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152335091.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152335091.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152335091.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152335091.png 2x"
+    data-sizes="auto"
+    alt="image-20240708152335091"
+    title="image-20240708152335091"/></p>
+<h3 id="location对象">Location对象</h3>
+<p>Location 对象是 JavaScript 对地址栏封装的对象。可以通过操作该对象，跳转到任意页面。</p>
+<h4 id="获取location对象">获取Location对象</h4>
+<p>使用 window.location获取，其中window. 可以省略</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">方法</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">location</span><span class="p">.</span><span class="nx">方法</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="location对象属性">Location对象属性</h4>
+<p>Location对象提供了很对属性。以后常用的只有一个属性 <code>href</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">alert(&#34;要跳转了&#34;);
+</span></span><span class="line"><span class="cl">location.href = &#34;https://www.baidu.com&#34;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="dom">DOM</h3>
+<p>DOM：Document Object Model <strong>文档对象模型</strong>。也就是 JavaScript <strong>将 HTML 文档的各个组成部分封装为对象。</strong></p>
+<p>类似XML，XML 文档中的标签需要我们写代码解析，而 HTML 文档是浏览器解析。封装的对象分为</p>
+<ul>
+<li>Document：整个文档对象</li>
+<li>Element：元素对象</li>
+<li>Attribute：属性对象</li>
+<li>Text：文本对象</li>
+<li>Comment：注释对象</li>
+</ul>
+<p>如下图，左边是 HTML 文档内容，右边是 DOM 树</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152603292.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152603292.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152603292.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152603292.png 2x"
+    data-sizes="auto"
+    alt="image-20240708152603292"
+    title="image-20240708152603292"/></p>
+<p><strong>作用：</strong></p>
+<p><strong>JavaScript 通过 DOM， 就能够对 HTML进行操作了</strong></p>
+<ul>
+<li>改变 HTML 元素的内容</li>
+<li>改变 HTML 元素的样式（CSS）</li>
+<li>对 HTML DOM 事件作出反应</li>
+<li>添加和删除 HTML 元素</li>
+</ul>
+<p><strong>DOM相关概念：</strong></p>
+<p>DOM 是 W3C（万维网联盟）定义了访问 HTML 和 XML 文档的标准。该标准被分为 3 个不同的部分：</p>
+<ol>
+<li>
+<p>核心 DOM：针对任何结构化文档的标准模型。 XML 和 HTML 通用的标准</p>
+<ul>
+<li>
+<p>Document：整个文档对象</p>
+</li>
+<li>
+<p>Element：元素对象</p>
+</li>
+<li>
+<p>Attribute：属性对象</p>
+</li>
+<li>
+<p>Text：文本对象</p>
+</li>
+<li>
+<p>Comment：注释对象</p>
+</li>
+</ul>
+</li>
+<li>
+<p>XML DOM： 针对 XML 文档的标准模型</p>
+</li>
+<li>
+<p>HTML DOM： 针对 HTML 文档的标准模型</p>
+<p>该标准是在核心 DOM 基础上，对 HTML 中的每个标签都封装成了不同的对象</p>
+<ul>
+<li>例如：<code>&lt;img&gt;</code> 标签在浏览器加载到内存中时会被封装成 <code>Image</code> 对象，同时该对象也是 <code>Element</code> 对象。</li>
+<li>例如：<code>&lt;input type='button'&gt;</code> 标签在浏览器加载到内存中时会被封装成 <code>Button</code> 对象，同时该对象也是 <code>Element</code> 对象</li>
+</ul>
+</li>
+</ol>
+<h3 id="获取-element对象">获取 Element对象</h3>
+<p>HTML 中的 Element 对象可以通过 <code>Document</code> 对象获取，而 <code>Document</code> 对象是通过 <code>window</code> 对象获取。</p>
+<p><code>Document</code> 对象中提供了以下获取 <code>Element</code> 元素对象的函数</p>
+<ul>
+<li><code>getElementById()</code>：根据id属性值获取，返回单个Element对象</li>
+<li><code>getElementsByTagName()</code>：根据标签名称获取，返回Element对象数组</li>
+<li><code>getElementsByName()</code>：根据name属性值获取，返回Element对象数组</li>
+<li><code>getElementsByClassName()</code>：根据class属性值获取，返回Element对象数组</li>
+</ul>
+<p>html测试页面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;light&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;../1.png&#34;</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;cls&#34;</span><span class="p">&gt;</span>测试<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;cls&#34;</span><span class="p">&gt;</span>hh<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;hobby&#34;</span><span class="p">&gt;</span> 电影
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;hobby&#34;</span><span class="p">&gt;</span> 旅游
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;hobby&#34;</span><span class="p">&gt;</span> 游戏
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//在此处书写js代码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>1.根据 <code>id</code> 属性值获取上面的 <code>img</code> 元素对象，返回单个对象</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;light&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果如下：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152902955.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152902955.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152902955.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708152902955.png 2x"
+    data-sizes="auto"
+    alt="image-20240708152902955"
+    title="image-20240708152902955"/></p>
+<p><strong>2.根据标签名称获取所有的 <code>div</code> 元素对象</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span><span class="c1">// 返回一个数组，数组中存储的是 div 元素对象
+</span></span></span><span class="line"><span class="cl"><span class="c1">// alert(divs.length);  //输出 数组的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1">//遍历数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="nx">divs</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3.获取所有的满足 <code>name = 'hobby'</code> 条件的元素对象</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//3. getElementsByName：根据name属性值获取，返回Element对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">hobbys</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s2">&#34;hobby&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">hobbys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="nx">hobbys</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4.获取所有的满足 <code>class='cls'</code> 条件的元素对象</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//4. getElementsByClassName：根据class属性值获取，返回Element对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">clss</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">&#34;cls&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">clss</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="nx">clss</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="html-element对象使用">HTML Element对象使用</h3>
+<p>比如前面html代码中将div标签中内容替换为<code>哈哈</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//1，获取所有的 div 元素对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">divs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">        style:设置元素css样式
+</span></span></span><span class="line"><span class="cl"><span class="cm">        innerHTML：设置元素内容
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//2，遍历数组，获取到每一个 div 元素对象，并修改元素内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">divs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//divs[i].style.color = &#39;red&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">divs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&#34;呵呵&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>让所有复选框变为勾选状态：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//1，获取所有的 复选框 元素对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">hobbys</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s2">&#34;hobby&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//2，遍历数组，通过将 复选框 元素对象的 checked 属性值设置为 true 来改变复选框的选中状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">hobbys</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">hobbys</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="事件">事件</h2>
+<p>HTML 事件是发生在 HTML 元素上的“事情”。比如：页面上的 <code>按钮被点击</code>、<code>鼠标移动到元素之上</code>、<code>按下键盘按键</code> 等都是事件。</p>
+<p><strong>事件监听</strong>是JavaScript 可以<strong>在事件被侦测到时执行一段逻辑代码</strong>。</p>
+<p>比如下图输入框，当我们输入了用户名 <code>光标离开</code> 输入框，就需要通过 js 代码对输入的内容进行校验，没通过校验就在输入框后提示 <code>用户名格式有误!</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708153226101.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708153226101.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708153226101.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240708153226101.png 2x"
+    data-sizes="auto"
+    alt="image-20240708153226101"
+    title="image-20240708153226101"/></p>
+<h3 id="事件绑定">事件绑定</h3>
+<p>JavaScript 提供了两种事件绑定方式：</p>
+<ul>
+<li>
+<p>方式一：通过 HTML标签中的事件属性进行绑定</p>
+<p>如下面代码，有一个按钮元素，我们是在该标签上定义 <code>事件属性</code>，在事件属性中绑定函数。<code>onclick</code> 就是 <code>单击事件</code> 的事件属性。<code>onclick='on（）'</code> 表示该点击事件绑定了一个名为 <code>on()</code> 的函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&#39;on()’</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面是点击事件绑定的 <code>on()</code> 函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">on</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;我被点了&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>方式二：通过 DOM 元素属性绑定</p>
+<p>如下面代码是按钮标签，在该标签上我们并没有使用 <code>事件属性</code>，绑定事件的操作需要在 js 代码中实现</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;button&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;btn&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下面 js 代码是获取了 <code>id='btn'</code> 的元素对象，然后将 <code>onclick</code> 作为该对象的属性，并且绑定匿名函数。该函数是在事件触发后自动执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;btn&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;我被点了&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>代码演示：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&#34;en&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">Title</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/head&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--</span><span class="nx">方式1</span><span class="err">：</span><span class="nx">在下面input标签上添加</span> <span class="nx">onclick</span> <span class="nx">属性</span><span class="err">，</span><span class="nx">并绑定</span> <span class="nx">on</span><span class="p">()</span> <span class="nx">函数</span><span class="o">--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;点我&#34;</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&#34;on()&#34;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">br</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;button&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;再点我&#34;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;btn&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">function</span> <span class="nx">on</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;我被点了&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      	<span class="c1">//方式2：获取 id=&#34;btn&#34; 元素对象，通过调用 onclick 属性 绑定点击事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;btn&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;我被点了&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/body&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/html&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="常见事件">常见事件</h3>
+<table>
+<thead>
+<tr>
+<th>事件属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onclick</td>
+<td>鼠标单击事件</td>
+</tr>
+<tr>
+<td>onblur</td>
+<td>元素失去焦点</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>元素获得焦点</td>
+</tr>
+<tr>
+<td>onload</td>
+<td>某个页面或图像被完成加载</td>
+</tr>
+<tr>
+<td>onsubmit</td>
+<td>当表单提交时触发该事件</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td>鼠标被移到某元素之上</td>
+</tr>
+<tr>
+<td>onmouseout</td>
+<td>鼠标从某元素移开</td>
+</tr>
+</tbody>
+</table>
+<p>比如<code>onsubmit</code>表单提交事件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;register&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当我们点击 <code>提交</code> 按钮后，表单就会提交，此处默认使用的是 <code>GET</code> 提交方式，会将提交的数据拼接到 URL 后。现需要通过 js 代码实现阻止表单提交的功能，js 代码实现如下：</p>
+<ol>
+<li>获取 <code>form</code> 表单元素对象。</li>
+<li>给 <code>form</code> 表单元素对象绑定 <code>onsubmit</code> 事件，并绑定匿名函数。</li>
+<li>该匿名函数如果返回的是true，提交表单；如果返回的是false，阻止表单提交。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;register&#34;</span><span class="p">).</span><span class="nx">onsubmit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//onsubmit 返回true，则表单会被提交，返回false，则表单不提交
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="案例">案例</h3>
+<p>注册页面，对表单进行校验，如果输入的用户名、密码、手机号符合规则，则允许提交；如果不符合规则，则不允许提交。</p>
+<p>完成以下需求：</p>
+<ol>
+<li>
+<p>当输入框失去焦点时，验证输入内容是否符合要求</p>
+</li>
+<li>
+<p>当点击注册按钮时，判断所有输入框的内容是否都符合要求，如果不合符则阻止表单提交</p>
+</li>
+</ol>
+<p>初始界面：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>欢迎注册<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;../css/register.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-div&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;reg-content&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>欢迎注册<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>已有帐号？<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;#&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;reg-form&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;#&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;get&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>用户名<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;inputs&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;username&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;username&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;username_err&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;err_msg&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;display: none&#34;</span><span class="p">&gt;</span>用户名不太受欢迎<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>密码<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;inputs&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;password_err&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;err_msg&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;display: none&#34;</span><span class="p">&gt;</span>密码格式有误<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>手机号<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;inputs&#34;</span><span class="p">&gt;&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;tel&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;tel&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;tel_err&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;err_msg&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;display: none&#34;</span><span class="p">&gt;</span>手机号格式有误<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;buttons&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;注 册&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;reg_btn&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">br</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;clear&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>输入框验证规则：</strong></p>
+<ul>
+<li>校验用户名。当用户名输入框失去焦点时，判断输入的内容是否符合 <code>长度是 6-12 位</code> 规则，不符合使 <code>id='username_err'</code> 的span标签显示出来，给出用户提示。</li>
+<li>校验密码。当密码输入框失去焦点时，判断输入的内容是否符合 <code>长度是 6-12 位</code> 规则，不符合使 <code>id='password_err'</code> 的span标签显示出来，给出用户提示。</li>
+<li>校验手机号。当手机号输入框失去焦点时，判断输入的内容是否符合 <code>长度是 11 位</code> 规则，不符合使 <code>id='tel_err'</code> 的span标签显示出来，给出用户提示。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//1. 验证用户名是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取用户名的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">usernameInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的用户名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断用户名是否符合规则：长度 6~12
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">username</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="o">&amp;&amp;</span> <span class="nx">username</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1. 验证密码是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取密码的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">passwordInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">passwordInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的密码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">passwordInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断密码是否符合规则：长度 6~12
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">password</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1. 验证手机号是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取手机号的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">telInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">telInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的手机号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">tel</span> <span class="o">=</span> <span class="nx">telInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断手机号是否符合规则：长度 11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">tel</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>表单验证要求：</strong></p>
+<p>当用户点击 <code>注册</code> 按钮时，需要同时对输入的 <code>用户名</code>、<code>密码</code>、<code>手机号</code> ，如果都符合规则，则提交表单；如果有一个不符合规则，则不允许提交表单。实现该功能需要获取表单元素对象，并绑定 <code>onsubmit</code> 事件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//1. 获取表单对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">regForm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;reg-form&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2. 绑定onsubmit 事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">regForm</span><span class="p">.</span><span class="nx">onsubmit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//`onsubmit` 事件绑定的函数需要对输入的 `用户名`、`密码`、`手机号` 进行校验，这些校验我们之前都已经实现过了，这里我们还需要再校验一次吗？不需要，只需要对之前校验的代码进行改造，把每个校验的代码专门抽象到有名字的函数中，方便调用；并且每个函数都要返回结果来去决定是提交表单还是阻止表单提交，代码如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//1. 验证用户名是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取用户名的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">usernameInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">usernameInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="nx">checkUsername</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">checkUsername</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的用户名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">username</span> <span class="o">=</span> <span class="nx">usernameInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断用户名是否符合规则：长度 6~12
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">username</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="o">&amp;&amp;</span> <span class="nx">username</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;username_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1. 验证密码是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取密码的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">passwordInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">passwordInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="nx">checkPassword</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">checkPassword</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的密码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">passwordInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断密码是否符合规则：长度 6~12
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">password</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="mi">6</span> <span class="o">&amp;&amp;</span> <span class="nx">password</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;password_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1. 验证手机号是否符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1.1 获取手机号的输入框
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">telInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.2 绑定onblur事件 失去焦点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">telInput</span><span class="p">.</span><span class="nx">onblur</span> <span class="o">=</span> <span class="nx">checkTel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">checkTel</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.3 获取用户输入的手机号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">tel</span> <span class="o">=</span> <span class="nx">telInput</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//1.4 判断手机号是否符合规则：长度 11
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">tel</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">11</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而 <code>onsubmit</code> 绑定的函数需要调用 <code>checkUsername()</code> 函数、<code>checkPassword()</code> 函数、<code>checkTel()</code> 函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//1. 获取表单对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">regForm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;reg-form&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2. 绑定onsubmit 事件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">regForm</span><span class="p">.</span><span class="nx">onsubmit</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//挨个判断每一个表单项是否都符合要求，如果有一个不合符，则返回false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">checkUsername</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">checkPassword</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">checkTel</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="正则表达式">正则表达式</h2>
+<h3 id="正则对象">正则对象</h3>
+<p>在 js 中对正则表达式封装的对象就是正则对象。</p>
+<h4 id="创建对象">创建对象</h4>
+<p>正则对象有两种创建方式：</p>
+<ul>
+<li>
+<p>直接量方式：注意不要加引号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/正则表达式/</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>创建 RegExp 对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s2">&#34;正则表达式&#34;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="函数-1">函数</h4>
+<p><code>test(str)</code> ：判断指定字符串是否符合规则，返回 true或 false</p>
+<h3 id="正则表达式-1">正则表达式</h3>
+<p>正则表达式<strong>定义了字符串组成的规则</strong>。也就是判断指定的字符串是否符合指定的规则，如果符合返回true，如果不符合返回false。</p>
+<p>正则表达式是<strong>和语言无关</strong>的。很多语言都支持正则表达式，Java语言也支持，只不过正则表达式在不同的语言中的使用方式不同，js 中需要使用正则对象来使用正则表达式。</p>
+<p>正则表达式<strong>常用的规则如下</strong>：</p>
+<ul>
+<li>
+<p>^：表示开始</p>
+</li>
+<li>
+<p>$：表示结束</p>
+</li>
+<li>
+<p><i class="fa-regular fa-square fa-fw" aria-hidden="true"></i> ：代表某个范围内的单个字符，比如： [0-9] 单个数字字符</p>
+</li>
+<li>
+<p>.：代表任意单个字符，除了换行和行结束符</p>
+</li>
+<li>
+<p>\w：代表单词字符：字母、数字、下划线(<em>)，相当于 [A-Za-z0-9</em>]</p>
+</li>
+<li>
+<p>\d：代表数字字符： 相当于 [0-9]</p>
+</li>
+</ul>
+<p>量词：</p>
+<ul>
+<li>
+<p>+：至少一个</p>
+</li>
+<li>
+<p>*：零个或多个</p>
+</li>
+<li>
+<p>？：零个或一个</p>
+</li>
+<li>
+<p>{x}：x个</p>
+</li>
+<li>
+<p>{m,}：至少m个</p>
+</li>
+<li>
+<p>{m,n}：至少m个，最多n个</p>
+</li>
+</ul>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 规则：单词字符，6~12
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1,创建正则对象，对正则表达式进行封装
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/^\w{6,12}$/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&#34;abcccc&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//2,判断 str 字符串是否符合 reg 封装的正则表达式的规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">reg</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">flag</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样，前面验证注册表单的例子中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//判断用户名是否符合规则：长度 6~12,单词字符组成
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/^\w{6,12}$/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">reg</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">username</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//判断手机号是否符合规则：长度 11，数字组成，第一位是1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="sr">/^[1]\d{10}$/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">flag</span> <span class="o">=</span> <span class="nx">reg</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">tel</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">flag</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//符合规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//不合符规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;tel_err&#34;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-09&#32;11:28:24>更新于 2024-07-09&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/javascript/' class="post-tag">JavaScript</a><a href='/tags/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/' class="post-tag">编程基础</a><a href='/tags/%E5%89%8D%E7%AB%AF/' class="post-tag">前端</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-nav-item" rel="prev" title="Jfinalcms代码审计"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Jfinalcms代码审计</a>
+      <a href="/cve-2019-9827%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" class="post-nav-item" rel="next" title="CVE 2019 9827代码审计">CVE 2019 9827代码审计<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.128.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/gitalk/gitalk.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["shuai06"],"clientID":"d75ec1a5864747376f6f","clientSecret":"1b354dc131534bb3b7511213c74d3f9116a03a79","id":"2024-07-08T14:39:54+08:00","owner":"shuai06","repo":"hexo-gitalk","title":"JavaScript基础学习笔记"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"watermark":{"appendto":".wrapper\u003emain","colspacing":30,"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":21,"opacity":0.0125,"rotate":15,"rowspacing":60,"width":150}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>

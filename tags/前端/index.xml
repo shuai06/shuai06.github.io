@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>前端 - 标签 - 剑胆琴心</title>
+    <link>https://shuai06.github.io/tags/%E5%89%8D%E7%AB%AF/</link>
+    <description>前端 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 08 Jul 2024 14:39:54 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E5%89%8D%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+  <title>JavaScript基础学习笔记</title>
+  <link>https://shuai06.github.io/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+  <pubDate>Mon, 08 Jul 2024 14:39:54 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/javascript%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
