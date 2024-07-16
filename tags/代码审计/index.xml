@@ -4,7 +4,15 @@
     <link>https://shuai06.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</link>
     <description>代码审计 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Jul 2024 15:11:21 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 16 Jul 2024 10:42:48 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="self" type="application/rss+xml" /><item>
+  <title>人人开源系统 Mybatis Plus SQL注入分析</title>
+  <link>https://shuai06.github.io/%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90%E7%B3%BB%E7%BB%9Fsql%E6%B3%A8%E5%85%A5%E5%88%86%E6%9E%90/</link>
+  <pubDate>Tue, 16 Jul 2024 10:42:48 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90%E7%B3%BB%E7%BB%9Fsql%E6%B3%A8%E5%85%A5%E5%88%86%E6%9E%90/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>StudentManager代码审计</title>
   <link>https://shuai06.github.io/studentmanager%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</link>
   <pubDate>Mon, 15 Jul 2024 15:11:21 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/</guid>
   <description><![CDATA[简介 SQL注入攻击是黑客利用SQL注入对数据库进行攻击的常用手段之一。攻击者通过浏览器或其他客户端将恶意SQL语句插入到网站参数中，网站应用]]></description>
-</item>
-<item>
-  <title>反序列化漏洞</title>
-  <link>https://shuai06.github.io/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</link>
-  <pubDate>Wed, 19 Jan 2022 10:03:37 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</guid>
-  <description><![CDATA[反序列化 **序列化：**把对象转换为字符串 存到硬盘中(可以以特定的格式在进程中跨平台、安全的进行通信) &ndash;&gt;实际场景会存到数]]></description>
 </item>
 </channel>
 </rss>
