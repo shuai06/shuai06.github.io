@@ -123,6 +123,10 @@ server:
 
 ## Mybatis注入的补充知识点
 
+JAVA常用框架SQL注入审计：https://tttang.com/archive/1726/#toc_32-in
+
+
+
 在Mybatis中，
 
 - 占位符`#{}`：对传入的参数进行预编译转义处理。类似 JDBC 中的`PreparedStatement`。

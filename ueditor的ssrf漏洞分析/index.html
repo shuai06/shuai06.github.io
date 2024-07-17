@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Ueditor的SSRF漏洞分析 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://shuai06.github.io">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java, ueditor, SSRF' />
+  <meta itemprop="name" content="Ueditor的SSRF漏洞分析">
+  <meta itemprop="description" content="剑胆琴心的技术博客">
+  <meta itemprop="datePublished" content="2024-07-17T08:43:00+08:00">
+  <meta itemprop="dateModified" content="2024-07-17T08:33:07+00:00">
+  <meta itemprop="wordCount" content="1912">
+  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
+  <meta itemprop="keywords" content="代码审计,Java,Ueditor,SSRF"><meta property="og:url" content="https://shuai06.github.io/ueditor%E7%9A%84ssrf%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+  <meta property="og:site_name" content="剑胆琴心">
+  <meta property="og:title" content="Ueditor的SSRF漏洞分析">
+  <meta property="og:description" content="剑胆琴心的技术博客">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-17T08:43:00+08:00">
+    <meta property="article:modified_time" content="2024-07-17T08:33:07+00:00">
+    <meta property="article:tag" content="代码审计">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="Ueditor">
+    <meta property="article:tag" content="SSRF">
+    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
+  <meta name="twitter:title" content="Ueditor的SSRF漏洞分析">
+  <meta name="twitter:description" content="剑胆琴心的技术博客">
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuai06.github.io/ueditor%E7%9A%84ssrf%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" /><link rel="prev" href="https://shuai06.github.io/%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90%E7%B3%BB%E7%BB%9Fsql%E6%B3%A8%E5%85%A5%E5%88%86%E6%9E%90/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Ueditor的SSRF漏洞分析",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/shuai06.github.io\/ueditor%E7%9A%84ssrf%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "代码审计, Java, ueditor, SSRF","wordcount":  1912 ,
+    "url": "https:\/\/shuai06.github.io\/ueditor%E7%9A%84ssrf%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90\/","datePublished": "2024-07-17T08:43:00+08:00","dateModified": "2024-07-17T08:33:07+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/shuai06.github.io\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Ueditor的SSRF漏洞分析</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 代码审计</a></span></div>
+      <div class="post-meta-line"><span title=2024-07-17&#32;08:43:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-17">2024-07-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 1912 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 4 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#漏洞分析">漏洞分析</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="前言">前言</h2>
+<p>ueditor编辑器的v1.4.3版本（jsp)存在SSRF漏洞</p>
+<p>源码地址：https://github.com/fex-team/ueditor</p>
+<p>下面是刚看博客跟着大师傅学的经验：https://fuping.site/2018/05/25/UEditor-SSRF-In-JSP/</p>
+<p><strong>在比如看到在版本<code>1.4.3.1</code>修复了SSRF漏洞</strong>:</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084814520.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084814520.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084814520.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084814520.png 2x"
+    data-sizes="auto"
+    alt="image-20240717084814520"
+    title="image-20240717084814520"/></p>
+<p>那么就是<code>v1.4.3</code>存在这个SSRF漏洞，我们独立做漏洞分析的时候可以对比版本1.4.3与1.4.3.1有什么不同，从而找到存在问题的地方</p>
+<p>去github查看某个版本的时候，可以通过如下<strong>看tag</strong>的方式：https://github.com/fex-team/ueditor/tree/v1.4.3.1/jsp</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084534548.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084534548.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084534548.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717084534548.png 2x"
+    data-sizes="auto"
+    alt="image-20240717084534548"
+    title="image-20240717084534548"/></p>
+<p>查看版本1.4.3.1下的jsp代码：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717085113458.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717085113458.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717085113458.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717085113458.png 2x"
+    data-sizes="auto"
+    alt="image-20240717085113458"
+    title="image-20240717085113458"/></p>
+<p>可以发现在<strong>该版本有一次commit</strong>，commitId 为<code>a1820147cfc3fbe2960a7d99f8dfbe338c02f0b6</code>。根据内容字面意思应该是增加了修复SSRF的代码。</p>
+<p>然后就<strong>对比一下两个版本</strong>中jsp部分的代码有何不同</p>
+<p><strong>github中对比两个版本代码不同的方法：</strong></p>
+<ul>
+<li>方法1：https://docs.github.com/zh/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits</li>
+</ul>
+<p>比较两次commit：比如我们比较这两次提交，下面url中前面是用户名和仓库名，后面<code>..</code>两边分别是两次的commit id</p>
+<p><a href="https://github.com/fex-team/ueditor/compare/0853f9fe820a236dc5ab74f1ead2430043b00fb5..a1820147cfc3fbe2960a7d99f8dfbe338c02f0b6"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/fex-team/ueditor/compare/0853f9fe820a236dc5ab74f1ead2430043b00fb5..a1820147cfc3fbe2960a7d99f8dfbe338c02f0b6<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>我们这里只比较jsp中的变换，可以看到如下，<code>jsp/src/com/baidu/ueditor/hunter/ImageHunter.java</code>中的<code>validHost</code>方法进行了一些改动：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png 2x"
+    data-sizes="auto"
+    alt="image-20240717091329493"
+    title="image-20240717091329493"/></p>
+<p>比较变化：</p>
+<p><a href="https://github.com/fex-team/ueditor/compare/master...octocat:master"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/fex-team/ueditor/compare/master...octocat:master<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091047010.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091047010.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091047010.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091047010.png 2x"
+    data-sizes="auto"
+    alt="image-20240717091047010"
+    title="image-20240717091047010"/></p>
+<p>&hellip;&hellip;其他更方便的方式自己探索</p>
+<ul>
+<li>方法2：拉取下来之后：https://blog.csdn.net/qq_16517483/article/details/125566057</li>
+</ul>
+<h2 id="漏洞分析">漏洞分析</h2>
+<p>前面知道了<code>jsp/src/com/baidu/ueditor/hunter/ImageHunter.java</code>的<code>validHost</code>方法就行了修改：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717091329493.png 2x"
+    data-sizes="auto"
+    alt="image-20240717091329493"
+    title="image-20240717091329493"/></p>
+<p>可以看到<code>v1.4.3.1</code>新增了主机名是否为本地内部地址的判断：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">validHost</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">InetAddress</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InetAddress</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">hostname</span><span class="p">);</span><span class="w">   </span><span class="c1">//获取ip地址根据主机名</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ip</span><span class="p">.</span><span class="na">isSiteLocalAddress</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">		</span><span class="c1">//判断是否为内部内网地址(a, b, c 三类)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">				</span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">UnknownHostException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">filters</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>而<code>v1.4.3</code>中仅仅做了是否不为过滤的ip地址的限制</p>
+<p>下载<code>v1.4.3</code>的jsp的源码：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092115203.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092115203.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092115203.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092115203.png 2x"
+    data-sizes="auto"
+    alt="image-20240717092115203"
+    title="image-20240717092115203"/></p>
+<p>ctrl+单击发现是在<code>com/baidu/ueditor/hunter/ImageHunter.java</code>中的<code>captureRemoteData</code>方法中调用了<code>validHost</code>方法：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092546657.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092546657.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092546657.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717092546657.png 2x"
+    data-sizes="auto"
+    alt="image-20240717092546657"
+    title="image-20240717092546657"/></p>
+<p>该方法首先会调用<code>validHost</code>对传入的url进行验证，如果不合法就抛出异常；如果合法就继续往下走，通过<code>validContentState</code>验证返回状态码是否满足；后续进行一系列文件大小和文件类型等其他条件判断，都符合后才进行后续图片报错，否则抛出异常。</p>
+<p>继续追踪，在<code>capture</code>方法中调用了<code>captureRemoteData</code>。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093054526.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093054526.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093054526.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093054526.png 2x"
+    data-sizes="auto"
+    alt="image-20240717093054526"
+    title="image-20240717093054526"/></p>
+<p><code>capture</code>又在<code>com/baidu/ueditor/ActionEnter.java中的invoke</code>方法中被调用</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093653842.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093653842.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093653842.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093653842.png 2x"
+    data-sizes="auto"
+    alt="image-20240717093653842"
+    title="image-20240717093653842"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093802373.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093802373.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093802373.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717093802373.png 2x"
+    data-sizes="auto"
+    alt="image-20240717093802373"
+    title="image-20240717093802373"/></p>
+<p>即当传递的<code>action</code>参数对应为<code>catchimage</code>时，才可能触发SSRF漏洞。</p>
+<p><strong>漏洞验证：</strong></p>
+<p>搭建环境配置</p>
+<p>入口在<code>jsp/controller.jsp</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717152436221.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717152436221.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717152436221.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717152436221.png 2x"
+    data-sizes="auto"
+    alt="image-20240717152436221"
+    title="image-20240717152436221"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717163006413.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717163006413.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717163006413.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20240717163006413.png 2x"
+    data-sizes="auto"
+    alt="image-20240717163006413"
+    title="image-20240717163006413"/></p>
+<p>构造漏洞路径：</p>
+<p><code>http://localhost:8088/jsp/controller.jsp?action=catchimage&amp;source[]=http://192.168.135.133:8080/test.jpg</code></p>
+<p>可根据页面返回的结果不同判断该地址端口是否开放：</p>
+<ol>
+<li>如果抓取不存在的图片地址时，页面返回{&ldquo;state&rdquo;: &ldquo;SUCCESS&rdquo;, list: [{&ldquo;state&rdquo;:&quot;\u8fdc\u7a0b\u8fde\u63a5\u51fa\u9519&quot;} ]}，即state为“远程连接出错”。</li>
+<li>如果成功抓取到图片，页面返回{&ldquo;state&rdquo;: &ldquo;SUCCESS&rdquo;, list: [{&ldquo;state&rdquo;: &ldquo;SUCCESS&rdquo;,&ldquo;size&rdquo;:&ldquo;5103&rdquo;,&ldquo;source&rdquo;:&ldquo;http://192.168.135.133:8080/tomcat.png&rdquo;,&ldquo;title&rdquo;:&ldquo;1527173588127099881.png&rdquo;,&ldquo;url&rdquo;:&quot;/ueditor/jsp/upload/image/20180524/1527173588127099881.png&quot;} ]}，即state为“SUCCESS”。</li>
+<li>如果主机无法访问，页面返回{&ldquo;state&rdquo;:&ldquo;SUCCESS&rdquo;, list: [{&ldquo;state&rdquo;: &ldquo;\u6293\u53d6\u8fdc\u7a0b\u56fe\u7247\u5931\u8d25&rdquo;}]}，即state为“抓取远程图片失败”。</li>
+</ol>
+<p>由于除了在config.js中的catcherLocalDomain配置了过滤的地址外，没有针对内部地址进行过滤，所以可以根据抓取远程图片返回结果的不同，来进行内网的探测。</p>
+<p>具体复现过程可参考：https://fuping.site/2018/05/25/UEditor-SSRF-In-JSP/</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2024-07-17&#32;08:33:07>更新于 2024-07-17&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/ueditor%E7%9A%84ssrf%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/' class="post-tag">代码审计</a><a href='/tags/java/' class="post-tag">Java</a><a href='/tags/ueditor/' class="post-tag">Ueditor</a><a href='/tags/ssrf/' class="post-tag">SSRF</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90%E7%B3%BB%E7%BB%9Fsql%E6%B3%A8%E5%85%A5%E5%88%86%E6%9E%90/" class="post-nav-item" rel="prev" title="人人开源系统 Mybatis Plus SQL注入分析"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>人人开源系统 Mybatis Plus SQL注入分析</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.128.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/gitalk/gitalk.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["shuai06"],"clientID":"d75ec1a5864747376f6f","clientSecret":"1b354dc131534bb3b7511213c74d3f9116a03a79","id":"2024-07-17T08:43:00+08:00","owner":"shuai06","repo":"hexo-gitalk","title":"Ueditor的SSRF漏洞分析"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"watermark":{"appendto":".wrapper\u003emain","colspacing":30,"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":21,"opacity":0.0125,"rotate":15,"rowspacing":60,"width":150}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>
