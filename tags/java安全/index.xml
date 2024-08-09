@@ -4,7 +4,15 @@
     <link>https://shuai06.github.io/tags/java%E5%AE%89%E5%85%A8/</link>
     <description>Java安全 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
-      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 14 Jul 2024 11:56:39 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/java%E5%AE%89%E5%85%A8/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 09 Aug 2024 19:26:31 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/java%E5%AE%89%E5%85%A8/" rel="self" type="application/rss+xml" /><item>
+  <title>Spring Cloud Config目录穿越漏洞(CVE-2020-5045)代码审计</title>
+  <link>https://shuai06.github.io/cve-2020-5410%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1/</link>
+  <pubDate>Fri, 09 Aug 2024 19:26:31 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/cve-2020-5410%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A%E6%BC%8F%E6%B4%9E%E5%AE%A1%E8%AE%A1/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Jspxcms v9.0代码审计</title>
   <link>https://shuai06.github.io/jspxcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</link>
   <pubDate>Sun, 14 Jul 2024 11:56:39 &#43;0800</pubDate>
