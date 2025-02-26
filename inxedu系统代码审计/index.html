@@ -7,30 +7,21 @@
     <meta name="robots" content="noodp" />
     <title>Inxedu系统代码审计 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
 <meta name="author-link" content="http://shuai06.github.io">
-<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java' />
-  <meta itemprop="name" content="Inxedu系统代码审计">
-  <meta itemprop="description" content="剑胆琴心的技术博客">
-  <meta itemprop="datePublished" content="2024-07-06T22:47:01+08:00">
-  <meta itemprop="dateModified" content="2024-08-09T12:23:24+00:00">
-  <meta itemprop="wordCount" content="2893">
-  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
-  <meta itemprop="keywords" content="代码审计,Java"><meta property="og:url" content="https://shuai06.github.io/inxedu%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-  <meta property="og:site_name" content="剑胆琴心">
-  <meta property="og:title" content="Inxedu系统代码审计">
-  <meta property="og:description" content="剑胆琴心的技术博客">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-07-06T22:47:01+08:00">
-    <meta property="article:modified_time" content="2024-08-09T12:23:24+00:00">
-    <meta property="article:tag" content="代码审计">
-    <meta property="article:tag" content="Java">
-    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java' /><meta itemprop="name" content="Inxedu系统代码审计">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-07-06T22:47:01+08:00" />
+<meta itemprop="dateModified" content="2025-02-26T12:27:46+00:00" />
+<meta itemprop="wordCount" content="2893"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
+<meta itemprop="keywords" content="代码审计,Java," /><meta property="og:title" content="Inxedu系统代码审计" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuai06.github.io/inxedu%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-06T22:47:01+08:00" />
+<meta property="article:modified_time" content="2025-02-26T12:27:46+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
-  <meta name="twitter:title" content="Inxedu系统代码审计">
-  <meta name="twitter:description" content="剑胆琴心的技术博客">
+<meta name="twitter:title" content="Inxedu系统代码审计"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="剑胆琴心">
 <meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "代码审计, Java","wordcount":  2893 ,
-    "url": "https:\/\/shuai06.github.io\/inxedu%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/","datePublished": "2024-07-06T22:47:01+08:00","dateModified": "2024-08-09T12:23:24+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/inxedu%E7%B3%BB%E7%BB%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/","datePublished": "2024-07-06T22:47:01+08:00","dateModified": "2025-02-26T12:27:46+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -356,15 +347,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">该方法的逻辑如下</span><span class="err">：</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">1</span><span class="err">、</span><span class="n">检查上传文件的大小</span><span class="err">，</span><span class="n">如果超过4M</span><span class="err">，</span><span class="n">则返回错误信息</span><span class="err">。</span><span class="w">   </span><span class="c1">//---&gt;uploadfile参数为前端传递的文件</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">2</span><span class="err">、</span><span class="n">根据fileType参数判断文件后缀</span><span class="p">(</span><span class="n">使用getSuffix方法</span><span class="p">)</span><span class="n">是否符合要求</span><span class="err">，</span><span class="n">如果文件类型不符合或者后缀为jsp</span><span class="err">，</span><span class="n">则返回错误信息</span><span class="err">。</span><span class="w"> </span><span class="c1">//---&gt;fileType参数为前端传递</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">3</span><span class="err">、</span><span class="n">根据上传文件的后缀和param参数</span><span class="err">，</span><span class="n">确定上传文件的保存路径</span><span class="err">。</span><span class="w">  </span><span class="c1">//---&gt;param参数为前端传递</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">4</span><span class="err">、</span><span class="n">创建保存文件的目录</span><span class="err">（</span><span class="n">如果目录不存在</span><span class="err">）。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">5</span><span class="err">、</span><span class="n">将上传文件保存到指定的路径</span><span class="p">(</span><span class="n">通过transferTo</span><span class="p">())</span><span class="err">。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">6</span><span class="err">、</span><span class="n">返回上传成功的响应信息</span><span class="err">，</span><span class="n">包括文件路径和状态码</span><span class="err">。</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">7</span><span class="err">、</span><span class="n">如果发生异常</span><span class="err">，</span><span class="n">记录错误日志</span><span class="err">，</span><span class="n">并返回上传失败的错误信息</span><span class="err">。</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="err">该方法的逻辑如下：</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="err">、检查上传文件的大小，如果超过</span><span class="mi">4</span><span class="n">M</span><span class="err">，则返回错误信息。</span>   <span class="c1">//---&gt;uploadfile参数为前端传递的文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">2</span><span class="err">、根据</span><span class="n">fileType</span><span class="err">参数判断文件后缀</span><span class="o">(</span><span class="err">使用</span><span class="n">getSuffix</span><span class="err">方法</span><span class="o">)</span><span class="err">是否符合要求，如果文件类型不符合或者后缀为</span><span class="n">jsp</span><span class="err">，则返回错误信息。</span> <span class="c1">//---&gt;fileType参数为前端传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">3</span><span class="err">、根据上传文件的后缀和</span><span class="n">param</span><span class="err">参数，确定上传文件的保存路径。</span>  <span class="c1">//---&gt;param参数为前端传递
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mi">4</span><span class="err">、创建保存文件的目录（如果目录不存在）。</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span><span class="err">、将上传文件保存到指定的路径</span><span class="o">(</span><span class="err">通过</span><span class="n">transferTo</span><span class="o">())</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="mi">6</span><span class="err">、返回上传成功的响应信息，包括文件路径和状态码。</span>
+</span></span><span class="line"><span class="cl"><span class="mi">7</span><span class="err">、如果发生异常，记录错误日志，并返回上传失败的错误信息。</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
     class="lazyload"
@@ -383,11 +374,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getSuffix</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">1</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getSuffix</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">lastIndexOf</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>再结合之前抓包的url：<code>http://127.0.0.1:8080/image/gok4?&amp;param=temp&amp;fileType=jpg,gif,png,jpeg</code></p>
 <p>将已知的信息串联起来，总结这段代码的判断逻辑为：文件后缀包含 jpg,gif,png,jpeg，且不为 jsp 即进行下一步上传操作。</p>
@@ -441,25 +432,25 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="ne">File</span>
-</span></span><span class="line"><span class="cl"><span class="n">java</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">File</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileUpload</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileUploadBase</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileItemIteratorImpl</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileItemStreamImpl</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileUtils</span>
-</span></span><span class="line"><span class="cl"><span class="n">UploadHandleServlet</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileLoadServlet</span>
-</span></span><span class="line"><span class="cl"><span class="n">FileOutputStream</span>
-</span></span><span class="line"><span class="cl"><span class="n">DiskFileItemFactory</span>
-</span></span><span class="line"><span class="cl"><span class="n">MultipartRequestEntity</span>
-</span></span><span class="line"><span class="cl"><span class="n">MultipartFile</span>
-</span></span><span class="line"><span class="cl"><span class="n">com</span><span class="o">.</span><span class="n">oreilly</span><span class="o">.</span><span class="n">servlet</span><span class="o">.</span><span class="n">MultipartRequest</span>
-</span></span><span class="line"><span class="cl"><span class="n">MultipartHttpServletRequest</span>
-</span></span><span class="line"><span class="cl"><span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">commons</span><span class="o">.</span><span class="n">fileupload</span>
-</span></span><span class="line"><span class="cl"><span class="n">MultipartFile</span>
-</span></span><span class="line"><span class="cl"><span class="n">CommonsMultipartResolver</span>
-</span></span><span class="line"><span class="cl"><span class="o">......</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">File
+</span></span><span class="line"><span class="cl">java.io.File
+</span></span><span class="line"><span class="cl">FileUpload
+</span></span><span class="line"><span class="cl">FileUploadBase
+</span></span><span class="line"><span class="cl">FileItemIteratorImpl
+</span></span><span class="line"><span class="cl">FileItemStreamImpl
+</span></span><span class="line"><span class="cl">FileUtils
+</span></span><span class="line"><span class="cl">UploadHandleServlet
+</span></span><span class="line"><span class="cl">FileLoadServlet
+</span></span><span class="line"><span class="cl">FileOutputStream
+</span></span><span class="line"><span class="cl">DiskFileItemFactory
+</span></span><span class="line"><span class="cl">MultipartRequestEntity
+</span></span><span class="line"><span class="cl">MultipartFile
+</span></span><span class="line"><span class="cl">com.oreilly.servlet.MultipartRequest
+</span></span><span class="line"><span class="cl">MultipartHttpServletRequest
+</span></span><span class="line"><span class="cl">org.apache.commons.fileupload
+</span></span><span class="line"><span class="cl">MultipartFile
+</span></span><span class="line"><span class="cl">CommonsMultipartResolver
+</span></span><span class="line"><span class="cl">......
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们搜索<code>FileUpload</code>，</p>
@@ -651,7 +642,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2024-08-09&#32;12:23:24>更新于 2024-08-09&nbsp;</span>
+        <span title=2025-02-26&#32;12:27:46>更新于 2025-02-26&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -676,9 +667,9 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.131.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+            <span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>

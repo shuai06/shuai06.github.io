@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>Ubuntu Server - 标签 - 剑胆琴心</title>
+    <title>ubuntu server - 标签 - 剑胆琴心</title>
     <link>https://shuai06.github.io/tags/ubuntu-server/</link>
-    <description>Ubuntu Server - 标签 - 剑胆琴心</description>
+    <description>ubuntu server - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 11 Jul 2020 23:15:23 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/ubuntu-server/" rel="self" type="application/rss+xml" /><item>
   <title>ubuntu sever-邮件服务</title>

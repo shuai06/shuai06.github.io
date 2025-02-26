@@ -7,31 +7,21 @@
     <meta name="robots" content="noodp" />
     <title>Jfinalcms代码审计 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
 <meta name="author-link" content="http://shuai06.github.io">
-<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java安全, 渗透测试' />
-  <meta itemprop="name" content="Jfinalcms代码审计">
-  <meta itemprop="description" content="剑胆琴心的技术博客">
-  <meta itemprop="datePublished" content="2024-07-07T16:52:41+08:00">
-  <meta itemprop="dateModified" content="2024-08-09T12:23:24+00:00">
-  <meta itemprop="wordCount" content="995">
-  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
-  <meta itemprop="keywords" content="代码审计,Java安全,渗透测试"><meta property="og:url" content="https://shuai06.github.io/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">
-  <meta property="og:site_name" content="剑胆琴心">
-  <meta property="og:title" content="Jfinalcms代码审计">
-  <meta property="og:description" content="剑胆琴心的技术博客">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-07-07T16:52:41+08:00">
-    <meta property="article:modified_time" content="2024-08-09T12:23:24+00:00">
-    <meta property="article:tag" content="代码审计">
-    <meta property="article:tag" content="Java安全">
-    <meta property="article:tag" content="渗透测试">
-    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='代码审计, Java安全, 渗透测试' /><meta itemprop="name" content="Jfinalcms代码审计">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-07-07T16:52:41+08:00" />
+<meta itemprop="dateModified" content="2025-02-26T12:27:46+00:00" />
+<meta itemprop="wordCount" content="995"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
+<meta itemprop="keywords" content="代码审计,Java安全,渗透测试," /><meta property="og:title" content="Jfinalcms代码审计" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuai06.github.io/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-07T16:52:41+08:00" />
+<meta property="article:modified_time" content="2025-02-26T12:27:46+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
-  <meta name="twitter:title" content="Jfinalcms代码审计">
-  <meta name="twitter:description" content="剑胆琴心的技术博客">
+<meta name="twitter:title" content="Jfinalcms代码审计"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="剑胆琴心">
 <meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -50,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "代码审计, Java安全, 渗透测试","wordcount":  995 ,
-    "url": "https:\/\/shuai06.github.io\/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/","datePublished": "2024-07-07T16:52:41+08:00","dateModified": "2024-08-09T12:23:24+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/jfinalcms%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1\/","datePublished": "2024-07-07T16:52:41+08:00","dateModified": "2025-02-26T12:27:46+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -260,8 +250,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Db</span><span class="p">.</span><span class="na">queryLong</span><span class="p">(</span><span class="s">&#34;select count(1) from cms_admin where username = ?&#34;</span><span class="p">,</span><span class="n">username</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">Db</span><span class="o">.</span><span class="na">queryLong</span><span class="o">(</span><span class="s">&#34;select count(1) from cms_admin where username = ?&#34;</span><span class="o">,</span><span class="n">username</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里使用拼接方式进行数据查询，导致SQL注入：</p>
 <p><img
@@ -440,28 +430,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">	</span><span class="cm">/**
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">	<span class="cm">/**
 </span></span></span><span class="line"><span class="cl"><span class="cm">	 * 编辑
-</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">edit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPara</span><span class="p">(</span><span class="s">&#34;fileName&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPara</span><span class="p">(</span><span class="s">&#34;directory&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isBlank</span><span class="p">(</span><span class="n">fileName</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">//filename不能为空</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">render</span><span class="p">(</span><span class="n">CommonAttribute</span><span class="p">.</span><span class="na">ADMIN_ERROR_VIEW</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="k">return</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;directory&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">directory</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;fileName&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">String</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">if</span><span class="p">(</span><span class="n">StringUtils</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">(</span><span class="n">directory</span><span class="p">)){</span><span class="w">   </span><span class="c1">// 目录directory为空和不为空是两种情况，如果目录不为空，则就是以那个目录开始寻找文件</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">directory</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="s">&#34;,&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="p">;</span><span class="w"> </span><span class="c1">//把逗号替换为/,拼接为完整的路径</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			</span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="p">;</span><span class="w">  </span><span class="c1">//如果目录directory为空的话，则默认就是要传入的文件名</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">setAttr</span><span class="p">(</span><span class="s">&#34;content&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">StringEscapeUtils</span><span class="p">.</span><span class="na">escapeHtml</span><span class="p">(</span><span class="n">TemplateUtils</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">filePath</span><span class="p">)));</span><span class="w">  </span><span class="c1">//读取</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">render</span><span class="p">(</span><span class="n">getView</span><span class="p">(</span><span class="s">&#34;template/edit&#34;</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">edit</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">getPara</span><span class="o">(</span><span class="s">&#34;fileName&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">directory</span> <span class="o">=</span> <span class="n">getPara</span><span class="o">(</span><span class="s">&#34;directory&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">fileName</span><span class="o">))</span> <span class="o">{</span>    <span class="c1">//filename不能为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">render</span><span class="o">(</span><span class="n">CommonAttribute</span><span class="o">.</span><span class="na">ADMIN_ERROR_VIEW</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">setAttr</span><span class="o">(</span><span class="s">&#34;directory&#34;</span><span class="o">,</span> <span class="n">directory</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">setAttr</span><span class="o">(</span><span class="s">&#34;fileName&#34;</span><span class="o">,</span> <span class="n">fileName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">filePath</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="o">(</span><span class="n">StringUtils</span><span class="o">.</span><span class="na">isNotBlank</span><span class="o">(</span><span class="n">directory</span><span class="o">)){</span>   <span class="c1">// 目录directory为空和不为空是两种情况，如果目录不为空，则就是以那个目录开始寻找文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">filePath</span> <span class="o">=</span> <span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">directory</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">,</span> <span class="s">&#34;/&#34;</span><span class="o">)+</span><span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="o">;</span> <span class="c1">//把逗号替换为/,拼接为完整的路径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">filePath</span> <span class="o">=</span> <span class="s">&#34;/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="o">;</span>  <span class="c1">//如果目录directory为空的话，则默认就是要传入的文件名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="n">setAttr</span><span class="o">(</span><span class="s">&#34;content&#34;</span><span class="o">,</span> <span class="n">StringEscapeUtils</span><span class="o">.</span><span class="na">escapeHtml</span><span class="o">(</span><span class="n">TemplateUtils</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">filePath</span><span class="o">)));</span>  <span class="c1">//读取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">render</span><span class="o">(</span><span class="n">getView</span><span class="o">(</span><span class="s">&#34;template/edit&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Poc:</p>
 <div class="highlight"><div class="chroma">
@@ -565,7 +555,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2024-08-09&#32;12:23:24>更新于 2024-08-09&nbsp;</span>
+        <span title=2025-02-26&#32;12:27:46>更新于 2025-02-26&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -590,9 +580,9 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.131.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+            <span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>

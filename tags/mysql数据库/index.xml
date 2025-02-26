@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>Mysql，数据库 - 标签 - 剑胆琴心</title>
+    <title>mysql，数据库 - 标签 - 剑胆琴心</title>
     <link>https://shuai06.github.io/tags/mysql%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Mysql，数据库 - 标签 - 剑胆琴心</description>
+    <description>mysql，数据库 - 标签 - 剑胆琴心</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
       <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 04 Mar 2019 15:47:55 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/mysql%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
   <title>远程连接mysql</title>

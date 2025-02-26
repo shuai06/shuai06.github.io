@@ -7,31 +7,21 @@
     <meta name="robots" content="noodp" />
     <title>iptables包过滤与网络地址转换 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
 <meta name="author-link" content="http://shuai06.github.io">
-<meta name="description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA" /><meta name="keywords" content='iptables, NAT, 防火墙' />
-  <meta itemprop="name" content="iptables包过滤与网络地址转换">
-  <meta itemprop="description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA">
-  <meta itemprop="datePublished" content="2020-08-14T09:50:06+08:00">
-  <meta itemprop="dateModified" content="2024-08-09T12:23:24+00:00">
-  <meta itemprop="wordCount" content="1422">
-  <meta itemprop="image" content="https://shuai06.github.io/logo.png">
-  <meta itemprop="keywords" content="Iptables,NAT,防火墙"><meta property="og:url" content="https://shuai06.github.io/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/">
-  <meta property="og:site_name" content="剑胆琴心">
-  <meta property="og:title" content="iptables包过滤与网络地址转换">
-  <meta property="og:description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-08-14T09:50:06+08:00">
-    <meta property="article:modified_time" content="2024-08-09T12:23:24+00:00">
-    <meta property="article:tag" content="Iptables">
-    <meta property="article:tag" content="NAT">
-    <meta property="article:tag" content="防火墙">
-    <meta property="og:image" content="https://shuai06.github.io/logo.png">
+<meta name="description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA" /><meta name="keywords" content='iptables, NAT, 防火墙' /><meta itemprop="name" content="iptables包过滤与网络地址转换">
+<meta itemprop="description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA"><meta itemprop="datePublished" content="2020-08-14T09:50:06+08:00" />
+<meta itemprop="dateModified" content="2025-02-26T12:27:46+00:00" />
+<meta itemprop="wordCount" content="1422"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
+<meta itemprop="keywords" content="iptables,NAT,防火墙," /><meta property="og:title" content="iptables包过滤与网络地址转换" />
+<meta property="og:description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuai06.github.io/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-08-14T09:50:06+08:00" />
+<meta property="article:modified_time" content="2025-02-26T12:27:46+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://shuai06.github.io/logo.png">
-  <meta name="twitter:title" content="iptables包过滤与网络地址转换">
-  <meta name="twitter:description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA">
+<meta name="twitter:title" content="iptables包过滤与网络地址转换"/>
+<meta name="twitter:description" content="iptables 功能 4个表raw和mangle，nat,filter（后两个表用的多） 1 iptables -t filter -nvL # -t显示哪个表 三个链(Chain)：INPUT,FORA"/>
 <meta name="application-name" content="剑胆琴心">
 <meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -50,7 +40,7 @@
               "width":  1842 ,
               "height":  1036 
             }],"genre": "posts","keywords": "iptables, NAT, 防火墙","wordcount":  1422 ,
-    "url": "https:\/\/shuai06.github.io\/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2\/","datePublished": "2020-08-14T09:50:06+08:00","dateModified": "2024-08-09T12:23:24+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+    "url": "https:\/\/shuai06.github.io\/iptables%E5%8C%85%E8%BF%87%E6%BB%A4%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2\/","datePublished": "2020-08-14T09:50:06+08:00","dateModified": "2025-02-26T12:27:46+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
       "@type": "Organization",
       "name": "剑胆琴心","logo": {
           "@type": "ImageObject",
@@ -576,7 +566,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2024-08-09&#32;12:23:24>更新于 2024-08-09&nbsp;</span>
+        <span title=2025-02-26&#32;12:27:46>更新于 2025-02-26&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -589,7 +579,7 @@
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/iptables/' class="post-tag">Iptables</a><a href='/tags/nat/' class="post-tag">NAT</a><a href='/tags/%E9%98%B2%E7%81%AB%E5%A2%99/' class="post-tag">防火墙</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/iptables/' class="post-tag">iptables</a><a href='/tags/nat/' class="post-tag">NAT</a><a href='/tags/%E9%98%B2%E7%81%AB%E5%A2%99/' class="post-tag">防火墙</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
@@ -601,9 +591,9 @@
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
       </noscript></div></article></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.131.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">
+            <span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
