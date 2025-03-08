@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>靶场 - 标签 - 剑胆琴心</title>
+    <link>https://shuai06.github.io/tags/%E9%9D%B6%E5%9C%BA/</link>
+    <description>靶场 - 标签 - 剑胆琴心</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xuepengshuai@gmail.com (剑胆琴心)</managingEditor>
+      <webMaster>xuepengshuai@gmail.com (剑胆琴心)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 04 Mar 2025 11:11:30 &#43;0800</lastBuildDate><atom:link href="https://shuai06.github.io/tags/%E9%9D%B6%E5%9C%BA/" rel="self" type="application/rss+xml" /><item>
+  <title>Burp官方xss靶场记录</title>
+  <link>https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/</link>
+  <pubDate>Tue, 04 Mar 2025 11:11:30 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

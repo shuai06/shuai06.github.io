@@ -1,3 +1,5 @@
+https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
+https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/js%E9%80%86%E5%90%91%E5%88%9D%E5%AD%A6%E7%AC%94%E8%AE%B0/
 https://shuai06.github.io/ai%E6%BC%8F%E6%B4%9E%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/labelme%E4%B8%8D%E5%90%8C%E7%89%A9%E4%BD%93%E4%B8%8D%E5%90%8C%E9%A2%9C%E8%89%B2%E6%A0%87%E6%B3%A8%E5%92%8C%E5%AF%BC%E5%87%BA/

