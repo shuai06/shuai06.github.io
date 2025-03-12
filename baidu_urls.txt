@@ -1,3 +1,4 @@
+https://shuai06.github.io/burp%E5%AE%98%E6%96%B9graphql-api%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/js%E9%80%86%E5%90%91%E5%88%9D%E5%AD%A6%E7%AC%94%E8%AE%B0/
