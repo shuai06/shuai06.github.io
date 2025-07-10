@@ -13,6 +13,14 @@
   <description><![CDATA[]]></description>
 </item>
 <item>
+  <title>Burp官方ssrf靶场记录</title>
+  <link>https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/</link>
+  <pubDate>Fri, 07 Mar 2025 10:44:08 &#43;0800</pubDate>
+  <author>剑胆琴心</author>
+  <guid>https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Burp官方xss靶场记录</title>
   <link>https://shuai06.github.io/burp%E5%AE%98%E6%96%B9xss%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/</link>
   <pubDate>Tue, 04 Mar 2025 11:11:30 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <author>剑胆琴心</author>
   <guid>https://shuai06.github.io/cobalt-strike-dns-beacon/</guid>
   <description><![CDATA[部署域名解析 首先，用一台公网的Linux系统的VPS作为 C&amp;C 服务器 (注意：VPS 的 53 端口一定要开放)，并准备好一个可以配置的域名 (这里我们假设]]></description>
-</item>
-<item>
-  <title>利用域前置Cobalt Strike逃避IDS</title>
-  <link>https://shuai06.github.io/%E5%88%A9%E7%94%A8%E5%9F%9F%E5%89%8D%E7%BD%AEcobalt-strike%E9%80%83%E9%81%BFids/</link>
-  <pubDate>Tue, 14 Jun 2022 22:49:10 &#43;0800</pubDate>
-  <author>剑胆琴心</author>
-  <guid>https://shuai06.github.io/%E5%88%A9%E7%94%A8%E5%9F%9F%E5%89%8D%E7%BD%AEcobalt-strike%E9%80%83%E9%81%BFids/</guid>
-  <description><![CDATA[域前置(Domain Fronting)原理 CND分发 原理： 通过CDN节点将流量转发到真实的C2服务器，其中CDN节点IP通过识别请求的HOS]]></description>
 </item>
 </channel>
 </rss>
