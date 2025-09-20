@@ -1,3 +1,4 @@
+https://shuai06.github.io/langchain%E5%AD%A6%E4%B9%A0/
 https://shuai06.github.io/alibaba-sentinel-ssrf%E6%BC%8F%E6%B4%9E%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1cve-2021-44139/
 https://shuai06.github.io/burp%E5%AE%98%E6%96%B9graphql-api%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
 https://shuai06.github.io/burp%E5%AE%98%E6%96%B9ssrf%E9%9D%B6%E5%9C%BA%E8%AE%B0%E5%BD%95/
